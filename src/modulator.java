@@ -16,31 +16,37 @@
 
 */
 
-import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.util.Vector;
+import javax.swing.JPanel;
 
-public class modulator {
+public class modulator extends JPanel {
 
     public enum ModulationType {AMn, FMn, PMn, RPMn};
 
     private ModulationType using_method = null;
-    private Graphics context = null;
     private Vector sequence = null;
-    private Canvas field = null;
     private int alignment;
 
-    public modulator(ModulationType mod_type, Canvas where_to_draw, Vector symbols, int align)
+    private Paint paint;
+
+    public modulator(ModulationType mod_type, Vector symbols, int align, int wx, int wy, int lx, int ly)
     {
 	this.using_method = mod_type;
-	this.context = where_to_draw.getGraphics();
 	this.sequence = symbols;
-	this.field = where_to_draw;
+	this.setSize(wx, wy);
+	this.setLocation(lx, ly);
 	this.alignment = align;
     }
 
-    public void makeImage()
+    @Override
+    public void paintComponent(Graphics g)
     {
+	super.paintComponent(g);
+	Graphics2D g2 = (Graphics2D) g;
+	g2.setPaint(paint);
 	//chart margins
 	final int left_margin_x = 10;
 	final int right_margin_x = 10;
@@ -50,18 +56,18 @@ public class modulator {
 
 	//zero levels
 	final int zero_x = left_margin_x;
-	final int zero_y = this.field.getHeight() / 2;
+	final int zero_y = this.getHeight() / 2;
 
 	//current position of pen
 	int current_x = zero_x;
 	int current_y = zero_y;
 
 	//draw coordinates system
-	this.context.drawLine(left_margin_x, zero_y, this.field.getWidth() - right_margin_x, zero_y);
-	this.context.drawLine(left_margin_x, top_margin_y, left_margin_x, this.field.getHeight() - bottom_margin_y);
+	g2.drawLine(left_margin_x, zero_y, this.getWidth() - right_margin_x, zero_y);
+	g2.drawLine(left_margin_x, top_margin_y, left_margin_x, this.getHeight() - bottom_margin_y);
 
 	//longtitude of chart
-	int distance = this.field.getWidth() - (left_margin_x + right_margin_x);
+	int distance = this.getWidth() - (left_margin_x + right_margin_x);
 
 	//get first symbol of sequence
 	binaryNumber working_number = (binaryNumber)this.sequence.get(0);
@@ -83,7 +89,7 @@ public class modulator {
 		    {
 			int new_x = current_x + step;
 			int new_y = zero_y;
-			this.context.drawLine(current_x, zero_y, new_x, new_y);
+			g2.drawLine(current_x, zero_y, new_x, new_y);
 			current_x = new_x;
 			current_y = new_y;
 		    } else
@@ -93,7 +99,7 @@ public class modulator {
 			{
 			    int new_x = current_x + 1;
 			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    this.context.drawLine(current_x, current_y, new_x, new_y);
+			    g2.drawLine(current_x, current_y, new_x, new_y);
 			    current_x = new_x;
 			    current_y = new_y;
 			}
@@ -106,7 +112,7 @@ public class modulator {
 			{
 			    int new_x = current_x + 1;
 			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    this.context.drawLine(current_x, current_y, new_x, new_y);
+			    g2.drawLine(current_x, current_y, new_x, new_y);
 			    current_x = new_x;
 			    current_y = new_y;
 			}
@@ -117,7 +123,7 @@ public class modulator {
 			{
 			    int new_x = current_x + 1;
 			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * 2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    this.context.drawLine(current_x, current_y, new_x, new_y);
+			    g2.drawLine(current_x, current_y, new_x, new_y);
 			    current_x = new_x;
 			    current_y = new_y;
 			}
@@ -130,7 +136,7 @@ public class modulator {
 			{
 			    int new_x = current_x + 1;
 			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    this.context.drawLine(current_x, current_y, new_x, new_y);
+			    g2.drawLine(current_x, current_y, new_x, new_y);
 			    current_x = new_x;
 			    current_y = new_y;
 			}
@@ -141,7 +147,7 @@ public class modulator {
 			{
 			    int new_x = current_x + 1;
 			    int new_y = (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    this.context.drawLine(current_x, current_y, new_x, new_y);
+			    g2.drawLine(current_x, current_y, new_x, new_y);
 			    current_x = new_x;
 			    current_y = new_y;
 			}
@@ -156,7 +162,7 @@ public class modulator {
 			    {
 				int new_x = current_x + 1;
 				int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				this.context.drawLine(current_x, current_y, new_x, new_y);
+				g2.drawLine(current_x, current_y, new_x, new_y);
 				current_x = new_x;
 				current_y = new_y;
 			    }
@@ -168,7 +174,7 @@ public class modulator {
 			    {
 				int new_x = current_x + 1;
 				int new_y = (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				this.context.drawLine(current_x, current_y, new_x, new_y);
+				g2.drawLine(current_x, current_y, new_x, new_y);
 				current_x = new_x;
 				current_y = new_y;
 			    }
@@ -183,7 +189,7 @@ public class modulator {
 			    {
 				int new_x = current_x + 1;
 				int new_y = (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				this.context.drawLine(current_x, current_y, new_x, new_y);
+				g2.drawLine(current_x, current_y, new_x, new_y);
 				current_x = new_x;
 				current_y = new_y;
 			    }
@@ -195,7 +201,7 @@ public class modulator {
 			    {
 				int new_x = current_x + 1;
 				int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				this.context.drawLine(current_x, current_y, new_x, new_y);
+				g2.drawLine(current_x, current_y, new_x, new_y);
 				current_x = new_x;
 				current_y = new_y;
 			    }

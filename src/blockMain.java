@@ -116,9 +116,15 @@ public class blockMain extends javax.swing.JFrame {
     //modulates sinusoidal signal with channel code using selected modulation type
     void doModulating()
     {
-	modulatorOutput.getGraphics().clearRect(10, 10, modulatorOutput.getWidth() - 10, modulatorOutput.getHeight() - 10);
-	currentModulator = new modulator(modulationType, modulatorOutput, channel_symbols, currentChannelCoder.alignment);
-	currentModulator.makeImage();
+	if (currentModulator != null)
+	{
+	    modulatorOutputPanel.remove(currentModulator);
+	    currentModulator = null;
+	}
+	currentModulator = new modulator(modulationType, channel_symbols, currentChannelCoder.alignment, 595, 238, 5, 20);
+	currentModulator.setVisible(true);
+	modulatorOutputPanel.add(currentModulator);
+	currentModulator.repaint();
     }
 
     public blockMain() {
@@ -156,7 +162,6 @@ public class blockMain extends javax.swing.JFrame {
         modulationTypeLabel = new javax.swing.JLabel();
         modulationTypeChooser = new javax.swing.JComboBox();
         modulatorOutputPanel = new javax.swing.JPanel();
-        modulatorOutput = new java.awt.Canvas();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -374,11 +379,11 @@ public class blockMain extends javax.swing.JFrame {
         modulatorOutputPanel.setLayout(modulatorOutputPanelLayout);
         modulatorOutputPanelLayout.setHorizontalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modulatorOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modulatorOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+            .addGap(0, 238, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -624,7 +629,6 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JMenu modellingMenu;
     private javax.swing.JComboBox modulationTypeChooser;
     private javax.swing.JLabel modulationTypeLabel;
-    private java.awt.Canvas modulatorOutput;
     private javax.swing.JPanel modulatorOutputPanel;
     private javax.swing.JMenuItem shl2Item;
     private javax.swing.JComboBox sourceCodesChooser;
