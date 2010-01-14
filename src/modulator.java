@@ -44,15 +44,21 @@ public class modulator extends JPanel {
     @Override
     public void paintComponent(Graphics g)
     {
+	//initializes graphics context
 	super.paintComponent(g);
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setPaint(paint);
+
 	//chart margins
 	final int left_margin_x = 10;
 	final int right_margin_x = 10;
 	final int top_margin_y = 10;
 	final int bottom_margin_y = 10;
 	final int scaling_factor = 50;
+	final int x_border = 5;
+	//arrows size
+	final int arrow_width = 2;
+	final int arrow_height = 7;
 
 	//zero levels
 	final int zero_x = left_margin_x;
@@ -63,8 +69,14 @@ public class modulator extends JPanel {
 	int current_y = zero_y;
 
 	//draw coordinates system
-	g2.drawLine(left_margin_x, zero_y, this.getWidth() - right_margin_x, zero_y);
+	g2.drawLine(left_margin_x, zero_y, this.getWidth() - right_margin_x + x_border, zero_y);
 	g2.drawLine(left_margin_x, top_margin_y, left_margin_x, this.getHeight() - bottom_margin_y);
+	//0y arrow
+	g2.drawLine(left_margin_x, top_margin_y, left_margin_x - arrow_width, top_margin_y + arrow_height);
+	g2.drawLine(left_margin_x, top_margin_y, left_margin_x + arrow_width, top_margin_y + arrow_height);
+	//0x arrow
+	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y - arrow_width);
+	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y + arrow_width);
 
 	//longtitude of chart
 	int distance = this.getWidth() - (left_margin_x + right_margin_x);
