@@ -22,19 +22,23 @@ public class binaryNumber {
     private long number;
     private long[] binary = new long[digits];
 
+    //creates binary number from string sequence
     public binaryNumber(String sequence)
     {
+	//gets meaningful part of string
 	String bin = "";
 	for (int i = 0; i < digits - sequence.length(); i++)
 	    bin += "0";
 	bin += sequence;
 
+	//calculates integer (decimal) value of binary number
 	long value = 0;
 	for (int i = 0; i < digits; i++)
 	    if (bin.charAt(i) == '1')
 		value += Math.pow(2, digits - 1 - i);
 	this.number = value;
 
+	//creates array structure
 	for (int i = 0; i < digits; i++)
 	{
 	    switch (bin.charAt(i))
@@ -52,15 +56,19 @@ public class binaryNumber {
 	}
     }
 
+    //creates binary number from integer (decimal) value
     public binaryNumber(long number)
     {
 	this.number = number;
+
+	//gets meaningful part of string
 	String bin = Integer.toBinaryString((int) number);
 	for (int i = 0; i < digits - bin.length(); i++)
 	{
 	    this.binary[i] = 0;
 	}
 
+	//creates array structure
 	for (int i = digits - bin.length(); i < digits; i++)
 	{
 	    switch (bin.charAt(i - digits + bin.length()))
@@ -78,6 +86,7 @@ public class binaryNumber {
 	}
     }
 
+    //returns fixed-width string representation of binary number
     public String getString(int align)
     {
 	String out = "";
@@ -93,17 +102,20 @@ public class binaryNumber {
 	return out;
     }
 
+    //returns decimal value of binary number
     public long toInt()
     {
 	return this.number;
     }
 
+    //returns array of zeroes and ones
     public long[] toIntArray()
     {
 	return this.binary;
     }
 
-    public long[] toAlignedIntArray(int align)
+    //returns fixed-width integer array
+    public long[] toIntArray(int align)
     {
 	int k = 0;
 	if (align == 0)
@@ -118,6 +130,8 @@ public class binaryNumber {
 	return out;
     }
 
+
+    //converts integer array to decimal value
     private long binaryToInt(long[] binary)
     {
 	long out = 0;
@@ -127,6 +141,7 @@ public class binaryNumber {
 	return out;
     }
 
+    //sums two numbers by module 2
     public binaryNumber sum2(binaryNumber number)
     {
 	long in2[] = number.toIntArray();
@@ -156,6 +171,7 @@ public class binaryNumber {
 	return res;
     }
 
+    //inverses number
     public binaryNumber not2()
     {
 	long out[] = new long[digits];
@@ -175,6 +191,7 @@ public class binaryNumber {
 	return res;
     }
 
+    //inverses aligned part of number
     public binaryNumber not2(int align)
     {
 	long out[] = new long[digits];
@@ -191,6 +208,7 @@ public class binaryNumber {
 	return res;
     }
 
+    //shifts number to left direction for one position
     public binaryNumber shl2()
     {
 	long out[] = new long[digits];
@@ -204,6 +222,7 @@ public class binaryNumber {
 	return res;
     }
 
+    //shifts number to left direction for several positions
     public binaryNumber shl2(int align)
     {
 	long out[] = new long[digits];
@@ -220,6 +239,7 @@ public class binaryNumber {
 	return res;
     }
 
+    //gets weight of binary number
     public int getWeight()
     {
 	int out = 0;

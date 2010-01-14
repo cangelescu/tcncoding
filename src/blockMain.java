@@ -570,11 +570,13 @@ public class blockMain extends javax.swing.JFrame {
 	aboutDialog.setVisible(true);
     }//GEN-LAST:event_aboutItemActionPerformed
 
+    //hides about dialog
     private void aboutDialogCloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutDialogCloseActionPerformed
     {//GEN-HEADEREND:event_aboutDialogCloseActionPerformed
 	aboutDialog.setVisible(false);
     }//GEN-LAST:event_aboutDialogCloseActionPerformed
 
+    //updates modulation type on choosing it from combobox
     private void modulationTypeChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_modulationTypeChooserItemStateChanged
     {//GEN-HEADEREND:event_modulationTypeChooserItemStateChanged
 	updateChosenModulationType();

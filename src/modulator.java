@@ -65,7 +65,7 @@ public class modulator {
 
 	//get first symbol of sequence
 	binaryNumber working_number = (binaryNumber)this.sequence.get(0);
-	long[] seq = working_number.toAlignedIntArray(this.alignment);
+	long[] seq = working_number.toIntArray(this.alignment);
 	int len = this.alignment;
 
 	//longtitude of one element, in pixels
