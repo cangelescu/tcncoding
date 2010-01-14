@@ -70,6 +70,19 @@ public class coderOfChannel {
 		}
 		break;
 	    case inversed:
+		for (Object bn: this.source_symbols)
+		{
+		    binaryNumber current_number = (binaryNumber)bn;
+		    binaryNumber shifted = current_number.shl2(this.alignment / 2);
+		    if (current_number.getWeight() % 2 == 0)
+		    {
+			this.channel_sequence.add(shifted.sum2(current_number));
+		    } else
+		    {
+			binaryNumber inversed = current_number.not2(this.alignment / 2);
+			this.channel_sequence.add(shifted.sum2(inversed));
+		    }
+		}
 		break;
 	    case hamming:
 		break;

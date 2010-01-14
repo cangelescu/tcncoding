@@ -175,6 +175,22 @@ public class binaryNumber {
 	return res;
     }
 
+    public binaryNumber not2(int align)
+    {
+	long out[] = new long[digits];
+	for (int i = digits - align; i < digits; i++)
+	{
+	    if (this.binary[i] == 0)
+		out[i] = 1;
+	    else
+		out[i] = 0;
+	}
+
+	long initValue = binaryToInt(out);
+	binaryNumber res = new binaryNumber(initValue);
+	return res;
+    }
+
     public binaryNumber shl2()
     {
 	long out[] = new long[digits];
@@ -183,6 +199,22 @@ public class binaryNumber {
 	    out[i] = this.binary[i + 1];
 	}
 	out[digits - 1] = 0;
+	long initValue = binaryToInt(out);
+	binaryNumber res = new binaryNumber(initValue);
+	return res;
+    }
+
+    public binaryNumber shl2(int align)
+    {
+	long out[] = new long[digits];
+	for (int i = 0; i < digits - align; i++)
+	{
+	    out[i] = this.binary[i + align];
+	}
+	for (int i = digits - align; i < digits; i++)
+	{
+	    out[i] = 0;
+	}
 	long initValue = binaryToInt(out);
 	binaryNumber res = new binaryNumber(initValue);
 	return res;
