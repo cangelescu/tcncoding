@@ -172,6 +172,7 @@ public class blockMain extends javax.swing.JFrame {
         inversionItem = new javax.swing.JMenuItem();
         shl2Item = new javax.swing.JMenuItem();
         weightItem = new javax.swing.JMenuItem();
+        tabulateItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -468,6 +469,14 @@ public class blockMain extends javax.swing.JFrame {
         });
         developerMenu.add(weightItem);
 
+        tabulateItem.setText("Табулювання функції");
+        tabulateItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tabulateItemActionPerformed(evt);
+            }
+        });
+        developerMenu.add(tabulateItem);
+
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -543,7 +552,7 @@ public class blockMain extends javax.swing.JFrame {
 		num1.not2().getString(0));
     }//GEN-LAST:event_inversionItemActionPerformed
 
-    //check binary number shifting
+    //checks binary number shifting
     private void shl2ItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_shl2ItemActionPerformed
     {//GEN-HEADEREND:event_shl2ItemActionPerformed
 	binaryNumber num1 = new binaryNumber(10);
@@ -553,7 +562,7 @@ public class blockMain extends javax.swing.JFrame {
 		num1.shl2().getString(0));
     }//GEN-LAST:event_shl2ItemActionPerformed
 
-    //check getting weight of binary number
+    //checks getting weight of binary number
     private void weightItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_weightItemActionPerformed
     {//GEN-HEADEREND:event_weightItemActionPerformed
 	binaryNumber num1 = new binaryNumber(10);
@@ -586,6 +595,29 @@ public class blockMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_modulationTypeChooserItemStateChanged
 	updateChosenModulationType();
     }//GEN-LAST:event_modulationTypeChooserItemStateChanged
+
+    //implements test function to tabulate
+    private class sqrx implements MathToolsFunction
+    {
+	public double function(double x)
+	{
+	    return Math.pow(x, 2);
+	}
+    }
+    
+    //checks function tabulating
+    private void tabulateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabulateItemActionPerformed
+    {//GEN-HEADEREND:event_tabulateItemActionPerformed
+	sqrx testFunction = new sqrx();
+	mathTools mtools = new mathTools(1.0E-3);
+	Vector<FunctionStep> numbers = mtools.tabulate(testFunction, 0, 0.5);
+	System.out.println("Tabulating function f(x)=x^2");
+	for(Object current: numbers)
+	{
+	    FunctionStep current_step = (FunctionStep)current;
+	    System.out.printf("f(%f)=%f\n", current_step.x, current_step.y);
+	}
+    }//GEN-LAST:event_tabulateItemActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -634,6 +666,7 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JComboBox sourceCodesChooser;
     private javax.swing.JLabel sourceCodesChooserLabel;
     private javax.swing.JMenuItem sum2Item;
+    private javax.swing.JMenuItem tabulateItem;
     private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables
 
