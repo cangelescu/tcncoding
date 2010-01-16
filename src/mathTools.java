@@ -29,7 +29,7 @@ public class mathTools {
 
     public mathTools()
     {
-	this.step = 1.0E-6;
+	this.step = 1.0E-9;
     }
 
     public Vector<FunctionStep> tabulate(MathToolsFunction func, double x_begin, double x_end)

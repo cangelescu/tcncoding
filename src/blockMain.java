@@ -16,6 +16,8 @@
 
 */
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Vector;
 
 public class blockMain extends javax.swing.JFrame {
@@ -125,6 +127,15 @@ public class blockMain extends javax.swing.JFrame {
 	currentModulator.setVisible(true);
 	modulatorOutputPanel.add(currentModulator);
 	currentModulator.repaint();
+	
+	Vector<Vector<FunctionStep>> res = currentModulator.doModulation();
+	for(Vector<FunctionStep> cv: res)
+	{
+	    for(FunctionStep cfs: cv)
+	    {
+	        //
+	    }
+        }
     }
 
     public blockMain() {
