@@ -41,6 +41,23 @@ public class modulator extends JPanel {
 	this.alignment = align;
     }
 
+    private class BearerFunction implements MathToolsFunction
+    {
+	private double frequency, amplitude, phase;
+
+	public BearerFunction(double freq, double ampl, double ph)
+	{
+	    this.frequency = freq;
+	    this.amplitude = ampl;
+	    this.phase = ph;
+	}
+
+	public double function(double x)
+	{
+	    return amplitude * Math.sin(2 * Math.PI * frequency * x + phase);
+	}
+    }
+
     @Override
     public void paintComponent(Graphics g)
     {

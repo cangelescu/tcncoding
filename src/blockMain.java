@@ -612,9 +612,9 @@ public class blockMain extends javax.swing.JFrame {
 	mathTools mtools = new mathTools(1.0E-3);
 	Vector<FunctionStep> numbers = mtools.tabulate(testFunction, 0, 0.5);
 	System.out.println("Tabulating function f(x)=x^2");
-	for(Object current: numbers)
+	for(FunctionStep current: numbers)
 	{
-	    FunctionStep current_step = (FunctionStep)current;
+	    FunctionStep current_step = current;
 	    System.out.printf("f(%f)=%f\n", current_step.x, current_step.y);
 	}
     }//GEN-LAST:event_tabulateItemActionPerformed
