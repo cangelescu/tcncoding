@@ -16,8 +16,6 @@
 
 */
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.util.Vector;
 
 public class blockMain extends javax.swing.JFrame {
@@ -37,6 +35,9 @@ public class blockMain extends javax.swing.JFrame {
     //message in binary symbols
     Vector source_symbols = new Vector();
     Vector channel_symbols = new Vector();
+
+    //modulator data
+    Vector<Vector<FunctionStep>> modulator_data = new Vector<Vector<FunctionStep>>();
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -128,14 +129,7 @@ public class blockMain extends javax.swing.JFrame {
 	modulatorOutputPanel.add(currentModulator);
 	currentModulator.repaint();
 	
-	Vector<Vector<FunctionStep>> res = currentModulator.doModulation();
-	for(Vector<FunctionStep> cv: res)
-	{
-	    for(FunctionStep cfs: cv)
-	    {
-	        //
-	    }
-        }
+	modulator_data = currentModulator.doModulation();
     }
 
     public blockMain() {
