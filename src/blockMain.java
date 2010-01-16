@@ -40,7 +40,7 @@ public class blockMain extends javax.swing.JFrame {
     Vector channel_symbols = new Vector();
 
     //modulator data
-    Vector<Vector<FunctionStep>> modulator_data = new Vector<Vector<FunctionStep>>();
+    double[] modulator_data = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -123,7 +123,8 @@ public class blockMain extends javax.swing.JFrame {
     void doModulating()
     {
 	currentModulator = new modulator(modulationType, channel_symbols, currentChannelCoder.alignment);
-	modulator_data = currentModulator.doModulation();
+	currentModulator.doModulation();
+	this.modulator_data = currentModulator.getModulatedArray();
 
 	if (currentModulatorVizualizator != null)
 	{
@@ -393,7 +394,7 @@ public class blockMain extends javax.swing.JFrame {
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGap(0, 232, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -412,7 +413,7 @@ public class blockMain extends javax.swing.JFrame {
                 .addGroup(blockModulatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(modulationTypeLabel)
                     .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(modulatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

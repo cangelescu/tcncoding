@@ -26,6 +26,8 @@ public class modulator {
     private Vector sequence = null;
     private int alignment;
 
+    Vector<Vector<FunctionStep>> modulated_sequence = new Vector<Vector<FunctionStep>>();
+
     public modulator(ModulationType mod_type, Vector symbols, int align)
     {
 	this.using_method = mod_type;
@@ -50,12 +52,9 @@ public class modulator {
 	}
     }
 
-    public Vector<Vector<FunctionStep>> doModulation()
+    public void doModulation()
     {
-	Vector<Vector<FunctionStep>> out = new Vector<Vector<FunctionStep>>();
-
-	binaryNumber working_number = (binaryNumber)this.sequence.get(0);
-	boolean[] seq = working_number.toBinaryArray(this.alignment);
+	this.modulated_sequence.clear();
 	int len = this.alignment;
 
 	mathTools mtools = new mathTools();
@@ -72,59 +71,88 @@ public class modulator {
 	BearerFunction pmn0 = new BearerFunction(freq1, ampl, 0);
 	BearerFunction pmn1 = new BearerFunction(freq1, ampl, -Math.PI);
 
-	for(int i = 0; i < len; i++)
+	for (int j = 0; j < this.sequence.size(); j++)
 	{
-	    switch (this.using_method)
+	    binaryNumber working_number = (binaryNumber)this.sequence.get(j);
+	    boolean[] seq = working_number.toBinaryArray(this.alignment);
+
+	    for (int i = 0; i < len; i++)
 	    {
-		case AMn:
-		    if (!seq[i])
-			out.add(mtools.tabulate(amn0, 0, 1/freq1));
-		    else
-			out.add(mtools.tabulate(amn1, 0, 1/freq1));
-		    break;
-		case FMn:
-		    if (!seq[i])
-			out.add(mtools.tabulate(fmn0, 0, 1/freq1));
-		    else
-			out.add(mtools.tabulate(fmn1, 0, 1/freq1));
-		    break;
-		case PMn:
-		    if (!seq[i])
-			out.add(mtools.tabulate(pmn0, 0, 1/freq1));
-		    else
-			out.add(mtools.tabulate(pmn1, 0, 1/freq1));
-		    break;
-		case RPMn:
-		    if (!seq[i])
-		    {
-			if (prev_phase == 1)
+		switch (this.using_method)
+		{
+		    case AMn:
+			if (!seq[i])
+			    this.modulated_sequence.add(mtools.tabulate(amn0, 0, 1/freq1));
+			else
+			    this.modulated_sequence.add(mtools.tabulate(amn1, 0, 1/freq1));
+			break;
+		    case FMn:
+			if (!seq[i])
+			    this.modulated_sequence.add(mtools.tabulate(fmn0, 0, 1/freq1));
+			else
+			    this.modulated_sequence.add(mtools.tabulate(fmn1, 0, 1/freq1));
+			break;
+		    case PMn:
+			if (!seq[i])
+			    this.modulated_sequence.add(mtools.tabulate(pmn0, 0, 1/freq1));
+			else
+			    this.modulated_sequence.add(mtools.tabulate(pmn1, 0, 1/freq1));
+			break;
+		    case RPMn:
+			if (!seq[i])
 			{
-			    out.add(mtools.tabulate(pmn0, 0, 1/freq1));
-			    prev_phase = 1;
+			    if (prev_phase == 1)
+			    {
+				this.modulated_sequence.add(mtools.tabulate(pmn0, 0, 1/freq1));
+				prev_phase = 1;
+			    } else
+			    if (prev_phase == -1)
+			    {
+				this.modulated_sequence.add(mtools.tabulate(pmn1, 0, 1/freq1));
+				prev_phase = -1;
+			    }
 			} else
-			if (prev_phase == -1)
 			{
-			    out.add(mtools.tabulate(pmn1, 0, 1/freq1));
-			    prev_phase = -1;
+			    if (prev_phase == 1)
+			    {
+				this.modulated_sequence.add(mtools.tabulate(pmn1, 0, 1/freq1));
+				prev_phase = -1;
+			    } else
+			    if (prev_phase == -1)
+			    {
+				this.modulated_sequence.add(mtools.tabulate(pmn0, 0, 1/freq1));
+				prev_phase = 1;
+			    }
 			}
-		    } else
-		    {
-			if (prev_phase == 1)
-			{
-			    out.add(mtools.tabulate(pmn1, 0, 1/freq1));
-			    prev_phase = -1;
-			} else
-			if (prev_phase == -1)
-			{
-			    out.add(mtools.tabulate(pmn0, 0, 1/freq1));
-			    prev_phase = 1;
-			}
-		    }
-		    break;
-		default:
-		    break;
+			break;
+		    default:
+			break;
+		}
 	    }
 	}
+    }
+
+    public double[] getModulatedArray()
+    {
+	int count = 0;
+	for (Vector<FunctionStep> current_symbol: this.modulated_sequence)
+	{
+	    for (FunctionStep current_quant: current_symbol)
+		count++;
+	}
+
+	double[] out = new double[count];
+
+	int index = 0;
+	for (Vector<FunctionStep> current_symbol: this.modulated_sequence)
+	{
+	    for (FunctionStep current_quant: current_symbol)
+	    {
+		out[index] = current_quant.y;
+		index++;
+	    }
+	}
+
 	return out;
     }
 }

@@ -43,7 +43,7 @@ public class coderOfSource {
 		this.alignment = 5;
 		try
 		{
-		    fr = new FileReader("/home/post-factum/work/devel/java/tcncoding/tables/mtk2");
+		    fr = new FileReader("mtk2");
 		} catch (Exception ex)
 		{
 		    System.err.println(ex.getMessage());
@@ -54,7 +54,7 @@ public class coderOfSource {
 		this.alignment = 7;
 		try
 		{
-		    fr = new FileReader("/home/post-factum/work/devel/java/tcncoding/tables/mtk5");
+		    fr = new FileReader("mtk5");
 		} catch (Exception ex)
 		{
 		    System.err.println(ex.getMessage());

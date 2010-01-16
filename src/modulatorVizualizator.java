@@ -19,15 +19,14 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
-import java.util.Vector;
 import javax.swing.JPanel;
 
 public class modulatorVizualizator extends JPanel {
-    private Vector<Vector<FunctionStep>> modulator_data;
+    private double[] modulator_data;
 
     private Paint paint;
 
-    public modulatorVizualizator(Vector<Vector<FunctionStep>> data, int wx, int wy, int lx, int ly)
+    public modulatorVizualizator(double[] data, int wx, int wy, int lx, int ly)
     {
 	this.setSize(wx, wy);
 	this.setLocation(lx, ly);
@@ -72,32 +71,24 @@ public class modulatorVizualizator extends JPanel {
 	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y + arrow_width);
 
 	//longtitude of chart
-	int distance = this.getWidth() - (left_margin_x + right_margin_x);
+	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);
 
 	//gets number of step records
-	int ticks_count = 0;
-	for (Vector<FunctionStep> md: this.modulator_data)
-	{
-	    ticks_count += md.size();
-	}
+	int ticks_count = this.modulator_data.length;
 
 	//step of drawing
-	int step = ticks_count / (distance - x_border);
+	double step = (double)ticks_count / (double)distance;
 
-	for (Vector<FunctionStep> md: this.modulator_data)
+	int index = 0;
+	while (index < ticks_count)
 	{
-	    int index = 0;
-	    while (index < md.size())
-	    {
-		FunctionStep cfs = md.elementAt(index);
-		int new_x = current_x + 1;
-		int new_y = scaling_factor * (int) (zero_y - cfs.y);
-		g2.drawLine(current_x, current_y, new_x, new_y);
-		current_x = new_x;
-		current_y = new_y;
-		index += step;
-	    }
-	    g2.drawLine(current_x, current_y, current_x + 1, zero_y);
+	    int new_x = current_x + 1;
+	    int new_y = scaling_factor * (int) (zero_y - this.modulator_data[index]);
+	    g2.drawLine(current_x, current_y, new_x, new_y);
+	    current_x = new_x;
+	    current_y = new_y;
+	    index += step;
 	}
+	g2.drawLine(current_x, current_y, current_x + 1, zero_y);
     }
 }
