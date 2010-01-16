@@ -24,6 +24,9 @@ public class blockMain extends javax.swing.JFrame {
     coderOfChannel currentChannelCoder = null;
     modulator currentModulator = null;
 
+    //tools
+    modulatorVizualizator currentModulatorVizualizator = null;
+
     //source message
     String message = "";
 
@@ -119,17 +122,18 @@ public class blockMain extends javax.swing.JFrame {
     //modulates sinusoidal signal with channel code using selected modulation type
     void doModulating()
     {
-	if (currentModulator != null)
-	{
-	    modulatorOutputPanel.remove(currentModulator);
-	    currentModulator = null;
-	}
-	currentModulator = new modulator(modulationType, channel_symbols, currentChannelCoder.alignment, 595, 238, 5, 20);
-	currentModulator.setVisible(true);
-	modulatorOutputPanel.add(currentModulator);
-	currentModulator.repaint();
-	
+	currentModulator = new modulator(modulationType, channel_symbols, currentChannelCoder.alignment);
 	modulator_data = currentModulator.doModulation();
+
+	if (currentModulatorVizualizator != null)
+	{
+	    modulatorOutputPanel.remove(currentModulatorVizualizator);
+	    currentModulatorVizualizator = null;
+	}
+	currentModulatorVizualizator = new modulatorVizualizator(modulator_data, 595, 238, 5, 20);
+	currentModulatorVizualizator.setVisible(true);
+	modulatorOutputPanel.add(currentModulatorVizualizator);
+	currentModulatorVizualizator.repaint();
     }
 
     public blockMain() {

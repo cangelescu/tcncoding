@@ -16,13 +16,9 @@
 
 */
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.util.Vector;
-import javax.swing.JPanel;
 
-public class modulator extends JPanel {
+public class modulator {
 
     public enum ModulationType {AMn, FMn, PMn, RPMn};
 
@@ -30,14 +26,10 @@ public class modulator extends JPanel {
     private Vector sequence = null;
     private int alignment;
 
-    private Paint paint;
-
-    public modulator(ModulationType mod_type, Vector symbols, int align, int wx, int wy, int lx, int ly)
+    public modulator(ModulationType mod_type, Vector symbols, int align)
     {
 	this.using_method = mod_type;
 	this.sequence = symbols;
-	this.setSize(wx, wy);
-	this.setLocation(lx, ly);
 	this.alignment = align;
     }
 
@@ -70,7 +62,7 @@ public class modulator extends JPanel {
 
 	double freq1 = 100E3;
 	double freq2 = 200E3;
-	double ampl = 30;
+	double ampl = 50;
 	int prev_phase = 1;
 
 	BearerFunction amn0 = new BearerFunction(0, 0, 0);
@@ -148,191 +140,4 @@ public class modulator extends JPanel {
 	}
 	return out;
     }
-
-    @Override
-    public void paintComponent(Graphics g)
-    {
-	//initializes graphics context
-	super.paintComponent(g);
-	Graphics2D g2 = (Graphics2D) g;
-	g2.setPaint(paint);
-
-	//chart margins
-	final int left_margin_x = 10;
-	final int right_margin_x = 10;
-	final int top_margin_y = 10;
-	final int bottom_margin_y = 10;
-	final int scaling_factor = 50;
-	final int x_border = 5;
-	//arrows size
-	final int arrow_width = 2;
-	final int arrow_height = 7;
-
-	//zero levels
-	final int zero_x = left_margin_x;
-	final int zero_y = this.getHeight() / 2;
-
-	//current position of pen
-	int current_x = zero_x;
-	int current_y = zero_y;
-
-	//draw coordinates system
-	g2.drawLine(left_margin_x, zero_y, this.getWidth() - right_margin_x + x_border, zero_y);
-	g2.drawLine(left_margin_x, top_margin_y, left_margin_x, this.getHeight() - bottom_margin_y);
-	//0y arrow
-	g2.drawLine(left_margin_x, top_margin_y, left_margin_x - arrow_width, top_margin_y + arrow_height);
-	g2.drawLine(left_margin_x, top_margin_y, left_margin_x + arrow_width, top_margin_y + arrow_height);
-	//0x arrow
-	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y - arrow_width);
-	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y + arrow_width);
-
-	//longtitude of chart
-	int distance = this.getWidth() - (left_margin_x + right_margin_x);
-
-	//get first symbol of sequence
-	binaryNumber working_number = (binaryNumber)this.sequence.get(0);
-	long[] seq = working_number.toIntArray(this.alignment);
-	int len = this.alignment;
-
-	//longtitude of one element, in pixels
-	int step = distance / len;
-
-	//previous phase, for RPMn
-	long prev_phase = 1;
-
-	for(int i = 0; i < len; i++)
-	{
-	    switch (this.using_method)
-	    {
-		case AMn:
-		    if (seq[i] == 0)
-		    {
-			int new_x = current_x + step;
-			int new_y = zero_y;
-			g2.drawLine(current_x, zero_y, new_x, new_y);
-			current_x = new_x;
-			current_y = new_y;
-		    } else
-		    if (seq[i] == 1)
-		    {
-			for (int k = 1; k <= step; k++)
-			{
-			    int new_x = current_x + 1;
-			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    g2.drawLine(current_x, current_y, new_x, new_y);
-			    current_x = new_x;
-			    current_y = new_y;
-			}
-		    }
-		    break;
-		case FMn:
-		    if (seq[i] == 0)
-		    {
-			for (int k = 1; k <= step; k++)
-			{
-			    int new_x = current_x + 1;
-			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    g2.drawLine(current_x, current_y, new_x, new_y);
-			    current_x = new_x;
-			    current_y = new_y;
-			}
-		    } else
-		    if (seq[i] == 1)
-		    {
-			for (int k = 1; k <= step; k++)
-			{
-			    int new_x = current_x + 1;
-			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * 2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    g2.drawLine(current_x, current_y, new_x, new_y);
-			    current_x = new_x;
-			    current_y = new_y;
-			}
-		    }
-		    break;
-		case PMn:
-		    if (seq[i] == 0)
-		    {
-			for (int k = 1; k <= step; k++)
-			{
-			    int new_x = current_x + 1;
-			    int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    g2.drawLine(current_x, current_y, new_x, new_y);
-			    current_x = new_x;
-			    current_y = new_y;
-			}
-		    } else
-		    if (seq[i] == 1)
-		    {
-			for (int k = 1; k <= step; k++)
-			{
-			    int new_x = current_x + 1;
-			    int new_y = (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-			    g2.drawLine(current_x, current_y, new_x, new_y);
-			    current_x = new_x;
-			    current_y = new_y;
-			}
-		    }
-		    break;
-		case RPMn:
-		    if (seq[i] == 0)
-		    {
-			if (prev_phase == 1)
-			{
-			    for (int k = 1; k <= step; k++)
-			    {
-				int new_x = current_x + 1;
-				int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				g2.drawLine(current_x, current_y, new_x, new_y);
-				current_x = new_x;
-				current_y = new_y;
-			    }
-			    prev_phase = 1;
-			} else
-			if (prev_phase == -1)
-			{
-			    for (int k = 1; k <= step; k++)
-			    {
-				int new_x = current_x + 1;
-				int new_y = (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				g2.drawLine(current_x, current_y, new_x, new_y);
-				current_x = new_x;
-				current_y = new_y;
-			    }
-			    prev_phase = -1;
-			}
-		    } else
-		    if (seq[i] == 1)
-		    {
-			if (prev_phase == 1)
-			{
-			    for (int k = 1; k <= step; k++)
-			    {
-				int new_x = current_x + 1;
-				int new_y = (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				g2.drawLine(current_x, current_y, new_x, new_y);
-				current_x = new_x;
-				current_y = new_y;
-			    }
-			    prev_phase = -1;
-			} else
-			if (prev_phase == -1)
-			{
-			    for (int k = 1; k <= step; k++)
-			    {
-				int new_x = current_x + 1;
-				int new_y = - (int) (Math.round(scaling_factor * Math.sin(2 * Math.PI * ((double)k / (double)step)))) + zero_y;
-				g2.drawLine(current_x, current_y, new_x, new_y);
-				current_x = new_x;
-				current_y = new_y;
-			    }
-			    prev_phase = 1;
-			}
-		    }
-		    break;
-		default:
-		    break;
-	    }
-	}
-    }
-
 }
