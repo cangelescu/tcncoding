@@ -20,7 +20,7 @@ public class binaryNumber {
 
     private final int digits = 16;
     private long number;
-    private long[] binary = new long[digits];
+    private boolean[] binary = new boolean[digits];
 
     //creates binary number from string sequence
     public binaryNumber(String sequence)
@@ -44,11 +44,11 @@ public class binaryNumber {
 	    switch (bin.charAt(i))
 	    {
 		case '0':
-		    this.binary[i] = 0;
+		    this.binary[i] = false;
 		    break;
 
 		case '1':
-		    this.binary[i] = 1;
+		    this.binary[i] = true;
 		    break;
 
 		default: break;
@@ -65,7 +65,7 @@ public class binaryNumber {
 	String bin = Integer.toBinaryString((int) number);
 	for (int i = 0; i < digits - bin.length(); i++)
 	{
-	    this.binary[i] = 0;
+	    this.binary[i] = false;
 	}
 
 	//creates array structure
@@ -74,11 +74,11 @@ public class binaryNumber {
 	    switch (bin.charAt(i - digits + bin.length()))
 	    {
 		case '0':
-		    this.binary[i] = 0;
+		    this.binary[i] = false;
 		    break;
 
 		case '1':
-		    this.binary[i] = 1;
+		    this.binary[i] = true;
 		    break;
 
 		default: break;
@@ -93,12 +93,17 @@ public class binaryNumber {
 	int k = 0;
 	if (align == 0)
 	{
-	    while (this.binary[k] == 0)
+	    while (!this.binary[k])
 		k++;
 	} else
 	    k = digits - align;
 	for (int i = k; i < digits; i++)
-	    out += String.valueOf(this.binary[i]);
+	{
+	    if (this.binary[i])
+		out += '1';
+	    else
+		out += '0';
+	}
 	return out;
     }
 
@@ -109,22 +114,22 @@ public class binaryNumber {
     }
 
     //returns array of zeroes and ones
-    public long[] toIntArray()
+    public boolean[] toBinaryArray()
     {
 	return this.binary;
     }
 
     //returns fixed-width integer array
-    public long[] toIntArray(int align)
+    public boolean[] toBinaryArray(int align)
     {
 	int k = 0;
 	if (align == 0)
 	{
-	    while (this.binary[k] == 0)
+	    while (!this.binary[k])
 		k++;
 	} else
 	    k = digits - align;
-	long[] out = new long[digits - k];
+	boolean[] out = new boolean[digits - k];
 	for (int i = k; i < this.digits; i++)
 	    out[i - k] = this.binary[i];
 	return out;
@@ -132,11 +137,11 @@ public class binaryNumber {
 
 
     //converts integer array to decimal value
-    private long binaryToInt(long[] binary)
+    private long binaryToInt(boolean[] binary)
     {
 	long out = 0;
 	for (int i = 0; i < digits; i++)
-	    if (binary[i] == 1)
+	    if (binary[i])
 		out += Math.pow(2, digits - 1 - i);
 	return out;
     }
@@ -144,28 +149,10 @@ public class binaryNumber {
     //sums two numbers by module 2
     public binaryNumber sum2(binaryNumber number)
     {
-	long in2[] = number.toIntArray();
-	long out[] = new long[digits];
+	boolean[] in2 = number.toBinaryArray();
+	boolean[] out = new boolean[digits];
 	for (int i = 0; i < digits; i++)
-	{
-	    if (in2[i] == 0 && this.binary[i] == 0)
-	    {
-		out[i] = 0;
-	    } else
-	    if (in2[i] == 1 && this.binary[i] == 0)
-	    {
-		out[i] = 1;
-	    } else
-	    if (in2[i] == 0 && this.binary[i] == 1)
-	    {
-		out[i] = 1;
-	    } else
-	    if (in2[i] == 1 && this.binary[i] == 1)
-	    {
-		out[i] = 0;
-	    }
-	}
-	
+	    out[i] = in2[i] ^ this.binary[i];
 	long initValue = binaryToInt(out);
 	binaryNumber res = new binaryNumber(initValue);
 	return res;
@@ -174,18 +161,12 @@ public class binaryNumber {
     //inverses number
     public binaryNumber not2()
     {
-	long out[] = new long[digits];
+	boolean[] out = new boolean[digits];
 	int k = 0;
-	while (this.binary[k] == 0)
+	while (!this.binary[k])
 	    k++;
 	for (int i = k; i < digits; i++)
-	{
-	    if (this.binary[i] == 0)
-		out[i] = 1;
-	    else
-		out[i] = 0;
-	}
-
+	    out[i] = !this.binary[i];
 	long initValue = binaryToInt(out);
 	binaryNumber res = new binaryNumber(initValue);
 	return res;
@@ -194,14 +175,9 @@ public class binaryNumber {
     //inverses aligned part of number
     public binaryNumber not2(int align)
     {
-	long out[] = new long[digits];
+	boolean[] out = new boolean[digits];
 	for (int i = digits - align; i < digits; i++)
-	{
-	    if (this.binary[i] == 0)
-		out[i] = 1;
-	    else
-		out[i] = 0;
-	}
+	    out[i] = !this.binary[i];
 
 	long initValue = binaryToInt(out);
 	binaryNumber res = new binaryNumber(initValue);
@@ -211,12 +187,12 @@ public class binaryNumber {
     //shifts number to left direction for one position
     public binaryNumber shl2()
     {
-	long out[] = new long[digits];
+	boolean[] out = new boolean[digits];
 	for (int i = 0; i < digits - 1; i++)
 	{
 	    out[i] = this.binary[i + 1];
 	}
-	out[digits - 1] = 0;
+	out[digits - 1] = false;
 	long initValue = binaryToInt(out);
 	binaryNumber res = new binaryNumber(initValue);
 	return res;
@@ -225,15 +201,11 @@ public class binaryNumber {
     //shifts number to left direction for several positions
     public binaryNumber shl2(int align)
     {
-	long out[] = new long[digits];
+	boolean[] out = new boolean[digits];
 	for (int i = 0; i < digits - align; i++)
-	{
 	    out[i] = this.binary[i + align];
-	}
 	for (int i = digits - align; i < digits; i++)
-	{
-	    out[i] = 0;
-	}
+	    out[i] = false;
 	long initValue = binaryToInt(out);
 	binaryNumber res = new binaryNumber(initValue);
 	return res;
@@ -244,7 +216,7 @@ public class binaryNumber {
     {
 	int out = 0;
 	for (int i = 0; i < digits; i++)
-	    if (this.binary[i] == 1)
+	    if (this.binary[i])
 		out++;
 	return out;
     }

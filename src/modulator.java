@@ -55,7 +55,7 @@ public class modulator {
 	Vector<Vector<FunctionStep>> out = new Vector<Vector<FunctionStep>>();
 
 	binaryNumber working_number = (binaryNumber)this.sequence.get(0);
-	long[] seq = working_number.toIntArray(this.alignment);
+	boolean[] seq = working_number.toBinaryArray(this.alignment);
 	int len = this.alignment;
 
 	mathTools mtools = new mathTools();
@@ -77,37 +77,25 @@ public class modulator {
 	    switch (this.using_method)
 	    {
 		case AMn:
-		    if (seq[i] == 0)
-		    {
+		    if (!seq[i])
 			out.add(mtools.tabulate(amn0, 0, 1/freq1));
-		    } else
-		    if (seq[i] == 1)
-		    {
+		    else
 			out.add(mtools.tabulate(amn1, 0, 1/freq1));
-		    }
 		    break;
 		case FMn:
-		    if (seq[i] == 0)
-		    {
+		    if (!seq[i])
 			out.add(mtools.tabulate(fmn0, 0, 1/freq1));
-		    } else
-		    if (seq[i] == 1)
-		    {
+		    else
 			out.add(mtools.tabulate(fmn1, 0, 1/freq1));
-		    }
 		    break;
 		case PMn:
-		    if (seq[i] == 0)
-		    {
+		    if (!seq[i])
 			out.add(mtools.tabulate(pmn0, 0, 1/freq1));
-		    } else
-		    if (seq[i] == 1)
-		    {
+		    else
 			out.add(mtools.tabulate(pmn1, 0, 1/freq1));
-		    }
 		    break;
 		case RPMn:
-		    if (seq[i] == 0)
+		    if (!seq[i])
 		    {
 			if (prev_phase == 1)
 			{
@@ -120,7 +108,6 @@ public class modulator {
 			    prev_phase = -1;
 			}
 		    } else
-		    if (seq[i] == 1)
 		    {
 			if (prev_phase == 1)
 			{
