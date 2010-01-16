@@ -79,11 +79,11 @@ public class modulatorVizualizator extends JPanel {
 	//step of drawing
 	double step = (double)ticks_count / (double)distance;
 
-	int index = 0;
+	double index = 0;
 	while (index < ticks_count)
 	{
 	    int new_x = current_x + 1;
-	    int new_y = scaling_factor * (int) (zero_y - this.modulator_data[index]);
+	    int new_y = scaling_factor * (int) (zero_y - this.modulator_data[(int)index]);
 	    g2.drawLine(current_x, current_y, new_x, new_y);
 	    current_x = new_x;
 	    current_y = new_y;
