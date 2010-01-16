@@ -21,12 +21,12 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import javax.swing.JPanel;
 
-public class modulatorVizualizator extends JPanel {
+public class dataVizualizator extends JPanel {
     private double[] modulator_data;
 
     private Paint paint;
 
-    public modulatorVizualizator(double[] data, int wx, int wy, int lx, int ly)
+    public dataVizualizator(double[] data, int wx, int wy, int lx, int ly)
     {
 	this.setSize(wx, wy);
 	this.setLocation(lx, ly);

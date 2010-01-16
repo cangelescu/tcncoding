@@ -23,9 +23,11 @@ public class blockMain extends javax.swing.JFrame {
     coderOfSource currentSourceCoder = null;
     coderOfChannel currentChannelCoder = null;
     modulator currentModulator = null;
+    errorsSource currentErrorSource = null;
 
     //tools
-    modulatorVizualizator currentModulatorVizualizator = null;
+    dataVizualizator currentModulatorVizualizator = null;
+    dataVizualizator currentChannelVizualizator = null;
 
     //source message
     String message = "";
@@ -41,6 +43,10 @@ public class blockMain extends javax.swing.JFrame {
 
     //modulator data
     double[] modulator_data = null;
+
+    //channel data
+    double[] noise = null;
+    double[] channel_output = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -131,10 +137,28 @@ public class blockMain extends javax.swing.JFrame {
 	    modulatorOutputPanel.remove(currentModulatorVizualizator);
 	    currentModulatorVizualizator = null;
 	}
-	currentModulatorVizualizator = new modulatorVizualizator(modulator_data, 595, 238, 5, 20);
+	currentModulatorVizualizator = new dataVizualizator(modulator_data, 620, 232, 5, 20);
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputPanel.add(currentModulatorVizualizator);
 	currentModulatorVizualizator.repaint();
+    }
+
+    //adds noise
+    void doChannel()
+    {
+	currentErrorSource = new errorsSource(this.modulator_data.length);
+	currentErrorSource.generateNoise();
+	this.channel_output = currentErrorSource.getNoisedChannel(this.modulator_data);
+
+	if (currentChannelVizualizator != null)
+	{
+	    channelOutputPanel.remove(currentChannelVizualizator);
+	    currentChannelVizualizator = null;
+	}
+	currentChannelVizualizator = new dataVizualizator(channel_output, 620, 274, 5, 20);
+	currentChannelVizualizator.setVisible(true);
+	channelOutputPanel.add(currentChannelVizualizator);
+	currentChannelVizualizator.repaint();
     }
 
     public blockMain() {
@@ -172,6 +196,8 @@ public class blockMain extends javax.swing.JFrame {
         modulationTypeLabel = new javax.swing.JLabel();
         modulationTypeChooser = new javax.swing.JComboBox();
         modulatorOutputPanel = new javax.swing.JPanel();
+        blockChannel = new javax.swing.JPanel();
+        channelOutputPanel = new javax.swing.JPanel();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -257,8 +283,8 @@ public class blockMain extends javax.swing.JFrame {
             blockMessageSourceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockMessageSourceLayout.createSequentialGroup()
                 .addComponent(messageLabel)
-                .addContainerGap(511, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+                .addContainerGap(536, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
         );
         blockMessageSourceLayout.setVerticalGroup(
             blockMessageSourceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +319,7 @@ public class blockMain extends javax.swing.JFrame {
         blockSourceCoderOutputPanel.setLayout(blockSourceCoderOutputPanelLayout);
         blockSourceCoderOutputPanelLayout.setHorizontalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +333,7 @@ public class blockMain extends javax.swing.JFrame {
             .addGroup(blockSourceCoderLayout.createSequentialGroup()
                 .addComponent(sourceCodesChooserLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sourceCodesChooser, 0, 566, Short.MAX_VALUE))
+                .addComponent(sourceCodesChooser, 0, 591, Short.MAX_VALUE))
             .addComponent(blockSourceCoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         blockSourceCoderLayout.setVerticalGroup(
@@ -345,7 +371,7 @@ public class blockMain extends javax.swing.JFrame {
         blockChannelCoderOutputPanel.setLayout(blockChannelCoderOutputPanelLayout);
         blockChannelCoderOutputPanelLayout.setHorizontalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +385,7 @@ public class blockMain extends javax.swing.JFrame {
             .addGroup(blockChannelCoderLayout.createSequentialGroup()
                 .addComponent(channelCodesChooserLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(channelCodesChooser, 0, 566, Short.MAX_VALUE))
+                .addComponent(channelCodesChooser, 0, 591, Short.MAX_VALUE))
             .addComponent(blockChannelCoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         blockChannelCoderLayout.setVerticalGroup(
@@ -390,7 +416,7 @@ public class blockMain extends javax.swing.JFrame {
         modulatorOutputPanel.setLayout(modulatorOutputPanelLayout);
         modulatorOutputPanelLayout.setHorizontalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +430,7 @@ public class blockMain extends javax.swing.JFrame {
             .addGroup(blockModulatorLayout.createSequentialGroup()
                 .addComponent(modulationTypeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modulationTypeChooser, 0, 499, Short.MAX_VALUE))
+                .addComponent(modulationTypeChooser, 0, 524, Short.MAX_VALUE))
             .addComponent(modulatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         blockModulatorLayout.setVerticalGroup(
@@ -418,6 +444,32 @@ public class blockMain extends javax.swing.JFrame {
         );
 
         TCSTabs.addTab("Модулятор", blockModulator);
+
+        channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід каналу"));
+
+        javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
+        channelOutputPanel.setLayout(channelOutputPanelLayout);
+        channelOutputPanelLayout.setHorizontalGroup(
+            channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+        channelOutputPanelLayout.setVerticalGroup(
+            channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockChannelLayout = new javax.swing.GroupLayout(blockChannel);
+        blockChannel.setLayout(blockChannelLayout);
+        blockChannelLayout.setHorizontalGroup(
+            blockChannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(channelOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockChannelLayout.setVerticalGroup(
+            blockChannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(channelOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Канал", blockChannel);
 
         fileMenu.setText("Файл");
 
@@ -507,7 +559,7 @@ public class blockMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,6 +601,7 @@ public class blockMain extends javax.swing.JFrame {
 	    doSourceCoding();
 	    doChannelCoding();
 	    doModulating();
+	    doChannel();
 	}
     }//GEN-LAST:event_doModellingItemActionPerformed
 
@@ -642,6 +695,7 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JDialog aboutDialog;
     private javax.swing.JButton aboutDialogClose;
     private javax.swing.JMenuItem aboutItem;
+    private javax.swing.JPanel blockChannel;
     private javax.swing.JPanel blockChannelCoder;
     private javax.swing.JTextArea blockChannelCoderOutput;
     private javax.swing.JPanel blockChannelCoderOutputPanel;
@@ -652,6 +706,7 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockSourceCoderOutputPanel;
     private javax.swing.JComboBox channelCodesChooser;
     private javax.swing.JLabel channelCodesChooserLabel;
+    private javax.swing.JPanel channelOutputPanel;
     private javax.swing.JMenu developerMenu;
     private javax.swing.JMenuItem doModellingItem;
     private javax.swing.JMenuItem exitItem;

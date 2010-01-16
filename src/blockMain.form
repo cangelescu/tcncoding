@@ -208,7 +208,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="TCSTabs" alignment="0" pref="610" max="32767" attributes="0"/>
+          <Component id="TCSTabs" alignment="0" pref="635" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -236,9 +236,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="511" max="32767" attributes="0"/>
+                      <EmptySpace pref="536" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="605" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="630" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -292,7 +292,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="sourceCodesChooserLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sourceCodesChooser" pref="566" max="32767" attributes="0"/>
+                      <Component id="sourceCodesChooser" pref="591" max="32767" attributes="0"/>
                   </Group>
                   <Component id="blockSourceCoderOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -345,7 +345,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="595" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="620" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -392,7 +392,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="channelCodesChooser" pref="566" max="32767" attributes="0"/>
+                      <Component id="channelCodesChooser" pref="591" max="32767" attributes="0"/>
                   </Group>
                   <Component id="blockChannelCoderOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -445,7 +445,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="595" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" pref="620" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -492,7 +492,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="modulationTypeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="modulationTypeChooser" pref="499" max="32767" attributes="0"/>
+                      <Component id="modulationTypeChooser" pref="524" max="32767" attributes="0"/>
                   </Group>
                   <Component id="modulatorOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -546,12 +546,58 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="595" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="620" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <EmptySpace min="0" pref="232" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="blockChannel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="&#x41a;&#x430;&#x43d;&#x430;&#x43b;">
+                <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x430;&#x43d;&#x430;&#x43b;"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="channelOutputPanel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="channelOutputPanel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="channelOutputPanel">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="620" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
