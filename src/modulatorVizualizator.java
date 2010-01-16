@@ -91,7 +91,7 @@ public class modulatorVizualizator extends JPanel {
 	    {
 		FunctionStep cfs = md.elementAt(index);
 		int new_x = current_x + 1;
-		int new_y = scaling_factor * (int) (zero_y + cfs.y);
+		int new_y = scaling_factor * (int) (zero_y - cfs.y);
 		g2.drawLine(current_x, current_y, new_x, new_y);
 		current_x = new_x;
 		current_y = new_y;
