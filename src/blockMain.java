@@ -16,6 +16,7 @@
 
 */
 
+import java.awt.Color;
 import java.util.Vector;
 
 public class blockMain extends javax.swing.JFrame {
@@ -24,6 +25,10 @@ public class blockMain extends javax.swing.JFrame {
     coderOfChannel currentChannelCoder = null;
     modulator currentModulator = null;
     errorsSource currentErrorSource = null;
+
+    //UI
+    enum Blocks {message_source, source_coder, channel_coder, modulator, channel};
+    Blocks selectedBlock = Blocks.message_source;
 
     //tools
     dataVizualizator currentModulatorVizualizator = null;
@@ -107,6 +112,40 @@ public class blockMain extends javax.swing.JFrame {
 	}
     }
 
+    void updateChosenBlock()
+    {
+	messageSourceButton.setBackground(new Color(240, 240, 240));
+	sourceCoderButton.setBackground(new Color(240, 240, 240));
+	channelCoderButton.setBackground(new Color(240, 240, 240));
+	modulatorButton.setBackground(new Color(240, 240, 240));
+	channelButton.setBackground(new Color(240, 240, 240));
+	switch (selectedBlock)
+	{
+	    case message_source:
+		TCSTabs.setSelectedComponent(blockMessageSource);
+		messageSourceButton.setBackground(new Color(200, 200, 200));
+		break;
+	    case source_coder:
+		TCSTabs.setSelectedComponent(blockSourceCoder);
+		sourceCoderButton.setBackground(new Color(200, 200, 200));
+		break;
+	    case channel_coder:
+		TCSTabs.setSelectedComponent(blockChannelCoder);
+		channelCoderButton.setBackground(new Color(200, 200, 200));
+		break;
+	    case modulator:
+		TCSTabs.setSelectedComponent(blockModulator);
+		modulatorButton.setBackground(new Color(200, 200, 200));
+		break;
+	    case channel:
+		TCSTabs.setSelectedComponent(blockChannel);
+		channelButton.setBackground(new Color(200, 200, 200));
+		break;
+	    default:
+		break;
+	}
+    }
+
     //encodes source message with selected source code
     void doSourceCoding()
     {
@@ -137,7 +176,9 @@ public class blockMain extends javax.swing.JFrame {
 	    modulatorOutputPanel.remove(currentModulatorVizualizator);
 	    currentModulatorVizualizator = null;
 	}
-	currentModulatorVizualizator = new dataVizualizator(modulator_data, 620, 232, 5, 20);
+	int cx = 620;
+	int cy = 279;
+	currentModulatorVizualizator = new dataVizualizator(modulator_data, cx, cy, 5, 20);
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputPanel.add(currentModulatorVizualizator);
 	currentModulatorVizualizator.repaint();
@@ -155,7 +196,9 @@ public class blockMain extends javax.swing.JFrame {
 	    channelOutputPanel.remove(currentChannelVizualizator);
 	    currentChannelVizualizator = null;
 	}
-	currentChannelVizualizator = new dataVizualizator(channel_output, 620, 274, 5, 20);
+	int cx = 620;
+	int cy = 321;
+	currentChannelVizualizator = new dataVizualizator(channel_output, cx, cy, 5, 20);
 	currentChannelVizualizator.setVisible(true);
 	channelOutputPanel.add(currentChannelVizualizator);
 	currentChannelVizualizator.repaint();
@@ -198,6 +241,12 @@ public class blockMain extends javax.swing.JFrame {
         modulatorOutputPanel = new javax.swing.JPanel();
         blockChannel = new javax.swing.JPanel();
         channelOutputPanel = new javax.swing.JPanel();
+        systemScheme = new javax.swing.JPanel();
+        messageSourceButton = new javax.swing.JButton();
+        sourceCoderButton = new javax.swing.JButton();
+        channelCoderButton = new javax.swing.JButton();
+        modulatorButton = new javax.swing.JButton();
+        channelButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -271,6 +320,12 @@ public class blockMain extends javax.swing.JFrame {
         setTitle("Система зв'язку");
         setResizable(false);
 
+        blockMessageSource.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockMessageSourceComponentShown(evt);
+            }
+        });
+
         messageArea.setColumns(20);
         messageArea.setRows(5);
         jScrollPane1.setViewportView(messageArea);
@@ -292,10 +347,16 @@ public class blockMain extends javax.swing.JFrame {
             .addGroup(blockMessageSourceLayout.createSequentialGroup()
                 .addComponent(messageLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
         );
 
         TCSTabs.addTab("Джерело повідомлень", blockMessageSource);
+
+        blockSourceCoder.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockSourceCoderComponentShown(evt);
+            }
+        });
 
         sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
         sourceCodesChooserLabel.setText("Код:");
@@ -324,7 +385,7 @@ public class blockMain extends javax.swing.JFrame {
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
@@ -348,6 +409,12 @@ public class blockMain extends javax.swing.JFrame {
         );
 
         TCSTabs.addTab("Кодер джерела повідомлень", blockSourceCoder);
+
+        blockChannelCoder.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockChannelCoderComponentShown(evt);
+            }
+        });
 
         channelCodesChooserLabel.setLabelFor(channelCodesChooser);
         channelCodesChooserLabel.setText("Код:");
@@ -376,7 +443,7 @@ public class blockMain extends javax.swing.JFrame {
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
@@ -401,6 +468,12 @@ public class blockMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Кодер каналу", blockChannelCoder);
 
+        blockModulator.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockModulatorComponentShown(evt);
+            }
+        });
+
         modulationTypeLabel.setLabelFor(modulationTypeChooser);
         modulationTypeLabel.setText("Вид модуляції:");
 
@@ -421,7 +494,7 @@ public class blockMain extends javax.swing.JFrame {
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -446,6 +519,12 @@ public class blockMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Модулятор", blockModulator);
 
+        blockChannel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockChannelComponentShown(evt);
+            }
+        });
+
         channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід каналу"));
 
         javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
@@ -456,7 +535,7 @@ public class blockMain extends javax.swing.JFrame {
         );
         channelOutputPanelLayout.setVerticalGroup(
             channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 321, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelLayout = new javax.swing.GroupLayout(blockChannel);
@@ -471,6 +550,79 @@ public class blockMain extends javax.swing.JFrame {
         );
 
         TCSTabs.addTab("Канал", blockChannel);
+
+        systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Структурна схема"));
+
+        messageSourceButton.setBackground(new java.awt.Color(200, 200, 200));
+        messageSourceButton.setText("ДжП");
+        messageSourceButton.setToolTipText("Джерело повідомлень");
+        messageSourceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                messageSourceButtonActionPerformed(evt);
+            }
+        });
+
+        sourceCoderButton.setBackground(new java.awt.Color(240, 240, 240));
+        sourceCoderButton.setText("КДж");
+        sourceCoderButton.setToolTipText("Кодер джерела повідомлень");
+        sourceCoderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sourceCoderButtonActionPerformed(evt);
+            }
+        });
+
+        channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
+        channelCoderButton.setText("КК");
+        channelCoderButton.setToolTipText("Кодер каналу");
+        channelCoderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                channelCoderButtonActionPerformed(evt);
+            }
+        });
+
+        modulatorButton.setBackground(new java.awt.Color(240, 240, 240));
+        modulatorButton.setText("М");
+        modulatorButton.setToolTipText("Модулятор");
+        modulatorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modulatorButtonActionPerformed(evt);
+            }
+        });
+
+        channelButton.setBackground(new java.awt.Color(240, 240, 240));
+        channelButton.setText("К");
+        channelButton.setToolTipText("Канал");
+        channelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                channelButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout systemSchemeLayout = new javax.swing.GroupLayout(systemScheme);
+        systemScheme.setLayout(systemSchemeLayout);
+        systemSchemeLayout.setHorizontalGroup(
+            systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(systemSchemeLayout.createSequentialGroup()
+                .addComponent(messageSourceButton)
+                .addGap(18, 18, 18)
+                .addComponent(sourceCoderButton)
+                .addGap(18, 18, 18)
+                .addComponent(channelCoderButton)
+                .addGap(18, 18, 18)
+                .addComponent(modulatorButton)
+                .addGap(18, 18, 18)
+                .addComponent(channelButton)
+                .addContainerGap(293, Short.MAX_VALUE))
+        );
+        systemSchemeLayout.setVerticalGroup(
+            systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(messageSourceButton)
+                .addComponent(sourceCoderButton)
+                .addComponent(channelCoderButton)
+                .addComponent(modulatorButton)
+                .addComponent(channelButton))
+        );
 
         fileMenu.setText("Файл");
 
@@ -568,11 +720,15 @@ public class blockMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TCSTabs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TCSTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -691,7 +847,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_tabulateItemActionPerformed
 
-    //implements test function to tabulate
+    //implements test function to integrate
     private class tfun implements MathToolsFunction
     {
 	public double function(double x)
@@ -707,6 +863,66 @@ public class blockMain extends javax.swing.JFrame {
 	double result = mtools.integrate(mtools.tabulate(testFunction, 0, 2 * Math.PI));
 	System.out.printf("Integrate |sin(x)| + e^x from 0 to 2*pi: %f\n", result);
     }//GEN-LAST:event_integrateItemActionPerformed
+
+    private void messageSourceButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_messageSourceButtonActionPerformed
+    {//GEN-HEADEREND:event_messageSourceButtonActionPerformed
+	selectedBlock = Blocks.message_source;
+	updateChosenBlock();
+    }//GEN-LAST:event_messageSourceButtonActionPerformed
+
+    private void sourceCoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sourceCoderButtonActionPerformed
+    {//GEN-HEADEREND:event_sourceCoderButtonActionPerformed
+	selectedBlock = Blocks.source_coder;
+	updateChosenBlock();
+    }//GEN-LAST:event_sourceCoderButtonActionPerformed
+
+    private void channelCoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelCoderButtonActionPerformed
+    {//GEN-HEADEREND:event_channelCoderButtonActionPerformed
+	selectedBlock = Blocks.channel_coder;
+	updateChosenBlock();
+    }//GEN-LAST:event_channelCoderButtonActionPerformed
+
+    private void modulatorButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modulatorButtonActionPerformed
+    {//GEN-HEADEREND:event_modulatorButtonActionPerformed
+	selectedBlock = Blocks.modulator;
+	updateChosenBlock();
+    }//GEN-LAST:event_modulatorButtonActionPerformed
+
+    private void channelButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelButtonActionPerformed
+    {//GEN-HEADEREND:event_channelButtonActionPerformed
+	selectedBlock = Blocks.channel;
+	updateChosenBlock();
+    }//GEN-LAST:event_channelButtonActionPerformed
+
+    private void blockMessageSourceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMessageSourceComponentShown
+    {//GEN-HEADEREND:event_blockMessageSourceComponentShown
+	selectedBlock = Blocks.message_source;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockMessageSourceComponentShown
+
+    private void blockSourceCoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceCoderComponentShown
+    {//GEN-HEADEREND:event_blockSourceCoderComponentShown
+	selectedBlock = Blocks.source_coder;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockSourceCoderComponentShown
+
+    private void blockChannelCoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelCoderComponentShown
+    {//GEN-HEADEREND:event_blockChannelCoderComponentShown
+	selectedBlock = Blocks.channel_coder;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockChannelCoderComponentShown
+
+    private void blockModulatorComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockModulatorComponentShown
+    {//GEN-HEADEREND:event_blockModulatorComponentShown
+	selectedBlock = Blocks.modulator;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockModulatorComponentShown
+
+    private void blockChannelComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelComponentShown
+    {//GEN-HEADEREND:event_blockChannelComponentShown
+	selectedBlock = Blocks.channel;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockChannelComponentShown
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -730,6 +946,8 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockSourceCoder;
     private javax.swing.JTextArea blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
+    private javax.swing.JButton channelButton;
+    private javax.swing.JButton channelCoderButton;
     private javax.swing.JComboBox channelCodesChooser;
     private javax.swing.JLabel channelCodesChooserLabel;
     private javax.swing.JPanel channelOutputPanel;
@@ -750,14 +968,18 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JTextArea messageArea;
     private javax.swing.JLabel messageLabel;
+    private javax.swing.JButton messageSourceButton;
     private javax.swing.JMenu modellingMenu;
     private javax.swing.JComboBox modulationTypeChooser;
     private javax.swing.JLabel modulationTypeLabel;
+    private javax.swing.JButton modulatorButton;
     private javax.swing.JPanel modulatorOutputPanel;
     private javax.swing.JMenuItem shl2Item;
+    private javax.swing.JButton sourceCoderButton;
     private javax.swing.JComboBox sourceCodesChooser;
     private javax.swing.JLabel sourceCodesChooserLabel;
     private javax.swing.JMenuItem sum2Item;
+    private javax.swing.JPanel systemScheme;
     private javax.swing.JMenuItem tabulateItem;
     private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables

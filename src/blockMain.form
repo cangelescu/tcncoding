@@ -216,12 +216,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="TCSTabs" alignment="0" pref="635" max="32767" attributes="0"/>
+          <Component id="systemScheme" alignment="0" max="32767" attributes="0"/>
+          <Component id="TCSTabs" alignment="1" pref="635" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="TCSTabs" alignment="0" pref="326" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="systemScheme" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="TCSTabs" min="-2" pref="373" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -231,6 +236,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="blockMessageSource">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockMessageSourceComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x414;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x43e; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;">
@@ -254,7 +262,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="278" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="325" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -286,6 +294,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="blockSourceCoder">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockSourceCoderComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;">
@@ -358,7 +369,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="238" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="285" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -386,6 +397,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="blockChannelCoder">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockChannelCoderComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
@@ -458,7 +472,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="238" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" pref="285" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -486,6 +500,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="blockModulator">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockModulatorComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
@@ -559,7 +576,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="232" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="279" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -567,6 +584,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="blockChannel">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockChannelComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x41a;&#x430;&#x43d;&#x430;&#x43b;">
@@ -605,13 +625,114 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="321" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
             </Container>
           </SubComponents>
         </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="systemScheme">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="&#x421;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x43d;&#x430; &#x441;&#x445;&#x435;&#x43c;&#x430;"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="messageSourceButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="sourceCoderButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="channelCoderButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="modulatorButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="channelButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="293" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="messageSourceButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sourceCoderButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="channelCoderButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="modulatorButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="channelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="messageSourceButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c8" green="c8" red="c8" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x414;&#x436;&#x41f;"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x414;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x43e; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="messageSourceButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="sourceCoderButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x41a;&#x414;&#x436;"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sourceCoderButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="channelCoderButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x41a;&#x41a;"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="channelCoderButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="modulatorButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x41c;"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modulatorButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="channelButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x41a;"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x430;&#x43d;&#x430;&#x43b;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="channelButtonActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
