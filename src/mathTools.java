@@ -43,4 +43,12 @@ public class mathTools {
 	}
 	return out;
     }
+
+    public double integrate(MathToolsFunction func, double x_begin, double x_end)
+    {
+	double a1 = (x_end - x_begin) / 2;
+	double f1 = func.function(((x_begin + x_end) / 2) - ((x_end - x_begin) / Math.sqrt(12)));
+	double f2 = func.function(((x_begin + x_end) / 2) + ((x_end - x_begin) / Math.sqrt(12)));
+	return a1 * (f1 + f2);
+    }
 }

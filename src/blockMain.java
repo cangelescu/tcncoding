@@ -209,6 +209,7 @@ public class blockMain extends javax.swing.JFrame {
         shl2Item = new javax.swing.JMenuItem();
         weightItem = new javax.swing.JMenuItem();
         tabulateItem = new javax.swing.JMenuItem();
+        integrateItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -539,6 +540,14 @@ public class blockMain extends javax.swing.JFrame {
         });
         developerMenu.add(tabulateItem);
 
+        integrateItem.setText("Інтегрування функції");
+        integrateItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                integrateItemActionPerformed(evt);
+            }
+        });
+        developerMenu.add(integrateItem);
+
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -682,6 +691,14 @@ public class blockMain extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_tabulateItemActionPerformed
 
+    private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
+    {//GEN-HEADEREND:event_integrateItemActionPerformed
+	sqrx testFunction = new sqrx();
+	mathTools mtools = new mathTools(1.0E-3);
+	double result = mtools.integrate(testFunction, 0, 1);
+	System.out.printf("Integrate x^2 from 0 to 1: %f\n", result);
+    }//GEN-LAST:event_integrateItemActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -712,6 +729,7 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem integrateItem;
     private javax.swing.JMenuItem inversionItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
