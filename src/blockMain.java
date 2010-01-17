@@ -691,12 +691,21 @@ public class blockMain extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_tabulateItemActionPerformed
 
+    //implements test function to tabulate
+    private class tfun implements MathToolsFunction
+    {
+	public double function(double x)
+	{
+	    return Math.abs(Math.sin(x)) + Math.exp(x);
+	}
+    }
+
     private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
     {//GEN-HEADEREND:event_integrateItemActionPerformed
-	sqrx testFunction = new sqrx();
+	tfun testFunction = new tfun();
 	mathTools mtools = new mathTools(1.0E-3);
-	double result = mtools.integrate(testFunction, 0, 1);
-	System.out.printf("Integrate x^2 from 0 to 1: %f\n", result);
+	double result = mtools.integrate(mtools.tabulate(testFunction, 0, 2 * Math.PI));
+	System.out.printf("Integrate |sin(x)| + e^x from 0 to 2*pi: %f\n", result);
     }//GEN-LAST:event_integrateItemActionPerformed
 
     public static void main(String args[]) {
