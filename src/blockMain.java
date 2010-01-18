@@ -47,11 +47,11 @@ public class blockMain extends javax.swing.JFrame {
     Vector channel_symbols = new Vector();
 
     //modulator data
-    double[] modulator_data = null;
+    Vector<FunctionStep> modulator_data = null;
 
     //channel data
-    double[] noise = null;
-    double[] channel_output = null;
+    Vector<FunctionStep> noise = null;
+    Vector<FunctionStep> channel_output = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -187,8 +187,7 @@ public class blockMain extends javax.swing.JFrame {
     //adds noise
     void doChannel()
     {
-	currentErrorSource = new errorsSource(this.modulator_data.length);
-	currentErrorSource.generateNoise();
+	currentErrorSource = new errorsSource();
 	this.channel_output = currentErrorSource.getNoisedChannel(this.modulator_data);
 
 	if (currentChannelVizualizator != null)

@@ -19,14 +19,15 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
+import java.util.Vector;
 import javax.swing.JPanel;
 
 public class dataVizualizator extends JPanel {
-    private double[] modulator_data;
+    private Vector<FunctionStep> modulator_data;
 
     private Paint paint;
 
-    public dataVizualizator(double[] data, int wx, int wy, int lx, int ly)
+    public dataVizualizator(Vector<FunctionStep> data, int wx, int wy, int lx, int ly)
     {
 	this.setSize(wx, wy);
 	this.setLocation(lx, ly);
@@ -74,7 +75,7 @@ public class dataVizualizator extends JPanel {
 	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);
 
 	//gets number of step records
-	int ticks_count = this.modulator_data.length;
+	int ticks_count = this.modulator_data.size();
 
 	//step of drawing
 	double step = (double)ticks_count / (double)distance;
@@ -83,7 +84,7 @@ public class dataVizualizator extends JPanel {
 	while (index < ticks_count)
 	{
 	    int new_x = current_x + 1;
-	    int new_y = scaling_factor * (int) (zero_y - this.modulator_data[(int)index]);
+	    int new_y = scaling_factor * (int) (zero_y - this.modulator_data.elementAt((int)index).y);
 	    g2.drawLine(current_x, current_y, new_x, new_y);
 	    current_x = new_x;
 	    current_y = new_y;

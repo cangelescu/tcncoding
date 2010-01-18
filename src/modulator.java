@@ -26,7 +26,7 @@ public class modulator {
     private Vector sequence = null;
     private int alignment;
 
-    Vector<Vector<FunctionStep>> modulated_sequence = new Vector<Vector<FunctionStep>>();
+    Vector<FunctionStep> modulated_sequence = new Vector<FunctionStep>();
 
     public modulator(ModulationType mod_type, Vector symbols, int align)
     {
@@ -54,7 +54,9 @@ public class modulator {
 
     public void doModulation()
     {
+	Vector<Vector<FunctionStep>> res = new Vector<Vector<FunctionStep>>();
 	this.modulated_sequence.clear();
+
 	int len = this.alignment;
 
 	mathTools mtools = new mathTools();
@@ -82,45 +84,45 @@ public class modulator {
 		{
 		    case AMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(mtools.tabulate(amn0, 0, 1/freq1));
+			    res.add(mtools.tabulate(amn0, 0, 1/freq1));
 			else
-			    this.modulated_sequence.add(mtools.tabulate(amn1, 0, 1/freq1));
+			    res.add(mtools.tabulate(amn1, 0, 1/freq1));
 			break;
 		    case FMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(mtools.tabulate(fmn0, 0, 1/freq1));
+			    res.add(mtools.tabulate(fmn0, 0, 1/freq1));
 			else
-			    this.modulated_sequence.add(mtools.tabulate(fmn1, 0, 1/freq1));
+			    res.add(mtools.tabulate(fmn1, 0, 1/freq1));
 			break;
 		    case PMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(mtools.tabulate(pmn0, 0, 1/freq1));
+			    res.add(mtools.tabulate(pmn0, 0, 1/freq1));
 			else
-			    this.modulated_sequence.add(mtools.tabulate(pmn1, 0, 1/freq1));
+			    res.add(mtools.tabulate(pmn1, 0, 1/freq1));
 			break;
 		    case RPMn:
 			if (!seq[i])
 			{
 			    if (prev_phase == 1)
 			    {
-				this.modulated_sequence.add(mtools.tabulate(pmn0, 0, 1/freq1));
+				res.add(mtools.tabulate(pmn0, 0, 1/freq1));
 				prev_phase = 1;
 			    } else
 			    if (prev_phase == -1)
 			    {
-				this.modulated_sequence.add(mtools.tabulate(pmn1, 0, 1/freq1));
+				res.add(mtools.tabulate(pmn1, 0, 1/freq1));
 				prev_phase = -1;
 			    }
 			} else
 			{
 			    if (prev_phase == 1)
 			    {
-				this.modulated_sequence.add(mtools.tabulate(pmn1, 0, 1/freq1));
+				res.add(mtools.tabulate(pmn1, 0, 1/freq1));
 				prev_phase = -1;
 			    } else
 			    if (prev_phase == -1)
 			    {
-				this.modulated_sequence.add(mtools.tabulate(pmn0, 0, 1/freq1));
+				res.add(mtools.tabulate(pmn0, 0, 1/freq1));
 				prev_phase = 1;
 			    }
 			}
@@ -130,29 +132,20 @@ public class modulator {
 		}
 	    }
 	}
-    }
 
-    public double[] getModulatedArray()
-    {
-	int count = 0;
-	for (Vector<FunctionStep> current_symbol: this.modulated_sequence)
+	double cx = 0;
+	for (Vector<FunctionStep> cvfs: res)
 	{
-	    for (FunctionStep current_quant: current_symbol)
-		count++;
-	}
-
-	double[] out = new double[count];
-
-	int index = 0;
-	for (Vector<FunctionStep> current_symbol: this.modulated_sequence)
-	{
-	    for (FunctionStep current_quant: current_symbol)
+	    for (FunctionStep cfs: cvfs)
 	    {
-		out[index] = current_quant.y;
-		index++;
+		cx += cfs.x;
+		this.modulated_sequence.add(new FunctionStep(cx, cfs.y));
 	    }
 	}
+    }
 
-	return out;
+    public Vector<FunctionStep> getModulatedArray()
+    {
+	return this.modulated_sequence;
     }
 }

@@ -1,5 +1,6 @@
 
 import java.util.Random;
+import java.util.Vector;
 
 /*
 
@@ -20,25 +21,14 @@ import java.util.Random;
 */
 
 public class errorsSource {
-    private double[] noise;
-
-    public errorsSource(int sequence_size)
+    public Vector<FunctionStep> getNoisedChannel(Vector<FunctionStep> modulator_data)
     {
-	this.noise = new double[sequence_size];
-    }
-
-    public void generateNoise()
-    {
-	Random generator = new Random();
-	for (int i = 0; i < this.noise.length; i++)
-	    this.noise[i] = 4 * generator.nextGaussian();
-    }
-
-    public double[] getNoisedChannel(double[] modulator_data)
-    {
-	double[] out = new double[modulator_data.length];
-	for (int i = 0; i < out.length; i++)
-	    out[i] = modulator_data[i] + this.noise[i];
+	Vector<FunctionStep> out = new Vector<FunctionStep>();
+	Random rnd = new Random();
+	for (FunctionStep cmd: modulator_data)
+	{
+	    out.add(new FunctionStep(cmd.x, cmd.y + 4 * rnd.nextGaussian()));
+	}
 	return out;
     }
 }
