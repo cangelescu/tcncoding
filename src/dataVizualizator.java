@@ -27,11 +27,14 @@ public class dataVizualizator extends JPanel {
 
     private Paint paint;
 
-    public dataVizualizator(Vector<FunctionStep> data, int wx, int wy, int lx, int ly)
+    private String l_x, l_y;
+
+    public dataVizualizator(Vector<FunctionStep> data, int wx, int wy, String legend_x, String legend_y)
     {
 	this.setSize(wx, wy);
-	this.setLocation(lx, ly);
 	this.modulator_data = data;
+	this.l_x = legend_x;
+	this.l_y = legend_y;
     }
 
     @Override
@@ -70,6 +73,12 @@ public class dataVizualizator extends JPanel {
 	//0x arrow
 	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y - arrow_width);
 	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y + arrow_width);
+	//0
+	g2.drawString("0", zero_x - g2.getFontMetrics().charWidth('0') , zero_y + g2.getFontMetrics().getHeight() / 2);
+	//legend x
+	g2.drawString(l_x, this.getWidth() - right_margin_x, zero_y + g2.getFontMetrics().getHeight());
+	//legend y
+	g2.drawString(l_y, left_margin_x, top_margin_y);
 
 	//longtitude of chart
 	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);

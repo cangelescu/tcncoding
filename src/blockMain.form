@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="aboutDialog">
 
@@ -217,7 +217,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="systemScheme" alignment="0" max="32767" attributes="0"/>
-          <Component id="TCSTabs" alignment="1" pref="635" max="32767" attributes="0"/>
+          <Component id="TCSTabs" alignment="0" pref="840" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -225,7 +225,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="systemScheme" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TCSTabs" min="-2" pref="373" max="-2" attributes="0"/>
+              <Component id="TCSTabs" pref="388" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -252,9 +252,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="536" max="32767" attributes="0"/>
+                      <EmptySpace pref="741" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="630" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="835" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -262,7 +262,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="325" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="340" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -311,7 +311,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="sourceCodesChooserLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sourceCodesChooser" pref="591" max="32767" attributes="0"/>
+                      <Component id="sourceCodesChooser" pref="796" max="32767" attributes="0"/>
                   </Group>
                   <Component id="blockSourceCoderOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -364,12 +364,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="620" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="825" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="285" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="300" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -414,7 +414,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="channelCodesChooser" pref="591" max="32767" attributes="0"/>
+                      <Component id="channelCodesChooser" pref="796" max="32767" attributes="0"/>
                   </Group>
                   <Component id="blockChannelCoderOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -467,12 +467,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="620" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" pref="825" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="285" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" pref="300" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -499,14 +499,11 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="blockModulator">
-          <Events>
-            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockModulatorComponentShown"/>
-          </Events>
+        <Container class="javax.swing.JPanel" name="blockModulatorOptions">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
+              <JTabbedPaneConstraints tabName="&#x41d;&#x430;&#x43b;&#x430;&#x448;&#x442;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;&#x430;">
+                <Property name="tabTitle" type="java.lang.String" value="&#x41d;&#x430;&#x43b;&#x430;&#x448;&#x442;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;&#x430;"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -514,23 +511,70 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="modulationTypeLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="bearerAmplitudeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modulationTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="modulationTypeChooser" min="-2" pref="242" max="-2" attributes="1"/>
+                                  <Component id="bearerAmplitude" alignment="0" pref="242" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="bearerFrequency2Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="bearerFrequency2" pref="242" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="bearerFrequency1Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="bearerFrequency1" pref="242" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="modulationTypeChooser" pref="524" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="434" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="modulatorOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="modulationTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="modulationTypeChooser" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="modulationTypeLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modulationTypeChooser" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="bearerAmplitudeLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="bearerAmplitude" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="modulatorOutputPanel" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bearerFrequency1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bearerFrequency2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="247" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -559,6 +603,86 @@
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="modulationTypeChooserItemStateChanged"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="bearerAmplitudeLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x410;&#x43c;&#x43f;&#x43b;&#x456;&#x442;&#x443;&#x434;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="bearerAmplitude">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="50.0" maximum="100.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="bearerFrequency1Label">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 1:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="bearerFrequency2Label">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 2:"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="bearerFrequency1">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="100000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="bearerFrequency2">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="200000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x412;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="blockModulator">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockModulatorComponentShown"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
+                <Property name="tabTitle" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="modulatorOutputPanel" alignment="1" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="modulatorOutputPanel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
             <Container class="javax.swing.JPanel" name="modulatorOutputPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -571,15 +695,32 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="620" max="32767" attributes="0"/>
+                      <Component id="modulatorOutputField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="279" max="32767" attributes="0"/>
+                      <Component id="modulatorOutputField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="modulatorOutputField">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="825" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="336" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
@@ -620,15 +761,32 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="620" max="32767" attributes="0"/>
+                      <Component id="channelOutputField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="321" max="32767" attributes="0"/>
+                      <Component id="channelOutputField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="channelOutputField">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="825" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="336" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
@@ -656,7 +814,7 @@
                   <Component id="modulatorButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="channelButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="293" max="32767" attributes="0"/>
+                  <EmptySpace pref="498" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
