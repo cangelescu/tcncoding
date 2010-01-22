@@ -17,17 +17,17 @@
 */
 
 public class Signal {
-    private BearerFunction bearer_function = null;
+    private SignalFunction bearer_function = null;
     private double x_start, x_end;
 
-    public Signal(BearerFunction new_bearer_function, double new_x_start, double new_x_end)
+    public Signal(SignalFunction new_bearer_function, double new_x_start, double new_x_end)
     {
 	this.bearer_function = new_bearer_function;
 	this.x_start = new_x_start;
 	this.x_end = new_x_end;
     }
 
-    public BearerFunction getFunction()
+    public SignalFunction getFunction()
     {
 	return this.bearer_function;
     }

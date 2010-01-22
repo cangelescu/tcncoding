@@ -48,12 +48,12 @@ public class modulator {
 
 	int prev_phase = 1;
 
-	BearerFunction amn0 = new BearerFunction(0, 0, 0, 0);
-	BearerFunction amn1 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
-	BearerFunction fmn0 = new BearerFunction(bearer_frequency_0, bearer_amplitude, 0, 0);
-	BearerFunction fmn1 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
-	BearerFunction pmn0 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
-	BearerFunction pmn1 = new BearerFunction(bearer_frequency_1, bearer_amplitude, -Math.PI, 0);
+	SignalFunction amn0 = new SignalFunction(0, 0, 0, 0);
+	SignalFunction amn1 = new SignalFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
+	SignalFunction fmn0 = new SignalFunction(bearer_frequency_0, bearer_amplitude, 0, 0);
+	SignalFunction fmn1 = new SignalFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
+	SignalFunction pmn0 = new SignalFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
+	SignalFunction pmn1 = new SignalFunction(bearer_frequency_1, bearer_amplitude, -Math.PI, 0);
 
 	for (int j = 0; j < this.sequence.size(); j++)
 	{

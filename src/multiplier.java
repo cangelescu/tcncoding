@@ -35,8 +35,8 @@ public class multiplier {
     {
 	for (Signal crs: this.received_signal)
 	{
-	    BearerFunction bfcrs = crs.getFunction();
-	    BearerFunction mbfcrs = new BearerFunction(bfcrs.getFrequency(), bfcrs.getAmplitude(), bfcrs.getPhase(), bfcrs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase);
+	    SignalFunction bfcrs = crs.getFunction();
+	    SignalFunction mbfcrs = new SignalFunction(bfcrs.getFrequency(), bfcrs.getAmplitude(), bfcrs.getPhase(), bfcrs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase);
 	    this.output.add(new Signal(mbfcrs, crs.getStart(), crs.getEnd()));
 	}
     }

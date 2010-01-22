@@ -31,8 +31,8 @@ public class channel {
     {
 	for(Signal cs: this.input_signals)
 	{
-	    BearerFunction csf = cs.getFunction();
-	    BearerFunction ncfs = new BearerFunction(csf.getFrequency(), csf.getAmplitude(), csf.getPhase(), 4);
+	    SignalFunction csf = cs.getFunction();
+	    SignalFunction ncfs = new SignalFunction(csf.getFrequency(), csf.getAmplitude(), csf.getPhase(), 4);
 	    this.output_signals.add(new Signal(ncfs, cs.getStart(), cs.getEnd()));
 	}
     }
