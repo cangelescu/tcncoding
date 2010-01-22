@@ -65,6 +65,9 @@ public class blockMain extends javax.swing.JFrame {
 		sourceCode = coderOfSource.sourceCoderCode.mtk5;
 		break;
 	    case 2:
+		sourceCode = coderOfSource.sourceCoderCode.koi8u;
+		break;
+	    case 3:
 		sourceCode = coderOfSource.sourceCoderCode.morze;
 	    default:
 		break;
@@ -377,7 +380,7 @@ public class blockMain extends javax.swing.JFrame {
         sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
         sourceCodesChooserLabel.setText("Код:");
 
-        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "Морзе" }));
+        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI-8U", "Морзе" }));
         sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 sourceCodesChooserItemStateChanged(evt);

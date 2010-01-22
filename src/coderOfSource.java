@@ -24,7 +24,7 @@ import java.util.Vector;
 
 public class coderOfSource {
 
-    public enum sourceCoderCode {mtk2, mtk5, morze};
+    public enum sourceCoderCode {mtk2, mtk5, koi8u, morze};
 
     private sourceCoderCode using_code = null;
     private Map code_map = new HashMap();
@@ -55,6 +55,17 @@ public class coderOfSource {
 		try
 		{
 		    fr = new FileReader("mtk5");
+		} catch (Exception ex)
+		{
+		    System.err.println(ex.getMessage());
+		}
+		break;
+	    case koi8u:
+		this.using_code = sourceCoderCode.koi8u;
+		this.alignment = 8;
+		try
+		{
+		    fr = new FileReader("koi8u");
 		} catch (Exception ex)
 		{
 		    System.err.println(ex.getMessage());
@@ -92,6 +103,9 @@ public class coderOfSource {
 		working_message = this.source_message.toUpperCase();
 		break;
 	    case mtk5:
+		working_message = this.source_message;
+		break;
+	    case koi8u:
 		working_message = this.source_message;
 		break;
 	    case morze:
