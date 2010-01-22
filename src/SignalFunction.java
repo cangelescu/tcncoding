@@ -17,8 +17,9 @@
 */
 
 import java.util.Random;
+import flanagan.integration.*;
 
-public class SignalFunction implements CommonFunction
+public class SignalFunction implements IntegralFunction
 {
     private double frequency;
     private double amplitude;

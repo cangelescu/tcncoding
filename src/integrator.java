@@ -16,6 +16,22 @@
 
 */
 
-public interface CommonFunction {
-    double function(double x);
+import flanagan.integration.*;
+import java.util.Vector;
+
+class integrator {
+    Vector<Signal> signals;
+
+    public integrator(Vector<Signal> new_signals)
+    {
+	this.signals = new_signals;
+    }
+
+    public Vector<Double> getIntegrals()
+    {
+	Vector<Double> out = new Vector<Double>();
+	for (Signal cs: this.signals)
+	    out.add(Integration.gaussQuad(cs.getFunction(), cs.getStart(), cs.getEnd(), 1000));
+	return out;
+    }
 }

@@ -18,6 +18,7 @@
 
 import java.awt.Color;
 import java.util.Vector;
+import flanagan.integration.*;
 
 public class blockMain extends javax.swing.JFrame {
     //blocks (classes)
@@ -26,6 +27,8 @@ public class blockMain extends javax.swing.JFrame {
     modulator currentModulator = null;
     channel currentChannel = null;
     multiplier currentMultiplier0 = null, currentMultiplier1 = null;
+    integrator currentIntegrator0 = null, currentIntegrator1 = null;
+    summator currentSummator = null;
 
     //UI
     enum Blocks {message_source, source_coder, channel_coder, modulator, channel, receiver};
@@ -58,6 +61,13 @@ public class blockMain extends javax.swing.JFrame {
     //multipliers data
     Vector<Signal> multiplier_0_output = null;
     Vector<Signal> multiplier_1_output = null;
+
+    //integrators data
+    Vector<Double> integrator_0_output = null;
+    Vector<Double> integrator_1_output = null;
+
+    //summator data
+    Vector<Double> summator_output = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -274,6 +284,21 @@ public class blockMain extends javax.swing.JFrame {
 	currentMultiplierVizualizator1.repaint();
     }
 
+    void doIntegrating()
+    {
+	currentIntegrator0 = new integrator(multiplier_0_output);
+	currentIntegrator1 = new integrator(multiplier_1_output);
+	integrator_0_output = currentIntegrator0.getIntegrals();
+	integrator_1_output = currentIntegrator1.getIntegrals();
+    }
+
+    void doSumming()
+    {
+	currentSummator = new summator(integrator_0_output, integrator_1_output);
+	currentSummator.doSumming();
+	summator_output = currentSummator.getSum();
+    }
+
     public blockMain() {
         initComponents();
     }
@@ -349,6 +374,7 @@ public class blockMain extends javax.swing.JFrame {
         inversionItem = new javax.swing.JMenuItem();
         shl2Item = new javax.swing.JMenuItem();
         weightItem = new javax.swing.JMenuItem();
+        integrateItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -964,6 +990,14 @@ public class blockMain extends javax.swing.JFrame {
         });
         developerMenu.add(weightItem);
 
+        integrateItem.setText("Інтегрування функції");
+        integrateItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                integrateItemActionPerformed(evt);
+            }
+        });
+        developerMenu.add(integrateItem);
+
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -1032,6 +1066,8 @@ public class blockMain extends javax.swing.JFrame {
 	    doModulating();
 	    doChannel();
 	    doMultiplying();
+	    doIntegrating();
+	    doSumming();
 	}
     }//GEN-LAST:event_doModellingItemActionPerformed
 
@@ -1088,25 +1124,6 @@ public class blockMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_modulationTypeChooserItemStateChanged
 	updateChosenModulationType();
     }//GEN-LAST:event_modulationTypeChooserItemStateChanged
-
-    //implements test function to tabulate
-    private class sqrx implements CommonFunction
-    {
-	public double function(double x)
-	{
-	    return Math.pow(x, 2);
-	}
-    }
-    
-    //checks function tabulating
-    //implements test function to integrate
-    private class tfun implements CommonFunction
-    {
-	public double function(double x)
-	{
-	    return Math.abs(Math.sin(x)) + Math.exp(x);
-	}
-    }
 
     private void messageSourceButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_messageSourceButtonActionPerformed
     {//GEN-HEADEREND:event_messageSourceButtonActionPerformed
@@ -1168,6 +1185,22 @@ public class blockMain extends javax.swing.JFrame {
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelComponentShown
 
+    //implements test function to integrate
+    private class tfun implements IntegralFunction
+    {
+	public double function(double x)
+	{
+	    return Math.abs(Math.sin(x)) + Math.exp(x);
+	}
+    }
+
+    private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
+    {//GEN-HEADEREND:event_integrateItemActionPerformed
+	tfun testfunction = new tfun();
+	double result = Integration.gaussQuad(testfunction, 0, 2 * Math.PI, 128);
+	System.out.printf("Integral of |sin(x)|+e^x from 0 to 2pi: %1.4f\n", result);
+    }//GEN-LAST:event_integrateItemActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1211,6 +1244,7 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem integrateItem;
     private javax.swing.JMenuItem inversionItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
