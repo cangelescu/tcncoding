@@ -24,16 +24,16 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 public class dataVizualizator extends JPanel {
-    private Vector<FunctionStep> modulator_data;
+    private Vector<Signal> chart_data;
 
     private Paint paint;
 
     private String l_x, l_y;
 
-    public dataVizualizator(Vector<FunctionStep> data, int wx, int wy, String legend_x, String legend_y)
+    public dataVizualizator(Vector<Signal> data, int wx, int wy, String legend_x, String legend_y)
     {
 	this.setSize(wx, wy);
-	this.modulator_data = data;
+	this.chart_data = data;
 	this.l_x = legend_x;
 	this.l_y = legend_y;
     }
@@ -47,7 +47,7 @@ public class dataVizualizator extends JPanel {
 	g2.setPaint(paint);
 
 	//chart margins
-	final int left_margin_x = 6 * g2.getFontMetrics().charWidth('0');
+	final int left_margin_x = 7 * g2.getFontMetrics().charWidth('0');
 	final int right_margin_x = 10;
 	final int top_margin_y = 10;
 	final int bottom_margin_y = 10;
@@ -85,19 +85,13 @@ public class dataVizualizator extends JPanel {
 	g2.setColor(Color.BLACK);
 
 	//gets number of step records
-	int ticks_count = this.modulator_data.size();
+	double one_piece = this.chart_data.elementAt(0).getEnd();
+	double total_time = this.chart_data.size() * one_piece;
 	//finds base function values
-	int max_n = 0;
-	double max_x = this.modulator_data.elementAt(0).x;
-	double max_y = this.modulator_data.elementAt(0).y;
-	double far_x = this.modulator_data.elementAt(ticks_count - 1).x;
-	for (int i = 1; i < ticks_count; i++)
-	    if (this.modulator_data.elementAt(i).y > max_y)
-	    {
-		max_n = i;
-		max_x = this.modulator_data.elementAt(i).x;
-		max_y = this.modulator_data.elementAt(i).y;
-	    }
+	double max_y = this.chart_data.elementAt(0).getFunction().getMaxValue();
+	for (Signal cs: this.chart_data)
+	    if (cs.getFunction().getMaxValue() > max_y)
+		max_y = cs.getFunction().getMaxValue();
 	String max_y_string = String.format("%1.2f", max_y);
 
 	//draw steps y
@@ -111,18 +105,26 @@ public class dataVizualizator extends JPanel {
 	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);
 
 	//step of drawing
-	double step = (double)ticks_count / (double)distance;
+	double step = total_time / (double)distance;
 
 	//draw chart
-	double index = 0;
-	while (index < ticks_count)
+	double current_time = 0;
+	int index = 0;
+	while (current_time <= total_time)
 	{
+	    if (current_time > one_piece * (index + 1))
+		index++;
 	    int new_x = current_x + 1;
-	    int new_y = (int) (zero_y - scaling_factor * this.modulator_data.elementAt((int) index).y);
+	    double y_value = this.chart_data.elementAt(index).getFunction().function(current_time);
+	    int new_y;
+	    if (y_value == 0)
+		new_y = zero_y;
+	    else
+		new_y = (int) (zero_y - scaling_factor * y_value);
 	    g2.drawLine(current_x, current_y, new_x, new_y);
 	    current_x = new_x;
 	    current_y = new_y;
-	    index += step;
+	    current_time += step;
 	}
 	g2.drawLine(current_x, current_y, current_x + 1, zero_y);
     }

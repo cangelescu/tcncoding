@@ -24,7 +24,7 @@ public class blockMain extends javax.swing.JFrame {
     coderOfSource currentSourceCoder = null;
     coderOfChannel currentChannelCoder = null;
     modulator currentModulator = null;
-    errorsSource currentErrorSource = null;
+    channel currentChannel = null;
     multiplier currentMultiplier0 = null, currentMultiplier1 = null;
 
     //UI
@@ -50,15 +50,14 @@ public class blockMain extends javax.swing.JFrame {
     Vector channel_symbols = new Vector();
 
     //modulator data
-    Vector<FunctionStep> modulator_data = null;
+    Vector<Signal> modulator_data = null;
 
     //channel data
-    Vector<FunctionStep> noise = null;
-    Vector<FunctionStep> channel_output = null;
+    Vector<Signal> channel_output = null;
 
     //multipliers data
-    Vector<FunctionStep> multiplier_0_output = null;
-    Vector<FunctionStep> multiplier_1_output = null;
+    Vector<Signal> multiplier_0_output = null;
+    Vector<Signal> multiplier_1_output = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -189,7 +188,7 @@ public class blockMain extends javax.swing.JFrame {
     {
 	currentModulator = new modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols, currentChannelCoder.alignment);
 	currentModulator.doModulation();
-	this.modulator_data = currentModulator.getModulatedArray();
+	this.modulator_data = currentModulator.getSignals();
 
 	if (currentModulatorVizualizator != null)
 	{
@@ -207,8 +206,9 @@ public class blockMain extends javax.swing.JFrame {
     //adds noise
     void doChannel()
     {
-	currentErrorSource = new errorsSource();
-	this.channel_output = currentErrorSource.getNoisedChannel(this.modulator_data);
+	currentChannel = new channel(this.modulator_data);
+	currentChannel.doNoising();
+	this.channel_output = currentChannel.getSignals();
 
 	if (currentChannelVizualizator != null)
 	{
@@ -240,12 +240,14 @@ public class blockMain extends javax.swing.JFrame {
 		currentMultiplier1 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
 		break;
 	    case RPMn:
+		currentMultiplier0 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier1 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
 		break;
 	}
 	currentMultiplier0.doMultiply();
 	currentMultiplier1.doMultiply();
-	multiplier_0_output = currentMultiplier0.getSignal();
-	multiplier_1_output = currentMultiplier1.getSignal();
+	multiplier_0_output = currentMultiplier0.getSignals();
+	multiplier_1_output = currentMultiplier1.getSignals();
 
 	if (currentMultiplierVizualizator0 != null)
 	{

@@ -19,31 +19,29 @@
 import java.util.Vector;
 
 public class multiplier {
-    private Vector<FunctionStep> ethalon = new Vector<FunctionStep>();
-    private Vector<FunctionStep> received_signal = new Vector<FunctionStep>();
-    private Vector<FunctionStep> output = new Vector<FunctionStep>();
+    private double ethalon_frequency, ethalon_amplitude, ethalon_phase;
+    private Vector<Signal> received_signal = new Vector<Signal>();
+    private Vector<Signal> output = new Vector<Signal>();
 
-    mathTools mtools = new mathTools();
-
-    public multiplier(double freq, double amplitude, double phase, Vector<FunctionStep> signal)
+    public multiplier(double freq, double amplitude, double phase, Vector<Signal> signal)
     {
-	this.ethalon = mtools.tabulate(new BearerFunction(freq, amplitude, phase), 0, 1 / freq);
+	this.ethalon_frequency = freq;
+	this.ethalon_amplitude = amplitude;
+	this.ethalon_phase = phase;
 	this.received_signal = signal;
     }
 
     public void doMultiply()
     {
-	int index = 0;
-	for (int i = 0; i < this.received_signal.size(); i++)
+	for (Signal crs: this.received_signal)
 	{
-	    this.output.add(new FunctionStep(this.received_signal.elementAt(i).x, this.received_signal.elementAt(i).y * this.ethalon.elementAt(index).y));
-	    index++;
-	    if (index > this.ethalon.size() - 1)
-		index = 0;
+	    BearerFunction bfcrs = crs.getFunction();
+	    BearerFunction mbfcrs = new BearerFunction(bfcrs.getFrequency(), bfcrs.getAmplitude(), bfcrs.getPhase(), bfcrs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase);
+	    this.output.add(new Signal(mbfcrs, crs.getStart(), crs.getEnd()));
 	}
     }
 
-    public Vector<FunctionStep> getSignal()
+    public Vector<Signal> getSignals()
     {
 	return this.output;
     }

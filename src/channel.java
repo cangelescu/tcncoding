@@ -16,18 +16,29 @@
 
 */
 
-import java.util.Random;
 import java.util.Vector;
 
-public class errorsSource {
-    public Vector<FunctionStep> getNoisedChannel(Vector<FunctionStep> modulator_data)
+public class channel {
+    private Vector<Signal> input_signals;
+    private Vector<Signal> output_signals = new Vector<Signal>();
+
+    public channel(Vector<Signal> new_input_signals)
     {
-	Vector<FunctionStep> out = new Vector<FunctionStep>();
-	Random rnd = new Random();
-	for (FunctionStep cmd: modulator_data)
+	this.input_signals = new_input_signals;
+    }
+
+    public void doNoising()
+    {
+	for(Signal cs: this.input_signals)
 	{
-	    out.add(new FunctionStep(cmd.x, cmd.y + 4 * rnd.nextGaussian()));
+	    BearerFunction csf = cs.getFunction();
+	    BearerFunction ncfs = new BearerFunction(csf.getFrequency(), csf.getAmplitude(), csf.getPhase(), 4);
+	    this.output_signals.add(new Signal(ncfs, cs.getStart(), cs.getEnd()));
 	}
-	return out;
+    }
+
+    public Vector<Signal> getSignals()
+    {
+	return this.output_signals;
     }
 }
