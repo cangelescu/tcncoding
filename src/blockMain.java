@@ -1090,7 +1090,7 @@ public class blockMain extends javax.swing.JFrame {
     }//GEN-LAST:event_modulationTypeChooserItemStateChanged
 
     //implements test function to tabulate
-    private class sqrx implements MathToolsFunction
+    private class sqrx implements CommonFunction
     {
 	public double function(double x)
 	{
@@ -1100,7 +1100,7 @@ public class blockMain extends javax.swing.JFrame {
     
     //checks function tabulating
     //implements test function to integrate
-    private class tfun implements MathToolsFunction
+    private class tfun implements CommonFunction
     {
 	public double function(double x)
 	{

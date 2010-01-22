@@ -18,7 +18,7 @@
 
 import java.util.Random;
 
-public class BearerFunction implements MathToolsFunction
+public class BearerFunction implements CommonFunction
 {
     private double frequency;
     private double amplitude;

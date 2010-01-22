@@ -18,7 +18,7 @@
 
 import java.util.Random;
 
-public class SignalFunction implements MathToolsFunction
+public class SignalFunction implements CommonFunction
 {
     private double frequency;
     private double amplitude;

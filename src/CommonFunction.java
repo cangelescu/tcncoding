@@ -16,6 +16,6 @@
 
 */
 
-public interface MathToolsFunction {
+public interface CommonFunction {
     double function(double x);
 }
