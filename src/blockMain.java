@@ -380,7 +380,7 @@ public class blockMain extends javax.swing.JFrame {
         sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
         sourceCodesChooserLabel.setText("Код:");
 
-        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI-8U", "Морзе" }));
+        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI8-U", "Морзе" }));
         sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 sourceCodesChooserItemStateChanged(evt);
