@@ -81,7 +81,7 @@ public class dataVizualizator extends JPanel {
 	//legend x
 	g2.drawString(l_x, this.getWidth() - right_margin_x, zero_y + g2.getFontMetrics().getHeight());
 	//legend y
-	g2.drawString(l_y, left_margin_x, top_margin_y);
+	g2.drawString(l_y, zero_x - g2.getFontMetrics().stringWidth(l_y) - g2.getFontMetrics().charWidth('0') / 2, top_margin_y);
 	g2.setColor(Color.BLACK);
 
 	//gets number of step records
@@ -100,9 +100,11 @@ public class dataVizualizator extends JPanel {
 	    }
 	String max_y_string = String.format("%1.2f", max_y);
 
-	//draw steps
+	//draw steps y
 	g2.drawLine(zero_x - g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border, zero_x + g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border);
 	g2.drawString(max_y_string, zero_x - g2.getFontMetrics().stringWidth(max_y_string) - g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border + g2.getFontMetrics().getHeight() / 3);
+
+	//chart scaling factor
 	double scaling_factor = (zero_y - top_margin_y - y_border) / max_y;
 
 	//longtitude of chart
@@ -111,6 +113,7 @@ public class dataVizualizator extends JPanel {
 	//step of drawing
 	double step = (double)ticks_count / (double)distance;
 
+	//draw chart
 	double index = 0;
 	while (index < ticks_count)
 	{
