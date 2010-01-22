@@ -529,8 +529,8 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="bearerFrequency2" alignment="0" max="32767" attributes="1"/>
                                           <Component id="bearerFrequency1" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="bearerFrequency0" alignment="0" max="32767" attributes="1"/>
                                           <Component id="bearerAmplitude" alignment="0" pref="152" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -543,8 +543,8 @@
                                   <Component id="modulationTypeChooser" min="-2" pref="691" max="-2" attributes="2"/>
                               </Group>
                           </Group>
-                          <Component id="bearerFrequency2Label" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="bearerFrequency1Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency0Label" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -567,14 +567,14 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bearerFrequency1Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bearerFrequency1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency0Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency0" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bearerFrequency2Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bearerFrequency2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bearerFrequency1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="235" max="32767" attributes="0"/>
@@ -618,30 +618,30 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="bearerFrequency0Label">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 0:"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JLabel" name="bearerFrequency1Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 1:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="bearerFrequency2Label">
+            <Component class="javax.swing.JSpinner" name="bearerFrequency0">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 2:"/>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="100000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="bearerFrequency1">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="100000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="bearerFrequency2">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="200000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -775,6 +775,132 @@
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="channelOutputField">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="984" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="324" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="blockMultiplier0">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 0">
+                <Property name="tabTitle" type="java.lang.String" value="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 0"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="multiplierOutputPanel0" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="multiplierOutputPanel0" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="multiplierOutputPanel0">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447;&#x430; 0"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="multiplierOutputField0" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="multiplierOutputField0" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="multiplierOutputField0">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="984" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="324" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="blockMultiplier1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 1">
+                <Property name="tabTitle" type="java.lang.String" value="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 1"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="multiplierOutputPanel1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="multiplierOutputPanel1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="multiplierOutputPanel1">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447;&#x430; 1"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="multiplierOutputField1" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="multiplierOutputField1" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="multiplierOutputField1">
 
                   <Layout>
                     <DimensionLayout dim="0">

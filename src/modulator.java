@@ -26,18 +26,18 @@ public class modulator {
     private Vector sequence = null;
     private int alignment;
     private double bearer_amplitude;
-    private double bearer_frequency_1, bearer_frequency_2;
+    private double bearer_frequency_0, bearer_frequency_1;
 
     Vector<FunctionStep> modulated_sequence = new Vector<FunctionStep>();
 
-    public modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency1, double bearerFrequency2, Vector symbols, int align)
+    public modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols, int align)
     {
 	this.using_method = mod_type;
 	this.sequence = symbols;
 	this.alignment = align;
 	this.bearer_amplitude = bearerAmplitude;
+	this.bearer_frequency_0 = bearerFrequency0;
 	this.bearer_frequency_1 = bearerFrequency1;
-	this.bearer_frequency_2 = bearerFrequency2;
     }
 
     public void doModulation()
@@ -53,8 +53,8 @@ public class modulator {
 
 	BearerFunction amn0 = new BearerFunction(0, 0, 0);
 	BearerFunction amn1 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0);
-	BearerFunction fmn0 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0);
-	BearerFunction fmn1 = new BearerFunction(bearer_frequency_2, bearer_amplitude, 0);
+	BearerFunction fmn0 = new BearerFunction(bearer_frequency_0, bearer_amplitude, 0);
+	BearerFunction fmn1 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0);
 	BearerFunction pmn0 = new BearerFunction(bearer_frequency_1, bearer_amplitude, 0);
 	BearerFunction pmn1 = new BearerFunction(bearer_frequency_1, bearer_amplitude, -Math.PI);
 
@@ -75,9 +75,9 @@ public class modulator {
 			break;
 		    case FMn:
 			if (!seq[i])
-			    res.add(mtools.tabulate(fmn0, 0, 1/bearer_frequency_1));
+			    res.add(mtools.tabulate(fmn0, 0, 1/bearer_frequency_0));
 			else
-			    res.add(mtools.tabulate(fmn1, 0, 1/bearer_frequency_1));
+			    res.add(mtools.tabulate(fmn1, 0, 1/bearer_frequency_0));
 			break;
 		    case PMn:
 			if (!seq[i])
