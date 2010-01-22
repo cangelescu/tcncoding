@@ -40,23 +40,6 @@ public class modulator {
 	this.bearer_frequency_2 = bearerFrequency2;
     }
 
-    private class BearerFunction implements MathToolsFunction
-    {
-	private double frequency, amplitude, phase;
-
-	public BearerFunction(double freq, double ampl, double ph)
-	{
-	    this.frequency = freq;
-	    this.amplitude = ampl;
-	    this.phase = ph;
-	}
-
-	public double function(double x)
-	{
-	    return amplitude * Math.sin(2 * Math.PI * frequency * x + phase);
-	}
-    }
-
     public void doModulation()
     {
 	Vector<Vector<FunctionStep>> res = new Vector<Vector<FunctionStep>>();

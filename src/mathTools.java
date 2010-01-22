@@ -1,6 +1,3 @@
-
-import java.util.Vector;
-
 /*
 
  Copyright (C) 2009-2010 Oleksandr Natalenko aka post-factum
@@ -18,6 +15,8 @@ import java.util.Vector;
  pfactum@gmail.com
 
 */
+
+import java.util.Vector;
 
 public class mathTools {
     private double step;
@@ -49,6 +48,19 @@ public class mathTools {
 	double out = 0;
 	for (FunctionStep n: func)
 	    out += n.y * this.step;
+	return out;
+    }
+
+    public Vector<FunctionStep> multiply(Vector<FunctionStep> func1, Vector<FunctionStep> func2)
+    {
+	Vector<FunctionStep> out = new Vector<FunctionStep>();
+	for (int i = 0; i < func1.size(); i++)
+	{
+	    FunctionStep result = null;
+	    result.x = func1.elementAt(i).x;
+	    result.y = func1.elementAt(i).y * func2.elementAt(i).y;
+	    out.add(result);
+	}
 	return out;
     }
 }

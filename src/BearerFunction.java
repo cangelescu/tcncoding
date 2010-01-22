@@ -16,18 +16,19 @@
 
 */
 
-import java.util.Random;
-import java.util.Vector;
+public class BearerFunction implements MathToolsFunction
+{
+    private double frequency, amplitude, phase;
 
-public class errorsSource {
-    public Vector<FunctionStep> getNoisedChannel(Vector<FunctionStep> modulator_data)
+    public BearerFunction(double freq, double ampl, double ph)
     {
-	Vector<FunctionStep> out = new Vector<FunctionStep>();
-	Random rnd = new Random();
-	for (FunctionStep cmd: modulator_data)
-	{
-	    out.add(new FunctionStep(cmd.x, cmd.y + 4 * rnd.nextGaussian()));
-	}
-	return out;
+        this.frequency = freq;
+        this.amplitude = ampl;
+        this.phase = ph;
+    }
+
+    public double function(double x)
+    {
+        return amplitude * Math.sin(2 * Math.PI * frequency * x + phase);
     }
 }
