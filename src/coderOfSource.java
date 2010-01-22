@@ -116,12 +116,18 @@ public class coderOfSource {
 
     public String getStringSequence()
     {
-	String out = "";
+	String out = "<html>";
+	boolean trigger = false;
 	for (Object bn: this.source_sequence)
 	{
 	    binaryNumber number = (binaryNumber)bn;
-	    out += number.getString(this.alignment) + " ";
+	    if (trigger)
+		out += "<font color=\"blue\">" + number.getString(this.alignment) + "</font>";
+	    else
+		out += "<font color=\"green\">" + number.getString(this.alignment) + "</font>";
+	    trigger = !trigger;
 	}
+	out += "</html>";
 	return out;
     }
 }

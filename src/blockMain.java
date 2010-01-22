@@ -231,13 +231,13 @@ public class blockMain extends javax.swing.JFrame {
         sourceCodesChooser = new javax.swing.JComboBox();
         blockSourceCoderOutputPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        blockSourceCoderOutput = new javax.swing.JTextArea();
+        blockSourceCoderOutput = new javax.swing.JTextPane();
         blockChannelCoder = new javax.swing.JPanel();
         channelCodesChooserLabel = new javax.swing.JLabel();
         channelCodesChooser = new javax.swing.JComboBox();
         blockChannelCoderOutputPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        blockChannelCoderOutput = new javax.swing.JTextArea();
+        blockChannelCoderOutput = new javax.swing.JTextPane();
         blockModulatorOptions = new javax.swing.JPanel();
         modulationTypeLabel = new javax.swing.JLabel();
         modulationTypeChooser = new javax.swing.JComboBox();
@@ -343,6 +343,7 @@ public class blockMain extends javax.swing.JFrame {
 
         messageArea.setColumns(20);
         messageArea.setRows(5);
+        messageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(messageArea);
 
         messageLabel.setLabelFor(messageLabel);
@@ -385,11 +386,8 @@ public class blockMain extends javax.swing.JFrame {
 
         blockSourceCoderOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід кодера джерела повідомлень"));
 
-        blockSourceCoderOutput.setColumns(20);
+        blockSourceCoderOutput.setContentType("text/html");
         blockSourceCoderOutput.setEditable(false);
-        blockSourceCoderOutput.setLineWrap(true);
-        blockSourceCoderOutput.setRows(5);
-        blockSourceCoderOutput.setWrapStyleWord(true);
         jScrollPane2.setViewportView(blockSourceCoderOutput);
 
         javax.swing.GroupLayout blockSourceCoderOutputPanelLayout = new javax.swing.GroupLayout(blockSourceCoderOutputPanel);
@@ -443,11 +441,8 @@ public class blockMain extends javax.swing.JFrame {
 
         blockChannelCoderOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід кодера каналу"));
 
-        blockChannelCoderOutput.setColumns(20);
+        blockChannelCoderOutput.setContentType("text/html");
         blockChannelCoderOutput.setEditable(false);
-        blockChannelCoderOutput.setLineWrap(true);
-        blockChannelCoderOutput.setRows(5);
-        blockChannelCoderOutput.setWrapStyleWord(true);
         jScrollPane3.setViewportView(blockChannelCoderOutput);
 
         javax.swing.GroupLayout blockChannelCoderOutputPanelLayout = new javax.swing.GroupLayout(blockChannelCoderOutputPanel);
@@ -1047,13 +1042,13 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JLabel bearerFrequency2Label;
     private javax.swing.JPanel blockChannel;
     private javax.swing.JPanel blockChannelCoder;
-    private javax.swing.JTextArea blockChannelCoderOutput;
+    private javax.swing.JTextPane blockChannelCoderOutput;
     private javax.swing.JPanel blockChannelCoderOutputPanel;
     private javax.swing.JPanel blockMessageSource;
     private javax.swing.JPanel blockModulator;
     private javax.swing.JPanel blockModulatorOptions;
     private javax.swing.JPanel blockSourceCoder;
-    private javax.swing.JTextArea blockSourceCoderOutput;
+    private javax.swing.JTextPane blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
     private javax.swing.JButton channelButton;
     private javax.swing.JButton channelCoderButton;

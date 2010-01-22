@@ -98,12 +98,18 @@ public class coderOfChannel {
 
     public String getStringSequence()
     {
-	String out = "";
+	String out = "<html>";
+	boolean trigger = false;
 	for (Object bn: this.channel_sequence)
 	{
-	    binaryNumber num = (binaryNumber)bn;
-	    out += num.getString(this.alignment) + " ";
+	    binaryNumber number = (binaryNumber)bn;
+	    if (trigger)
+		out += "<font color=\"blue\">" + number.getString(this.alignment) + "</font>";
+	    else
+		out += "<font color=\"green\">" + number.getString(this.alignment) + "</font>";
+	    trigger = !trigger;
 	}
+	out += "</html>";
 	return out;
     }
 }
