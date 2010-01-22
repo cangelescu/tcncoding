@@ -16,6 +16,7 @@
 
 */
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -46,12 +47,12 @@ public class dataVizualizator extends JPanel {
 	g2.setPaint(paint);
 
 	//chart margins
-	final int left_margin_x = 10;
+	final int left_margin_x = 6 * g2.getFontMetrics().charWidth('0');
 	final int right_margin_x = 10;
 	final int top_margin_y = 10;
 	final int bottom_margin_y = 10;
-	final int scaling_factor = 1;
 	final int x_border = 10;
+	final int y_border = 10;
 	//arrows size
 	final int arrow_width = 2;
 	final int arrow_height = 7;
@@ -74,17 +75,38 @@ public class dataVizualizator extends JPanel {
 	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y - arrow_width);
 	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y + arrow_width);
 	//0
-	g2.drawString("0", zero_x - g2.getFontMetrics().charWidth('0') , zero_y + g2.getFontMetrics().getHeight() / 2);
+	g2.drawString("0", zero_x - (int)(1.5 * g2.getFontMetrics().charWidth('0')), zero_y + g2.getFontMetrics().getHeight() / 3);
+	
+	g2.setColor(Color.BLUE);
 	//legend x
 	g2.drawString(l_x, this.getWidth() - right_margin_x, zero_y + g2.getFontMetrics().getHeight());
 	//legend y
 	g2.drawString(l_y, left_margin_x, top_margin_y);
-
-	//longtitude of chart
-	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);
+	g2.setColor(Color.BLACK);
 
 	//gets number of step records
 	int ticks_count = this.modulator_data.size();
+	//finds base function values
+	int max_n = 0;
+	double max_x = this.modulator_data.elementAt(0).x;
+	double max_y = this.modulator_data.elementAt(0).y;
+	double far_x = this.modulator_data.elementAt(ticks_count - 1).x;
+	for (int i = 1; i < ticks_count; i++)
+	    if (this.modulator_data.elementAt(i).y > max_y)
+	    {
+		max_n = i;
+		max_x = this.modulator_data.elementAt(i).x;
+		max_y = this.modulator_data.elementAt(i).y;
+	    }
+	String max_y_string = String.format("%1.2f", max_y);
+
+	//draw steps
+	g2.drawLine(zero_x - g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border, zero_x + g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border);
+	g2.drawString(max_y_string, zero_x - g2.getFontMetrics().stringWidth(max_y_string) - g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border + g2.getFontMetrics().getHeight() / 3);
+	double scaling_factor = (zero_y - top_margin_y - y_border) / max_y;
+
+	//longtitude of chart
+	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);
 
 	//step of drawing
 	double step = (double)ticks_count / (double)distance;
@@ -93,7 +115,7 @@ public class dataVizualizator extends JPanel {
 	while (index < ticks_count)
 	{
 	    int new_x = current_x + 1;
-	    int new_y = scaling_factor * (int) (zero_y - this.modulator_data.elementAt((int)index).y);
+	    int new_y = (int) (zero_y - scaling_factor * this.modulator_data.elementAt((int) index).y);
 	    g2.drawLine(current_x, current_y, new_x, new_y);
 	    current_x = new_x;
 	    current_y = new_y;

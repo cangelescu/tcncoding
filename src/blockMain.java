@@ -182,7 +182,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
-	currentModulatorVizualizator = new dataVizualizator(modulator_data, cx, cy, "t", "S(t)");
+	currentModulatorVizualizator = new dataVizualizator(modulator_data, cx, cy, "t", "S(t), В");
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
 	currentModulatorVizualizator.repaint();
@@ -201,7 +201,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
-	currentChannelVizualizator = new dataVizualizator(channel_output, cx, cy, "t", "S'(t)");
+	currentChannelVizualizator = new dataVizualizator(channel_output, cx, cy, "t", "S'(t), В");
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
 	currentChannelVizualizator.repaint();
@@ -525,36 +525,33 @@ public class blockMain extends javax.swing.JFrame {
                             .addComponent(modulationTypeLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bearerAmplitude, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, blockModulatorOptionsLayout.createSequentialGroup()
-                        .addComponent(bearerFrequency2Label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bearerFrequency2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
-                    .addGroup(blockModulatorOptionsLayout.createSequentialGroup()
-                        .addComponent(bearerFrequency1Label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bearerFrequency1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
-                .addGap(434, 434, 434))
+                            .addGroup(blockModulatorOptionsLayout.createSequentialGroup()
+                                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(bearerFrequency2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bearerAmplitude, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)))
+                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(bearerFrequency2Label, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bearerFrequency1Label, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap())
         );
         blockModulatorOptionsLayout.setVerticalGroup(
             blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockModulatorOptionsLayout.createSequentialGroup()
+                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modulationTypeLabel)
+                    .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(blockModulatorOptionsLayout.createSequentialGroup()
-                        .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modulationTypeLabel)
-                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bearerAmplitudeLabel)
-                            .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel5))
+                    .addComponent(bearerAmplitudeLabel)
+                    .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bearerFrequency1Label)
@@ -825,8 +822,8 @@ public class blockMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+            .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
