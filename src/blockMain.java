@@ -349,8 +349,6 @@ public class blockMain extends javax.swing.JFrame {
         inversionItem = new javax.swing.JMenuItem();
         shl2Item = new javax.swing.JMenuItem();
         weightItem = new javax.swing.JMenuItem();
-        tabulateItem = new javax.swing.JMenuItem();
-        integrateItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -966,22 +964,6 @@ public class blockMain extends javax.swing.JFrame {
         });
         developerMenu.add(weightItem);
 
-        tabulateItem.setText("Табулювання функції");
-        tabulateItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tabulateItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(tabulateItem);
-
-        integrateItem.setText("Інтегрування функції");
-        integrateItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                integrateItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(integrateItem);
-
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -1117,19 +1099,6 @@ public class blockMain extends javax.swing.JFrame {
     }
     
     //checks function tabulating
-    private void tabulateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabulateItemActionPerformed
-    {//GEN-HEADEREND:event_tabulateItemActionPerformed
-	sqrx testFunction = new sqrx();
-	mathTools mtools = new mathTools(1.0E-3);
-	Vector<FunctionStep> numbers = mtools.tabulate(testFunction, 0, 0.5);
-	System.out.println("Tabulating function f(x)=x^2");
-	for(FunctionStep current: numbers)
-	{
-	    FunctionStep current_step = current;
-	    System.out.printf("f(%f)=%f\n", current_step.x, current_step.y);
-	}
-    }//GEN-LAST:event_tabulateItemActionPerformed
-
     //implements test function to integrate
     private class tfun implements MathToolsFunction
     {
@@ -1138,14 +1107,6 @@ public class blockMain extends javax.swing.JFrame {
 	    return Math.abs(Math.sin(x)) + Math.exp(x);
 	}
     }
-
-    private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
-    {//GEN-HEADEREND:event_integrateItemActionPerformed
-	tfun testFunction = new tfun();
-	mathTools mtools = new mathTools(1.0E-3);
-	double result = mtools.integrate(mtools.tabulate(testFunction, 0, 2 * Math.PI));
-	System.out.printf("Integrate |sin(x)| + e^x from 0 to 2*pi: %f\n", result);
-    }//GEN-LAST:event_integrateItemActionPerformed
 
     private void messageSourceButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_messageSourceButtonActionPerformed
     {//GEN-HEADEREND:event_messageSourceButtonActionPerformed
@@ -1250,7 +1211,6 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem integrateItem;
     private javax.swing.JMenuItem inversionItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1285,7 +1245,6 @@ public class blockMain extends javax.swing.JFrame {
     private javax.swing.JPanel sourceMessagePanel;
     private javax.swing.JMenuItem sum2Item;
     private javax.swing.JPanel systemScheme;
-    private javax.swing.JMenuItem tabulateItem;
     private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables
 
