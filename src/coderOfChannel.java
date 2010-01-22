@@ -20,7 +20,7 @@ import java.util.Vector;
 
 public class coderOfChannel {
 
-    public enum channelCoderCode {parity_bit, inversed, hamming};
+    public enum channelCoderCode {parity_bit, inversed, manchester, hamming};
 
     private Vector source_symbols = null;
     public int alignment = 0;
@@ -37,6 +37,9 @@ public class coderOfChannel {
 		this.alignment = alignment + 1;
 		break;
 	    case inversed:
+		this.alignment = alignment * 2;
+		break;
+	    case manchester:
 		this.alignment = alignment * 2;
 		break;
 	    case hamming:
@@ -82,6 +85,23 @@ public class coderOfChannel {
 			binaryNumber inversed = current_number.not2(this.alignment / 2);
 			this.channel_sequence.add(shifted.sum2(inversed));
 		    }
+		}
+		break;
+	    case manchester:
+		for (Object bn: this.source_symbols)
+		{
+		    binaryNumber current_number = (binaryNumber)bn;
+		    boolean[] current_number_array = current_number.toBinaryArray(this.alignment / 2);
+		    boolean[] result_number = new boolean[this.alignment];
+		    int index = 0;
+		    for (boolean current_symbol: current_number_array)
+		    {
+			result_number[index] = current_symbol;
+			result_number[index + 1] = !current_symbol;
+			index += 2;
+		    }
+		    binaryNumber ready = new binaryNumber(result_number);
+		    this.channel_sequence.add(ready);
 		}
 		break;
 	    case hamming:

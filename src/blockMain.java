@@ -86,6 +86,9 @@ public class blockMain extends javax.swing.JFrame {
 		channelCode = coderOfChannel.channelCoderCode.inversed;
 		break;
 	    case 2:
+		channelCode = coderOfChannel.channelCoderCode.manchester;
+		break;
+	    case 3:
 		channelCode = coderOfChannel.channelCoderCode.hamming;
 		break;
 	    default:
@@ -435,7 +438,7 @@ public class blockMain extends javax.swing.JFrame {
         channelCodesChooserLabel.setLabelFor(channelCodesChooser);
         channelCodesChooserLabel.setText("Код:");
 
-        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "із перевіркою на парність", "інверсний", "Хемінга" }));
+        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "із перевіркою на парність", "інверсний", "манчестерський", "Хемінга" }));
         channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 channelCodesChooserItemStateChanged(evt);

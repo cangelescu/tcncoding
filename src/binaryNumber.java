@@ -86,6 +86,27 @@ public class binaryNumber {
 	}
     }
 
+    //creates binary number from boolean array
+    public binaryNumber(boolean[] number)
+    {
+	//gets meaningful part of string
+	for (int i = 0; i < digits - number.length; i++)
+	{
+	    this.binary[i] = false;
+	}
+
+	//creates array structure
+	for (int i = digits - number.length; i < digits; i++)
+	    this.binary[i] = number[i - digits + number.length];
+
+	//calculates integer (decimal) value of binary number
+	long value = 0;
+	for (int i = 0; i < digits; i++)
+	    if (this.binary[i])
+		value += Math.pow(2, digits - 1 - i);
+	this.number = value;
+    }
+
     //returns fixed-width string representation of binary number
     public String getString(int align)
     {
