@@ -20,10 +20,10 @@ import java.util.Vector;
 
 public class Multiplier {
     private double ethalon_frequency, ethalon_amplitude, ethalon_phase;
-    private Vector<Signal> received_signal = new Vector<Signal>();
-    private Vector<Signal> output = new Vector<Signal>();
+    private Vector<ChannelSignal> received_signal;
+    private Vector<MultiplierSignal> output = new Vector<MultiplierSignal>();
 
-    public Multiplier(double freq, double amplitude, double phase, Vector<Signal> signal)
+    public Multiplier(double freq, double amplitude, double phase, Vector<ChannelSignal> signal)
     {
 	this.ethalon_frequency = freq;
 	this.ethalon_amplitude = amplitude;
@@ -33,15 +33,15 @@ public class Multiplier {
 
     public void doMultiply()
     {
-	for (Signal crs: this.received_signal)
+	for (ChannelSignal crs: this.received_signal)
 	{
-	    SignalFunction bfcrs = crs.getFunction();
-	    SignalFunction mbfcrs = new SignalFunction(bfcrs.getFrequency(), bfcrs.getAmplitude(), bfcrs.getPhase(), bfcrs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase);
-	    this.output.add(new Signal(mbfcrs, crs.getStart(), crs.getEnd()));
+	    ChannelSignalFunction bfcrs = crs.getFunction();
+	    MultiplierSignalFunction mbfcrs = new MultiplierSignalFunction(bfcrs.getFrequency(), bfcrs.getAmplitude(), bfcrs.getPhase(), bfcrs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase);
+	    this.output.add(new MultiplierSignal(mbfcrs, crs.getStart(), crs.getEnd()));
 	}
     }
 
-    public Vector<Signal> getSignals()
+    public Vector<MultiplierSignal> getSignals()
     {
 	return this.output;
     }

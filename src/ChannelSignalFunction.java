@@ -26,18 +26,14 @@ public class ChannelSignalFunction implements IntegralFunction
     private double phase;
     private double noise;
     private double max_value;
-    private double x_start;
-    private double x_end;
 
-    public ChannelSignalFunction(double freq, double ampl, double ph, double ns, double new_x_start, double new_x_end)
+    public ChannelSignalFunction(double freq, double ampl, double ph, double ns)
     {
         this.frequency = freq;
         this.amplitude = ampl;
         this.phase = ph;
 	this.noise = ns;
 	this.max_value = ampl + ns;
-	this.x_start = new_x_start;
-	this.x_end = new_x_end;
     }
 
     public double function(double x)
@@ -69,15 +65,5 @@ public class ChannelSignalFunction implements IntegralFunction
     public double getMaxValue()
     {
 	return this.max_value;
-    }
-
-    public double getStart()
-    {
-	return this.x_start;
-    }
-
-    public double getEnd()
-    {
-	return this.x_end;
     }
 }

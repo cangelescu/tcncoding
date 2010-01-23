@@ -29,10 +29,8 @@ public class MultiplierSignalFunction implements IntegralFunction
     private double ethalon_amplitude = 0;
     private double ethalon_phase = 0;
     private double max_value;
-    private double x_start;
-    private double x_end;
 
-    public MultiplierSignalFunction(double freq, double ampl, double ph, double ns, double efreq, double eampl, double eph, double new_x_start, double new_x_end)
+    public MultiplierSignalFunction(double freq, double ampl, double ph, double ns, double efreq, double eampl, double eph)
     {
         this.frequency = freq;
         this.amplitude = ampl;
@@ -42,8 +40,6 @@ public class MultiplierSignalFunction implements IntegralFunction
 	this.ethalon_amplitude = eampl;
 	this.ethalon_phase = eph;
 	this.max_value = (ampl + ns) * eampl;
-	this.x_start = new_x_start;
-	this.x_end = new_x_end;
     }
 
     public double function(double x)
@@ -76,15 +72,5 @@ public class MultiplierSignalFunction implements IntegralFunction
     public double getMaxValue()
     {
 	return this.max_value;
-    }
-
-    public double getStart()
-    {
-	return this.x_start;
-    }
-
-    public double getEnd()
-    {
-	return this.x_end;
     }
 }

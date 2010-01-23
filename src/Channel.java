@@ -19,25 +19,25 @@
 import java.util.Vector;
 
 public class Channel {
-    private Vector<Signal> input_signals;
-    private Vector<Signal> output_signals = new Vector<Signal>();
+    private Vector<ModulatorSignal> input_signals;
+    private Vector<ChannelSignal> output_signals = new Vector<ChannelSignal>();
 
-    public Channel(Vector<Signal> new_input_signals)
+    public Channel(Vector<ModulatorSignal> new_input_signals)
     {
 	this.input_signals = new_input_signals;
     }
 
     public void doNoising()
     {
-	for(Signal cs: this.input_signals)
+	for(ModulatorSignal cs: this.input_signals)
 	{
-	    SignalFunction csf = cs.getFunction();
-	    SignalFunction ncfs = new SignalFunction(csf.getFrequency(), csf.getAmplitude(), csf.getPhase(), 4);
-	    this.output_signals.add(new Signal(ncfs, cs.getStart(), cs.getEnd()));
+	    ModulatorSignalFunction csf = cs.getFunction();
+	    ChannelSignalFunction ncfs = new ChannelSignalFunction(csf.getFrequency(), csf.getAmplitude(), csf.getPhase(), 4);
+	    this.output_signals.add(new ChannelSignal(ncfs, cs.getStart(), cs.getEnd()));
 	}
     }
 
-    public Vector<Signal> getSignals()
+    public Vector<ChannelSignal> getSignals()
     {
 	return this.output_signals;
     }

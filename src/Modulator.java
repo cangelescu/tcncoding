@@ -28,7 +28,7 @@ public class Modulator {
     private double bearer_amplitude;
     private double bearer_frequency_0, bearer_frequency_1;
 
-    Vector<Signal> modulated_sequence = new Vector<Signal>();
+    Vector<ModulatorSignal> modulated_sequence = new Vector<ModulatorSignal>();
 
     public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols, int align)
     {
@@ -48,12 +48,12 @@ public class Modulator {
 
 	int prev_phase = 1;
 
-	SignalFunction amn0 = new SignalFunction(0, 0, 0, 0);
-	SignalFunction amn1 = new SignalFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
-	SignalFunction fmn0 = new SignalFunction(bearer_frequency_0, bearer_amplitude, 0, 0);
-	SignalFunction fmn1 = new SignalFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
-	SignalFunction pmn0 = new SignalFunction(bearer_frequency_1, bearer_amplitude, 0, 0);
-	SignalFunction pmn1 = new SignalFunction(bearer_frequency_1, bearer_amplitude, -Math.PI, 0);
+	ModulatorSignalFunction amn0 = new ModulatorSignalFunction(0, 0, 0);
+	ModulatorSignalFunction amn1 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, 0);
+	ModulatorSignalFunction fmn0 = new ModulatorSignalFunction(bearer_frequency_0, bearer_amplitude, 0);
+	ModulatorSignalFunction fmn1 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, 0);
+	ModulatorSignalFunction pmn0 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, 0);
+	ModulatorSignalFunction pmn1 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, -Math.PI);
 
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
@@ -66,45 +66,45 @@ public class Modulator {
 		{
 		    case AMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(new Signal(amn0, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(new ModulatorSignal(amn0, 0, 1/bearer_frequency_1));
 			else
-			    this.modulated_sequence.add(new Signal(amn1, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(new ModulatorSignal(amn1, 0, 1/bearer_frequency_1));
 			break;
 		    case FMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(new Signal(fmn0, 0, 1/bearer_frequency_0));
+			    this.modulated_sequence.add(new ModulatorSignal(fmn0, 0, 1/bearer_frequency_0));
 			else
-			    this.modulated_sequence.add(new Signal(fmn1, 0, 1/bearer_frequency_0));
+			    this.modulated_sequence.add(new ModulatorSignal(fmn1, 0, 1/bearer_frequency_0));
 			break;
 		    case PMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(new Signal(pmn0, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(new ModulatorSignal(pmn0, 0, 1/bearer_frequency_1));
 			else
-			    this.modulated_sequence.add(new Signal(pmn1, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(new ModulatorSignal(pmn1, 0, 1/bearer_frequency_1));
 			break;
 		    case RPMn:
 			if (!seq[i])
 			{
 			    if (prev_phase == 1)
 			    {
-				this.modulated_sequence.add(new Signal(pmn0, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(new ModulatorSignal(pmn0, 0, 1/bearer_frequency_1));
 				prev_phase = 1;
 			    } else
 			    if (prev_phase == -1)
 			    {
-				this.modulated_sequence.add(new Signal(pmn1, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(new ModulatorSignal(pmn1, 0, 1/bearer_frequency_1));
 				prev_phase = -1;
 			    }
 			} else
 			{
 			    if (prev_phase == 1)
 			    {
-				this.modulated_sequence.add(new Signal(pmn1, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(new ModulatorSignal(pmn1, 0, 1/bearer_frequency_1));
 				prev_phase = -1;
 			    } else
 			    if (prev_phase == -1)
 			    {
-				this.modulated_sequence.add(new Signal(pmn0, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(new ModulatorSignal(pmn0, 0, 1/bearer_frequency_1));
 				prev_phase = 1;
 			    }
 			}
@@ -116,7 +116,7 @@ public class Modulator {
 	}
     }
 
-    public Vector<Signal> getSignals()
+    public Vector<ModulatorSignal> getSignals()
     {
 	return this.modulated_sequence;
     }

@@ -24,17 +24,13 @@ public class ModulatorSignalFunction implements IntegralFunction
     private double amplitude;
     private double phase;
     private double max_value;
-    private double x_start;
-    private double x_end;
 
-    public ModulatorSignalFunction(double freq, double ampl, double ph, double new_x_start, double new_x_end)
+    public ModulatorSignalFunction(double freq, double ampl, double ph)
     {
         this.frequency = freq;
         this.amplitude = ampl;
         this.phase = ph;
 	this.max_value = ampl;
-	this.x_start = new_x_start;
-	this.x_end = new_x_end;
     }
 
     public double function(double x)
@@ -60,15 +56,5 @@ public class ModulatorSignalFunction implements IntegralFunction
     public double getMaxValue()
     {
 	return this.max_value;
-    }
-
-    public double getStart()
-    {
-	return this.x_start;
-    }
-
-    public double getEnd()
-    {
-	return this.x_end;
     }
 }

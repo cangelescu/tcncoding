@@ -24,13 +24,13 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 public class DataVizualizator extends JPanel {
-    private Vector<Signal> chart_data;
+    private Vector<DataVizualizatorProvider> chart_data;
 
     private Paint paint;
 
     private String l_x, l_y;
 
-    public DataVizualizator(Vector<Signal> data, int wx, int wy, String legend_x, String legend_y)
+    public DataVizualizator(Vector<DataVizualizatorProvider> data, int wx, int wy, String legend_x, String legend_y)
     {
 	this.setSize(wx, wy);
 	this.chart_data = data;
@@ -88,10 +88,10 @@ public class DataVizualizator extends JPanel {
 	double one_piece = this.chart_data.elementAt(0).getEnd();
 	double total_time = this.chart_data.size() * one_piece;
 	//finds base function values
-	double max_y = this.chart_data.elementAt(0).getFunction().getMaxValue();
-	for (Signal cs: this.chart_data)
-	    if (cs.getFunction().getMaxValue() > max_y)
-		max_y = cs.getFunction().getMaxValue();
+	double max_y = this.chart_data.elementAt(0).getMaxValue();
+	for (DataVizualizatorProvider cs: this.chart_data)
+	    if (cs.getMaxValue() > max_y)
+		max_y = cs.getMaxValue();
 	String max_y_string = String.format("%1.2f", max_y);
 
 	//draw steps y
@@ -115,7 +115,7 @@ public class DataVizualizator extends JPanel {
 	    if (current_time > one_piece * (index + 1))
 		index++;
 	    int new_x = current_x + 1;
-	    double y_value = this.chart_data.elementAt(index).getFunction().function(current_time);
+	    double y_value = this.chart_data.elementAt(index).getFunction(current_time);
 	    int new_y;
 	    if (y_value == 0)
 		new_y = zero_y;

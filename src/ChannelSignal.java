@@ -16,22 +16,29 @@
 
 */
 
-import flanagan.integration.*;
-import java.util.Vector;
+public class ChannelSignal {
+    private ChannelSignalFunction bearer_function = null;
+    private double x_start, x_end;
 
-class Integrator {
-    private Vector<MultiplierSignal> signals;
-
-    public Integrator(Vector<MultiplierSignal> new_signals)
+    public ChannelSignal(ChannelSignalFunction new_bearer_function, double new_x_start, double new_x_end)
     {
-	this.signals = new_signals;
+	this.bearer_function = new_bearer_function;
+	this.x_start = new_x_start;
+	this.x_end = new_x_end;
     }
 
-    public Vector<Double> getIntegrals()
+    public ChannelSignalFunction getFunction()
     {
-	Vector<Double> out = new Vector<Double>();
-	for (MultiplierSignal cs: this.signals)
-	    out.add(Integration.gaussQuad(cs.getFunction(), cs.getStart(), cs.getEnd(), 1000));
-	return out;
+	return this.bearer_function;
+    }
+
+    public double getStart()
+    {
+	return x_start;
+    }
+
+    public double getEnd()
+    {
+	return x_end;
     }
 }
