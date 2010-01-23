@@ -54,17 +54,17 @@ public class UIMain extends javax.swing.JFrame {
 
     //Modulator data
     Vector<ModulatorSignal> modulator_data = null;
-    Vector<DataVizualizatorProvider> modulator_data_provider = new Vector<DataVizualizatorProvider>();
+    Vector<DataVizualizatorProvider> modulator_data_provider = null;
 
     //Channel data
     Vector<ChannelSignal> channel_output = null;
-    Vector<DataVizualizatorProvider> channel_output_provider = new Vector<DataVizualizatorProvider>();
+    Vector<DataVizualizatorProvider> channel_output_provider = null;
 
     //multipliers data
     Vector<MultiplierSignal> multiplier_0_output = null;
     Vector<MultiplierSignal> multiplier_1_output = null;
-    Vector<DataVizualizatorProvider> multiplier_0_output_provider = new Vector<DataVizualizatorProvider>();
-    Vector<DataVizualizatorProvider> multiplier_1_output_provider = new Vector<DataVizualizatorProvider>();
+    Vector<DataVizualizatorProvider> multiplier_0_output_provider = null;
+    Vector<DataVizualizatorProvider> multiplier_1_output_provider = null;
 
     //integrators data
     Vector<Double> integrator_0_output = null;
@@ -212,12 +212,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
 
-	modulator_data_provider.clear();
-	for (ModulatorSignal ms: modulator_data)
-	{
-	    modulator_data_provider.add(new DataVizualizatorProvider(ms));
-	}
-
+	modulator_data_provider = (new DataVizualizatorConverter(modulator_data, DataVizualizatorProvider.SignalType.modulator)).getProvided();
 	currentModulatorVizualizator = new DataVizualizator(modulator_data_provider, cx, cy, "t", "S(t), В");
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
@@ -239,20 +234,17 @@ public class UIMain extends javax.swing.JFrame {
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
 
-	channel_output_provider.clear();
-	for (ChannelSignal cs: channel_output)
-	{
-	    channel_output_provider.add(new DataVizualizatorProvider(cs));
-	}
-
+	channel_output_provider = (new DataVizualizatorConverter(channel_output, DataVizualizatorProvider.SignalType.channel)).getProvided();
 	currentChannelVizualizator = new DataVizualizator(channel_output_provider, cx, cy, "t", "S'(t), В");
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
 	currentChannelVizualizator.repaint();
     }
 
+    //multiplies signals and ethalons
     void doMultiplying()
     {
+	//create multipliers according to modulation type
 	switch (this.modulationType)
 	{
 	    case AMn:
@@ -272,11 +264,14 @@ public class UIMain extends javax.swing.JFrame {
 		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
 		break;
 	}
+
+	//multiplies
 	currentMultiplier0.doMultiply();
 	currentMultiplier1.doMultiply();
 	multiplier_0_output = currentMultiplier0.getSignals();
 	multiplier_1_output = currentMultiplier1.getSignals();
 
+	//prepares vizualizator
 	if (currentMultiplierVizualizator0 != null)
 	{
 	    multiplierOutputField0.remove(currentMultiplierVizualizator0);
@@ -285,12 +280,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx0 = multiplierOutputField0.getWidth();
 	int cy0 = multiplierOutputField0.getHeight();
 
-	multiplier_0_output_provider.clear();
-	for (MultiplierSignal ms: multiplier_0_output)
-	{
-	    multiplier_0_output_provider.add(new DataVizualizatorProvider(ms));
-	}
-
+	//vizualizes signal
+	multiplier_0_output_provider = (new DataVizualizatorConverter(multiplier_0_output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
 	currentMultiplierVizualizator0 = new DataVizualizator(multiplier_0_output_provider, cx0, cy0, "t", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
@@ -304,12 +295,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = multiplierOutputField1.getWidth();
 	int cy1 = multiplierOutputField1.getHeight();
 	
-	multiplier_1_output_provider.clear();
-	for (MultiplierSignal ms: multiplier_1_output)
-	{
-	    multiplier_1_output_provider.add(new DataVizualizatorProvider(ms));
-	}
-	
+	multiplier_1_output_provider = (new DataVizualizatorConverter(multiplier_1_output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
 	currentMultiplierVizualizator1 = new DataVizualizator(multiplier_1_output_provider, cx1, cy1, "t", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);

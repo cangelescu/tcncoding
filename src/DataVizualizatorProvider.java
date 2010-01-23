@@ -18,14 +18,14 @@
 
 public class DataVizualizatorProvider {
 
-    enum SignalType {modulator, channel, multiplier};
-    SignalType current_signal_type;
+    public enum SignalType {modulator, channel, multiplier};
+    private SignalType current_signal_type;
 
-    ModulatorSignal modulator_signal = null;
-    ChannelSignal channel_signal = null;
-    MultiplierSignal multiplier_signal = null;
+    private ModulatorSignal modulator_signal = null;
+    private ChannelSignal channel_signal = null;
+    private MultiplierSignal multiplier_signal = null;
 
-    double x_start, x_end, frequency, amplitude, phase, max_value;
+    private double x_start, x_end, max_value;
 
     public DataVizualizatorProvider(ModulatorSignal mos_data)
     {
@@ -33,9 +33,6 @@ public class DataVizualizatorProvider {
 	this.modulator_signal = mos_data;
 	this.x_start = mos_data.getStart();
 	this.x_end = mos_data.getEnd();
-	this.frequency = mos_data.getFunction().getFrequency();
-	this.amplitude = mos_data.getFunction().getAmplitude();
-	this.phase = mos_data.getFunction().getPhase();
 	this.max_value = mos_data.getFunction().getMaxValue();
     }
 
@@ -45,9 +42,6 @@ public class DataVizualizatorProvider {
 	this.channel_signal = cas_data;
 	this.x_start = cas_data.getStart();
 	this.x_end = cas_data.getEnd();
-	this.frequency = cas_data.getFunction().getFrequency();
-	this.amplitude = cas_data.getFunction().getAmplitude();
-	this.phase = cas_data.getFunction().getPhase();
 	this.max_value = cas_data.getFunction().getMaxValue();
     }
 
@@ -57,9 +51,6 @@ public class DataVizualizatorProvider {
 	this.multiplier_signal = mus_data;
 	this.x_start = mus_data.getStart();
 	this.x_end = mus_data.getEnd();
-	this.frequency = mus_data.getFunction().getFrequency();
-	this.amplitude = mus_data.getFunction().getAmplitude();
-	this.phase = mus_data.getFunction().getPhase();
 	this.max_value = mus_data.getFunction().getMaxValue();
     }
 
