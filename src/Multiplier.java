@@ -18,12 +18,12 @@
 
 import java.util.Vector;
 
-public class multiplier {
+public class Multiplier {
     private double ethalon_frequency, ethalon_amplitude, ethalon_phase;
     private Vector<Signal> received_signal = new Vector<Signal>();
     private Vector<Signal> output = new Vector<Signal>();
 
-    public multiplier(double freq, double amplitude, double phase, Vector<Signal> signal)
+    public Multiplier(double freq, double amplitude, double phase, Vector<Signal> signal)
     {
 	this.ethalon_frequency = freq;
 	this.ethalon_amplitude = amplitude;

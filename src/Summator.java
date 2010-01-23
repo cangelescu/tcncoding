@@ -18,12 +18,12 @@
 
 import java.util.Vector;
 
-class summator {
+class Summator {
     private Vector<Double> sequence0;
     private Vector<Double> sequence1;
     private Vector<Double> sum_result = new Vector<Double>();
 
-    public summator(Vector<Double> new_sequence0, Vector<Double> new_sequence1)
+    public Summator(Vector<Double> new_sequence0, Vector<Double> new_sequence1)
     {
 	this.sequence0 = new_sequence0;
 	this.sequence1 = new_sequence1;

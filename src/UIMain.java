@@ -20,42 +20,42 @@ import java.awt.Color;
 import java.util.Vector;
 import flanagan.integration.*;
 
-public class blockMain extends javax.swing.JFrame {
+public class UIMain extends javax.swing.JFrame {
     //blocks (classes)
-    coderOfSource currentSourceCoder = null;
-    coderOfChannel currentChannelCoder = null;
-    modulator currentModulator = null;
-    channel currentChannel = null;
-    multiplier currentMultiplier0 = null, currentMultiplier1 = null;
-    integrator currentIntegrator0 = null, currentIntegrator1 = null;
-    summator currentSummator = null;
+    SourceCoder currentSourceCoder = null;
+    ChannelCoder currentChannelCoder = null;
+    Modulator currentModulator = null;
+    Channel currentChannel = null;
+    Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
+    Integrator currentIntegrator0 = null, currentIntegrator1 = null;
+    Summator currentSummator = null;
 
     //UI
     enum Blocks {message_source, source_coder, channel_coder, modulator, channel, receiver};
     Blocks selectedBlock = Blocks.message_source;
 
     //tools
-    dataVizualizator currentModulatorVizualizator = null;
-    dataVizualizator currentChannelVizualizator = null;
-    dataVizualizator currentMultiplierVizualizator0 = null;
-    dataVizualizator currentMultiplierVizualizator1 = null;
+    DataVizualizator currentModulatorVizualizator = null;
+    DataVizualizator currentChannelVizualizator = null;
+    DataVizualizator currentMultiplierVizualizator0 = null;
+    DataVizualizator currentMultiplierVizualizator1 = null;
 
     //source message
     String message = "";
 
     //using codes and other parameters
-    coderOfSource.sourceCoderCode sourceCode = coderOfSource.sourceCoderCode.mtk2;
-    coderOfChannel.channelCoderCode channelCode = coderOfChannel.channelCoderCode.parity_bit;
-    modulator.ModulationType modulationType = modulator.ModulationType.AMn;
+    SourceCoder.sourceCoderCode sourceCode = SourceCoder.sourceCoderCode.mtk2;
+    ChannelCoder.channelCoderCode channelCode = ChannelCoder.channelCoderCode.parity_bit;
+    Modulator.ModulationType modulationType = Modulator.ModulationType.AMn;
 
     //message in binary symbols
     Vector source_symbols = new Vector();
     Vector channel_symbols = new Vector();
 
-    //modulator data
+    //Modulator data
     Vector<Signal> modulator_data = null;
 
-    //channel data
+    //Channel data
     Vector<Signal> channel_output = null;
 
     //multipliers data
@@ -66,7 +66,7 @@ public class blockMain extends javax.swing.JFrame {
     Vector<Double> integrator_0_output = null;
     Vector<Double> integrator_1_output = null;
 
-    //summator data
+    //Summator data
     Vector<Double> summator_output = null;
 
     //acts on choosing code of source
@@ -75,37 +75,37 @@ public class blockMain extends javax.swing.JFrame {
 	switch (sourceCodesChooser.getSelectedIndex())
 	{
 	    case 0:
-		sourceCode = coderOfSource.sourceCoderCode.mtk2;
+		sourceCode = SourceCoder.sourceCoderCode.mtk2;
 		break;
 	    case 1:
-		sourceCode = coderOfSource.sourceCoderCode.mtk5;
+		sourceCode = SourceCoder.sourceCoderCode.mtk5;
 		break;
 	    case 2:
-		sourceCode = coderOfSource.sourceCoderCode.koi8u;
+		sourceCode = SourceCoder.sourceCoderCode.koi8u;
 		break;
 	    case 3:
-		sourceCode = coderOfSource.sourceCoderCode.morze;
+		sourceCode = SourceCoder.sourceCoderCode.morze;
 	    default:
 		break;
 	}
     }
 
-    //acts on choosing code of channel
+    //acts on choosing code of Channel
     void updateChosenCodeChannel()
     {
 	switch (channelCodesChooser.getSelectedIndex())
 	{
 	    case 0:
-		channelCode = coderOfChannel.channelCoderCode.parity_bit;
+		channelCode = ChannelCoder.channelCoderCode.parity_bit;
 		break;
 	    case 1:
-		channelCode = coderOfChannel.channelCoderCode.inversed;
+		channelCode = ChannelCoder.channelCoderCode.inversed;
 		break;
 	    case 2:
-		channelCode = coderOfChannel.channelCoderCode.manchester;
+		channelCode = ChannelCoder.channelCoderCode.manchester;
 		break;
 	    case 3:
-		channelCode = coderOfChannel.channelCoderCode.hamming;
+		channelCode = ChannelCoder.channelCoderCode.hamming;
 		break;
 	    default:
 		break;
@@ -120,18 +120,18 @@ public class blockMain extends javax.swing.JFrame {
 	switch (modulationTypeChooser.getSelectedIndex())
 	{
 	    case 0:
-		modulationType = modulator.ModulationType.AMn;
+		modulationType = Modulator.ModulationType.AMn;
 		break;
 	    case 1:
-		modulationType = modulator.ModulationType.FMn;
+		modulationType = Modulator.ModulationType.FMn;
 		bearerFrequency0.setEnabled(true);
 		bearerFrequency0Label.setEnabled(true);
 		break;
 	    case 2:
-		modulationType = modulator.ModulationType.PMn;
+		modulationType = Modulator.ModulationType.PMn;
 		break;
 	    case 3:
-		modulationType = modulator.ModulationType.RPMn;
+		modulationType = Modulator.ModulationType.RPMn;
 		break;
 	    default:
 		break;
@@ -178,25 +178,25 @@ public class blockMain extends javax.swing.JFrame {
     //encodes source message with selected source code
     void doSourceCoding()
     {
-	currentSourceCoder = new coderOfSource(sourceCode, message);
+	currentSourceCoder = new SourceCoder(sourceCode, message);
 	currentSourceCoder.doEncode();
 	source_symbols = currentSourceCoder.getSequence();
 	blockSourceCoderOutput.setText(currentSourceCoder.getStringSequence());
     }
 
-    //encodes source code with selected channel code
+    //encodes source code with selected Channel code
     void doChannelCoding()
     {
-	currentChannelCoder = new coderOfChannel(source_symbols, channelCode, currentSourceCoder.alignment);
+	currentChannelCoder = new ChannelCoder(source_symbols, channelCode, currentSourceCoder.alignment);
 	currentChannelCoder.doEncode();
 	channel_symbols = currentChannelCoder.getSequence();
 	blockChannelCoderOutput.setText(currentChannelCoder.getStringSequence());
     }
 
-    //modulates sinusoidal signal with channel code using selected modulation type
+    //modulates sinusoidal signal with Channel code using selected modulation type
     void doModulating()
     {
-	currentModulator = new modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols, currentChannelCoder.alignment);
+	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols, currentChannelCoder.alignment);
 	currentModulator.doModulation();
 	this.modulator_data = currentModulator.getSignals();
 
@@ -207,7 +207,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
-	currentModulatorVizualizator = new dataVizualizator(modulator_data, cx, cy, "t", "S(t), В");
+	currentModulatorVizualizator = new DataVizualizator(modulator_data, cx, cy, "t", "S(t), В");
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
 	currentModulatorVizualizator.repaint();
@@ -216,7 +216,7 @@ public class blockMain extends javax.swing.JFrame {
     //adds noise
     void doChannel()
     {
-	currentChannel = new channel(this.modulator_data);
+	currentChannel = new Channel(this.modulator_data);
 	currentChannel.doNoising();
 	this.channel_output = currentChannel.getSignals();
 
@@ -227,7 +227,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
-	currentChannelVizualizator = new dataVizualizator(channel_output, cx, cy, "t", "S'(t), В");
+	currentChannelVizualizator = new DataVizualizator(channel_output, cx, cy, "t", "S'(t), В");
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
 	currentChannelVizualizator.repaint();
@@ -238,20 +238,20 @@ public class blockMain extends javax.swing.JFrame {
 	switch (this.modulationType)
 	{
 	    case AMn:
-		currentMultiplier0 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), 0, 0, this.channel_output);
-		currentMultiplier1 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), 0, 0, this.channel_output);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
 		break;
 	    case FMn:
-		currentMultiplier0 = new multiplier(Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
-		currentMultiplier1 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
 		break;
 	    case PMn:
-		currentMultiplier0 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
-		currentMultiplier1 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
 		break;
 	    case RPMn:
-		currentMultiplier0 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
-		currentMultiplier1 = new multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
 		break;
 	}
 	currentMultiplier0.doMultiply();
@@ -266,7 +266,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
 	int cx0 = multiplierOutputField0.getWidth();
 	int cy0 = multiplierOutputField0.getHeight();
-	currentMultiplierVizualizator0 = new dataVizualizator(multiplier_0_output, cx0, cy0, "t", "Sm0(t), В");
+	currentMultiplierVizualizator0 = new DataVizualizator(multiplier_0_output, cx0, cy0, "t", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
@@ -278,7 +278,7 @@ public class blockMain extends javax.swing.JFrame {
 	}
 	int cx1 = multiplierOutputField1.getWidth();
 	int cy1 = multiplierOutputField1.getHeight();
-	currentMultiplierVizualizator1 = new dataVizualizator(multiplier_1_output, cx1, cy1, "t", "Sm1(t), В");
+	currentMultiplierVizualizator1 = new DataVizualizator(multiplier_1_output, cx1, cy1, "t", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
@@ -286,20 +286,20 @@ public class blockMain extends javax.swing.JFrame {
 
     void doIntegrating()
     {
-	currentIntegrator0 = new integrator(multiplier_0_output);
-	currentIntegrator1 = new integrator(multiplier_1_output);
+	currentIntegrator0 = new Integrator(multiplier_0_output);
+	currentIntegrator1 = new Integrator(multiplier_1_output);
 	integrator_0_output = currentIntegrator0.getIntegrals();
 	integrator_1_output = currentIntegrator1.getIntegrals();
     }
 
     void doSumming()
     {
-	currentSummator = new summator(integrator_0_output, integrator_1_output);
+	currentSummator = new Summator(integrator_0_output, integrator_1_output);
 	currentSummator.doSumming();
 	summator_output = currentSummator.getSum();
     }
 
-    public blockMain() {
+    public UIMain() {
         initComponents();
     }
 
@@ -1040,9 +1040,9 @@ public class blockMain extends javax.swing.JFrame {
     //checks summarizing by module 2
     private void sum2ItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sum2ItemActionPerformed
     {//GEN-HEADEREND:event_sum2ItemActionPerformed
-	binaryNumber num1 = new binaryNumber(10);
-	binaryNumber num2 = new binaryNumber(20);
-	binaryNumber num3 = num1.sum2(num2);
+	BinaryNumber num1 = new BinaryNumber(10);
+	BinaryNumber num2 = new BinaryNumber(20);
+	BinaryNumber num3 = num1.sum2(num2);
 	System.out.println(num1.toInt() +
 		" + " +
 		num2.toInt() + 
@@ -1074,7 +1074,7 @@ public class blockMain extends javax.swing.JFrame {
     //checks binary number inversion
     private void inversionItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_inversionItemActionPerformed
     {//GEN-HEADEREND:event_inversionItemActionPerformed
-	binaryNumber num1 = new binaryNumber(10);
+	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("inversed " +
 		num1.getString(0) +
 		" == " +
@@ -1084,7 +1084,7 @@ public class blockMain extends javax.swing.JFrame {
     //checks binary number shifting
     private void shl2ItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_shl2ItemActionPerformed
     {//GEN-HEADEREND:event_shl2ItemActionPerformed
-	binaryNumber num1 = new binaryNumber(10);
+	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("shifted " +
 		num1.getString(0) +
 		" == " +
@@ -1094,7 +1094,7 @@ public class blockMain extends javax.swing.JFrame {
     //checks getting weight of binary number
     private void weightItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_weightItemActionPerformed
     {//GEN-HEADEREND:event_weightItemActionPerformed
-	binaryNumber num1 = new binaryNumber(10);
+	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("weight " +
 		num1.getString(0) +
 		" == " +
@@ -1204,7 +1204,7 @@ public class blockMain extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new blockMain().setVisible(true);
+                new UIMain().setVisible(true);
             }
         });
     }

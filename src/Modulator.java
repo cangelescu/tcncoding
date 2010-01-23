@@ -18,7 +18,7 @@
 
 import java.util.Vector;
 
-public class modulator {
+public class Modulator {
 
     public enum ModulationType {AMn, FMn, PMn, RPMn};
 
@@ -30,7 +30,7 @@ public class modulator {
 
     Vector<Signal> modulated_sequence = new Vector<Signal>();
 
-    public modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols, int align)
+    public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols, int align)
     {
 	this.using_method = mod_type;
 	this.sequence = symbols;
@@ -57,7 +57,7 @@ public class modulator {
 
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
-	    binaryNumber working_number = (binaryNumber)this.sequence.get(j);
+	    BinaryNumber working_number = (BinaryNumber)this.sequence.get(j);
 	    boolean[] seq = working_number.toBinaryArray(this.alignment);
 
 	    for (int i = 0; i < len; i++)

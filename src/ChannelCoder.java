@@ -18,7 +18,7 @@
 
 import java.util.Vector;
 
-public class coderOfChannel {
+public class ChannelCoder {
 
     public enum channelCoderCode {parity_bit, inversed, manchester, hamming};
 
@@ -27,7 +27,7 @@ public class coderOfChannel {
     private channelCoderCode using_code = null;
     private Vector channel_sequence = new Vector();
 
-    public coderOfChannel(Vector symbols, channelCoderCode code_type, int alignment)
+    public ChannelCoder(Vector symbols, channelCoderCode code_type, int alignment)
     {
 	this.source_symbols = symbols;
 	this.using_code = code_type;
@@ -60,14 +60,14 @@ public class coderOfChannel {
 	    case parity_bit:
 		for (Object bn: this.source_symbols)
 		{
-		    binaryNumber current_number = (binaryNumber)bn;
-		    binaryNumber shifted = current_number.shl2();
+		    BinaryNumber current_number = (BinaryNumber)bn;
+		    BinaryNumber shifted = current_number.shl2();
 		    if (current_number.getWeight() % 2 == 0)
 		    {
 			this.channel_sequence.add(shifted);
 		    } else
 		    {
-			binaryNumber one = new binaryNumber(1);
+			BinaryNumber one = new BinaryNumber(1);
 			this.channel_sequence.add(shifted.sum2(one));
 		    }
 		}
@@ -75,14 +75,14 @@ public class coderOfChannel {
 	    case inversed:
 		for (Object bn: this.source_symbols)
 		{
-		    binaryNumber current_number = (binaryNumber)bn;
-		    binaryNumber shifted = current_number.shl2(this.alignment / 2);
+		    BinaryNumber current_number = (BinaryNumber)bn;
+		    BinaryNumber shifted = current_number.shl2(this.alignment / 2);
 		    if (current_number.getWeight() % 2 == 0)
 		    {
 			this.channel_sequence.add(shifted.sum2(current_number));
 		    } else
 		    {
-			binaryNumber inversed = current_number.not2(this.alignment / 2);
+			BinaryNumber inversed = current_number.not2(this.alignment / 2);
 			this.channel_sequence.add(shifted.sum2(inversed));
 		    }
 		}
@@ -90,7 +90,7 @@ public class coderOfChannel {
 	    case manchester:
 		for (Object bn: this.source_symbols)
 		{
-		    binaryNumber current_number = (binaryNumber)bn;
+		    BinaryNumber current_number = (BinaryNumber)bn;
 		    boolean[] current_number_array = current_number.toBinaryArray(this.alignment / 2);
 		    boolean[] result_number = new boolean[this.alignment];
 		    int index = 0;
@@ -100,7 +100,7 @@ public class coderOfChannel {
 			result_number[index + 1] = !current_symbol;
 			index += 2;
 		    }
-		    binaryNumber ready = new binaryNumber(result_number);
+		    BinaryNumber ready = new BinaryNumber(result_number);
 		    this.channel_sequence.add(ready);
 		}
 		break;
@@ -122,7 +122,7 @@ public class coderOfChannel {
 	boolean trigger = false;
 	for (Object bn: this.channel_sequence)
 	{
-	    binaryNumber number = (binaryNumber)bn;
+	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
 		out += "<font color=\"blue\">" + number.getString(this.alignment) + "</font>";
 	    else

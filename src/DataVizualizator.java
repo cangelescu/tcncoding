@@ -23,14 +23,14 @@ import java.awt.Paint;
 import java.util.Vector;
 import javax.swing.JPanel;
 
-public class dataVizualizator extends JPanel {
+public class DataVizualizator extends JPanel {
     private Vector<Signal> chart_data;
 
     private Paint paint;
 
     private String l_x, l_y;
 
-    public dataVizualizator(Vector<Signal> data, int wx, int wy, String legend_x, String legend_y)
+    public DataVizualizator(Vector<Signal> data, int wx, int wy, String legend_x, String legend_y)
     {
 	this.setSize(wx, wy);
 	this.chart_data = data;

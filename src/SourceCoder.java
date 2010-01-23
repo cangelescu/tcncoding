@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-public class coderOfSource {
+public class SourceCoder {
 
     public enum sourceCoderCode {mtk2, mtk5, koi8u, morze};
 
@@ -32,7 +32,7 @@ public class coderOfSource {
     public int alignment = 0;
     private Vector source_sequence = new Vector();
 
-    public coderOfSource(sourceCoderCode code_type, String message)
+    public SourceCoder(sourceCoderCode code_type, String message)
     {
 	this.source_message = message;
 	FileReader fr = null;
@@ -84,7 +84,7 @@ public class coderOfSource {
 	    while((line = bfr.readLine()) != null)
 	    {
 		String[] parts = line.split("#");
-		binaryNumber bnum = new binaryNumber(parts[0]);
+		BinaryNumber bnum = new BinaryNumber(parts[0]);
 		this.code_map.put(parts[1], bnum);
 	    }
 	} catch (Exception ex)
@@ -117,7 +117,7 @@ public class coderOfSource {
 	for (int i = 0; i < len; i++)
 	{
 	    char current_char = working_message.charAt(i);
-	    binaryNumber num = (binaryNumber)this.code_map.get(String.valueOf(current_char));
+	    BinaryNumber num = (BinaryNumber)this.code_map.get(String.valueOf(current_char));
 	    if (num != null)
 		this.source_sequence.add(num);
 	}
@@ -134,7 +134,7 @@ public class coderOfSource {
 	boolean trigger = false;
 	for (Object bn: this.source_sequence)
 	{
-	    binaryNumber number = (binaryNumber)bn;
+	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
 		out += "<font color=\"blue\">" + number.getString(this.alignment) + "</font>";
 	    else
