@@ -19,7 +19,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 public class SourceCoder {
@@ -27,9 +26,9 @@ public class SourceCoder {
     public enum sourceCoderCode {mtk2, mtk5, koi8u, morze};
 
     private sourceCoderCode using_code = null;
-    private Map code_map = new HashMap();
+    private HashMap<String, BinaryNumber> code_map = new HashMap<String, BinaryNumber>();
     private String source_message = null;
-    private Vector source_sequence = new Vector();
+    private Vector<BinaryNumber> source_sequence = new Vector<BinaryNumber>();
 
     public SourceCoder(sourceCoderCode code_type, String message)
     {
@@ -113,7 +112,7 @@ public class SourceCoder {
 	for (int i = 0; i < len; i++)
 	{
 	    char current_char = working_message.charAt(i);
-	    BinaryNumber num = (BinaryNumber)this.code_map.get(String.valueOf(current_char));
+	    BinaryNumber num = this.code_map.get(String.valueOf(current_char));
 	    if (num != null)
 		this.source_sequence.add(num);
 	}
@@ -128,13 +127,12 @@ public class SourceCoder {
     {
 	String out = "<html>";
 	boolean trigger = false;
-	for (Object bn: this.source_sequence)
+	for (BinaryNumber bn: this.source_sequence)
 	{
-	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
-		out += "<font color=\"blue\">" + number.getStringSequence() + "</font>";
+		out += "<font color=\"blue\">" + bn.getStringSequence() + "</font>";
 	    else
-		out += "<font color=\"green\">" + number.getStringSequence() + "</font>";
+		out += "<font color=\"green\">" + bn.getStringSequence() + "</font>";
 	    trigger = !trigger;
 	}
 	out += "</html>";

@@ -49,8 +49,8 @@ public class UIMain extends javax.swing.JFrame {
     Modulator.ModulationType modulationType = Modulator.ModulationType.AMn;
 
     //message in binary symbols
-    Vector source_symbols = new Vector();
-    Vector channel_symbols = new Vector();
+    Vector<BinaryNumber> source_symbols = new Vector();
+    Vector<BinaryNumber> channel_symbols = new Vector();
 
     //Modulator data
     Vector<ModulatorSignal> modulator_data = null;
