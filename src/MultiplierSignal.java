@@ -16,29 +16,39 @@
 
 */
 
-public class MultiplierSignal {
-    private MultiplierSignalFunction bearer_function = null;
-    private double x_start, x_end;
+import java.util.Random;
 
-    public MultiplierSignal(MultiplierSignalFunction new_bearer_function, double new_x_start, double new_x_end)
+public class MultiplierSignal extends Signal
+{
+    private double noise = 0;
+    private double ethalon_frequency = 0;
+    private double ethalon_amplitude = 0;
+    private double ethalon_phase = 0;
+
+    public MultiplierSignal(double freq, double ampl, double ph, double ns, double efreq, double eampl, double eph, double start, double end)
     {
-	this.bearer_function = new_bearer_function;
-	this.x_start = new_x_start;
-	this.x_end = new_x_end;
+        this.frequency = freq;
+        this.amplitude = ampl;
+        this.phase = ph;
+	this.noise = ns;
+	this.ethalon_frequency = efreq;
+	this.ethalon_amplitude = eampl;
+	this.ethalon_phase = eph;
+	this.max_value = (ampl + ns) * eampl;
+	this.x_start = start;
+	this.x_end = end;
     }
 
-    public MultiplierSignalFunction getFunction()
+    @Override
+    public double function(double x)
     {
-	return this.bearer_function;
+	Random noise_generator = new Random();
+	return (this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian()) *
+	        (this.ethalon_amplitude * Math.sin(2 * Math.PI * this.ethalon_frequency * x + this.ethalon_phase));
     }
 
-    public double getStart()
+    public double getNoise()
     {
-	return x_start;
-    }
-
-    public double getEnd()
-    {
-	return x_end;
+	return this.noise;
     }
 }

@@ -48,12 +48,12 @@ public class Modulator {
 
 	int prev_phase = 1;
 
-	ModulatorSignalFunction amn0 = new ModulatorSignalFunction(0, 0, 0);
-	ModulatorSignalFunction amn1 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, 0);
-	ModulatorSignalFunction fmn0 = new ModulatorSignalFunction(bearer_frequency_0, bearer_amplitude, 0);
-	ModulatorSignalFunction fmn1 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, 0);
-	ModulatorSignalFunction pmn0 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, 0);
-	ModulatorSignalFunction pmn1 = new ModulatorSignalFunction(bearer_frequency_1, bearer_amplitude, -Math.PI);
+	ModulatorSignal amn0 = new ModulatorSignal(0, 0, 0, 0, 1/bearer_frequency_1);
+	ModulatorSignal amn1 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, 0, 0, 1/bearer_frequency_1);
+	ModulatorSignal fmn0 = new ModulatorSignal(bearer_frequency_0, bearer_amplitude, 0, 0, 1/bearer_frequency_0);
+	ModulatorSignal fmn1 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, 0, 0, 1/bearer_frequency_0);
+	ModulatorSignal pmn0 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, 0, 0, 1/bearer_frequency_1);
+	ModulatorSignal pmn1 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, -Math.PI, 0, 1/bearer_frequency_1);
 
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
@@ -66,45 +66,45 @@ public class Modulator {
 		{
 		    case AMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(new ModulatorSignal(amn0, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(amn0);
 			else
-			    this.modulated_sequence.add(new ModulatorSignal(amn1, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(amn1);
 			break;
 		    case FMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(new ModulatorSignal(fmn0, 0, 1/bearer_frequency_0));
+			    this.modulated_sequence.add(fmn0);
 			else
-			    this.modulated_sequence.add(new ModulatorSignal(fmn1, 0, 1/bearer_frequency_0));
+			    this.modulated_sequence.add(fmn1);
 			break;
 		    case PMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(new ModulatorSignal(pmn0, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(pmn0);
 			else
-			    this.modulated_sequence.add(new ModulatorSignal(pmn1, 0, 1/bearer_frequency_1));
+			    this.modulated_sequence.add(pmn1);
 			break;
 		    case RPMn:
 			if (!seq[i])
 			{
 			    if (prev_phase == 1)
 			    {
-				this.modulated_sequence.add(new ModulatorSignal(pmn0, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(pmn0);
 				prev_phase = 1;
 			    } else
 			    if (prev_phase == -1)
 			    {
-				this.modulated_sequence.add(new ModulatorSignal(pmn1, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(pmn1);
 				prev_phase = -1;
 			    }
 			} else
 			{
 			    if (prev_phase == 1)
 			    {
-				this.modulated_sequence.add(new ModulatorSignal(pmn1, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(pmn1);
 				prev_phase = -1;
 			    } else
 			    if (prev_phase == -1)
 			    {
-				this.modulated_sequence.add(new ModulatorSignal(pmn0, 0, 1/bearer_frequency_1));
+				this.modulated_sequence.add(pmn0);
 				prev_phase = 1;
 			    }
 			}

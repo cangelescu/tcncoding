@@ -31,7 +31,7 @@ class Integrator {
     {
 	Vector<Double> out = new Vector<Double>();
 	for (MultiplierSignal cs: this.signals)
-	    out.add(Integration.gaussQuad(cs.getFunction(), cs.getStart(), cs.getEnd(), 1000));
+	    out.add(Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000));
 	return out;
     }
 }

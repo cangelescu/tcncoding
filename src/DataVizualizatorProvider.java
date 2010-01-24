@@ -33,7 +33,7 @@ public class DataVizualizatorProvider {
 	this.modulator_signal = mos_data;
 	this.x_start = mos_data.getStart();
 	this.x_end = mos_data.getEnd();
-	this.max_value = mos_data.getFunction().getMaxValue();
+	this.max_value = mos_data.getMaxValue();
     }
 
     public DataVizualizatorProvider(ChannelSignal cas_data)
@@ -42,7 +42,7 @@ public class DataVizualizatorProvider {
 	this.channel_signal = cas_data;
 	this.x_start = cas_data.getStart();
 	this.x_end = cas_data.getEnd();
-	this.max_value = cas_data.getFunction().getMaxValue();
+	this.max_value = cas_data.getMaxValue();
     }
 
     public DataVizualizatorProvider(MultiplierSignal mus_data)
@@ -51,7 +51,7 @@ public class DataVizualizatorProvider {
 	this.multiplier_signal = mus_data;
 	this.x_start = mus_data.getStart();
 	this.x_end = mus_data.getEnd();
-	this.max_value = mus_data.getFunction().getMaxValue();
+	this.max_value = mus_data.getMaxValue();
     }
 
     public double getFunction(double x)
@@ -60,13 +60,13 @@ public class DataVizualizatorProvider {
 	switch (this.current_signal_type)
 	{
 	    case modulator:
-		out = this.modulator_signal.getFunction().function(x);
+		out = this.modulator_signal.function(x);
 		break;
 	    case channel:
-		out = this.channel_signal.getFunction().function(x);
+		out = this.channel_signal.function(x);
 		break;
 	    case multiplier:
-		out = this.multiplier_signal.getFunction().function(x);
+		out = this.multiplier_signal.function(x);
 		break;
 	    default:
 		out = 0;

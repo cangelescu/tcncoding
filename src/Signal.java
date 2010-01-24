@@ -16,30 +16,18 @@
 
 */
 
-import java.util.Random;
 import flanagan.integration.*;
 
-public class ChannelSignalFunction implements IntegralFunction
-{
-    private double frequency;
-    private double amplitude;
-    private double phase;
-    private double noise;
-    private double max_value;
-
-    public ChannelSignalFunction(double freq, double ampl, double ph, double ns)
-    {
-        this.frequency = freq;
-        this.amplitude = ampl;
-        this.phase = ph;
-	this.noise = ns;
-	this.max_value = ampl + ns;
-    }
+public class Signal implements IntegralFunction{
+    double frequency;
+    double amplitude;
+    double phase;
+    double max_value;
+    double x_start, x_end;
 
     public double function(double x)
     {
-	Random noise_generator = new Random();
-	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian();
+	return 0;
     }
 
     public double getFrequency()
@@ -57,13 +45,18 @@ public class ChannelSignalFunction implements IntegralFunction
 	return this.phase;
     }
 
-    public double getNoise()
-    {
-	return this.noise;
-    }
-
     public double getMaxValue()
     {
 	return this.max_value;
+    }
+
+    public double getStart()
+    {
+	return this.x_start;
+    }
+
+    public double getEnd()
+    {
+	return this.x_end;
     }
 }

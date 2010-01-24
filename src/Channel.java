@@ -31,9 +31,9 @@ public class Channel {
     {
 	for(ModulatorSignal cs: this.input_signals)
 	{
-	    ModulatorSignalFunction csf = cs.getFunction();
-	    ChannelSignalFunction ncfs = new ChannelSignalFunction(csf.getFrequency(), csf.getAmplitude(), csf.getPhase(), 4);
-	    this.output_signals.add(new ChannelSignal(ncfs, cs.getStart(), cs.getEnd()));
+
+	    ChannelSignal ncfs = new ChannelSignal(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), 4, cs.getStart(), cs.getEnd());
+	    this.output_signals.add(ncfs);
 	}
     }
 

@@ -35,9 +35,8 @@ public class Multiplier {
     {
 	for (ChannelSignal crs: this.received_signal)
 	{
-	    ChannelSignalFunction bfcrs = crs.getFunction();
-	    MultiplierSignalFunction mbfcrs = new MultiplierSignalFunction(bfcrs.getFrequency(), bfcrs.getAmplitude(), bfcrs.getPhase(), bfcrs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase);
-	    this.output.add(new MultiplierSignal(mbfcrs, crs.getStart(), crs.getEnd()));
+	    MultiplierSignal mbfcrs = new MultiplierSignal(crs.getFrequency(), crs.getAmplitude(), crs.getPhase(), crs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase, crs.getStart(), crs.getEnd());
+	    this.output.add(mbfcrs);
 	}
     }
 

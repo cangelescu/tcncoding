@@ -16,29 +16,21 @@
 
 */
 
-public class ModulatorSignal {
-    private ModulatorSignalFunction bearer_function = null;
-    private double x_start, x_end;
-
-    public ModulatorSignal(ModulatorSignalFunction new_bearer_function, double new_x_start, double new_x_end)
+public class ModulatorSignal extends Signal
+{
+    public ModulatorSignal(double freq, double ampl, double ph, double start, double end)
     {
-	this.bearer_function = new_bearer_function;
-	this.x_start = new_x_start;
-	this.x_end = new_x_end;
+        this.frequency = freq;
+        this.amplitude = ampl;
+        this.phase = ph;
+	this.max_value = ampl;
+	this.x_start = start;
+	this.x_end = end;
     }
 
-    public ModulatorSignalFunction getFunction()
+    @Override
+    public double function(double x)
     {
-	return this.bearer_function;
-    }
-
-    public double getStart()
-    {
-	return x_start;
-    }
-
-    public double getEnd()
-    {
-	return x_end;
+	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase);
     }
 }

@@ -16,29 +16,32 @@
 
 */
 
-public class ChannelSignal {
-    private ChannelSignalFunction bearer_function = null;
-    private double x_start, x_end;
+import java.util.Random;
 
-    public ChannelSignal(ChannelSignalFunction new_bearer_function, double new_x_start, double new_x_end)
+public class ChannelSignal extends Signal
+{
+    private double noise;
+
+    public ChannelSignal(double freq, double ampl, double ph, double ns, double start, double end)
     {
-	this.bearer_function = new_bearer_function;
-	this.x_start = new_x_start;
-	this.x_end = new_x_end;
+        this.frequency = freq;
+        this.amplitude = ampl;
+        this.phase = ph;
+	this.noise = ns;
+	this.max_value = ampl + ns;
+	this.x_start = start;
+	this.x_end = end;
     }
 
-    public ChannelSignalFunction getFunction()
+    @Override
+    public double function(double x)
     {
-	return this.bearer_function;
+	Random noise_generator = new Random();
+	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian();
     }
 
-    public double getStart()
+    public double getNoise()
     {
-	return x_start;
-    }
-
-    public double getEnd()
-    {
-	return x_end;
+	return this.noise;
     }
 }
