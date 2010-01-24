@@ -119,6 +119,7 @@ public class UIMain extends javax.swing.JFrame {
     //acts on choosing type of modulation
     void updateChosenModulationType()
     {
+	//disable zero bearer options
 	bearerFrequency0.setEnabled(false);
 	bearerFrequency0Label.setEnabled(false);
 	switch (modulationTypeChooser.getSelectedIndex())
@@ -128,6 +129,7 @@ public class UIMain extends javax.swing.JFrame {
 		break;
 	    case 1:
 		modulationType = Modulator.ModulationType.FMn;
+		//enable zero bearer options
 		bearerFrequency0.setEnabled(true);
 		bearerFrequency0Label.setEnabled(true);
 		break;
@@ -142,13 +144,16 @@ public class UIMain extends javax.swing.JFrame {
 	}
     }
 
+    //acts on block changing
     void updateChosenBlock()
     {
+	//make all buttons unselected
 	messageSourceButton.setBackground(new Color(240, 240, 240));
 	sourceCoderButton.setBackground(new Color(240, 240, 240));
 	channelCoderButton.setBackground(new Color(240, 240, 240));
 	modulatorButton.setBackground(new Color(240, 240, 240));
 	channelButton.setBackground(new Color(240, 240, 240));
+	//highlight selected block
 	switch (selectedBlock)
 	{
 	    case message_source:
@@ -200,44 +205,56 @@ public class UIMain extends javax.swing.JFrame {
     //modulates sinusoidal signal with Channel code using selected modulation type
     void doModulating()
     {
+	//gets modulator output signals
 	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols);
 	currentModulator.doModulation();
 	this.modulator_data = currentModulator.getSignals();
 
+	//removes old vizualizator if exists
 	if (currentModulatorVizualizator != null)
 	{
 	    modulatorOutputField.remove(currentModulatorVizualizator);
 	    currentModulatorVizualizator = null;
 	}
+	//creates new vizualizator data provider
+	modulator_data_provider = (new DataVizualizatorConverter(modulator_data, DataVizualizatorProvider.SignalType.modulator)).getProvided();
+	//gets chart width and height
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
-
-	modulator_data_provider = (new DataVizualizatorConverter(modulator_data, DataVizualizatorProvider.SignalType.modulator)).getProvided();
+	//creates new vizualizator
 	currentModulatorVizualizator = new DataVizualizator(modulator_data_provider, cx, cy, "t", "S(t), В");
+	//shows chart
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
+	//repaints chart to show it if modulator block is active
 	currentModulatorVizualizator.repaint();
     }
 
     //adds noise
     void doChannel()
     {
+	//gets channel output signal
 	currentChannel = new Channel(this.modulator_data);
 	currentChannel.doNoising();
 	this.channel_output = currentChannel.getSignals();
 
+	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
 	{
 	    channelOutputField.remove(currentChannelVizualizator);
 	    currentChannelVizualizator = null;
 	}
+	//creates new vizualizator data provider
+	channel_output_provider = (new DataVizualizatorConverter(channel_output, DataVizualizatorProvider.SignalType.channel)).getProvided();
+	//gets chart width and height
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
-
-	channel_output_provider = (new DataVizualizatorConverter(channel_output, DataVizualizatorProvider.SignalType.channel)).getProvided();
+	//creates new vizualizator
 	currentChannelVizualizator = new DataVizualizator(channel_output_provider, cx, cy, "t", "S'(t), В");
+	//shows chart
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
+	//repaints chart to show it if modulator block is active
 	currentChannelVizualizator.repaint();
     }
 
@@ -287,6 +304,7 @@ public class UIMain extends javax.swing.JFrame {
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
 
+	//does the same for seconf multiplier
 	if (currentMultiplierVizualizator1 != null)
 	{
 	    multiplierOutputField1.remove(currentMultiplierVizualizator1);
@@ -302,6 +320,7 @@ public class UIMain extends javax.swing.JFrame {
 	currentMultiplierVizualizator1.repaint();
     }
 
+    //integrates signals from multipliers
     void doIntegrating()
     {
 	currentIntegrator0 = new Integrator(multiplier_0_output);
@@ -310,6 +329,7 @@ public class UIMain extends javax.swing.JFrame {
 	integrator_1_output = currentIntegrator1.getIntegrals();
     }
 
+    //sums signals from integrators
     void doSumming()
     {
 	currentSummator = new Summator(integrator_0_output, integrator_1_output);
