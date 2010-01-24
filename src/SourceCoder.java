@@ -132,9 +132,9 @@ public class SourceCoder {
 	{
 	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
-		out += "<font color=\"blue\">" + number.getAlignedString() + "</font>";
+		out += "<font color=\"blue\">" + number.getStringSequence() + "</font>";
 	    else
-		out += "<font color=\"green\">" + number.getAlignedString() + "</font>";
+		out += "<font color=\"green\">" + number.getStringSequence() + "</font>";
 	    trigger = !trigger;
 	}
 	out += "</html>";

@@ -54,7 +54,7 @@ public class Modulator {
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
 	    BinaryNumber working_number = (BinaryNumber)this.sequence.get(j);
-	    boolean[] seq = working_number.toAlignedBinaryArray();
+	    boolean[] seq = working_number.getAlignedBinaryArray();
 
 	    for (int i = 0; i < seq.length; i++)
 	    {

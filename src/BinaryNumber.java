@@ -58,7 +58,7 @@ public class BinaryNumber {
 	}
     }
 
-    //creates binary number from string sequence
+    //creates binary number from aligned string sequence
     public BinaryNumber(String sequence, int align)
     {
 	this.alignment = align;
@@ -125,7 +125,7 @@ public class BinaryNumber {
 	}
     }
 
-    //creates binary number from integer (decimal) value
+    //creates aligned binary number from integer (decimal) value
     public BinaryNumber(long number, int align)
     {
 	this.number = number;
@@ -183,7 +183,7 @@ public class BinaryNumber {
 	this.number = value;
     }
 
-    //creates binary number from boolean array
+    //creates binary number from aligned boolean array
     public BinaryNumber(boolean[] number, int align)
     {
 	this.alignment = align;
@@ -205,41 +205,8 @@ public class BinaryNumber {
 	this.number = value;
     }
 
-    public String getFullString()
-    {
-	String out = "";
-	for (int i = 0; i < digits; i++)
-	{
-	    if (this.binary[i])
-		out += '1';
-	    else
-		out += '0';
-	}
-	return out;
-    }
-
-    //returns fixed-width string representation of binary number
-    public String getForcedAlignedString(int align)
-    {
-	String out = "";
-	int k = 0;
-	if (align == 0)
-	{
-	    while (!this.binary[k])
-		k++;
-	} else
-	    k = digits - align;
-	for (int i = k; i < digits; i++)
-	{
-	    if (this.binary[i])
-		out += '1';
-	    else
-		out += '0';
-	}
-	return out;
-    }
-
-    public String getAlignedString()
+    //returns aligned string representation of binary number
+    public String getStringSequence()
     {
 	String out = "";
 	for (int i = digits - this.alignment; i < digits; i++)
@@ -259,35 +226,13 @@ public class BinaryNumber {
     }
 
     //returns array of zeroes and ones
-    public boolean[] toBinaryArray()
+    public boolean[] getFullBinaryArray()
     {
 	return this.binary;
     }
 
-    public boolean[] toFullBinaryArray()
-    {
-	boolean[] out = new boolean[digits];
-	for (int i = 0; i < this.digits; i++)
-	    out[i] = this.binary[i];
-	return out;
-    }
-
-    public boolean[] toForceAlignedBinaryArray(int align)
-    {
-	int k = 0;
-	if (align == 0)
-	{
-	    while (!this.binary[k])
-		k++;
-	} else
-	    k = digits - align;
-	boolean[] out = new boolean[digits - k];
-	for (int i = k; i < this.digits; i++)
-	    out[i - k] = this.binary[i];
-	return out;
-    }
-
-    public boolean[] toAlignedBinaryArray()
+    //returns self-aligned binary array
+    public boolean[] getAlignedBinaryArray()
     {
 	int k = digits - this.alignment;
 	boolean[] out = new boolean[digits - k];
@@ -309,7 +254,7 @@ public class BinaryNumber {
     //sums two numbers by module 2
     public BinaryNumber sum2(BinaryNumber number)
     {
-	boolean[] in2 = number.toBinaryArray();
+	boolean[] in2 = number.getFullBinaryArray();
 	boolean[] out = new boolean[digits];
 	for (int i = 0; i < digits; i++)
 	    out[i] = in2[i] ^ this.binary[i];
@@ -326,18 +271,6 @@ public class BinaryNumber {
 	    out[i] = !this.binary[i];
 	long initValue = binaryToInt(out);
 	BinaryNumber res = new BinaryNumber(initValue, this.alignment);
-	return res;
-    }
-
-    //inverses aligned part of number
-    public BinaryNumber not2(int align)
-    {
-	boolean[] out = new boolean[digits];
-	for (int i = digits - align; i < digits; i++)
-	    out[i] = !this.binary[i];
-
-	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, align);
 	return res;
     }
 
@@ -364,7 +297,7 @@ public class BinaryNumber {
 	for (int i = digits - align; i < digits; i++)
 	    out[i] = false;
 	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, align);
+	BinaryNumber res = new BinaryNumber(initValue, this.alignment + align);
 	return res;
     }
 
@@ -377,5 +310,4 @@ public class BinaryNumber {
 		out++;
 	return out;
     }
-
 }

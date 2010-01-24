@@ -1065,7 +1065,7 @@ public class UIMain extends javax.swing.JFrame {
 		" + " +
 		num2.toInt() + 
 		" == " +
-		num3.getAlignedString());
+		num3.getStringSequence());
     }//GEN-LAST:event_sum2ItemActionPerformed
 
     private void sourceCodesChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sourceCodesChooserItemStateChanged
@@ -1094,9 +1094,9 @@ public class UIMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_inversionItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("inversed " +
-		num1.getAlignedString() +
+		num1.getStringSequence() +
 		" == " +
-		num1.not2().getAlignedString());
+		num1.not2().getStringSequence());
     }//GEN-LAST:event_inversionItemActionPerformed
 
     //checks binary number shifting
@@ -1104,9 +1104,9 @@ public class UIMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_shl2ItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("shifted " +
-		num1.getAlignedString() +
+		num1.getStringSequence() +
 		" == " +
-		num1.shl2().getAlignedString());
+		num1.shl2().getStringSequence());
     }//GEN-LAST:event_shl2ItemActionPerformed
 
     //checks getting weight of binary number
@@ -1114,7 +1114,7 @@ public class UIMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_weightItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("weight " +
-		num1.getAlignedString() +
+		num1.getStringSequence() +
 		" == " +
 		num1.getWeight());
     }//GEN-LAST:event_weightItemActionPerformed

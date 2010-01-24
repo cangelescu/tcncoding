@@ -56,13 +56,13 @@ public class ChannelCoder {
 		for (Object bn: this.source_symbols)
 		{
 		    BinaryNumber current_number = (BinaryNumber)bn;
-		    BinaryNumber shifted = current_number.shl2(current_number.alignment * 2);
+		    BinaryNumber shifted = current_number.shl2(current_number.alignment);
 		    if (current_number.getWeight() % 2 == 0)
 		    {
 			this.channel_sequence.add(shifted.sum2(current_number));
 		    } else
 		    {
-			BinaryNumber inversed = current_number.not2(current_number.alignment * 2);
+			BinaryNumber inversed = current_number.not2();
 			this.channel_sequence.add(shifted.sum2(inversed));
 		    }
 		}
@@ -71,7 +71,7 @@ public class ChannelCoder {
 		for (Object bn: this.source_symbols)
 		{
 		    BinaryNumber current_number = (BinaryNumber)bn;
-		    boolean[] current_number_array = current_number.toForceAlignedBinaryArray(current_number.alignment * 2);
+		    boolean[] current_number_array = current_number.getAlignedBinaryArray();
 		    boolean[] result_number = new boolean[current_number.alignment * 2];
 		    int index = 0;
 		    for (boolean current_symbol: current_number_array)
@@ -104,9 +104,9 @@ public class ChannelCoder {
 	{
 	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
-		out += "<font color=\"blue\">" + number.getAlignedString() + "</font>";
+		out += "<font color=\"blue\">" + number.getStringSequence() + "</font>";
 	    else
-		out += "<font color=\"green\">" + number.getAlignedString() + "</font>";
+		out += "<font color=\"green\">" + number.getStringSequence() + "</font>";
 	    trigger = !trigger;
 	}
 	out += "</html>";

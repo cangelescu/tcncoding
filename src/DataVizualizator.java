@@ -47,7 +47,7 @@ public class DataVizualizator extends JPanel {
 	g2.setPaint(paint);
 
 	//chart margins
-	final int left_margin_x = 7 * g2.getFontMetrics().charWidth('0');
+	final int left_margin_x = 8 * g2.getFontMetrics().charWidth('0');
 	final int right_margin_x = 10;
 	final int top_margin_y = 10;
 	final int bottom_margin_y = 10;
