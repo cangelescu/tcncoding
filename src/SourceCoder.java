@@ -29,7 +29,6 @@ public class SourceCoder {
     private sourceCoderCode using_code = null;
     private Map code_map = new HashMap();
     private String source_message = null;
-    public int alignment = 0;
     private Vector source_sequence = new Vector();
 
     public SourceCoder(sourceCoderCode code_type, String message)
@@ -40,7 +39,6 @@ public class SourceCoder {
 	{
 	    case mtk2:
 		this.using_code = sourceCoderCode.mtk2;
-		this.alignment = 5;
 		try
 		{
 		    fr = new FileReader("mtk2");
@@ -51,7 +49,6 @@ public class SourceCoder {
 		break;
 	    case mtk5:
 		this.using_code = sourceCoderCode.mtk5;
-		this.alignment = 7;
 		try
 		{
 		    fr = new FileReader("mtk5");
@@ -62,7 +59,6 @@ public class SourceCoder {
 		break;
 	    case koi8u:
 		this.using_code = sourceCoderCode.koi8u;
-		this.alignment = 8;
 		try
 		{
 		    fr = new FileReader("koi8u");
@@ -84,7 +80,7 @@ public class SourceCoder {
 	    while((line = bfr.readLine()) != null)
 	    {
 		String[] parts = line.split("#");
-		BinaryNumber bnum = new BinaryNumber(parts[0]);
+		BinaryNumber bnum = new BinaryNumber(parts[0], parts[0].length());
 		this.code_map.put(parts[1], bnum);
 	    }
 	} catch (Exception ex)
@@ -136,9 +132,9 @@ public class SourceCoder {
 	{
 	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
-		out += "<font color=\"blue\">" + number.getString(this.alignment) + "</font>";
+		out += "<font color=\"blue\">" + number.getAlignedString() + "</font>";
 	    else
-		out += "<font color=\"green\">" + number.getString(this.alignment) + "</font>";
+		out += "<font color=\"green\">" + number.getAlignedString() + "</font>";
 	    trigger = !trigger;
 	}
 	out += "</html>";

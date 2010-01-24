@@ -191,7 +191,7 @@ public class UIMain extends javax.swing.JFrame {
     //encodes source code with selected Channel code
     void doChannelCoding()
     {
-	currentChannelCoder = new ChannelCoder(source_symbols, channelCode, currentSourceCoder.alignment);
+	currentChannelCoder = new ChannelCoder(source_symbols, channelCode);
 	currentChannelCoder.doEncode();
 	channel_symbols = currentChannelCoder.getSequence();
 	blockChannelCoderOutput.setText(currentChannelCoder.getStringSequence());
@@ -200,7 +200,7 @@ public class UIMain extends javax.swing.JFrame {
     //modulates sinusoidal signal with Channel code using selected modulation type
     void doModulating()
     {
-	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols, currentChannelCoder.alignment);
+	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols);
 	currentModulator.doModulation();
 	this.modulator_data = currentModulator.getSignals();
 
@@ -1065,7 +1065,7 @@ public class UIMain extends javax.swing.JFrame {
 		" + " +
 		num2.toInt() + 
 		" == " +
-		num3.getString(0));
+		num3.getAlignedString());
     }//GEN-LAST:event_sum2ItemActionPerformed
 
     private void sourceCodesChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sourceCodesChooserItemStateChanged
@@ -1094,9 +1094,9 @@ public class UIMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_inversionItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("inversed " +
-		num1.getString(0) +
+		num1.getAlignedString() +
 		" == " +
-		num1.not2().getString(0));
+		num1.not2().getAlignedString());
     }//GEN-LAST:event_inversionItemActionPerformed
 
     //checks binary number shifting
@@ -1104,9 +1104,9 @@ public class UIMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_shl2ItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("shifted " +
-		num1.getString(0) +
+		num1.getAlignedString() +
 		" == " +
-		num1.shl2().getString(0));
+		num1.shl2().getAlignedString());
     }//GEN-LAST:event_shl2ItemActionPerformed
 
     //checks getting weight of binary number
@@ -1114,7 +1114,7 @@ public class UIMain extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_weightItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
 	System.out.println("weight " +
-		num1.getString(0) +
+		num1.getAlignedString() +
 		" == " +
 		num1.getWeight());
     }//GEN-LAST:event_weightItemActionPerformed

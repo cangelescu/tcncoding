@@ -23,33 +23,13 @@ public class ChannelCoder {
     public enum channelCoderCode {parity_bit, inversed, manchester, hamming};
 
     private Vector source_symbols = null;
-    public int alignment = 0;
     private channelCoderCode using_code = null;
     private Vector channel_sequence = new Vector();
 
-    public ChannelCoder(Vector symbols, channelCoderCode code_type, int alignment)
+    public ChannelCoder(Vector symbols, channelCoderCode code_type)
     {
 	this.source_symbols = symbols;
 	this.using_code = code_type;
-	switch (code_type)
-	{
-	    case parity_bit:
-		this.alignment = alignment + 1;
-		break;
-	    case inversed:
-		this.alignment = alignment * 2;
-		break;
-	    case manchester:
-		this.alignment = alignment * 2;
-		break;
-	    case hamming:
-		this.alignment = alignment + 3;
-		break;
-	    default:
-		break;
-	}
-
-
     }
 
     public void doEncode()
@@ -76,13 +56,13 @@ public class ChannelCoder {
 		for (Object bn: this.source_symbols)
 		{
 		    BinaryNumber current_number = (BinaryNumber)bn;
-		    BinaryNumber shifted = current_number.shl2(this.alignment / 2);
+		    BinaryNumber shifted = current_number.shl2(current_number.alignment * 2);
 		    if (current_number.getWeight() % 2 == 0)
 		    {
 			this.channel_sequence.add(shifted.sum2(current_number));
 		    } else
 		    {
-			BinaryNumber inversed = current_number.not2(this.alignment / 2);
+			BinaryNumber inversed = current_number.not2(current_number.alignment * 2);
 			this.channel_sequence.add(shifted.sum2(inversed));
 		    }
 		}
@@ -91,8 +71,8 @@ public class ChannelCoder {
 		for (Object bn: this.source_symbols)
 		{
 		    BinaryNumber current_number = (BinaryNumber)bn;
-		    boolean[] current_number_array = current_number.toBinaryArray(this.alignment / 2);
-		    boolean[] result_number = new boolean[this.alignment];
+		    boolean[] current_number_array = current_number.toForceAlignedBinaryArray(current_number.alignment * 2);
+		    boolean[] result_number = new boolean[current_number.alignment * 2];
 		    int index = 0;
 		    for (boolean current_symbol: current_number_array)
 		    {
@@ -124,9 +104,9 @@ public class ChannelCoder {
 	{
 	    BinaryNumber number = (BinaryNumber)bn;
 	    if (trigger)
-		out += "<font color=\"blue\">" + number.getString(this.alignment) + "</font>";
+		out += "<font color=\"blue\">" + number.getAlignedString() + "</font>";
 	    else
-		out += "<font color=\"green\">" + number.getString(this.alignment) + "</font>";
+		out += "<font color=\"green\">" + number.getAlignedString() + "</font>";
 	    trigger = !trigger;
 	}
 	out += "</html>";

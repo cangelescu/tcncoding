@@ -24,17 +24,15 @@ public class Modulator {
 
     private ModulationType using_method = null;
     private Vector sequence = null;
-    private int alignment;
     private double bearer_amplitude;
     private double bearer_frequency_0, bearer_frequency_1;
 
     Vector<ModulatorSignal> modulated_sequence = new Vector<ModulatorSignal>();
 
-    public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols, int align)
+    public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols)
     {
 	this.using_method = mod_type;
 	this.sequence = symbols;
-	this.alignment = align;
 	this.bearer_amplitude = bearerAmplitude;
 	this.bearer_frequency_0 = bearerFrequency0;
 	this.bearer_frequency_1 = bearerFrequency1;
@@ -43,8 +41,6 @@ public class Modulator {
     public void doModulation()
     {
 	this.modulated_sequence.clear();
-
-	int len = this.alignment;
 
 	int prev_phase = 1;
 
@@ -58,9 +54,9 @@ public class Modulator {
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
 	    BinaryNumber working_number = (BinaryNumber)this.sequence.get(j);
-	    boolean[] seq = working_number.toBinaryArray(this.alignment);
+	    boolean[] seq = working_number.toAlignedBinaryArray();
 
-	    for (int i = 0; i < len; i++)
+	    for (int i = 0; i < seq.length; i++)
 	    {
 		switch (this.using_method)
 		{
