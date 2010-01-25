@@ -33,58 +33,28 @@ public class SourceCoder {
     public SourceCoder(sourceCoderCode code_type, String message)
     {
 	this.source_message = message;
-	FileReader fr = null;
+	String filename = "";
 	switch (code_type)
 	{
 	    case mtk2:
 		this.using_code = sourceCoderCode.mtk2;
-		try
-		{
-		    fr = new FileReader("mtk2");
-		} catch (Exception ex)
-		{
-		    System.err.println(ex.getMessage());
-		}
+		filename = "mtk2";
 		break;
 	    case mtk5:
 		this.using_code = sourceCoderCode.mtk5;
-		try
-		{
-		    fr = new FileReader("mtk5");
-		} catch (Exception ex)
-		{
-		    System.err.println(ex.getMessage());
-		}
+		filename = "mtk5";
 		break;
 	    case koi8u:
 		this.using_code = sourceCoderCode.koi8u;
-		try
-		{
-		    fr = new FileReader("koi8u");
-		} catch (Exception ex)
-		{
-		    System.err.println(ex.getMessage());
-		}
+		filename = "koi8u";
 		break;
 	    case morse:
 		this.using_code = sourceCoderCode.morse;
-		try
-		{
-		    fr = new FileReader("morse");
-		} catch (Exception ex)
-		{
-		    System.err.println(ex.getMessage());
-		}
+		filename = "morse";
 		break;
 	    case shannon:
 		this.using_code = sourceCoderCode.shannon;
-		try
-		{
-		    fr = new FileReader("shannon");
-		} catch (Exception ex)
-		{
-		    System.err.println(ex.getMessage());
-		}
+		filename = "shannon";
 		break;
 	    default:
 		break;
@@ -93,6 +63,8 @@ public class SourceCoder {
 	String line = "";
 	try
 	{
+	    //files of code tables must be present in working directory
+	    FileReader fr = new FileReader(filename);
 	    BufferedReader bfr = new BufferedReader(fr);
 	    while((line = bfr.readLine()) != null)
 	    {
