@@ -23,7 +23,7 @@ import java.util.Vector;
 
 public class SourceCoder {
 
-    public enum sourceCoderCode {mtk2, mtk5, koi8u, morze};
+    public enum sourceCoderCode {mtk2, mtk5, koi8u, morse, shannon};
 
     private sourceCoderCode using_code = null;
     private HashMap<String, BinaryNumber> code_map = new HashMap<String, BinaryNumber>();
@@ -66,7 +66,25 @@ public class SourceCoder {
 		    System.err.println(ex.getMessage());
 		}
 		break;
-	    case morze:
+	    case morse:
+		this.using_code = sourceCoderCode.morse;
+		try
+		{
+		    fr = new FileReader("morse");
+		} catch (Exception ex)
+		{
+		    System.err.println(ex.getMessage());
+		}
+		break;
+	    case shannon:
+		this.using_code = sourceCoderCode.shannon;
+		try
+		{
+		    fr = new FileReader("shannon");
+		} catch (Exception ex)
+		{
+		    System.err.println(ex.getMessage());
+		}
 		break;
 	    default:
 		break;
@@ -103,7 +121,11 @@ public class SourceCoder {
 	    case koi8u:
 		working_message = this.source_message;
 		break;
-	    case morze:
+	    case morse:
+		working_message = this.source_message.toUpperCase();
+		break;
+	    case shannon:
+		working_message = this.source_message.toUpperCase();
 		break;
 	    default:
 		break;

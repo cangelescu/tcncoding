@@ -88,7 +88,11 @@ public class UIMain extends javax.swing.JFrame {
 		sourceCode = SourceCoder.sourceCoderCode.koi8u;
 		break;
 	    case 3:
-		sourceCode = SourceCoder.sourceCoderCode.morze;
+		sourceCode = SourceCoder.sourceCoderCode.morse;
+		break;
+	    case 4:
+		sourceCode = SourceCoder.sourceCoderCode.shannon;
+		break;
 	    default:
 		break;
 	}
@@ -520,7 +524,7 @@ public class UIMain extends javax.swing.JFrame {
         sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
         sourceCodesChooserLabel.setText("Код:");
 
-        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI8-U", "Морзе" }));
+        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI8-U", "Морзе", "Шенона-Фано" }));
         sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 sourceCodesChooserItemStateChanged(evt);
