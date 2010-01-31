@@ -82,6 +82,9 @@ public class SourceCoder {
     {
 	this.source_sequence.clear();
 	String working_message = "";
+	/*
+	 * ITC-2, Morse and Shennon-Fano codes do not depend on letters' case
+	 */
 	switch (this.using_code)
 	{
 	    case mtk2:

@@ -32,7 +32,7 @@ public class ChannelCoderManchester {
 	for (BinaryNumber bn: this.sequence)
 	{
 	    boolean[] current_number_array = bn.getAlignedBinaryArray();
-	    boolean[] result_number = new boolean[bn.alignment * 2];
+	    boolean[] result_number = new boolean[bn.getAlignment() * 2];
 	    int index = 0;
 	    for (boolean current_symbol: current_number_array)
 	    {

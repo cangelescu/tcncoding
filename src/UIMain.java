@@ -417,6 +417,7 @@ public class UIMain extends javax.swing.JFrame {
         shl2Item = new javax.swing.JMenuItem();
         weightItem = new javax.swing.JMenuItem();
         integrateItem = new javax.swing.JMenuItem();
+        blockingItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -1040,6 +1041,14 @@ public class UIMain extends javax.swing.JFrame {
         });
         developerMenu.add(integrateItem);
 
+        blockingItem.setText("Розбиття на блоки");
+        blockingItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blockingItemActionPerformed(evt);
+            }
+        });
+        developerMenu.add(blockingItem);
+
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -1243,6 +1252,22 @@ public class UIMain extends javax.swing.JFrame {
 	System.out.printf("Integral of |sin(x)|+e^x from 0 to 2pi: %1.4f\n", result);
     }//GEN-LAST:event_integrateItemActionPerformed
 
+    private void blockingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blockingItemActionPerformed
+    {//GEN-HEADEREND:event_blockingItemActionPerformed
+	BinaryNumber test1 = new BinaryNumber("11011010001101");
+	BinaryNumber test2 = new BinaryNumber("01011");
+	BinaryNumber test3 = new BinaryNumber("100111");
+	Vector<BinaryNumber> test_vector = new Vector<BinaryNumber>();
+	test_vector.add(test1);
+	test_vector.add(test2);
+	test_vector.add(test3);
+	Blocker test_blocker = new Blocker(test_vector, 4);
+	test_blocker.doBlocking();
+	Vector<BinaryNumber> blocks = test_blocker.getBlocks();
+	for (BinaryNumber bn: blocks)
+	    System.out.println(bn.getStringSequence());
+    }//GEN-LAST:event_blockingItemActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1275,6 +1300,7 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockSourceCoder;
     private javax.swing.JTextPane blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
+    private javax.swing.JMenuItem blockingItem;
     private javax.swing.JButton channelButton;
     private javax.swing.JButton channelCoderButton;
     private javax.swing.JComboBox channelCodesChooser;

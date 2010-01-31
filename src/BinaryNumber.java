@@ -21,7 +21,7 @@ public class BinaryNumber {
     private final int digits = 16;
     private long number;
     private boolean[] binary = new boolean[digits];
-    int alignment;
+    private int alignment;
 
     //creates binary number from string sequence
     public BinaryNumber(String sequence)
@@ -309,5 +309,11 @@ public class BinaryNumber {
 	    if (this.binary[i])
 		out++;
 	return out;
+    }
+
+    //gets alignment
+    public int getAlignment()
+    {
+	return this.alignment;
     }
 }

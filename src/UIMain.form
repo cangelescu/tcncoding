@@ -164,6 +164,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="integrateItemActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="blockingItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x420;&#x43e;&#x437;&#x431;&#x438;&#x442;&#x442;&#x44f; &#x43d;&#x430; &#x431;&#x43b;&#x43e;&#x43a;&#x438;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blockingItemActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
