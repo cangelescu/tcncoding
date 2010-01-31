@@ -31,13 +31,16 @@ public class Blocker {
 
     public void doBlocking()
     {
+	//gets common sequence length
 	int sequence_length = 0;
 	for (BinaryNumber bn: this.sequence)
 	    sequence_length += bn.getAlignment();
+	//adds leading zeroes
 	int leading_zeroes = this.block_length - (sequence_length % this.block_length);
 	boolean[] bit_flow = new boolean[leading_zeroes + sequence_length];
 	for (int i = 0; i < leading_zeroes; i++)
 	    bit_flow[i] = false;
+	//forms linear bit array
 	int index = leading_zeroes;
 	for (BinaryNumber bn: this.sequence)
 	{
@@ -48,6 +51,7 @@ public class Blocker {
 		index++;
 	    }
 	}
+	//splits formed array into separate blocks
 	int k = 0;
 	while (k < bit_flow.length)
 	{
