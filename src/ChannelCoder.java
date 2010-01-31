@@ -53,6 +53,9 @@ public class ChannelCoder {
 		this.channel_sequence = channel_coder_manchester.getSequence();
 		break;
 	    case hamming:
+		ChannelCoderHamming channel_coder_hamming = new ChannelCoderHamming(this.source_symbols);
+		channel_coder_hamming.doEncode();
+		this.channel_sequence = channel_coder_hamming.getSequence();
 		break;
 	    default:
 		break;

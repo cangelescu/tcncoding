@@ -58,7 +58,7 @@ public class Blocker {
 	    boolean[] piece = new boolean[this.block_length];
 	    for (int i = 0; i < this.block_length; i++)
 		piece[i] = bit_flow[k + i];
-	    this.output_blocks.add(new BinaryNumber(piece));
+	    this.output_blocks.add(new BinaryNumber(piece, this.block_length));
 	    k += this.block_length;
 	}
     }
