@@ -16,9 +16,9 @@
 
 */
 
-import flanagan.integration.*;
+import flanagan.integration.IntegralFunction;
 
-public class Signal implements IntegralFunction{
+public class Signal implements IntegralFunction {
     double frequency;
     double amplitude;
     double phase;

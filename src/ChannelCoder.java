@@ -38,48 +38,19 @@ public class ChannelCoder {
 	switch (this.using_code)
 	{
 	    case parity_bit:
-		for (BinaryNumber bn: this.source_symbols)
-		{
-		    BinaryNumber shifted = bn.shl2();
-		    if (bn.getWeight() % 2 == 0)
-		    {
-			this.channel_sequence.add(shifted);
-		    } else
-		    {
-			BinaryNumber one = new BinaryNumber(1);
-			this.channel_sequence.add(shifted.sum2(one));
-		    }
-		}
+		ChannelCoderParityBit channel_coder_parity_bit = new ChannelCoderParityBit(this.source_symbols);
+		channel_coder_parity_bit.doEncode();
+		this.channel_sequence = channel_coder_parity_bit.getSequence();
 		break;
 	    case inversed:
-		for (BinaryNumber bn: this.source_symbols)
-		{
-		    BinaryNumber shifted = bn.shl2(bn.alignment);
-		    if (bn.getWeight() % 2 == 0)
-		    {
-			this.channel_sequence.add(shifted.sum2(bn));
-		    } else
-		    {
-			BinaryNumber inversed = bn.not2();
-			this.channel_sequence.add(shifted.sum2(inversed));
-		    }
-		}
+		ChannelCoderInversed channel_coder_inversed = new ChannelCoderInversed(this.source_symbols);
+		channel_coder_inversed.doEncode();
+		this.channel_sequence = channel_coder_inversed.getSequence();
 		break;
 	    case manchester:
-		for (BinaryNumber bn: this.source_symbols)
-		{
-		    boolean[] current_number_array = bn.getAlignedBinaryArray();
-		    boolean[] result_number = new boolean[bn.alignment * 2];
-		    int index = 0;
-		    for (boolean current_symbol: current_number_array)
-		    {
-			result_number[index] = current_symbol;
-			result_number[index + 1] = !current_symbol;
-			index += 2;
-		    }
-		    BinaryNumber ready = new BinaryNumber(result_number);
-		    this.channel_sequence.add(ready);
-		}
+		ChannelCoderManchester channel_coder_manchester = new ChannelCoderManchester(this.source_symbols);
+		channel_coder_manchester.doEncode();
+		this.channel_sequence = channel_coder_manchester.getSequence();
 		break;
 	    case hamming:
 		break;
