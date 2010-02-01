@@ -19,23 +19,23 @@
 import flanagan.integration.*;
 import java.util.Vector;
 
-public class Integrator {
-    private Vector<MultiplierSignal> signals;
-    private Vector<Double> out = new Vector<Double>();
+public class EnergyComputator {
+    private Vector<ChannelSignalSqr> signals;
+    private double energy = 0;
 
-    public Integrator(Vector<MultiplierSignal> new_signals)
+    public EnergyComputator(Vector<ChannelSignalSqr> new_signals)
     {
 	this.signals = new_signals;
     }
 
-    public void doIntegrating()
+    public void computeEnergy()
     {
-	for (MultiplierSignal cs: this.signals)
-	    this.out.add(Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000));
+	for (ChannelSignalSqr cs: this.signals)
+	    this.energy += Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000);
     }
 
-    public Vector<Double> getIntegrals()
+    public double getEnergy()
     {
-	return out;
+	return this.energy;
     }
 }

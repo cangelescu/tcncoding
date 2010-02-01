@@ -16,26 +16,29 @@
 
 */
 
-import flanagan.integration.*;
 import java.util.Vector;
 
-public class Integrator {
-    private Vector<MultiplierSignal> signals;
-    private Vector<Double> out = new Vector<Double>();
+public class ChannelSqr {
+    private Vector<ModulatorSignal> input_signals;
+    private Vector<ChannelSignalSqr> output_signals = new Vector<ChannelSignalSqr>();
 
-    public Integrator(Vector<MultiplierSignal> new_signals)
+    public ChannelSqr(Vector<ModulatorSignal> new_input_signals)
     {
-	this.signals = new_signals;
+	this.input_signals = new_input_signals;
     }
 
-    public void doIntegrating()
+    public void doNoising()
     {
-	for (MultiplierSignal cs: this.signals)
-	    this.out.add(Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000));
+	for(ModulatorSignal cs: this.input_signals)
+	{
+
+	    ChannelSignalSqr ncfs = new ChannelSignalSqr(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), 4, cs.getStart(), cs.getEnd());
+	    this.output_signals.add(ncfs);
+	}
     }
 
-    public Vector<Double> getIntegrals()
+    public Vector<ChannelSignalSqr> getSignals()
     {
-	return out;
+	return this.output_signals;
     }
 }

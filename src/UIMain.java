@@ -26,6 +26,8 @@ public class UIMain extends javax.swing.JFrame {
     ChannelCoder currentChannelCoder = null;
     Modulator currentModulator = null;
     Channel currentChannel = null;
+    ChannelSqr currentChannelSqr = null;
+    EnergyComputator currentEnergyComputator = null;
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
     Summator currentSummator = null;
@@ -58,7 +60,9 @@ public class UIMain extends javax.swing.JFrame {
 
     //Channel data
     Vector<ChannelSignal> channel_output = null;
+    Vector<ChannelSignalSqr> channel_sqr_output = null;
     Vector<DataVizualizatorProvider> channel_output_provider = null;
+    double channel_output_energy = 0;
 
     //multipliers data
     Vector<MultiplierSignal> multiplier_0_output = null;
@@ -242,6 +246,14 @@ public class UIMain extends javax.swing.JFrame {
 	currentChannel.doNoising();
 	this.channel_output = currentChannel.getSignals();
 
+	//gets channel output signal energy
+	currentChannelSqr = new ChannelSqr(this.modulator_data);
+	currentChannelSqr.doNoising();
+	this.channel_sqr_output = currentChannelSqr.getSignals();
+	currentEnergyComputator = new EnergyComputator(this.channel_sqr_output);
+	currentEnergyComputator.computeEnergy();
+	this.channel_output_energy = currentEnergyComputator.getEnergy();
+
 	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
 	{
@@ -329,6 +341,8 @@ public class UIMain extends javax.swing.JFrame {
     {
 	currentIntegrator0 = new Integrator(multiplier_0_output);
 	currentIntegrator1 = new Integrator(multiplier_1_output);
+	currentIntegrator0.doIntegrating();
+	currentIntegrator1.doIntegrating();
 	integrator_0_output = currentIntegrator0.getIntegrals();
 	integrator_1_output = currentIntegrator1.getIntegrals();
     }
