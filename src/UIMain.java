@@ -28,6 +28,7 @@ public class UIMain extends javax.swing.JFrame {
     Channel currentChannel = null;
     ChannelSqr currentChannelSqr = null;
     EnergyComputator currentEnergyComputator = null;
+    ErrorsComputator currentErrorsComputator = null;
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
     Summator currentSummator = null;
@@ -63,6 +64,7 @@ public class UIMain extends javax.swing.JFrame {
     Vector<ChannelSignalSqr> channel_sqr_output = null;
     Vector<DataVizualizatorProvider> channel_output_provider = null;
     double channel_output_energy = 0;
+    double errors_probability = 0;
 
     //multipliers data
     Vector<MultiplierSignal> multiplier_0_output = null;
@@ -253,6 +255,11 @@ public class UIMain extends javax.swing.JFrame {
 	currentEnergyComputator = new EnergyComputator(this.channel_sqr_output);
 	currentEnergyComputator.computeEnergy();
 	this.channel_output_energy = currentEnergyComputator.getEnergy();
+
+	//computes errors probability
+	currentErrorsComputator = new ErrorsComputator(channel_output_energy, 1.0E-2, modulationType);
+	this.errors_probability = currentErrorsComputator.getErrorProbability();
+	System.out.println(this.errors_probability);
 
 	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
