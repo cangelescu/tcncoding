@@ -36,7 +36,7 @@ public class Integrator {
 	    cx += cs.getStart();
 	    Vector<FunctionStep> current = new Vector<FunctionStep>();
 	    double length = cs.getEnd() - cs.getStart();
-	    double step = Math.pow(Math.sqrt(2) * Math.E, Math.log(length));
+	    double step = Math.pow(Math.sqrt(3) * Math.E, Math.log(length));
 	    double sum = 0;
 	    double sp = cs.getStart();
 	    while (sp <= cs.getEnd())
