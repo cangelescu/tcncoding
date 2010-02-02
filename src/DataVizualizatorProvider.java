@@ -16,14 +16,17 @@
 
 */
 
+import java.util.Vector;
+
 public class DataVizualizatorProvider {
 
-    public enum SignalType {modulator, channel, multiplier};
+    public enum SignalType {modulator, channel, multiplier, integrator};
     private SignalType current_signal_type;
 
     private ModulatorSignal modulator_signal = null;
     private ChannelSignal channel_signal = null;
     private MultiplierSignal multiplier_signal = null;
+    private Vector<FunctionStep> integrator_signal = null;
 
     private double x_start, x_end, max_value;
 
@@ -54,6 +57,19 @@ public class DataVizualizatorProvider {
 	this.max_value = mus_data.getMaxValue();
     }
 
+    public DataVizualizatorProvider(Vector<FunctionStep> ios_data)
+    {
+	this.current_signal_type = SignalType.integrator;
+	this.integrator_signal = ios_data;
+	this.x_start = ios_data.firstElement().getX();
+	this.x_end = ios_data.lastElement().getX();
+
+	this.max_value = ios_data.firstElement().getY();
+	for (FunctionStep fs: ios_data)
+	    if (fs.getY() > this.max_value)
+		this.max_value = fs.getY();
+    }
+
     public double getFunction(double x)
     {
 	double out;
@@ -67,6 +83,16 @@ public class DataVizualizatorProvider {
 		break;
 	    case multiplier:
 		out = this.multiplier_signal.function(x);
+		break;
+	    case integrator:
+		double found = 0;
+		for (FunctionStep fs: this.integrator_signal)
+		    if (fs.getX() >= x)
+		    {
+			found = fs.getY();
+			break;
+		    }
+		out = found;
 		break;
 	    default:
 		out = 0;

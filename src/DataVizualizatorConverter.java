@@ -54,6 +54,13 @@ public class DataVizualizatorConverter {
 		    out.add(new DataVizualizatorProvider(ms));
 		}
 		break;
+	    case integrator:
+		for (Object co: this.data)
+		{
+		    Vector<FunctionStep> is = (Vector<FunctionStep>)co;
+		    out.add(new DataVizualizatorProvider(is));
+		}
+		break;
 	    default:
 		break;
 	}

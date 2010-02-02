@@ -16,12 +16,11 @@
 
 */
 
-import flanagan.integration.*;
 import java.util.Vector;
 
 public class Integrator {
     private Vector<MultiplierSignal> signals;
-    private Vector<Double> out = new Vector<Double>();
+    private Vector<Vector<FunctionStep>> out = new Vector<Vector<FunctionStep>>();
 
     public Integrator(Vector<MultiplierSignal> new_signals)
     {
@@ -30,12 +29,30 @@ public class Integrator {
 
     public void doIntegrating()
     {
+	this.out.clear();
+	double cx = 0;
 	for (MultiplierSignal cs: this.signals)
-	    this.out.add(Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000));
+	{
+	    cx += cs.getStart();
+	    Vector<FunctionStep> current = new Vector<FunctionStep>();
+	    double length = cs.getEnd() - cs.getStart();
+	    double step = Math.pow(Math.sqrt(2) * Math.E, Math.log(length));
+	    double sum = 0;
+	    double sp = cs.getStart();
+	    while (sp <= cs.getEnd())
+	    {
+		double area = cs.function(cx) * step;
+		sum += area;
+		current.add(new FunctionStep(cx, sum));
+		cx += step;
+		sp += step;
+	    }
+	    this.out.add(current);
+	}
     }
 
-    public Vector<Double> getIntegrals()
+    public Vector<Vector<FunctionStep>> getIntegrals()
     {
-	return out;
+	return this.out;
     }
 }

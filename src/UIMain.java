@@ -42,6 +42,8 @@ public class UIMain extends javax.swing.JFrame {
     DataVizualizator currentChannelVizualizator = null;
     DataVizualizator currentMultiplierVizualizator0 = null;
     DataVizualizator currentMultiplierVizualizator1 = null;
+    DataVizualizator currentIntegratorVizualizator0 = null;
+    DataVizualizator currentIntegratorVizualizator1 = null;
 
     //source message
     String message = "";
@@ -73,8 +75,10 @@ public class UIMain extends javax.swing.JFrame {
     Vector<DataVizualizatorProvider> multiplier_1_output_provider = null;
 
     //integrators data
-    Vector<Double> integrator_0_output = null;
-    Vector<Double> integrator_1_output = null;
+    Vector<Vector<FunctionStep>> integrator_0_output = null;
+    Vector<Vector<FunctionStep>> integrator_1_output = null;
+    Vector<DataVizualizatorProvider> integrator_0_output_provider = null;
+    Vector<DataVizualizatorProvider> integrator_1_output_provider = null;
 
     //Summator data
     Vector<Double> summator_output = null;
@@ -259,7 +263,6 @@ public class UIMain extends javax.swing.JFrame {
 	//computes errors probability
 	currentErrorsComputator = new ErrorsComputator(channel_output_energy, 1.0E-2, modulationType);
 	this.errors_probability = currentErrorsComputator.getErrorProbability();
-	System.out.println(this.errors_probability);
 
 	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
@@ -327,7 +330,7 @@ public class UIMain extends javax.swing.JFrame {
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
 
-	//does the same for seconf multiplier
+	//does the same for second multiplier
 	if (currentMultiplierVizualizator1 != null)
 	{
 	    multiplierOutputField1.remove(currentMultiplierVizualizator1);
@@ -352,14 +355,42 @@ public class UIMain extends javax.swing.JFrame {
 	currentIntegrator1.doIntegrating();
 	integrator_0_output = currentIntegrator0.getIntegrals();
 	integrator_1_output = currentIntegrator1.getIntegrals();
+
+	if (currentIntegratorVizualizator0 != null)
+	{
+	    integratorOutputField0.remove(currentIntegratorVizualizator0);
+	    currentIntegratorVizualizator0 = null;
+	}
+	int cx0 = integratorOutputField0.getWidth();
+	int cy0 = integratorOutputField0.getHeight();
+
+	integrator_0_output_provider = (new DataVizualizatorConverter(integrator_0_output, DataVizualizatorProvider.SignalType.integrator)).getProvided();
+	currentIntegratorVizualizator0 = new DataVizualizator(integrator_0_output_provider, cx0, cy0, "t", "Sm1(t), В");
+	currentIntegratorVizualizator0.setVisible(true);
+	integratorOutputField0.add(currentIntegratorVizualizator0);
+	currentIntegratorVizualizator0.repaint();
+
+	if (currentIntegratorVizualizator1 != null)
+	{
+	    integratorOutputField1.remove(currentIntegratorVizualizator1);
+	    currentIntegratorVizualizator1 = null;
+	}
+	int cx1 = integratorOutputField1.getWidth();
+	int cy1 = integratorOutputField1.getHeight();
+
+	integrator_1_output_provider = (new DataVizualizatorConverter(integrator_1_output, DataVizualizatorProvider.SignalType.integrator)).getProvided();
+	currentIntegratorVizualizator1 = new DataVizualizator(integrator_1_output_provider, cx1, cy1, "t", "Sm1(t), В");
+	currentIntegratorVizualizator1.setVisible(true);
+	integratorOutputField1.add(currentIntegratorVizualizator1);
+	currentIntegratorVizualizator1.repaint();
     }
 
     //sums signals from integrators
     void doSumming()
     {
-	currentSummator = new Summator(integrator_0_output, integrator_1_output);
-	currentSummator.doSumming();
-	summator_output = currentSummator.getSum();
+	//currentSummator = new Summator(integrator_0_output, integrator_1_output);
+	//currentSummator.doSumming();
+	//summator_output = currentSummator.getSum();
     }
 
     public UIMain() {
@@ -417,6 +448,12 @@ public class UIMain extends javax.swing.JFrame {
         blockMultiplier1 = new javax.swing.JPanel();
         multiplierOutputPanel1 = new javax.swing.JPanel();
         multiplierOutputField1 = new javax.swing.JPanel();
+        blockIntegrator0 = new javax.swing.JPanel();
+        integratorOutputPanel0 = new javax.swing.JPanel();
+        integratorOutputField0 = new javax.swing.JPanel();
+        blockIntegrator1 = new javax.swing.JPanel();
+        integratorOutputPanel1 = new javax.swing.JPanel();
+        integratorOutputField1 = new javax.swing.JPanel();
         blockMessageReceiver = new javax.swing.JPanel();
         receivedMessagePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -891,6 +928,80 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Помножувач 1", blockMultiplier1);
 
+        integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 0"));
+
+        javax.swing.GroupLayout integratorOutputField0Layout = new javax.swing.GroupLayout(integratorOutputField0);
+        integratorOutputField0.setLayout(integratorOutputField0Layout);
+        integratorOutputField0Layout.setHorizontalGroup(
+            integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 984, Short.MAX_VALUE)
+        );
+        integratorOutputField0Layout.setVerticalGroup(
+            integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout integratorOutputPanel0Layout = new javax.swing.GroupLayout(integratorOutputPanel0);
+        integratorOutputPanel0.setLayout(integratorOutputPanel0Layout);
+        integratorOutputPanel0Layout.setHorizontalGroup(
+            integratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        integratorOutputPanel0Layout.setVerticalGroup(
+            integratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockIntegrator0Layout = new javax.swing.GroupLayout(blockIntegrator0);
+        blockIntegrator0.setLayout(blockIntegrator0Layout);
+        blockIntegrator0Layout.setHorizontalGroup(
+            blockIntegrator0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockIntegrator0Layout.setVerticalGroup(
+            blockIntegrator0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Інтегратор 0", blockIntegrator0);
+
+        integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 1"));
+
+        javax.swing.GroupLayout integratorOutputField1Layout = new javax.swing.GroupLayout(integratorOutputField1);
+        integratorOutputField1.setLayout(integratorOutputField1Layout);
+        integratorOutputField1Layout.setHorizontalGroup(
+            integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 984, Short.MAX_VALUE)
+        );
+        integratorOutputField1Layout.setVerticalGroup(
+            integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout integratorOutputPanel1Layout = new javax.swing.GroupLayout(integratorOutputPanel1);
+        integratorOutputPanel1.setLayout(integratorOutputPanel1Layout);
+        integratorOutputPanel1Layout.setHorizontalGroup(
+            integratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        integratorOutputPanel1Layout.setVerticalGroup(
+            integratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockIntegrator1Layout = new javax.swing.GroupLayout(blockIntegrator1);
+        blockIntegrator1.setLayout(blockIntegrator1Layout);
+        blockIntegrator1Layout.setHorizontalGroup(
+            blockIntegrator1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockIntegrator1Layout.setVerticalGroup(
+            blockIntegrator1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(integratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Інтегратор 1", blockIntegrator1);
+
         receivedMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         receivedMessageArea.setContentType("text/html");
@@ -1312,6 +1423,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockChannelCoder;
     private javax.swing.JTextPane blockChannelCoderOutput;
     private javax.swing.JPanel blockChannelCoderOutputPanel;
+    private javax.swing.JPanel blockIntegrator0;
+    private javax.swing.JPanel blockIntegrator1;
     private javax.swing.JPanel blockMessageReceiver;
     private javax.swing.JPanel blockMessageSource;
     private javax.swing.JPanel blockModulator;
@@ -1334,6 +1447,10 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem integrateItem;
+    private javax.swing.JPanel integratorOutputField0;
+    private javax.swing.JPanel integratorOutputField1;
+    private javax.swing.JPanel integratorOutputPanel0;
+    private javax.swing.JPanel integratorOutputPanel1;
     private javax.swing.JMenuItem inversionItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
