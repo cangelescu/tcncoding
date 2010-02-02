@@ -20,7 +20,7 @@ import java.util.Vector;
 
 public class DataVizualizatorProvider {
 
-    public enum SignalType {modulator, channel, multiplier, integrator};
+    public enum SignalType {modulator, channel, multiplier, tabulated};
     private SignalType current_signal_type;
 
     private ModulatorSignal modulator_signal = null;
@@ -59,7 +59,7 @@ public class DataVizualizatorProvider {
 
     public DataVizualizatorProvider(Vector<FunctionStep> ios_data)
     {
-	this.current_signal_type = SignalType.integrator;
+	this.current_signal_type = SignalType.tabulated;
 	this.integrator_signal = ios_data;
 	this.x_start = ios_data.firstElement().getX();
 	this.x_end = ios_data.lastElement().getX();
@@ -84,7 +84,7 @@ public class DataVizualizatorProvider {
 	    case multiplier:
 		out = this.multiplier_signal.function(x);
 		break;
-	    case integrator:
+	    case tabulated:
 		double found = 0;
 		for (FunctionStep fs: this.integrator_signal)
 		    if (fs.getX() >= x)

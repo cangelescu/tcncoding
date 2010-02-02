@@ -54,7 +54,7 @@ public class DataVizualizatorConverter {
 		    out.add(new DataVizualizatorProvider(ms));
 		}
 		break;
-	    case integrator:
+	    case tabulated:
 		for (Object co: this.data)
 		{
 		    Vector<FunctionStep> is = (Vector<FunctionStep>)co;

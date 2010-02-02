@@ -44,6 +44,7 @@ public class UIMain extends javax.swing.JFrame {
     DataVizualizator currentMultiplierVizualizator1 = null;
     DataVizualizator currentIntegratorVizualizator0 = null;
     DataVizualizator currentIntegratorVizualizator1 = null;
+    DataVizualizator currentSummatorVizualizator = null;
 
     //source message
     String message = "";
@@ -81,7 +82,8 @@ public class UIMain extends javax.swing.JFrame {
     Vector<DataVizualizatorProvider> integrator_1_output_provider = null;
 
     //Summator data
-    Vector<Double> summator_output = null;
+    Vector<Vector<FunctionStep>> summator_output = null;
+    Vector<DataVizualizatorProvider> summator_output_provider = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -364,8 +366,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx0 = integratorOutputField0.getWidth();
 	int cy0 = integratorOutputField0.getHeight();
 
-	integrator_0_output_provider = (new DataVizualizatorConverter(integrator_0_output, DataVizualizatorProvider.SignalType.integrator)).getProvided();
-	currentIntegratorVizualizator0 = new DataVizualizator(integrator_0_output_provider, cx0, cy0, "t", "Sm1(t), В");
+	integrator_0_output_provider = (new DataVizualizatorConverter(integrator_0_output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	currentIntegratorVizualizator0 = new DataVizualizator(integrator_0_output_provider, cx0, cy0, "t", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
@@ -378,8 +380,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = integratorOutputField1.getWidth();
 	int cy1 = integratorOutputField1.getHeight();
 
-	integrator_1_output_provider = (new DataVizualizatorConverter(integrator_1_output, DataVizualizatorProvider.SignalType.integrator)).getProvided();
-	currentIntegratorVizualizator1 = new DataVizualizator(integrator_1_output_provider, cx1, cy1, "t", "Sm1(t), В");
+	integrator_1_output_provider = (new DataVizualizatorConverter(integrator_1_output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	currentIntegratorVizualizator1 = new DataVizualizator(integrator_1_output_provider, cx1, cy1, "t", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
 	currentIntegratorVizualizator1.repaint();
@@ -388,9 +390,23 @@ public class UIMain extends javax.swing.JFrame {
     //sums signals from integrators
     void doSumming()
     {
-	//currentSummator = new Summator(integrator_0_output, integrator_1_output);
-	//currentSummator.doSumming();
-	//summator_output = currentSummator.getSum();
+	currentSummator = new Summator(integrator_0_output, integrator_1_output);
+	currentSummator.doSumming();
+	summator_output = currentSummator.getSum();
+
+	if (currentSummatorVizualizator != null)
+	{
+	    summatorOutputField.remove(currentSummatorVizualizator);
+	    currentSummatorVizualizator = null;
+	}
+	int cx1 = summatorOutputField.getWidth();
+	int cy1 = summatorOutputField.getHeight();
+
+	summator_output_provider = (new DataVizualizatorConverter(summator_output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	currentSummatorVizualizator = new DataVizualizator(summator_output_provider, cx1, cy1, "t", "Ssum(t), В");
+	currentSummatorVizualizator.setVisible(true);
+	summatorOutputField.add(currentSummatorVizualizator);
+	currentSummatorVizualizator.repaint();
     }
 
     public UIMain() {
@@ -454,6 +470,9 @@ public class UIMain extends javax.swing.JFrame {
         blockIntegrator1 = new javax.swing.JPanel();
         integratorOutputPanel1 = new javax.swing.JPanel();
         integratorOutputField1 = new javax.swing.JPanel();
+        blockSummator = new javax.swing.JPanel();
+        summatorOutputPanel = new javax.swing.JPanel();
+        summatorOutputField = new javax.swing.JPanel();
         blockMessageReceiver = new javax.swing.JPanel();
         receivedMessagePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -1002,6 +1021,43 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Інтегратор 1", blockIntegrator1);
 
+        summatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід суматора"));
+
+        javax.swing.GroupLayout summatorOutputFieldLayout = new javax.swing.GroupLayout(summatorOutputField);
+        summatorOutputField.setLayout(summatorOutputFieldLayout);
+        summatorOutputFieldLayout.setHorizontalGroup(
+            summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 984, Short.MAX_VALUE)
+        );
+        summatorOutputFieldLayout.setVerticalGroup(
+            summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout summatorOutputPanelLayout = new javax.swing.GroupLayout(summatorOutputPanel);
+        summatorOutputPanel.setLayout(summatorOutputPanelLayout);
+        summatorOutputPanelLayout.setHorizontalGroup(
+            summatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(summatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        summatorOutputPanelLayout.setVerticalGroup(
+            summatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(summatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockSummatorLayout = new javax.swing.GroupLayout(blockSummator);
+        blockSummator.setLayout(blockSummatorLayout);
+        blockSummatorLayout.setHorizontalGroup(
+            blockSummatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(summatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockSummatorLayout.setVerticalGroup(
+            blockSummatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(summatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Суматор", blockSummator);
+
         receivedMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         receivedMessageArea.setContentType("text/html");
@@ -1434,6 +1490,7 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockSourceCoder;
     private javax.swing.JTextPane blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
+    private javax.swing.JPanel blockSummator;
     private javax.swing.JMenuItem blockingItem;
     private javax.swing.JButton channelButton;
     private javax.swing.JButton channelCoderButton;
@@ -1484,6 +1541,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JLabel sourceCodesChooserLabel;
     private javax.swing.JPanel sourceMessagePanel;
     private javax.swing.JMenuItem sum2Item;
+    private javax.swing.JPanel summatorOutputField;
+    private javax.swing.JPanel summatorOutputPanel;
     private javax.swing.JPanel systemScheme;
     private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables

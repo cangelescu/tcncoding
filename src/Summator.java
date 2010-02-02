@@ -19,11 +19,11 @@
 import java.util.Vector;
 
 class Summator {
-    private Vector<Double> sequence0;
-    private Vector<Double> sequence1;
-    private Vector<Double> sum_result = new Vector<Double>();
+    private Vector<Vector<FunctionStep>> sequence0;
+    private Vector<Vector<FunctionStep>> sequence1;
+    private Vector<Vector<FunctionStep>> sum_result = new Vector<Vector<FunctionStep>>();
 
-    public Summator(Vector<Double> new_sequence0, Vector<Double> new_sequence1)
+    public Summator(Vector<Vector<FunctionStep>> new_sequence0, Vector<Vector<FunctionStep>> new_sequence1)
     {
 	this.sequence0 = new_sequence0;
 	this.sequence1 = new_sequence1;
@@ -32,11 +32,22 @@ class Summator {
     public void doSumming()
     {
 	this.sum_result.clear();
-	for (int i = 0; i < this.sequence1.size(); i++)
-	    this.sum_result.add(this.sequence1.elementAt(i) - this.sequence0.elementAt(i));
+	for (int i = 0; i < this.sequence0.size(); i++)
+	{
+	    Vector<FunctionStep> s0 = this.sequence0.elementAt(i);
+	    Vector<FunctionStep> s1 = this.sequence1.elementAt(i);
+	    Vector<FunctionStep> new_sum = new Vector<FunctionStep>();
+	    for (int k = 0; k < s0.size(); k++)
+	    {
+		FunctionStep ss0 = s0.elementAt(k);
+		FunctionStep ss1 = s1.elementAt(k);
+		new_sum.add(new FunctionStep(ss1.getX(), ss1.getY() - ss0.getY()));
+	    }
+	    sum_result.add(new_sum);
+	}
     }
 
-    public Vector<Double> getSum()
+    public Vector<Vector<FunctionStep>> getSum()
     {
 	return this.sum_result;
     }

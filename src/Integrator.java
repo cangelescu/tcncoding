@@ -44,8 +44,10 @@ public class Integrator {
 		double area = cs.function(cx) * step;
 		sum += area;
 		current.add(new FunctionStep(cx, sum));
-		cx += step;
 		sp += step;
+		if (sp > cs.getEnd())
+		    break;
+		cx += step;
 	    }
 	    this.out.add(current);
 	}
