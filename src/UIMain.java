@@ -34,7 +34,7 @@ public class UIMain extends javax.swing.JFrame {
     Summator currentSummator = null;
 
     //UI
-    enum Blocks {message_source, source_coder, channel_coder, modulator, channel, receiver};
+    enum Blocks {message_source, source_coder, channel_coder, modulator, channel, multiplier0, multiplier1, integrator0, integrator1, summator};
     Blocks selectedBlock = Blocks.message_source;
 
     //tools
@@ -169,6 +169,11 @@ public class UIMain extends javax.swing.JFrame {
 	channelCoderButton.setBackground(new Color(240, 240, 240));
 	modulatorButton.setBackground(new Color(240, 240, 240));
 	channelButton.setBackground(new Color(240, 240, 240));
+	multiplier0Button.setBackground(new Color(240, 240, 240));
+	multiplier1Button.setBackground(new Color(240, 240, 240));
+	integrator0Button.setBackground(new Color(240, 240, 240));
+	integrator1Button.setBackground(new Color(240, 240, 240));
+	summatorButton.setBackground(new Color(240, 240, 240));
 	//highlight selected block
 	switch (selectedBlock)
 	{
@@ -192,8 +197,25 @@ public class UIMain extends javax.swing.JFrame {
 		TCSTabs.setSelectedComponent(blockChannel);
 		channelButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case receiver:
-		TCSTabs.setSelectedComponent(blockMessageReceiver);
+	    case multiplier0:
+		TCSTabs.setSelectedComponent(blockMultiplier0);
+		multiplier0Button.setBackground(new Color(200, 200, 200));
+		break;
+	    case multiplier1:
+		TCSTabs.setSelectedComponent(blockMultiplier1);
+		multiplier1Button.setBackground(new Color(200, 200, 200));
+		break;
+	    case integrator0:
+		TCSTabs.setSelectedComponent(blockIntegrator0);
+		integrator0Button.setBackground(new Color(200, 200, 200));
+		break;
+	    case integrator1:
+		TCSTabs.setSelectedComponent(blockIntegrator1);
+		integrator1Button.setBackground(new Color(200, 200, 200));
+		break;
+	    case summator:
+		TCSTabs.setSelectedComponent(blockSummator);
+		summatorButton.setBackground(new Color(200, 200, 200));
 		break;
 	    default:
 		break;
@@ -483,6 +505,11 @@ public class UIMain extends javax.swing.JFrame {
         channelCoderButton = new javax.swing.JButton();
         modulatorButton = new javax.swing.JButton();
         channelButton = new javax.swing.JButton();
+        multiplier0Button = new javax.swing.JButton();
+        multiplier1Button = new javax.swing.JButton();
+        integrator0Button = new javax.swing.JButton();
+        integrator1Button = new javax.swing.JButton();
+        summatorButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -577,7 +604,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -623,7 +650,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
@@ -678,7 +705,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
@@ -782,7 +809,7 @@ public class UIMain extends javax.swing.JFrame {
                     .addComponent(bearerFrequency1Label)
                     .addComponent(bearerFrequency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         TCSTabs.addTab("Налаштування модулятора", blockModulatorOptions);
@@ -803,7 +830,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         modulatorOutputFieldLayout.setVerticalGroup(
             modulatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout modulatorOutputPanelLayout = new javax.swing.GroupLayout(modulatorOutputPanel);
@@ -846,7 +873,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         channelOutputFieldLayout.setVerticalGroup(
             channelOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
@@ -873,6 +900,12 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Канал", blockChannel);
 
+        blockMultiplier0.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockMultiplier0ComponentShown(evt);
+            }
+        });
+
         multiplierOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід помножувача 0"));
 
         javax.swing.GroupLayout multiplierOutputField0Layout = new javax.swing.GroupLayout(multiplierOutputField0);
@@ -883,7 +916,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         multiplierOutputField0Layout.setVerticalGroup(
             multiplierOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel0Layout = new javax.swing.GroupLayout(multiplierOutputPanel0);
@@ -910,6 +943,12 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Помножувач 0", blockMultiplier0);
 
+        blockMultiplier1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockMultiplier1ComponentShown(evt);
+            }
+        });
+
         multiplierOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід помножувача 1"));
 
         javax.swing.GroupLayout multiplierOutputField1Layout = new javax.swing.GroupLayout(multiplierOutputField1);
@@ -920,7 +959,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         multiplierOutputField1Layout.setVerticalGroup(
             multiplierOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel1Layout = new javax.swing.GroupLayout(multiplierOutputPanel1);
@@ -947,6 +986,12 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Помножувач 1", blockMultiplier1);
 
+        blockIntegrator0.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockIntegrator0ComponentShown(evt);
+            }
+        });
+
         integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 0"));
 
         javax.swing.GroupLayout integratorOutputField0Layout = new javax.swing.GroupLayout(integratorOutputField0);
@@ -957,7 +1002,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         integratorOutputField0Layout.setVerticalGroup(
             integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel0Layout = new javax.swing.GroupLayout(integratorOutputPanel0);
@@ -984,6 +1029,12 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Інтегратор 0", blockIntegrator0);
 
+        blockIntegrator1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockIntegrator1ComponentShown(evt);
+            }
+        });
+
         integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 1"));
 
         javax.swing.GroupLayout integratorOutputField1Layout = new javax.swing.GroupLayout(integratorOutputField1);
@@ -994,7 +1045,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         integratorOutputField1Layout.setVerticalGroup(
             integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel1Layout = new javax.swing.GroupLayout(integratorOutputPanel1);
@@ -1021,6 +1072,12 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Інтегратор 1", blockIntegrator1);
 
+        blockSummator.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockSummatorComponentShown(evt);
+            }
+        });
+
         summatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід суматора"));
 
         javax.swing.GroupLayout summatorOutputFieldLayout = new javax.swing.GroupLayout(summatorOutputField);
@@ -1031,7 +1088,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         summatorOutputFieldLayout.setVerticalGroup(
             summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout summatorOutputPanelLayout = new javax.swing.GroupLayout(summatorOutputPanel);
@@ -1072,7 +1129,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         receivedMessagePanelLayout.setVerticalGroup(
             receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageReceiverLayout = new javax.swing.GroupLayout(blockMessageReceiver);
@@ -1135,30 +1192,102 @@ public class UIMain extends javax.swing.JFrame {
             }
         });
 
+        multiplier0Button.setBackground(new java.awt.Color(240, 240, 240));
+        multiplier0Button.setText("П0");
+        multiplier0Button.setToolTipText("Помножувач 0");
+        multiplier0Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiplier0ButtonActionPerformed(evt);
+            }
+        });
+
+        multiplier1Button.setBackground(new java.awt.Color(240, 240, 240));
+        multiplier1Button.setText("П1");
+        multiplier1Button.setToolTipText("Помножувач 1");
+        multiplier1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiplier1ButtonActionPerformed(evt);
+            }
+        });
+
+        integrator0Button.setBackground(new java.awt.Color(240, 240, 240));
+        integrator0Button.setText("І0");
+        integrator0Button.setToolTipText("Інтегратор 0");
+        integrator0Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                integrator0ButtonActionPerformed(evt);
+            }
+        });
+
+        integrator1Button.setBackground(new java.awt.Color(240, 240, 240));
+        integrator1Button.setText("І1");
+        integrator1Button.setToolTipText("Інтегратор 1");
+        integrator1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                integrator1ButtonActionPerformed(evt);
+            }
+        });
+
+        summatorButton.setBackground(new java.awt.Color(240, 240, 240));
+        summatorButton.setText("С");
+        summatorButton.setToolTipText("Суматор");
+        summatorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                summatorButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout systemSchemeLayout = new javax.swing.GroupLayout(systemScheme);
         systemScheme.setLayout(systemSchemeLayout);
         systemSchemeLayout.setHorizontalGroup(
             systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(systemSchemeLayout.createSequentialGroup()
-                .addComponent(messageSourceButton)
-                .addGap(18, 18, 18)
-                .addComponent(sourceCoderButton)
-                .addGap(18, 18, 18)
-                .addComponent(channelCoderButton)
-                .addGap(18, 18, 18)
-                .addComponent(modulatorButton)
-                .addGap(18, 18, 18)
-                .addComponent(channelButton)
-                .addContainerGap(657, Short.MAX_VALUE))
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(systemSchemeLayout.createSequentialGroup()
+                        .addComponent(messageSourceButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(sourceCoderButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(channelCoderButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(modulatorButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(channelButton)
+                        .addGap(153, 153, 153)
+                        .addComponent(summatorButton))
+                    .addGroup(systemSchemeLayout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(systemSchemeLayout.createSequentialGroup()
+                                .addComponent(multiplier1Button)
+                                .addGap(18, 18, 18)
+                                .addComponent(integrator1Button))
+                            .addGroup(systemSchemeLayout.createSequentialGroup()
+                                .addComponent(multiplier0Button)
+                                .addGap(18, 18, 18)
+                                .addComponent(integrator0Button)))))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
         systemSchemeLayout.setVerticalGroup(
             systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(messageSourceButton)
-                .addComponent(sourceCoderButton)
-                .addComponent(channelCoderButton)
-                .addComponent(modulatorButton)
-                .addComponent(channelButton))
+            .addGroup(systemSchemeLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(multiplier0Button)
+                    .addComponent(integrator0Button))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(messageSourceButton)
+                    .addComponent(sourceCoderButton)
+                    .addComponent(channelCoderButton)
+                    .addComponent(modulatorButton)
+                    .addComponent(channelButton)
+                    .addComponent(summatorButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(multiplier1Button)
+                    .addComponent(integrator1Button))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         fileMenu.setText("Файл");
@@ -1262,10 +1391,10 @@ public class UIMain extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addComponent(TCSTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -1456,6 +1585,66 @@ public class UIMain extends javax.swing.JFrame {
 	    System.out.println(bn.getStringSequence());
     }//GEN-LAST:event_blockingItemActionPerformed
 
+    private void multiplier0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier0ButtonActionPerformed
+    {//GEN-HEADEREND:event_multiplier0ButtonActionPerformed
+	selectedBlock = Blocks.multiplier0;
+	updateChosenBlock();
+    }//GEN-LAST:event_multiplier0ButtonActionPerformed
+
+    private void multiplier1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier1ButtonActionPerformed
+    {//GEN-HEADEREND:event_multiplier1ButtonActionPerformed
+	selectedBlock = Blocks.multiplier1;
+	updateChosenBlock();
+    }//GEN-LAST:event_multiplier1ButtonActionPerformed
+
+    private void integrator0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrator0ButtonActionPerformed
+    {//GEN-HEADEREND:event_integrator0ButtonActionPerformed
+	selectedBlock = Blocks.integrator0;
+	updateChosenBlock();
+    }//GEN-LAST:event_integrator0ButtonActionPerformed
+
+    private void integrator1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrator1ButtonActionPerformed
+    {//GEN-HEADEREND:event_integrator1ButtonActionPerformed
+	selectedBlock = Blocks.integrator1;
+	updateChosenBlock();
+    }//GEN-LAST:event_integrator1ButtonActionPerformed
+
+    private void summatorButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_summatorButtonActionPerformed
+    {//GEN-HEADEREND:event_summatorButtonActionPerformed
+	selectedBlock = Blocks.summator;
+	updateChosenBlock();
+    }//GEN-LAST:event_summatorButtonActionPerformed
+
+    private void blockMultiplier0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMultiplier0ComponentShown
+    {//GEN-HEADEREND:event_blockMultiplier0ComponentShown
+	selectedBlock = Blocks.multiplier0;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockMultiplier0ComponentShown
+
+    private void blockMultiplier1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMultiplier1ComponentShown
+    {//GEN-HEADEREND:event_blockMultiplier1ComponentShown
+	selectedBlock = Blocks.multiplier1;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockMultiplier1ComponentShown
+
+    private void blockIntegrator0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockIntegrator0ComponentShown
+    {//GEN-HEADEREND:event_blockIntegrator0ComponentShown
+	selectedBlock = Blocks.integrator0;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockIntegrator0ComponentShown
+
+    private void blockIntegrator1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockIntegrator1ComponentShown
+    {//GEN-HEADEREND:event_blockIntegrator1ComponentShown
+	selectedBlock = Blocks.integrator1;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockIntegrator1ComponentShown
+
+    private void blockSummatorComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSummatorComponentShown
+    {//GEN-HEADEREND:event_blockSummatorComponentShown
+	selectedBlock = Blocks.summator;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockSummatorComponentShown
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1504,6 +1693,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem integrateItem;
+    private javax.swing.JButton integrator0Button;
+    private javax.swing.JButton integrator1Button;
     private javax.swing.JPanel integratorOutputField0;
     private javax.swing.JPanel integratorOutputField1;
     private javax.swing.JPanel integratorOutputPanel0;
@@ -1529,6 +1720,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JButton modulatorButton;
     private javax.swing.JPanel modulatorOutputField;
     private javax.swing.JPanel modulatorOutputPanel;
+    private javax.swing.JButton multiplier0Button;
+    private javax.swing.JButton multiplier1Button;
     private javax.swing.JPanel multiplierOutputField0;
     private javax.swing.JPanel multiplierOutputField1;
     private javax.swing.JPanel multiplierOutputPanel0;
@@ -1541,6 +1734,7 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JLabel sourceCodesChooserLabel;
     private javax.swing.JPanel sourceMessagePanel;
     private javax.swing.JMenuItem sum2Item;
+    private javax.swing.JButton summatorButton;
     private javax.swing.JPanel summatorOutputField;
     private javax.swing.JPanel summatorOutputPanel;
     private javax.swing.JPanel systemScheme;

@@ -28,7 +28,7 @@ public class ChannelSignalSqr extends Signal
         this.amplitude = ampl;
         this.phase = ph;
 	this.noise = ns;
-	this.max_value = ampl + ns;
+	this.max_value = ampl + Math.pow(ns, 2);
 	this.x_start = start;
 	this.x_end = end;
     }
