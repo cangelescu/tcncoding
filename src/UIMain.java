@@ -56,35 +56,35 @@ public class UIMain extends javax.swing.JFrame {
     Modulator.ModulationType modulationType = Modulator.ModulationType.AMn;
 
     //message in binary symbols
-    List<BinaryNumber> source_symbols = new ArrayList();
-    List<BinaryNumber> channel_symbols = new ArrayList();
+    List<BinaryNumber> sourceSymbols = new ArrayList();
+    List<BinaryNumber> channelSymbols = new ArrayList();
 
     //Modulator data
-    List<ModulatorSignal> modulator_data = null;
-    List<DataVizualizatorProvider> modulator_data_provider = null;
+    List<ModulatorSignal> modulatorData = null;
+    List<DataVizualizatorProvider> modulatorDataProvider = null;
 
     //Channel data
-    List<ChannelSignal> channel_output = null;
-    List<ChannelSignalSqr> channel_sqr_output = null;
-    List<DataVizualizatorProvider> channel_output_provider = null;
-    double channel_output_energy = 0;
-    double errors_probability = 0;
+    List<ChannelSignal> channelOutput = null;
+    List<ChannelSignalSqr> channelSqrOutput = null;
+    List<DataVizualizatorProvider> channelOutputProvider = null;
+    double channelOutputEnergy = 0;
+    double errorsProbability = 0;
 
     //multipliers data
-    List<MultiplierSignal> multiplier_0_output = null;
-    List<MultiplierSignal> multiplier_1_output = null;
-    List<DataVizualizatorProvider> multiplier_0_output_provider = null;
-    List<DataVizualizatorProvider> multiplier_1_output_provider = null;
+    List<MultiplierSignal> multiplier0Output = null;
+    List<MultiplierSignal> multiplier1Output = null;
+    List<DataVizualizatorProvider> multiplier0OutputProvider = null;
+    List<DataVizualizatorProvider> multiplier1OutputProvider = null;
 
     //integrators data
-    List<List<FunctionStep>> integrator_0_output = null;
-    List<List<FunctionStep>> integrator_1_output = null;
-    List<DataVizualizatorProvider> integrator_0_output_provider = null;
-    List<DataVizualizatorProvider> integrator_1_output_provider = null;
+    List<List<FunctionStep>> integrator0Output = null;
+    List<List<FunctionStep>> integrator1Output = null;
+    List<DataVizualizatorProvider> integrator0OutputProvider = null;
+    List<DataVizualizatorProvider> integrator1OutputProvider = null;
 
     //Summator data
-    List<List<FunctionStep>> summator_output = null;
-    List<DataVizualizatorProvider> summator_output_provider = null;
+    List<List<FunctionStep>> summatorOutput = null;
+    List<DataVizualizatorProvider> summatorOutputProvider = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -228,16 +228,16 @@ public class UIMain extends javax.swing.JFrame {
     {
 	currentSourceCoder = new SourceCoder(sourceCode, message);
 	currentSourceCoder.doEncode();
-	source_symbols = currentSourceCoder.getSequence();
+	sourceSymbols = currentSourceCoder.getSequence();
 	blockSourceCoderOutput.setText(currentSourceCoder.getStringSequence());
     }
 
     //encodes source code with selected Channel code
     void doChannelCoding()
     {
-	currentChannelCoder = new ChannelCoder(source_symbols, channelCode);
+	currentChannelCoder = new ChannelCoder(sourceSymbols, channelCode);
 	currentChannelCoder.doEncode();
-	channel_symbols = currentChannelCoder.getSequence();
+	channelSymbols = currentChannelCoder.getSequence();
 	blockChannelCoderOutput.setText(currentChannelCoder.getStringSequence());
     }
 
@@ -245,9 +245,9 @@ public class UIMain extends javax.swing.JFrame {
     void doModulating()
     {
 	//gets modulator output signals
-	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channel_symbols);
+	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channelSymbols);
 	currentModulator.doModulation();
-	this.modulator_data = currentModulator.getSignals();
+	this.modulatorData = currentModulator.getSignals();
 
 	//removes old vizualizator if exists
 	if (currentModulatorVizualizator != null)
@@ -256,12 +256,12 @@ public class UIMain extends javax.swing.JFrame {
 	    currentModulatorVizualizator = null;
 	}
 	//creates new vizualizator data provider
-	modulator_data_provider = (new DataVizualizatorConverter(modulator_data, DataVizualizatorProvider.SignalType.modulator)).getProvided();
+	modulatorDataProvider = (new DataVizualizatorConverter(modulatorData, DataVizualizatorProvider.SignalType.modulator)).getProvided();
 	//gets chart width and height
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
 	//creates new vizualizator
-	currentModulatorVizualizator = new DataVizualizator(modulator_data_provider, cx, cy, "t", "S(t), В");
+	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, "t", "S(t), В");
 	//shows chart
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
@@ -273,21 +273,21 @@ public class UIMain extends javax.swing.JFrame {
     void doChannel()
     {
 	//gets channel output signal
-	currentChannel = new Channel(this.modulator_data);
+	currentChannel = new Channel(this.modulatorData);
 	currentChannel.doNoising();
-	this.channel_output = currentChannel.getSignals();
+	this.channelOutput = currentChannel.getSignals();
 
 	//gets channel output signal energy
-	currentChannelSqr = new ChannelSqr(this.modulator_data);
+	currentChannelSqr = new ChannelSqr(this.modulatorData);
 	currentChannelSqr.doNoising();
-	this.channel_sqr_output = currentChannelSqr.getSignals();
-	currentEnergyComputator = new EnergyComputator(this.channel_sqr_output);
+	this.channelSqrOutput = currentChannelSqr.getSignals();
+	currentEnergyComputator = new EnergyComputator(this.channelSqrOutput);
 	currentEnergyComputator.computeEnergy();
-	this.channel_output_energy = currentEnergyComputator.getEnergy();
+	this.channelOutputEnergy = currentEnergyComputator.getEnergy();
 
 	//computes errors probability
-	currentErrorsComputator = new ErrorsComputator(channel_output_energy, 1.0E-2, modulationType);
-	this.errors_probability = currentErrorsComputator.getErrorProbability();
+	currentErrorsComputator = new ErrorsComputator(channelOutputEnergy, 1.0E-2, modulationType);
+	this.errorsProbability = currentErrorsComputator.getErrorProbability();
 
 	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
@@ -296,12 +296,12 @@ public class UIMain extends javax.swing.JFrame {
 	    currentChannelVizualizator = null;
 	}
 	//creates new vizualizator data provider
-	channel_output_provider = (new DataVizualizatorConverter(channel_output, DataVizualizatorProvider.SignalType.channel)).getProvided();
+	channelOutputProvider = (new DataVizualizatorConverter(channelOutput, DataVizualizatorProvider.SignalType.channel)).getProvided();
 	//gets chart width and height
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
 	//creates new vizualizator
-	currentChannelVizualizator = new DataVizualizator(channel_output_provider, cx, cy, "t", "S'(t), В");
+	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, "t", "S'(t), В");
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
@@ -316,28 +316,28 @@ public class UIMain extends javax.swing.JFrame {
 	switch (this.modulationType)
 	{
 	    case AMn:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), 0, 0, this.channel_output);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), 0, 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		break;
 	    case FMn:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		break;
 	    case PMn:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channelOutput);
 		break;
 	    case RPMn:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channel_output);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channel_output);
+		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channelOutput);
 		break;
 	}
 
 	//multiplies
 	currentMultiplier0.doMultiply();
 	currentMultiplier1.doMultiply();
-	multiplier_0_output = currentMultiplier0.getSignals();
-	multiplier_1_output = currentMultiplier1.getSignals();
+	multiplier0Output = currentMultiplier0.getSignals();
+	multiplier1Output = currentMultiplier1.getSignals();
 
 	//prepares vizualizator
 	if (currentMultiplierVizualizator0 != null)
@@ -349,8 +349,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cy0 = multiplierOutputField0.getHeight();
 
 	//vizualizes signal
-	multiplier_0_output_provider = (new DataVizualizatorConverter(multiplier_0_output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
-	currentMultiplierVizualizator0 = new DataVizualizator(multiplier_0_output_provider, cx0, cy0, "t", "Sm0(t), В");
+	multiplier0OutputProvider = (new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
+	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
@@ -364,8 +364,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = multiplierOutputField1.getWidth();
 	int cy1 = multiplierOutputField1.getHeight();
 	
-	multiplier_1_output_provider = (new DataVizualizatorConverter(multiplier_1_output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
-	currentMultiplierVizualizator1 = new DataVizualizator(multiplier_1_output_provider, cx1, cy1, "t", "Sm1(t), В");
+	multiplier1OutputProvider = (new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
+	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
@@ -374,12 +374,12 @@ public class UIMain extends javax.swing.JFrame {
     //integrates signals from multipliers
     void doIntegrating()
     {
-	currentIntegrator0 = new Integrator(multiplier_0_output);
-	currentIntegrator1 = new Integrator(multiplier_1_output);
+	currentIntegrator0 = new Integrator(multiplier0Output);
+	currentIntegrator1 = new Integrator(multiplier1Output);
 	currentIntegrator0.doIntegrating();
 	currentIntegrator1.doIntegrating();
-	integrator_0_output = currentIntegrator0.getIntegrals();
-	integrator_1_output = currentIntegrator1.getIntegrals();
+	integrator0Output = currentIntegrator0.getIntegrals();
+	integrator1Output = currentIntegrator1.getIntegrals();
 
 	if (currentIntegratorVizualizator0 != null)
 	{
@@ -389,8 +389,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx0 = integratorOutputField0.getWidth();
 	int cy0 = integratorOutputField0.getHeight();
 
-	integrator_0_output_provider = (new DataVizualizatorConverter(integrator_0_output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
-	currentIntegratorVizualizator0 = new DataVizualizator(integrator_0_output_provider, cx0, cy0, "t", "Si0(t), В");
+	integrator0OutputProvider = (new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
@@ -403,8 +403,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = integratorOutputField1.getWidth();
 	int cy1 = integratorOutputField1.getHeight();
 
-	integrator_1_output_provider = (new DataVizualizatorConverter(integrator_1_output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
-	currentIntegratorVizualizator1 = new DataVizualizator(integrator_1_output_provider, cx1, cy1, "t", "Si1(t), В");
+	integrator1OutputProvider = (new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
 	currentIntegratorVizualizator1.repaint();
@@ -413,9 +413,9 @@ public class UIMain extends javax.swing.JFrame {
     //sums signals from integrators
     void doSumming()
     {
-	currentSummator = new Summator(integrator_0_output, integrator_1_output);
+	currentSummator = new Summator(integrator0Output, integrator1Output);
 	currentSummator.doSumming();
-	summator_output = currentSummator.getSum();
+	summatorOutput = currentSummator.getSum();
 
 	if (currentSummatorVizualizator != null)
 	{
@@ -425,8 +425,8 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = summatorOutputField.getWidth();
 	int cy1 = summatorOutputField.getHeight();
 
-	summator_output_provider = (new DataVizualizatorConverter(summator_output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
-	currentSummatorVizualizator = new DataVizualizator(summator_output_provider, cx1, cy1, "t", "Ssum(t), В");
+	summatorOutputProvider = (new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
 	summatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();
@@ -1613,7 +1613,7 @@ public class UIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_blockChannelComponentShown
 
     //implements test function to integrate
-    private class tfun implements IntegralFunction
+    private class TFun implements IntegralFunction
     {
 	public double function(double x)
 	{
@@ -1623,8 +1623,8 @@ public class UIMain extends javax.swing.JFrame {
 
     private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
     {//GEN-HEADEREND:event_integrateItemActionPerformed
-	tfun testfunction = new tfun();
-	double result = Integration.gaussQuad(testfunction, 0, 2 * Math.PI, 128);
+	TFun testFunction = new TFun();
+	double result = Integration.gaussQuad(testFunction, 0, 2 * Math.PI, 128);
 	System.out.printf("Integral of |sin(x)|+e^x from 0 to 2pi: %1.4f\n", result);
     }//GEN-LAST:event_integrateItemActionPerformed
 
@@ -1633,11 +1633,11 @@ public class UIMain extends javax.swing.JFrame {
 	BinaryNumber test1 = new BinaryNumber("11011010001101");
 	BinaryNumber test2 = new BinaryNumber("01011");
 	BinaryNumber test3 = new BinaryNumber("100111");
-	List<BinaryNumber> test_vector = new ArrayList<BinaryNumber>();
-	test_vector.add(test1);
-	test_vector.add(test2);
-	test_vector.add(test3);
-	Blocker test_blocker = new Blocker(test_vector, 4);
+	List<BinaryNumber> test_list = new ArrayList<BinaryNumber>();
+	test_list.add(test1);
+	test_list.add(test2);
+	test_list.add(test3);
+	Blocker test_blocker = new Blocker(test_list, 4);
 	test_blocker.doBlocking();
 	List<BinaryNumber> blocks = test_blocker.getBlocks();
 	for (BinaryNumber bn: blocks)
