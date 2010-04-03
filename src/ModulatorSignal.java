@@ -23,9 +23,9 @@ public class ModulatorSignal extends Signal
         this.frequency = freq;
         this.amplitude = ampl;
         this.phase = ph;
-	this.max_value = ampl;
-	this.x_start = start;
-	this.x_end = end;
+	this.maxValue = ampl;
+	this.xStart = start;
+	this.xEnd = end;
     }
 
     @Override

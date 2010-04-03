@@ -24,43 +24,43 @@ import java.util.List;
 
 public class SourceCoder {
 
-    public enum sourceCoderCode {mtk2, mtk5, koi8u, morse, shannon};
+    public enum SourceCoderCode {MTK2, MTK5, KOI8U, MORSE, SHANNON;};
 
-    private sourceCoderCode using_code = null;
-    private HashMap<String, BinaryNumber> code_map = new HashMap<String, BinaryNumber>();
-    private String source_message = null;
-    private List<BinaryNumber> source_sequence = new ArrayList<BinaryNumber>();
+    private SourceCoderCode usingCode = null;
+    private HashMap<String, BinaryNumber> codeMap = new HashMap<String, BinaryNumber>();
+    private String sourceMessage = null;
+    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
-    public SourceCoder(sourceCoderCode code_type, String message)
+    public SourceCoder(SourceCoderCode codeType, String message)
     {
-	this.source_message = message;
+	this.sourceMessage = message;
 	String filename = "";
-	switch (code_type)
+	switch (codeType)
 	{
-	    case mtk2:
-		this.using_code = sourceCoderCode.mtk2;
+	    case MTK2:
+		this.usingCode = SourceCoderCode.MTK2;
 		filename = "mtk2";
 		break;
-	    case mtk5:
-		this.using_code = sourceCoderCode.mtk5;
+	    case MTK5:
+		this.usingCode = SourceCoderCode.MTK5;
 		filename = "mtk5";
 		break;
-	    case koi8u:
-		this.using_code = sourceCoderCode.koi8u;
+	    case KOI8U:
+		this.usingCode = SourceCoderCode.KOI8U;
 		filename = "koi8u";
 		break;
-	    case morse:
-		this.using_code = sourceCoderCode.morse;
+	    case MORSE:
+		this.usingCode = SourceCoderCode.MORSE;
 		filename = "morse";
 		break;
-	    case shannon:
-		this.using_code = sourceCoderCode.shannon;
+	    case SHANNON:
+		this.usingCode = SourceCoderCode.SHANNON;
 		filename = "shannon";
 		break;
 	    default:
 		break;
 	}
-	this.code_map.clear();
+	this.codeMap.clear();
 	String line = "";
 	try
 	{
@@ -71,7 +71,7 @@ public class SourceCoder {
 	    {
 		String[] parts = line.split("#");
 		BinaryNumber bnum = new BinaryNumber(parts[0], parts[0].length());
-		this.code_map.put(parts[1], bnum);
+		this.codeMap.put(parts[1], bnum);
 	    }
 	} catch (Exception ex)
 	{
@@ -81,51 +81,51 @@ public class SourceCoder {
 
     public void doEncode()
     {
-	this.source_sequence.clear();
-	String working_message = "";
+	this.sourceSequence.clear();
+	String workingMessage = "";
 	/*
 	 * ITC-2, Morse and Shennon-Fano codes do not depend on letters' case
 	 */
-	switch (this.using_code)
+	switch (this.usingCode)
 	{
-	    case mtk2:
-		working_message = this.source_message.toUpperCase();
+	    case MTK2:
+		workingMessage = this.sourceMessage.toUpperCase();
 		break;
-	    case mtk5:
-		working_message = this.source_message;
+	    case MTK5:
+		workingMessage = this.sourceMessage;
 		break;
-	    case koi8u:
-		working_message = this.source_message;
+	    case KOI8U:
+		workingMessage = this.sourceMessage;
 		break;
-	    case morse:
-		working_message = this.source_message.toUpperCase();
+	    case MORSE:
+		workingMessage = this.sourceMessage.toUpperCase();
 		break;
-	    case shannon:
-		working_message = this.source_message.toUpperCase();
+	    case SHANNON:
+		workingMessage = this.sourceMessage.toUpperCase();
 		break;
 	    default:
 		break;
 	}
-	int len = working_message.length();
+	int len = workingMessage.length();
 	for (int i = 0; i < len; i++)
 	{
-	    char current_char = working_message.charAt(i);
-	    BinaryNumber num = this.code_map.get(String.valueOf(current_char));
+	    char current_char = workingMessage.charAt(i);
+	    BinaryNumber num = this.codeMap.get(String.valueOf(current_char));
 	    if (num != null)
-		this.source_sequence.add(num);
+		this.sourceSequence.add(num);
 	}
     }
 
     public List getSequence()
     {
-	return this.source_sequence;
+	return this.sourceSequence;
     }
 
     public String getStringSequence()
     {
 	String out = "<html>";
 	boolean trigger = false;
-	for (BinaryNumber bn: this.source_sequence)
+	for (BinaryNumber bn: this.sourceSequence)
 	{
 	    if (trigger)
 		out += "<font color=\"blue\">" + bn.getStringSequence() + "</font>";

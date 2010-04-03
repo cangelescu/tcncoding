@@ -21,11 +21,11 @@ import java.util.List;
 
 public class ChannelCoderInversed {
     private List<BinaryNumber> sequence;
-    private List<BinaryNumber> output_sequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoderInversed(List<BinaryNumber> input_sequence)
+    public ChannelCoderInversed(List<BinaryNumber> inputSequence)
     {
-	this.sequence = input_sequence;
+	this.sequence = inputSequence;
     }
 
     public void doEncode()
@@ -35,17 +35,17 @@ public class ChannelCoderInversed {
 	    BinaryNumber shifted = bn.shl2(bn.getAlignment());
 	    if (bn.getWeight() % 2 == 0)
 	    {
-		this.output_sequence.add(shifted.sum2(bn));
+		this.outputSequence.add(shifted.sum2(bn));
 	    } else
 	    {
 		BinaryNumber inversed = bn.not2();
-		this.output_sequence.add(shifted.sum2(inversed));
+		this.outputSequence.add(shifted.sum2(inversed));
 	    }
 	}
     }
 
     public List<BinaryNumber> getSequence()
     {
-	return this.output_sequence;
+	return this.outputSequence;
     }
 }

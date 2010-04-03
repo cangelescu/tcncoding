@@ -35,8 +35,8 @@ public class UIMain extends javax.swing.JFrame {
     Summator currentSummator = null;
 
     //UI
-    enum Blocks {message_source, source_coder, channel_coder, modulator, channel, multiplier0, multiplier1, integrator0, integrator1, summator};
-    Blocks selectedBlock = Blocks.message_source;
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR;};
+    Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //tools
     DataVizualizator currentModulatorVizualizator = null;
@@ -51,8 +51,8 @@ public class UIMain extends javax.swing.JFrame {
     String message = "";
 
     //using codes and other parameters
-    SourceCoder.sourceCoderCode sourceCode = SourceCoder.sourceCoderCode.mtk2;
-    ChannelCoder.channelCoderCode channelCode = ChannelCoder.channelCoderCode.parity_bit;
+    SourceCoder.SourceCoderCode sourceCode = SourceCoder.SourceCoderCode.MTK2;
+    ChannelCoder.ChannelCoderCode channelCode = ChannelCoder.ChannelCoderCode.PARITY_BIT;
     Modulator.ModulationType modulationType = Modulator.ModulationType.AMn;
 
     //message in binary symbols
@@ -92,19 +92,19 @@ public class UIMain extends javax.swing.JFrame {
 	switch (sourceCodesChooser.getSelectedIndex())
 	{
 	    case 0:
-		sourceCode = SourceCoder.sourceCoderCode.mtk2;
+		sourceCode = SourceCoder.SourceCoderCode.MTK2;
 		break;
 	    case 1:
-		sourceCode = SourceCoder.sourceCoderCode.mtk5;
+		sourceCode = SourceCoder.SourceCoderCode.MTK5;
 		break;
 	    case 2:
-		sourceCode = SourceCoder.sourceCoderCode.koi8u;
+		sourceCode = SourceCoder.SourceCoderCode.KOI8U;
 		break;
 	    case 3:
-		sourceCode = SourceCoder.sourceCoderCode.morse;
+		sourceCode = SourceCoder.SourceCoderCode.MORSE;
 		break;
 	    case 4:
-		sourceCode = SourceCoder.sourceCoderCode.shannon;
+		sourceCode = SourceCoder.SourceCoderCode.SHANNON;
 		break;
 	    default:
 		break;
@@ -117,16 +117,16 @@ public class UIMain extends javax.swing.JFrame {
 	switch (channelCodesChooser.getSelectedIndex())
 	{
 	    case 0:
-		channelCode = ChannelCoder.channelCoderCode.parity_bit;
+		channelCode = ChannelCoder.ChannelCoderCode.PARITY_BIT;
 		break;
 	    case 1:
-		channelCode = ChannelCoder.channelCoderCode.inversed;
+		channelCode = ChannelCoder.ChannelCoderCode.INVERSED;
 		break;
 	    case 2:
-		channelCode = ChannelCoder.channelCoderCode.manchester;
+		channelCode = ChannelCoder.ChannelCoderCode.MANCHESTER;
 		break;
 	    case 3:
-		channelCode = ChannelCoder.channelCoderCode.hamming;
+		channelCode = ChannelCoder.ChannelCoderCode.HAMMING;
 		break;
 	    default:
 		break;
@@ -178,43 +178,43 @@ public class UIMain extends javax.swing.JFrame {
 	//highlight selected block
 	switch (selectedBlock)
 	{
-	    case message_source:
+	    case MESSAGE_SOURCE:
 		TCSTabs.setSelectedComponent(blockMessageSource);
 		messageSourceButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case source_coder:
+	    case SOURCE_CODER:
 		TCSTabs.setSelectedComponent(blockSourceCoder);
 		sourceCoderButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case channel_coder:
+	    case CHANNEL_CODER:
 		TCSTabs.setSelectedComponent(blockChannelCoder);
 		channelCoderButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case modulator:
+	    case MODULATOR:
 		TCSTabs.setSelectedComponent(blockModulator);
 		modulatorButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case channel:
+	    case CHANNEL:
 		TCSTabs.setSelectedComponent(blockChannel);
 		channelButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case multiplier0:
+	    case MULTIPLIER0:
 		TCSTabs.setSelectedComponent(blockMultiplier0);
 		multiplier0Button.setBackground(new Color(200, 200, 200));
 		break;
-	    case multiplier1:
+	    case MULTIPLIER1:
 		TCSTabs.setSelectedComponent(blockMultiplier1);
 		multiplier1Button.setBackground(new Color(200, 200, 200));
 		break;
-	    case integrator0:
+	    case INTEGRATOR0:
 		TCSTabs.setSelectedComponent(blockIntegrator0);
 		integrator0Button.setBackground(new Color(200, 200, 200));
 		break;
-	    case integrator1:
+	    case INTEGRATOR1:
 		TCSTabs.setSelectedComponent(blockIntegrator1);
 		integrator1Button.setBackground(new Color(200, 200, 200));
 		break;
-	    case summator:
+	    case SUMMATOR:
 		TCSTabs.setSelectedComponent(blockSummator);
 		summatorButton.setBackground(new Color(200, 200, 200));
 		break;
@@ -244,7 +244,7 @@ public class UIMain extends javax.swing.JFrame {
     //modulates sinusoidal signal with Channel code using selected modulation type
     void doModulating()
     {
-	//gets modulator output signals
+	//gets MODULATOR output signals
 	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channelSymbols);
 	currentModulator.doModulation();
 	this.modulatorData = currentModulator.getSignals();
@@ -256,7 +256,7 @@ public class UIMain extends javax.swing.JFrame {
 	    currentModulatorVizualizator = null;
 	}
 	//creates new vizualizator data provider
-	modulatorDataProvider = (new DataVizualizatorConverter(modulatorData, DataVizualizatorProvider.SignalType.modulator)).getProvided();
+	modulatorDataProvider = (new DataVizualizatorConverter(modulatorData, DataVizualizatorProvider.SignalType.MODULATOR)).getProvided();
 	//gets chart width and height
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
@@ -265,19 +265,19 @@ public class UIMain extends javax.swing.JFrame {
 	//shows chart
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
-	//repaints chart to show it if modulator block is active
+	//repaints chart to show it if MODULATOR block is active
 	currentModulatorVizualizator.repaint();
     }
 
     //adds noise
     void doChannel()
     {
-	//gets channel output signal
+	//gets CHANNEL output signal
 	currentChannel = new Channel(this.modulatorData);
 	currentChannel.doNoising();
 	this.channelOutput = currentChannel.getSignals();
 
-	//gets channel output signal energy
+	//gets CHANNEL output signal energy
 	currentChannelSqr = new ChannelSqr(this.modulatorData);
 	currentChannelSqr.doNoising();
 	this.channelSqrOutput = currentChannelSqr.getSignals();
@@ -296,7 +296,7 @@ public class UIMain extends javax.swing.JFrame {
 	    currentChannelVizualizator = null;
 	}
 	//creates new vizualizator data provider
-	channelOutputProvider = (new DataVizualizatorConverter(channelOutput, DataVizualizatorProvider.SignalType.channel)).getProvided();
+	channelOutputProvider = (new DataVizualizatorConverter(channelOutput, DataVizualizatorProvider.SignalType.CHANNEL)).getProvided();
 	//gets chart width and height
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
@@ -305,7 +305,7 @@ public class UIMain extends javax.swing.JFrame {
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
-	//repaints chart to show it if modulator block is active
+	//repaints chart to show it if MODULATOR block is active
 	currentChannelVizualizator.repaint();
     }
 
@@ -349,13 +349,13 @@ public class UIMain extends javax.swing.JFrame {
 	int cy0 = multiplierOutputField0.getHeight();
 
 	//vizualizes signal
-	multiplier0OutputProvider = (new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
+	multiplier0OutputProvider = (new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.MULTIPLIER)).getProvided();
 	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
 
-	//does the same for second multiplier
+	//does the same for second MULTIPLIER0
 	if (currentMultiplierVizualizator1 != null)
 	{
 	    multiplierOutputField1.remove(currentMultiplierVizualizator1);
@@ -364,7 +364,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = multiplierOutputField1.getWidth();
 	int cy1 = multiplierOutputField1.getHeight();
 	
-	multiplier1OutputProvider = (new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.multiplier)).getProvided();
+	multiplier1OutputProvider = (new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER)).getProvided();
 	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
@@ -389,7 +389,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx0 = integratorOutputField0.getWidth();
 	int cy0 = integratorOutputField0.getHeight();
 
-	integrator0OutputProvider = (new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	integrator0OutputProvider = (new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.TABULATED)).getProvided();
 	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
@@ -403,7 +403,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = integratorOutputField1.getWidth();
 	int cy1 = integratorOutputField1.getHeight();
 
-	integrator1OutputProvider = (new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	integrator1OutputProvider = (new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.TABULATED)).getProvided();
 	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
@@ -425,7 +425,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = summatorOutputField.getWidth();
 	int cy1 = summatorOutputField.getHeight();
 
-	summatorOutputProvider = (new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.tabulated)).getProvided();
+	summatorOutputProvider = (new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.TABULATED)).getProvided();
 	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
 	summatorOutputField.add(currentSummatorVizualizator);
@@ -1554,61 +1554,61 @@ public class UIMain extends javax.swing.JFrame {
 
     private void messageSourceButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_messageSourceButtonActionPerformed
     {//GEN-HEADEREND:event_messageSourceButtonActionPerformed
-	selectedBlock = Blocks.message_source;
+	selectedBlock = Blocks.MESSAGE_SOURCE;
 	updateChosenBlock();
     }//GEN-LAST:event_messageSourceButtonActionPerformed
 
     private void sourceCoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sourceCoderButtonActionPerformed
     {//GEN-HEADEREND:event_sourceCoderButtonActionPerformed
-	selectedBlock = Blocks.source_coder;
+	selectedBlock = Blocks.SOURCE_CODER;
 	updateChosenBlock();
     }//GEN-LAST:event_sourceCoderButtonActionPerformed
 
     private void channelCoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelCoderButtonActionPerformed
     {//GEN-HEADEREND:event_channelCoderButtonActionPerformed
-	selectedBlock = Blocks.channel_coder;
+	selectedBlock = Blocks.CHANNEL_CODER;
 	updateChosenBlock();
     }//GEN-LAST:event_channelCoderButtonActionPerformed
 
     private void modulatorButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modulatorButtonActionPerformed
     {//GEN-HEADEREND:event_modulatorButtonActionPerformed
-	selectedBlock = Blocks.modulator;
+	selectedBlock = Blocks.MODULATOR;
 	updateChosenBlock();
     }//GEN-LAST:event_modulatorButtonActionPerformed
 
     private void channelButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelButtonActionPerformed
     {//GEN-HEADEREND:event_channelButtonActionPerformed
-	selectedBlock = Blocks.channel;
+	selectedBlock = Blocks.CHANNEL;
 	updateChosenBlock();
     }//GEN-LAST:event_channelButtonActionPerformed
 
     private void blockMessageSourceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMessageSourceComponentShown
     {//GEN-HEADEREND:event_blockMessageSourceComponentShown
-	selectedBlock = Blocks.message_source;
+	selectedBlock = Blocks.MESSAGE_SOURCE;
 	updateChosenBlock();
     }//GEN-LAST:event_blockMessageSourceComponentShown
 
     private void blockSourceCoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceCoderComponentShown
     {//GEN-HEADEREND:event_blockSourceCoderComponentShown
-	selectedBlock = Blocks.source_coder;
+	selectedBlock = Blocks.SOURCE_CODER;
 	updateChosenBlock();
     }//GEN-LAST:event_blockSourceCoderComponentShown
 
     private void blockChannelCoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelCoderComponentShown
     {//GEN-HEADEREND:event_blockChannelCoderComponentShown
-	selectedBlock = Blocks.channel_coder;
+	selectedBlock = Blocks.CHANNEL_CODER;
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelCoderComponentShown
 
     private void blockModulatorComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockModulatorComponentShown
     {//GEN-HEADEREND:event_blockModulatorComponentShown
-	selectedBlock = Blocks.modulator;
+	selectedBlock = Blocks.MODULATOR;
 	updateChosenBlock();
     }//GEN-LAST:event_blockModulatorComponentShown
 
     private void blockChannelComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelComponentShown
     {//GEN-HEADEREND:event_blockChannelComponentShown
-	selectedBlock = Blocks.channel;
+	selectedBlock = Blocks.CHANNEL;
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelComponentShown
 
@@ -1633,11 +1633,11 @@ public class UIMain extends javax.swing.JFrame {
 	BinaryNumber test1 = new BinaryNumber("11011010001101");
 	BinaryNumber test2 = new BinaryNumber("01011");
 	BinaryNumber test3 = new BinaryNumber("100111");
-	List<BinaryNumber> test_list = new ArrayList<BinaryNumber>();
-	test_list.add(test1);
-	test_list.add(test2);
-	test_list.add(test3);
-	Blocker test_blocker = new Blocker(test_list, 4);
+	List<BinaryNumber> testList = new ArrayList<BinaryNumber>();
+	testList.add(test1);
+	testList.add(test2);
+	testList.add(test3);
+	Blocker test_blocker = new Blocker(testList, 4);
 	test_blocker.doBlocking();
 	List<BinaryNumber> blocks = test_blocker.getBlocks();
 	for (BinaryNumber bn: blocks)
@@ -1646,61 +1646,61 @@ public class UIMain extends javax.swing.JFrame {
 
     private void multiplier0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier0ButtonActionPerformed
     {//GEN-HEADEREND:event_multiplier0ButtonActionPerformed
-	selectedBlock = Blocks.multiplier0;
+	selectedBlock = Blocks.MULTIPLIER0;
 	updateChosenBlock();
     }//GEN-LAST:event_multiplier0ButtonActionPerformed
 
     private void multiplier1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier1ButtonActionPerformed
     {//GEN-HEADEREND:event_multiplier1ButtonActionPerformed
-	selectedBlock = Blocks.multiplier1;
+	selectedBlock = Blocks.MULTIPLIER1;
 	updateChosenBlock();
     }//GEN-LAST:event_multiplier1ButtonActionPerformed
 
     private void integrator0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrator0ButtonActionPerformed
     {//GEN-HEADEREND:event_integrator0ButtonActionPerformed
-	selectedBlock = Blocks.integrator0;
+	selectedBlock = Blocks.INTEGRATOR0;
 	updateChosenBlock();
     }//GEN-LAST:event_integrator0ButtonActionPerformed
 
     private void integrator1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrator1ButtonActionPerformed
     {//GEN-HEADEREND:event_integrator1ButtonActionPerformed
-	selectedBlock = Blocks.integrator1;
+	selectedBlock = Blocks.INTEGRATOR1;
 	updateChosenBlock();
     }//GEN-LAST:event_integrator1ButtonActionPerformed
 
     private void summatorButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_summatorButtonActionPerformed
     {//GEN-HEADEREND:event_summatorButtonActionPerformed
-	selectedBlock = Blocks.summator;
+	selectedBlock = Blocks.SUMMATOR;
 	updateChosenBlock();
     }//GEN-LAST:event_summatorButtonActionPerformed
 
     private void blockMultiplier0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMultiplier0ComponentShown
     {//GEN-HEADEREND:event_blockMultiplier0ComponentShown
-	selectedBlock = Blocks.multiplier0;
+	selectedBlock = Blocks.MULTIPLIER0;
 	updateChosenBlock();
     }//GEN-LAST:event_blockMultiplier0ComponentShown
 
     private void blockMultiplier1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMultiplier1ComponentShown
     {//GEN-HEADEREND:event_blockMultiplier1ComponentShown
-	selectedBlock = Blocks.multiplier1;
+	selectedBlock = Blocks.MULTIPLIER1;
 	updateChosenBlock();
     }//GEN-LAST:event_blockMultiplier1ComponentShown
 
     private void blockIntegrator0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockIntegrator0ComponentShown
     {//GEN-HEADEREND:event_blockIntegrator0ComponentShown
-	selectedBlock = Blocks.integrator0;
+	selectedBlock = Blocks.INTEGRATOR0;
 	updateChosenBlock();
     }//GEN-LAST:event_blockIntegrator0ComponentShown
 
     private void blockIntegrator1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockIntegrator1ComponentShown
     {//GEN-HEADEREND:event_blockIntegrator1ComponentShown
-	selectedBlock = Blocks.integrator1;
+	selectedBlock = Blocks.INTEGRATOR1;
 	updateChosenBlock();
     }//GEN-LAST:event_blockIntegrator1ComponentShown
 
     private void blockSummatorComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSummatorComponentShown
     {//GEN-HEADEREND:event_blockSummatorComponentShown
-	selectedBlock = Blocks.summator;
+	selectedBlock = Blocks.SUMMATOR;
 	updateChosenBlock();
     }//GEN-LAST:event_blockSummatorComponentShown
 

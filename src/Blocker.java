@@ -21,28 +21,28 @@ import java.util.List;
 
 public class Blocker {
     private List<BinaryNumber> sequence;
-    private List<BinaryNumber> output_blocks = new ArrayList<BinaryNumber>();
-    private int block_length;
+    private List<BinaryNumber> outputBlocks = new ArrayList<BinaryNumber>();
+    private int blockLength;
 
-    public Blocker(List<BinaryNumber> input_sequence, int align)
+    public Blocker(List<BinaryNumber> inputSequence, int align)
     {
-	this.sequence = input_sequence;
-	this.block_length = align;
+	this.sequence = inputSequence;
+	this.blockLength = align;
     }
 
     public void doBlocking()
     {
 	//gets common sequence length
-	int sequence_length = 0;
+	int sequenceLength = 0;
 	for (BinaryNumber bn: this.sequence)
-	    sequence_length += bn.getAlignment();
+	    sequenceLength += bn.getAlignment();
 	//adds leading zeroes
-	int leading_zeroes = this.block_length - (sequence_length % this.block_length);
-	boolean[] bit_flow = new boolean[leading_zeroes + sequence_length];
-	for (int i = 0; i < leading_zeroes; i++)
+	int leadingZeroes = this.blockLength - (sequenceLength % this.blockLength);
+	boolean[] bit_flow = new boolean[leadingZeroes + sequenceLength];
+	for (int i = 0; i < leadingZeroes; i++)
 	    bit_flow[i] = false;
 	//forms linear bit array
-	int index = leading_zeroes;
+	int index = leadingZeroes;
 	for (BinaryNumber bn: this.sequence)
 	{
 	    boolean[] current_bits = bn.getAlignedBinaryArray();
@@ -56,16 +56,16 @@ public class Blocker {
 	int k = 0;
 	while (k < bit_flow.length)
 	{
-	    boolean[] piece = new boolean[this.block_length];
-	    for (int i = 0; i < this.block_length; i++)
+	    boolean[] piece = new boolean[this.blockLength];
+	    for (int i = 0; i < this.blockLength; i++)
 		piece[i] = bit_flow[k + i];
-	    this.output_blocks.add(new BinaryNumber(piece, this.block_length));
-	    k += this.block_length;
+	    this.outputBlocks.add(new BinaryNumber(piece, this.blockLength));
+	    k += this.blockLength;
 	}
     }
 
     public List<BinaryNumber> getBlocks()
     {
-	return this.output_blocks;
+	return this.outputBlocks;
     }
 }

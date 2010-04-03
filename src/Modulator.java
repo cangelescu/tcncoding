@@ -23,86 +23,86 @@ public class Modulator {
 
     public enum ModulationType {AMn, FMn, PMn, RPMn};
 
-    private ModulationType using_method = null;
+    private ModulationType usingMethod = null;
     private List sequence = null;
-    private double bearer_amplitude;
-    private double bearer_frequency_0, bearer_frequency_1;
+    private double bearerAmplitude;
+    private double bearerFrequency0, bearerFrequency1;
 
-    List<ModulatorSignal> modulated_sequence = new ArrayList<ModulatorSignal>();
+    List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
     public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, List symbols)
     {
-	this.using_method = mod_type;
+	this.usingMethod = mod_type;
 	this.sequence = symbols;
-	this.bearer_amplitude = bearerAmplitude;
-	this.bearer_frequency_0 = bearerFrequency0;
-	this.bearer_frequency_1 = bearerFrequency1;
+	this.bearerAmplitude = bearerAmplitude;
+	this.bearerFrequency0 = bearerFrequency0;
+	this.bearerFrequency1 = bearerFrequency1;
     }
 
     public void doModulation()
     {
-	this.modulated_sequence.clear();
+	this.modulatedSequence.clear();
 
-	int prev_phase = 1;
+	int previousPhase = 1;
 
-	ModulatorSignal amn0 = new ModulatorSignal(0, 0, 0, 0, 1/bearer_frequency_1);
-	ModulatorSignal amn1 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, 0, 0, 1/bearer_frequency_1);
-	ModulatorSignal fmn0 = new ModulatorSignal(bearer_frequency_0, bearer_amplitude, 0, 0, 1/bearer_frequency_0);
-	ModulatorSignal fmn1 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, 0, 0, 1/bearer_frequency_0);
-	ModulatorSignal pmn0 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, 0, 0, 1/bearer_frequency_1);
-	ModulatorSignal pmn1 = new ModulatorSignal(bearer_frequency_1, bearer_amplitude, -Math.PI, 0, 1/bearer_frequency_1);
+	ModulatorSignal amn0 = new ModulatorSignal(0, 0, 0, 0, 1/bearerFrequency1);
+	ModulatorSignal amn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1/bearerFrequency1);
+	ModulatorSignal fmn0 = new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, 0, 1/bearerFrequency0);
+	ModulatorSignal fmn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1/bearerFrequency0);
+	ModulatorSignal pmn0 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1/bearerFrequency1);
+	ModulatorSignal pmn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, -Math.PI, 0, 1/bearerFrequency1);
 
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
-	    BinaryNumber working_number = (BinaryNumber)this.sequence.get(j);
-	    boolean[] seq = working_number.getAlignedBinaryArray();
+	    BinaryNumber workingNumber = (BinaryNumber)this.sequence.get(j);
+	    boolean[] seq = workingNumber.getAlignedBinaryArray();
 
 	    for (int i = 0; i < seq.length; i++)
 	    {
-		switch (this.using_method)
+		switch (this.usingMethod)
 		{
 		    case AMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(amn0);
+			    this.modulatedSequence.add(amn0);
 			else
-			    this.modulated_sequence.add(amn1);
+			    this.modulatedSequence.add(amn1);
 			break;
 		    case FMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(fmn0);
+			    this.modulatedSequence.add(fmn0);
 			else
-			    this.modulated_sequence.add(fmn1);
+			    this.modulatedSequence.add(fmn1);
 			break;
 		    case PMn:
 			if (!seq[i])
-			    this.modulated_sequence.add(pmn0);
+			    this.modulatedSequence.add(pmn0);
 			else
-			    this.modulated_sequence.add(pmn1);
+			    this.modulatedSequence.add(pmn1);
 			break;
 		    case RPMn:
 			if (!seq[i])
 			{
-			    if (prev_phase == 1)
+			    if (previousPhase == 1)
 			    {
-				this.modulated_sequence.add(pmn0);
-				prev_phase = 1;
+				this.modulatedSequence.add(pmn0);
+				previousPhase = 1;
 			    } else
-			    if (prev_phase == -1)
+			    if (previousPhase == -1)
 			    {
-				this.modulated_sequence.add(pmn1);
-				prev_phase = -1;
+				this.modulatedSequence.add(pmn1);
+				previousPhase = -1;
 			    }
 			} else
 			{
-			    if (prev_phase == 1)
+			    if (previousPhase == 1)
 			    {
-				this.modulated_sequence.add(pmn1);
-				prev_phase = -1;
+				this.modulatedSequence.add(pmn1);
+				previousPhase = -1;
 			    } else
-			    if (prev_phase == -1)
+			    if (previousPhase == -1)
 			    {
-				this.modulated_sequence.add(pmn0);
-				prev_phase = 1;
+				this.modulatedSequence.add(pmn0);
+				previousPhase = 1;
 			    }
 			}
 			break;
@@ -115,6 +115,6 @@ public class Modulator {
 
     public List<ModulatorSignal> getSignals()
     {
-	return this.modulated_sequence;
+	return this.modulatedSequence;
     }
 }

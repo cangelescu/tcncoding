@@ -19,20 +19,20 @@
 import flanagan.analysis.*;
 
 public class ErrorsComputator {
-    private double signal_energy, noise_density;
-    private Modulator.ModulationType modulation_type;
+    private double signalEnergy, noiseDensity;
+    private Modulator.ModulationType modulationType;
 
-    public ErrorsComputator(double _signal_energy, double _noise_density, Modulator.ModulationType _modulation_type)
+    public ErrorsComputator(double _signalEnergy, double _noiseDensity, Modulator.ModulationType _modulationType)
     {
-	this.signal_energy = _signal_energy;
-	this.noise_density = _noise_density;
-	this.modulation_type = _modulation_type;
+	this.signalEnergy = _signalEnergy;
+	this.noiseDensity = _noiseDensity;
+	this.modulationType = _modulationType;
     }
 
     public double getErrorProbability()
     {
 	double out = 0, arg = 0, factor = 0;
-	switch (this.modulation_type)
+	switch (this.modulationType)
 	{
 	    case AMn:
 		arg = 0.5;
@@ -53,7 +53,7 @@ public class ErrorsComputator {
 	    default:
 		break;
 	}
-	out = factor * 0.5 * (1 - Stat.erf(Math.sqrt((this.signal_energy / this.noise_density) * arg / 4)));
+	out = factor * 0.5 * (1 - Stat.erf(Math.sqrt((this.signalEnergy / this.noiseDensity) * arg / 4)));
 	return out;
     }
 }

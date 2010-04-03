@@ -20,42 +20,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataVizualizatorConverter {
-    private DataVizualizatorProvider.SignalType signal_type;
+    private DataVizualizatorProvider.SignalType signalType;
     private List data;
 
-    public DataVizualizatorConverter(List vdata, DataVizualizatorProvider.SignalType vsignal_type)
+    public DataVizualizatorConverter(List vdata, DataVizualizatorProvider.SignalType vSignalType)
     {
-	this.signal_type = vsignal_type;
+	this.signalType = vSignalType;
 	this.data = vdata;
     }
 
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
-	switch (this.signal_type)
+	switch (this.signalType)
 	{
-	    case modulator:
+	    case MODULATOR:
 		for (Object co: this.data)
 		{
 		    ModulatorSignal ms = (ModulatorSignal)co;
 		    out.add(new DataVizualizatorProvider(ms));
 		}
 		break;
-	    case channel:
+	    case CHANNEL:
 		for (Object co: this.data)
 		{
 		    ChannelSignal cs = (ChannelSignal)co;
 		    out.add(new DataVizualizatorProvider(cs));
 		}
 		break;
-	    case multiplier:
+	    case MULTIPLIER:
 		for (Object co: this.data)
 		{
 		    MultiplierSignal ms = (MultiplierSignal)co;
 		    out.add(new DataVizualizatorProvider(ms));
 		}
 		break;
-	    case tabulated:
+	    case TABULATED:
 		for (Object co: this.data)
 		{
 		    List<FunctionStep> is = (List<FunctionStep>)co;

@@ -21,33 +21,33 @@ import java.util.List;
 
 public class ChannelCoderManchester {
     private List<BinaryNumber> sequence;
-    private List<BinaryNumber> output_sequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoderManchester(List<BinaryNumber> input_sequence)
+    public ChannelCoderManchester(List<BinaryNumber> inputSequence)
     {
-	this.sequence = input_sequence;
+	this.sequence = inputSequence;
     }
 
     public void doEncode()
     {
 	for (BinaryNumber bn: this.sequence)
 	{
-	    boolean[] current_number_array = bn.getAlignedBinaryArray();
-	    boolean[] result_number = new boolean[bn.getAlignment() * 2];
+	    boolean[] currentNumberArray = bn.getAlignedBinaryArray();
+	    boolean[] resultNumber = new boolean[bn.getAlignment() * 2];
 	    int index = 0;
-	    for (boolean current_symbol: current_number_array)
+	    for (boolean currentSymbol: currentNumberArray)
 	    {
-		result_number[index] = current_symbol;
-		result_number[index + 1] = !current_symbol;
+		resultNumber[index] = currentSymbol;
+		resultNumber[index + 1] = !currentSymbol;
 		index += 2;
 	    }
-	    BinaryNumber ready = new BinaryNumber(result_number);
-	    this.output_sequence.add(ready);
+	    BinaryNumber ready = new BinaryNumber(resultNumber);
+	    this.outputSequence.add(ready);
 	}
     }
 
     public List<BinaryNumber> getSequence()
     {
-	return this.output_sequence;
+	return this.outputSequence;
     }
 }

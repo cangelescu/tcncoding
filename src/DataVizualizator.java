@@ -24,18 +24,18 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class DataVizualizator extends JPanel {
-    private List<DataVizualizatorProvider> chart_data;
+    private List<DataVizualizatorProvider> chartData;
 
     private Paint paint;
 
-    private String l_x, l_y;
+    private String lX, lY;
 
-    public DataVizualizator(List<DataVizualizatorProvider> data, int wx, int wy, String legend_x, String legend_y)
+    public DataVizualizator(List<DataVizualizatorProvider> data, int wx, int wy, String legendX, String legendY)
     {
 	this.setSize(wx, wy);
-	this.chart_data = data;
-	this.l_x = legend_x;
-	this.l_y = legend_y;
+	this.chartData = data;
+	this.lX = legendX;
+	this.lY = legendY;
     }
 
     @Override
@@ -47,85 +47,85 @@ public class DataVizualizator extends JPanel {
 	g2.setPaint(paint);
 
 	//chart margins
-	final int left_margin_x = 8 * g2.getFontMetrics().charWidth('0');
-	final int right_margin_x = 10;
-	final int top_margin_y = 10;
-	final int bottom_margin_y = 10;
-	final int x_border = 10;
-	final int y_border = 10;
+	final int leftMarginX = 8 * g2.getFontMetrics().charWidth('0');
+	final int rightMarginX = 10;
+	final int topMarginY = 10;
+	final int bottomMarginY = 10;
+	final int xBorder = 10;
+	final int yBorder = 10;
 	//arrows size
-	final int arrow_width = 2;
-	final int arrow_height = 7;
+	final int arrowWidth = 2;
+	final int arrowHeight = 7;
 
 	//zero levels
-	final int zero_x = left_margin_x;
-	final int zero_y = this.getHeight() / 2;
+	final int zeroX = leftMarginX;
+	final int zeroY = this.getHeight() / 2;
 
 	//current position of pen
-	int current_x = zero_x;
-	int current_y = zero_y;
+	int currentX = zeroX;
+	int currentY = zeroY;
 
 	//draw coordinates system
-	g2.drawLine(left_margin_x, zero_y, this.getWidth() - right_margin_x + x_border, zero_y);
-	g2.drawLine(left_margin_x, top_margin_y, left_margin_x, this.getHeight() - bottom_margin_y);
+	g2.drawLine(leftMarginX, zeroY, this.getWidth() - rightMarginX + xBorder, zeroY);
+	g2.drawLine(leftMarginX, topMarginY, leftMarginX, this.getHeight() - bottomMarginY);
 	//0y arrow
-	g2.drawLine(left_margin_x, top_margin_y, left_margin_x - arrow_width, top_margin_y + arrow_height);
-	g2.drawLine(left_margin_x, top_margin_y, left_margin_x + arrow_width, top_margin_y + arrow_height);
+	g2.drawLine(leftMarginX, topMarginY, leftMarginX - arrowWidth, topMarginY + arrowHeight);
+	g2.drawLine(leftMarginX, topMarginY, leftMarginX + arrowWidth, topMarginY + arrowHeight);
 	//0x arrow
-	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y - arrow_width);
-	g2.drawLine(this.getWidth() - right_margin_x + x_border, zero_y, this.getWidth() - right_margin_x - arrow_height + x_border, zero_y + arrow_width);
+	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY - arrowWidth);
+	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY + arrowWidth);
 	//0
-	g2.drawString("0", zero_x - (int)(1.5 * g2.getFontMetrics().charWidth('0')), zero_y + g2.getFontMetrics().getHeight() / 3);
+	g2.drawString("0", zeroX - (int)(1.5 * g2.getFontMetrics().charWidth('0')), zeroY + g2.getFontMetrics().getHeight() / 3);
 	
 	g2.setColor(Color.BLUE);
 	//legend x
-	g2.drawString(l_x, this.getWidth() - right_margin_x, zero_y + g2.getFontMetrics().getHeight());
+	g2.drawString(lX, this.getWidth() - rightMarginX, zeroY + g2.getFontMetrics().getHeight());
 	//legend y
-	g2.drawString(l_y, zero_x - g2.getFontMetrics().stringWidth(l_y) - g2.getFontMetrics().charWidth('0') / 2, top_margin_y);
+	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - g2.getFontMetrics().charWidth('0') / 2, topMarginY);
 	g2.setColor(Color.BLACK);
 
 	//gets number of step records
-	double one_piece = this.chart_data.get(0).getEnd();
-	double total_time = this.chart_data.size() * one_piece;
+	double onePiece = this.chartData.get(0).getEnd();
+	double totalTime = this.chartData.size() * onePiece;
 	//finds base function values
-	double max_y = this.chart_data.get(0).getMaxValue();
-	for (DataVizualizatorProvider cs: this.chart_data)
-	    if (cs.getMaxValue() > max_y)
-		max_y = cs.getMaxValue();
-	String max_y_string = String.format("%1.2f", max_y);
+	double maxY = this.chartData.get(0).getMaxValue();
+	for (DataVizualizatorProvider cs: this.chartData)
+	    if (cs.getMaxValue() > maxY)
+		maxY = cs.getMaxValue();
+	String maxYString = String.format("%1.2f", maxY);
 
 	//draw steps y
-	g2.drawLine(zero_x - g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border, zero_x + g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border);
-	g2.drawString(max_y_string, zero_x - g2.getFontMetrics().stringWidth(max_y_string) - g2.getFontMetrics().charWidth('0') / 2, top_margin_y + y_border + g2.getFontMetrics().getHeight() / 3);
+	g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder);
+	g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder + g2.getFontMetrics().getHeight() / 3);
 
 	//chart scaling factor
-	double scaling_factor = (zero_y - top_margin_y - y_border) / max_y;
+	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
 
 	//longtitude of chart
-	int distance = this.getWidth() - (left_margin_x + right_margin_x + x_border);
+	int distance = this.getWidth() - (leftMarginX + rightMarginX + xBorder);
 
 	//step of drawing
-	double step = total_time / (double)distance;
+	double step = totalTime / (double)distance;
 
 	//draw chart
-	double current_time = 0;
+	double currentTime = 0;
 	int index = 0;
-	while (current_time <= total_time)
+	while (currentTime <= totalTime)
 	{
-	    if (current_time > one_piece * (index + 1))
+	    if (currentTime > onePiece * (index + 1))
 		index++;
-	    int new_x = current_x + 1;
-	    double y_value = this.chart_data.get(index).getFunction(current_time);
-	    int new_y;
-	    if (y_value == 0)
-		new_y = zero_y;
+	    int newX = currentX + 1;
+	    double yValue = this.chartData.get(index).getFunction(currentTime);
+	    int newY;
+	    if (yValue == 0)
+		newY = zeroY;
 	    else
-		new_y = (int) (zero_y - scaling_factor * y_value);
-	    g2.drawLine(current_x, current_y, new_x, new_y);
-	    current_x = new_x;
-	    current_y = new_y;
-	    current_time += step;
+		newY = (int) (zeroY - scalingFactor * yValue);
+	    g2.drawLine(currentX, currentY, newX, newY);
+	    currentX = newX;
+	    currentY = newY;
+	    currentTime += step;
 	}
-	g2.drawLine(current_x, current_y, current_x + 1, zero_y);
+	g2.drawLine(currentX, currentY, currentX + 1, zeroY);
     }
 }

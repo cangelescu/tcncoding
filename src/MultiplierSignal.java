@@ -21,9 +21,9 @@ import java.util.Random;
 public class MultiplierSignal extends Signal
 {
     private double noise = 0;
-    private double ethalon_frequency = 0;
-    private double ethalon_amplitude = 0;
-    private double ethalon_phase = 0;
+    private double ethalonFrequency = 0;
+    private double ethalonAmplitude = 0;
+    private double ethalonPhase = 0;
 
     public MultiplierSignal(double freq, double ampl, double ph, double ns, double efreq, double eampl, double eph, double start, double end)
     {
@@ -31,12 +31,12 @@ public class MultiplierSignal extends Signal
         this.amplitude = ampl;
         this.phase = ph;
 	this.noise = ns;
-	this.ethalon_frequency = efreq;
-	this.ethalon_amplitude = eampl;
-	this.ethalon_phase = eph;
-	this.max_value = (ampl + ns) * eampl;
-	this.x_start = start;
-	this.x_end = end;
+	this.ethalonFrequency = efreq;
+	this.ethalonAmplitude = eampl;
+	this.ethalonPhase = eph;
+	this.maxValue = (ampl + ns) * eampl;
+	this.xStart = start;
+	this.xEnd = end;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MultiplierSignal extends Signal
     {
 	Random noise_generator = new Random();
 	return (this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian()) *
-	        (this.ethalon_amplitude * Math.sin(2 * Math.PI * this.ethalon_frequency * x + this.ethalon_phase));
+	        (this.ethalonAmplitude * Math.sin(2 * Math.PI * this.ethalonFrequency * x + this.ethalonPhase));
     }
 
     public double getNoise()

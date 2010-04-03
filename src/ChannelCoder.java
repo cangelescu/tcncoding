@@ -21,42 +21,42 @@ import java.util.List;
 
 public class ChannelCoder {
 
-    public enum channelCoderCode {parity_bit, inversed, manchester, hamming};
+    public enum ChannelCoderCode {PARITY_BIT, INVERSED, MANCHESTER, HAMMING;};
 
-    private List<BinaryNumber> source_symbols = null;
-    private channelCoderCode using_code = null;
-    private List<BinaryNumber> channel_sequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> sourceSymbols = null;
+    private ChannelCoderCode usingCode = null;
+    private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoder(List symbols, channelCoderCode code_type)
+    public ChannelCoder(List symbols, ChannelCoderCode code_type)
     {
-	this.source_symbols = symbols;
-	this.using_code = code_type;
+	this.sourceSymbols = symbols;
+	this.usingCode = code_type;
     }
 
     public void doEncode()
     {
-	this.channel_sequence.clear();
-	switch (this.using_code)
+	this.channelSequence.clear();
+	switch (this.usingCode)
 	{
-	    case parity_bit:
-		ChannelCoderParityBit channel_coder_parity_bit = new ChannelCoderParityBit(this.source_symbols);
+	    case PARITY_BIT:
+		ChannelCoderParityBit channel_coder_parity_bit = new ChannelCoderParityBit(this.sourceSymbols);
 		channel_coder_parity_bit.doEncode();
-		this.channel_sequence = channel_coder_parity_bit.getSequence();
+		this.channelSequence = channel_coder_parity_bit.getSequence();
 		break;
-	    case inversed:
-		ChannelCoderInversed channel_coder_inversed = new ChannelCoderInversed(this.source_symbols);
+	    case INVERSED:
+		ChannelCoderInversed channel_coder_inversed = new ChannelCoderInversed(this.sourceSymbols);
 		channel_coder_inversed.doEncode();
-		this.channel_sequence = channel_coder_inversed.getSequence();
+		this.channelSequence = channel_coder_inversed.getSequence();
 		break;
-	    case manchester:
-		ChannelCoderManchester channel_coder_manchester = new ChannelCoderManchester(this.source_symbols);
+	    case MANCHESTER:
+		ChannelCoderManchester channel_coder_manchester = new ChannelCoderManchester(this.sourceSymbols);
 		channel_coder_manchester.doEncode();
-		this.channel_sequence = channel_coder_manchester.getSequence();
+		this.channelSequence = channel_coder_manchester.getSequence();
 		break;
-	    case hamming:
-		ChannelCoderHamming channel_coder_hamming = new ChannelCoderHamming(this.source_symbols);
+	    case HAMMING:
+		ChannelCoderHamming channel_coder_hamming = new ChannelCoderHamming(this.sourceSymbols);
 		channel_coder_hamming.doEncode();
-		this.channel_sequence = channel_coder_hamming.getSequence();
+		this.channelSequence = channel_coder_hamming.getSequence();
 		break;
 	    default:
 		break;
@@ -65,14 +65,14 @@ public class ChannelCoder {
 
     public List getSequence()
     {
-	return this.channel_sequence;
+	return this.channelSequence;
     }
 
     public String getStringSequence()
     {
 	String out = "<html>";
 	boolean trigger = false;
-	for (BinaryNumber bn: this.channel_sequence)
+	for (BinaryNumber bn: this.channelSequence)
 	{
 	    if (trigger)
 		out += "<font color=\"blue\">" + bn.getStringSequence() + "</font>";

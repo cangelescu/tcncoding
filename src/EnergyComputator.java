@@ -23,9 +23,9 @@ public class EnergyComputator {
     private List<ChannelSignalSqr> signals;
     private double energy = 0;
 
-    public EnergyComputator(List<ChannelSignalSqr> new_signals)
+    public EnergyComputator(List<ChannelSignalSqr> newSignals)
     {
-	this.signals = new_signals;
+	this.signals = newSignals;
     }
 
     public void computeEnergy()

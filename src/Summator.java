@@ -22,17 +22,17 @@ import java.util.List;
 class Summator {
     private List<List<FunctionStep>> sequence0;
     private List<List<FunctionStep>> sequence1;
-    private List<List<FunctionStep>> sum_result = new ArrayList<List<FunctionStep>>();
+    private List<List<FunctionStep>> sumResult = new ArrayList<List<FunctionStep>>();
 
-    public Summator(List<List<FunctionStep>> new_sequence0, List<List<FunctionStep>> new_sequence1)
+    public Summator(List<List<FunctionStep>> newSequence0, List<List<FunctionStep>> newSequence1)
     {
-	this.sequence0 = new_sequence0;
-	this.sequence1 = new_sequence1;
+	this.sequence0 = newSequence0;
+	this.sequence1 = newSequence1;
     }
 
     public void doSumming()
     {
-	this.sum_result.clear();
+	this.sumResult.clear();
 	for (int i = 0; i < this.sequence0.size(); i++)
 	{
 	    List<FunctionStep> s0 = this.sequence0.get(i);
@@ -44,12 +44,12 @@ class Summator {
 		FunctionStep ss1 = s1.get(k);
 		new_sum.add(new FunctionStep(ss1.getX(), ss1.getY() - ss0.getY()));
 	    }
-	    sum_result.add(new_sum);
+	    sumResult.add(new_sum);
 	}
     }
 
     public List<List<FunctionStep>> getSum()
     {
-	return this.sum_result;
+	return this.sumResult;
     }
 }

@@ -20,73 +20,73 @@ import java.util.List;
 
 public class DataVizualizatorProvider {
 
-    public enum SignalType {modulator, channel, multiplier, tabulated};
-    private SignalType current_signal_type;
+    public enum SignalType {MODULATOR, CHANNEL, MULTIPLIER, TABULATED;};
+    private SignalType currentSignalType;
 
-    private ModulatorSignal modulator_signal = null;
-    private ChannelSignal channel_signal = null;
-    private MultiplierSignal multiplier_signal = null;
-    private List<FunctionStep> integrator_signal = null;
+    private ModulatorSignal modulatorSignal = null;
+    private ChannelSignal channelSignal = null;
+    private MultiplierSignal multiplierSignal = null;
+    private List<FunctionStep> integratorSignal = null;
 
-    private double x_start, x_end, max_value;
+    private double xStart, xEnd, maxValue;
 
-    public DataVizualizatorProvider(ModulatorSignal mos_data)
+    public DataVizualizatorProvider(ModulatorSignal mosData)
     {
-	this.current_signal_type = SignalType.modulator;
-	this.modulator_signal = mos_data;
-	this.x_start = mos_data.getStart();
-	this.x_end = mos_data.getEnd();
-	this.max_value = mos_data.getMaxValue();
+	this.currentSignalType = SignalType.MODULATOR;
+	this.modulatorSignal = mosData;
+	this.xStart = mosData.getStart();
+	this.xEnd = mosData.getEnd();
+	this.maxValue = mosData.getMaxValue();
     }
 
-    public DataVizualizatorProvider(ChannelSignal cas_data)
+    public DataVizualizatorProvider(ChannelSignal casData)
     {
-	this.current_signal_type = SignalType.channel;
-	this.channel_signal = cas_data;
-	this.x_start = cas_data.getStart();
-	this.x_end = cas_data.getEnd();
-	this.max_value = cas_data.getMaxValue();
+	this.currentSignalType = SignalType.CHANNEL;
+	this.channelSignal = casData;
+	this.xStart = casData.getStart();
+	this.xEnd = casData.getEnd();
+	this.maxValue = casData.getMaxValue();
     }
 
-    public DataVizualizatorProvider(MultiplierSignal mus_data)
+    public DataVizualizatorProvider(MultiplierSignal musData)
     {
-	this.current_signal_type = SignalType.multiplier;
-	this.multiplier_signal = mus_data;
-	this.x_start = mus_data.getStart();
-	this.x_end = mus_data.getEnd();
-	this.max_value = mus_data.getMaxValue();
+	this.currentSignalType = SignalType.MULTIPLIER;
+	this.multiplierSignal = musData;
+	this.xStart = musData.getStart();
+	this.xEnd = musData.getEnd();
+	this.maxValue = musData.getMaxValue();
     }
 
-    public DataVizualizatorProvider(List<FunctionStep> ios_data)
+    public DataVizualizatorProvider(List<FunctionStep> iosData)
     {
-	this.current_signal_type = SignalType.tabulated;
-	this.integrator_signal = ios_data;
-	this.x_start = ios_data.get(0).getX();
-	this.x_end = ios_data.get(ios_data.size() - 1).getX();
+	this.currentSignalType = SignalType.TABULATED;
+	this.integratorSignal = iosData;
+	this.xStart = iosData.get(0).getX();
+	this.xEnd = iosData.get(iosData.size() - 1).getX();
 
-	this.max_value = ios_data.get(0).getY();
-	for (FunctionStep fs: ios_data)
-	    if (fs.getY() > this.max_value)
-		this.max_value = fs.getY();
+	this.maxValue = iosData.get(0).getY();
+	for (FunctionStep fs: iosData)
+	    if (fs.getY() > this.maxValue)
+		this.maxValue = fs.getY();
     }
 
     public double getFunction(double x)
     {
 	double out;
-	switch (this.current_signal_type)
+	switch (this.currentSignalType)
 	{
-	    case modulator:
-		out = this.modulator_signal.function(x);
+	    case MODULATOR:
+		out = this.modulatorSignal.function(x);
 		break;
-	    case channel:
-		out = this.channel_signal.function(x);
+	    case CHANNEL:
+		out = this.channelSignal.function(x);
 		break;
-	    case multiplier:
-		out = this.multiplier_signal.function(x);
+	    case MULTIPLIER:
+		out = this.multiplierSignal.function(x);
 		break;
-	    case tabulated:
+	    case TABULATED:
 		double found = 0;
-		for (FunctionStep fs: this.integrator_signal)
+		for (FunctionStep fs: this.integratorSignal)
 		    if (fs.getX() >= x)
 		    {
 			found = fs.getY();
@@ -103,16 +103,16 @@ public class DataVizualizatorProvider {
 
     public double getStart()
     {
-	return this.x_start;
+	return this.xStart;
     }
 
     public double getEnd()
     {
-	return this.x_end;
+	return this.xEnd;
     }
 
     public double getMaxValue()
     {
-	return this.max_value;
+	return this.maxValue;
     }
 }

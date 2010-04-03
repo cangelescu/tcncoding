@@ -21,11 +21,11 @@ import java.util.List;
 
 public class ChannelCoderParityBit {
     private List<BinaryNumber> sequence;
-    private List<BinaryNumber> output_sequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoderParityBit(List<BinaryNumber> input_sequence)
+    public ChannelCoderParityBit(List<BinaryNumber> inputSequence)
     {
-	this.sequence = input_sequence;
+	this.sequence = inputSequence;
     }
 
     public void doEncode()
@@ -35,17 +35,17 @@ public class ChannelCoderParityBit {
 	    BinaryNumber shifted = bn.shl2();
 	    if (bn.getWeight() % 2 == 0)
 	    {
-		this.output_sequence.add(shifted);
+		this.outputSequence.add(shifted);
 	    } else
 	    {
 		BinaryNumber one = new BinaryNumber(1);
-		this.output_sequence.add(shifted.sum2(one));
+		this.outputSequence.add(shifted.sum2(one));
 	    }
 	}
     }
 
     public List<BinaryNumber> getSequence()
     {
-	return this.output_sequence;
+	return this.outputSequence;
     }
 }

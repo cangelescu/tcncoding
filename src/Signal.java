@@ -22,8 +22,8 @@ public class Signal implements IntegralFunction {
     double frequency;
     double amplitude;
     double phase;
-    double max_value;
-    double x_start, x_end;
+    double maxValue;
+    double xStart, xEnd;
 
     public double function(double x)
     {
@@ -47,16 +47,16 @@ public class Signal implements IntegralFunction {
 
     public double getMaxValue()
     {
-	return this.max_value;
+	return this.maxValue;
     }
 
     public double getStart()
     {
-	return this.x_start;
+	return this.xStart;
     }
 
     public double getEnd()
     {
-	return this.x_end;
+	return this.xEnd;
     }
 }

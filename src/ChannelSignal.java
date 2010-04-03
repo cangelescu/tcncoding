@@ -28,16 +28,16 @@ public class ChannelSignal extends Signal
         this.amplitude = ampl;
         this.phase = ph;
 	this.noise = ns;
-	this.max_value = ampl + Math.pow(ns, 2);
-	this.x_start = start;
-	this.x_end = end;
+	this.maxValue = ampl + Math.pow(ns, 2);
+	this.xStart = start;
+	this.xEnd = end;
     }
 
     @Override
     public double function(double x)
     {
-	Random noise_generator = new Random();
-	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian();
+	Random noiseGenerator = new Random();
+	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noiseGenerator.nextGaussian();
     }
 
     public double getNoise()

@@ -21,35 +21,35 @@ import java.util.List;
 
 public class ChannelCoderHamming {
     private List<BinaryNumber> sequence;
-    private List<BinaryNumber> output_sequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoderHamming(List<BinaryNumber> input_sequence)
+    public ChannelCoderHamming(List<BinaryNumber> inputSequence)
     {
-	this.sequence = input_sequence;
+	this.sequence = inputSequence;
     }
 
     public void doEncode()
     {
-	Blocker hamming_blocker = new Blocker(this.sequence, 4);
-	hamming_blocker.doBlocking();
-	List<BinaryNumber> blocked_sequence = hamming_blocker.getBlocks();
-	for (BinaryNumber bn: blocked_sequence)
+	Blocker hammingBlocker = new Blocker(this.sequence, 4);
+	hammingBlocker.doBlocking();
+	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
+	for (BinaryNumber bn: blockedSequence)
 	{
-	    boolean[] current_number_array = bn.getAlignedBinaryArray();
-	    boolean[] result_number = new boolean[bn.getAlignment() + 3];
-	    for (int i = 0; i < current_number_array.length; i++)
-		result_number[i] = current_number_array[i];
+	    boolean[] currentNumberArray = bn.getAlignedBinaryArray();
+	    boolean[] resultNumber = new boolean[bn.getAlignment() + 3];
+	    for (int i = 0; i < currentNumberArray.length; i++)
+		resultNumber[i] = currentNumberArray[i];
 
-	    result_number[current_number_array.length] = current_number_array[0] ^ current_number_array[1] ^ current_number_array[3];
-	    result_number[current_number_array.length + 1] = current_number_array[0] ^ current_number_array[2] ^ current_number_array[3];
-	    result_number[current_number_array.length + 2] = current_number_array[1] ^ current_number_array[2] ^ current_number_array[3];
-	    BinaryNumber ready = new BinaryNumber(result_number);
-	    this.output_sequence.add(ready);
+	    resultNumber[currentNumberArray.length] = currentNumberArray[0] ^ currentNumberArray[1] ^ currentNumberArray[3];
+	    resultNumber[currentNumberArray.length + 1] = currentNumberArray[0] ^ currentNumberArray[2] ^ currentNumberArray[3];
+	    resultNumber[currentNumberArray.length + 2] = currentNumberArray[1] ^ currentNumberArray[2] ^ currentNumberArray[3];
+	    BinaryNumber ready = new BinaryNumber(resultNumber);
+	    this.outputSequence.add(ready);
 	}
     }
 
     public List<BinaryNumber> getSequence()
     {
-	return this.output_sequence;
+	return this.outputSequence;
     }
 }

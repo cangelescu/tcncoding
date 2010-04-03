@@ -23,9 +23,9 @@ public class Integrator {
     private List<MultiplierSignal> signals;
     private List<List<FunctionStep>> out = new ArrayList<List<FunctionStep>>();
 
-    public Integrator(List<MultiplierSignal> new_signals)
+    public Integrator(List<MultiplierSignal> newSignals)
     {
-	this.signals = new_signals;
+	this.signals = newSignals;
     }
 
     public void doIntegrating()

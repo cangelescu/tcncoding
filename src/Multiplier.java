@@ -20,23 +20,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Multiplier {
-    private double ethalon_frequency, ethalon_amplitude, ethalon_phase;
-    private List<ChannelSignal> received_signal;
+    private double ethalonFrequency, ethalonAmplitude, ethalonPhase;
+    private List<ChannelSignal> receivedSignal;
     private List<MultiplierSignal> output = new ArrayList<MultiplierSignal>();
 
     public Multiplier(double freq, double amplitude, double phase, List<ChannelSignal> signal)
     {
-	this.ethalon_frequency = freq;
-	this.ethalon_amplitude = amplitude;
-	this.ethalon_phase = phase;
-	this.received_signal = signal;
+	this.ethalonFrequency = freq;
+	this.ethalonAmplitude = amplitude;
+	this.ethalonPhase = phase;
+	this.receivedSignal = signal;
     }
 
     public void doMultiply()
     {
-	for (ChannelSignal crs: this.received_signal)
+	for (ChannelSignal crs: this.receivedSignal)
 	{
-	    MultiplierSignal mbfcrs = new MultiplierSignal(crs.getFrequency(), crs.getAmplitude(), crs.getPhase(), crs.getNoise(), this.ethalon_frequency, this.ethalon_amplitude, this.ethalon_phase, crs.getStart(), crs.getEnd());
+	    MultiplierSignal mbfcrs = new MultiplierSignal(crs.getFrequency(), crs.getAmplitude(), crs.getPhase(), crs.getNoise(), this.ethalonFrequency, this.ethalonAmplitude, this.ethalonPhase, crs.getStart(), crs.getEnd());
 	    this.output.add(mbfcrs);
 	}
     }
