@@ -16,17 +16,18 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChannelCoder {
 
     public enum channelCoderCode {parity_bit, inversed, manchester, hamming};
 
-    private Vector<BinaryNumber> source_symbols = null;
+    private List<BinaryNumber> source_symbols = null;
     private channelCoderCode using_code = null;
-    private Vector<BinaryNumber> channel_sequence = new Vector<BinaryNumber>();
+    private List<BinaryNumber> channel_sequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoder(Vector symbols, channelCoderCode code_type)
+    public ChannelCoder(List symbols, channelCoderCode code_type)
     {
 	this.source_symbols = symbols;
 	this.using_code = code_type;
@@ -62,7 +63,7 @@ public class ChannelCoder {
 	}
     }
 
-    public Vector getSequence()
+    public List getSequence()
     {
 	return this.channel_sequence;
     }

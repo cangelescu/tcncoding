@@ -16,7 +16,7 @@
 
 */
 
-import java.util.Vector;
+import java.util.List;
 
 public class DataVizualizatorProvider {
 
@@ -26,7 +26,7 @@ public class DataVizualizatorProvider {
     private ModulatorSignal modulator_signal = null;
     private ChannelSignal channel_signal = null;
     private MultiplierSignal multiplier_signal = null;
-    private Vector<FunctionStep> integrator_signal = null;
+    private List<FunctionStep> integrator_signal = null;
 
     private double x_start, x_end, max_value;
 
@@ -57,14 +57,14 @@ public class DataVizualizatorProvider {
 	this.max_value = mus_data.getMaxValue();
     }
 
-    public DataVizualizatorProvider(Vector<FunctionStep> ios_data)
+    public DataVizualizatorProvider(List<FunctionStep> ios_data)
     {
 	this.current_signal_type = SignalType.tabulated;
 	this.integrator_signal = ios_data;
-	this.x_start = ios_data.firstElement().getX();
-	this.x_end = ios_data.lastElement().getX();
+	this.x_start = ios_data.get(0).getX();
+	this.x_end = ios_data.get(ios_data.size() - 1).getX();
 
-	this.max_value = ios_data.firstElement().getY();
+	this.max_value = ios_data.get(0).getY();
 	for (FunctionStep fs: ios_data)
 	    if (fs.getY() > this.max_value)
 		this.max_value = fs.getY();

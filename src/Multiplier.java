@@ -16,14 +16,15 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Multiplier {
     private double ethalon_frequency, ethalon_amplitude, ethalon_phase;
-    private Vector<ChannelSignal> received_signal;
-    private Vector<MultiplierSignal> output = new Vector<MultiplierSignal>();
+    private List<ChannelSignal> received_signal;
+    private List<MultiplierSignal> output = new ArrayList<MultiplierSignal>();
 
-    public Multiplier(double freq, double amplitude, double phase, Vector<ChannelSignal> signal)
+    public Multiplier(double freq, double amplitude, double phase, List<ChannelSignal> signal)
     {
 	this.ethalon_frequency = freq;
 	this.ethalon_amplitude = amplitude;
@@ -40,7 +41,7 @@ public class Multiplier {
 	}
     }
 
-    public Vector<MultiplierSignal> getSignals()
+    public List<MultiplierSignal> getSignals()
     {
 	return this.output;
     }

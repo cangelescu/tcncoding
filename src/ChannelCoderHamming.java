@@ -16,13 +16,14 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChannelCoderHamming {
-    private Vector<BinaryNumber> sequence;
-    private Vector<BinaryNumber> output_sequence = new Vector<BinaryNumber>();
+    private List<BinaryNumber> sequence;
+    private List<BinaryNumber> output_sequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoderHamming(Vector<BinaryNumber> input_sequence)
+    public ChannelCoderHamming(List<BinaryNumber> input_sequence)
     {
 	this.sequence = input_sequence;
     }
@@ -31,7 +32,7 @@ public class ChannelCoderHamming {
     {
 	Blocker hamming_blocker = new Blocker(this.sequence, 4);
 	hamming_blocker.doBlocking();
-	Vector<BinaryNumber> blocked_sequence = hamming_blocker.getBlocks();
+	List<BinaryNumber> blocked_sequence = hamming_blocker.getBlocks();
 	for (BinaryNumber bn: blocked_sequence)
 	{
 	    boolean[] current_number_array = bn.getAlignedBinaryArray();
@@ -47,7 +48,7 @@ public class ChannelCoderHamming {
 	}
     }
 
-    public Vector<BinaryNumber> getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return this.output_sequence;
     }

@@ -17,8 +17,9 @@
 */
 
 import java.awt.Color;
-import java.util.Vector;
 import flanagan.integration.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class UIMain extends javax.swing.JFrame {
     //blocks (classes)
@@ -55,35 +56,35 @@ public class UIMain extends javax.swing.JFrame {
     Modulator.ModulationType modulationType = Modulator.ModulationType.AMn;
 
     //message in binary symbols
-    Vector<BinaryNumber> source_symbols = new Vector();
-    Vector<BinaryNumber> channel_symbols = new Vector();
+    List<BinaryNumber> source_symbols = new ArrayList();
+    List<BinaryNumber> channel_symbols = new ArrayList();
 
     //Modulator data
-    Vector<ModulatorSignal> modulator_data = null;
-    Vector<DataVizualizatorProvider> modulator_data_provider = null;
+    List<ModulatorSignal> modulator_data = null;
+    List<DataVizualizatorProvider> modulator_data_provider = null;
 
     //Channel data
-    Vector<ChannelSignal> channel_output = null;
-    Vector<ChannelSignalSqr> channel_sqr_output = null;
-    Vector<DataVizualizatorProvider> channel_output_provider = null;
+    List<ChannelSignal> channel_output = null;
+    List<ChannelSignalSqr> channel_sqr_output = null;
+    List<DataVizualizatorProvider> channel_output_provider = null;
     double channel_output_energy = 0;
     double errors_probability = 0;
 
     //multipliers data
-    Vector<MultiplierSignal> multiplier_0_output = null;
-    Vector<MultiplierSignal> multiplier_1_output = null;
-    Vector<DataVizualizatorProvider> multiplier_0_output_provider = null;
-    Vector<DataVizualizatorProvider> multiplier_1_output_provider = null;
+    List<MultiplierSignal> multiplier_0_output = null;
+    List<MultiplierSignal> multiplier_1_output = null;
+    List<DataVizualizatorProvider> multiplier_0_output_provider = null;
+    List<DataVizualizatorProvider> multiplier_1_output_provider = null;
 
     //integrators data
-    Vector<Vector<FunctionStep>> integrator_0_output = null;
-    Vector<Vector<FunctionStep>> integrator_1_output = null;
-    Vector<DataVizualizatorProvider> integrator_0_output_provider = null;
-    Vector<DataVizualizatorProvider> integrator_1_output_provider = null;
+    List<List<FunctionStep>> integrator_0_output = null;
+    List<List<FunctionStep>> integrator_1_output = null;
+    List<DataVizualizatorProvider> integrator_0_output_provider = null;
+    List<DataVizualizatorProvider> integrator_1_output_provider = null;
 
     //Summator data
-    Vector<Vector<FunctionStep>> summator_output = null;
-    Vector<DataVizualizatorProvider> summator_output_provider = null;
+    List<List<FunctionStep>> summator_output = null;
+    List<DataVizualizatorProvider> summator_output_provider = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -510,6 +511,14 @@ public class UIMain extends javax.swing.JFrame {
         integrator0Button = new javax.swing.JButton();
         integrator1Button = new javax.swing.JButton();
         summatorButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -1237,57 +1246,107 @@ public class UIMain extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+
         javax.swing.GroupLayout systemSchemeLayout = new javax.swing.GroupLayout(systemScheme);
         systemScheme.setLayout(systemSchemeLayout);
         systemSchemeLayout.setHorizontalGroup(
             systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(systemSchemeLayout.createSequentialGroup()
+                .addComponent(messageSourceButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sourceCoderButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(channelCoderButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addComponent(messageSourceButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(sourceCoderButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(channelCoderButton)
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(modulatorButton)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(channelButton)
-                        .addGap(153, 153, 153)
+                        .addGap(232, 232, 232)
                         .addComponent(summatorButton))
                     .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addGap(350, 350, 350)
+                        .addGap(200, 200, 200)
+                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(systemSchemeLayout.createSequentialGroup()
-                                .addComponent(multiplier1Button)
-                                .addGap(18, 18, 18)
-                                .addComponent(integrator1Button))
-                            .addGroup(systemSchemeLayout.createSequentialGroup()
-                                .addComponent(multiplier0Button)
-                                .addGap(18, 18, 18)
-                                .addComponent(integrator0Button)))))
-                .addContainerGap(461, Short.MAX_VALUE))
+                            .addComponent(multiplier0Button)
+                            .addComponent(multiplier1Button))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(integrator1Button)
+                            .addComponent(integrator0Button))))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
         systemSchemeLayout.setVerticalGroup(
             systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(systemSchemeLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(multiplier0Button)
+                    .addComponent(jLabel14)
                     .addComponent(integrator0Button))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(messageSourceButton)
-                    .addComponent(sourceCoderButton)
-                    .addComponent(channelCoderButton)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel11)
                     .addComponent(modulatorButton)
-                    .addComponent(channelButton)
-                    .addComponent(summatorButton))
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel13)
                     .addComponent(multiplier1Button)
+                    .addComponent(jLabel15)
                     .addComponent(integrator1Button))
                 .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(systemSchemeLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel8)
+                    .addComponent(messageSourceButton)
+                    .addComponent(sourceCoderButton)
+                    .addComponent(jLabel9)
+                    .addComponent(channelCoderButton))
+                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, systemSchemeLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel12)
+                .addGap(102, 102, 102))
+            .addGroup(systemSchemeLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(channelButton)
+                    .addComponent(summatorButton))
+                .addGap(63, 63, 63))
         );
 
         fileMenu.setText("Файл");
@@ -1574,13 +1633,13 @@ public class UIMain extends javax.swing.JFrame {
 	BinaryNumber test1 = new BinaryNumber("11011010001101");
 	BinaryNumber test2 = new BinaryNumber("01011");
 	BinaryNumber test3 = new BinaryNumber("100111");
-	Vector<BinaryNumber> test_vector = new Vector<BinaryNumber>();
+	List<BinaryNumber> test_vector = new ArrayList<BinaryNumber>();
 	test_vector.add(test1);
 	test_vector.add(test2);
 	test_vector.add(test3);
 	Blocker test_blocker = new Blocker(test_vector, 4);
 	test_blocker.doBlocking();
-	Vector<BinaryNumber> blocks = test_blocker.getBlocks();
+	List<BinaryNumber> blocks = test_blocker.getBlocks();
 	for (BinaryNumber bn: blocks)
 	    System.out.println(bn.getStringSequence());
     }//GEN-LAST:event_blockingItemActionPerformed
@@ -1701,12 +1760,20 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel integratorOutputPanel1;
     private javax.swing.JMenuItem inversionItem;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

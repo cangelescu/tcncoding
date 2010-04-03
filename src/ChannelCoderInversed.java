@@ -16,13 +16,14 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChannelCoderInversed {
-    private Vector<BinaryNumber> sequence;
-    private Vector<BinaryNumber> output_sequence = new Vector<BinaryNumber>();
+    private List<BinaryNumber> sequence;
+    private List<BinaryNumber> output_sequence = new ArrayList<BinaryNumber>();
 
-    public ChannelCoderInversed(Vector<BinaryNumber> input_sequence)
+    public ChannelCoderInversed(List<BinaryNumber> input_sequence)
     {
 	this.sequence = input_sequence;
     }
@@ -43,7 +44,7 @@ public class ChannelCoderInversed {
 	}
     }
 
-    public Vector<BinaryNumber> getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return this.output_sequence;
     }

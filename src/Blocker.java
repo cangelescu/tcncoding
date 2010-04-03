@@ -16,14 +16,15 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Blocker {
-    private Vector<BinaryNumber> sequence;
-    private Vector<BinaryNumber> output_blocks = new Vector<BinaryNumber>();
+    private List<BinaryNumber> sequence;
+    private List<BinaryNumber> output_blocks = new ArrayList<BinaryNumber>();
     private int block_length;
 
-    public Blocker(Vector<BinaryNumber> input_sequence, int align)
+    public Blocker(List<BinaryNumber> input_sequence, int align)
     {
 	this.sequence = input_sequence;
 	this.block_length = align;
@@ -63,7 +64,7 @@ public class Blocker {
 	}
     }
 
-    public Vector<BinaryNumber> getBlocks()
+    public List<BinaryNumber> getBlocks()
     {
 	return this.output_blocks;
     }

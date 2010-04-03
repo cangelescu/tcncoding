@@ -16,13 +16,14 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Channel {
-    private Vector<ModulatorSignal> input_signals;
-    private Vector<ChannelSignal> output_signals = new Vector<ChannelSignal>();
+    private List<ModulatorSignal> input_signals;
+    private List<ChannelSignal> output_signals = new ArrayList<ChannelSignal>();
 
-    public Channel(Vector<ModulatorSignal> new_input_signals)
+    public Channel(List<ModulatorSignal> new_input_signals)
     {
 	this.input_signals = new_input_signals;
     }
@@ -37,7 +38,7 @@ public class Channel {
 	}
     }
 
-    public Vector<ChannelSignal> getSignals()
+    public List<ChannelSignal> getSignals()
     {
 	return this.output_signals;
     }

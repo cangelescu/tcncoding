@@ -16,13 +16,14 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Integrator {
-    private Vector<MultiplierSignal> signals;
-    private Vector<Vector<FunctionStep>> out = new Vector<Vector<FunctionStep>>();
+    private List<MultiplierSignal> signals;
+    private List<List<FunctionStep>> out = new ArrayList<List<FunctionStep>>();
 
-    public Integrator(Vector<MultiplierSignal> new_signals)
+    public Integrator(List<MultiplierSignal> new_signals)
     {
 	this.signals = new_signals;
     }
@@ -34,7 +35,7 @@ public class Integrator {
 	for (MultiplierSignal cs: this.signals)
 	{
 	    cx += cs.getStart();
-	    Vector<FunctionStep> current = new Vector<FunctionStep>();
+	    List<FunctionStep> current = new ArrayList<FunctionStep>();
 	    double length = cs.getEnd() - cs.getStart();
 	    double step = Math.pow(Math.sqrt(3) * Math.E, Math.log(length));
 	    double sum = 0;
@@ -53,7 +54,7 @@ public class Integrator {
 	}
     }
 
-    public Vector<Vector<FunctionStep>> getIntegrals()
+    public List<List<FunctionStep>> getIntegrals()
     {
 	return this.out;
     }

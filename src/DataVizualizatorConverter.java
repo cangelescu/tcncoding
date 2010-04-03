@@ -16,21 +16,22 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataVizualizatorConverter {
     private DataVizualizatorProvider.SignalType signal_type;
-    private Vector data;
+    private List data;
 
-    public DataVizualizatorConverter(Vector vdata, DataVizualizatorProvider.SignalType vsignal_type)
+    public DataVizualizatorConverter(List vdata, DataVizualizatorProvider.SignalType vsignal_type)
     {
 	this.signal_type = vsignal_type;
 	this.data = vdata;
     }
 
-    public Vector<DataVizualizatorProvider> getProvided()
+    public List<DataVizualizatorProvider> getProvided()
     {
-	Vector<DataVizualizatorProvider> out = new Vector<DataVizualizatorProvider>();
+	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	switch (this.signal_type)
 	{
 	    case modulator:
@@ -57,7 +58,7 @@ public class DataVizualizatorConverter {
 	    case tabulated:
 		for (Object co: this.data)
 		{
-		    Vector<FunctionStep> is = (Vector<FunctionStep>)co;
+		    List<FunctionStep> is = (List<FunctionStep>)co;
 		    out.add(new DataVizualizatorProvider(is));
 		}
 		break;

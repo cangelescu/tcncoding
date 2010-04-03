@@ -17,13 +17,13 @@
 */
 
 import flanagan.integration.*;
-import java.util.Vector;
+import java.util.List;
 
 public class EnergyComputator {
-    private Vector<ChannelSignalSqr> signals;
+    private List<ChannelSignalSqr> signals;
     private double energy = 0;
 
-    public EnergyComputator(Vector<ChannelSignalSqr> new_signals)
+    public EnergyComputator(List<ChannelSignalSqr> new_signals)
     {
 	this.signals = new_signals;
     }

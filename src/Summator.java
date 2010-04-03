@@ -16,14 +16,15 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 class Summator {
-    private Vector<Vector<FunctionStep>> sequence0;
-    private Vector<Vector<FunctionStep>> sequence1;
-    private Vector<Vector<FunctionStep>> sum_result = new Vector<Vector<FunctionStep>>();
+    private List<List<FunctionStep>> sequence0;
+    private List<List<FunctionStep>> sequence1;
+    private List<List<FunctionStep>> sum_result = new ArrayList<List<FunctionStep>>();
 
-    public Summator(Vector<Vector<FunctionStep>> new_sequence0, Vector<Vector<FunctionStep>> new_sequence1)
+    public Summator(List<List<FunctionStep>> new_sequence0, List<List<FunctionStep>> new_sequence1)
     {
 	this.sequence0 = new_sequence0;
 	this.sequence1 = new_sequence1;
@@ -34,20 +35,20 @@ class Summator {
 	this.sum_result.clear();
 	for (int i = 0; i < this.sequence0.size(); i++)
 	{
-	    Vector<FunctionStep> s0 = this.sequence0.elementAt(i);
-	    Vector<FunctionStep> s1 = this.sequence1.elementAt(i);
-	    Vector<FunctionStep> new_sum = new Vector<FunctionStep>();
+	    List<FunctionStep> s0 = this.sequence0.get(i);
+	    List<FunctionStep> s1 = this.sequence1.get(i);
+	    List<FunctionStep> new_sum = new ArrayList<FunctionStep>();
 	    for (int k = 0; k < s0.size(); k++)
 	    {
-		FunctionStep ss0 = s0.elementAt(k);
-		FunctionStep ss1 = s1.elementAt(k);
+		FunctionStep ss0 = s0.get(k);
+		FunctionStep ss1 = s1.get(k);
 		new_sum.add(new FunctionStep(ss1.getX(), ss1.getY() - ss0.getY()));
 	    }
 	    sum_result.add(new_sum);
 	}
     }
 
-    public Vector<Vector<FunctionStep>> getSum()
+    public List<List<FunctionStep>> getSum()
     {
 	return this.sum_result;
     }

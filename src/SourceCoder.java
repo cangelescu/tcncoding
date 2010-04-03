@@ -18,8 +18,9 @@
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.List;
 
 public class SourceCoder {
 
@@ -28,7 +29,7 @@ public class SourceCoder {
     private sourceCoderCode using_code = null;
     private HashMap<String, BinaryNumber> code_map = new HashMap<String, BinaryNumber>();
     private String source_message = null;
-    private Vector<BinaryNumber> source_sequence = new Vector<BinaryNumber>();
+    private List<BinaryNumber> source_sequence = new ArrayList<BinaryNumber>();
 
     public SourceCoder(sourceCoderCode code_type, String message)
     {
@@ -115,7 +116,7 @@ public class SourceCoder {
 	}
     }
 
-    public Vector getSequence()
+    public List getSequence()
     {
 	return this.source_sequence;
     }

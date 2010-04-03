@@ -16,20 +16,21 @@
 
 */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Modulator {
 
     public enum ModulationType {AMn, FMn, PMn, RPMn};
 
     private ModulationType using_method = null;
-    private Vector sequence = null;
+    private List sequence = null;
     private double bearer_amplitude;
     private double bearer_frequency_0, bearer_frequency_1;
 
-    Vector<ModulatorSignal> modulated_sequence = new Vector<ModulatorSignal>();
+    List<ModulatorSignal> modulated_sequence = new ArrayList<ModulatorSignal>();
 
-    public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, Vector symbols)
+    public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, List symbols)
     {
 	this.using_method = mod_type;
 	this.sequence = symbols;
@@ -112,7 +113,7 @@ public class Modulator {
 	}
     }
 
-    public Vector<ModulatorSignal> getSignals()
+    public List<ModulatorSignal> getSignals()
     {
 	return this.modulated_sequence;
     }
