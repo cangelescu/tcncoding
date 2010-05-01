@@ -65,6 +65,7 @@ public class UIMain extends javax.swing.JFrame {
 
     //videosequence
     List<List<FunctionStep>> sourceVideoSequence = null;
+    List<DataVizualizatorProvider> sourceVideoSequenceSingleProvider = null;
     List<List<DataVizualizatorProvider>> sourceVideoSequenceProvider = null;
     List<List<FunctionStep>> channelVideoSequence = null;
     List<List<DataVizualizatorProvider>> channelVideoSequenceProvider = null;
@@ -270,7 +271,8 @@ public class UIMain extends javax.swing.JFrame {
 	    currentSourceVideoSequenceVizualizator = null;
 	}
 	sourceVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	sourceVideoSequenceProvider.add((new DataVizualizatorConverter(sourceVideoSequence, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
+	sourceVideoSequenceSingleProvider = (new DataVizualizatorConverter(sourceVideoSequence, DataVizualizatorProvider.SignalType.TABULATED)).getProvided();
+	sourceVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
 	//creates new vizualizator
@@ -295,6 +297,7 @@ public class UIMain extends javax.swing.JFrame {
 	    currentChannelVideoSequenceVizualizator = null;
 	}
 	channelVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
+	channelVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	channelVideoSequenceProvider.add((new DataVizualizatorConverter(channelVideoSequence, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();

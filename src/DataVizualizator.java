@@ -61,9 +61,8 @@ public class DataVizualizator extends JPanel {
 	final int zeroX = leftMarginX;
 	final int zeroY = this.getHeight() / 2;
 
-	//current position of pen
-	int currentX = zeroX;
-	int currentY = zeroY;
+	//chart index
+	int chartIndex = 0;
 
 	//draw coordinates system
 	g2.drawLine(leftMarginX, zeroY, this.getWidth() - rightMarginX + xBorder, zeroY);
@@ -83,9 +82,16 @@ public class DataVizualizator extends JPanel {
 	//legend y
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - g2.getFontMetrics().charWidth('0') / 2, topMarginY);
 	g2.setColor(Color.BLACK);
-
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	{
+	    chartIndex++;
+	    if (chartIndex == 1)
+		g2.setColor(Color.BLACK);
+	    else
+		g2.setColor(Color.RED);
+	    //current position of pen
+	    int currentX = zeroX;
+	    int currentY = zeroY;
 	    //gets number of step records
 	    double onePiece = cldvp.get(0).getEnd();
 	    double totalTime = cldvp.size() * onePiece;
@@ -96,9 +102,12 @@ public class DataVizualizator extends JPanel {
 		    maxY = cs.getMaxValue();
 	    String maxYString = String.format("%1.2f", maxY);
 
+	    Color prevColor = g2.getColor();
+	    g2.setColor(Color.BLACK);
 	    //draw steps y
 	    g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder);
 	    g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder + g2.getFontMetrics().getHeight() / 3);
+	    g2.setColor(prevColor);
 
 	    //chart scaling factor
 	    double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
