@@ -45,12 +45,12 @@ public class Modulator {
 
 	int previousPhase = 1;
 
-	ModulatorSignal amn0 = new ModulatorSignal(0, 0, 0, 0, 1/bearerFrequency1);
-	ModulatorSignal amn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1/bearerFrequency1);
-	ModulatorSignal fmn0 = new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, 0, 1/bearerFrequency0);
-	ModulatorSignal fmn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1/bearerFrequency0);
-	ModulatorSignal pmn0 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1/bearerFrequency1);
-	ModulatorSignal pmn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, -Math.PI, 0, 1/bearerFrequency1);
+	ModulatorSignal amn0 = new ModulatorSignal(0, 0, 0, 0, 1 / bearerFrequency1);
+	ModulatorSignal amn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1 / bearerFrequency1);
+	ModulatorSignal fmn0 = new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, 0, 1 / bearerFrequency0);
+	ModulatorSignal fmn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1 / bearerFrequency0);
+	ModulatorSignal pmn0 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, 0, 1 / bearerFrequency1);
+	ModulatorSignal pmn1 = new ModulatorSignal(bearerFrequency1, bearerAmplitude, -Math.PI, 0, 1 / bearerFrequency1);
 
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
