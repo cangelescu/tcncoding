@@ -24,13 +24,13 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class DataVizualizator extends JPanel {
-    private List<DataVizualizatorProvider> chartData;
+    private List<List<DataVizualizatorProvider>> chartData;
 
     private Paint paint;
 
     private String lX, lY;
 
-    public DataVizualizator(List<DataVizualizatorProvider> data, int wx, int wy, String legendX, String legendY)
+    public DataVizualizator(List<List<DataVizualizatorProvider>> data, int wx, int wy, String legendX, String legendY)
     {
 	this.setSize(wx, wy);
 	this.chartData = data;
@@ -84,48 +84,51 @@ public class DataVizualizator extends JPanel {
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - g2.getFontMetrics().charWidth('0') / 2, topMarginY);
 	g2.setColor(Color.BLACK);
 
-	//gets number of step records
-	double onePiece = this.chartData.get(0).getEnd();
-	double totalTime = this.chartData.size() * onePiece;
-	//finds base function values
-	double maxY = this.chartData.get(0).getMaxValue();
-	for (DataVizualizatorProvider cs: this.chartData)
-	    if (cs.getMaxValue() > maxY)
-		maxY = cs.getMaxValue();
-	String maxYString = String.format("%1.2f", maxY);
-
-	//draw steps y
-	g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder);
-	g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder + g2.getFontMetrics().getHeight() / 3);
-
-	//chart scaling factor
-	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
-
-	//longtitude of chart
-	int distance = this.getWidth() - (leftMarginX + rightMarginX + xBorder);
-
-	//step of drawing
-	double step = totalTime / (double)distance;
-
-	//draw chart
-	double currentTime = 0;
-	int index = 0;
-	while (currentTime <= totalTime)
+	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	{
-	    if (currentTime > onePiece * (index + 1))
-		index++;
-	    int newX = currentX + 1;
-	    double yValue = this.chartData.get(index).getFunction(currentTime);
-	    int newY;
-	    if (yValue == 0)
-		newY = zeroY;
-	    else
-		newY = (int) (zeroY - scalingFactor * yValue);
-	    g2.drawLine(currentX, currentY, newX, newY);
-	    currentX = newX;
-	    currentY = newY;
-	    currentTime += step;
+	    //gets number of step records
+	    double onePiece = cldvp.get(0).getEnd();
+	    double totalTime = cldvp.size() * onePiece;
+	    //finds base function values
+	    double maxY = cldvp.get(0).getMaxValue();
+	    for (DataVizualizatorProvider cs: cldvp)
+		if (cs.getMaxValue() > maxY)
+		    maxY = cs.getMaxValue();
+	    String maxYString = String.format("%1.2f", maxY);
+
+	    //draw steps y
+	    g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder);
+	    g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder + g2.getFontMetrics().getHeight() / 3);
+
+	    //chart scaling factor
+	    double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
+
+	    //longtitude of chart
+	    int distance = this.getWidth() - (leftMarginX + rightMarginX + xBorder);
+
+	    //step of drawing
+	    double step = totalTime / (double)distance;
+
+	    //draw chart
+	    double currentTime = 0;
+	    int index = 0;
+	    while (currentTime <= totalTime)
+	    {
+		if (currentTime > onePiece * (index + 1))
+		    index++;
+		int newX = currentX + 1;
+		double yValue = cldvp.get(index).getFunction(currentTime);
+		int newY;
+		if (yValue == 0)
+		    newY = zeroY;
+		else
+		    newY = (int) (zeroY - scalingFactor * yValue);
+		g2.drawLine(currentX, currentY, newX, newY);
+		currentX = newX;
+		currentY = newY;
+		currentTime += step;
+	    }
+	    g2.drawLine(currentX, currentY, currentX + 1, zeroY);
 	}
-	g2.drawLine(currentX, currentY, currentX + 1, zeroY);
     }
 }
