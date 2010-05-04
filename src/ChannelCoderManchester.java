@@ -19,15 +19,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelCoderManchester {
+/**
+ *
+ * @author post-factum
+ */
+public class ChannelCoderManchester
+{
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
+    /**
+     * Creates Manchester coder for given input sequence of binary numbers
+     * @param inputSequence list of input binary numbers
+     */
     public ChannelCoderManchester(List<BinaryNumber> inputSequence)
     {
 	this.sequence = inputSequence;
     }
 
+    /**
+     * Runs encoding
+     */
     public void doEncode()
     {
 	for (BinaryNumber bn: this.sequence)
@@ -46,6 +58,10 @@ public class ChannelCoderManchester {
 	}
     }
 
+    /**
+     * Returns encoded list of binary numbers
+     * @return
+     */
     public List<BinaryNumber> getSequence()
     {
 	return this.outputSequence;
