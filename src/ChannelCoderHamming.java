@@ -19,15 +19,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelCoderHamming {
+/**
+ *
+ * @author post-factum
+ */
+public class ChannelCoderHamming
+{
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
+    /**
+     * Creates Hamming coder for given input sequence of binary numbers
+     * @param inputSequence list of input binary numbers
+     */
     public ChannelCoderHamming(List<BinaryNumber> inputSequence)
     {
 	this.sequence = inputSequence;
     }
 
+    /**
+     * Runs encoding
+     */
     public void doEncode()
     {
 	Splitter hammingBlocker = new Splitter(this.sequence, 4);
@@ -48,6 +60,10 @@ public class ChannelCoderHamming {
 	}
     }
 
+    /**
+     * Returns encoded list of binary numbers
+     * @return
+     */
     public List<BinaryNumber> getSequence()
     {
 	return this.outputSequence;
