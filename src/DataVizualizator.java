@@ -23,13 +23,26 @@ import java.awt.Paint;
 import java.util.List;
 import javax.swing.JPanel;
 
-public class DataVizualizator extends JPanel {
+/**
+ *
+ * @author post-factum
+ */
+public class DataVizualizator extends JPanel
+{
     private List<List<DataVizualizatorProvider>> chartData;
 
     private Paint paint;
 
     private String lX, lY;
 
+    /**
+     * Creates vizualizator for provided data
+     * @param data list of lists of provided data
+     * @param wx width of output area
+     * @param wy height of output area
+     * @param legendX X legend
+     * @param legendY Y legend
+     */
     public DataVizualizator(List<List<DataVizualizatorProvider>> data, int wx, int wy, String legendX, String legendY)
     {
 	this.setSize(wx, wy);
