@@ -16,8 +16,20 @@
 
 */
 
+/**
+ *
+ * @author post-factum
+ */
 public class ModulatorSignal extends Signal
 {
+    /**
+     * Creates modulator signal
+     * @param freq frequency, Hz
+     * @param ampl amplitude, V
+     * @param ph phase, rad
+     * @param start start time, s
+     * @param end end time, s
+     */
     public ModulatorSignal(double freq, double ampl, double ph, double start, double end)
     {
         this.frequency = freq;
@@ -28,6 +40,11 @@ public class ModulatorSignal extends Signal
 	this.xEnd = end;
     }
 
+    /**
+     * Returns f(x) for current signal
+     * @param x time variable, s
+     * @return
+     */
     @Override
     public double function(double x)
     {
