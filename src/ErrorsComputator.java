@@ -18,10 +18,21 @@
 
 import flanagan.analysis.*;
 
-public class ErrorsComputator {
+/**
+ *
+ * @author post-factum
+ */
+public class ErrorsComputator
+{
     private double signalEnergy, noiseDensity;
     private Modulator.ModulationType modulationType;
 
+    /**
+     * Creates error computator for channel
+     * @param _signalEnergy input signal energy
+     * @param _noiseDensity input noise density
+     * @param _modulationType type of using modulation
+     */
     public ErrorsComputator(double _signalEnergy, double _noiseDensity, Modulator.ModulationType _modulationType)
     {
 	this.signalEnergy = _signalEnergy;
@@ -29,6 +40,10 @@ public class ErrorsComputator {
 	this.modulationType = _modulationType;
     }
 
+    /**
+     * Returns single error probability
+     * @return
+     */
     public double getErrorProbability()
     {
 	double out = 0, arg = 0, factor = 0;
