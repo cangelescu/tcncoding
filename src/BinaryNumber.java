@@ -16,14 +16,22 @@
 
 */
 
-public class BinaryNumber {
+/**
+ *
+ * @author post-factum
+ */
+public class BinaryNumber
+{
 
     private final int digits = 16;
     private long number;
     private boolean[] binary = new boolean[digits];
     private int alignment;
 
-    //creates binary number from string sequence
+    /**
+     * Creates binary number from string sequence
+     * @param sequence string sequence of 0 and 1
+     */
     public BinaryNumber(String sequence)
     {
 	this.alignment = sequence.length();
@@ -58,7 +66,11 @@ public class BinaryNumber {
 	}
     }
 
-    //creates binary number from aligned string sequence
+    /**
+     * Creates binary number from aligned string sequence
+     * @param sequence string sequence of 0 and 1
+     * @param align count of meaningful digits in source string
+     */
     public BinaryNumber(String sequence, int align)
     {
 	this.alignment = align;
@@ -94,7 +106,10 @@ public class BinaryNumber {
 	}
     }
 
-    //creates binary number from integer (decimal) value
+    /**
+     * Creates binary number from decimal value
+     * @param number integer number, that will be converted to binary
+     */
     public BinaryNumber(long number)
     {
 	this.number = number;
@@ -125,7 +140,11 @@ public class BinaryNumber {
 	}
     }
 
-    //creates aligned binary number from integer (decimal) value
+    /**
+     * Creates aligned binary number from decimal value
+     * @param number integer number, that will be converted to binary
+     * @param align fixed width of resulting binary number in digits
+     */
     public BinaryNumber(long number, int align)
     {
 	this.number = number;
@@ -161,19 +180,22 @@ public class BinaryNumber {
 	}
     }
 
-    //creates binary number from boolean array
-    public BinaryNumber(boolean[] number)
+    /**
+     * Creates binary number from boolean array
+     * @param sequence boolean array, that represents binary number
+     */
+    public BinaryNumber(boolean[] sequence)
     {
 	//gets meaningful part of string
-	for (int i = 0; i < digits - number.length; i++)
+	for (int i = 0; i < digits - sequence.length; i++)
 	{
 	    this.binary[i] = false;
 	}
-	this.alignment = number.length;
+	this.alignment = sequence.length;
 
 	//creates array structure
-	for (int i = digits - number.length; i < digits; i++)
-	    this.binary[i] = number[i - digits + number.length];
+	for (int i = digits - sequence.length; i < digits; i++)
+	    this.binary[i] = sequence[i - digits + sequence.length];
 
 	//calculates integer (decimal) value of binary number
 	long value = 0;
@@ -183,8 +205,13 @@ public class BinaryNumber {
 	this.number = value;
     }
 
-    //creates binary number from aligned boolean array
-    public BinaryNumber(boolean[] number, int align)
+    //
+    /**
+     * Creates binary number from aligned boolean array
+     * @param sequence boolean array, that represents binary number
+     * @param align count of meaningful digits in source array
+     */
+    public BinaryNumber(boolean[] sequence, int align)
     {
 	this.alignment = align;
 	//gets meaningful part of string
@@ -195,7 +222,7 @@ public class BinaryNumber {
 
 	//creates array structure
 	for (int i = digits - align; i < digits; i++)
-	    this.binary[i] = number[i - digits + align];
+	    this.binary[i] = sequence[i - digits + align];
 
 	//calculates integer (decimal) value of binary number
 	long value = 0;
@@ -205,7 +232,10 @@ public class BinaryNumber {
 	this.number = value;
     }
 
-    //returns aligned string representation of binary number
+    /**
+     * Returns aligned string representation of binary number
+     * @return
+     */
     public String getStringSequence()
     {
 	String out = "";
@@ -219,19 +249,28 @@ public class BinaryNumber {
 	return out;
     }
 
-    //returns decimal value of binary number
+    /**
+     * Returns decimal value of binary number
+     * @return
+     */
     public long toInt()
     {
 	return this.number;
     }
 
-    //returns array of zeroes and ones
+    /**
+     * Returns boolean array, that represents binary number
+     * @return
+     */
     public boolean[] getFullBinaryArray()
     {
 	return this.binary;
     }
 
-    //returns self-aligned binary array
+    /**
+     * Returns meaningful part of binary number as boolean array
+     * @return
+     */
     public boolean[] getAlignedBinaryArray()
     {
 	int k = digits - this.alignment;
@@ -251,7 +290,11 @@ public class BinaryNumber {
 	return out;
     }
 
-    //sums two numbers by module 2
+    /**
+     *
+     * @param number binary number to sum with
+     * @return
+     */
     public BinaryNumber sum2(BinaryNumber number)
     {
 	boolean[] in2 = number.getFullBinaryArray();
@@ -263,7 +306,10 @@ public class BinaryNumber {
 	return res;
     }
 
-    //inverses number
+    /**
+     * Inverses binary number
+     * @return
+     */
     public BinaryNumber not2()
     {
 	boolean[] out = new boolean[digits];
@@ -274,7 +320,10 @@ public class BinaryNumber {
 	return res;
     }
 
-    //shifts number to left direction for one position
+    /**
+     * Shifts binary number to left
+     * @return
+     */
     public BinaryNumber shl2()
     {
 	boolean[] out = new boolean[digits];
@@ -288,7 +337,11 @@ public class BinaryNumber {
 	return res;
     }
 
-    //shifts number to left direction for several positions
+    /**
+     * Shifts binary number to left by several positions
+     * @param align number of positions to shift by
+     * @return
+     */
     public BinaryNumber shl2(int align)
     {
 	boolean[] out = new boolean[digits];
@@ -301,7 +354,10 @@ public class BinaryNumber {
 	return res;
     }
 
-    //gets weight of binary number
+    /**
+     * Returns weight (count of 1) of binary number
+     * @return
+     */
     public int getWeight()
     {
 	int out = 0;
@@ -311,7 +367,10 @@ public class BinaryNumber {
 	return out;
     }
 
-    //gets alignment
+    /**
+     * Returns alignment of binary number
+     * @return
+     */
     public int getAlignment()
     {
 	return this.alignment;
