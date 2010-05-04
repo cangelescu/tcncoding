@@ -16,20 +16,38 @@
 
 */
 
-public class FunctionStep {
+/**
+ *
+ * @author post-factum
+ */
+public class FunctionStep
+{
     private double x, y;
 
+    /**
+     * Creates step of function
+     * @param _x x value of function
+     * @param _y y value of function
+     */
     public FunctionStep(double _x, double _y)
     {
 	this.x = _x;
 	this.y = _y;
     }
 
+    /**
+     * Returns x value
+     * @return
+     */
     public double getX()
     {
 	return this.x;
     }
 
+    /**
+     * Returns y value
+     * @return
+     */
     public double getY()
     {
 	return this.y;
