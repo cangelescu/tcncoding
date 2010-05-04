@@ -19,21 +19,37 @@
 import flanagan.integration.*;
 import java.util.List;
 
-public class EnergyComputator {
+/**
+ *
+ * @author post-factum
+ */
+public class EnergyComputator
+{
     private List<ChannelSignalSqr> signals;
     private double energy = 0;
 
+    /**
+     * Creates energy computator for input signals
+     * @param newSignals list of input signals
+     */
     public EnergyComputator(List<ChannelSignalSqr> newSignals)
     {
 	this.signals = newSignals;
     }
 
+    /**
+     * Runs energy computing
+     */
     public void computeEnergy()
     {
 	for (ChannelSignalSqr cs: this.signals)
 	    this.energy += Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000);
     }
 
+    /**
+     * Returns computed value of energy, Watts
+     * @return
+     */
     public double getEnergy()
     {
 	return this.energy;
