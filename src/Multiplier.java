@@ -19,11 +19,23 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Multiplier {
+/**
+ *
+ * @author post-factum
+ */
+public class Multiplier
+{
     private double ethalonFrequency, ethalonAmplitude, ethalonPhase;
     private List<ChannelSignal> receivedSignal;
     private List<MultiplierSignal> output = new ArrayList<MultiplierSignal>();
 
+    /**
+     * Creates multiplier
+     * @param freq ethalon frequency, Hz
+     * @param amplitude ethalon amplitude, V
+     * @param phase ethalon phase, rad
+     * @param signal list of input signals
+     */
     public Multiplier(double freq, double amplitude, double phase, List<ChannelSignal> signal)
     {
 	this.ethalonFrequency = freq;
@@ -32,6 +44,9 @@ public class Multiplier {
 	this.receivedSignal = signal;
     }
 
+    /**
+     * Runs multiplying
+     */
     public void doMultiply()
     {
 	for (ChannelSignal crs: this.receivedSignal)
@@ -41,6 +56,10 @@ public class Multiplier {
 	}
     }
 
+    /**
+     * Returns list of multiplied signals
+     * @return
+     */
     public List<MultiplierSignal> getSignals()
     {
 	return this.output;
