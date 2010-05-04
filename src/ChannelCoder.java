@@ -19,20 +19,55 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelCoder {
+/**
+ *
+ * @author post-factum
+ */
+public class ChannelCoder
+{
 
-    public enum ChannelCoderCode {PARITY_BIT, INVERSED, MANCHESTER, HAMMING;};
+    /**
+     * List of possible channel coder codes
+     */
+    public enum ChannelCoderCode
+    {
+
+	/**
+	 * Code with parity bit checking
+	 */
+	PARITY_BIT,
+	/**
+	 * Inversed code
+	 */
+	INVERSED,
+	/**
+	 * Manchester code
+	 */
+	MANCHESTER,
+	/**
+	 * Hamming code
+	 */
+	HAMMING;
+    };
 
     private List<BinaryNumber> sourceSymbols = null;
     private ChannelCoderCode usingCode = null;
     private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
 
+    /**
+     * Creates channel coder with given code and symbols on its input
+     * @param symbols input symbols
+     * @param code_type code to use
+     */
     public ChannelCoder(List symbols, ChannelCoderCode code_type)
     {
 	this.sourceSymbols = symbols;
 	this.usingCode = code_type;
     }
 
+    /**
+     * Runs encoding
+     */
     public void doEncode()
     {
 	this.channelSequence.clear();
@@ -63,11 +98,19 @@ public class ChannelCoder {
 	}
     }
 
+    /**
+     * Returns encoded sequence
+     * @return
+     */
     public List getSequence()
     {
 	return this.channelSequence;
     }
 
+    /**
+     * Returns HTML-formatted encoded string sequence
+     * @return
+     */
     public String getStringSequence()
     {
 	String out = "<html>";
