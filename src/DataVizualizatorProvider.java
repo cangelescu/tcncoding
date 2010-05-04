@@ -18,9 +18,36 @@
 
 import java.util.List;
 
-public class DataVizualizatorProvider {
+/**
+ *
+ * @author post-factum
+ */
+public class DataVizualizatorProvider
+{
 
-    public enum SignalType {MODULATOR, CHANNEL, MULTIPLIER, TABULATED;};
+    /**
+     * List of signal types
+     */
+    public enum SignalType
+    {
+
+	/**
+	 * Signal from modulator
+	 */
+	MODULATOR,
+	/**
+	 * Signal from channel
+	 */
+	CHANNEL,
+	/**
+	 * Signal from multiplier
+	 */
+	MULTIPLIER,
+	/**
+	 * Tabulated signal
+	 */
+	TABULATED;
+    };
     private SignalType currentSignalType;
 
     private ModulatorSignal modulatorSignal = null;
@@ -30,6 +57,10 @@ public class DataVizualizatorProvider {
 
     private double xStart, xEnd, maxValue;
 
+    /**
+     * Creates data provider for vizualizator
+     * @param mosData input modulator signal
+     */
     public DataVizualizatorProvider(ModulatorSignal mosData)
     {
 	this.currentSignalType = SignalType.MODULATOR;
@@ -39,6 +70,10 @@ public class DataVizualizatorProvider {
 	this.maxValue = mosData.getMaxValue();
     }
 
+    /**
+     * Creates data provider for vizualizator
+     * @param casData input channel signal
+     */
     public DataVizualizatorProvider(ChannelSignal casData)
     {
 	this.currentSignalType = SignalType.CHANNEL;
@@ -48,6 +83,10 @@ public class DataVizualizatorProvider {
 	this.maxValue = casData.getMaxValue();
     }
 
+    /**
+     * Creates data provider for vizualizator
+     * @param musData input multiplier signal
+     */
     public DataVizualizatorProvider(MultiplierSignal musData)
     {
 	this.currentSignalType = SignalType.MULTIPLIER;
@@ -57,6 +96,10 @@ public class DataVizualizatorProvider {
 	this.maxValue = musData.getMaxValue();
     }
 
+    /**
+     * Creates data provider for vizualizator
+     * @param iosData input tabulated signal
+     */
     public DataVizualizatorProvider(List<FunctionStep> iosData)
     {
 	this.currentSignalType = SignalType.TABULATED;
@@ -70,6 +113,11 @@ public class DataVizualizatorProvider {
 		this.maxValue = fs.getY();
     }
 
+    /**
+     * Returns f(x) of current signal
+     * @param x time variable, s
+     * @return
+     */
     public double getFunction(double x)
     {
 	double out;
@@ -101,16 +149,28 @@ public class DataVizualizatorProvider {
 	return out;
     }
 
+    /**
+     * Returns signal start
+     * @return
+     */
     public double getStart()
     {
 	return this.xStart;
     }
 
+    /**
+     * Returns signal end
+     * @return
+     */
     public double getEnd()
     {
 	return this.xEnd;
     }
 
+    /**
+     * Returns signal maximum value
+     * @return
+     */
     public double getMaxValue()
     {
 	return this.maxValue;
