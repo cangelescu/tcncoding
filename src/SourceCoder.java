@@ -22,15 +22,51 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SourceCoder {
+/**
+ *
+ * @author post-factum
+ */
+public class SourceCoder
+{
 
-    public enum SourceCoderCode {MTK2, MTK5, KOI8U, MORSE, SHANNON;};
+    /**
+     * List of source coder codes
+     */
+    public enum SourceCoderCode
+    {
+
+	/**
+	 * MTK-2 (ITC-2)
+	 */
+	MTK2,
+	/**
+	 * MTK-5 (ITC-5)
+	 */
+	MTK5,
+	/**
+	 * KOI8-U
+	 */
+	KOI8U,
+	/**
+	 * Morse code
+	 */
+	MORSE,
+	/**
+	 * Shannon code
+	 */
+	SHANNON;
+    };
 
     private SourceCoderCode usingCode = null;
     private HashMap<String, BinaryNumber> codeMap = new HashMap<String, BinaryNumber>();
     private String sourceMessage = null;
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
+    /**
+     * Creates source coder for input message
+     * @param codeType type of using code
+     * @param message input string message
+     */
     public SourceCoder(SourceCoderCode codeType, String message)
     {
 	this.sourceMessage = message;
@@ -79,12 +115,15 @@ public class SourceCoder {
 	}
     }
 
+    /**
+     * Runs encoding
+     */
     public void doEncode()
     {
 	this.sourceSequence.clear();
 	String workingMessage = "";
 	/*
-	 * ITC-2, Morse and Shennon-Fano codes do not depend on letters' case
+	 * ITC-2, Morse and Shannon-Fano codes do not depend on letters' case
 	 */
 	switch (this.usingCode)
 	{
@@ -116,11 +155,19 @@ public class SourceCoder {
 	}
     }
 
+    /**
+     * Returns encoded sequence
+     * @return
+     */
     public List getSequence()
     {
 	return this.sourceSequence;
     }
 
+    /**
+     * Returns encoded HTML-formatted string sequence
+     * @return
+     */
     public String getStringSequence()
     {
 	String out = "<html>";
