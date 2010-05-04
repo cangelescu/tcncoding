@@ -30,8 +30,8 @@ public class ChannelCoderHamming {
 
     public void doEncode()
     {
-	Blocker hammingBlocker = new Blocker(this.sequence, 4);
-	hammingBlocker.doBlocking();
+	Splitter hammingBlocker = new Splitter(this.sequence, 4);
+	hammingBlocker.doSplitting();
 	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
 	for (BinaryNumber bn: blockedSequence)
 	{

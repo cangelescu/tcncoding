@@ -1798,8 +1798,8 @@ public class UIMain extends javax.swing.JFrame {
 	testList.add(test1);
 	testList.add(test2);
 	testList.add(test3);
-	Blocker test_blocker = new Blocker(testList, 4);
-	test_blocker.doBlocking();
+	Splitter test_blocker = new Splitter(testList, 4);
+	test_blocker.doSplitting();
 	List<BinaryNumber> blocks = test_blocker.getBlocks();
 	for (BinaryNumber bn: blocks)
 	    System.out.println(bn.getStringSequence());

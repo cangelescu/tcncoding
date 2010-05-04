@@ -19,18 +19,31 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Blocker {
+/**
+ *
+ * @author post-factum
+ */
+public class Splitter
+{
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputBlocks = new ArrayList<BinaryNumber>();
     private int blockLength;
 
-    public Blocker(List<BinaryNumber> inputSequence, int align)
+    /**
+     * Creates splitter of binary numbers' list into equal parts
+     * @param inputSequence source list of binary numbers
+     * @param align width of each block to split to
+     */
+    public Splitter(List<BinaryNumber> inputSequence, int align)
     {
 	this.sequence = inputSequence;
 	this.blockLength = align;
     }
 
-    public void doBlocking()
+    /**
+     * Runs splitting
+     */
+    public void doSplitting()
     {
 	//gets common sequence length
 	int sequenceLength = 0;
@@ -64,6 +77,10 @@ public class Blocker {
 	}
     }
 
+    /**
+     * Returns list of splitted blocks with fixed width
+     * @return
+     */
     public List<BinaryNumber> getBlocks()
     {
 	return this.outputBlocks;
