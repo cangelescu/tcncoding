@@ -19,15 +19,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Integrator {
+/**
+ *
+ * @author post-factum
+ */
+public class Integrator
+{
     private List<MultiplierSignal> signals;
     private List<List<FunctionStep>> out = new ArrayList<List<FunctionStep>>();
 
+    /**
+     * Creates integrator for input signals
+     * @param newSignals list of input signals
+     */
     public Integrator(List<MultiplierSignal> newSignals)
     {
 	this.signals = newSignals;
     }
 
+    /**
+     * Runs integrating
+     */
     public void doIntegrating()
     {
 	this.out.clear();
@@ -54,6 +66,10 @@ public class Integrator {
 	}
     }
 
+    /**
+     * Returns list of lists of function steps
+     * @return
+     */
     public List<List<FunctionStep>> getIntegrals()
     {
 	return this.out;
