@@ -19,16 +19,30 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataVizualizatorConverter {
+/**
+ *
+ * @author post-factum
+ */
+public class DataVizualizatorConverter
+{
     private DataVizualizatorProvider.SignalType signalType;
     private List data;
 
+    /**
+     * Creates converter for data vizualizator
+     * @param vdata input list of signals
+     * @param vSignalType type of input signals
+     */
     public DataVizualizatorConverter(List vdata, DataVizualizatorProvider.SignalType vSignalType)
     {
 	this.signalType = vSignalType;
 	this.data = vdata;
     }
 
+    /**
+     * Returns list of provided data
+     * @return
+     */
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
