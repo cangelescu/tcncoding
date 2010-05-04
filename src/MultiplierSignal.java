@@ -18,6 +18,10 @@
 
 import java.util.Random;
 
+/**
+ *
+ * @author post-factum
+ */
 public class MultiplierSignal extends Signal
 {
     private double noise = 0;
@@ -25,6 +29,18 @@ public class MultiplierSignal extends Signal
     private double ethalonAmplitude = 0;
     private double ethalonPhase = 0;
 
+    /**
+     * Creates multiplier signal
+     * @param freq signal frequency, Hz
+     * @param ampl signal amplitude, V
+     * @param ph signal phase, rad
+     * @param ns noise amplitude, V
+     * @param efreq ethalon frequency, Hz
+     * @param eampl ethalon amplitude, V
+     * @param eph ethalon phase, rad
+     * @param start start time, s
+     * @param end end time, s
+     */
     public MultiplierSignal(double freq, double ampl, double ph, double ns, double efreq, double eampl, double eph, double start, double end)
     {
         this.frequency = freq;
@@ -39,6 +55,11 @@ public class MultiplierSignal extends Signal
 	this.xEnd = end;
     }
 
+    /**
+     * Returns f(x) for current signal
+     * @param x time variable, s
+     * @return
+     */
     @Override
     public double function(double x)
     {
@@ -47,6 +68,10 @@ public class MultiplierSignal extends Signal
 	        (this.ethalonAmplitude * Math.sin(2 * Math.PI * this.ethalonFrequency * x + this.ethalonPhase));
     }
 
+    /**
+     * Returns noise amplitude, V
+     * @return
+     */
     public double getNoise()
     {
 	return this.noise;
