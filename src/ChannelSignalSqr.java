@@ -18,10 +18,23 @@
 
 import java.util.Random;
 
+/**
+ *
+ * @author post-factum
+ */
 public class ChannelSignalSqr extends Signal
 {
     private double noise;
 
+    /**
+     * Creates channel signal^2 with given parameters
+     * @param freq frequency of signal, Hz
+     * @param ampl amplitude of signal, V
+     * @param ph phase of signal, rad
+     * @param ns amplitude of noise, V
+     * @param start start time, s
+     * @param end end time, s
+     */
     public ChannelSignalSqr(double freq, double ampl, double ph, double ns, double start, double end)
     {
         this.frequency = freq;
@@ -33,6 +46,11 @@ public class ChannelSignalSqr extends Signal
 	this.xEnd = end;
     }
 
+    /**
+     * Returns f(x) value for this signal
+     * @param x time variable, s
+     * @return
+     */
     @Override
     public double function(double x)
     {
@@ -40,6 +58,10 @@ public class ChannelSignalSqr extends Signal
 	return Math.pow(this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian(), 2);
     }
 
+    /**
+     * Returns amplitude of noise
+     * @return
+     */
     public double getNoise()
     {
 	return this.noise;
