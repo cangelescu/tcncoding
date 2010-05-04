@@ -19,15 +19,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelCoderParityBit {
+/**
+ *
+ * @author post-factum
+ */
+public class ChannelCoderParityBit
+{
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
+    /**
+     * Creates coder for given input sequence of binary numbers with parity bit checking
+     * @param inputSequence list of input binary numbers
+     */
     public ChannelCoderParityBit(List<BinaryNumber> inputSequence)
     {
 	this.sequence = inputSequence;
     }
 
+    /**
+     * Runs encoding
+     */
     public void doEncode()
     {
 	for (BinaryNumber bn: this.sequence)
@@ -44,6 +56,10 @@ public class ChannelCoderParityBit {
 	}
     }
 
+    /**
+     * Returns encoded list of binary numbers
+     * @return
+     */
     public List<BinaryNumber> getSequence()
     {
 	return this.outputSequence;
