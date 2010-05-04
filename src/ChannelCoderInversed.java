@@ -19,15 +19,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelCoderInversed {
+/**
+ *
+ * @author post-factum
+ */
+public class ChannelCoderInversed
+{
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
+    /**
+     * Creates coder with inversed code for given input sequence of binary numbers
+     * @param inputSequence list of input binary numbers
+     */
     public ChannelCoderInversed(List<BinaryNumber> inputSequence)
     {
 	this.sequence = inputSequence;
     }
 
+    /**
+     * Runs encoding
+     */
     public void doEncode()
     {
 	for (BinaryNumber bn: this.sequence)
@@ -44,6 +56,10 @@ public class ChannelCoderInversed {
 	}
     }
 
+    /**
+     * Returns encoded list of binary numbers
+     * @return
+     */
     public List<BinaryNumber> getSequence()
     {
 	return this.outputSequence;
