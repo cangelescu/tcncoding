@@ -49,19 +49,19 @@ public class ErrorsComputator
 	double out = 0, arg = 0, factor = 0;
 	switch (this.modulationType)
 	{
-	    case AMn:
+	    case ASK:
 		arg = 0.5;
 		factor = 1;
 		break;
-	    case FMn:
+	    case FSK:
 		arg = 1;
 		factor = 1;
 		break;
-	    case PMn:
+	    case PSK:
 		arg = 2;
 		factor = 1;
 		break;
-	    case RPMn:
+	    case RPSK:
 		arg = 2;
 		factor = 2;
 		break;

@@ -19,9 +19,36 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Modulator {
+/**
+ *
+ * @author post-factum
+ */
+public class Modulator
+{
 
-    public enum ModulationType {AMn, FMn, PMn, RPMn};
+    /**
+     * List of modulation type
+     */
+    public enum ModulationType
+    {
+
+	/**
+	 * Amplitude shift keying
+	 */
+	ASK,
+	/**
+	 * Frequency shift keying
+	 */
+	FSK,
+	/**
+	 * Phase shift keying
+	 */
+	PSK,
+	/**
+	 * Relative phase shift keying
+	 */
+	RPSK;
+    };
 
     private ModulationType usingMethod = null;
     private List sequence = null;
@@ -30,6 +57,14 @@ public class Modulator {
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
+    /**
+     * Creates modulator with given parameters
+     * @param mod_type type of using modulation
+     * @param bearerAmplitude bearer amplitude, V
+     * @param bearerFrequency0 first bearer frequency, Hz
+     * @param bearerFrequency1 second bearer frequency, Hz
+     * @param symbols list of input symbols (input videosequence)
+     */
     public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, List symbols)
     {
 	this.usingMethod = mod_type;
@@ -39,6 +74,9 @@ public class Modulator {
 	this.bearerFrequency1 = bearerFrequency1;
     }
 
+    /**
+     * Runs modulating
+     */
     public void doModulation()
     {
 	this.modulatedSequence.clear();
@@ -61,25 +99,25 @@ public class Modulator {
 	    {
 		switch (this.usingMethod)
 		{
-		    case AMn:
+		    case ASK:
 			if (!seq[i])
 			    this.modulatedSequence.add(amn0);
 			else
 			    this.modulatedSequence.add(amn1);
 			break;
-		    case FMn:
+		    case FSK:
 			if (!seq[i])
 			    this.modulatedSequence.add(fmn0);
 			else
 			    this.modulatedSequence.add(fmn1);
 			break;
-		    case PMn:
+		    case PSK:
 			if (!seq[i])
 			    this.modulatedSequence.add(pmn0);
 			else
 			    this.modulatedSequence.add(pmn1);
 			break;
-		    case RPMn:
+		    case RPSK:
 			if (!seq[i])
 			{
 			    if (previousPhase == 1)
@@ -113,6 +151,10 @@ public class Modulator {
 	}
     }
 
+    /**
+     * Returns modulated signals
+     * @return
+     */
     public List<ModulatorSignal> getSignals()
     {
 	return this.modulatedSequence;

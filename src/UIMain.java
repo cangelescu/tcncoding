@@ -57,7 +57,7 @@ public class UIMain extends javax.swing.JFrame {
     //using codes and other parameters
     SourceCoder.SourceCoderCode sourceCode = SourceCoder.SourceCoderCode.MTK2;
     ChannelCoder.ChannelCoderCode channelCode = ChannelCoder.ChannelCoderCode.PARITY_BIT;
-    Modulator.ModulationType modulationType = Modulator.ModulationType.AMn;
+    Modulator.ModulationType modulationType = Modulator.ModulationType.ASK;
 
     //message in binary symbols
     List<BinaryNumber> sourceSymbols = new ArrayList();
@@ -153,19 +153,19 @@ public class UIMain extends javax.swing.JFrame {
 	switch (modulationTypeChooser.getSelectedIndex())
 	{
 	    case 0:
-		modulationType = Modulator.ModulationType.AMn;
+		modulationType = Modulator.ModulationType.ASK;
 		break;
 	    case 1:
-		modulationType = Modulator.ModulationType.FMn;
+		modulationType = Modulator.ModulationType.FSK;
 		//enable zero bearer options
 		bearerFrequency0.setEnabled(true);
 		bearerFrequency0Label.setEnabled(true);
 		break;
 	    case 2:
-		modulationType = Modulator.ModulationType.PMn;
+		modulationType = Modulator.ModulationType.PSK;
 		break;
 	    case 3:
-		modulationType = Modulator.ModulationType.RPMn;
+		modulationType = Modulator.ModulationType.RPSK;
 		break;
 	    default:
 		break;
@@ -386,19 +386,19 @@ public class UIMain extends javax.swing.JFrame {
 	//create multipliers according to modulation type
 	switch (this.modulationType)
 	{
-	    case AMn:
+	    case ASK:
 		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), 0, 0, this.channelOutput);
 		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		break;
-	    case FMn:
+	    case FSK:
 		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		break;
-	    case PMn:
+	    case PSK:
 		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channelOutput);
 		break;
-	    case RPMn:
+	    case RPSK:
 		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
 		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channelOutput);
 		break;
