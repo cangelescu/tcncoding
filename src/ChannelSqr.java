@@ -19,15 +19,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelSqr {
+/**
+ *
+ * @author post-factum
+ */
+public class ChannelSqr
+{
     private List<ModulatorSignal> inputSignals;
     private List<ChannelSignalSqr> outputSignals = new ArrayList<ChannelSignalSqr>();
 
+    /**
+     * Creates list of channel signals^2
+     * @param newInputSignals list of input signals
+     */
     public ChannelSqr(List<ModulatorSignal> newInputSignals)
     {
 	this.inputSignals = newInputSignals;
     }
 
+    /**
+     * Runs noising
+     */
     public void doNoising()
     {
 	for(ModulatorSignal cs: this.inputSignals)
@@ -38,6 +50,10 @@ public class ChannelSqr {
 	}
     }
 
+    /**
+     * Returns list of signals
+     * @return
+     */
     public List<ChannelSignalSqr> getSignals()
     {
 	return this.outputSignals;
