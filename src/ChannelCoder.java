@@ -74,24 +74,24 @@ public class ChannelCoder
 	switch (this.usingCode)
 	{
 	    case PARITY_BIT:
-		ChannelCoderParityBit channel_coder_parity_bit = new ChannelCoderParityBit(this.sourceSymbols);
-		channel_coder_parity_bit.doEncode();
-		this.channelSequence = channel_coder_parity_bit.getSequence();
+		ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(this.sourceSymbols);
+		channelCoderParityBit.doEncode();
+		this.channelSequence = channelCoderParityBit.getSequence();
 		break;
 	    case INVERSED:
-		ChannelCoderInversed channel_coder_inversed = new ChannelCoderInversed(this.sourceSymbols);
-		channel_coder_inversed.doEncode();
-		this.channelSequence = channel_coder_inversed.getSequence();
+		ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(this.sourceSymbols);
+		channelCoderInversed.doEncode();
+		this.channelSequence = channelCoderInversed.getSequence();
 		break;
 	    case MANCHESTER:
-		ChannelCoderManchester channel_coder_manchester = new ChannelCoderManchester(this.sourceSymbols);
-		channel_coder_manchester.doEncode();
-		this.channelSequence = channel_coder_manchester.getSequence();
+		ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(this.sourceSymbols);
+		channelCoderManchester.doEncode();
+		this.channelSequence = channelCoderManchester.getSequence();
 		break;
 	    case HAMMING:
-		ChannelCoderHamming channel_coder_hamming = new ChannelCoderHamming(this.sourceSymbols);
-		channel_coder_hamming.doEncode();
-		this.channelSequence = channel_coder_hamming.getSequence();
+		ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(this.sourceSymbols);
+		channelCoderHamming.doEncode();
+		this.channelSequence = channelCoderHamming.getSequence();
 		break;
 	    default:
 		break;

@@ -64,6 +64,7 @@ public class UIMain extends javax.swing.JFrame {
     List<BinaryNumber> channelSymbols = new ArrayList();
 
     //videosequence
+    double sourceImpulseLength = 0;
     List<List<FunctionStep>> sourceVideoSequence = null;
     List<DataVizualizatorProvider> sourceVideoSequenceSingleProvider = null;
     List<List<DataVizualizatorProvider>> sourceVideoSequenceProvider = null;
@@ -261,8 +262,11 @@ public class UIMain extends javax.swing.JFrame {
     //shows source videosequence
     void doSourceVideoSequence()
     {
-	double num = 200000;
-	currentSourceVideoCreator = new VideoCreator(sourceSymbols, 1/num);
+	if (bearerFrequency0.isEnabled())
+	    sourceImpulseLength = 1 / Math.max((Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue());
+	else
+	    sourceImpulseLength = 1 / (Double)bearerFrequency1.getValue();
+	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength);
 	currentSourceVideoCreator.doVideoSequence();
 	sourceVideoSequence = currentSourceVideoCreator.getVideoSequence();
 	if (currentSourceVideoSequenceVizualizator != null)
@@ -287,8 +291,7 @@ public class UIMain extends javax.swing.JFrame {
     //shows channel videosequence
     void doChannelVideoSequence()
     {
-	double num = 200000;
-	currentChannelVideoCreator = new VideoCreator(channelSymbols, 1/num);
+	currentChannelVideoCreator = new VideoCreator(channelSymbols, sourceImpulseLength);
 	currentChannelVideoCreator.doVideoSequence();
 	channelVideoSequence = currentChannelVideoCreator.getVideoSequence();
 	if (currentChannelVideoSequenceVizualizator != null)
@@ -314,7 +317,7 @@ public class UIMain extends javax.swing.JFrame {
     void doModulating()
     {
 	//gets MODULATOR output signals
-	currentModulator = new Modulator(modulationType, Double.valueOf(bearerAmplitude.getValue().toString()), Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerFrequency1.getValue().toString()), channelSymbols);
+	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue(), channelSymbols);
 	currentModulator.doModulation();
 	this.modulatorData = currentModulator.getSignals();
 
