@@ -19,17 +19,30 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Summator {
+/**
+ *
+ * @author post-factum
+ */
+public class Summator
+{
     private List<List<FunctionStep>> sequence0;
     private List<List<FunctionStep>> sequence1;
     private List<List<FunctionStep>> sumResult = new ArrayList<List<FunctionStep>>();
 
+    /**
+     * Creates summator of two tabulated functions
+     * @param newSequence0 first tabulated function
+     * @param newSequence1 second tabulated function
+     */
     public Summator(List<List<FunctionStep>> newSequence0, List<List<FunctionStep>> newSequence1)
     {
 	this.sequence0 = newSequence0;
 	this.sequence1 = newSequence1;
     }
 
+    /**
+     * Runs summing
+     */
     public void doSumming()
     {
 	this.sumResult.clear();
@@ -48,6 +61,10 @@ class Summator {
 	}
     }
 
+    /**
+     * Returns tabulated function
+     * @return
+     */
     public List<List<FunctionStep>> getSum()
     {
 	return this.sumResult;
