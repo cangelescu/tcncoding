@@ -165,6 +165,18 @@ public class SourceCoder
     }
 
     /**
+     * Returns encoded sequence length
+     * @return
+     */
+    public int getSequenceLength()
+    {
+	int out = 0;
+	for (BinaryNumber cbn: sourceSequence)
+	    out += cbn.getAlignment();
+	return out;
+    }
+
+    /**
      * Returns encoded HTML-formatted string sequence
      * @return
      */

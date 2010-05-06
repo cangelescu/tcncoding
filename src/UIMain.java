@@ -68,6 +68,7 @@ public class UIMain extends javax.swing.JFrame {
     List<List<FunctionStep>> sourceVideoSequence = null;
     List<DataVizualizatorProvider> sourceVideoSequenceSingleProvider = null;
     List<List<DataVizualizatorProvider>> sourceVideoSequenceProvider = null;
+    double channelImpulseLength = 0;
     List<List<FunctionStep>> channelVideoSequence = null;
     List<List<DataVizualizatorProvider>> channelVideoSequenceProvider = null;
 
@@ -291,7 +292,8 @@ public class UIMain extends javax.swing.JFrame {
     //shows channel videosequence
     void doChannelVideoSequence()
     {
-	currentChannelVideoCreator = new VideoCreator(channelSymbols, sourceImpulseLength);
+	channelImpulseLength = sourceImpulseLength * ((double)currentSourceCoder.getSequenceLength() / (double)currentChannelCoder.getSequenceLength());
+	currentChannelVideoCreator = new VideoCreator(channelSymbols, channelImpulseLength);
 	currentChannelVideoCreator.doVideoSequence();
 	channelVideoSequence = currentChannelVideoCreator.getVideoSequence();
 	if (currentChannelVideoSequenceVizualizator != null)

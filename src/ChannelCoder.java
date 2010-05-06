@@ -108,6 +108,18 @@ public class ChannelCoder
     }
 
     /**
+     * Returns encoded sequence length
+     * @return
+     */
+    public int getSequenceLength()
+    {
+	int out = 0;
+	for (BinaryNumber cbn: channelSequence)
+	    out += cbn.getAlignment();
+	return out;
+    }
+
+    /**
      * Returns HTML-formatted encoded string sequence
      * @return
      */
