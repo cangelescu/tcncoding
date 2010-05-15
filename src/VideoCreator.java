@@ -23,12 +23,13 @@ import java.util.List;
 public class VideoCreator {
     private List<BinaryNumber> inputSequence;
     private List<List<FunctionStep>> outputSequence = new ArrayList<List<FunctionStep>>();
-    private double impulseLength, step;
+    private double impulseLength, step, impulseLevel;
 
-    public VideoCreator(List<BinaryNumber> channelSymbols, double _impulseLength)
+    public VideoCreator(List<BinaryNumber> channelSymbols, double _impulseLength, double _impulseLevel)
     {
 	this.inputSequence = channelSymbols;
 	this.impulseLength = _impulseLength;
+	this.impulseLevel = _impulseLevel;
 	this.step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength));
     }
 
@@ -47,7 +48,7 @@ public class VideoCreator {
 		{
 		    if (cm)
 		    {
-			current.add(new FunctionStep(cx, 1));
+			current.add(new FunctionStep(cx, this.impulseLevel));
 		    } else
 		    {
 			current.add(new FunctionStep(cx, 0));

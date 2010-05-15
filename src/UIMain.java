@@ -267,7 +267,7 @@ public class UIMain extends javax.swing.JFrame {
 	    sourceImpulseLength = 1 / Math.max((Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue());
 	else
 	    sourceImpulseLength = 1 / (Double)bearerFrequency1.getValue();
-	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength);
+	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength, 1);
 	currentSourceVideoCreator.doVideoSequence();
 	sourceVideoSequence = currentSourceVideoCreator.getVideoSequence();
 	if (currentSourceVideoSequenceVizualizator != null)
@@ -293,7 +293,7 @@ public class UIMain extends javax.swing.JFrame {
     void doChannelVideoSequence()
     {
 	channelImpulseLength = sourceImpulseLength * ((double)currentSourceCoder.getSequenceLength() / (double)currentChannelCoder.getSequenceLength());
-	currentChannelVideoCreator = new VideoCreator(channelSymbols, channelImpulseLength);
+	currentChannelVideoCreator = new VideoCreator(channelSymbols, channelImpulseLength, 0.75);
 	currentChannelVideoCreator.doVideoSequence();
 	channelVideoSequence = currentChannelVideoCreator.getVideoSequence();
 	if (currentChannelVideoSequenceVizualizator != null)

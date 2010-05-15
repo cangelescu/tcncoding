@@ -16,10 +16,12 @@
 
 */
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
+import java.awt.Stroke;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -89,7 +91,7 @@ public class DataVizualizator extends JPanel
 	//0
 	g2.drawString("0", zeroX - (int)(1.5 * g2.getFontMetrics().charWidth('0')), zeroY + g2.getFontMetrics().getHeight() / 3);
 	
-	g2.setColor(Color.BLUE);
+	g2.setColor(Color.BLACK);
 	//legend x
 	g2.drawString(lX, this.getWidth() - rightMarginX, zeroY + g2.getFontMetrics().getHeight());
 	//legend y
@@ -97,12 +99,9 @@ public class DataVizualizator extends JPanel
 	//find max value
 	double maxY = 0;
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
-	{
-	    maxY = cldvp.get(0).getMaxValue();
-	    for (DataVizualizatorProvider cs: cldvp)
-		if (cs.getMaxValue() > maxY)
-		    maxY = cs.getMaxValue();
-	}
+	    for (DataVizualizatorProvider cdvp: cldvp)
+		if (cdvp.getMaxValue() > maxY)
+		    maxY = cdvp.getMaxValue();
 	String maxYString = String.format("%1.2f", maxY);
 	//chart scaling factor
 	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
@@ -112,11 +111,14 @@ public class DataVizualizator extends JPanel
 	g2.setColor(Color.BLACK);
 	g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder);
 	g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder + g2.getFontMetrics().getHeight() / 3);
+	//set stroke
+	Stroke cStroke = new BasicStroke(2);
+	g2.setStroke(cStroke);
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	{
 	    chartIndex++;
 	    if (chartIndex == 1)
-		g2.setColor(Color.BLACK);
+		g2.setColor(Color.BLUE);
 	    else
 		g2.setColor(Color.RED);
 	    //current position of pen
@@ -130,23 +132,35 @@ public class DataVizualizator extends JPanel
 	    //draw chart
 	    double currentTime = 0;
 	    int index = 0;
+	    //remember real previous value to draw impulses properly
+	    double prevYValue = 0;
 	    while (currentTime <= totalTime)
 	    {
+		//controls, which piece of chart must be used
 		if (currentTime > onePiece * (index + 1))
 		    index++;
-		int newX = currentX + 1;
+		//gets real Y value
 		double yValue = cldvp.get(index).getFunction(currentTime);
+		//calculates scaled Y value
 		int newY;
+		//have to do this because of chart jumping
 		if (yValue == 0)
 		    newY = zeroY;
 		else
 		    newY = (int) (zeroY - scalingFactor * yValue);
-		g2.drawLine(currentX, currentY, newX, newY);
-		currentX = newX;
+		//if it is impulse, draw its front straightly
+		if (prevYValue * yValue == 0)
+		    g2.drawLine(currentX, currentY, currentX++, newY);
+		else
+		    g2.drawLine(currentX, currentY, ++currentX, newY);
+		//sets new step
 		currentY = newY;
 		currentTime += step;
+		//remember old Y real value
+		prevYValue = yValue;
 	    }
-	    g2.drawLine(currentX, currentY, currentX + 1, zeroY);
+	    //draw line to zero level at the end
+	    g2.drawLine(currentX, currentY, currentX, zeroY);
 	}
     }
 }
