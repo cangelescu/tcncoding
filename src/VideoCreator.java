@@ -20,11 +20,22 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideoCreator {
+/**
+ *
+ * @author post-factum
+ */
+public class VideoCreator
+{
     private List<BinaryNumber> inputSequence;
     private List<List<FunctionStep>> outputSequence = new ArrayList<List<FunctionStep>>();
     private double impulseLength, step, impulseLevel;
 
+    /**
+     * Creates videosequence
+     * @param channelSymbols list of source symbols
+     * @param _impulseLength length of each impulse, s
+     * @param _impulseLevel level of each impulse, V
+     */
     public VideoCreator(List<BinaryNumber> channelSymbols, double _impulseLength, double _impulseLevel)
     {
 	this.inputSequence = channelSymbols;
@@ -33,6 +44,9 @@ public class VideoCreator {
 	this.step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength));
     }
 
+    /**
+     * Runs videsequence creating
+     */
     public void doVideoSequence()
     {
 	this.outputSequence.clear();
@@ -61,6 +75,10 @@ public class VideoCreator {
 	}
     }
 
+    /**
+     * Returns resulted videosequence
+     * @return
+     */
     public List<List<FunctionStep>> getVideoSequence()
     {
 	return this.outputSequence;
