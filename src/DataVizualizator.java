@@ -68,6 +68,12 @@ public class DataVizualizator extends JPanel
 	final int bottomMarginY = 10;
 	final int xBorder = 10;
 	final int yBorder = 10;
+	final int topYBorder = topMarginY + yBorder;
+	final int bottomYBorder = this.getHeight() - bottomMarginY;
+
+	//longtitude of chart
+	int distance = this.getWidth() - (leftMarginX + rightMarginX + xBorder);
+
 	//arrows size
 	final int arrowWidth = 2;
 	final int arrowHeight = 7;
@@ -79,9 +85,21 @@ public class DataVizualizator extends JPanel
 	//chart index
 	int chartIndex = 0;
 
+	//draw grid
+	g2.setColor(new Color(200, 200, 200));
+	int gridXStepSize = distance / 5;
+	int gridYStepSize = (bottomYBorder - topYBorder) / 5;
+	for (int i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
+	    g2.drawLine(i, bottomYBorder, i, topYBorder);
+	for (int i = zeroY - gridYStepSize; i >= topYBorder; i -= gridYStepSize)
+	    g2.drawLine(zeroX + 1, i, zeroX + distance, i);
+	for (int i = zeroY + gridYStepSize; i <= bottomYBorder; i += gridYStepSize)
+	    g2.drawLine(zeroX + 1, i, zeroX + distance, i);
+
+	g2.setColor(Color.BLACK);
 	//draw coordinates system
 	g2.drawLine(leftMarginX, zeroY, this.getWidth() - rightMarginX + xBorder, zeroY);
-	g2.drawLine(leftMarginX, topMarginY, leftMarginX, this.getHeight() - bottomMarginY);
+	g2.drawLine(leftMarginX, topMarginY, leftMarginX, bottomYBorder);
 	//0y arrow
 	g2.drawLine(leftMarginX, topMarginY, leftMarginX - arrowWidth, topMarginY + arrowHeight);
 	g2.drawLine(leftMarginX, topMarginY, leftMarginX + arrowWidth, topMarginY + arrowHeight);
@@ -90,27 +108,32 @@ public class DataVizualizator extends JPanel
 	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY + arrowWidth);
 	//0
 	g2.drawString("0", zeroX - (int)(1.5 * g2.getFontMetrics().charWidth('0')), zeroY + g2.getFontMetrics().getHeight() / 3);
-	
-	g2.setColor(Color.BLACK);
+
 	//legend x
 	g2.drawString(lX, this.getWidth() - rightMarginX, zeroY + g2.getFontMetrics().getHeight());
 	//legend y
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - g2.getFontMetrics().charWidth('0') / 2, topMarginY);
-	//find max value
+
+	//find max values
 	double maxY = 0;
+	int maxCount = 0;
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
+	{
+	    if (cldvp.size() > maxCount)
+		maxCount = cldvp.size();
 	    for (DataVizualizatorProvider cdvp: cldvp)
 		if (cdvp.getMaxValue() > maxY)
 		    maxY = cdvp.getMaxValue();
+	}
 	String maxYString = String.format("%1.2f", maxY);
 	//chart scaling factor
 	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
-	//longtitude of chart
-	int distance = this.getWidth() - (leftMarginX + rightMarginX + xBorder);
+
 	//draw steps y
 	g2.setColor(Color.BLACK);
-	g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder);
-	g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topMarginY + yBorder + g2.getFontMetrics().getHeight() / 3);
+	g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topYBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topYBorder);
+	g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topYBorder + g2.getFontMetrics().getHeight() / 3);
+
 	//set stroke
 	Stroke cStroke = new BasicStroke(2);
 	g2.setStroke(cStroke);
