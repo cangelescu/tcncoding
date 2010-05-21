@@ -85,10 +85,30 @@ public class DataVizualizator extends JPanel
 	//chart index
 	int chartIndex = 0;
 
+	//find max values
+	double maxY = 0;
+	int maxCount = 0;
+	for (List<DataVizualizatorProvider> cldvp: this.chartData)
+	{
+	    if (cldvp.size() > maxCount)
+		maxCount = cldvp.size();
+	    for (DataVizualizatorProvider cdvp: cldvp)
+		if (cdvp.getMaxValue() > maxY)
+		    maxY = cdvp.getMaxValue();
+	}
+	String maxYString = String.format("%1.2f", maxY);
+	//chart scaling factor
+	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
+
 	//draw grid
 	g2.setColor(new Color(200, 200, 200));
 	int gridXStepSize = distance / 5;
-	int gridYStepSize = (bottomYBorder - topYBorder) / 5;
+	int gridYStepSize;
+	if (maxY != 0)
+	    gridYStepSize = (int) (2 * maxY * scalingFactor / 10);
+	else
+	    gridYStepSize = (bottomYBorder - topYBorder) / 10;
+
 	for (int i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
 	    g2.drawLine(i, bottomYBorder, i, topYBorder);
 	for (int i = zeroY - gridYStepSize; i >= topYBorder; i -= gridYStepSize)
@@ -113,21 +133,6 @@ public class DataVizualizator extends JPanel
 	g2.drawString(lX, this.getWidth() - rightMarginX, zeroY + g2.getFontMetrics().getHeight());
 	//legend y
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - g2.getFontMetrics().charWidth('0') / 2, topMarginY);
-
-	//find max values
-	double maxY = 0;
-	int maxCount = 0;
-	for (List<DataVizualizatorProvider> cldvp: this.chartData)
-	{
-	    if (cldvp.size() > maxCount)
-		maxCount = cldvp.size();
-	    for (DataVizualizatorProvider cdvp: cldvp)
-		if (cdvp.getMaxValue() > maxY)
-		    maxY = cdvp.getMaxValue();
-	}
-	String maxYString = String.format("%1.2f", maxY);
-	//chart scaling factor
-	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
 
 	//draw steps y
 	g2.setColor(Color.BLACK);
