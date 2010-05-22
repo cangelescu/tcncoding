@@ -102,6 +102,7 @@ public class DataVizualizator extends JPanel
 
 	//draw grid
 	g2.setColor(new Color(200, 200, 200));
+	//use double type due to required accuracy
 	double gridXStepSize = distance / 10;
 	double gridYStepSize;
 	if (maxY != 0)
@@ -109,7 +110,7 @@ public class DataVizualizator extends JPanel
 	else
 	    gridYStepSize = (bottomYBorder - topYBorder) / 10;
 
-	//X steps
+	//X axis steps
 	for (double i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
 	    g2.drawLine((int)i, bottomYBorder, (int)i, topYBorder);
 
@@ -117,25 +118,14 @@ public class DataVizualizator extends JPanel
 	g2.setColor(Color.BLACK);
 	g2.drawString("0", zeroX - 3 * yStepsMargin, zeroY + g2.getFontMetrics().getHeight() / 3);
 	g2.setColor(new Color(200, 200, 200));
-	//Y steps
-	for (double i = zeroY - gridYStepSize; i >= topYBorder - 1; i -= gridYStepSize)
+	//Y axis step
+	for (double i = zeroY + gridYStepSize * 5; i >= zeroY - gridYStepSize * 5 - 1; i -= gridYStepSize)
 	{
-	    g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
 	    double cdValue = (zeroY - i) / scalingFactor;
-	    if (cdValue != 0)
+	    //omit printing zero mark due to its present
+	    if (Math.abs((i - zeroY) / scalingFactor) > gridYStepSize / (2 * scalingFactor))
 	    {
-		String csValue = String.format("%1.2f", cdValue);
-		g2.setColor(Color.BLACK);
-		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
-		g2.setColor(new Color(200, 200, 200));
-	    }
-	}
-	for (double i = zeroY + gridYStepSize; i <= bottomYBorder; i += gridYStepSize)
-	{
-	    g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
-	    double cdValue = (zeroY - i) / scalingFactor;
-	    if (cdValue != 0)
-	    {
+		g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
 		String csValue = String.format("%1.2f", cdValue);
 		g2.setColor(Color.BLACK);
 		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
