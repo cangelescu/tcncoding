@@ -281,7 +281,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
 	//creates new vizualizator
-	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, "t", "Sv(t), В");
+	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
 	//shows chart
 	currentSourceVideoSequenceVizualizator.setVisible(true);
 	blockSourceVideoSequenceOutputField.add(currentSourceVideoSequenceVizualizator);
@@ -307,7 +307,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
 	//creates new vizualizator
-	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, "t", "Sv(t), В");
+	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
 	//shows chart
 	currentChannelVideoSequenceVizualizator.setVisible(true);
 	blockChannelVideoSequenceOutputField.add(currentChannelVideoSequenceVizualizator);
@@ -336,7 +336,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
 	//creates new vizualizator
-	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, "t", "S(t), В");
+	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, "t, с", "S(t), В");
 	//shows chart
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
@@ -377,7 +377,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
 	//creates new vizualizator
-	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, "t", "S'(t), В");
+	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, "t, с", "S'(t), В");
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
@@ -427,7 +427,7 @@ public class UIMain extends javax.swing.JFrame {
 	//vizualizes signal
 	multiplier0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	multiplier0OutputProvider.add((new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.MULTIPLIER)).getProvided());
-	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t", "Sm0(t), В");
+	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t, с", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
@@ -443,7 +443,7 @@ public class UIMain extends javax.swing.JFrame {
 
 	multiplier1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	multiplier1OutputProvider.add((new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER)).getProvided());
-	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t", "Sm1(t), В");
+	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t, с", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
@@ -469,7 +469,7 @@ public class UIMain extends javax.swing.JFrame {
 
 	integrator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	integrator0OutputProvider.add((new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
-	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t", "Si0(t), В");
+	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t, с", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
@@ -484,7 +484,7 @@ public class UIMain extends javax.swing.JFrame {
 
 	integrator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	integrator1OutputProvider.add((new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
-	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t", "Si1(t), В");
+	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t, с", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
 	currentIntegratorVizualizator1.repaint();
@@ -507,7 +507,7 @@ public class UIMain extends javax.swing.JFrame {
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	summatorOutputProvider.add((new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
-	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t", "Ssum(t), В");
+	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t, с", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
 	summatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();

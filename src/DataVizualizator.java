@@ -145,7 +145,7 @@ public class DataVizualizator extends JPanel
 	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY + arrowWidth);
 
 	//legend x
-	g2.drawString(lX, this.getWidth() - rightMarginX, zeroY + g2.getFontMetrics().getHeight());
+	g2.drawString(lX, this.getWidth() - g2.getFontMetrics().stringWidth(lX), zeroY + g2.getFontMetrics().getHeight());
 	//legend y
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - yStepsMargin, topMarginY);
 
