@@ -22,6 +22,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Stroke;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -87,18 +89,23 @@ public class DataVizualizator extends JPanel
 	int chartIndex = 0;
 
 	//find max values
-	double maxY = 0;
+	double maxX = 0, maxY = 0;
 	int maxCount = 0;
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	{
 	    if (cldvp.size() > maxCount)
 		maxCount = cldvp.size();
 	    for (DataVizualizatorProvider cdvp: cldvp)
+	    {
 		if (cdvp.getMaxValue() > maxY)
 		    maxY = cdvp.getMaxValue();
+		if (cdvp.getEnd() > maxX)
+		    maxX = cdvp.getEnd();
+	    }
 	}
 	//chart scaling factor
-	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
+	double yScalingFactor = (zeroY - topMarginY - yBorder) / maxY;
+	double xScalingFactor = distance / maxX;
 
 	//draw grid
 	g2.setColor(new Color(200, 200, 200));
@@ -106,13 +113,21 @@ public class DataVizualizator extends JPanel
 	double gridXStepSize = distance / 10;
 	double gridYStepSize;
 	if (maxY != 0)
-	    gridYStepSize = 2 * maxY * scalingFactor / 10;
+	    gridYStepSize = 2 * maxY * yScalingFactor / 10;
 	else
 	    gridYStepSize = (bottomYBorder - topYBorder) / 10;
 
 	//X axis steps
+	NumberFormat formatter = new DecimalFormat("0.00E0");
 	for (double i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
+	{
 	    g2.drawLine((int)i, bottomYBorder, (int)i, topYBorder);
+	    double cdValue = i / xScalingFactor;
+	    String csValue = formatter.format(cdValue);
+	    g2.setColor(Color.BLACK);
+	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
+	    g2.setColor(new Color(200, 200, 200));
+	}
 
 	//0
 	g2.setColor(Color.BLACK);
@@ -121,11 +136,11 @@ public class DataVizualizator extends JPanel
 	//Y axis step
 	for (double i = zeroY + gridYStepSize * 5; i >= zeroY - gridYStepSize * 5 - 1; i -= gridYStepSize)
 	{
-	    double cdValue = (zeroY - i) / scalingFactor;
+	    g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
+	    double cdValue = (zeroY - i) / yScalingFactor;
 	    //omit printing zero mark due to its present
-	    if (Math.abs((i - zeroY) / scalingFactor) > gridYStepSize / (2 * scalingFactor))
+	    if (Math.abs((i - zeroY) / yScalingFactor) > gridYStepSize / (2 * yScalingFactor))
 	    {
-		g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
 		String csValue = String.format("%1.2f", cdValue);
 		g2.setColor(Color.BLACK);
 		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
@@ -185,7 +200,7 @@ public class DataVizualizator extends JPanel
 		if (yValue == 0)
 		    newY = zeroY;
 		else
-		    newY = (int) (zeroY - scalingFactor * yValue);
+		    newY = (int) (zeroY - yScalingFactor * yValue);
 		//if it is impulse, draw its front straightly
 		if (prevYValue * yValue == 0)
 		    g2.drawLine(currentX, currentY, currentX++, newY);
