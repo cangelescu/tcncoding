@@ -62,7 +62,8 @@ public class DataVizualizator extends JPanel
 	g2.setPaint(paint);
 
 	//chart margins
-	final int leftMarginX = 8 * g2.getFontMetrics().charWidth('0');
+	final int yStepsMargin = g2.getFontMetrics().charWidth('0') / 2;
+	final int leftMarginX = 16 * yStepsMargin;
 	final int rightMarginX = 10;
 	final int topMarginY = 10;
 	final int bottomMarginY = 10;
@@ -96,25 +97,51 @@ public class DataVizualizator extends JPanel
 		if (cdvp.getMaxValue() > maxY)
 		    maxY = cdvp.getMaxValue();
 	}
-	String maxYString = String.format("%1.2f", maxY);
 	//chart scaling factor
 	double scalingFactor = (zeroY - topMarginY - yBorder) / maxY;
 
 	//draw grid
 	g2.setColor(new Color(200, 200, 200));
-	int gridXStepSize = distance / 5;
-	int gridYStepSize;
+	double gridXStepSize = distance / 10;
+	double gridYStepSize;
 	if (maxY != 0)
-	    gridYStepSize = (int) (2 * maxY * scalingFactor / 10);
+	    gridYStepSize = 2 * maxY * scalingFactor / 10;
 	else
 	    gridYStepSize = (bottomYBorder - topYBorder) / 10;
 
-	for (int i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
-	    g2.drawLine(i, bottomYBorder, i, topYBorder);
-	for (int i = zeroY - gridYStepSize; i >= topYBorder; i -= gridYStepSize)
-	    g2.drawLine(zeroX + 1, i, zeroX + distance, i);
-	for (int i = zeroY + gridYStepSize; i <= bottomYBorder; i += gridYStepSize)
-	    g2.drawLine(zeroX + 1, i, zeroX + distance, i);
+	//X steps
+	for (double i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
+	    g2.drawLine((int)i, bottomYBorder, (int)i, topYBorder);
+
+	//0
+	g2.setColor(Color.BLACK);
+	g2.drawString("0", zeroX - 3 * yStepsMargin, zeroY + g2.getFontMetrics().getHeight() / 3);
+	g2.setColor(new Color(200, 200, 200));
+	//Y steps
+	for (double i = zeroY - gridYStepSize; i >= topYBorder - 1; i -= gridYStepSize)
+	{
+	    g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
+	    double cdValue = (zeroY - i) / scalingFactor;
+	    if (cdValue != 0)
+	    {
+		String csValue = String.format("%1.2f", cdValue);
+		g2.setColor(Color.BLACK);
+		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
+		g2.setColor(new Color(200, 200, 200));
+	    }
+	}
+	for (double i = zeroY + gridYStepSize; i <= bottomYBorder; i += gridYStepSize)
+	{
+	    g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
+	    double cdValue = (zeroY - i) / scalingFactor;
+	    if (cdValue != 0)
+	    {
+		String csValue = String.format("%1.2f", cdValue);
+		g2.setColor(Color.BLACK);
+		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
+		g2.setColor(new Color(200, 200, 200));
+	    }
+	}
 
 	g2.setColor(Color.BLACK);
 	//draw coordinates system
@@ -126,18 +153,11 @@ public class DataVizualizator extends JPanel
 	//0x arrow
 	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY - arrowWidth);
 	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY + arrowWidth);
-	//0
-	g2.drawString("0", zeroX - (int)(1.5 * g2.getFontMetrics().charWidth('0')), zeroY + g2.getFontMetrics().getHeight() / 3);
 
 	//legend x
 	g2.drawString(lX, this.getWidth() - rightMarginX, zeroY + g2.getFontMetrics().getHeight());
 	//legend y
-	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - g2.getFontMetrics().charWidth('0') / 2, topMarginY);
-
-	//draw steps y
-	g2.setColor(Color.BLACK);
-	g2.drawLine(zeroX - g2.getFontMetrics().charWidth('0') / 2, topYBorder, zeroX + g2.getFontMetrics().charWidth('0') / 2, topYBorder);
-	g2.drawString(maxYString, zeroX - g2.getFontMetrics().stringWidth(maxYString) - g2.getFontMetrics().charWidth('0') / 2, topYBorder + g2.getFontMetrics().getHeight() / 3);
+	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - yStepsMargin, topMarginY);
 
 	//set stroke
 	Stroke cStroke = new BasicStroke(2);
