@@ -63,6 +63,9 @@ public class DataVizualizator extends JPanel
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setPaint(paint);
 
+	//grid color
+	final Color gridColor = new Color(200, 200, 200);
+
 	//chart margins
 	final int yStepsMargin = g2.getFontMetrics().charWidth('0') / 2;
 	final int leftMarginX = 16 * yStepsMargin;
@@ -108,7 +111,7 @@ public class DataVizualizator extends JPanel
 	double xScalingFactor = distance / maxX;
 
 	//draw grid
-	g2.setColor(new Color(200, 200, 200));
+	g2.setColor(gridColor);
 	//use double type due to required accuracy
 	double gridXStepSize = distance / 10;
 	double gridYStepSize;
@@ -126,13 +129,13 @@ public class DataVizualizator extends JPanel
 	    String csValue = formatter.format(cdValue);
 	    g2.setColor(Color.BLACK);
 	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
-	    g2.setColor(new Color(200, 200, 200));
+	    g2.setColor(gridColor);
 	}
 
 	//0
 	g2.setColor(Color.BLACK);
 	g2.drawString("0", zeroX - 3 * yStepsMargin, zeroY + g2.getFontMetrics().getHeight() / 3);
-	g2.setColor(new Color(200, 200, 200));
+	g2.setColor(gridColor);
 	//Y axis step
 	for (double i = zeroY + gridYStepSize * 5; i >= zeroY - gridYStepSize * 5 - 1; i -= gridYStepSize)
 	{
@@ -144,7 +147,7 @@ public class DataVizualizator extends JPanel
 		String csValue = String.format("%1.2f", cdValue);
 		g2.setColor(Color.BLACK);
 		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
-		g2.setColor(new Color(200, 200, 200));
+		g2.setColor(gridColor);
 	    }
 	}
 
