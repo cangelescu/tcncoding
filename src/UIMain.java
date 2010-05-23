@@ -263,10 +263,7 @@ public class UIMain extends javax.swing.JFrame {
     //shows source videosequence
     void doSourceVideoSequence()
     {
-	if (bearerFrequency0.isEnabled())
-	    sourceImpulseLength = 1 / Math.max((Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue());
-	else
-	    sourceImpulseLength = 1 / (Double)bearerFrequency1.getValue();
+	sourceImpulseLength = 1 / (Double)informationalSpeed.getValue();
 	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength, 1);
 	currentSourceVideoCreator.doVideoSequence();
 	sourceVideoSequence = currentSourceVideoCreator.getVideoSequence();
@@ -319,7 +316,7 @@ public class UIMain extends javax.swing.JFrame {
     void doModulating()
     {
 	//gets MODULATOR output signals
-	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue(), channelSymbols);
+	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue(), channelSymbols, channelImpulseLength);
 	currentModulator.doModulation();
 	this.modulatorData = currentModulator.getSignals();
 
@@ -527,30 +524,18 @@ public class UIMain extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        TCSTabs = new javax.swing.JTabbedPane();
-        blockMessageSource = new javax.swing.JPanel();
-        sourceMessagePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        messageArea = new javax.swing.JTextArea();
-        blockSourceCoder = new javax.swing.JPanel();
-        sourceCodesChooserLabel = new javax.swing.JLabel();
+        modellingOptionsDialog = new javax.swing.JDialog();
+        optionsTabs = new javax.swing.JTabbedPane();
+        sourceCoderTab = new javax.swing.JPanel();
         sourceCodesChooser = new javax.swing.JComboBox();
-        blockSourceCoderOutputPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        blockSourceCoderOutput = new javax.swing.JTextPane();
-        blockSourceVideoSequence = new javax.swing.JPanel();
-        blockSourceVideoSequenceOutputPanel = new javax.swing.JPanel();
-        blockSourceVideoSequenceOutputField = new javax.swing.JPanel();
-        blockChannelCoder = new javax.swing.JPanel();
+        sourceCodesChooserLabel = new javax.swing.JLabel();
+        informationalSpeedLabel = new javax.swing.JLabel();
+        informationalSpeed = new javax.swing.JSpinner();
+        bpsLabel = new javax.swing.JLabel();
+        channelCoderTab = new javax.swing.JPanel();
         channelCodesChooserLabel = new javax.swing.JLabel();
         channelCodesChooser = new javax.swing.JComboBox();
-        blockChannelCoderOutputPanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        blockChannelCoderOutput = new javax.swing.JTextPane();
-        blockChannelVideoSequence = new javax.swing.JPanel();
-        blockChannelVideoSequenceOutputPanel = new javax.swing.JPanel();
-        blockChannelVideoSequenceOutputField = new javax.swing.JPanel();
-        blockModulatorOptions = new javax.swing.JPanel();
+        modulatorTab = new javax.swing.JPanel();
         modulationTypeLabel = new javax.swing.JLabel();
         modulationTypeChooser = new javax.swing.JComboBox();
         bearerAmplitudeLabel = new javax.swing.JLabel();
@@ -562,6 +547,25 @@ public class UIMain extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        TCSTabs = new javax.swing.JTabbedPane();
+        blockMessageSource = new javax.swing.JPanel();
+        sourceMessagePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        messageArea = new javax.swing.JTextArea();
+        blockSourceCoder = new javax.swing.JPanel();
+        blockSourceCoderOutputPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        blockSourceCoderOutput = new javax.swing.JTextPane();
+        blockSourceVideoSequence = new javax.swing.JPanel();
+        blockSourceVideoSequenceOutputPanel = new javax.swing.JPanel();
+        blockSourceVideoSequenceOutputField = new javax.swing.JPanel();
+        blockChannelCoder = new javax.swing.JPanel();
+        blockChannelCoderOutputPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        blockChannelCoderOutput = new javax.swing.JTextPane();
+        blockChannelVideoSequence = new javax.swing.JPanel();
+        blockChannelVideoSequenceOutputPanel = new javax.swing.JPanel();
+        blockChannelVideoSequenceOutputField = new javax.swing.JPanel();
         blockModulator = new javax.swing.JPanel();
         modulatorOutputPanel = new javax.swing.JPanel();
         modulatorOutputField = new javax.swing.JPanel();
@@ -610,6 +614,7 @@ public class UIMain extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
         modellingMenu = new javax.swing.JMenu();
+        doModellingOptionsItem = new javax.swing.JMenuItem();
         doModellingItem = new javax.swing.JMenuItem();
         developerMenu = new javax.swing.JMenu();
         sum2Item = new javax.swing.JMenuItem();
@@ -675,6 +680,182 @@ public class UIMain extends javax.swing.JFrame {
                 .addComponent(aboutDialogClose))
         );
 
+        modellingOptionsDialog.setTitle("Налаштування модулювання");
+        modellingOptionsDialog.setResizable(false);
+
+        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI8-U", "Морзе", "Шенона-Фано" }));
+        sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sourceCodesChooserItemStateChanged(evt);
+            }
+        });
+
+        sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
+        sourceCodesChooserLabel.setText("Код:");
+
+        informationalSpeedLabel.setText("Інформаційна швидкість:");
+
+        informationalSpeed.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1024000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+
+        bpsLabel.setText("біт/с");
+
+        javax.swing.GroupLayout sourceCoderTabLayout = new javax.swing.GroupLayout(sourceCoderTab);
+        sourceCoderTab.setLayout(sourceCoderTabLayout);
+        sourceCoderTabLayout.setHorizontalGroup(
+            sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sourceCoderTabLayout.createSequentialGroup()
+                .addComponent(sourceCodesChooserLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sourceCodesChooser, 0, 590, Short.MAX_VALUE))
+            .addGroup(sourceCoderTabLayout.createSequentialGroup()
+                .addComponent(informationalSpeedLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bpsLabel)
+                .addGap(267, 267, 267))
+        );
+        sourceCoderTabLayout.setVerticalGroup(
+            sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sourceCoderTabLayout.createSequentialGroup()
+                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sourceCodesChooserLabel)
+                    .addComponent(sourceCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(informationalSpeedLabel)
+                    .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bpsLabel))
+                .addContainerGap(214, Short.MAX_VALUE))
+        );
+
+        optionsTabs.addTab("Кодер джерела", sourceCoderTab);
+
+        channelCodesChooserLabel.setLabelFor(channelCodesChooser);
+        channelCodesChooserLabel.setText("Код:");
+
+        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "із перевіркою на парність", "інверсний", "манчестерський", "Хемінга" }));
+        channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                channelCodesChooserItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout channelCoderTabLayout = new javax.swing.GroupLayout(channelCoderTab);
+        channelCoderTab.setLayout(channelCoderTabLayout);
+        channelCoderTabLayout.setHorizontalGroup(
+            channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(channelCoderTabLayout.createSequentialGroup()
+                .addComponent(channelCodesChooserLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(channelCodesChooser, 0, 590, Short.MAX_VALUE))
+        );
+        channelCoderTabLayout.setVerticalGroup(
+            channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(channelCoderTabLayout.createSequentialGroup()
+                .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(channelCodesChooserLabel)
+                    .addComponent(channelCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(246, Short.MAX_VALUE))
+        );
+
+        optionsTabs.addTab("Кодер каналу", channelCoderTab);
+
+        modulationTypeLabel.setLabelFor(modulationTypeChooser);
+        modulationTypeLabel.setText("Вид модуляції:");
+
+        modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "АМн (амплітудна маніпуляція)", "ЧМн (частотна маніпуляція)", "ФМн (фазова маніпуляція)", "ВФМн (відносна фазова маніпуляція)" }));
+        modulationTypeChooser.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                modulationTypeChooserItemStateChanged(evt);
+            }
+        });
+
+        bearerAmplitudeLabel.setText("Амплітуда несучої:");
+
+        bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(50.0d, 0.0d, 100.0d, 1.0d));
+
+        bearerFrequency0Label.setText("Частота несучої 0:");
+        bearerFrequency0Label.setEnabled(false);
+
+        bearerFrequency1Label.setText("Частота несучої 1:");
+
+        bearerFrequency0.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        bearerFrequency0.setEnabled(false);
+
+        bearerFrequency1.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+
+        jLabel5.setText("В");
+
+        jLabel6.setText("Гц");
+
+        jLabel7.setText("Гц");
+
+        javax.swing.GroupLayout modulatorTabLayout = new javax.swing.GroupLayout(modulatorTab);
+        modulatorTab.setLayout(modulatorTabLayout);
+        modulatorTabLayout.setHorizontalGroup(
+            modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modulatorTabLayout.createSequentialGroup()
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modulatorTabLayout.createSequentialGroup()
+                        .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bearerAmplitudeLabel)
+                            .addComponent(modulationTypeLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(modulatorTabLayout.createSequentialGroup()
+                                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bearerFrequency0, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bearerAmplitude, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)))
+                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(bearerFrequency1Label, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bearerFrequency0Label, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(0, 0, 0))
+        );
+        modulatorTabLayout.setVerticalGroup(
+            modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modulatorTabLayout.createSequentialGroup()
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modulationTypeLabel)
+                    .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bearerAmplitudeLabel)
+                    .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bearerFrequency0Label)
+                    .addComponent(bearerFrequency0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bearerFrequency1Label)
+                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
+        optionsTabs.addTab("Налаштування модулятора", modulatorTab);
+
+        javax.swing.GroupLayout modellingOptionsDialogLayout = new javax.swing.GroupLayout(modellingOptionsDialog.getContentPane());
+        modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
+        modellingOptionsDialogLayout.setHorizontalGroup(
+            modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+        );
+        modellingOptionsDialogLayout.setVerticalGroup(
+            modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Система зв'язку");
         setResizable(false);
@@ -700,7 +881,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -722,16 +903,6 @@ public class UIMain extends javax.swing.JFrame {
             }
         });
 
-        sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
-        sourceCodesChooserLabel.setText("Код:");
-
-        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI8-U", "Морзе", "Шенона-Фано" }));
-        sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                sourceCodesChooserItemStateChanged(evt);
-            }
-        });
-
         blockSourceCoderOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід кодера джерела повідомлень"));
 
         blockSourceCoderOutput.setContentType("text/html");
@@ -746,27 +917,18 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
         blockSourceCoder.setLayout(blockSourceCoderLayout);
         blockSourceCoderLayout.setHorizontalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockSourceCoderLayout.createSequentialGroup()
-                .addComponent(sourceCodesChooserLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sourceCodesChooser, 0, 955, Short.MAX_VALUE))
             .addComponent(blockSourceCoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         blockSourceCoderLayout.setVerticalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockSourceCoderLayout.createSequentialGroup()
-                .addGroup(blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sourceCodesChooserLabel)
-                    .addComponent(sourceCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(blockSourceCoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(blockSourceCoderOutputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Кодер джерела повідомлень", blockSourceCoder);
@@ -781,7 +943,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockSourceVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockSourceVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockSourceVideoSequenceOutputPanel);
@@ -814,16 +976,6 @@ public class UIMain extends javax.swing.JFrame {
             }
         });
 
-        channelCodesChooserLabel.setLabelFor(channelCodesChooser);
-        channelCodesChooserLabel.setText("Код:");
-
-        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "із перевіркою на парність", "інверсний", "манчестерський", "Хемінга" }));
-        channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                channelCodesChooserItemStateChanged(evt);
-            }
-        });
-
         blockChannelCoderOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід кодера каналу"));
 
         blockChannelCoderOutput.setContentType("text/html");
@@ -838,27 +990,18 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
         blockChannelCoder.setLayout(blockChannelCoderLayout);
         blockChannelCoderLayout.setHorizontalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockChannelCoderLayout.createSequentialGroup()
-                .addComponent(channelCodesChooserLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(channelCodesChooser, 0, 955, Short.MAX_VALUE))
             .addComponent(blockChannelCoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         blockChannelCoderLayout.setVerticalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockChannelCoderLayout.createSequentialGroup()
-                .addGroup(blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(channelCodesChooserLabel)
-                    .addComponent(channelCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(blockChannelCoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(blockChannelCoderOutputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Кодер каналу", blockChannelCoder);
@@ -879,7 +1022,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockChannelVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockChannelVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockChannelVideoSequenceOutputPanel);
@@ -906,90 +1049,6 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Кодована відеопослідовність", blockChannelVideoSequence);
 
-        modulationTypeLabel.setLabelFor(modulationTypeChooser);
-        modulationTypeLabel.setText("Вид модуляції:");
-
-        modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "АМн (амплітудна маніпуляція)", "ЧМн (частотна маніпуляція)", "ФМн (фазова маніпуляція)", "ВФМн (відносна фазова маніпуляція)" }));
-        modulationTypeChooser.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                modulationTypeChooserItemStateChanged(evt);
-            }
-        });
-
-        bearerAmplitudeLabel.setText("Амплітуда несучої:");
-
-        bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(50.0d, 0.0d, 100.0d, 1.0d));
-
-        bearerFrequency0Label.setText("Частота несучої 0:");
-        bearerFrequency0Label.setEnabled(false);
-
-        bearerFrequency1Label.setText("Частота несучої 1:");
-
-        bearerFrequency0.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
-        bearerFrequency0.setEnabled(false);
-
-        bearerFrequency1.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
-
-        jLabel5.setText("В");
-
-        jLabel6.setText("Гц");
-
-        jLabel7.setText("Гц");
-
-        javax.swing.GroupLayout blockModulatorOptionsLayout = new javax.swing.GroupLayout(blockModulatorOptions);
-        blockModulatorOptions.setLayout(blockModulatorOptionsLayout);
-        blockModulatorOptionsLayout.setHorizontalGroup(
-            blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, blockModulatorOptionsLayout.createSequentialGroup()
-                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, blockModulatorOptionsLayout.createSequentialGroup()
-                        .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bearerAmplitudeLabel)
-                            .addComponent(modulationTypeLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(blockModulatorOptionsLayout.createSequentialGroup()
-                                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bearerFrequency0, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bearerAmplitude, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)))
-                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(bearerFrequency1Label, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bearerFrequency0Label, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap())
-        );
-        blockModulatorOptionsLayout.setVerticalGroup(
-            blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockModulatorOptionsLayout.createSequentialGroup()
-                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modulationTypeLabel)
-                    .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bearerAmplitudeLabel)
-                    .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerFrequency0Label)
-                    .addComponent(bearerFrequency0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(blockModulatorOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerFrequency1Label)
-                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addContainerGap(183, Short.MAX_VALUE))
-        );
-
-        TCSTabs.addTab("Налаштування модулятора", blockModulatorOptions);
-
         blockModulator.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 blockModulatorComponentShown(evt);
@@ -1006,7 +1065,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         modulatorOutputFieldLayout.setVerticalGroup(
             modulatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout modulatorOutputPanelLayout = new javax.swing.GroupLayout(modulatorOutputPanel);
@@ -1049,7 +1108,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         channelOutputFieldLayout.setVerticalGroup(
             channelOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
@@ -1092,7 +1151,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         multiplierOutputField0Layout.setVerticalGroup(
             multiplierOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel0Layout = new javax.swing.GroupLayout(multiplierOutputPanel0);
@@ -1135,7 +1194,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         multiplierOutputField1Layout.setVerticalGroup(
             multiplierOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel1Layout = new javax.swing.GroupLayout(multiplierOutputPanel1);
@@ -1178,7 +1237,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         integratorOutputField0Layout.setVerticalGroup(
             integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel0Layout = new javax.swing.GroupLayout(integratorOutputPanel0);
@@ -1221,7 +1280,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         integratorOutputField1Layout.setVerticalGroup(
             integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel1Layout = new javax.swing.GroupLayout(integratorOutputPanel1);
@@ -1264,7 +1323,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         summatorOutputFieldLayout.setVerticalGroup(
             summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout summatorOutputPanelLayout = new javax.swing.GroupLayout(summatorOutputPanel);
@@ -1305,7 +1364,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         receivedMessagePanelLayout.setVerticalGroup(
             receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageReceiverLayout = new javax.swing.GroupLayout(blockMessageReceiver);
@@ -1527,6 +1586,15 @@ public class UIMain extends javax.swing.JFrame {
         mainMenu.add(fileMenu);
 
         modellingMenu.setText("Моделювання");
+
+        doModellingOptionsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        doModellingOptionsItem.setText("Налаштування моделювання…");
+        doModellingOptionsItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doModellingOptionsItemActionPerformed(evt);
+            }
+        });
+        modellingMenu.add(doModellingOptionsItem);
 
         doModellingItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
         doModellingItem.setText("Виконати моделювання");
@@ -1876,6 +1944,12 @@ public class UIMain extends javax.swing.JFrame {
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelVideoSequenceComponentShown
 
+    private void doModellingOptionsItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doModellingOptionsItemActionPerformed
+    {//GEN-HEADEREND:event_doModellingOptionsItemActionPerformed
+	modellingOptionsDialog.setSize(650, 230);
+	modellingOptionsDialog.setVisible(true);
+    }//GEN-LAST:event_doModellingOptionsItemActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1907,7 +1981,6 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockMessageReceiver;
     private javax.swing.JPanel blockMessageSource;
     private javax.swing.JPanel blockModulator;
-    private javax.swing.JPanel blockModulatorOptions;
     private javax.swing.JPanel blockMultiplier0;
     private javax.swing.JPanel blockMultiplier1;
     private javax.swing.JPanel blockSourceCoder;
@@ -1918,17 +1991,22 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockSourceVideoSequenceOutputPanel;
     private javax.swing.JPanel blockSummator;
     private javax.swing.JMenuItem blockingItem;
+    private javax.swing.JLabel bpsLabel;
     private javax.swing.JButton channelButton;
     private javax.swing.JButton channelCoderButton;
+    private javax.swing.JPanel channelCoderTab;
     private javax.swing.JComboBox channelCodesChooser;
     private javax.swing.JLabel channelCodesChooserLabel;
     private javax.swing.JPanel channelOutputField;
     private javax.swing.JPanel channelOutputPanel;
     private javax.swing.JMenu developerMenu;
     private javax.swing.JMenuItem doModellingItem;
+    private javax.swing.JMenuItem doModellingOptionsItem;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JSpinner informationalSpeed;
+    private javax.swing.JLabel informationalSpeedLabel;
     private javax.swing.JMenuItem integrateItem;
     private javax.swing.JButton integrator0Button;
     private javax.swing.JButton integrator1Button;
@@ -1960,21 +2038,25 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JTextArea messageArea;
     private javax.swing.JButton messageSourceButton;
     private javax.swing.JMenu modellingMenu;
+    private javax.swing.JDialog modellingOptionsDialog;
     private javax.swing.JComboBox modulationTypeChooser;
     private javax.swing.JLabel modulationTypeLabel;
     private javax.swing.JButton modulatorButton;
     private javax.swing.JPanel modulatorOutputField;
     private javax.swing.JPanel modulatorOutputPanel;
+    private javax.swing.JPanel modulatorTab;
     private javax.swing.JButton multiplier0Button;
     private javax.swing.JButton multiplier1Button;
     private javax.swing.JPanel multiplierOutputField0;
     private javax.swing.JPanel multiplierOutputField1;
     private javax.swing.JPanel multiplierOutputPanel0;
     private javax.swing.JPanel multiplierOutputPanel1;
+    private javax.swing.JTabbedPane optionsTabs;
     private javax.swing.JTextPane receivedMessageArea;
     private javax.swing.JPanel receivedMessagePanel;
     private javax.swing.JMenuItem shl2Item;
     private javax.swing.JButton sourceCoderButton;
+    private javax.swing.JPanel sourceCoderTab;
     private javax.swing.JComboBox sourceCodesChooser;
     private javax.swing.JLabel sourceCodesChooserLabel;
     private javax.swing.JPanel sourceMessagePanel;
