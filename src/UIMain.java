@@ -389,20 +389,20 @@ public class UIMain extends javax.swing.JFrame {
 	switch (this.modulationType)
 	{
 	    case ASK:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), 0, 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency1.getValue(), 0, 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
 		break;
 	    case FSK:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency0.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency0.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
 		break;
 	    case PSK:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
 		break;
 	    case RPSK:
-		currentMultiplier0 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier(Double.valueOf(bearerFrequency1.getValue().toString()), Double.valueOf(bearerAmplitude.getValue().toString()), -Math.PI, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
 		break;
 	}
 
@@ -695,7 +695,7 @@ public class UIMain extends javax.swing.JFrame {
 
         informationalSpeedLabel.setText("Інформаційна швидкість:");
 
-        informationalSpeed.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1024000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        informationalSpeed.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(166666.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
 
         bpsLabel.setText("біт/с");
 
