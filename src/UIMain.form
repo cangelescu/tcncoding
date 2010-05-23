@@ -279,9 +279,9 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="hz1Label" min="-2" max="-2" attributes="0"/>
+                                              <Component id="hz0Label" min="-2" max="-2" attributes="0"/>
+                                              <Component id="voltsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="modulationTypeChooser" min="-2" pref="497" max="-2" attributes="2"/>
@@ -306,20 +306,20 @@
                               <Component id="bearerAmplitudeLabel" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="bearerAmplitude" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="voltsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="bearerFrequency0Label" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bearerFrequency0" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hz0Label" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="bearerFrequency1Label" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bearerFrequency1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hz1Label" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="156" max="32767" attributes="0"/>
                       </Group>
@@ -388,17 +388,17 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel5">
+                <Component class="javax.swing.JLabel" name="voltsLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x412;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel6">
+                <Component class="javax.swing.JLabel" name="hz0Label">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="hz1Label">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
                   </Properties>

@@ -544,9 +544,9 @@ public class UIMain extends javax.swing.JFrame {
         bearerFrequency1Label = new javax.swing.JLabel();
         bearerFrequency0 = new javax.swing.JSpinner();
         bearerFrequency1 = new javax.swing.JSpinner();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        voltsLabel = new javax.swing.JLabel();
+        hz0Label = new javax.swing.JLabel();
+        hz1Label = new javax.swing.JLabel();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
@@ -785,11 +785,11 @@ public class UIMain extends javax.swing.JFrame {
 
         bearerFrequency1.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
 
-        jLabel5.setText("В");
+        voltsLabel.setText("В");
 
-        jLabel6.setText("Гц");
+        hz0Label.setText("Гц");
 
-        jLabel7.setText("Гц");
+        hz1Label.setText("Гц");
 
         javax.swing.GroupLayout modulatorTabLayout = new javax.swing.GroupLayout(modulatorTab);
         modulatorTab.setLayout(modulatorTabLayout);
@@ -810,9 +810,9 @@ public class UIMain extends javax.swing.JFrame {
                                     .addComponent(bearerAmplitude, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)))
+                                    .addComponent(hz1Label)
+                                    .addComponent(hz0Label)
+                                    .addComponent(voltsLabel)))
                             .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(bearerFrequency1Label, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bearerFrequency0Label, javax.swing.GroupLayout.Alignment.LEADING))
@@ -829,17 +829,17 @@ public class UIMain extends javax.swing.JFrame {
                     .addComponent(bearerAmplitudeLabel)
                     .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
+                        .addComponent(voltsLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bearerFrequency0Label)
                     .addComponent(bearerFrequency0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(hz0Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bearerFrequency1Label)
                     .addComponent(bearerFrequency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(hz1Label))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
@@ -2005,6 +2005,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel hz0Label;
+    private javax.swing.JLabel hz1Label;
     private javax.swing.JSpinner informationalSpeed;
     private javax.swing.JLabel informationalSpeedLabel;
     private javax.swing.JMenuItem integrateItem;
@@ -2025,9 +2027,6 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2065,6 +2064,7 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel summatorOutputField;
     private javax.swing.JPanel summatorOutputPanel;
     private javax.swing.JPanel systemScheme;
+    private javax.swing.JLabel voltsLabel;
     private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables
 
