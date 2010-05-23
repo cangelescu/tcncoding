@@ -43,10 +43,8 @@ public class Integrator
     public void doIntegrating()
     {
 	this.out.clear();
-	double cx = 0;
 	for (MultiplierSignal cs: this.signals)
 	{
-	    cx += cs.getStart();
 	    List<FunctionStep> current = new ArrayList<FunctionStep>();
 	    double length = cs.getEnd() - cs.getStart();
 	    double step = Math.pow(Math.sqrt(3) * Math.E, Math.log(length));
@@ -54,13 +52,10 @@ public class Integrator
 	    double sp = cs.getStart();
 	    while (sp <= cs.getEnd())
 	    {
-		double area = cs.function(cx) * step;
+		double area = cs.function(sp) * step;
 		sum += area;
-		current.add(new FunctionStep(cx, sum));
+		current.add(new FunctionStep(sp, sum));
 		sp += step;
-		if (sp > cs.getEnd())
-		    break;
-		cx += step;
 	    }
 	    this.out.add(current);
 	}
