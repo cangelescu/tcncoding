@@ -95,11 +95,7 @@ public class DataVizualizator extends JPanel
 
 	//find max values
 	double maxX = 0, maxY = 0;
-	int maxCount = 0;
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
-	{
-	    if (cldvp.size() > maxCount)
-		maxCount = cldvp.size();
 	    for (DataVizualizatorProvider cdvp: cldvp)
 	    {
 		if (cdvp.getMaxValue() > maxY)
@@ -107,7 +103,6 @@ public class DataVizualizator extends JPanel
 		if (cdvp.getEnd() > maxX)
 		    maxX = cdvp.getEnd();
 	    }
-	}
 	//chart scaling factor
 	double yScalingFactor = (zeroY - topMarginY - yBorder) / maxY;
 	double xScalingFactor = distance / maxX;

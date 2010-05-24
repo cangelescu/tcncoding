@@ -61,12 +61,9 @@ public class VideoCreator
 		while (sp <= this.impulseLength)
 		{
 		    if (cm)
-		    {
 			current.add(new FunctionStep(cx, this.impulseLevel));
-		    } else
-		    {
+		    else
 			current.add(new FunctionStep(cx, 0));
-		    }
 		    sp += this.step;
 		    cx += this.step;
 		}
