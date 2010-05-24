@@ -138,7 +138,7 @@ public class DataVizualizator extends JPanel
 	    //omit printing zero mark due to its present
 	    if (Math.abs((i - zeroY) / yScalingFactor) > gridYStepSize / (2 * yScalingFactor))
 	    {
-		String csValue = String.format("%1.2f", cdValue);
+		String csValue = String.format("%1.3f", cdValue);
 		g2.setColor(Color.BLACK);
 		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
 		g2.setColor(gridColor);
