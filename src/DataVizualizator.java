@@ -93,8 +93,10 @@ public class DataVizualizator extends JPanel
 	final int zeroX = leftMarginX;
 	final int zeroY = this.getHeight() / 2;
 
-	//find max values
-	double maxX = 0, maxY = 0;
+	//find min/max values
+	double minX = this.chartData.get(0).get(0).getStart();
+	double maxX = this.chartData.get(0).get(0).getEnd();
+	double maxY = this.chartData.get(0).get(0).getMaxValue();
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	    for (DataVizualizatorProvider cdvp: cldvp)
 	    {
@@ -102,6 +104,8 @@ public class DataVizualizator extends JPanel
 		    maxY = cdvp.getMaxValue();
 		if (cdvp.getEnd() > maxX)
 		    maxX = cdvp.getEnd();
+		if (cdvp.getStart() < minX)
+		    minX = cdvp.getStart();
 	    }
 	//chart scaling factor
 	double yScalingFactor = (zeroY - topMarginY - yBorder) / maxY;
@@ -177,7 +181,7 @@ public class DataVizualizator extends JPanel
 	    //step of drawing
 	    double step = totalTime / (double)distance;
 	    //initial time is start point of zero piece
-	    double currentTime = cldvp.get(0).getStart();
+	    double currentTime = minX;
 	    //remember real previous value to draw impulses properly
 	    double prevYValue = 0;
 	    //draw chart
