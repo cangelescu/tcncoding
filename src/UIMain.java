@@ -704,16 +704,17 @@ public class UIMain extends javax.swing.JFrame {
         sourceCoderTabLayout.setHorizontalGroup(
             sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sourceCoderTabLayout.createSequentialGroup()
-                .addComponent(sourceCodesChooserLabel)
+                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(informationalSpeedLabel)
+                    .addComponent(sourceCodesChooserLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sourceCodesChooser, 0, 590, Short.MAX_VALUE))
-            .addGroup(sourceCoderTabLayout.createSequentialGroup()
-                .addComponent(informationalSpeedLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bpsLabel)
-                .addGap(267, 267, 267))
+                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sourceCodesChooser, 0, 481, Short.MAX_VALUE)
+                    .addGroup(sourceCoderTabLayout.createSequentialGroup()
+                        .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bpsLabel)
+                        .addGap(267, 267, 267))))
         );
         sourceCoderTabLayout.setVerticalGroup(
             sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -726,7 +727,7 @@ public class UIMain extends javax.swing.JFrame {
                     .addComponent(informationalSpeedLabel)
                     .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bpsLabel))
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Кодер джерела", sourceCoderTab);
@@ -748,7 +749,7 @@ public class UIMain extends javax.swing.JFrame {
             .addGroup(channelCoderTabLayout.createSequentialGroup()
                 .addComponent(channelCodesChooserLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(channelCodesChooser, 0, 590, Short.MAX_VALUE))
+                .addComponent(channelCodesChooser, 0, 614, Short.MAX_VALUE))
         );
         channelCoderTabLayout.setVerticalGroup(
             channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,7 +757,7 @@ public class UIMain extends javax.swing.JFrame {
                 .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(channelCodesChooserLabel)
                     .addComponent(channelCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Кодер каналу", channelCoderTab);
@@ -813,10 +814,10 @@ public class UIMain extends javax.swing.JFrame {
                                     .addComponent(hz1Label)
                                     .addComponent(hz0Label)
                                     .addComponent(voltsLabel)))
-                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(bearerFrequency1Label, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bearerFrequency0Label, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
         modulatorTabLayout.setVerticalGroup(
             modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -840,7 +841,7 @@ public class UIMain extends javax.swing.JFrame {
                     .addComponent(bearerFrequency1Label)
                     .addComponent(bearerFrequency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hz1Label))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Налаштування модулятора", modulatorTab);
@@ -849,11 +850,11 @@ public class UIMain extends javax.swing.JFrame {
         modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
         modellingOptionsDialogLayout.setHorizontalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+            .addComponent(optionsTabs)
         );
         modellingOptionsDialogLayout.setVerticalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1946,7 +1947,7 @@ public class UIMain extends javax.swing.JFrame {
 
     private void doModellingOptionsItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doModellingOptionsItemActionPerformed
     {//GEN-HEADEREND:event_doModellingOptionsItemActionPerformed
-	modellingOptionsDialog.setSize(650, 230);
+	modellingOptionsDialog.setSize(670, 180);
 	modellingOptionsDialog.setVisible(true);
     }//GEN-LAST:event_doModellingOptionsItemActionPerformed
 

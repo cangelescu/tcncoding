@@ -18,6 +18,7 @@
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -44,8 +45,8 @@ public class DataVizualizator extends JPanel
      * @param data list of lists of provided data
      * @param wx width of output area
      * @param wy height of output area
-     * @param legendX X legend
-     * @param legendY Y legend
+     * @param legendX X axis legend
+     * @param legendY Y axis legend
      */
     public DataVizualizator(List<List<DataVizualizatorProvider>> data, int wx, int wy, String legendX, String legendY)
     {
@@ -118,19 +119,11 @@ public class DataVizualizator extends JPanel
 	if (maxY != 0)
 	    gridYStepSize = 2 * maxY * yScalingFactor / 10;
 	else
-	    gridYStepSize = (bottomYBorder - topYBorder) / 10;
+	    gridYStepSize = (bottomYBorder - topYBorder + 1) / 10;
 
 	//X axis steps
-	NumberFormat formatter = new DecimalFormat("0.00E0");
 	for (double i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
-	{
 	    g2.drawLine((int)i, bottomYBorder, (int)i, topYBorder);
-	    double cdValue = i / xScalingFactor;
-	    String csValue = formatter.format(cdValue);
-	    g2.setColor(Color.BLACK);
-	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
-	    g2.setColor(gridColor);
-	}
 
 	//0
 	g2.setColor(Color.BLACK);
@@ -217,6 +210,16 @@ public class DataVizualizator extends JPanel
 	    }
 	    //draw line to zero level at the end
 	    g2.drawLine(currentX, currentY, currentX, zeroY);
+	}
+
+	//X axis steps values
+	NumberFormat formatter = new DecimalFormat("0.00E0");
+	g2.setColor(Color.BLACK);
+	for (double i = zeroX + gridXStepSize; i <= zeroX + distance; i += gridXStepSize)
+	{
+	    double cdValue = i / xScalingFactor;
+	    String csValue = formatter.format(cdValue);
+	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
 	}
     }
 }
