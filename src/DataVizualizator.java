@@ -166,6 +166,7 @@ public class DataVizualizator extends JPanel
 	g2.setStroke(cStroke);
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	{
+	    //add right-click description
 	    JMenuItem cItem = new JMenuItem(cldvp.get(0).getDescription());
 	    g2.setColor(cldvp.get(0).getChartColor());
 	    cItem.setForeground(cldvp.get(0).getChartColor());
@@ -173,40 +174,41 @@ public class DataVizualizator extends JPanel
 	    //current position of pen
 	    int currentX = zeroX;
 	    int currentY = zeroY;
-	    //gets number of step records
-	    double onePiece = cldvp.get(0).getEnd();
-	    double totalTime = cldvp.size() * onePiece;
+
+	    //gets total time of function
+	    double totalTime = 0;
+	    for (DataVizualizatorProvider cdvp: cldvp)
+		totalTime += cdvp.getEnd() - cdvp.getStart();
 	    //step of drawing
 	    double step = totalTime / (double)distance;
-	    //draw chart
-	    double currentTime = 0;
-	    int index = 0;
+	    //initial time is start point of zero piece
+	    double currentTime = cldvp.get(0).getStart();
 	    //remember real previous value to draw impulses properly
 	    double prevYValue = 0;
-	    while (currentTime <= totalTime)
+	    //draw chart
+	    for (DataVizualizatorProvider cdvp: cldvp)
 	    {
-		//controls, which piece of chart must be used
-		if (currentTime > onePiece * (index + 1))
-		    index++;
-		//gets real Y value
-		double yValue = cldvp.get(index).getFunction(currentTime);
-		//calculates scaled Y value
-		int newY;
-		//have to do this because of chart jumping
-		if (yValue == 0)
-		    newY = zeroY;
-		else
-		    newY = (int) (zeroY - yScalingFactor * yValue);
-		//if it is impulse, draw its front straightly
-		if (prevYValue * yValue == 0)
-		    g2.drawLine(currentX, currentY, currentX++, newY);
-		else
-		    g2.drawLine(currentX, currentY, ++currentX, newY);
-		//sets new step
-		currentY = newY;
-		currentTime += step;
-		//remember old Y real value
-		prevYValue = yValue;
+		while (currentTime <= cdvp.getEnd())
+		{
+		    //gets real Y value
+		    double yValue = cdvp.getFunction(currentTime);
+		    //calculates scaled Y value
+		    int newY;
+		    if (yValue == 0)
+			newY = zeroY;
+		    else
+			newY = (int) (zeroY - yScalingFactor * yValue);
+		    //if it is impulse, draw its front straightly
+		    if (prevYValue * yValue == 0)
+			g2.drawLine(currentX, currentY, currentX++, newY);
+		    else
+			g2.drawLine(currentX, currentY, ++currentX, newY);
+		    //sets new step
+		    currentY = newY;
+		    currentTime += step;
+		    //remember old Y real value
+		    prevYValue = yValue;
+		}
 	    }
 	    //draw line to zero level at the end
 	    g2.drawLine(currentX, currentY, currentX, zeroY);
