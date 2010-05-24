@@ -18,7 +18,6 @@
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -26,7 +25,9 @@ import java.awt.Stroke;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -64,6 +65,9 @@ public class DataVizualizator extends JPanel
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setPaint(paint);
 
+	//popup menu with help
+	JPopupMenu pMenu = new JPopupMenu();
+
 	//grid color
 	final Color gridColor = new Color(200, 200, 200);
 
@@ -88,9 +92,6 @@ public class DataVizualizator extends JPanel
 	//zero levels
 	final int zeroX = leftMarginX;
 	final int zeroY = this.getHeight() / 2;
-
-	//chart index
-	int chartIndex = 0;
 
 	//find max values
 	double maxX = 0, maxY = 0;
@@ -165,11 +166,10 @@ public class DataVizualizator extends JPanel
 	g2.setStroke(cStroke);
 	for (List<DataVizualizatorProvider> cldvp: this.chartData)
 	{
-	    chartIndex++;
-	    if (chartIndex == 1)
-		g2.setColor(Color.BLUE);
-	    else
-		g2.setColor(Color.RED);
+	    JMenuItem cItem = new JMenuItem(cldvp.get(0).getDescription());
+	    g2.setColor(cldvp.get(0).getChartColor());
+	    cItem.setForeground(cldvp.get(0).getChartColor());
+	    pMenu.add(cItem);
 	    //current position of pen
 	    int currentX = zeroX;
 	    int currentY = zeroY;
@@ -221,5 +221,7 @@ public class DataVizualizator extends JPanel
 	    String csValue = formatter.format(cdValue);
 	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
 	}
+
+	this.setComponentPopupMenu(pMenu);
     }
 }

@@ -273,7 +273,7 @@ public class UIMain extends javax.swing.JFrame {
 	    currentSourceVideoSequenceVizualizator = null;
 	}
 	sourceVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	sourceVideoSequenceSingleProvider = (new DataVizualizatorConverter(sourceVideoSequence, DataVizualizatorProvider.SignalType.TABULATED)).getProvided();
+	sourceVideoSequenceSingleProvider = (new DataVizualizatorConverter(sourceVideoSequence, DataVizualizatorProvider.SignalType.TABULATED, "Вихідна відеопослідовність", Color.BLUE)).getProvided();
 	sourceVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
@@ -300,7 +300,7 @@ public class UIMain extends javax.swing.JFrame {
 	}
 	channelVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	channelVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
-	channelVideoSequenceProvider.add((new DataVizualizatorConverter(channelVideoSequence, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
+	channelVideoSequenceProvider.add((new DataVizualizatorConverter(channelVideoSequence, DataVizualizatorProvider.SignalType.TABULATED, "Кодована відеопослідовність", Color.RED)).getProvided());
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
 	//creates new vizualizator
@@ -328,7 +328,7 @@ public class UIMain extends javax.swing.JFrame {
 	}
 	//creates new vizualizator data provider
 	modulatorDataProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	modulatorDataProvider.add((new DataVizualizatorConverter(modulatorData, DataVizualizatorProvider.SignalType.MODULATOR)).getProvided());
+	modulatorDataProvider.add((new DataVizualizatorConverter(modulatorData, DataVizualizatorProvider.SignalType.MODULATOR, "Сигнал на виході модулятора", Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
@@ -369,7 +369,7 @@ public class UIMain extends javax.swing.JFrame {
 	}
 	//creates new vizualizator data provider
 	channelOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	channelOutputProvider.add((new DataVizualizatorConverter(channelOutput, DataVizualizatorProvider.SignalType.CHANNEL)).getProvided());
+	channelOutputProvider.add((new DataVizualizatorConverter(channelOutput, DataVizualizatorProvider.SignalType.CHANNEL, "Сигнал на виході каналу", Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
@@ -423,7 +423,7 @@ public class UIMain extends javax.swing.JFrame {
 
 	//vizualizes signal
 	multiplier0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	multiplier0OutputProvider.add((new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.MULTIPLIER)).getProvided());
+	multiplier0OutputProvider.add((new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.MULTIPLIER, "Сигнал на виході 0-го помножувача", Color.BLUE)).getProvided());
 	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t, с", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
@@ -439,7 +439,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cy1 = multiplierOutputField1.getHeight();
 
 	multiplier1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	multiplier1OutputProvider.add((new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER)).getProvided());
+	multiplier1OutputProvider.add((new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER, "Сигнал на виході 1-го помножувача", Color.BLUE)).getProvided());
 	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t, с", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
@@ -465,7 +465,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cy0 = integratorOutputField0.getHeight();
 
 	integrator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator0OutputProvider.add((new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
+	integrator0OutputProvider.add((new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході 0-го інтегратора", Color.BLUE)).getProvided());
 	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t, с", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
@@ -480,7 +480,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cy1 = integratorOutputField1.getHeight();
 
 	integrator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator1OutputProvider.add((new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
+	integrator1OutputProvider.add((new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході 1-го інтегратора", Color.BLUE)).getProvided());
 	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t, с", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
@@ -503,7 +503,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cy1 = summatorOutputField.getHeight();
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	summatorOutputProvider.add((new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.TABULATED)).getProvided());
+	summatorOutputProvider.add((new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході суматора", Color.BLUE)).getProvided());
 	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t, с", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
 	summatorOutputField.add(currentSummatorVizualizator);

@@ -16,6 +16,7 @@
 
 */
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,16 +28,20 @@ public class DataVizualizatorConverter
 {
     private DataVizualizatorProvider.SignalType signalType;
     private List data;
+    private String description;
+    private Color chartColor;
 
     /**
      * Creates converter for data vizualizator
      * @param vdata input list of signals
      * @param vSignalType type of input signals
      */
-    public DataVizualizatorConverter(List vdata, DataVizualizatorProvider.SignalType vSignalType)
+    public DataVizualizatorConverter(List vdata, DataVizualizatorProvider.SignalType vSignalType, String _description, Color _chartColor)
     {
 	this.signalType = vSignalType;
 	this.data = vdata;
+	this.description = _description;
+	this.chartColor = _chartColor;
     }
 
     /**
@@ -52,28 +57,28 @@ public class DataVizualizatorConverter
 		for (Object co: this.data)
 		{
 		    ModulatorSignal ms = (ModulatorSignal)co;
-		    out.add(new DataVizualizatorProvider(ms));
+		    out.add(new DataVizualizatorProvider(ms, this.description, this.chartColor));
 		}
 		break;
 	    case CHANNEL:
 		for (Object co: this.data)
 		{
 		    ChannelSignal cs = (ChannelSignal)co;
-		    out.add(new DataVizualizatorProvider(cs));
+		    out.add(new DataVizualizatorProvider(cs, this.description, this.chartColor));
 		}
 		break;
 	    case MULTIPLIER:
 		for (Object co: this.data)
 		{
 		    MultiplierSignal ms = (MultiplierSignal)co;
-		    out.add(new DataVizualizatorProvider(ms));
+		    out.add(new DataVizualizatorProvider(ms, this.description, this.chartColor));
 		}
 		break;
 	    case TABULATED:
 		for (Object co: this.data)
 		{
 		    List<FunctionStep> is = (List<FunctionStep>)co;
-		    out.add(new DataVizualizatorProvider(is));
+		    out.add(new DataVizualizatorProvider(is, this.description, this.chartColor));
 		}
 		break;
 	    default:

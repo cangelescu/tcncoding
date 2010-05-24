@@ -16,6 +16,7 @@
 
 */
 
+import java.awt.Color;
 import java.util.List;
 
 /**
@@ -56,51 +57,59 @@ public class DataVizualizatorProvider
     private List<FunctionStep> integratorSignal = null;
 
     private double xStart, xEnd, maxValue;
+    private String description;
+    private Color chartColor;
 
     /**
      * Creates data provider for vizualizator
      * @param mosData input modulator signal
      */
-    public DataVizualizatorProvider(ModulatorSignal mosData)
+    public DataVizualizatorProvider(ModulatorSignal mosData, String _description, Color _chartColor)
     {
 	this.currentSignalType = SignalType.MODULATOR;
 	this.modulatorSignal = mosData;
 	this.xStart = mosData.getStart();
 	this.xEnd = mosData.getEnd();
 	this.maxValue = mosData.getMaxValue();
+	this.description = _description;
+	this.chartColor = _chartColor;
     }
 
     /**
      * Creates data provider for vizualizator
      * @param casData input channel signal
      */
-    public DataVizualizatorProvider(ChannelSignal casData)
+    public DataVizualizatorProvider(ChannelSignal casData, String _description, Color _chartColor)
     {
 	this.currentSignalType = SignalType.CHANNEL;
 	this.channelSignal = casData;
 	this.xStart = casData.getStart();
 	this.xEnd = casData.getEnd();
 	this.maxValue = casData.getMaxValue();
+	this.description = _description;
+	this.chartColor = _chartColor;
     }
 
     /**
      * Creates data provider for vizualizator
      * @param musData input multiplier signal
      */
-    public DataVizualizatorProvider(MultiplierSignal musData)
+    public DataVizualizatorProvider(MultiplierSignal musData, String _description, Color _chartColor)
     {
 	this.currentSignalType = SignalType.MULTIPLIER;
 	this.multiplierSignal = musData;
 	this.xStart = musData.getStart();
 	this.xEnd = musData.getEnd();
 	this.maxValue = musData.getMaxValue();
+	this.description = _description;
+	this.chartColor = _chartColor;
     }
 
     /**
      * Creates data provider for vizualizator
      * @param iosData input tabulated signal
      */
-    public DataVizualizatorProvider(List<FunctionStep> iosData)
+    public DataVizualizatorProvider(List<FunctionStep> iosData, String _description, Color _chartColor)
     {
 	this.currentSignalType = SignalType.TABULATED;
 	this.integratorSignal = iosData;
@@ -111,6 +120,9 @@ public class DataVizualizatorProvider
 	for (FunctionStep fs: iosData)
 	    if (fs.getY() > this.maxValue)
 		this.maxValue = fs.getY();
+
+	this.description = _description;
+	this.chartColor = _chartColor;
     }
 
     /**
@@ -174,5 +186,23 @@ public class DataVizualizatorProvider
     public double getMaxValue()
     {
 	return this.maxValue;
+    }
+
+    /**
+     * Returns signal description
+     * @return
+     */
+    public String getDescription()
+    {
+	return this.description;
+    }
+
+    /**
+     * Returns signal chart color
+     * @return
+     */
+    public Color getChartColor()
+    {
+	return this.chartColor;
     }
 }
