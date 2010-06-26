@@ -399,8 +399,8 @@ public class UIMain extends javax.swing.JFrame {
 		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
 		break;
 	    case FSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue() - (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
 		break;
 	    case PSK:
 		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
