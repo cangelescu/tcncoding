@@ -90,12 +90,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="optionsTabs" alignment="0" max="32767" attributes="0"/>
+              <Component id="optionsTabs" alignment="0" pref="658" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="optionsTabs" alignment="0" pref="149" max="32767" attributes="0"/>
+              <Component id="optionsTabs" alignment="0" pref="153" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -147,7 +147,7 @@
                               <Component id="informationalSpeed" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bpsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="66" max="32767" attributes="0"/>
+                          <EmptySpace pref="70" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -222,7 +222,7 @@
                               <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="channelCodesChooser" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="98" max="32767" attributes="0"/>
+                          <EmptySpace pref="102" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -266,32 +266,28 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="bearerAmplitudeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="modulationTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="bearerAmplitudeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="modulationTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerFrequencyDeviationLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerFrequencyLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="bearerFrequencyDeviation" max="32767" attributes="1"/>
+                                      <Component id="bearerFrequency" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="bearerAmplitude" alignment="0" pref="152" max="32767" attributes="1"/>
                                   </Group>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="bearerFrequency1" alignment="0" max="32767" attributes="1"/>
-                                              <Component id="bearerFrequency0" alignment="0" max="32767" attributes="1"/>
-                                              <Component id="bearerAmplitude" alignment="0" pref="152" max="32767" attributes="1"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="hz1Label" min="-2" max="-2" attributes="0"/>
-                                              <Component id="hz0Label" min="-2" max="-2" attributes="0"/>
-                                              <Component id="voltsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="modulationTypeChooser" min="-2" pref="509" max="-2" attributes="0"/>
+                                      <Component id="hzDeviationLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="hzBearerLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="voltsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="bearerFrequency1Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bearerFrequency0Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="modulationTypeChooser" min="-2" pref="509" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -305,24 +301,22 @@
                               <Component id="modulationTypeChooser" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="bearerAmplitudeLabel" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="bearerAmplitude" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="voltsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="bearerAmplitudeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerAmplitude" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="voltsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="bearerFrequency0Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="bearerFrequency0" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="hz0Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerFrequencyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerFrequency" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hzBearerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="bearerFrequency1Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="bearerFrequency1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="hz1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerFrequencyDeviationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bearerFrequencyDeviation" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hzDeviationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -365,26 +359,26 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="bearerFrequency0Label">
+                <Component class="javax.swing.JLabel" name="bearerFrequencyDeviationLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 0:"/>
+                    <Property name="text" type="java.lang.String" value="&#x414;&#x435;&#x432;&#x456;&#x430;&#x446;&#x456;&#x44f; &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x438;:"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="bearerFrequency1Label">
+                <Component class="javax.swing.JLabel" name="bearerFrequencyLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457; 1:"/>
+                    <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457;:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="bearerFrequency0">
+                <Component class="javax.swing.JSpinner" name="bearerFrequencyDeviation">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                      <SpinnerModel initial="100000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                      <SpinnerModel initial="20000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="bearerFrequency1">
+                <Component class="javax.swing.JSpinner" name="bearerFrequency">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="200000.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
@@ -396,12 +390,12 @@
                     <Property name="text" type="java.lang.String" value="&#x412;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="hz0Label">
+                <Component class="javax.swing.JLabel" name="hzBearerLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="hz1Label">
+                <Component class="javax.swing.JLabel" name="hzDeviationLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
                   </Properties>

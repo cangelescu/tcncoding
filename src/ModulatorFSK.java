@@ -27,16 +27,16 @@ public class ModulatorFSK
 {
 
     private List sequence = null;
-    private double bearerAmplitude, bearerFrequency0, bearerFrequency1, impulseLength;
+    private double bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, impulseLength;
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
-    public ModulatorFSK(double bearerAmplitude, double bearerFrequency0, double bearerFrequency1, List symbols, double _impulseLength)
+    public ModulatorFSK(double bearerAmplitude, double bearerFrequency, double bearerFrequencyDeviation, List symbols, double _impulseLength)
     {
 	this.sequence = symbols;
 	this.bearerAmplitude = bearerAmplitude;
-	this.bearerFrequency0 = bearerFrequency0;
-	this.bearerFrequency1 = bearerFrequency1;
+	this.bearerFrequency = bearerFrequency;
+	this.bearerFrequencyDeviation = bearerFrequencyDeviation;
 	this.impulseLength = _impulseLength;
     }
 
@@ -55,9 +55,9 @@ public class ModulatorFSK
 	for (boolean cb: rectifiedArray)
 	{
 	   if (!cb)
-		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
+		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency - bearerFrequencyDeviation, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
 	    else
-		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
+		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency + bearerFrequencyDeviation, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
 	   currentTime += this.impulseLength;
 	}
     }

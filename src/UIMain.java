@@ -152,8 +152,8 @@ public class UIMain extends javax.swing.JFrame {
     void updateChosenModulationType()
     {
 	//disable zero bearer options
-	bearerFrequency0.setEnabled(false);
-	bearerFrequency0Label.setEnabled(false);
+	bearerFrequencyDeviation.setEnabled(false);
+	bearerFrequencyDeviationLabel.setEnabled(false);
 	switch (modulationTypeChooser.getSelectedIndex())
 	{
 	    case 0:
@@ -162,8 +162,8 @@ public class UIMain extends javax.swing.JFrame {
 	    case 1:
 		modulationType = Modulator.ModulationType.FSK;
 		//enable zero bearer options
-		bearerFrequency0.setEnabled(true);
-		bearerFrequency0Label.setEnabled(true);
+		bearerFrequencyDeviation.setEnabled(true);
+		bearerFrequencyDeviationLabel.setEnabled(true);
 		break;
 	    case 2:
 		modulationType = Modulator.ModulationType.PSK;
@@ -320,7 +320,7 @@ public class UIMain extends javax.swing.JFrame {
     void doModulating()
     {
 	//gets MODULATOR output signals
-	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency0.getValue(), (Double)bearerFrequency1.getValue(), channelSymbols, channelImpulseLength);
+	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), (Double)bearerFrequencyDeviation.getValue(), channelSymbols, channelImpulseLength);
 	currentModulator.doModulation();
 	this.modulatorData = currentModulator.getSignals();
 
@@ -395,20 +395,20 @@ public class UIMain extends javax.swing.JFrame {
 	switch (this.modulationType)
 	{
 	    case ASK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency1.getValue(), 0, 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), 0, 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
 		break;
 	    case FSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency0.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
 		break;
 	    case PSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
 		break;
 	    case RPSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency1.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
 		break;
 	}
 
@@ -551,13 +551,13 @@ public class UIMain extends javax.swing.JFrame {
         modulationTypeChooser = new javax.swing.JComboBox();
         bearerAmplitudeLabel = new javax.swing.JLabel();
         bearerAmplitude = new javax.swing.JSpinner();
-        bearerFrequency0Label = new javax.swing.JLabel();
-        bearerFrequency1Label = new javax.swing.JLabel();
-        bearerFrequency0 = new javax.swing.JSpinner();
-        bearerFrequency1 = new javax.swing.JSpinner();
+        bearerFrequencyDeviationLabel = new javax.swing.JLabel();
+        bearerFrequencyLabel = new javax.swing.JLabel();
+        bearerFrequencyDeviation = new javax.swing.JSpinner();
+        bearerFrequency = new javax.swing.JSpinner();
         voltsLabel = new javax.swing.JLabel();
-        hz0Label = new javax.swing.JLabel();
-        hz1Label = new javax.swing.JLabel();
+        hzBearerLabel = new javax.swing.JLabel();
+        hzDeviationLabel = new javax.swing.JLabel();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
@@ -738,7 +738,7 @@ public class UIMain extends javax.swing.JFrame {
                     .addComponent(informationalSpeedLabel)
                     .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bpsLabel))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Кодер джерела", sourceCoderTab);
@@ -768,7 +768,7 @@ public class UIMain extends javax.swing.JFrame {
                 .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(channelCodesChooserLabel)
                     .addComponent(channelCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Кодер каналу", channelCoderTab);
@@ -787,47 +787,45 @@ public class UIMain extends javax.swing.JFrame {
 
         bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(50.0d, 0.0d, 100.0d, 1.0d));
 
-        bearerFrequency0Label.setText("Частота несучої 0:");
-        bearerFrequency0Label.setEnabled(false);
+        bearerFrequencyDeviationLabel.setText("Девіація частоти:");
+        bearerFrequencyDeviationLabel.setEnabled(false);
 
-        bearerFrequency1Label.setText("Частота несучої 1:");
+        bearerFrequencyLabel.setText("Частота несучої:");
 
-        bearerFrequency0.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
-        bearerFrequency0.setEnabled(false);
+        bearerFrequencyDeviation.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(20000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        bearerFrequencyDeviation.setEnabled(false);
 
-        bearerFrequency1.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        bearerFrequency.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
 
         voltsLabel.setText("В");
 
-        hz0Label.setText("Гц");
+        hzBearerLabel.setText("Гц");
 
-        hz1Label.setText("Гц");
+        hzDeviationLabel.setText("Гц");
 
         javax.swing.GroupLayout modulatorTabLayout = new javax.swing.GroupLayout(modulatorTab);
         modulatorTab.setLayout(modulatorTabLayout);
         modulatorTabLayout.setHorizontalGroup(
             modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modulatorTabLayout.createSequentialGroup()
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modulatorTabLayout.createSequentialGroup()
-                        .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bearerAmplitudeLabel)
-                            .addComponent(modulationTypeLabel))
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bearerAmplitudeLabel)
+                    .addComponent(modulationTypeLabel)
+                    .addComponent(bearerFrequencyDeviationLabel)
+                    .addComponent(bearerFrequencyLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modulatorTabLayout.createSequentialGroup()
+                        .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bearerFrequencyDeviation)
+                            .addComponent(bearerFrequency)
+                            .addComponent(bearerAmplitude, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(modulatorTabLayout.createSequentialGroup()
-                                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bearerFrequency0, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bearerAmplitude, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(hz1Label)
-                                    .addComponent(hz0Label)
-                                    .addComponent(voltsLabel)))
-                            .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(bearerFrequency1Label, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bearerFrequency0Label, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(hzDeviationLabel)
+                            .addComponent(hzBearerLabel)
+                            .addComponent(voltsLabel)))
+                    .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         modulatorTabLayout.setVerticalGroup(
@@ -837,21 +835,20 @@ public class UIMain extends javax.swing.JFrame {
                     .addComponent(modulationTypeLabel)
                     .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bearerAmplitudeLabel)
-                    .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(voltsLabel)))
+                    .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(voltsLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerFrequency0Label)
-                    .addComponent(bearerFrequency0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hz0Label))
+                    .addComponent(bearerFrequencyLabel)
+                    .addComponent(bearerFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hzBearerLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerFrequency1Label)
-                    .addComponent(bearerFrequency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hz1Label))
+                    .addComponent(bearerFrequencyDeviationLabel)
+                    .addComponent(bearerFrequencyDeviation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hzDeviationLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -861,11 +858,11 @@ public class UIMain extends javax.swing.JFrame {
         modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
         modellingOptionsDialogLayout.setHorizontalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
         );
         modellingOptionsDialogLayout.setVerticalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -880,7 +877,7 @@ public class UIMain extends javax.swing.JFrame {
         sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         messageArea.setColumns(20);
-        messageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        messageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         messageArea.setRows(5);
         messageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(messageArea);
@@ -919,7 +916,7 @@ public class UIMain extends javax.swing.JFrame {
 
         blockSourceCoderOutput.setContentType("text/html");
         blockSourceCoderOutput.setEditable(false);
-        blockSourceCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockSourceCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane2.setViewportView(blockSourceCoderOutput);
 
         javax.swing.GroupLayout blockSourceCoderOutputPanelLayout = new javax.swing.GroupLayout(blockSourceCoderOutputPanel);
@@ -993,7 +990,7 @@ public class UIMain extends javax.swing.JFrame {
 
         blockChannelCoderOutput.setContentType("text/html");
         blockChannelCoderOutput.setEditable(false);
-        blockChannelCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockChannelCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane3.setViewportView(blockChannelCoderOutput);
 
         javax.swing.GroupLayout blockChannelCoderOutputPanelLayout = new javax.swing.GroupLayout(blockChannelCoderOutputPanel);
@@ -1368,7 +1365,7 @@ public class UIMain extends javax.swing.JFrame {
 
         receivedMessageArea.setContentType("text/html");
         receivedMessageArea.setEditable(false);
-        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane4.setViewportView(receivedMessageArea);
 
         javax.swing.GroupLayout receivedMessagePanelLayout = new javax.swing.GroupLayout(receivedMessagePanel);
@@ -1983,10 +1980,10 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutItem;
     private javax.swing.JSpinner bearerAmplitude;
     private javax.swing.JLabel bearerAmplitudeLabel;
-    private javax.swing.JSpinner bearerFrequency0;
-    private javax.swing.JLabel bearerFrequency0Label;
-    private javax.swing.JSpinner bearerFrequency1;
-    private javax.swing.JLabel bearerFrequency1Label;
+    private javax.swing.JSpinner bearerFrequency;
+    private javax.swing.JSpinner bearerFrequencyDeviation;
+    private javax.swing.JLabel bearerFrequencyDeviationLabel;
+    private javax.swing.JLabel bearerFrequencyLabel;
     private javax.swing.JPanel blockChannel;
     private javax.swing.JPanel blockChannelCoder;
     private javax.swing.JTextPane blockChannelCoderOutput;
@@ -2023,8 +2020,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JLabel hz0Label;
-    private javax.swing.JLabel hz1Label;
+    private javax.swing.JLabel hzBearerLabel;
+    private javax.swing.JLabel hzDeviationLabel;
     private javax.swing.JSpinner informationalSpeed;
     private javax.swing.JLabel informationalSpeedLabel;
     private javax.swing.JMenuItem integrateItem;
