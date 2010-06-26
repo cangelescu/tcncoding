@@ -51,9 +51,9 @@ public class Splitter
 	    sequenceLength += bn.getAlignment();
 	//adds leading zeroes
 	int leadingZeroes = this.blockLength - (sequenceLength % this.blockLength);
-	boolean[] bit_flow = new boolean[leadingZeroes + sequenceLength];
+	boolean[] bitFlow = new boolean[leadingZeroes + sequenceLength];
 	for (int i = 0; i < leadingZeroes; i++)
-	    bit_flow[i] = false;
+	    bitFlow[i] = false;
 	//forms linear bit array
 	int index = leadingZeroes;
 	for (BinaryNumber bn: this.sequence)
@@ -61,17 +61,17 @@ public class Splitter
 	    boolean[] current_bits = bn.getAlignedBinaryArray();
 	    for (int i = 0; i < current_bits.length; i++)
 	    {
-		bit_flow[index] = current_bits[i];
+		bitFlow[index] = current_bits[i];
 		index++;
 	    }
 	}
 	//splits formed array into separate blocks
 	int k = 0;
-	while (k < bit_flow.length)
+	while (k < bitFlow.length)
 	{
 	    boolean[] piece = new boolean[this.blockLength];
 	    for (int i = 0; i < this.blockLength; i++)
-		piece[i] = bit_flow[k + i];
+		piece[i] = bitFlow[k + i];
 	    this.outputBlocks.add(new BinaryNumber(piece, this.blockLength));
 	    k += this.blockLength;
 	}
