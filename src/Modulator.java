@@ -79,71 +79,30 @@ public class Modulator
      */
     public void doModulation()
     {
-	this.modulatedSequence.clear();
-
-	double currentTime = 0;
-
-	int previousPhase = 1;
-
-	for (int j = 0; j < this.sequence.size(); j++)
+	switch (this.usingMethod)
 	{
-	    BinaryNumber workingNumber = (BinaryNumber)this.sequence.get(j);
-	    boolean[] seq = workingNumber.getAlignedBinaryArray();
-
-	    for (int i = 0; i < seq.length; i++)
-	    {
-		switch (this.usingMethod)
-		{
-		    case ASK:
-			if (!seq[i])
-			    this.modulatedSequence.add(new ModulatorSignal(0, 0, 0, currentTime, currentTime + this.impulseLength));
-			else
-			    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-			break;
-		    case FSK:
-			if (!seq[i])
-			    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-			else
-			    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-			break;
-		    case PSK:
-			if (!seq[i])
-			    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-			else
-			    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, -Math.PI, currentTime, currentTime + this.impulseLength));
-			break;
-		    case RPSK:
-			if (!seq[i])
-			{
-			    if (previousPhase == 1)
-			    {
-				this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-				previousPhase = 1;
-			    } else
-			    if (previousPhase == -1)
-			    {
-				this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, -Math.PI, currentTime, currentTime + this.impulseLength));
-				previousPhase = -1;
-			    }
-			} else
-			{
-			    if (previousPhase == 1)
-			    {
-				this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, -Math.PI, currentTime, currentTime + this.impulseLength));
-				previousPhase = -1;
-			    } else
-			    if (previousPhase == -1)
-			    {
-				this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-				previousPhase = 1;
-			    }
-			}
-			break;
-		    default:
-			break;
-		}
-		currentTime += this.impulseLength;
-	    }
+	    case ASK:
+		ModulatorASK modulatorASK = new ModulatorASK(bearerAmplitude, bearerFrequency1, sequence, impulseLength);
+		modulatorASK.doModulation();
+		this.modulatedSequence = modulatorASK.getSignals();
+		break;
+	    case FSK:
+		ModulatorFSK modulatorFSK = new ModulatorFSK(bearerAmplitude, bearerFrequency0, bearerFrequency1, sequence, impulseLength);
+		modulatorFSK.doModulation();
+		this.modulatedSequence = modulatorFSK.getSignals();
+		break;
+	    case PSK:
+		ModulatorPSK modulatorPSK = new ModulatorPSK(bearerAmplitude, bearerFrequency1, sequence, impulseLength);
+		modulatorPSK.doModulation();
+		this.modulatedSequence = modulatorPSK.getSignals();
+		break;
+	    case RPSK:
+		ModulatorRPSK modulatorRPSK = new ModulatorRPSK(bearerAmplitude, bearerFrequency1, sequence, impulseLength);
+		modulatorRPSK.doModulation();
+		this.modulatedSequence = modulatorRPSK.getSignals();
+		break;
+	    default:
+		break;
 	}
     }
 
