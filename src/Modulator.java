@@ -81,9 +81,10 @@ public class Modulator
     {
 	this.modulatedSequence.clear();
 
+	double currentTime = 0;
+
 	int previousPhase = 1;
 
-	double currentTime = 0;
 	for (int j = 0; j < this.sequence.size(); j++)
 	{
 	    BinaryNumber workingNumber = (BinaryNumber)this.sequence.get(j);

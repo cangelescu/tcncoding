@@ -49,8 +49,7 @@ public class ChannelCoderHamming
 	{
 	    boolean[] currentNumberArray = bn.getAlignedBinaryArray();
 	    boolean[] resultNumber = new boolean[bn.getAlignment() + 3];
-	    for (int i = 0; i < currentNumberArray.length; i++)
-		resultNumber[i] = currentNumberArray[i];
+	    System.arraycopy(currentNumberArray, 0, resultNumber, 0, currentNumberArray.length);
 
 	    resultNumber[currentNumberArray.length] = currentNumberArray[0] ^ currentNumberArray[1] ^ currentNumberArray[3];
 	    resultNumber[currentNumberArray.length + 1] = currentNumberArray[0] ^ currentNumberArray[2] ^ currentNumberArray[3];
