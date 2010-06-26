@@ -49,19 +49,16 @@ public class ModulatorFSK
 
 	double currentTime = 0;
 
-	for (int j = 0; j < this.sequence.size(); j++)
+	Rectifier rectifier = new Rectifier(sequence);
+	rectifier.doRectifying();
+	boolean[] rectifiedArray = rectifier.getArray();
+	for (boolean cb: rectifiedArray)
 	{
-	    BinaryNumber workingNumber = (BinaryNumber)this.sequence.get(j);
-	    boolean[] seq = workingNumber.getAlignedBinaryArray();
-
-	    for (int i = 0; i < seq.length; i++)
-	    {
-		if (!seq[i])
-		    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-		else
-		    this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-		currentTime += this.impulseLength;
-	    }
+	   if (!cb)
+		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency0, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
+	    else
+		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency1, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
+	   currentTime += this.impulseLength;
 	}
     }
 
