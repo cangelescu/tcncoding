@@ -51,7 +51,11 @@ public class ModulatorRPSK
 	Rectifier rectifier = new Rectifier(sequence);
 	rectifier.doRectifying();
 	boolean[] rectifiedArray = rectifier.getArray();
-	for (boolean cb: rectifiedArray)
+
+	RPSKRecoder recoder = new RPSKRecoder(rectifiedArray);
+	recoder.doRecoding();
+	boolean[] recodedArray = recoder.getArray();
+	for (boolean cb: recodedArray)
 	{
 	    if (!cb)
 		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
