@@ -21,6 +21,7 @@ import flanagan.integration.*;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 public class UIMain extends javax.swing.JFrame {
     //blocks (classes)
@@ -1967,7 +1968,10 @@ public class UIMain extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UIMain().setVisible(true);
+		JFrame mainForm = new UIMain();
+		mainForm.setExtendedState(MAXIMIZED_BOTH);
+		mainForm.setVisible(true);
+
             }
         });
     }
