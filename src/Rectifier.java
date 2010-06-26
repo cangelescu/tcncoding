@@ -28,7 +28,7 @@ public class Rectifier
     private boolean[] outputArray;
 
     /**
-     * Creates rectifier of binary numbers' list into array
+     * Rectifies binary numbers' list into array
      * @param inputSequence source list of binary numbers
      */
     public Rectifier(List<BinaryNumber> inputSequence)
