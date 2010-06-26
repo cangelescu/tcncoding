@@ -41,6 +41,7 @@ public class DataVizualizator extends JPanel
 
     private String lX, lY;
 
+
     /**
      * Creates vizualizator for provided data
      * @param data list of lists of provided data

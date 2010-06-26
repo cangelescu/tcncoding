@@ -18,6 +18,7 @@
 
 import java.awt.Color;
 import flanagan.integration.*;
+import java.awt.GridLayout;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -281,6 +282,7 @@ public class UIMain extends javax.swing.JFrame {
 	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
 	//shows chart
 	currentSourceVideoSequenceVizualizator.setVisible(true);
+	blockSourceVideoSequenceOutputField.setLayout(new GridLayout());
 	blockSourceVideoSequenceOutputField.add(currentSourceVideoSequenceVizualizator);
 	//repaints chart to show it if VideoSequence block is active
 	currentSourceVideoSequenceVizualizator.repaint();
@@ -307,6 +309,7 @@ public class UIMain extends javax.swing.JFrame {
 	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
 	//shows chart
 	currentChannelVideoSequenceVizualizator.setVisible(true);
+	blockChannelVideoSequenceOutputField.setLayout(new GridLayout());
 	blockChannelVideoSequenceOutputField.add(currentChannelVideoSequenceVizualizator);
 	//repaints chart to show it if VideoSequence block is active
 	currentChannelVideoSequenceVizualizator.repaint();
@@ -336,6 +339,7 @@ public class UIMain extends javax.swing.JFrame {
 	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, "t, с", "S(t), В");
 	//shows chart
 	currentModulatorVizualizator.setVisible(true);
+	modulatorOutputField.setLayout(new GridLayout());
 	modulatorOutputField.add(currentModulatorVizualizator);
 	//repaints chart to show it if MODULATOR block is active
 	currentModulatorVizualizator.repaint();
@@ -377,6 +381,7 @@ public class UIMain extends javax.swing.JFrame {
 	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, "t, с", "S'(t), В");
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
+	channelOutputField.setLayout(new GridLayout());
 	channelOutputField.add(currentChannelVizualizator);
 	//repaints chart to show it if MODULATOR block is active
 	currentChannelVizualizator.repaint();
@@ -426,6 +431,7 @@ public class UIMain extends javax.swing.JFrame {
 	multiplier0OutputProvider.add((new DataVizualizatorConverter(multiplier0Output, DataVizualizatorProvider.SignalType.MULTIPLIER, "Сигнал на виході 0-го помножувача", Color.BLUE)).getProvided());
 	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t, с", "Sm0(t), В");
 	currentMultiplierVizualizator0.setVisible(true);
+	multiplierOutputField0.setLayout(new GridLayout());
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
 
@@ -442,6 +448,7 @@ public class UIMain extends javax.swing.JFrame {
 	multiplier1OutputProvider.add((new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER, "Сигнал на виході 1-го помножувача", Color.BLUE)).getProvided());
 	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t, с", "Sm1(t), В");
 	currentMultiplierVizualizator1.setVisible(true);
+	multiplierOutputField1.setLayout(new GridLayout());
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
     }
@@ -468,6 +475,7 @@ public class UIMain extends javax.swing.JFrame {
 	integrator0OutputProvider.add((new DataVizualizatorConverter(integrator0Output, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході 0-го інтегратора", Color.BLUE)).getProvided());
 	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t, с", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
+	integratorOutputField0.setLayout(new GridLayout());
 	integratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
 
@@ -483,6 +491,7 @@ public class UIMain extends javax.swing.JFrame {
 	integrator1OutputProvider.add((new DataVizualizatorConverter(integrator1Output, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході 1-го інтегратора", Color.BLUE)).getProvided());
 	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t, с", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
+	integratorOutputField1.setLayout(new GridLayout());
 	integratorOutputField1.add(currentIntegratorVizualizator1);
 	currentIntegratorVizualizator1.repaint();
     }
@@ -506,6 +515,7 @@ public class UIMain extends javax.swing.JFrame {
 	summatorOutputProvider.add((new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході суматора", Color.BLUE)).getProvided());
 	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t, с", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
+	summatorOutputField.setLayout(new GridLayout());
 	summatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();
     }
