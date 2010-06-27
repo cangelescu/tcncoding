@@ -30,11 +30,11 @@ public class EnergyComputator
 
     /**
      * Creates energy computator for input signals
-     * @param newSignals list of input signals
+     * @param _signals list of input signals
      */
-    public EnergyComputator(List<ChannelSignalSqr> newSignals)
+    public EnergyComputator(List<ChannelSignalSqr> _signals)
     {
-	this.signals = newSignals;
+	signals = _signals;
     }
 
     /**
@@ -42,8 +42,8 @@ public class EnergyComputator
      */
     public void computeEnergy()
     {
-	for (ChannelSignalSqr cs: this.signals)
-	    this.energy += Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000);
+	for (ChannelSignalSqr cs: signals)
+	    energy += Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000);
     }
 
     /**
@@ -52,6 +52,6 @@ public class EnergyComputator
      */
     public double getEnergy()
     {
-	return this.energy;
+	return energy;
     }
 }
