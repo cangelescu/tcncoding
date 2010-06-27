@@ -31,8 +31,8 @@ public class FunctionStep
      */
     public FunctionStep(double _x, double _y)
     {
-	this.x = _x;
-	this.y = _y;
+	x = _x;
+	y = _y;
     }
 
     /**
@@ -41,7 +41,7 @@ public class FunctionStep
      */
     public double getX()
     {
-	return this.x;
+	return x;
     }
 
     /**
@@ -50,6 +50,6 @@ public class FunctionStep
      */
     public double getY()
     {
-	return this.y;
+	return y;
     }
 }
