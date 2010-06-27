@@ -62,67 +62,67 @@ public class DataVizualizatorProvider
 
     /**
      * Creates data provider for vizualizator
-     * @param mosData input modulator signal
+     * @param _data input modulator signal
      */
-    public DataVizualizatorProvider(ModulatorSignal mosData, String _description, Color _chartColor)
+    public DataVizualizatorProvider(ModulatorSignal _data, String _description, Color _chartColor)
     {
-	this.currentSignalType = SignalType.MODULATOR;
-	this.modulatorSignal = mosData;
-	this.xStart = mosData.getStart();
-	this.xEnd = mosData.getEnd();
-	this.maxValue = mosData.getMaxValue();
-	this.description = _description;
-	this.chartColor = _chartColor;
+	currentSignalType = SignalType.MODULATOR;
+	modulatorSignal = _data;
+	xStart = _data.getStart();
+	xEnd = _data.getEnd();
+	maxValue = _data.getMaxValue();
+	description = _description;
+	chartColor = _chartColor;
     }
 
     /**
      * Creates data provider for vizualizator
-     * @param casData input channel signal
+     * @param _data input channel signal
      */
-    public DataVizualizatorProvider(ChannelSignal casData, String _description, Color _chartColor)
+    public DataVizualizatorProvider(ChannelSignal _data, String _description, Color _chartColor)
     {
-	this.currentSignalType = SignalType.CHANNEL;
-	this.channelSignal = casData;
-	this.xStart = casData.getStart();
-	this.xEnd = casData.getEnd();
-	this.maxValue = casData.getMaxValue();
-	this.description = _description;
-	this.chartColor = _chartColor;
+	currentSignalType = SignalType.CHANNEL;
+	channelSignal = _data;
+	xStart = _data.getStart();
+	xEnd = _data.getEnd();
+	maxValue = _data.getMaxValue();
+	description = _description;
+	chartColor = _chartColor;
     }
 
     /**
      * Creates data provider for vizualizator
-     * @param musData input multiplier signal
+     * @param _data input multiplier signal
      */
-    public DataVizualizatorProvider(MultiplierSignal musData, String _description, Color _chartColor)
+    public DataVizualizatorProvider(MultiplierSignal _data, String _description, Color _chartColor)
     {
-	this.currentSignalType = SignalType.MULTIPLIER;
-	this.multiplierSignal = musData;
-	this.xStart = musData.getStart();
-	this.xEnd = musData.getEnd();
-	this.maxValue = musData.getMaxValue();
-	this.description = _description;
-	this.chartColor = _chartColor;
+	currentSignalType = SignalType.MULTIPLIER;
+	multiplierSignal = _data;
+	xStart = _data.getStart();
+	xEnd = _data.getEnd();
+	maxValue = _data.getMaxValue();
+	description = _description;
+	chartColor = _chartColor;
     }
 
     /**
      * Creates data provider for vizualizator
-     * @param iosData input tabulated signal
+     * @param _data input tabulated signal
      */
-    public DataVizualizatorProvider(List<FunctionStep> iosData, String _description, Color _chartColor)
+    public DataVizualizatorProvider(List<FunctionStep> _data, String _description, Color _chartColor)
     {
-	this.currentSignalType = SignalType.TABULATED;
-	this.integratorSignal = iosData;
-	this.xStart = iosData.get(0).getX();
-	this.xEnd = iosData.get(iosData.size() - 1).getX();
+	currentSignalType = SignalType.TABULATED;
+	integratorSignal = _data;
+	xStart = _data.get(0).getX();
+	xEnd = _data.get(_data.size() - 1).getX();
 
-	this.maxValue = iosData.get(0).getY();
-	for (FunctionStep fs: iosData)
-	    if (fs.getY() > this.maxValue)
-		this.maxValue = fs.getY();
+	maxValue = _data.get(0).getY();
+	for (FunctionStep fs: _data)
+	    if (fs.getY() > maxValue)
+		maxValue = fs.getY();
 
-	this.description = _description;
-	this.chartColor = _chartColor;
+	description = _description;
+	chartColor = _chartColor;
     }
 
     /**
@@ -133,20 +133,20 @@ public class DataVizualizatorProvider
     public double getFunction(double x)
     {
 	double out;
-	switch (this.currentSignalType)
+	switch (currentSignalType)
 	{
 	    case MODULATOR:
-		out = this.modulatorSignal.function(x);
+		out = modulatorSignal.function(x);
 		break;
 	    case CHANNEL:
-		out = this.channelSignal.function(x);
+		out = channelSignal.function(x);
 		break;
 	    case MULTIPLIER:
-		out = this.multiplierSignal.function(x);
+		out = multiplierSignal.function(x);
 		break;
 	    case TABULATED:
 		double found = 0;
-		for (FunctionStep fs: this.integratorSignal)
+		for (FunctionStep fs: integratorSignal)
 		    if (fs.getX() >= x)
 		    {
 			found = fs.getY();
@@ -167,7 +167,7 @@ public class DataVizualizatorProvider
      */
     public double getStart()
     {
-	return this.xStart;
+	return xStart;
     }
 
     /**
@@ -176,7 +176,7 @@ public class DataVizualizatorProvider
      */
     public double getEnd()
     {
-	return this.xEnd;
+	return xEnd;
     }
 
     /**
@@ -185,7 +185,7 @@ public class DataVizualizatorProvider
      */
     public double getMaxValue()
     {
-	return this.maxValue;
+	return maxValue;
     }
 
     /**
@@ -194,7 +194,7 @@ public class DataVizualizatorProvider
      */
     public String getDescription()
     {
-	return this.description;
+	return description;
     }
 
     /**
@@ -203,6 +203,6 @@ public class DataVizualizatorProvider
      */
     public Color getChartColor()
     {
-	return this.chartColor;
+	return chartColor;
     }
 }
