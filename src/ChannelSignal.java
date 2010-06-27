@@ -28,22 +28,22 @@ public class ChannelSignal extends Signal
 
     /**
      * Creates channel signal with given parameters
-     * @param freq frequency of signal, Hz
-     * @param ampl amplitude of signal, V
-     * @param ph phase of signal, rad
-     * @param ns amplitude of noise, V
-     * @param start start time, s
-     * @param end end time, s
+     * @param _frequency frequency of signal, Hz
+     * @param _amplitude amplitude of signal, V
+     * @param _phase phase of signal, rad
+     * @param _noise amplitude of noise, V
+     * @param _start start time, s
+     * @param _end end time, s
      */
-    public ChannelSignal(double freq, double ampl, double ph, double ns, double start, double end)
+    public ChannelSignal(double _frequency, double _amplitude, double _phase, double _noise, double _start, double _end)
     {
-        this.frequency = freq;
-        this.amplitude = ampl;
-        this.phase = ph;
-	this.noise = ns;
-	this.maxValue = ampl + Math.pow(ns, 2);
-	this.xStart = start;
-	this.xEnd = end;
+        frequency = _frequency;
+        amplitude = _amplitude;
+        phase = _phase;
+	noise = _noise;
+	maxValue = _amplitude + Math.pow(_noise, 2);
+	xStart = _start;
+	xEnd = _end;
     }
 
     /**
@@ -55,7 +55,7 @@ public class ChannelSignal extends Signal
     public double function(double x)
     {
 	Random noiseGenerator = new Random();
-	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noiseGenerator.nextGaussian();
+	return amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + noise * noiseGenerator.nextGaussian();
     }
 
     /**
@@ -64,6 +64,6 @@ public class ChannelSignal extends Signal
      */
     public double getNoise()
     {
-	return this.noise;
+	return noise;
     }
 }
