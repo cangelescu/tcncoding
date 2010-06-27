@@ -30,11 +30,11 @@ public class ChannelCoderManchester
 
     /**
      * Creates Manchester coder for given input sequence of binary numbers
-     * @param inputSequence list of input binary numbers
+     * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderManchester(List<BinaryNumber> inputSequence)
+    public ChannelCoderManchester(List<BinaryNumber> _inputSequence)
     {
-	this.sequence = inputSequence;
+	sequence = _inputSequence;
     }
 
     /**
@@ -42,7 +42,7 @@ public class ChannelCoderManchester
      */
     public void doEncode()
     {
-	for (BinaryNumber bn: this.sequence)
+	for (BinaryNumber bn: sequence)
 	{
 	    boolean[] currentNumberArray = bn.getAlignedBinaryArray();
 	    boolean[] resultNumber = new boolean[bn.getAlignment() * 2];
@@ -54,7 +54,7 @@ public class ChannelCoderManchester
 		index += 2;
 	    }
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
-	    this.outputSequence.add(ready);
+	    outputSequence.add(ready);
 	}
     }
 
@@ -64,6 +64,6 @@ public class ChannelCoderManchester
      */
     public List<BinaryNumber> getSequence()
     {
-	return this.outputSequence;
+	return outputSequence;
     }
 }
