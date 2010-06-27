@@ -31,28 +31,28 @@ public class MultiplierSignal extends Signal
 
     /**
      * Creates multiplier signal
-     * @param freq signal frequency, Hz
-     * @param ampl signal amplitude, V
-     * @param ph signal phase, rad
-     * @param ns noise amplitude, V
-     * @param efreq ethalon frequency, Hz
-     * @param eampl ethalon amplitude, V
-     * @param eph ethalon phase, rad
-     * @param start start time, s
-     * @param end end time, s
+     * @param _frequency signal frequency, Hz
+     * @param _amplitude signal amplitude, V
+     * @param _phase signal phase, rad
+     * @param _noise noise amplitude, V
+     * @param _ethalonFrequency ethalon frequency, Hz
+     * @param _ethalonAmplitude ethalon amplitude, V
+     * @param _ethalonPhase ethalon phase, rad
+     * @param _start start time, s
+     * @param _end end time, s
      */
-    public MultiplierSignal(double freq, double ampl, double ph, double ns, double efreq, double eampl, double eph, double start, double end)
+    public MultiplierSignal(double _frequency, double _amplitude, double _phase, double _noise, double _ethalonFrequency, double _ethalonAmplitude, double _ethalonPhase, double _start, double _end)
     {
-        this.frequency = freq;
-        this.amplitude = ampl;
-        this.phase = ph;
-	this.noise = ns;
-	this.ethalonFrequency = efreq;
-	this.ethalonAmplitude = eampl;
-	this.ethalonPhase = eph;
-	this.maxValue = (ampl + ns) * eampl;
-	this.xStart = start;
-	this.xEnd = end;
+        frequency = _frequency;
+        amplitude = _amplitude;
+        phase = _phase;
+	noise = _noise;
+	ethalonFrequency = _ethalonFrequency;
+	ethalonAmplitude = _ethalonAmplitude;
+	ethalonPhase = _ethalonPhase;
+	maxValue = (_amplitude + _noise) * _ethalonAmplitude;
+	xStart = _start;
+	xEnd = _end;
     }
 
     /**
@@ -64,8 +64,8 @@ public class MultiplierSignal extends Signal
     public double function(double x)
     {
 	Random noise_generator = new Random();
-	return (this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase) + this.noise * noise_generator.nextGaussian()) *
-	        (this.ethalonAmplitude * Math.sin(2 * Math.PI * this.ethalonFrequency * x + this.ethalonPhase));
+	return (amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + noise * noise_generator.nextGaussian()) *
+	        (ethalonAmplitude * Math.sin(2 * Math.PI * ethalonFrequency * x + ethalonPhase));
     }
 
     /**
@@ -74,6 +74,6 @@ public class MultiplierSignal extends Signal
      */
     public double getNoise()
     {
-	return this.noise;
+	return noise;
     }
 }
