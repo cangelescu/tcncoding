@@ -30,11 +30,11 @@ public class ChannelSqr
 
     /**
      * Creates list of channel signals^2
-     * @param newInputSignals list of input signals
+     * @param _inputSignals list of input signals
      */
-    public ChannelSqr(List<ModulatorSignal> newInputSignals)
+    public ChannelSqr(List<ModulatorSignal> _inputSignals)
     {
-	this.inputSignals = newInputSignals;
+	inputSignals = _inputSignals;
     }
 
     /**
@@ -42,11 +42,11 @@ public class ChannelSqr
      */
     public void doNoising()
     {
-	for(ModulatorSignal cs: this.inputSignals)
+	for(ModulatorSignal cs: inputSignals)
 	{
 
 	    ChannelSignalSqr ncfs = new ChannelSignalSqr(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), 4, cs.getStart(), cs.getEnd());
-	    this.outputSignals.add(ncfs);
+	    outputSignals.add(ncfs);
 	}
     }
 
@@ -56,6 +56,6 @@ public class ChannelSqr
      */
     public List<ChannelSignalSqr> getSignals()
     {
-	return this.outputSignals;
+	return outputSignals;
     }
 }
