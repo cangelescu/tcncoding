@@ -26,22 +26,22 @@ import java.util.List;
 public class Multiplier
 {
     private double ethalonFrequency, ethalonAmplitude, ethalonPhase;
-    private List<ChannelSignal> receivedSignal;
+    private List<ChannelSignal> receivedSignals;
     private List<MultiplierSignal> output = new ArrayList<MultiplierSignal>();
 
     /**
      * Creates multiplier
-     * @param freq ethalon frequency, Hz
-     * @param amplitude ethalon amplitude, V
-     * @param phase ethalon phase, rad
-     * @param signal list of input signals
+     * @param _frequency ethalon frequency, Hz
+     * @param _amplitude ethalon amplitude, V
+     * @param _phase ethalon phase, rad
+     * @param _signals list of input signals
      */
-    public Multiplier(double freq, double amplitude, double phase, List<ChannelSignal> signal)
+    public Multiplier(double _frequency, double _amplitude, double _phase, List<ChannelSignal> _signals)
     {
-	this.ethalonFrequency = freq;
-	this.ethalonAmplitude = amplitude;
-	this.ethalonPhase = phase;
-	this.receivedSignal = signal;
+	ethalonFrequency = _frequency;
+	ethalonAmplitude = _amplitude;
+	ethalonPhase = _phase;
+	receivedSignals = _signals;
     }
 
     /**
@@ -49,10 +49,10 @@ public class Multiplier
      */
     public void doMultiply()
     {
-	for (ChannelSignal crs: this.receivedSignal)
+	for (ChannelSignal crs: receivedSignals)
 	{
-	    MultiplierSignal mbfcrs = new MultiplierSignal(crs.getFrequency(), crs.getAmplitude(), crs.getPhase(), crs.getNoise(), this.ethalonFrequency, this.ethalonAmplitude, this.ethalonPhase, crs.getStart(), crs.getEnd());
-	    this.output.add(mbfcrs);
+	    MultiplierSignal mbfcrs = new MultiplierSignal(crs.getFrequency(), crs.getAmplitude(), crs.getPhase(), crs.getNoise(), ethalonFrequency, ethalonAmplitude, ethalonPhase, crs.getStart(), crs.getEnd());
+	    output.add(mbfcrs);
 	}
     }
 
@@ -62,6 +62,6 @@ public class Multiplier
      */
     public List<MultiplierSignal> getSignals()
     {
-	return this.output;
+	return output;
     }
 }
