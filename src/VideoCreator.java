@@ -32,16 +32,16 @@ public class VideoCreator
 
     /**
      * Creates videosequence
-     * @param channelSymbols list of source symbols
+     * @param _channelSymbols list of source symbols
      * @param _impulseLength length of each impulse, s
      * @param _impulseLevel level of each impulse, V
      */
-    public VideoCreator(List<BinaryNumber> channelSymbols, double _impulseLength, double _impulseLevel)
+    public VideoCreator(List<BinaryNumber> _channelSymbols, double _impulseLength, double _impulseLevel)
     {
-	this.inputSequence = channelSymbols;
-	this.impulseLength = _impulseLength;
-	this.impulseLevel = _impulseLevel;
-	this.step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength));
+	inputSequence = _channelSymbols;
+	impulseLength = _impulseLength;
+	impulseLevel = _impulseLevel;
+	step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength));
     }
 
     /**
@@ -49,26 +49,26 @@ public class VideoCreator
      */
     public void doVideoSequence()
     {
-	this.outputSequence.clear();
+	outputSequence.clear();
 	double cx = 0, sp = 0;
-	for (BinaryNumber cbn: this.inputSequence)
+	for (BinaryNumber cbn: inputSequence)
 	{
 	    List <FunctionStep> current = new ArrayList<FunctionStep>();
 	    boolean[] matrix = cbn.getAlignedBinaryArray();
 	    for (boolean cm: matrix)
 	    {
 		sp = 0;
-		while (sp <= this.impulseLength)
+		while (sp <= impulseLength)
 		{
 		    if (cm)
-			current.add(new FunctionStep(cx, this.impulseLevel));
+			current.add(new FunctionStep(cx, impulseLevel));
 		    else
 			current.add(new FunctionStep(cx, 0));
-		    sp += this.step;
-		    cx += this.step;
+		    sp += step;
+		    cx += step;
 		}
 	    }
-	    this.outputSequence.add(current);
+	    outputSequence.add(current);
 	}
     }
 
@@ -78,6 +78,6 @@ public class VideoCreator
      */
     public List<List<FunctionStep>> getVideoSequence()
     {
-	return this.outputSequence;
+	return outputSequence;
     }
 }
