@@ -29,11 +29,11 @@ public class Rectifier
 
     /**
      * Rectifies binary numbers' list into array
-     * @param inputSequence source list of binary numbers
+     * @param _sequence source list of binary numbers
      */
-    public Rectifier(List<BinaryNumber> inputSequence)
+    public Rectifier(List<BinaryNumber> _sequence)
     {
-	this.sequence = inputSequence;
+	sequence = _sequence;
     }
 
     /**
@@ -43,17 +43,17 @@ public class Rectifier
     {
 	//gets common sequence length
 	int sequenceLength = 0;
-	for (BinaryNumber bn: this.sequence)
+	for (BinaryNumber bn: sequence)
 	    sequenceLength += bn.getAlignment();
 
-	this.outputArray = new boolean[sequenceLength];
+	outputArray = new boolean[sequenceLength];
 
 	int index = 0;
-	for (BinaryNumber cbn: this.sequence)
+	for (BinaryNumber cbn: sequence)
 	{
 	    boolean[] currentArray = cbn.getAlignedBinaryArray();
 	    for (int i = 0; i < currentArray.length; i++)
-		this.outputArray[index++] = currentArray[i];
+		outputArray[index++] = currentArray[i];
 	}
     }
 
@@ -63,6 +63,6 @@ public class Rectifier
      */
     public boolean[] getArray()
     {
-	return this.outputArray;
+	return outputArray;
     }
 }
