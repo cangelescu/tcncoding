@@ -31,6 +31,14 @@ public class ModulatorFSK
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
+    /**
+     * Creates FSK modulator with phase breaking
+     * @param bearerAmplitude bearer amplitude, V
+     * @param bearerFrequency bearer frequency, Hz
+     * @param bearerFrequencyDeviation bearer frequency deviation, Hz
+     * @param symbols input binary sequence
+     * @param _impulseLength length of impulse, s
+     */
     public ModulatorFSK(double bearerAmplitude, double bearerFrequency, double bearerFrequencyDeviation, List symbols, double _impulseLength)
     {
 	this.sequence = symbols;

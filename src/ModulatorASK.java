@@ -31,6 +31,13 @@ public class ModulatorASK
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
+    /**
+     * Creates ASK modulator
+     * @param bearerAmplitude bearer amplitude, V
+     * @param bearerFrequency bearer frequency, Hz
+     * @param symbols input binary sequence
+     * @param _impulseLength length of impulse, s
+     */
     public ModulatorASK(double bearerAmplitude, double bearerFrequency, List symbols, double _impulseLength)
     {
 	this.sequence = symbols;

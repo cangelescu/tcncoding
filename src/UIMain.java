@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class UIMain extends javax.swing.JFrame {
-    //blocks (classes)
+    //UI parts
     SourceCoder currentSourceCoder = null;
     VideoCreator currentSourceVideoCreator = null;
     ChannelCoder currentChannelCoder = null;
@@ -38,11 +38,11 @@ public class UIMain extends javax.swing.JFrame {
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
     Summator currentSummator = null;
 
-    //UI
+    //UI blocks
     enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
-    //tools
+    //UI vizualization tools
     DataVizualizator currentSourceVideoSequenceVizualizator = null;
     DataVizualizator currentChannelVideoSequenceVizualizator = null;
     DataVizualizator currentModulatorVizualizator = null;
@@ -56,20 +56,22 @@ public class UIMain extends javax.swing.JFrame {
     //source message
     String message = "";
 
-    //using codes and other parameters
+    //simulating parameters
     SourceCoder.SourceCoderCode sourceCode = SourceCoder.SourceCoderCode.MTK2;
     ChannelCoder.ChannelCoderCode channelCode = ChannelCoder.ChannelCoderCode.PARITY_BIT;
     Modulator.ModulationType modulationType = Modulator.ModulationType.ASK;
 
-    //message in binary symbols
+    //binary sequences
     List<BinaryNumber> sourceSymbols = new ArrayList();
     List<BinaryNumber> channelSymbols = new ArrayList();
 
-    //videosequence
+    //source videosequence
     double sourceImpulseLength = 0;
     List<List<FunctionStep>> sourceVideoSequence = null;
     List<DataVizualizatorProvider> sourceVideoSequenceSingleProvider = null;
     List<List<DataVizualizatorProvider>> sourceVideoSequenceProvider = null;
+
+    //channel videosequence
     double channelImpulseLength = 0;
     List<List<FunctionStep>> channelVideoSequence = null;
     List<List<DataVizualizatorProvider>> channelVideoSequenceProvider = null;
@@ -82,6 +84,7 @@ public class UIMain extends javax.swing.JFrame {
     List<ChannelSignal> channelOutput = null;
     List<ChannelSignalSqr> channelSqrOutput = null;
     List<List<DataVizualizatorProvider>> channelOutputProvider = null;
+    //TODO: EXPERIMENTAL
     double channelOutputEnergy = 0;
     double errorsProbability = 0;
 
@@ -151,7 +154,7 @@ public class UIMain extends javax.swing.JFrame {
     //acts on choosing type of modulation
     void updateChosenModulationType()
     {
-	//disable zero bearer options
+	//disable bearer frequency deviation options
 	bearerFrequencyDeviation.setEnabled(false);
 	bearerFrequencyDeviationLabel.setEnabled(false);
 	switch (modulationTypeChooser.getSelectedIndex())
@@ -161,7 +164,7 @@ public class UIMain extends javax.swing.JFrame {
 		break;
 	    case 1:
 		modulationType = Modulator.ModulationType.FSK;
-		//enable zero bearer options
+		//enable bearer frequency deviation options
 		bearerFrequencyDeviation.setEnabled(true);
 		bearerFrequencyDeviationLabel.setEnabled(true);
 		break;
@@ -265,7 +268,9 @@ public class UIMain extends javax.swing.JFrame {
     //shows source videosequence
     void doSourceVideoSequence()
     {
+	//calculates source impulse length according to chosen informational speed
 	sourceImpulseLength = 1 / (Double)informationalSpeed.getValue();
+
 	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength, 1);
 	currentSourceVideoCreator.doVideoSequence();
 	sourceVideoSequence = currentSourceVideoCreator.getVideoSequence();
@@ -279,12 +284,17 @@ public class UIMain extends javax.swing.JFrame {
 	sourceVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
+
 	//creates new vizualizator
 	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+
 	//shows chart
 	currentSourceVideoSequenceVizualizator.setVisible(true);
+
+	//sets GridLayout to ensure charts to be resized on window resizing
 	blockSourceVideoSequenceOutputField.setLayout(new GridLayout());
 	blockSourceVideoSequenceOutputField.add(currentSourceVideoSequenceVizualizator);
+
 	//repaints chart to show it if VideoSequence block is active
 	currentSourceVideoSequenceVizualizator.repaint();
     }
@@ -292,7 +302,9 @@ public class UIMain extends javax.swing.JFrame {
     //shows channel videosequence
     void doChannelVideoSequence()
     {
+	//calculates channel impulse length according to chosen code
 	channelImpulseLength = sourceImpulseLength * ((double)currentSourceCoder.getSequenceLength() / (double)currentChannelCoder.getSequenceLength());
+
 	currentChannelVideoCreator = new VideoCreator(channelSymbols, channelImpulseLength, 0.75);
 	currentChannelVideoCreator.doVideoSequence();
 	channelVideoSequence = currentChannelVideoCreator.getVideoSequence();
@@ -306,20 +318,23 @@ public class UIMain extends javax.swing.JFrame {
 	channelVideoSequenceProvider.add((new DataVizualizatorConverter(channelVideoSequence, DataVizualizatorProvider.SignalType.TABULATED, "Кодована відеопослідовність", Color.RED)).getProvided());
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
+
 	//creates new vizualizator
 	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+
 	//shows chart
 	currentChannelVideoSequenceVizualizator.setVisible(true);
 	blockChannelVideoSequenceOutputField.setLayout(new GridLayout());
 	blockChannelVideoSequenceOutputField.add(currentChannelVideoSequenceVizualizator);
+
 	//repaints chart to show it if VideoSequence block is active
 	currentChannelVideoSequenceVizualizator.repaint();
     }
 
-    //modulates sinusoidal signal with Channel code using selected modulation type
+    //modulates sinusoidal bearer with channel code using selected modulation type
     void doModulating()
     {
-	//gets MODULATOR output signals
+	//gets modulator output signals
 	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), (Double)bearerFrequencyDeviation.getValue(), channelSymbols, channelImpulseLength);
 	currentModulator.doModulation();
 	this.modulatorData = currentModulator.getSignals();
@@ -342,26 +357,27 @@ public class UIMain extends javax.swing.JFrame {
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.setLayout(new GridLayout());
 	modulatorOutputField.add(currentModulatorVizualizator);
-	//repaints chart to show it if MODULATOR block is active
+	
+	//repaints chart to show it if modulator block is active
 	currentModulatorVizualizator.repaint();
     }
 
     //adds noise
     void doChannel()
     {
-	//gets CHANNEL output signal
+	//gets channel output signal
 	currentChannel = new Channel(this.modulatorData);
 	currentChannel.doNoising();
 	this.channelOutput = currentChannel.getSignals();
 
-	//gets CHANNEL output signal energy
+	//TODO: EXPERIMENTAL
+	//gets channel output signal energy
 	currentChannelSqr = new ChannelSqr(this.modulatorData);
 	currentChannelSqr.doNoising();
 	this.channelSqrOutput = currentChannelSqr.getSignals();
 	currentEnergyComputator = new EnergyComputator(this.channelSqrOutput);
 	currentEnergyComputator.computeEnergy();
 	this.channelOutputEnergy = currentEnergyComputator.getEnergy();
-
 	//computes errors probability
 	currentErrorsComputator = new ErrorsComputator(channelOutputEnergy, 1.0E-2, modulationType);
 	this.errorsProbability = currentErrorsComputator.getErrorProbability();
@@ -380,10 +396,12 @@ public class UIMain extends javax.swing.JFrame {
 	int cy = channelOutputField.getHeight();
 	//creates new vizualizator
 	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, "t, с", "S'(t), В");
+
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.setLayout(new GridLayout());
 	channelOutputField.add(currentChannelVizualizator);
+
 	//repaints chart to show it if MODULATOR block is active
 	currentChannelVizualizator.repaint();
     }
@@ -445,6 +463,7 @@ public class UIMain extends javax.swing.JFrame {
 	int cx1 = multiplierOutputField1.getWidth();
 	int cy1 = multiplierOutputField1.getHeight();
 
+	//shows multipliers charts
 	multiplier1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	multiplier1OutputProvider.add((new DataVizualizatorConverter(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER, "Сигнал на виході 1-го помножувача", Color.BLUE)).getProvided());
 	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t, с", "Sm1(t), В");
@@ -457,6 +476,7 @@ public class UIMain extends javax.swing.JFrame {
     //integrates signals from multipliers
     void doIntegrating()
     {
+	//integrates multipliers output
 	currentIntegrator0 = new Integrator(multiplier0Output);
 	currentIntegrator1 = new Integrator(multiplier1Output);
 	currentIntegrator0.doIntegrating();
@@ -464,6 +484,7 @@ public class UIMain extends javax.swing.JFrame {
 	integrator0Output = currentIntegrator0.getIntegrals();
 	integrator1Output = currentIntegrator1.getIntegrals();
 
+	//shows zero integrator chart
 	if (currentIntegratorVizualizator0 != null)
 	{
 	    integratorOutputField0.remove(currentIntegratorVizualizator0);
@@ -480,6 +501,7 @@ public class UIMain extends javax.swing.JFrame {
 	integratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
 
+	//shows first integrator chart
 	if (currentIntegratorVizualizator1 != null)
 	{
 	    integratorOutputField1.remove(currentIntegratorVizualizator1);
@@ -500,10 +522,12 @@ public class UIMain extends javax.swing.JFrame {
     //sums signals from integrators
     void doSumming()
     {
+	//gets sum from two integrators
 	currentSummator = new Summator(integrator0Output, integrator1Output);
 	currentSummator.doSumming();
 	summatorOutput = currentSummator.getSum();
 
+	//shows chart
 	if (currentSummatorVizualizator != null)
 	{
 	    summatorOutputField.remove(currentSummatorVizualizator);
@@ -1708,7 +1732,7 @@ public class UIMain extends javax.swing.JFrame {
 	System.exit(0);
     }//GEN-LAST:event_exitItemActionPerformed
 
-    //checks summarizing by module 2
+    //checks summing by module 2
     private void sum2ItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sum2ItemActionPerformed
     {//GEN-HEADEREND:event_sum2ItemActionPerformed
 	BinaryNumber num1 = new BinaryNumber(10);
@@ -1867,6 +1891,7 @@ public class UIMain extends javax.swing.JFrame {
 	}
     }
 
+    //integrating demo
     private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
     {//GEN-HEADEREND:event_integrateItemActionPerformed
 	TFun testFunction = new TFun();
@@ -1874,6 +1899,7 @@ public class UIMain extends javax.swing.JFrame {
 	System.out.printf("Integral of |sin(x)|+e^x from 0 to 2pi: %1.4f\n", result);
     }//GEN-LAST:event_integrateItemActionPerformed
 
+    //blocking demo
     private void blockingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blockingItemActionPerformed
     {//GEN-HEADEREND:event_blockingItemActionPerformed
 	BinaryNumber test1 = new BinaryNumber("11011010001101");
@@ -1966,9 +1992,9 @@ public class UIMain extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 		JFrame mainForm = new UIMain();
+		//main window starts maximized
 		mainForm.setExtendedState(MAXIMIZED_BOTH);
 		mainForm.setVisible(true);
-
             }
         });
     }

@@ -31,6 +31,13 @@ public class ModulatorPSK
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
+    /**
+     * Creates PSK modulator
+     * @param bearerAmplitude bearer amplitude, V
+     * @param bearerFrequency bearer frequency, Hz
+     * @param symbols input binary sequence
+     * @param _impulseLength length of impulse, s
+     */
     public ModulatorPSK(double bearerAmplitude, double bearerFrequency, List symbols, double _impulseLength)
     {
 	this.sequence = symbols;
