@@ -33,19 +33,19 @@ public class ModulatorFSK
 
     /**
      * Creates FSK modulator with phase breaking
-     * @param bearerAmplitude bearer amplitude, V
-     * @param bearerFrequency bearer frequency, Hz
-     * @param bearerFrequencyDeviation bearer frequency deviation, Hz
-     * @param symbols input binary sequence
+     * @param _bearerAmplitude bearer amplitude, V
+     * @param _bearerFrequency bearer frequency, Hz
+     * @param _bearerFrequencyDeviation bearer frequency deviation, Hz
+     * @param _symbols input binary sequence
      * @param _impulseLength length of impulse, s
      */
-    public ModulatorFSK(double bearerAmplitude, double bearerFrequency, double bearerFrequencyDeviation, List symbols, double _impulseLength)
+    public ModulatorFSK(double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List _symbols, double _impulseLength)
     {
-	this.sequence = symbols;
-	this.bearerAmplitude = bearerAmplitude;
-	this.bearerFrequency = bearerFrequency;
-	this.bearerFrequencyDeviation = bearerFrequencyDeviation;
-	this.impulseLength = _impulseLength;
+	sequence = _symbols;
+	bearerAmplitude = _bearerAmplitude;
+	bearerFrequency = _bearerFrequency;
+	bearerFrequencyDeviation = _bearerFrequencyDeviation;
+	impulseLength = _impulseLength;
     }
 
     /**
@@ -53,7 +53,7 @@ public class ModulatorFSK
      */
     public void doModulation()
     {
-	this.modulatedSequence.clear();
+	modulatedSequence.clear();
 
 	double currentTime = 0;
 
@@ -63,10 +63,10 @@ public class ModulatorFSK
 	for (boolean cb: rectifiedArray)
 	{
 	   if (!cb)
-		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency - bearerFrequencyDeviation, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
+		modulatedSequence.add(new ModulatorSignal(bearerFrequency - bearerFrequencyDeviation, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
 	    else
-		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency + bearerFrequencyDeviation, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
-	   currentTime += this.impulseLength;
+		modulatedSequence.add(new ModulatorSignal(bearerFrequency + bearerFrequencyDeviation, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
+	   currentTime += impulseLength;
 	}
     }
 
@@ -76,6 +76,6 @@ public class ModulatorFSK
      */
     public List<ModulatorSignal> getSignals()
     {
-	return this.modulatedSequence;
+	return modulatedSequence;
     }
 }
