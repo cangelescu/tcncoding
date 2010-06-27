@@ -30,23 +30,23 @@ public class BinaryNumber
 
     /**
      * Creates binary number from string sequence
-     * @param sequence string sequence of 0 and 1
+     * @param _sequence string sequence of 0 and 1
      */
-    public BinaryNumber(String sequence)
+    public BinaryNumber(String _sequence)
     {
-	this.alignment = sequence.length();
+	alignment = _sequence.length();
 	//gets meaningful part of string
 	String bin = "";
-	for (int i = 0; i < digits - sequence.length(); i++)
+	for (int i = 0; i < digits - _sequence.length(); i++)
 	    bin += "0";
-	bin += sequence;
+	bin += _sequence;
 
 	//calculates integer (decimal) value of binary number
 	long value = 0;
 	for (int i = 0; i < digits; i++)
 	    if (bin.charAt(i) == '1')
 		value += Math.pow(2, digits - 1 - i);
-	this.number = value;
+	number = value;
 
 	//creates array structure
 	for (int i = 0; i < digits; i++)
@@ -54,11 +54,11 @@ public class BinaryNumber
 	    switch (bin.charAt(i))
 	    {
 		case '0':
-		    this.binary[i] = false;
+		    binary[i] = false;
 		    break;
 
 		case '1':
-		    this.binary[i] = true;
+		    binary[i] = true;
 		    break;
 
 		default: break;
@@ -68,25 +68,25 @@ public class BinaryNumber
 
     /**
      * Creates binary number from aligned string sequence
-     * @param sequence string sequence of 0 and 1
-     * @param align count of meaningful digits in source string
+     * @param _sequence string sequence of 0 and 1
+     * @param _align count of meaningful digits in source string
      */
-    public BinaryNumber(String sequence, int align)
+    public BinaryNumber(String _sequence, int _align)
     {
-	this.alignment = align;
+	alignment = _align;
 	//gets meaningful part of string
 	String bin = "";
-	for (int i = 0; i < digits - align; i++)
+	for (int i = 0; i < digits - _align; i++)
 	    bin += "0";
-	for (int i = sequence.length() - align; i < align; i++)
-	    bin += sequence.charAt(i);
+	for (int i = _sequence.length() - _align; i < _align; i++)
+	    bin += _sequence.charAt(i);
 
 	//calculates integer (decimal) value of binary number
 	long value = 0;
 	for (int i = 0; i < digits; i++)
 	    if (bin.charAt(i) == '1')
 		value += Math.pow(2, digits - 1 - i);
-	this.number = value;
+	number = value;
 
 	//creates array structure
 	for (int i = 0; i < digits; i++)
@@ -94,11 +94,11 @@ public class BinaryNumber
 	    switch (bin.charAt(i))
 	    {
 		case '0':
-		    this.binary[i] = false;
+		    binary[i] = false;
 		    break;
 
 		case '1':
-		    this.binary[i] = true;
+		    binary[i] = true;
 		    break;
 
 		default: break;
@@ -108,19 +108,19 @@ public class BinaryNumber
 
     /**
      * Creates binary number from decimal value
-     * @param number integer number, that will be converted to binary
+     * @param _number integer number, that will be converted to binary
      */
-    public BinaryNumber(long number)
+    public BinaryNumber(long _number)
     {
-	this.number = number;
+	number = _number;
 
 	//gets meaningful part of string
-	String bin = Integer.toBinaryString((int) number);
+	String bin = Integer.toBinaryString((int) _number);
 	for (int i = 0; i < digits - bin.length(); i++)
 	{
-	    this.binary[i] = false;
+	    binary[i] = false;
 	}
-	this.alignment = bin.length();
+	alignment = bin.length();
 
 	//creates array structure
 	for (int i = digits - bin.length(); i < digits; i++)
@@ -128,11 +128,11 @@ public class BinaryNumber
 	    switch (bin.charAt(i - digits + bin.length()))
 	    {
 		case '0':
-		    this.binary[i] = false;
+		    binary[i] = false;
 		    break;
 
 		case '1':
-		    this.binary[i] = true;
+		    binary[i] = true;
 		    break;
 
 		default: break;
@@ -142,37 +142,37 @@ public class BinaryNumber
 
     /**
      * Creates aligned binary number from decimal value
-     * @param number integer number, that will be converted to binary
-     * @param align fixed width of resulting binary number in digits
+     * @param _number integer number, that will be converted to binary
+     * @param _align fixed width of resulting binary number in digits
      */
-    public BinaryNumber(long number, int align)
+    public BinaryNumber(long _number, int _align)
     {
-	this.number = number;
-	this.alignment = align;
+	number = _number;
+	alignment = _align;
 
 	//gets meaningful part of string
-	String got = Integer.toBinaryString((int) number);
+	String got = Integer.toBinaryString((int) _number);
 	String bin = "";
 	for (int i = 0; i < alignment - got.length(); i++)
 	    bin += "0";
 	bin += got;
 
-	for (int i = 0; i < digits - align; i++)
+	for (int i = 0; i < digits - _align; i++)
 	{
-	    this.binary[i] = false;
+	    binary[i] = false;
 	}
 
 	//creates array structure
-	for (int i = digits - align; i < digits; i++)
+	for (int i = digits - _align; i < digits; i++)
 	{
-	    switch (bin.charAt(i - digits + align))
+	    switch (bin.charAt(i - digits + _align))
 	    {
 		case '0':
-		    this.binary[i] = false;
+		    binary[i] = false;
 		    break;
 
 		case '1':
-		    this.binary[i] = true;
+		    binary[i] = true;
 		    break;
 
 		default: break;
@@ -182,54 +182,54 @@ public class BinaryNumber
 
     /**
      * Creates binary number from boolean array
-     * @param sequence boolean array, that represents binary number
+     * @param _sequence boolean array, that represents binary number
      */
-    public BinaryNumber(boolean[] sequence)
+    public BinaryNumber(boolean[] _sequence)
     {
 	//gets meaningful part of string
-	for (int i = 0; i < digits - sequence.length; i++)
+	for (int i = 0; i < digits - _sequence.length; i++)
 	{
-	    this.binary[i] = false;
+	    binary[i] = false;
 	}
-	this.alignment = sequence.length;
+	alignment = _sequence.length;
 
 	//creates array structure
-	for (int i = digits - sequence.length; i < digits; i++)
-	    this.binary[i] = sequence[i - digits + sequence.length];
+	for (int i = digits - _sequence.length; i < digits; i++)
+	    binary[i] = _sequence[i - digits + _sequence.length];
 
 	//calculates integer (decimal) value of binary number
 	long value = 0;
 	for (int i = 0; i < digits; i++)
-	    if (this.binary[i])
+	    if (binary[i])
 		value += Math.pow(2, digits - 1 - i);
-	this.number = value;
+	number = value;
     }
 
     //
     /**
      * Creates binary number from aligned boolean array
-     * @param sequence boolean array, that represents binary number
-     * @param align count of meaningful digits in source array
+     * @param _sequence boolean array, that represents binary number
+     * @param _align count of meaningful digits in source array
      */
-    public BinaryNumber(boolean[] sequence, int align)
+    public BinaryNumber(boolean[] _sequence, int _align)
     {
-	this.alignment = align;
+	alignment = _align;
 	//gets meaningful part of string
-	for (int i = 0; i < digits - align; i++)
+	for (int i = 0; i < digits - _align; i++)
 	{
-	    this.binary[i] = false;
+	    binary[i] = false;
 	}
 
 	//creates array structure
-	for (int i = digits - align; i < digits; i++)
-	    this.binary[i] = sequence[i - digits + align];
+	for (int i = digits - _align; i < digits; i++)
+	    binary[i] = _sequence[i - digits + _align];
 
 	//calculates integer (decimal) value of binary number
 	long value = 0;
 	for (int i = 0; i < digits; i++)
-	    if (this.binary[i])
+	    if (binary[i])
 		value += Math.pow(2, digits - 1 - i);
-	this.number = value;
+	number = value;
     }
 
     /**
@@ -239,9 +239,9 @@ public class BinaryNumber
     public String getStringSequence()
     {
 	String out = "";
-	for (int i = digits - this.alignment; i < digits; i++)
+	for (int i = digits - alignment; i < digits; i++)
 	{
-	    if (this.binary[i])
+	    if (binary[i])
 		out += '1';
 	    else
 		out += '0';
@@ -255,7 +255,7 @@ public class BinaryNumber
      */
     public long toInt()
     {
-	return this.number;
+	return number;
     }
 
     /**
@@ -264,7 +264,7 @@ public class BinaryNumber
      */
     public boolean[] getFullBinaryArray()
     {
-	return this.binary;
+	return binary;
     }
 
     /**
@@ -273,36 +273,36 @@ public class BinaryNumber
      */
     public boolean[] getAlignedBinaryArray()
     {
-	int k = digits - this.alignment;
+	int k = digits - alignment;
 	boolean[] out = new boolean[digits - k];
-	for (int i = k; i < this.digits; i++)
-	    out[i - k] = this.binary[i];
+	for (int i = k; i < digits; i++)
+	    out[i - k] = binary[i];
 	return out;
     }
 
     //converts integer array to decimal value
-    private long binaryToInt(boolean[] binary)
+    private long binaryToInt(boolean[] _binary)
     {
 	long out = 0;
 	for (int i = 0; i < digits; i++)
-	    if (binary[i])
+	    if (_binary[i])
 		out += Math.pow(2, digits - 1 - i);
 	return out;
     }
 
     /**
      *
-     * @param number binary number to sum with
+     * @param _number binary number to sum with
      * @return
      */
-    public BinaryNumber sum2(BinaryNumber number)
+    public BinaryNumber sum2(BinaryNumber _number)
     {
-	boolean[] in2 = number.getFullBinaryArray();
+	boolean[] in2 = _number.getFullBinaryArray();
 	boolean[] out = new boolean[digits];
 	for (int i = 0; i < digits; i++)
-	    out[i] = in2[i] ^ this.binary[i];
+	    out[i] = in2[i] ^ binary[i];
 	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, Math.max(number.alignment, this.alignment));
+	BinaryNumber res = new BinaryNumber(initValue, Math.max(_number.alignment, alignment));
 	return res;
     }
 
@@ -313,10 +313,10 @@ public class BinaryNumber
     public BinaryNumber not2()
     {
 	boolean[] out = new boolean[digits];
-	for (int i = digits - this.alignment; i < digits; i++)
-	    out[i] = !this.binary[i];
+	for (int i = digits - alignment; i < digits; i++)
+	    out[i] = !binary[i];
 	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, this.alignment);
+	BinaryNumber res = new BinaryNumber(initValue, alignment);
 	return res;
     }
 
@@ -329,28 +329,28 @@ public class BinaryNumber
 	boolean[] out = new boolean[digits];
 	for (int i = 0; i < digits - 1; i++)
 	{
-	    out[i] = this.binary[i + 1];
+	    out[i] = binary[i + 1];
 	}
 	out[digits - 1] = false;
 	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, this.alignment + 1);
+	BinaryNumber res = new BinaryNumber(initValue, alignment + 1);
 	return res;
     }
 
     /**
      * Shifts binary number to left by several positions
-     * @param align number of positions to shift by
+     * @param _align number of positions to shift by
      * @return
      */
-    public BinaryNumber shl2(int align)
+    public BinaryNumber shl2(int _align)
     {
 	boolean[] out = new boolean[digits];
-	for (int i = 0; i < digits - align; i++)
-	    out[i] = this.binary[i + align];
-	for (int i = digits - align; i < digits; i++)
+	for (int i = 0; i < digits - _align; i++)
+	    out[i] = binary[i + _align];
+	for (int i = digits - _align; i < digits; i++)
 	    out[i] = false;
 	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, this.alignment + align);
+	BinaryNumber res = new BinaryNumber(initValue, alignment + _align);
 	return res;
     }
 
@@ -362,7 +362,7 @@ public class BinaryNumber
     {
 	int out = 0;
 	for (int i = 0; i < digits; i++)
-	    if (this.binary[i])
+	    if (binary[i])
 		out++;
 	return out;
     }
@@ -373,6 +373,6 @@ public class BinaryNumber
      */
     public int getAlignment()
     {
-	return this.alignment;
+	return alignment;
     }
 }
