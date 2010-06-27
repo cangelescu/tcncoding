@@ -31,13 +31,13 @@ public class Splitter
 
     /**
      * Creates splitter of binary numbers' list into equal parts
-     * @param inputSequence source list of binary numbers
-     * @param align width of each block to split to
+     * @param _sequence source list of binary numbers
+     * @param _align width of each block to split to
      */
-    public Splitter(List<BinaryNumber> inputSequence, int align)
+    public Splitter(List<BinaryNumber> _sequence, int _align)
     {
-	this.sequence = inputSequence;
-	this.blockLength = align;
+	sequence = _sequence;
+	blockLength = _align;
     }
 
     /**
@@ -47,16 +47,16 @@ public class Splitter
     {
 	//gets common sequence length
 	int sequenceLength = 0;
-	for (BinaryNumber bn: this.sequence)
+	for (BinaryNumber bn: sequence)
 	    sequenceLength += bn.getAlignment();
 	//adds leading zeroes
-	int leadingZeroes = this.blockLength - (sequenceLength % this.blockLength);
+	int leadingZeroes = blockLength - (sequenceLength % blockLength);
 	boolean[] bitFlow = new boolean[leadingZeroes + sequenceLength];
 	for (int i = 0; i < leadingZeroes; i++)
 	    bitFlow[i] = false;
 	//forms linear bit array
 	int index = leadingZeroes;
-	for (BinaryNumber bn: this.sequence)
+	for (BinaryNumber bn: sequence)
 	{
 	    boolean[] currentBits = bn.getAlignedBinaryArray();
 	    for (int i = 0; i < currentBits.length; i++)
@@ -69,11 +69,11 @@ public class Splitter
 	int k = 0;
 	while (k < bitFlow.length)
 	{
-	    boolean[] piece = new boolean[this.blockLength];
-	    for (int i = 0; i < this.blockLength; i++)
+	    boolean[] piece = new boolean[blockLength];
+	    for (int i = 0; i < blockLength; i++)
 		piece[i] = bitFlow[k + i];
-	    this.outputBlocks.add(new BinaryNumber(piece, this.blockLength));
-	    k += this.blockLength;
+	    outputBlocks.add(new BinaryNumber(piece, blockLength));
+	    k += blockLength;
 	}
     }
 
@@ -83,6 +83,6 @@ public class Splitter
      */
     public List<BinaryNumber> getBlocks()
     {
-	return this.outputBlocks;
+	return outputBlocks;
     }
 }
