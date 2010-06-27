@@ -46,7 +46,7 @@ public class Signal implements IntegralFunction
      */
     public double getFrequency()
     {
-	return this.frequency;
+	return frequency;
     }
 
     /**
@@ -55,7 +55,7 @@ public class Signal implements IntegralFunction
      */
     public double getAmplitude()
     {
-	return this.amplitude;
+	return amplitude;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Signal implements IntegralFunction
      */
     public double getPhase()
     {
-	return this.phase;
+	return phase;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Signal implements IntegralFunction
      */
     public double getMaxValue()
     {
-	return this.maxValue;
+	return maxValue;
     }
 
     /**
@@ -82,7 +82,7 @@ public class Signal implements IntegralFunction
      */
     public double getStart()
     {
-	return this.xStart;
+	return xStart;
     }
 
     /**
@@ -91,6 +91,6 @@ public class Signal implements IntegralFunction
      */
     public double getEnd()
     {
-	return this.xEnd;
+	return xEnd;
     }
 }
