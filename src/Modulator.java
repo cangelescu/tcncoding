@@ -58,20 +58,20 @@ public class Modulator
 
     /**
      * Creates modulator with given parameters
-     * @param mod_type type of using modulation
-     * @param bearerAmplitude bearer amplitude, V
-     * @param bearerFrequency first bearer frequency, Hz
-     * @param bearerFrequencyDeviation second bearer frequency, Hz
-     * @param symbols list of input symbols (input videosequence)
+     * @param _modulationType type of using modulation
+     * @param _bearerAmplitude bearer amplitude, V
+     * @param _bearerFrequency first bearer frequency, Hz
+     * @param _bearerFrequencyDeviation second bearer frequency, Hz
+     * @param _symbols list of input symbols (input videosequence)
      */
-    public Modulator(ModulationType mod_type, double bearerAmplitude, double bearerFrequency, double bearerFrequencyDeviation, List symbols, double _impulseLength)
+    public Modulator(ModulationType _modulationType, double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List _symbols, double _impulseLength)
     {
-	this.usingMethod = mod_type;
-	this.sequence = symbols;
-	this.bearerAmplitude = bearerAmplitude;
-	this.bearerFrequency = bearerFrequency;
-	this.bearerFrequencyDeviation = bearerFrequencyDeviation;
-	this.impulseLength = _impulseLength;
+	usingMethod = _modulationType;
+	sequence = _symbols;
+	bearerAmplitude = _bearerAmplitude;
+	bearerFrequency = _bearerFrequency;
+	bearerFrequencyDeviation = _bearerFrequencyDeviation;
+	impulseLength = _impulseLength;
     }
 
     /**
@@ -79,27 +79,27 @@ public class Modulator
      */
     public void doModulation()
     {
-	switch (this.usingMethod)
+	switch (usingMethod)
 	{
 	    case ASK:
 		ModulatorASK modulatorASK = new ModulatorASK(bearerAmplitude, bearerFrequency, sequence, impulseLength);
 		modulatorASK.doModulation();
-		this.modulatedSequence = modulatorASK.getSignals();
+		modulatedSequence = modulatorASK.getSignals();
 		break;
 	    case FSK:
 		ModulatorFSK modulatorFSK = new ModulatorFSK(bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, sequence, impulseLength);
 		modulatorFSK.doModulation();
-		this.modulatedSequence = modulatorFSK.getSignals();
+		modulatedSequence = modulatorFSK.getSignals();
 		break;
 	    case PSK:
 		ModulatorPSK modulatorPSK = new ModulatorPSK(bearerAmplitude, bearerFrequency, sequence, impulseLength);
 		modulatorPSK.doModulation();
-		this.modulatedSequence = modulatorPSK.getSignals();
+		modulatedSequence = modulatorPSK.getSignals();
 		break;
 	    case RPSK:
 		ModulatorRPSK modulatorRPSK = new ModulatorRPSK(bearerAmplitude, bearerFrequency, sequence, impulseLength);
 		modulatorRPSK.doModulation();
-		this.modulatedSequence = modulatorRPSK.getSignals();
+		modulatedSequence = modulatorRPSK.getSignals();
 		break;
 	    default:
 		break;
@@ -112,6 +112,6 @@ public class Modulator
      */
     public List<ModulatorSignal> getSignals()
     {
-	return this.modulatedSequence;
+	return modulatedSequence;
     }
 }
