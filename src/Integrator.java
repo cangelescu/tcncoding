@@ -30,11 +30,11 @@ public class Integrator
 
     /**
      * Creates integrator for input signals
-     * @param newSignals list of input signals
+     * @param _signals list of input signals
      */
-    public Integrator(List<MultiplierSignal> newSignals)
+    public Integrator(List<MultiplierSignal> _signals)
     {
-	this.signals = newSignals;
+	signals = _signals;
     }
 
     /**
@@ -42,8 +42,8 @@ public class Integrator
      */
     public void doIntegrating()
     {
-	this.out.clear();
-	for (MultiplierSignal cs: this.signals)
+	out.clear();
+	for (MultiplierSignal cs: signals)
 	{
 	    List<FunctionStep> current = new ArrayList<FunctionStep>();
 	    double length = cs.getEnd() - cs.getStart();
@@ -57,7 +57,7 @@ public class Integrator
 		current.add(new FunctionStep(sp, sum));
 		sp += step;
 	    }
-	    this.out.add(current);
+	    out.add(current);
 	}
     }
 
@@ -67,6 +67,6 @@ public class Integrator
      */
     public List<List<FunctionStep>> getIntegrals()
     {
-	return this.out;
+	return out;
     }
 }
