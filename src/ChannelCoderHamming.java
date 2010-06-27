@@ -30,11 +30,11 @@ public class ChannelCoderHamming
 
     /**
      * Creates Hamming coder for given input sequence of binary numbers
-     * @param inputSequence list of input binary numbers
+     * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderHamming(List<BinaryNumber> inputSequence)
+    public ChannelCoderHamming(List<BinaryNumber> _inputSequence)
     {
-	this.sequence = inputSequence;
+	sequence = _inputSequence;
     }
 
     /**
@@ -42,7 +42,7 @@ public class ChannelCoderHamming
      */
     public void doEncode()
     {
-	Splitter hammingBlocker = new Splitter(this.sequence, 4);
+	Splitter hammingBlocker = new Splitter(sequence, 4);
 	hammingBlocker.doSplitting();
 	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
 	for (BinaryNumber bn: blockedSequence)
@@ -55,7 +55,7 @@ public class ChannelCoderHamming
 	    resultNumber[currentNumberArray.length + 1] = currentNumberArray[0] ^ currentNumberArray[2] ^ currentNumberArray[3];
 	    resultNumber[currentNumberArray.length + 2] = currentNumberArray[1] ^ currentNumberArray[2] ^ currentNumberArray[3];
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
-	    this.outputSequence.add(ready);
+	    outputSequence.add(ready);
 	}
     }
 
@@ -65,6 +65,6 @@ public class ChannelCoderHamming
      */
     public List<BinaryNumber> getSequence()
     {
-	return this.outputSequence;
+	return outputSequence;
     }
 }
