@@ -35,9 +35,9 @@ public class ErrorsComputator
      */
     public ErrorsComputator(double _signalEnergy, double _noiseDensity, Modulator.ModulationType _modulationType)
     {
-	this.signalEnergy = _signalEnergy;
-	this.noiseDensity = _noiseDensity;
-	this.modulationType = _modulationType;
+	signalEnergy = _signalEnergy;
+	noiseDensity = _noiseDensity;
+	modulationType = _modulationType;
     }
 
     /**
@@ -47,7 +47,7 @@ public class ErrorsComputator
     public double getErrorProbability()
     {
 	double out = 0, arg = 0, factor = 0;
-	switch (this.modulationType)
+	switch (modulationType)
 	{
 	    case ASK:
 		arg = 0.5;
@@ -68,7 +68,7 @@ public class ErrorsComputator
 	    default:
 		break;
 	}
-	out = factor * 0.5 * (1 - Stat.erf(Math.sqrt((this.signalEnergy / this.noiseDensity) * arg / 4)));
+	out = factor * 0.5 * (1 - Stat.erf(Math.sqrt((signalEnergy / noiseDensity) * arg / 4)));
 	return out;
     }
 }
