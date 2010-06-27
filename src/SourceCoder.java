@@ -64,39 +64,39 @@ public class SourceCoder
 
     /**
      * Creates source coder for input message
-     * @param codeType type of using code
-     * @param message input string message
+     * @param _codeType type of using code
+     * @param _message input string message
      */
-    public SourceCoder(SourceCoderCode codeType, String message)
+    public SourceCoder(SourceCoderCode _codeType, String _message)
     {
-	this.sourceMessage = message;
+	sourceMessage = _message;
 	String filename = "";
-	switch (codeType)
+	switch (_codeType)
 	{
 	    case MTK2:
-		this.usingCode = SourceCoderCode.MTK2;
+		usingCode = SourceCoderCode.MTK2;
 		filename = "mtk2";
 		break;
 	    case MTK5:
-		this.usingCode = SourceCoderCode.MTK5;
+		usingCode = SourceCoderCode.MTK5;
 		filename = "mtk5";
 		break;
 	    case KOI8U:
-		this.usingCode = SourceCoderCode.KOI8U;
+		usingCode = SourceCoderCode.KOI8U;
 		filename = "koi8u";
 		break;
 	    case MORSE:
-		this.usingCode = SourceCoderCode.MORSE;
+		usingCode = SourceCoderCode.MORSE;
 		filename = "morse";
 		break;
 	    case SHANNON:
-		this.usingCode = SourceCoderCode.SHANNON;
+		usingCode = SourceCoderCode.SHANNON;
 		filename = "shannon";
 		break;
 	    default:
 		break;
 	}
-	this.codeMap.clear();
+	codeMap.clear();
 	String line = "";
 	try
 	{
@@ -107,7 +107,7 @@ public class SourceCoder
 	    {
 		String[] parts = line.split("#");
 		BinaryNumber bnum = new BinaryNumber(parts[0], parts[0].length());
-		this.codeMap.put(parts[1], bnum);
+		codeMap.put(parts[1], bnum);
 	    }
 	} catch (Exception ex)
 	{
@@ -120,27 +120,27 @@ public class SourceCoder
      */
     public void doEncode()
     {
-	this.sourceSequence.clear();
+	sourceSequence.clear();
 	String workingMessage = "";
 	/*
 	 * ITC-2, Morse and Shannon-Fano codes do not depend on letters' case
 	 */
-	switch (this.usingCode)
+	switch (usingCode)
 	{
 	    case MTK2:
-		workingMessage = this.sourceMessage.toUpperCase();
+		workingMessage = sourceMessage.toUpperCase();
 		break;
 	    case MTK5:
-		workingMessage = this.sourceMessage;
+		workingMessage = sourceMessage;
 		break;
 	    case KOI8U:
-		workingMessage = this.sourceMessage;
+		workingMessage = sourceMessage;
 		break;
 	    case MORSE:
-		workingMessage = this.sourceMessage.toUpperCase();
+		workingMessage = sourceMessage.toUpperCase();
 		break;
 	    case SHANNON:
-		workingMessage = this.sourceMessage.toUpperCase();
+		workingMessage = sourceMessage.toUpperCase();
 		break;
 	    default:
 		break;
@@ -149,9 +149,9 @@ public class SourceCoder
 	for (int i = 0; i < len; i++)
 	{
 	    char current_char = workingMessage.charAt(i);
-	    BinaryNumber num = this.codeMap.get(String.valueOf(current_char));
+	    BinaryNumber num = codeMap.get(String.valueOf(current_char));
 	    if (num != null)
-		this.sourceSequence.add(num);
+		sourceSequence.add(num);
 	}
     }
 
@@ -161,7 +161,7 @@ public class SourceCoder
      */
     public List getSequence()
     {
-	return this.sourceSequence;
+	return sourceSequence;
     }
 
     /**
@@ -184,7 +184,7 @@ public class SourceCoder
     {
 	String out = "<html>";
 	boolean trigger = false;
-	for (BinaryNumber bn: this.sourceSequence)
+	for (BinaryNumber bn: sourceSequence)
 	{
 	    if (trigger)
 		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + "</font>";
