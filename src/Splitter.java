@@ -58,10 +58,10 @@ public class Splitter
 	int index = leadingZeroes;
 	for (BinaryNumber bn: this.sequence)
 	{
-	    boolean[] current_bits = bn.getAlignedBinaryArray();
-	    for (int i = 0; i < current_bits.length; i++)
+	    boolean[] currentBits = bn.getAlignedBinaryArray();
+	    for (int i = 0; i < currentBits.length; i++)
 	    {
-		bitFlow[index] = current_bits[i];
+		bitFlow[index] = currentBits[i];
 		index++;
 	    }
 	}
