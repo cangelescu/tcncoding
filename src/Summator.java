@@ -31,13 +31,13 @@ public class Summator
 
     /**
      * Creates summator of two tabulated functions
-     * @param newSequence0 first tabulated function
-     * @param newSequence1 second tabulated function
+     * @param _sequence0 first tabulated function
+     * @param _sequence1 second tabulated function
      */
-    public Summator(List<List<FunctionStep>> newSequence0, List<List<FunctionStep>> newSequence1)
+    public Summator(List<List<FunctionStep>> _sequence0, List<List<FunctionStep>> _sequence1)
     {
-	this.sequence0 = newSequence0;
-	this.sequence1 = newSequence1;
+	sequence0 = _sequence0;
+	sequence1 = _sequence1;
     }
 
     /**
@@ -45,19 +45,19 @@ public class Summator
      */
     public void doSumming()
     {
-	this.sumResult.clear();
-	for (int i = 0; i < this.sequence0.size(); i++)
+	sumResult.clear();
+	for (int i = 0; i < sequence0.size(); i++)
 	{
-	    List<FunctionStep> s0 = this.sequence0.get(i);
-	    List<FunctionStep> s1 = this.sequence1.get(i);
-	    List<FunctionStep> new_sum = new ArrayList<FunctionStep>();
+	    List<FunctionStep> s0 = sequence0.get(i);
+	    List<FunctionStep> s1 = sequence1.get(i);
+	    List<FunctionStep> newSum = new ArrayList<FunctionStep>();
 	    for (int k = 0; k < s0.size(); k++)
 	    {
 		FunctionStep ss0 = s0.get(k);
 		FunctionStep ss1 = s1.get(k);
-		new_sum.add(new FunctionStep(ss1.getX(), ss1.getY() - ss0.getY()));
+		newSum.add(new FunctionStep(ss1.getX(), ss1.getY() - ss0.getY()));
 	    }
-	    sumResult.add(new_sum);
+	    sumResult.add(newSum);
 	}
     }
 
@@ -67,6 +67,6 @@ public class Summator
      */
     public List<List<FunctionStep>> getSum()
     {
-	return this.sumResult;
+	return sumResult;
     }
 }
