@@ -24,20 +24,20 @@ public class ModulatorSignal extends Signal
 {
     /**
      * Creates modulator signal
-     * @param freq frequency, Hz
-     * @param ampl amplitude, V
-     * @param ph phase, rad
-     * @param start start time, s
-     * @param end end time, s
+     * @param _frequency frequency, Hz
+     * @param _amplitude amplitude, V
+     * @param _phase phase, rad
+     * @param _start start time, s
+     * @param _end end time, s
      */
-    public ModulatorSignal(double freq, double ampl, double ph, double start, double end)
+    public ModulatorSignal(double _frequency, double _amplitude, double _phase, double _start, double _end)
     {
-        this.frequency = freq;
-        this.amplitude = ampl;
-        this.phase = ph;
-	this.maxValue = ampl;
-	this.xStart = start;
-	this.xEnd = end;
+        frequency = _frequency;
+        amplitude = _amplitude;
+        phase = _phase;
+	maxValue = _amplitude;
+	xStart = _start;
+	xEnd = _end;
     }
 
     /**
@@ -48,6 +48,6 @@ public class ModulatorSignal extends Signal
     @Override
     public double function(double x)
     {
-	return this.amplitude * Math.sin(2 * Math.PI * this.frequency * x + this.phase);
+	return amplitude * Math.sin(2 * Math.PI * frequency * x + phase);
     }
 }
