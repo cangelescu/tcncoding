@@ -33,17 +33,17 @@ public class ModulatorRPSK
 
     /**
      * Creates RPSK modulator (same as PSK, but recodes sequence first)
-     * @param bearerAmplitude bearer amplitude, V
-     * @param bearerFrequency bearer frequency, Hz
-     * @param symbols input binary sequence
+     * @param _bearerAmplitude bearer amplitude, V
+     * @param _bearerFrequency bearer frequency, Hz
+     * @param _symbols input binary sequence
      * @param _impulseLength length of impulse, s
      */
-    public ModulatorRPSK(double bearerAmplitude, double bearerFrequency, List symbols, double _impulseLength)
+    public ModulatorRPSK(double _bearerAmplitude, double _bearerFrequency, List _symbols, double _impulseLength)
     {
-	this.sequence = symbols;
-	this.bearerAmplitude = bearerAmplitude;
-	this.bearerFrequency = bearerFrequency;
-	this.impulseLength = _impulseLength;
+	sequence = _symbols;
+	bearerAmplitude = _bearerAmplitude;
+	bearerFrequency = _bearerFrequency;
+	impulseLength = _impulseLength;
     }
 
     /**
@@ -51,7 +51,7 @@ public class ModulatorRPSK
      */
     public void doModulation()
     {
-	this.modulatedSequence.clear();
+	modulatedSequence.clear();
 
 	double currentTime = 0;
 
@@ -65,10 +65,10 @@ public class ModulatorRPSK
 	for (boolean cb: recodedArray)
 	{
 	    if (!cb)
-		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + this.impulseLength));
+		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
 	    else
-		this.modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, -Math.PI, currentTime, currentTime + this.impulseLength));
-	    currentTime += this.impulseLength;
+		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, -Math.PI, currentTime, currentTime + impulseLength));
+	    currentTime += impulseLength;
 	}
     }
 
@@ -78,6 +78,6 @@ public class ModulatorRPSK
      */
     public List<ModulatorSignal> getSignals()
     {
-	return this.modulatedSequence;
+	return modulatedSequence;
     }
 }
