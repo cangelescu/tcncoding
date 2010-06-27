@@ -44,18 +44,18 @@ public class DataVizualizator extends JPanel
 
     /**
      * Creates vizualizator for provided data
-     * @param data list of lists of provided data
-     * @param wx width of output area
-     * @param wy height of output area
-     * @param legendX X axis legend
-     * @param legendY Y axis legend
+     * @param _data list of lists of provided data
+     * @param _width width of output area
+     * @param _height height of output area
+     * @param _legendX X axis legend
+     * @param _legendY Y axis legend
      */
-    public DataVizualizator(List<List<DataVizualizatorProvider>> data, int wx, int wy, String legendX, String legendY)
+    public DataVizualizator(List<List<DataVizualizatorProvider>> _data, int _width, int _height, String _legendX, String _legendY)
     {
-	this.setSize(wx, wy);
-	this.chartData = data;
-	this.lX = legendX;
-	this.lY = legendY;
+	setSize(_width, _height);
+	chartData = _data;
+	lX = _legendX;
+	lY = _legendY;
     }
 
     @Override
@@ -81,10 +81,10 @@ public class DataVizualizator extends JPanel
 	final int xBorder = 10;
 	final int yBorder = 10;
 	final int topYBorder = topMarginY + yBorder;
-	final int bottomYBorder = this.getHeight() - bottomMarginY;
+	final int bottomYBorder = getHeight() - bottomMarginY;
 
 	//longtitude of chart
-	int distance = this.getWidth() - (leftMarginX + rightMarginX + xBorder);
+	int distance = getWidth() - (leftMarginX + rightMarginX + xBorder);
 
 	//arrows size
 	final int arrowWidth = 2;
@@ -92,13 +92,13 @@ public class DataVizualizator extends JPanel
 
 	//zero levels
 	final int zeroX = leftMarginX;
-	final int zeroY = this.getHeight() / 2;
+	final int zeroY = getHeight() / 2;
 
 	//find min/max values
-	double minX = this.chartData.get(0).get(0).getStart();
-	double maxX = this.chartData.get(0).get(0).getEnd();
-	double maxY = this.chartData.get(0).get(0).getMaxValue();
-	for (List<DataVizualizatorProvider> cldvp: this.chartData)
+	double minX = chartData.get(0).get(0).getStart();
+	double maxX = chartData.get(0).get(0).getEnd();
+	double maxY = chartData.get(0).get(0).getMaxValue();
+	for (List<DataVizualizatorProvider> cldvp: chartData)
 	    for (DataVizualizatorProvider cdvp: cldvp)
 	    {
 		if (cdvp.getMaxValue() > maxY)
@@ -147,24 +147,24 @@ public class DataVizualizator extends JPanel
 
 	g2.setColor(Color.BLACK);
 	//draw coordinates system
-	g2.drawLine(leftMarginX, zeroY, this.getWidth() - rightMarginX + xBorder, zeroY);
+	g2.drawLine(leftMarginX, zeroY, getWidth() - rightMarginX + xBorder, zeroY);
 	g2.drawLine(leftMarginX, topMarginY, leftMarginX, bottomYBorder);
 	//0y arrow
 	g2.drawLine(leftMarginX, topMarginY, leftMarginX - arrowWidth, topMarginY + arrowHeight);
 	g2.drawLine(leftMarginX, topMarginY, leftMarginX + arrowWidth, topMarginY + arrowHeight);
 	//0x arrow
-	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY - arrowWidth);
-	g2.drawLine(this.getWidth() - rightMarginX + xBorder, zeroY, this.getWidth() - rightMarginX - arrowHeight + xBorder, zeroY + arrowWidth);
+	g2.drawLine(getWidth() - rightMarginX + xBorder, zeroY, getWidth() - rightMarginX - arrowHeight + xBorder, zeroY - arrowWidth);
+	g2.drawLine(getWidth() - rightMarginX + xBorder, zeroY, getWidth() - rightMarginX - arrowHeight + xBorder, zeroY + arrowWidth);
 
 	//legend x
-	g2.drawString(lX, this.getWidth() - g2.getFontMetrics().stringWidth(lX), zeroY + g2.getFontMetrics().getHeight());
+	g2.drawString(lX, getWidth() - g2.getFontMetrics().stringWidth(lX), zeroY + g2.getFontMetrics().getHeight());
 	//legend y
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - yStepsMargin, topMarginY);
 
 	//set stroke
 	Stroke cStroke = new BasicStroke(2);
 	g2.setStroke(cStroke);
-	for (List<DataVizualizatorProvider> cldvp: this.chartData)
+	for (List<DataVizualizatorProvider> cldvp: chartData)
 	{
 	    //add right-click description
 	    JMenuItem cItem = new JMenuItem(cldvp.get(0).getDescription());
@@ -224,6 +224,6 @@ public class DataVizualizator extends JPanel
 	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
 	}
 
-	this.setComponentPopupMenu(pMenu);
+	setComponentPopupMenu(pMenu);
     }
 }
