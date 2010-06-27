@@ -30,11 +30,11 @@ public class ChannelCoderInversed
 
     /**
      * Creates coder with inversed code for given input sequence of binary numbers
-     * @param inputSequence list of input binary numbers
+     * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderInversed(List<BinaryNumber> inputSequence)
+    public ChannelCoderInversed(List<BinaryNumber> _inputSequence)
     {
-	this.sequence = inputSequence;
+	sequence = _inputSequence;
     }
 
     /**
@@ -42,16 +42,16 @@ public class ChannelCoderInversed
      */
     public void doEncode()
     {
-	for (BinaryNumber bn: this.sequence)
+	for (BinaryNumber bn: sequence)
 	{
 	    BinaryNumber shifted = bn.shl2(bn.getAlignment());
 	    if (bn.getWeight() % 2 == 0)
 	    {
-		this.outputSequence.add(shifted.sum2(bn));
+		outputSequence.add(shifted.sum2(bn));
 	    } else
 	    {
 		BinaryNumber inversed = bn.not2();
-		this.outputSequence.add(shifted.sum2(inversed));
+		outputSequence.add(shifted.sum2(inversed));
 	    }
 	}
     }
@@ -62,6 +62,6 @@ public class ChannelCoderInversed
      */
     public List<BinaryNumber> getSequence()
     {
-	return this.outputSequence;
+	return outputSequence;
     }
 }
