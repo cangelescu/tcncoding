@@ -30,11 +30,11 @@ public class Channel
 
     /**
      * Creates channel with given signals on its input
-     * @param newInputSignals list of input signals
+     * @param _inputSignals list of input signals
      */
-    public Channel(List<ModulatorSignal> newInputSignals)
+    public Channel(List<ModulatorSignal> _inputSignals)
     {
-	this.inputSignals = newInputSignals;
+	inputSignals = _inputSignals;
     }
 
     /**
@@ -42,11 +42,11 @@ public class Channel
      */
     public void doNoising()
     {
-	for(ModulatorSignal cs: this.inputSignals)
+	for(ModulatorSignal cs: inputSignals)
 	{
 
 	    ChannelSignal ncfs = new ChannelSignal(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), 4, cs.getStart(), cs.getEnd());
-	    this.outputSignals.add(ncfs);
+	    outputSignals.add(ncfs);
 	}
     }
 
@@ -56,6 +56,6 @@ public class Channel
      */
     public List<ChannelSignal> getSignals()
     {
-	return this.outputSignals;
+	return outputSignals;
     }
 }
