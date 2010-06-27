@@ -26,11 +26,11 @@ public class RPSKRecoder
 
     /**
      * Rectifies binary numbers' list into array
-     * @param inputSequence source list of binary numbers
+     * @param _sequence source list of binary numbers
      */
-    public RPSKRecoder(boolean[] inputSequence)
+    public RPSKRecoder(boolean[] _sequence)
     {
-	this.sequence = inputSequence;
+	sequence = _sequence;
     }
 
     /**
@@ -39,11 +39,11 @@ public class RPSKRecoder
     public void doRecoding()
     {
 	//shifts array
-	boolean[] temporaryArray = new boolean[this.sequence.length + 1];
-	outputArray = new boolean[this.sequence.length + 1];
+	boolean[] temporaryArray = new boolean[sequence.length + 1];
+	outputArray = new boolean[sequence.length + 1];
 	temporaryArray[0] = false;
 	outputArray[0] = false;
-	System.arraycopy(this.sequence, 0, temporaryArray, 1, this.sequence.length);
+	System.arraycopy(sequence, 0, temporaryArray, 1, sequence.length);
 	//recodes array
 	for (int i = 1; i < temporaryArray.length; i++)
 	    outputArray[i] = temporaryArray[i] && temporaryArray[i - 1];
@@ -55,6 +55,6 @@ public class RPSKRecoder
      */
     public boolean[] getArray()
     {
-	return this.outputArray;
+	return outputArray;
     }
 }
