@@ -30,11 +30,11 @@ public class ChannelCoderParityBit
 
     /**
      * Creates coder for given input sequence of binary numbers with parity bit checking
-     * @param inputSequence list of input binary numbers
+     * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderParityBit(List<BinaryNumber> inputSequence)
+    public ChannelCoderParityBit(List<BinaryNumber> _inputSequence)
     {
-	this.sequence = inputSequence;
+	sequence = _inputSequence;
     }
 
     /**
@@ -42,16 +42,16 @@ public class ChannelCoderParityBit
      */
     public void doEncode()
     {
-	for (BinaryNumber bn: this.sequence)
+	for (BinaryNumber bn: sequence)
 	{
 	    BinaryNumber shifted = bn.shl2();
 	    if (bn.getWeight() % 2 == 0)
 	    {
-		this.outputSequence.add(shifted);
+		outputSequence.add(shifted);
 	    } else
 	    {
 		BinaryNumber one = new BinaryNumber(1);
-		this.outputSequence.add(shifted.sum2(one));
+		outputSequence.add(shifted.sum2(one));
 	    }
 	}
     }
@@ -62,6 +62,6 @@ public class ChannelCoderParityBit
      */
     public List<BinaryNumber> getSequence()
     {
-	return this.outputSequence;
+	return outputSequence;
     }
 }
