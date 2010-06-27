@@ -337,7 +337,7 @@ public class UIMain extends javax.swing.JFrame {
 	//gets modulator output signals
 	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), (Double)bearerFrequencyDeviation.getValue(), channelSymbols, channelImpulseLength);
 	currentModulator.doModulation();
-	this.modulatorData = currentModulator.getSignals();
+	modulatorData = currentModulator.getSignals();
 
 	//removes old vizualizator if exists
 	if (currentModulatorVizualizator != null)
@@ -366,21 +366,21 @@ public class UIMain extends javax.swing.JFrame {
     void doChannel()
     {
 	//gets channel output signal
-	currentChannel = new Channel(this.modulatorData);
+	currentChannel = new Channel(modulatorData);
 	currentChannel.doNoising();
-	this.channelOutput = currentChannel.getSignals();
+	channelOutput = currentChannel.getSignals();
 
 	//TODO: EXPERIMENTAL
 	//gets channel output signal energy
-	currentChannelSqr = new ChannelSqr(this.modulatorData);
+	currentChannelSqr = new ChannelSqr(modulatorData);
 	currentChannelSqr.doNoising();
-	this.channelSqrOutput = currentChannelSqr.getSignals();
-	currentEnergyComputator = new EnergyComputator(this.channelSqrOutput);
+	channelSqrOutput = currentChannelSqr.getSignals();
+	currentEnergyComputator = new EnergyComputator(channelSqrOutput);
 	currentEnergyComputator.computeEnergy();
-	this.channelOutputEnergy = currentEnergyComputator.getEnergy();
+	channelOutputEnergy = currentEnergyComputator.getEnergy();
 	//computes errors probability
 	currentErrorsComputator = new ErrorsComputator(channelOutputEnergy, 1.0E-2, modulationType);
-	this.errorsProbability = currentErrorsComputator.getErrorProbability();
+	errorsProbability = currentErrorsComputator.getErrorProbability();
 
 	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
@@ -410,23 +410,23 @@ public class UIMain extends javax.swing.JFrame {
     void doMultiplying()
     {
 	//create multipliers according to modulation type
-	switch (this.modulationType)
+	switch (modulationType)
 	{
 	    case ASK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), 0, 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), 0, 0, channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
 		break;
 	    case FSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue() - (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue() - (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
 		break;
 	    case PSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
 		break;
 	    case RPSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, this.channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, this.channelOutput);
+		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
 		break;
 	}
 
