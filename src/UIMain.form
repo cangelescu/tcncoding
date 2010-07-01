@@ -256,8 +256,8 @@
             <Container class="javax.swing.JPanel" name="modulatorTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#x41d;&#x430;&#x43b;&#x430;&#x448;&#x442;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;&#x430;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#x41d;&#x430;&#x43b;&#x430;&#x448;&#x442;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;&#x430;"/>
+                  <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
+                    <Property name="tabTitle" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -398,6 +398,61 @@
                 <Component class="javax.swing.JLabel" name="hzDeviationLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="channelTab">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="&#x41a;&#x430;&#x43d;&#x430;&#x43b;">
+                    <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x430;&#x43d;&#x430;&#x43b;"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="noisePowerLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="noisePower" min="-2" pref="103" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="noisePowerWattLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="313" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="noisePowerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="noisePower" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="noisePowerWattLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="106" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="noisePowerLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x41c;&#x430;&#x43a;&#x441;&#x438;&#x43c;&#x430;&#x43b;&#x44c;&#x43d;&#x430; &#x43f;&#x43e;&#x442;&#x443;&#x436;&#x43d;&#x456;&#x441;&#x442;&#x44c; &#x448;&#x443;&#x43c;&#x443;:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="noisePower">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="1.0" minimum="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="noisePowerWattLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x412;&#x442;"/>
                   </Properties>
                 </Component>
               </SubComponents>

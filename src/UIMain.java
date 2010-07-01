@@ -366,7 +366,7 @@ public class UIMain extends javax.swing.JFrame {
     void doChannel()
     {
 	//gets channel output signal
-	currentChannel = new Channel(modulatorData);
+	currentChannel = new Channel(modulatorData, (Double)noisePower.getValue());
 	currentChannel.doNoising();
 	channelOutput = currentChannel.getSignals();
 
@@ -582,6 +582,10 @@ public class UIMain extends javax.swing.JFrame {
         voltsLabel = new javax.swing.JLabel();
         hzBearerLabel = new javax.swing.JLabel();
         hzDeviationLabel = new javax.swing.JLabel();
+        channelTab = new javax.swing.JPanel();
+        noisePowerLabel = new javax.swing.JLabel();
+        noisePower = new javax.swing.JSpinner();
+        noisePowerWattLabel = new javax.swing.JLabel();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
@@ -876,7 +880,37 @@ public class UIMain extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Налаштування модулятора", modulatorTab);
+        optionsTabs.addTab("Модулятор", modulatorTab);
+
+        noisePowerLabel.setText("Максимальна потужність шуму:");
+
+        noisePower.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+
+        noisePowerWattLabel.setText("Вт");
+
+        javax.swing.GroupLayout channelTabLayout = new javax.swing.GroupLayout(channelTab);
+        channelTab.setLayout(channelTabLayout);
+        channelTabLayout.setHorizontalGroup(
+            channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(channelTabLayout.createSequentialGroup()
+                .addComponent(noisePowerLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noisePowerWattLabel)
+                .addContainerGap(313, Short.MAX_VALUE))
+        );
+        channelTabLayout.setVerticalGroup(
+            channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(channelTabLayout.createSequentialGroup()
+                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noisePowerLabel)
+                    .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noisePowerWattLabel))
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+
+        optionsTabs.addTab("Канал", channelTab);
 
         javax.swing.GroupLayout modellingOptionsDialogLayout = new javax.swing.GroupLayout(modellingOptionsDialog.getContentPane());
         modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
@@ -886,7 +920,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         modellingOptionsDialogLayout.setVerticalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 153, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2040,6 +2074,7 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JLabel channelCodesChooserLabel;
     private javax.swing.JPanel channelOutputField;
     private javax.swing.JPanel channelOutputPanel;
+    private javax.swing.JPanel channelTab;
     private javax.swing.JMenu developerMenu;
     private javax.swing.JMenuItem doModellingItem;
     private javax.swing.JMenuItem doModellingOptionsItem;
@@ -2091,6 +2126,9 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel multiplierOutputField1;
     private javax.swing.JPanel multiplierOutputPanel0;
     private javax.swing.JPanel multiplierOutputPanel1;
+    private javax.swing.JSpinner noisePower;
+    private javax.swing.JLabel noisePowerLabel;
+    private javax.swing.JLabel noisePowerWattLabel;
     private javax.swing.JTabbedPane optionsTabs;
     private javax.swing.JTextPane receivedMessageArea;
     private javax.swing.JPanel receivedMessagePanel;

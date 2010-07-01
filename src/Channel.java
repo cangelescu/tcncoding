@@ -27,14 +27,16 @@ public class Channel
 {
     private List<ModulatorSignal> inputSignals;
     private List<ChannelSignal> outputSignals = new ArrayList<ChannelSignal>();
+    private double noisePower;
 
     /**
      * Creates channel with given signals on its input
      * @param _inputSignals list of input signals
      */
-    public Channel(List<ModulatorSignal> _inputSignals)
+    public Channel(List<ModulatorSignal> _inputSignals, double _noisePower)
     {
 	inputSignals = _inputSignals;
+	noisePower = _noisePower;
     }
 
     /**
@@ -45,7 +47,7 @@ public class Channel
 	for(ModulatorSignal cs: inputSignals)
 	{
 
-	    ChannelSignal ncfs = new ChannelSignal(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), 4, cs.getStart(), cs.getEnd());
+	    ChannelSignal ncfs = new ChannelSignal(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), noisePower, cs.getStart(), cs.getEnd());
 	    outputSignals.add(ncfs);
 	}
     }

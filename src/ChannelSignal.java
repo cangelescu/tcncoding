@@ -41,7 +41,7 @@ public class ChannelSignal extends Signal
         amplitude = _amplitude;
         phase = _phase;
 	noise = _noise;
-	maxValue = _amplitude + Math.pow(_noise, 2);
+	maxValue = _amplitude + 3 * Math.sqrt(_noise);
 	xStart = _start;
 	xEnd = _end;
     }
@@ -55,7 +55,7 @@ public class ChannelSignal extends Signal
     public double function(double x)
     {
 	Random noiseGenerator = new Random();
-	return amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + noise * noiseGenerator.nextGaussian();
+	return amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + Math.sqrt(noise) * noiseGenerator.nextGaussian();
     }
 
     /**
