@@ -61,4 +61,21 @@ public class Resolver
     {
 	return outputSequence;
     }
+
+    /**
+     * Returns HTML-formatted encoded string sequence
+     * @return
+     */
+    public String getStringSequence()
+    {
+	String out = "<html>";
+	for (Boolean bn: outputSequence)
+	{
+	    out += "<font size=\"5\">";
+	    out += bn ? "1" : "0";
+	    out += "</font>";
+	}
+	out += "</html>";
+	return out;
+    }
 }

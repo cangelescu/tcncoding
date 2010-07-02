@@ -40,7 +40,7 @@ public class UIMain extends javax.swing.JFrame {
     Resolver currentResolver = null;
 
     //UI blocks
-    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR;};
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, MESSAGE_RECEIVER;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
@@ -245,6 +245,12 @@ public class UIMain extends javax.swing.JFrame {
 	    case SUMMATOR:
 		TCSTabs.setSelectedComponent(blockSummator);
 		summatorButton.setBackground(new Color(200, 200, 200));
+		break;
+	    case RESOLVER:
+		TCSTabs.setSelectedComponent(blockResolver);
+		break;
+	    case MESSAGE_RECEIVER:
+		TCSTabs.setSelectedComponent(blockMessageReceiver);
 		break;
 	    default:
 		break;
@@ -575,6 +581,7 @@ public class UIMain extends javax.swing.JFrame {
 	currentResolver = new Resolver(summatorOutput, threshold);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryList();
+	blockResolverOutput.setText(currentResolver.getStringSequence());
     }
 
     public UIMain() {
@@ -622,7 +629,7 @@ public class UIMain extends javax.swing.JFrame {
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        messageArea = new javax.swing.JTextArea();
+        blockMessageArea = new javax.swing.JTextArea();
         blockSourceCoder = new javax.swing.JPanel();
         blockSourceCoderOutputPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -658,6 +665,10 @@ public class UIMain extends javax.swing.JFrame {
         blockSummator = new javax.swing.JPanel();
         summatorOutputPanel = new javax.swing.JPanel();
         summatorOutputField = new javax.swing.JPanel();
+        blockResolver = new javax.swing.JPanel();
+        blockResolverOutputPanel = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        blockResolverOutput = new javax.swing.JTextPane();
         blockMessageReceiver = new javax.swing.JPanel();
         receivedMessagePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -845,7 +856,7 @@ public class UIMain extends javax.swing.JFrame {
 
         bearerAmplitudeLabel.setText("Амплітуда несучої:");
 
-        bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(50.0d, 0.0d, 100.0d, 1.0d));
+        bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(10.0d), Double.valueOf(0.0d), null, Double.valueOf(0.5d)));
 
         bearerFrequencyDeviationLabel.setText("Девіація частоти:");
         bearerFrequencyDeviationLabel.setEnabled(false);
@@ -916,7 +927,7 @@ public class UIMain extends javax.swing.JFrame {
 
         noisePowerLabel.setText("Максимальна потужність шуму:");
 
-        noisePower.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        noisePower.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
 
         noisePowerWattLabel.setText("Вт");
 
@@ -952,7 +963,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         modellingOptionsDialogLayout.setVerticalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 153, Short.MAX_VALUE)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -966,11 +977,11 @@ public class UIMain extends javax.swing.JFrame {
 
         sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
-        messageArea.setColumns(20);
-        messageArea.setFont(new java.awt.Font("Dialog", 0, 24));
-        messageArea.setRows(5);
-        messageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jScrollPane1.setViewportView(messageArea);
+        blockMessageArea.setColumns(20);
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockMessageArea.setRows(5);
+        blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane1.setViewportView(blockMessageArea);
 
         javax.swing.GroupLayout sourceMessagePanelLayout = new javax.swing.GroupLayout(sourceMessagePanel);
         sourceMessagePanel.setLayout(sourceMessagePanelLayout);
@@ -980,7 +991,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -1006,7 +1017,7 @@ public class UIMain extends javax.swing.JFrame {
 
         blockSourceCoderOutput.setContentType("text/html");
         blockSourceCoderOutput.setEditable(false);
-        blockSourceCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24));
+        blockSourceCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jScrollPane2.setViewportView(blockSourceCoderOutput);
 
         javax.swing.GroupLayout blockSourceCoderOutputPanelLayout = new javax.swing.GroupLayout(blockSourceCoderOutputPanel);
@@ -1017,7 +1028,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
@@ -1033,6 +1044,12 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Кодер джерела повідомлень", blockSourceCoder);
 
+        blockSourceVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockSourceVideoSequenceComponentShown(evt);
+            }
+        });
+
         blockSourceVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Відеопослідовність"));
 
         javax.swing.GroupLayout blockSourceVideoSequenceOutputFieldLayout = new javax.swing.GroupLayout(blockSourceVideoSequenceOutputField);
@@ -1043,7 +1060,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockSourceVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockSourceVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockSourceVideoSequenceOutputPanel);
@@ -1091,7 +1108,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
@@ -1123,7 +1140,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         blockChannelVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockChannelVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockChannelVideoSequenceOutputPanel);
@@ -1166,7 +1183,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         modulatorOutputFieldLayout.setVerticalGroup(
             modulatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout modulatorOutputPanelLayout = new javax.swing.GroupLayout(modulatorOutputPanel);
@@ -1209,7 +1226,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         channelOutputFieldLayout.setVerticalGroup(
             channelOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
@@ -1252,7 +1269,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         multiplierOutputField0Layout.setVerticalGroup(
             multiplierOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel0Layout = new javax.swing.GroupLayout(multiplierOutputPanel0);
@@ -1295,7 +1312,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         multiplierOutputField1Layout.setVerticalGroup(
             multiplierOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel1Layout = new javax.swing.GroupLayout(multiplierOutputPanel1);
@@ -1338,7 +1355,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         integratorOutputField0Layout.setVerticalGroup(
             integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel0Layout = new javax.swing.GroupLayout(integratorOutputPanel0);
@@ -1381,7 +1398,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         integratorOutputField1Layout.setVerticalGroup(
             integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel1Layout = new javax.swing.GroupLayout(integratorOutputPanel1);
@@ -1424,7 +1441,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         summatorOutputFieldLayout.setVerticalGroup(
             summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout summatorOutputPanelLayout = new javax.swing.GroupLayout(summatorOutputPanel);
@@ -1451,6 +1468,48 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Суматор", blockSummator);
 
+        blockResolver.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockResolverComponentShown(evt);
+            }
+        });
+
+        blockResolverOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід вирішуючого пристрою"));
+
+        blockResolverOutput.setContentType("text/html");
+        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jScrollPane5.setViewportView(blockResolverOutput);
+
+        javax.swing.GroupLayout blockResolverOutputPanelLayout = new javax.swing.GroupLayout(blockResolverOutputPanel);
+        blockResolverOutputPanel.setLayout(blockResolverOutputPanelLayout);
+        blockResolverOutputPanelLayout.setHorizontalGroup(
+            blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+        );
+        blockResolverOutputPanelLayout.setVerticalGroup(
+            blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockResolverLayout = new javax.swing.GroupLayout(blockResolver);
+        blockResolver.setLayout(blockResolverLayout);
+        blockResolverLayout.setHorizontalGroup(
+            blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockResolverOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockResolverLayout.setVerticalGroup(
+            blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockResolverOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Вирішуючий пристрій", blockResolver);
+
+        blockMessageReceiver.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockMessageReceiverComponentShown(evt);
+            }
+        });
+
         receivedMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         receivedMessageArea.setContentType("text/html");
@@ -1466,7 +1525,7 @@ public class UIMain extends javax.swing.JFrame {
         );
         receivedMessagePanelLayout.setVerticalGroup(
             receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageReceiverLayout = new javax.swing.GroupLayout(blockMessageReceiver);
@@ -1787,7 +1846,7 @@ public class UIMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
         );
 
         pack();
@@ -1819,7 +1878,7 @@ public class UIMain extends javax.swing.JFrame {
     //calls all modelling methods step-by-step
     private void doModellingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doModellingItemActionPerformed
     {//GEN-HEADEREND:event_doModellingItemActionPerformed
-	message = messageArea.getText();
+	message = blockMessageArea.getText();
 	if (!message.isEmpty())
 	{
 	    doSourceCoding();
@@ -2055,6 +2114,24 @@ public class UIMain extends javax.swing.JFrame {
 	modellingOptionsDialog.setVisible(true);
     }//GEN-LAST:event_doModellingOptionsItemActionPerformed
 
+    private void blockSourceVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceVideoSequenceComponentShown
+    {//GEN-HEADEREND:event_blockSourceVideoSequenceComponentShown
+	selectedBlock = Blocks.SOURCE_VIDEOSEQUENCE;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockSourceVideoSequenceComponentShown
+
+    private void blockResolverComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockResolverComponentShown
+    {//GEN-HEADEREND:event_blockResolverComponentShown
+	selectedBlock = Blocks.RESOLVER;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockResolverComponentShown
+
+    private void blockMessageReceiverComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMessageReceiverComponentShown
+    {//GEN-HEADEREND:event_blockMessageReceiverComponentShown
+	selectedBlock = Blocks.MESSAGE_RECEIVER;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockMessageReceiverComponentShown
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -2086,11 +2163,15 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockChannelVideoSequenceOutputPanel;
     private javax.swing.JPanel blockIntegrator0;
     private javax.swing.JPanel blockIntegrator1;
+    private javax.swing.JTextArea blockMessageArea;
     private javax.swing.JPanel blockMessageReceiver;
     private javax.swing.JPanel blockMessageSource;
     private javax.swing.JPanel blockModulator;
     private javax.swing.JPanel blockMultiplier0;
     private javax.swing.JPanel blockMultiplier1;
+    private javax.swing.JPanel blockResolver;
+    private javax.swing.JTextPane blockResolverOutput;
+    private javax.swing.JPanel blockResolverOutputPanel;
     private javax.swing.JPanel blockSourceCoder;
     private javax.swing.JTextPane blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
@@ -2142,8 +2223,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JMenuBar mainMenu;
-    private javax.swing.JTextArea messageArea;
     private javax.swing.JButton messageSourceButton;
     private javax.swing.JMenu modellingMenu;
     private javax.swing.JDialog modellingOptionsDialog;
