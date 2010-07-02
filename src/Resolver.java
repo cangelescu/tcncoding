@@ -26,8 +26,7 @@ import java.util.List;
 public class Resolver
 {
     private List<List<FunctionStep>> summatorSignal;
-    Modulator.ModulationType modulationType;
-    private double bearerAmplitude, bearerFrequency, impulseLength;
+    private double threshold;
     private List<Boolean> outputSequence;
 
     /**
@@ -35,13 +34,10 @@ public class Resolver
      * @param _summatorSignal signal from summator to operate on
      * @param _modulationType type of using modulation
      */
-    public Resolver(List<List<FunctionStep>> _summatorSignal, Modulator.ModulationType _modulationType, double _bearerAmplitude, double _bearerFrequency, double _impulseLength)
+    public Resolver(List<List<FunctionStep>> _summatorSignal, double _threshold)
     {
 	summatorSignal = _summatorSignal;
-	modulationType = _modulationType;
-	bearerAmplitude = _bearerAmplitude;
-	bearerFrequency = _bearerFrequency;
-	impulseLength = _impulseLength;
+	threshold = _threshold;
     }
 
     /**
@@ -52,28 +48,7 @@ public class Resolver
 	outputSequence = new ArrayList<Boolean>();
 	for (List<FunctionStep> currentSymbol: summatorSignal)
 	{
-	    double threshold;
 	    double value = currentSymbol.get(currentSymbol.size() - 1).getY();
-	    switch (modulationType)
-	    {
-		case ASK:
-		    double w = 2 * Math.PI * bearerFrequency;
-		    threshold = -0.25 * (Math.pow(bearerAmplitude, 2) * (Math.cos(w * impulseLength) * Math.sin(w * impulseLength) - w * impulseLength)) / w;
-		    break;
-		case FSK:
-		    threshold = 0;
-		    break;
-		case PSK:
-		    threshold = 0;
-		    break;
-		case RPSK:
-		    threshold = 0;
-		    break;
-		default:
-		    threshold = 0;
-		    break;
-	    }
-	    System.out.println(threshold);
 	    outputSequence.add(value > threshold);
 	}
     }

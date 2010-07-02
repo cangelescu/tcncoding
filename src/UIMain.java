@@ -551,7 +551,28 @@ public class UIMain extends javax.swing.JFrame {
 
     void doResolving()
     {
-	currentResolver = new Resolver(summatorOutput, modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), channelImpulseLength);
+	double threshold;
+	switch (modulationType)
+	{
+	    case ASK:
+	    double w = 2 * Math.PI * (Double)bearerFrequency.getValue();
+	    threshold = -0.25 * (Math.pow((Double)bearerAmplitude.getValue(), 2) * (Math.cos(w * channelImpulseLength) * Math.sin(w * channelImpulseLength) - w * channelImpulseLength)) / w;
+	    break;
+	case FSK:
+	    threshold = 0;
+	    break;
+	case PSK:
+	    threshold = 0;
+	    break;
+	case RPSK:
+	    threshold = 0;
+	    break;
+	default:
+	    threshold = 0;
+	    break;
+	}
+
+	currentResolver = new Resolver(summatorOutput, threshold);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryList();
     }
