@@ -37,6 +37,7 @@ public class UIMain extends javax.swing.JFrame {
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
     Summator currentSummator = null;
+    Resolver currentResolver = null;
 
     //UI blocks
     enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR;};
@@ -103,6 +104,9 @@ public class UIMain extends javax.swing.JFrame {
     //Summator data
     List<List<FunctionStep>> summatorOutput = null;
     List<List<DataVizualizatorProvider>> summatorOutputProvider = null;
+
+    //Resolver data
+    List<Boolean> resolverOutput = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -543,6 +547,13 @@ public class UIMain extends javax.swing.JFrame {
 	summatorOutputField.setLayout(new GridLayout());
 	summatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();
+    }
+
+    void doResolving()
+    {
+	currentResolver = new Resolver(summatorOutput, modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), channelImpulseLength);
+	currentResolver.doResolving();
+	resolverOutput = currentResolver.getBinaryList();
     }
 
     public UIMain() {
@@ -1799,6 +1810,7 @@ public class UIMain extends javax.swing.JFrame {
 	    doMultiplying();
 	    doIntegrating();
 	    doSumming();
+	    doResolving();
 	}
     }//GEN-LAST:event_doModellingItemActionPerformed
 
