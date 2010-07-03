@@ -51,7 +51,7 @@ public class Modulator
     };
 
     private ModulationType usingMethod = null;
-    private List sequence = null;
+    private List<BinaryNumber> sequence = null;
     private double bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, impulseLength;
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
@@ -64,7 +64,7 @@ public class Modulator
      * @param _bearerFrequencyDeviation second bearer frequency, Hz
      * @param _symbols list of input symbols (input videosequence)
      */
-    public Modulator(ModulationType _modulationType, double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List _symbols, double _impulseLength)
+    public Modulator(ModulationType _modulationType, double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List<BinaryNumber> _symbols, double _impulseLength)
     {
 	usingMethod = _modulationType;
 	sequence = _symbols;

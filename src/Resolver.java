@@ -27,7 +27,7 @@ public class Resolver
 {
     private List<List<FunctionStep>> summatorSignal;
     private double threshold;
-    private List<Boolean> outputSequence;
+    private BinaryNumber outputNumber;
 
     /**
      * Creates resolver
@@ -45,21 +45,22 @@ public class Resolver
      */
     public void doResolving()
     {
-	outputSequence = new ArrayList<Boolean>();
+	List<Boolean> out = new ArrayList<Boolean>();
 	for (List<FunctionStep> currentSymbol: summatorSignal)
 	{
 	    double value = currentSymbol.get(currentSymbol.size() - 1).getY();
-	    outputSequence.add(value > threshold);
+	    out.add(value > threshold);
 	}
+	outputNumber = new BinaryNumber(out);
     }
 
     /**
      * Returns binary list
      * @return
      */
-    public List<Boolean> getBinaryList()
+    public BinaryNumber getBinaryNumber()
     {
-	return outputSequence;
+	return outputNumber;
     }
 
     /**
@@ -69,7 +70,7 @@ public class Resolver
     public String getStringSequence()
     {
 	String out = "<html>";
-	for (Boolean bn: outputSequence)
+	for (boolean bn: outputNumber.getBinaryArray())
 	{
 	    out += "<font size=\"5\">";
 	    out += bn ? "1" : "0";

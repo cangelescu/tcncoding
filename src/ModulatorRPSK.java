@@ -26,7 +26,7 @@ import java.util.List;
 public class ModulatorRPSK
 {
 
-    private List sequence = null;
+    private List<BinaryNumber> sequence = null;
     private double bearerAmplitude, bearerFrequency, impulseLength;
 
     List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
@@ -38,7 +38,7 @@ public class ModulatorRPSK
      * @param _symbols input binary sequence
      * @param _impulseLength length of impulse, s
      */
-    public ModulatorRPSK(double _bearerAmplitude, double _bearerFrequency, List _symbols, double _impulseLength)
+    public ModulatorRPSK(double _bearerAmplitude, double _bearerFrequency, List<BinaryNumber> _symbols, double _impulseLength)
     {
 	sequence = _symbols;
 	bearerAmplitude = _bearerAmplitude;

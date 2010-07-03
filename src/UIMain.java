@@ -106,7 +106,7 @@ public class UIMain extends javax.swing.JFrame {
     List<List<DataVizualizatorProvider>> summatorOutputProvider = null;
 
     //Resolver data
-    List<Boolean> resolverOutput = null;
+    BinaryNumber resolverOutput = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -580,7 +580,7 @@ public class UIMain extends javax.swing.JFrame {
 
 	currentResolver = new Resolver(summatorOutput, threshold);
 	currentResolver.doResolving();
-	resolverOutput = currentResolver.getBinaryList();
+	resolverOutput = currentResolver.getBinaryNumber();
 	blockResolverOutput.setText(currentResolver.getStringSequence());
     }
 
