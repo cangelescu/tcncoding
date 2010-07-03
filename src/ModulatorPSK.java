@@ -55,10 +55,10 @@ public class ModulatorPSK
 
 	double currentTime = 0;
 
-	Rectifier rectifier = new Rectifier(sequence);
-	rectifier.doRectifying();
-	boolean[] rectifiedArray = rectifier.getArray();
-	for (boolean cb: rectifiedArray)
+	Splitter splitter = new Splitter(sequence);
+	splitter.doSplitting();
+	boolean[] splittedArray = splitter.getBlocks().get(0).getBinaryArray();
+	for (boolean cb: splittedArray)
 	{
 	    if (!cb)
 		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
