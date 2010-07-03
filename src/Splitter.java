@@ -62,7 +62,10 @@ public class Splitter
 	for (BinaryNumber bn: sequence)
 	    sequenceLength += bn.getLength();
 	//adds leading zeroes
-	int leadingZeroes = blockLength - (sequenceLength % blockLength);
+	int leadingZeroes = 0;
+	int mod = sequenceLength % blockLength;
+	if (mod > 0)
+	    leadingZeroes = blockLength - mod;
 	boolean[] bitFlow = new boolean[leadingZeroes + sequenceLength];
 	for (int i = 0; i < leadingZeroes; i++)
 	    bitFlow[i] = false;

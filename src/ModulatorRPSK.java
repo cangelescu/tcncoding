@@ -55,11 +55,11 @@ public class ModulatorRPSK
 
 	double currentTime = 0;
 
-	Rectifier rectifier = new Rectifier(sequence);
-	rectifier.doRectifying();
-	boolean[] rectifiedArray = rectifier.getArray();
+	Splitter splitter = new Splitter(sequence);
+	splitter.doSplitting();
+	boolean[] splittedArray = splitter.getBlocks().get(0).getBinaryArray();
 
-	RPSKRecoder recoder = new RPSKRecoder(rectifiedArray);
+	RPSKRecoder recoder = new RPSKRecoder(splittedArray);
 	recoder.doRecoding();
 	boolean[] recodedArray = recoder.getArray();
 	for (boolean cb: recodedArray)
