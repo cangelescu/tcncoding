@@ -34,7 +34,7 @@ public class ModulatorRPSKRecoder
     }
 
     /**
-     * Runs rectifying
+     * Runs recoding
      */
     public void doRecoding()
     {
