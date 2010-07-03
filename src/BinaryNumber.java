@@ -16,6 +16,9 @@
 
 */
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author post-factum
@@ -23,10 +26,8 @@
 public class BinaryNumber
 {
 
-    private final int digits = 16;
-    private long number;
-    private boolean[] binary = new boolean[digits];
-    private int alignment;
+    private long number = 0;
+    private List<Boolean> binary = new ArrayList<Boolean>();
 
     /**
      * Creates binary number from string sequence
@@ -34,150 +35,176 @@ public class BinaryNumber
      */
     public BinaryNumber(String _sequence)
     {
-	alignment = _sequence.length();
-	//gets meaningful part of string
-	String bin = "";
-	for (int i = 0; i < digits - _sequence.length(); i++)
-	    bin += "0";
-	bin += _sequence;
+	int len = _sequence.length();
 
-	//calculates integer (decimal) value of binary number
-	long value = 0;
-	for (int i = 0; i < digits; i++)
-	    if (bin.charAt(i) == '1')
-		value += Math.pow(2, digits - 1 - i);
-	number = value;
-
-	//creates array structure
-	for (int i = 0; i < digits; i++)
-	{
-	    switch (bin.charAt(i))
+	//creates list
+	for (int i = 0; i < len; i++)
+	    switch (_sequence.charAt(i))
 	    {
 		case '0':
-		    binary[i] = false;
+		    binary.add(false);
 		    break;
-
 		case '1':
-		    binary[i] = true;
+		    binary.add(true);
 		    break;
-
-		default: break;
+		default:
+		    binary.add(true);
+		    break;
 	    }
-	}
+
+	//calculates integer (decimal) value of binary number
+	for (int i = 0; i < len; i++)
+	    if (binary.get(i))
+		number += Math.pow(2, len - 1 - i);
     }
 
     /**
      * Creates binary number from aligned string sequence
      * @param _sequence string sequence of 0 and 1
-     * @param _align count of meaningful digits in source string
+     * @param _alignment count of digits of binary number
      */
-    public BinaryNumber(String _sequence, int _align)
+    public BinaryNumber(String _sequence, int _alignment)
     {
-	alignment = _align;
-	//gets meaningful part of string
-	String bin = "";
-	for (int i = 0; i < digits - _align; i++)
-	    bin += "0";
-	for (int i = _sequence.length() - _align; i < _align; i++)
-	    bin += _sequence.charAt(i);
+	int len = _sequence.length();
+
+	//creates list
+	if (len < _alignment)
+	{
+	    for (int i = 0; i < _alignment - len; i++)
+		binary.add(false);
+	    for (int i = 0; i < len; i++)
+		switch (_sequence.charAt(i))
+		{
+		    case '0':
+			binary.add(false);
+			break;
+		    case '1':
+			binary.add(true);
+			break;
+		    default:
+			binary.add(true);
+			break;
+		}
+	} else
+	if (len > _alignment)
+	{
+	    for (int i = len - _alignment; i < len; i++)
+		switch (_sequence.charAt(i))
+		{
+		    case '0':
+			binary.add(false);
+			break;
+		    case '1':
+			binary.add(true);
+			break;
+		    default:
+			binary.add(true);
+			break;
+		}
+	} else
+	    for (int i = 0; i < len; i++)
+		switch (_sequence.charAt(i))
+		{
+		    case '0':
+			binary.add(false);
+			break;
+		    case '1':
+			binary.add(true);
+			break;
+		    default:
+			binary.add(true);
+			break;
+		}
 
 	//calculates integer (decimal) value of binary number
-	long value = 0;
-	for (int i = 0; i < digits; i++)
-	    if (bin.charAt(i) == '1')
-		value += Math.pow(2, digits - 1 - i);
-	number = value;
-
-	//creates array structure
-	for (int i = 0; i < digits; i++)
-	{
-	    switch (bin.charAt(i))
-	    {
-		case '0':
-		    binary[i] = false;
-		    break;
-
-		case '1':
-		    binary[i] = true;
-		    break;
-
-		default: break;
-	    }
-	}
+	for (int i = 0; i < _alignment; i++)
+	    if (binary.get(i))
+		number += Math.pow(2, len - 1 - i);
     }
 
     /**
      * Creates binary number from decimal value
-     * @param _number integer number, that will be converted to binary
+     * @param _number integer number, that is to to binary number
      */
     public BinaryNumber(long _number)
     {
 	number = _number;
-
-	//gets meaningful part of string
 	String bin = Integer.toBinaryString((int) _number);
-	for (int i = 0; i < digits - bin.length(); i++)
-	{
-	    binary[i] = false;
-	}
-	alignment = bin.length();
 
-	//creates array structure
-	for (int i = digits - bin.length(); i < digits; i++)
-	{
-	    switch (bin.charAt(i - digits + bin.length()))
+	//creates list
+	for (int i = 0; i < bin.length(); i++)
+	    switch (bin.charAt(i))
 	    {
 		case '0':
-		    binary[i] = false;
+		    binary.add(false);
 		    break;
-
 		case '1':
-		    binary[i] = true;
+		    binary.add(true);
 		    break;
-
 		default: break;
 	    }
-	}
     }
 
     /**
      * Creates aligned binary number from decimal value
      * @param _number integer number, that will be converted to binary
-     * @param _align fixed width of resulting binary number in digits
+     * @param _alignment fixed width of resulting binary number in digits
      */
-    public BinaryNumber(long _number, int _align)
+    public BinaryNumber(long _number, int _alignment)
     {
+	String sequence = Integer.toBinaryString((int)_number);
+	int len = sequence.length();
+
+	//creates list
+	if (len < _alignment)
+	{
+	    for (int i = 0; i < _alignment - len; i++)
+		binary.add(false);
+	    for (int i = 0; i < len; i++)
+		switch (sequence.charAt(i))
+		{
+		    case '0':
+			binary.add(false);
+			break;
+		    case '1':
+			binary.add(true);
+			break;
+		    default:
+			binary.add(true);
+			break;
+		}
+	} else
+	if (len > _alignment)
+	{
+	    for (int i = len - _alignment; i < len; i++)
+		switch (sequence.charAt(i))
+		{
+		    case '0':
+			binary.add(false);
+			break;
+		    case '1':
+			binary.add(true);
+			break;
+		    default:
+			binary.add(true);
+			break;
+		}
+	} else
+	    for (int i = 0; i < len; i++)
+		switch (sequence.charAt(i))
+		{
+		    case '0':
+			binary.add(false);
+			break;
+		    case '1':
+			binary.add(true);
+			break;
+		    default:
+			binary.add(true);
+			break;
+		}
+
 	number = _number;
-	alignment = _align;
-
-	//gets meaningful part of string
-	String got = Integer.toBinaryString((int) _number);
-	String bin = "";
-	for (int i = 0; i < alignment - got.length(); i++)
-	    bin += "0";
-	bin += got;
-
-	for (int i = 0; i < digits - _align; i++)
-	{
-	    binary[i] = false;
-	}
-
-	//creates array structure
-	for (int i = digits - _align; i < digits; i++)
-	{
-	    switch (bin.charAt(i - digits + _align))
-	    {
-		case '0':
-		    binary[i] = false;
-		    break;
-
-		case '1':
-		    binary[i] = true;
-		    break;
-
-		default: break;
-	    }
-	}
     }
 
     /**
@@ -186,26 +213,31 @@ public class BinaryNumber
      */
     public BinaryNumber(boolean[] _sequence)
     {
-	//gets meaningful part of string
-	for (int i = 0; i < digits - _sequence.length; i++)
-	{
-	    binary[i] = false;
-	}
-	alignment = _sequence.length;
-
-	//creates array structure
-	for (int i = digits - _sequence.length; i < digits; i++)
-	    binary[i] = _sequence[i - digits + _sequence.length];
+	//creates list
+	for (int i = 0; i < _sequence.length; i++)
+	    binary.add(_sequence[i]);
 
 	//calculates integer (decimal) value of binary number
-	long value = 0;
-	for (int i = 0; i < digits; i++)
-	    if (binary[i])
-		value += Math.pow(2, digits - 1 - i);
-	number = value;
+	for (int i = 0; i < _sequence.length; i++)
+	    if (binary.get(i))
+		number += Math.pow(2, _sequence.length - 1 - i);
     }
 
-    //
+    /**
+     * Creates binary number from list of boolean values
+     * @param _sequence list of boolean values
+     */
+    public BinaryNumber(List<Boolean> _sequence)
+    {
+	//creates list
+	binary = _sequence;
+
+	//calculates integer (decimal) value of binary number
+	for (int i = 0; i < _sequence.size(); i++)
+	    if (binary.get(i))
+		number += Math.pow(2, _sequence.size() - 1 - i);
+    }
+
     /**
      * Creates binary number from aligned boolean array
      * @param _sequence boolean array, that represents binary number
@@ -213,39 +245,42 @@ public class BinaryNumber
      */
     public BinaryNumber(boolean[] _sequence, int _align)
     {
-	alignment = _align;
-	//gets meaningful part of string
-	for (int i = 0; i < digits - _align; i++)
-	{
-	    binary[i] = false;
-	}
+	int len = _sequence.length;
 
-	//creates array structure
-	for (int i = digits - _align; i < digits; i++)
-	    binary[i] = _sequence[i - digits + _align];
+	//creates list
+	if (len < _align)
+	{
+	    for (int i = 0; i < _align - len; i++)
+		binary.add(false);
+	    for (int i = 0; i < len; i++)
+		binary.add(_sequence[i]);
+	} else
+	if (len > _align)
+	{
+	    for (int i = len - _align; i < len; i++)
+		binary.add(_sequence[i]);
+	} else
+	    for (int i = 0; i < len; i++)
+		binary.add(_sequence[i]);
 
 	//calculates integer (decimal) value of binary number
-	long value = 0;
-	for (int i = 0; i < digits; i++)
-	    if (binary[i])
-		value += Math.pow(2, digits - 1 - i);
-	number = value;
+	for (int i = 0; i < _align; i++)
+	    if (binary.get(i))
+		number += Math.pow(2, _align - 1 - i);
     }
 
     /**
-     * Returns aligned string representation of binary number
+     * Returns string representation of binary number
      * @return
      */
     public String getStringSequence()
     {
 	String out = "";
-	for (int i = digits - alignment; i < digits; i++)
-	{
-	    if (binary[i])
+	for (Boolean cb: binary)
+	    if (cb)
 		out += '1';
 	    else
 		out += '0';
-	}
 	return out;
     }
 
@@ -262,32 +297,21 @@ public class BinaryNumber
      * Returns boolean array, that represents binary number
      * @return
      */
-    public boolean[] getFullBinaryArray()
+    public boolean[] getBinaryArray()
     {
-	return binary;
+	boolean[] out = new boolean[binary.size()];
+	for (int i = 0; i < out.length; i++)
+	    out[i] = binary.get(i);
+	return out;
     }
 
     /**
-     * Returns meaningful part of binary number as boolean array
+     * Returns boolean digit of given index
      * @return
      */
-    public boolean[] getAlignedBinaryArray()
+    private boolean getDigit(int index)
     {
-	int k = digits - alignment;
-	boolean[] out = new boolean[digits - k];
-	for (int i = k; i < digits; i++)
-	    out[i - k] = binary[i];
-	return out;
-    }
-
-    //converts integer array to decimal value
-    private long binaryToInt(boolean[] _binary)
-    {
-	long out = 0;
-	for (int i = 0; i < digits; i++)
-	    if (_binary[i])
-		out += Math.pow(2, digits - 1 - i);
-	return out;
+	return binary.get(index);
     }
 
     /**
@@ -297,12 +321,29 @@ public class BinaryNumber
      */
     public BinaryNumber sum2(BinaryNumber _number)
     {
-	boolean[] in2 = _number.getFullBinaryArray();
-	boolean[] out = new boolean[digits];
-	for (int i = 0; i < digits; i++)
-	    out[i] = in2[i] ^ binary[i];
-	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, Math.max(_number.alignment, alignment));
+	int len2 = _number.getLength();
+	List<Boolean> out = new ArrayList<Boolean>();
+
+	if (len2 < binary.size())
+	{
+	    int head = binary.size() - len2;
+	    for (int i = 0; i < head; i++)
+		out.add(binary.get(i));
+	    for (int i = head; i < binary.size(); i++)
+		out.add(_number.getDigit(i - head) ^ binary.get(i));
+	} else
+	if (len2 > binary.size())
+	{
+	    int head = len2 - binary.size();
+	    for (int i = 0; i < head; i++)
+		out.add(_number.getDigit(i));
+	    for (int i = head; i < len2; i++)
+		out.add(_number.getDigit(i) ^ binary.get(i - head));
+	} else
+	    for (int i = 0; i < len2; i++)
+		out.add(_number.getDigit(i) ^ binary.get(i));
+
+	BinaryNumber res = new BinaryNumber(out);
 	return res;
     }
 
@@ -312,11 +353,10 @@ public class BinaryNumber
      */
     public BinaryNumber not2()
     {
-	boolean[] out = new boolean[digits];
-	for (int i = digits - alignment; i < digits; i++)
-	    out[i] = !binary[i];
-	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, alignment);
+	List<Boolean> out = new ArrayList<Boolean>();
+	for (Boolean cb: binary)
+	    out.add(!cb);
+	BinaryNumber res = new BinaryNumber(out);
 	return res;
     }
 
@@ -326,31 +366,27 @@ public class BinaryNumber
      */
     public BinaryNumber shl2()
     {
-	boolean[] out = new boolean[digits];
-	for (int i = 0; i < digits - 1; i++)
-	{
-	    out[i] = binary[i + 1];
-	}
-	out[digits - 1] = false;
-	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, alignment + 1);
+	List<Boolean> out = new ArrayList<Boolean>();
+	for (Boolean cb: binary)
+	    out.add(cb);
+	out.add(false);
+	BinaryNumber res = new BinaryNumber(out);
 	return res;
     }
 
     /**
      * Shifts binary number to left by several positions
-     * @param _align number of positions to shift by
+     * @param _count digits to shift number on
      * @return
      */
-    public BinaryNumber shl2(int _align)
+    public BinaryNumber shl2(int _count)
     {
-	boolean[] out = new boolean[digits];
-	for (int i = 0; i < digits - _align; i++)
-	    out[i] = binary[i + _align];
-	for (int i = digits - _align; i < digits; i++)
-	    out[i] = false;
-	long initValue = binaryToInt(out);
-	BinaryNumber res = new BinaryNumber(initValue, alignment + _align);
+	List<Boolean> out = new ArrayList<Boolean>();
+	for (Boolean cb: binary)
+	    out.add(cb);
+	for (int i = 0; i < _count; i++)
+	    out.add(false);
+	BinaryNumber res = new BinaryNumber(out);
 	return res;
     }
 
@@ -361,18 +397,18 @@ public class BinaryNumber
     public int getWeight()
     {
 	int out = 0;
-	for (int i = 0; i < digits; i++)
-	    if (binary[i])
+	for (Boolean cb: binary)
+	    if (cb)
 		out++;
 	return out;
     }
 
     /**
-     * Returns alignment of binary number
+     * Returns length of binary number
      * @return
      */
-    public int getAlignment()
+    public int getLength()
     {
-	return alignment;
+	return binary.size();
     }
 }

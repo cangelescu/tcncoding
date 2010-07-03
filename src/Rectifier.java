@@ -44,14 +44,14 @@ public class Rectifier
 	//gets common sequence length
 	int sequenceLength = 0;
 	for (BinaryNumber bn: sequence)
-	    sequenceLength += bn.getAlignment();
+	    sequenceLength += bn.getLength();
 
 	outputArray = new boolean[sequenceLength];
 
 	int index = 0;
 	for (BinaryNumber cbn: sequence)
 	{
-	    boolean[] currentArray = cbn.getAlignedBinaryArray();
+	    boolean[] currentArray = cbn.getBinaryArray();
 	    for (int i = 0; i < currentArray.length; i++)
 		outputArray[index++] = currentArray[i];
 	}

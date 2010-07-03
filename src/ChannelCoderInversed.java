@@ -44,7 +44,7 @@ public class ChannelCoderInversed
     {
 	for (BinaryNumber bn: sequence)
 	{
-	    BinaryNumber shifted = bn.shl2(bn.getAlignment());
+	    BinaryNumber shifted = bn.shl2(bn.getLength());
 	    if (bn.getWeight() % 2 == 0)
 	    {
 		outputSequence.add(shifted.sum2(bn));

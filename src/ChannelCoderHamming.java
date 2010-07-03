@@ -47,8 +47,8 @@ public class ChannelCoderHamming
 	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
 	for (BinaryNumber bn: blockedSequence)
 	{
-	    boolean[] currentNumberArray = bn.getAlignedBinaryArray();
-	    boolean[] resultNumber = new boolean[bn.getAlignment() + 3];
+	    boolean[] currentNumberArray = bn.getBinaryArray();
+	    boolean[] resultNumber = new boolean[bn.getLength() + 3];
 	    System.arraycopy(currentNumberArray, 0, resultNumber, 0, currentNumberArray.length);
 
 	    resultNumber[currentNumberArray.length] = currentNumberArray[0] ^ currentNumberArray[1] ^ currentNumberArray[3];

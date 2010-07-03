@@ -172,7 +172,7 @@ public class SourceCoder
     {
 	int out = 0;
 	for (BinaryNumber cbn: sourceSequence)
-	    out += cbn.getAlignment();
+	    out += cbn.getLength();
 	return out;
     }
 

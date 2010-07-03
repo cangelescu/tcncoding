@@ -54,7 +54,7 @@ public class VideoCreator
 	for (BinaryNumber cbn: inputSequence)
 	{
 	    List <FunctionStep> current = new ArrayList<FunctionStep>();
-	    boolean[] matrix = cbn.getAlignedBinaryArray();
+	    boolean[] matrix = cbn.getBinaryArray();
 	    for (boolean cm: matrix)
 	    {
 		sp = 0;

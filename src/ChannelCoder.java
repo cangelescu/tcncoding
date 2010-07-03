@@ -115,7 +115,7 @@ public class ChannelCoder
     {
 	int out = 0;
 	for (BinaryNumber cbn: channelSequence)
-	    out += cbn.getAlignment();
+	    out += cbn.getLength();
 	return out;
     }
 

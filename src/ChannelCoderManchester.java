@@ -44,8 +44,8 @@ public class ChannelCoderManchester
     {
 	for (BinaryNumber bn: sequence)
 	{
-	    boolean[] currentNumberArray = bn.getAlignedBinaryArray();
-	    boolean[] resultNumber = new boolean[bn.getAlignment() * 2];
+	    boolean[] currentNumberArray = bn.getBinaryArray();
+	    boolean[] resultNumber = new boolean[bn.getLength() * 2];
 	    int index = 0;
 	    for (boolean currentSymbol: currentNumberArray)
 	    {

@@ -41,6 +41,18 @@ public class Splitter
     }
 
     /**
+     * Rectifies binary number sequence into one linear number
+     * @param _sequence source list of binary numbers
+     */
+    public Splitter(List<BinaryNumber> _sequence)
+    {
+	sequence = _sequence;
+	blockLength = 0;
+	for (BinaryNumber cb: _sequence)
+	    blockLength += cb.getLength();
+    }
+
+    /**
      * Runs splitting
      */
     public void doSplitting()
@@ -48,7 +60,7 @@ public class Splitter
 	//gets common sequence length
 	int sequenceLength = 0;
 	for (BinaryNumber bn: sequence)
-	    sequenceLength += bn.getAlignment();
+	    sequenceLength += bn.getLength();
 	//adds leading zeroes
 	int leadingZeroes = blockLength - (sequenceLength % blockLength);
 	boolean[] bitFlow = new boolean[leadingZeroes + sequenceLength];
@@ -58,7 +70,7 @@ public class Splitter
 	int index = leadingZeroes;
 	for (BinaryNumber bn: sequence)
 	{
-	    boolean[] currentBits = bn.getAlignedBinaryArray();
+	    boolean[] currentBits = bn.getBinaryArray();
 	    for (int i = 0; i < currentBits.length; i++)
 	    {
 		bitFlow[index] = currentBits[i];
