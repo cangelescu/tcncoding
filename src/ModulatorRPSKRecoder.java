@@ -20,7 +20,7 @@
  *
  * @author post-factum
  */
-public class RPSKRecoder
+public class ModulatorRPSKRecoder
 {
     private boolean[] sequence, outputArray;
 
@@ -28,7 +28,7 @@ public class RPSKRecoder
      * Rectifies binary numbers' list into array
      * @param _sequence source list of binary numbers
      */
-    public RPSKRecoder(boolean[] _sequence)
+    public ModulatorRPSKRecoder(boolean[] _sequence)
     {
 	sequence = _sequence;
     }
