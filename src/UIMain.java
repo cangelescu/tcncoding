@@ -38,9 +38,10 @@ public class UIMain extends javax.swing.JFrame {
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
     Summator currentSummator = null;
     Resolver currentResolver = null;
+    VideoCreator currentResolverVideoCreator = null;
 
     //UI blocks
-    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, MESSAGE_RECEIVER;};
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, INPUT_VIDEOSEQUENCE, MESSAGE_RECEIVER;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
@@ -53,6 +54,7 @@ public class UIMain extends javax.swing.JFrame {
     DataVizualizator currentIntegratorVizualizator0 = null;
     DataVizualizator currentIntegratorVizualizator1 = null;
     DataVizualizator currentSummatorVizualizator = null;
+    DataVizualizator currentResolverVideoSequenceVizualizator = null;
 
     //source message
     String message = "";
@@ -107,6 +109,8 @@ public class UIMain extends javax.swing.JFrame {
 
     //Resolver data
     BinaryNumber resolverOutput = null;
+    List<List<FunctionStep>> resolverVideoSequence = null;
+    List<List<DataVizualizatorProvider>> resolverVideoSequenceProvider = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -248,6 +252,9 @@ public class UIMain extends javax.swing.JFrame {
 		break;
 	    case RESOLVER:
 		TCSTabs.setSelectedComponent(blockResolver);
+		break;
+	    case INPUT_VIDEOSEQUENCE:
+		TCSTabs.setSelectedComponent(blockResolverVideoSequence);
 		break;
 	    case MESSAGE_RECEIVER:
 		TCSTabs.setSelectedComponent(blockMessageReceiver);
@@ -540,18 +547,18 @@ public class UIMain extends javax.swing.JFrame {
 	//shows chart
 	if (currentSummatorVizualizator != null)
 	{
-	    summatorOutputField.remove(currentSummatorVizualizator);
+	    blockSummatorOutputField.remove(currentSummatorVizualizator);
 	    currentSummatorVizualizator = null;
 	}
-	int cx1 = summatorOutputField.getWidth();
-	int cy1 = summatorOutputField.getHeight();
+	int cx1 = blockSummatorOutputField.getWidth();
+	int cy1 = blockSummatorOutputField.getHeight();
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	summatorOutputProvider.add((new DataVizualizatorConverter(summatorOutput, DataVizualizatorProvider.SignalType.TABULATED, "Сигнал на виході суматора", Color.BLUE)).getProvided());
 	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t, с", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
-	summatorOutputField.setLayout(new GridLayout());
-	summatorOutputField.add(currentSummatorVizualizator);
+	blockSummatorOutputField.setLayout(new GridLayout());
+	blockSummatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();
     }
 
@@ -582,6 +589,32 @@ public class UIMain extends javax.swing.JFrame {
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumber();
 	blockResolverOutput.setText(currentResolver.getStringSequence());
+
+	List<BinaryNumber> resolverOutputList = new ArrayList<BinaryNumber>();
+	resolverOutputList.add(resolverOutput);
+	currentResolverVideoCreator = new VideoCreator(resolverOutputList, channelImpulseLength, 1);
+	currentResolverVideoCreator.doVideoSequence();
+	resolverVideoSequence = currentResolverVideoCreator.getVideoSequence();
+	if (currentResolverVideoSequenceVizualizator != null)
+	{
+	    blockResolverVideoSequenceOutputField.remove(currentResolverVideoSequenceVizualizator);
+	    currentResolverVideoSequenceVizualizator = null;
+	}
+	resolverVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
+	resolverVideoSequenceProvider.add((new DataVizualizatorConverter(resolverVideoSequence, DataVizualizatorProvider.SignalType.TABULATED, "Вхідна відеопослідовність", Color.RED)).getProvided());
+	int cx = blockResolverVideoSequenceOutputField.getWidth();
+	int cy = blockResolverVideoSequenceOutputField.getHeight();
+
+	//creates new vizualizator
+	currentResolverVideoSequenceVizualizator = new DataVizualizator(resolverVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+
+	//shows chart
+	currentResolverVideoSequenceVizualizator.setVisible(true);
+	blockResolverVideoSequenceOutputField.setLayout(new GridLayout());
+	blockResolverVideoSequenceOutputField.add(currentResolverVideoSequenceVizualizator);
+
+	//repaints chart to show it if VideoSequence block is active
+	currentResolverVideoSequenceVizualizator.repaint();
     }
 
     public UIMain() {
@@ -663,12 +696,15 @@ public class UIMain extends javax.swing.JFrame {
         integratorOutputPanel1 = new javax.swing.JPanel();
         integratorOutputField1 = new javax.swing.JPanel();
         blockSummator = new javax.swing.JPanel();
-        summatorOutputPanel = new javax.swing.JPanel();
-        summatorOutputField = new javax.swing.JPanel();
+        blockSummatorOutputPanel = new javax.swing.JPanel();
+        blockSummatorOutputField = new javax.swing.JPanel();
         blockResolver = new javax.swing.JPanel();
         blockResolverOutputPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         blockResolverOutput = new javax.swing.JTextPane();
+        blockResolverVideoSequence = new javax.swing.JPanel();
+        blockResolverVideoSequenceOutputPanel = new javax.swing.JPanel();
+        blockResolverVideoSequenceOutputField = new javax.swing.JPanel();
         blockMessageReceiver = new javax.swing.JPanel();
         receivedMessagePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -978,7 +1014,7 @@ public class UIMain extends javax.swing.JFrame {
         sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         blockMessageArea.setColumns(20);
-        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         blockMessageArea.setRows(5);
         blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(blockMessageArea);
@@ -987,7 +1023,7 @@ public class UIMain extends javax.swing.JFrame {
         sourceMessagePanel.setLayout(sourceMessagePanelLayout);
         sourceMessagePanelLayout.setHorizontalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1017,14 +1053,14 @@ public class UIMain extends javax.swing.JFrame {
 
         blockSourceCoderOutput.setContentType("text/html");
         blockSourceCoderOutput.setEditable(false);
-        blockSourceCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockSourceCoderOutput.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane2.setViewportView(blockSourceCoderOutput);
 
         javax.swing.GroupLayout blockSourceCoderOutputPanelLayout = new javax.swing.GroupLayout(blockSourceCoderOutputPanel);
         blockSourceCoderOutputPanel.setLayout(blockSourceCoderOutputPanelLayout);
         blockSourceCoderOutputPanelLayout.setHorizontalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1056,7 +1092,7 @@ public class UIMain extends javax.swing.JFrame {
         blockSourceVideoSequenceOutputField.setLayout(blockSourceVideoSequenceOutputFieldLayout);
         blockSourceVideoSequenceOutputFieldLayout.setHorizontalGroup(
             blockSourceVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         blockSourceVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockSourceVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1104,7 +1140,7 @@ public class UIMain extends javax.swing.JFrame {
         blockChannelCoderOutputPanel.setLayout(blockChannelCoderOutputPanelLayout);
         blockChannelCoderOutputPanelLayout.setHorizontalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1136,7 +1172,7 @@ public class UIMain extends javax.swing.JFrame {
         blockChannelVideoSequenceOutputField.setLayout(blockChannelVideoSequenceOutputFieldLayout);
         blockChannelVideoSequenceOutputFieldLayout.setHorizontalGroup(
             blockChannelVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         blockChannelVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockChannelVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1179,7 +1215,7 @@ public class UIMain extends javax.swing.JFrame {
         modulatorOutputField.setLayout(modulatorOutputFieldLayout);
         modulatorOutputFieldLayout.setHorizontalGroup(
             modulatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         modulatorOutputFieldLayout.setVerticalGroup(
             modulatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1222,7 +1258,7 @@ public class UIMain extends javax.swing.JFrame {
         channelOutputField.setLayout(channelOutputFieldLayout);
         channelOutputFieldLayout.setHorizontalGroup(
             channelOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         channelOutputFieldLayout.setVerticalGroup(
             channelOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1265,7 +1301,7 @@ public class UIMain extends javax.swing.JFrame {
         multiplierOutputField0.setLayout(multiplierOutputField0Layout);
         multiplierOutputField0Layout.setHorizontalGroup(
             multiplierOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         multiplierOutputField0Layout.setVerticalGroup(
             multiplierOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1308,7 +1344,7 @@ public class UIMain extends javax.swing.JFrame {
         multiplierOutputField1.setLayout(multiplierOutputField1Layout);
         multiplierOutputField1Layout.setHorizontalGroup(
             multiplierOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         multiplierOutputField1Layout.setVerticalGroup(
             multiplierOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1351,7 +1387,7 @@ public class UIMain extends javax.swing.JFrame {
         integratorOutputField0.setLayout(integratorOutputField0Layout);
         integratorOutputField0Layout.setHorizontalGroup(
             integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         integratorOutputField0Layout.setVerticalGroup(
             integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1394,7 +1430,7 @@ public class UIMain extends javax.swing.JFrame {
         integratorOutputField1.setLayout(integratorOutputField1Layout);
         integratorOutputField1Layout.setHorizontalGroup(
             integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         integratorOutputField1Layout.setVerticalGroup(
             integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1431,39 +1467,39 @@ public class UIMain extends javax.swing.JFrame {
             }
         });
 
-        summatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід суматора"));
+        blockSummatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід суматора"));
 
-        javax.swing.GroupLayout summatorOutputFieldLayout = new javax.swing.GroupLayout(summatorOutputField);
-        summatorOutputField.setLayout(summatorOutputFieldLayout);
-        summatorOutputFieldLayout.setHorizontalGroup(
-            summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+        javax.swing.GroupLayout blockSummatorOutputFieldLayout = new javax.swing.GroupLayout(blockSummatorOutputField);
+        blockSummatorOutputField.setLayout(blockSummatorOutputFieldLayout);
+        blockSummatorOutputFieldLayout.setHorizontalGroup(
+            blockSummatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
-        summatorOutputFieldLayout.setVerticalGroup(
-            summatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        blockSummatorOutputFieldLayout.setVerticalGroup(
+            blockSummatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 328, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout summatorOutputPanelLayout = new javax.swing.GroupLayout(summatorOutputPanel);
-        summatorOutputPanel.setLayout(summatorOutputPanelLayout);
-        summatorOutputPanelLayout.setHorizontalGroup(
-            summatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(summatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout blockSummatorOutputPanelLayout = new javax.swing.GroupLayout(blockSummatorOutputPanel);
+        blockSummatorOutputPanel.setLayout(blockSummatorOutputPanelLayout);
+        blockSummatorOutputPanelLayout.setHorizontalGroup(
+            blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        summatorOutputPanelLayout.setVerticalGroup(
-            summatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(summatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        blockSummatorOutputPanelLayout.setVerticalGroup(
+            blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSummatorLayout = new javax.swing.GroupLayout(blockSummator);
         blockSummator.setLayout(blockSummatorLayout);
         blockSummatorLayout.setHorizontalGroup(
             blockSummatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(summatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         blockSummatorLayout.setVerticalGroup(
             blockSummatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(summatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Суматор", blockSummator);
@@ -1477,14 +1513,14 @@ public class UIMain extends javax.swing.JFrame {
         blockResolverOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід вирішуючого пристрою"));
 
         blockResolverOutput.setContentType("text/html");
-        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane5.setViewportView(blockResolverOutput);
 
         javax.swing.GroupLayout blockResolverOutputPanelLayout = new javax.swing.GroupLayout(blockResolverOutputPanel);
         blockResolverOutputPanel.setLayout(blockResolverOutputPanelLayout);
         blockResolverOutputPanelLayout.setHorizontalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         blockResolverOutputPanelLayout.setVerticalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1504,6 +1540,49 @@ public class UIMain extends javax.swing.JFrame {
 
         TCSTabs.addTab("Вирішуючий пристрій", blockResolver);
 
+        blockResolverVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockResolverVideoSequenceComponentShown(evt);
+            }
+        });
+
+        blockResolverVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Відеопослідовність на виході вирішуючого пристрою"));
+
+        javax.swing.GroupLayout blockResolverVideoSequenceOutputFieldLayout = new javax.swing.GroupLayout(blockResolverVideoSequenceOutputField);
+        blockResolverVideoSequenceOutputField.setLayout(blockResolverVideoSequenceOutputFieldLayout);
+        blockResolverVideoSequenceOutputFieldLayout.setHorizontalGroup(
+            blockResolverVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1028, Short.MAX_VALUE)
+        );
+        blockResolverVideoSequenceOutputFieldLayout.setVerticalGroup(
+            blockResolverVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 328, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockResolverVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockResolverVideoSequenceOutputPanel);
+        blockResolverVideoSequenceOutputPanel.setLayout(blockResolverVideoSequenceOutputPanelLayout);
+        blockResolverVideoSequenceOutputPanelLayout.setHorizontalGroup(
+            blockResolverVideoSequenceOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockResolverVideoSequenceOutputPanelLayout.setVerticalGroup(
+            blockResolverVideoSequenceOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockResolverVideoSequenceLayout = new javax.swing.GroupLayout(blockResolverVideoSequence);
+        blockResolverVideoSequence.setLayout(blockResolverVideoSequenceLayout);
+        blockResolverVideoSequenceLayout.setHorizontalGroup(
+            blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockResolverVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockResolverVideoSequenceLayout.setVerticalGroup(
+            blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockResolverVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Вхідна відеопослідовність", blockResolverVideoSequence);
+
         blockMessageReceiver.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 blockMessageReceiverComponentShown(evt);
@@ -1521,7 +1600,7 @@ public class UIMain extends javax.swing.JFrame {
         receivedMessagePanel.setLayout(receivedMessagePanelLayout);
         receivedMessagePanelLayout.setHorizontalGroup(
             receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         receivedMessagePanelLayout.setVerticalGroup(
             receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1693,7 +1772,7 @@ public class UIMain extends javax.swing.JFrame {
                         .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(integrator1Button)
                             .addComponent(integrator0Button))))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         systemSchemeLayout.setVerticalGroup(
             systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1838,7 +1917,7 @@ public class UIMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
             .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -2132,6 +2211,12 @@ public class UIMain extends javax.swing.JFrame {
 	updateChosenBlock();
     }//GEN-LAST:event_blockMessageReceiverComponentShown
 
+    private void blockResolverVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockResolverVideoSequenceComponentShown
+    {//GEN-HEADEREND:event_blockResolverVideoSequenceComponentShown
+	selectedBlock = Blocks.INPUT_VIDEOSEQUENCE;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockResolverVideoSequenceComponentShown
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -2172,6 +2257,9 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockResolver;
     private javax.swing.JTextPane blockResolverOutput;
     private javax.swing.JPanel blockResolverOutputPanel;
+    private javax.swing.JPanel blockResolverVideoSequence;
+    private javax.swing.JPanel blockResolverVideoSequenceOutputField;
+    private javax.swing.JPanel blockResolverVideoSequenceOutputPanel;
     private javax.swing.JPanel blockSourceCoder;
     private javax.swing.JTextPane blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
@@ -2179,6 +2267,8 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel blockSourceVideoSequenceOutputField;
     private javax.swing.JPanel blockSourceVideoSequenceOutputPanel;
     private javax.swing.JPanel blockSummator;
+    private javax.swing.JPanel blockSummatorOutputField;
+    private javax.swing.JPanel blockSummatorOutputPanel;
     private javax.swing.JMenuItem blockingItem;
     private javax.swing.JLabel bpsLabel;
     private javax.swing.JButton channelButton;
@@ -2254,8 +2344,6 @@ public class UIMain extends javax.swing.JFrame {
     private javax.swing.JPanel sourceMessagePanel;
     private javax.swing.JMenuItem sum2Item;
     private javax.swing.JButton summatorButton;
-    private javax.swing.JPanel summatorOutputField;
-    private javax.swing.JPanel summatorOutputPanel;
     private javax.swing.JPanel systemScheme;
     private javax.swing.JLabel voltsLabel;
     private javax.swing.JMenuItem weightItem;
