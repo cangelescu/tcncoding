@@ -28,16 +28,18 @@ public class Resolver
     private List<List<FunctionStep>> summatorSignal;
     private double threshold;
     private BinaryNumber outputNumber;
+    private Modulator.ModulationType modulationType;
 
     /**
      * Creates resolver
      * @param _summatorSignal signal from summator to operate on
      * @param _modulationType type of using modulation
      */
-    public Resolver(List<List<FunctionStep>> _summatorSignal, double _threshold)
+    public Resolver(List<List<FunctionStep>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType)
     {
 	summatorSignal = _summatorSignal;
 	threshold = _threshold;
+	modulationType = _modulationType;
     }
 
     /**
@@ -52,6 +54,12 @@ public class Resolver
 	    out.add(value > threshold);
 	}
 	outputNumber = new BinaryNumber(out);
+	if (modulationType == Modulator.ModulationType.RPSK)
+	{
+	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(outputNumber.getBinaryArray());
+	    recoder.doDecoding();
+	    outputNumber = new BinaryNumber(recoder.getArray());
+	}
     }
 
     /**

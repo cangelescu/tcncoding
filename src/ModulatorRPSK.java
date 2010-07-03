@@ -60,7 +60,7 @@ public class ModulatorRPSK
 	boolean[] splittedArray = splitter.getBlocks().get(0).getBinaryArray();
 
 	ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(splittedArray);
-	recoder.doRecoding();
+	recoder.doEncoding();
 	boolean[] recodedArray = recoder.getArray();
 	for (boolean cb: recodedArray)
 	{

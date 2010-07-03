@@ -34,19 +34,27 @@ public class ModulatorRPSKRecoder
     }
 
     /**
-     * Runs recoding
+     * Runs encoding
      */
-    public void doRecoding()
+    public void doEncoding()
     {
 	//shifts array
-	boolean[] temporaryArray = new boolean[sequence.length + 1];
 	outputArray = new boolean[sequence.length + 1];
-	temporaryArray[0] = false;
-	outputArray[0] = false;
-	System.arraycopy(sequence, 0, temporaryArray, 1, sequence.length);
+	outputArray[0] = true;
+	System.arraycopy(sequence, 0, outputArray, 1, sequence.length);
 	//recodes array
-	for (int i = 1; i < temporaryArray.length; i++)
-	    outputArray[i] = temporaryArray[i] && temporaryArray[i - 1];
+	for (int i = 1; i < outputArray.length; i++)
+	    outputArray[i] = sequence[i - 1] ^ outputArray[i - 1];
+    }
+
+    /**
+     * Runs decoding
+     */
+    public void doDecoding()
+    {
+	outputArray = new boolean[sequence.length - 1];
+	for (int i = 1; i < sequence.length; i++)
+	    outputArray[i - 1] = sequence[i] ^ sequence[i - 1];
     }
 
     /**

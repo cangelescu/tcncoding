@@ -578,7 +578,7 @@ public class UIMain extends javax.swing.JFrame {
 	    break;
 	}
 
-	currentResolver = new Resolver(summatorOutput, threshold);
+	currentResolver = new Resolver(summatorOutput, threshold, modulationType);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumber();
 	blockResolverOutput.setText(currentResolver.getStringSequence());
