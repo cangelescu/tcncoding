@@ -46,9 +46,8 @@ public class ChannelCoderInversed
 	{
 	    BinaryNumber shifted = bn.shl2(bn.getLength());
 	    if (bn.getWeight() % 2 == 0)
-	    {
 		outputSequence.add(shifted.sum2(bn));
-	    } else
+	    else
 	    {
 		BinaryNumber inversed = bn.not2();
 		outputSequence.add(shifted.sum2(inversed));
