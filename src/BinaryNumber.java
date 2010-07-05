@@ -212,22 +212,27 @@ public class BinaryNumber
     public BinaryNumber(boolean[] _sequence, int _align)
     {
 	int len = _sequence.length;
+	int lowBound, highBound;
 
 	//creates list
 	if (len < _align)
 	{
 	    for (int i = 0; i < _align - len; i++)
 		binary.add(false);
-	    for (int i = 0; i < len; i++)
-		binary.add(_sequence[i]);
+	    lowBound = 0;
+	    highBound = len;
 	} else
 	if (len > _align)
 	{
-	    for (int i = len - _align; i < len; i++)
-		binary.add(_sequence[i]);
+	    lowBound = len - _align;
+	    highBound = len;
 	} else
-	    for (int i = 0; i < len; i++)
-		binary.add(_sequence[i]);
+	{
+	    lowBound = 0;
+	    highBound = len;
+	}
+	for (int i = lowBound; i < highBound; i++)
+	    binary.add(_sequence[i]);
 
 	//calculates integer (decimal) value of binary number
 	for (int i = 0; i < _align; i++)
