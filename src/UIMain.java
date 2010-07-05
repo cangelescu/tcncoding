@@ -1520,7 +1520,8 @@ public class UIMain extends javax.swing.JFrame
         blockResolverOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід вирішуючого пристрою"));
 
         blockResolverOutput.setContentType("text/html");
-        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24));
+        blockResolverOutput.setEditable(false);
+        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jScrollPane5.setViewportView(blockResolverOutput);
 
         javax.swing.GroupLayout blockResolverOutputPanelLayout = new javax.swing.GroupLayout(blockResolverOutputPanel);

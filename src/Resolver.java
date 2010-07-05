@@ -84,14 +84,14 @@ public class Resolver
     public String getStringSequence()
     {
 	String out = "<html>";
-	for (BinaryNumber cbn: outputNumbers)
+	boolean trigger = false;
+	for (BinaryNumber bn: outputNumbers)
 	{
-	    for (boolean cb: cbn.getBinaryArray())
-	    {
-		out += "<font size=\"5\">";
-		out += cb ? "1" : "0";
-		out += "</font>";
-	    }
+	    if (trigger)
+		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + " </font>";
+	    else
+		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + " </font>";
+	    trigger = !trigger;
 	}
 	out += "</html>";
 	return out;

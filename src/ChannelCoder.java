@@ -130,9 +130,9 @@ public class ChannelCoder
 	for (BinaryNumber bn: channelSequence)
 	{
 	    if (trigger)
-		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + "</font>";
+		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + " </font>";
 	    else
-		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + "</font>";
+		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + " </font>";
 	    trigger = !trigger;
 	}
 	out += "</html>";
