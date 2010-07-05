@@ -286,7 +286,7 @@ public class BinaryNumber
     }
 
     /**
-     *
+     * Sums current binary number with given and returns new binary number
      * @param _number binary number to sum with
      * @return
      */
