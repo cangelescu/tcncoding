@@ -44,7 +44,7 @@ public class Resolver
     }
 
     /**
-     * Runs summing
+     * Runs resolving
      */
     public void doResolving()
     {
