@@ -100,10 +100,7 @@ public class Splitter
 	{
 	    boolean[] currentBits = bn.getBinaryArray();
 	    for (int i = 0; i < currentBits.length; i++)
-	    {
-		bitFlow[index] = currentBits[i];
-		index++;
-	    }
+		bitFlow[index++] = currentBits[i];
 	}
 	//splits formed array into separate blocks
 	int k = 0;
