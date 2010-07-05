@@ -25,16 +25,18 @@ import java.util.List;
  */
 public class ChannelSqr
 {
-    private List<ModulatorSignal> inputSignals;
-    private List<ChannelSignalSqr> outputSignals = new ArrayList<ChannelSignalSqr>();
+    private List<List<ModulatorSignal>> inputSignals;
+    private List<List<ChannelSignalSqr>> outputSignals = new ArrayList<List<ChannelSignalSqr>>();
+    private double noisePower;
 
     /**
      * Creates list of channel signals^2
      * @param _inputSignals list of input signals
      */
-    public ChannelSqr(List<ModulatorSignal> _inputSignals)
+    public ChannelSqr(List<List<ModulatorSignal>> _inputSignals, double _noisePower)
     {
 	inputSignals = _inputSignals;
+	noisePower = _noisePower;
     }
 
     /**
@@ -42,11 +44,15 @@ public class ChannelSqr
      */
     public void doNoising()
     {
-	for(ModulatorSignal cs: inputSignals)
+	for(List<ModulatorSignal> clms: inputSignals)
 	{
-
-	    ChannelSignalSqr ncfs = new ChannelSignalSqr(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), 4, cs.getStart(), cs.getEnd());
-	    outputSignals.add(ncfs);
+	    List<ChannelSignalSqr> newChannelSignalsList = new ArrayList<ChannelSignalSqr>();
+	    for (ModulatorSignal cms: clms)
+	    {
+		ChannelSignalSqr ncfs = new ChannelSignalSqr(cms.getFrequency(), cms.getAmplitude(), cms.getPhase(), noisePower, cms.getStart(), cms.getEnd());
+		newChannelSignalsList.add(ncfs);
+	    }
+	    outputSignals.add(newChannelSignalsList);
 	}
     }
 
@@ -54,7 +60,7 @@ public class ChannelSqr
      * Returns list of signals
      * @return
      */
-    public List<ChannelSignalSqr> getSignals()
+    public List<List<ChannelSignalSqr>> getSignals()
     {
 	return outputSignals;
     }

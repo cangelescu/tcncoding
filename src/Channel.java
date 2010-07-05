@@ -25,15 +25,15 @@ import java.util.List;
  */
 public class Channel
 {
-    private List<ModulatorSignal> inputSignals;
-    private List<ChannelSignal> outputSignals = new ArrayList<ChannelSignal>();
+    private List<List<ModulatorSignal>> inputSignals;
+    private List<List<ChannelSignal>> outputSignals = new ArrayList<List<ChannelSignal>>();
     private double noisePower;
 
     /**
      * Creates channel with given signals on its input
      * @param _inputSignals list of input signals
      */
-    public Channel(List<ModulatorSignal> _inputSignals, double _noisePower)
+    public Channel(List<List<ModulatorSignal>> _inputSignals, double _noisePower)
     {
 	inputSignals = _inputSignals;
 	noisePower = _noisePower;
@@ -44,11 +44,15 @@ public class Channel
      */
     public void doNoising()
     {
-	for(ModulatorSignal cs: inputSignals)
+	for(List<ModulatorSignal> clms: inputSignals)
 	{
-
-	    ChannelSignal ncfs = new ChannelSignal(cs.getFrequency(), cs.getAmplitude(), cs.getPhase(), noisePower, cs.getStart(), cs.getEnd());
-	    outputSignals.add(ncfs);
+	    List<ChannelSignal> newChannelSignalsList = new ArrayList<ChannelSignal>();
+	    for (ModulatorSignal cms: clms)
+	    {
+		ChannelSignal ncfs = new ChannelSignal(cms.getFrequency(), cms.getAmplitude(), cms.getPhase(), noisePower, cms.getStart(), cms.getEnd());
+		newChannelSignalsList.add(ncfs);
+	    }
+	    outputSignals.add(newChannelSignalsList);
 	}
     }
 
@@ -56,7 +60,7 @@ public class Channel
      * Returns list of noised signals
      * @return
      */
-    public List<ChannelSignal> getSignals()
+    public List<List<ChannelSignal>> getSignals()
     {
 	return outputSignals;
     }

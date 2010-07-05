@@ -24,10 +24,9 @@ import java.util.List;
  *
  * @author post-factum
  */
-public class DataVizualizatorConverter
+public class ChannelVizualizatorConverter
 {
-    private DataVizualizatorProvider.SignalType signalType;
-    private List data;
+    private List<List<ChannelSignal>> data;
     private String description;
     private Color chartColor;
 
@@ -36,9 +35,9 @@ public class DataVizualizatorConverter
      * @param _data input list of signals
      * @param _signalType type of input signals
      */
-    public DataVizualizatorConverter(List _data, DataVizualizatorProvider.SignalType _signalType, String _description, Color _chartColor)
+
+    public ChannelVizualizatorConverter(List<List<ChannelSignal>> _data, String _description, Color _chartColor)
     {
-	signalType = _signalType;
 	data = _data;
 	description = _description;
 	chartColor = _chartColor;
@@ -51,39 +50,8 @@ public class DataVizualizatorConverter
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
-	switch (signalType)
-	{
-	    case MODULATOR:
-		for (Object co: data)
-		{
-		    ModulatorSignal ms = (ModulatorSignal)co;
-		    out.add(new DataVizualizatorProvider(ms, description, chartColor));
-		}
-		break;
-	    case CHANNEL:
-		for (Object co: data)
-		{
-		    ChannelSignal cs = (ChannelSignal)co;
-		    out.add(new DataVizualizatorProvider(cs, description, chartColor));
-		}
-		break;
-	    case MULTIPLIER:
-		for (Object co: data)
-		{
-		    MultiplierSignal ms = (MultiplierSignal)co;
-		    out.add(new DataVizualizatorProvider(ms, description, chartColor));
-		}
-		break;
-	    case TABULATED:
-		for (Object co: data)
-		{
-		    List<FunctionStep> is = (List<FunctionStep>)co;
-		    out.add(new DataVizualizatorProvider(is, description, chartColor));
-		}
-		break;
-	    default:
-		break;
-	}
+	for (List<ChannelSignal> co: data)
+	    out.add(new DataVizualizatorProvider(co, DataVizualizatorProvider.SignalType.CHANNEL, description, chartColor));
 	return out;
     }
 }

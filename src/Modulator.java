@@ -54,7 +54,7 @@ public class Modulator
     private List<BinaryNumber> sequence = null;
     private double bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, impulseLength;
 
-    List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
+    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 
     /**
      * Creates modulator with given parameters
@@ -110,7 +110,7 @@ public class Modulator
      * Returns modulated signals
      * @return
      */
-    public List<ModulatorSignal> getSignals()
+    public List<List<ModulatorSignal>> getSignals()
     {
 	return modulatedSequence;
     }

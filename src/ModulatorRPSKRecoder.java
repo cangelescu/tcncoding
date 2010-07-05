@@ -16,19 +16,22 @@
 
 */
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author post-factum
  */
 public class ModulatorRPSKRecoder
 {
-    private boolean[] sequence, outputArray;
+    private List<BinaryNumber> sequence, outputArray;
 
     /**
      * Rectifies binary numbers' list into array
      * @param _sequence source list of binary numbers
      */
-    public ModulatorRPSKRecoder(boolean[] _sequence)
+    public ModulatorRPSKRecoder(List<BinaryNumber> _sequence)
     {
 	sequence = _sequence;
     }
@@ -38,13 +41,23 @@ public class ModulatorRPSKRecoder
      */
     public void doEncoding()
     {
-	//shifts array
-	outputArray = new boolean[sequence.length + 1];
-	outputArray[0] = true;
-	System.arraycopy(sequence, 0, outputArray, 1, sequence.length);
-	//recodes array
-	for (int i = 1; i < outputArray.length; i++)
-	    outputArray[i] = sequence[i - 1] ^ outputArray[i - 1];
+	outputArray = new ArrayList<BinaryNumber>();
+	outputArray.add(new BinaryNumber(1));
+
+	int sequenceLength = sequence.size();
+	boolean prev = true;
+	for (int i = 0; i < sequenceLength; i++)
+	{
+	    int pieceLength = sequence.get(i).getLength();
+	    boolean[] currentOldPiece = sequence.get(i).getBinaryArray();
+	    boolean[] currentNewPiece = new boolean[pieceLength];
+	    for (int j = 0; j < pieceLength; j++)
+	    {
+		currentNewPiece[j] = currentOldPiece[j] ^ prev;
+		prev = currentNewPiece[j];
+	    }
+	    outputArray.add(new BinaryNumber(currentNewPiece));
+	}
     }
 
     /**
@@ -52,16 +65,29 @@ public class ModulatorRPSKRecoder
      */
     public void doDecoding()
     {
-	outputArray = new boolean[sequence.length - 1];
-	for (int i = 1; i < sequence.length; i++)
-	    outputArray[i - 1] = sequence[i] ^ sequence[i - 1];
+	outputArray = new ArrayList<BinaryNumber>();
+
+	int sequenceLength = sequence.size();
+	boolean prev = true;
+	for (int i = 1; i < sequenceLength; i++)
+	{
+	    int pieceLength = sequence.get(i).getLength();
+	    boolean[] currentOldPiece = sequence.get(i).getBinaryArray();
+	    boolean[] currentNewPiece = new boolean[pieceLength];
+	    for (int j = 0; j < pieceLength; j++)
+	    {
+		currentNewPiece[j] = currentOldPiece[j] ^ prev;
+		prev = currentOldPiece[j];
+	    }
+	    outputArray.add(new BinaryNumber(currentNewPiece));
+	}
     }
 
     /**
      * Returns formed array
      * @return
      */
-    public boolean[] getArray()
+    public List<BinaryNumber> getList()
     {
 	return outputArray;
     }

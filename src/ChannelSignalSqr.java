@@ -55,7 +55,7 @@ public class ChannelSignalSqr extends Signal
     public double function(double x)
     {
 	Random noise_generator = new Random();
-	return Math.pow(amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + noise * noise_generator.nextGaussian(), 2);
+	return Math.pow(amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + Math.sqrt(noise) * noise_generator.nextGaussian(), 2);
     }
 
     /**

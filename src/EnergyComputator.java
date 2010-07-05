@@ -25,14 +25,14 @@ import java.util.List;
  */
 public class EnergyComputator
 {
-    private List<ChannelSignalSqr> signals;
+    private List<List<ChannelSignalSqr>> signals;
     private double energy = 0;
 
     /**
      * Creates energy computator for input signals
      * @param _signals list of input signals
      */
-    public EnergyComputator(List<ChannelSignalSqr> _signals)
+    public EnergyComputator(List<List<ChannelSignalSqr>> _signals)
     {
 	signals = _signals;
     }
@@ -42,8 +42,9 @@ public class EnergyComputator
      */
     public void computeEnergy()
     {
-	for (ChannelSignalSqr cs: signals)
-	    energy += Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000);
+	for (List<ChannelSignalSqr> clcss: signals)
+	    for (ChannelSignalSqr cs: clcss)
+		energy += Integration.gaussQuad(cs, cs.getStart(), cs.getEnd(), 1000);
     }
 
     /**

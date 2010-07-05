@@ -17,6 +17,7 @@
 */
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,77 +50,64 @@ public class DataVizualizatorProvider
 	 */
 	TABULATED;
     };
-    private SignalType currentSignalType;
+    private SignalType signalType;
 
-    private ModulatorSignal modulatorSignal = null;
-    private ChannelSignal channelSignal = null;
-    private MultiplierSignal multiplierSignal = null;
-    private List<FunctionStep> integratorSignal = null;
+    private List<ModulatorSignal> modulatorSignal = null;
+    private List<ChannelSignal> channelSignal = null;
+    private List<MultiplierSignal> multiplierSignal = null;
+    private List<List<FunctionStep>> integratorSignal = null;
 
     private double xStart, xEnd, maxValue;
     private String description;
     private Color chartColor;
 
-    /**
-     * Creates data provider for vizualizator
-     * @param _data input modulator signal
-     */
-    public DataVizualizatorProvider(ModulatorSignal _data, String _description, Color _chartColor)
+    public DataVizualizatorProvider(List _data, SignalType _signalType, String _description, Color _chartColor)
     {
-	currentSignalType = SignalType.MODULATOR;
-	modulatorSignal = _data;
-	xStart = _data.getStart();
-	xEnd = _data.getEnd();
-	maxValue = _data.getMaxValue();
-	description = _description;
-	chartColor = _chartColor;
-    }
-
-    /**
-     * Creates data provider for vizualizator
-     * @param _data input channel signal
-     */
-    public DataVizualizatorProvider(ChannelSignal _data, String _description, Color _chartColor)
-    {
-	currentSignalType = SignalType.CHANNEL;
-	channelSignal = _data;
-	xStart = _data.getStart();
-	xEnd = _data.getEnd();
-	maxValue = _data.getMaxValue();
-	description = _description;
-	chartColor = _chartColor;
-    }
-
-    /**
-     * Creates data provider for vizualizator
-     * @param _data input multiplier signal
-     */
-    public DataVizualizatorProvider(MultiplierSignal _data, String _description, Color _chartColor)
-    {
-	currentSignalType = SignalType.MULTIPLIER;
-	multiplierSignal = _data;
-	xStart = _data.getStart();
-	xEnd = _data.getEnd();
-	maxValue = _data.getMaxValue();
-	description = _description;
-	chartColor = _chartColor;
-    }
-
-    /**
-     * Creates data provider for vizualizator
-     * @param _data input tabulated signal
-     */
-    public DataVizualizatorProvider(List<FunctionStep> _data, String _description, Color _chartColor)
-    {
-	currentSignalType = SignalType.TABULATED;
-	integratorSignal = _data;
-	xStart = _data.get(0).getX();
-	xEnd = _data.get(_data.size() - 1).getX();
-
-	maxValue = _data.get(0).getY();
-	for (FunctionStep fs: _data)
-	    if (fs.getY() > maxValue)
-		maxValue = fs.getY();
+	signalType = _signalType;
+	switch (signalType)
+	{
+	    case MODULATOR:
+		modulatorSignal = _data;
+		xStart = modulatorSignal.get(0).getStart();
+		xEnd = modulatorSignal.get(modulatorSignal.size() - 1).getEnd();
+		maxValue = modulatorSignal.get(0).getMaxValue();
+		for (ModulatorSignal cms: modulatorSignal)
+		    if (cms.getMaxValue() > maxValue)
+			maxValue = cms.getMaxValue();
+		break;
+	    case CHANNEL:
+		channelSignal = _data;
+		xStart = channelSignal.get(0).getStart();
+		xEnd = channelSignal.get(channelSignal.size() - 1).getEnd();
+		maxValue = channelSignal.get(0).getMaxValue();
+		for (ChannelSignal cms: channelSignal)
+		    if (cms.getMaxValue() > maxValue)
+			maxValue = cms.getMaxValue();
+		break;
+	    case MULTIPLIER:
+		multiplierSignal = _data;
+		xStart = multiplierSignal.get(0).getStart();
+		xEnd = multiplierSignal.get(multiplierSignal.size() - 1).getEnd();
+		maxValue = multiplierSignal.get(0).getMaxValue();
+		for (MultiplierSignal cms: multiplierSignal)
+		    if (cms.getMaxValue() > maxValue)
+			maxValue = cms.getMaxValue();
+		break;
+	    case TABULATED:
+		integratorSignal = _data;
+		xStart = integratorSignal.get(0).get(0).getX();
+		int lastBlock = integratorSignal.size() - 1;
+		int lastSymbol = integratorSignal.get(lastBlock).size() - 1;
+		xEnd = integratorSignal.get(lastBlock).get(lastSymbol).getX();
+		maxValue = integratorSignal.get(0).get(0).getY();
+		for (List<FunctionStep> clfs: integratorSignal)
+		    for (FunctionStep cfs: clfs)
+			if (cfs.getY() > maxValue)
+			    maxValue = cfs.getY();
+		break;
+	    default:
+		break;
+	}
 
 	description = _description;
 	chartColor = _chartColor;
@@ -132,30 +120,40 @@ public class DataVizualizatorProvider
      */
     public double getFunction(double x)
     {
-	double out;
-	switch (currentSignalType)
+	double out = 0;
+	switch (signalType)
 	{
 	    case MODULATOR:
-		out = modulatorSignal.function(x);
+		for (ModulatorSignal cms: modulatorSignal)
+		    if (x >= cms.getStart() && x <= cms.getEnd())
+			out = cms.function(x);
 		break;
 	    case CHANNEL:
-		out = channelSignal.function(x);
+		for (ChannelSignal cms: channelSignal)
+		    if (x >= cms.getStart() && x <= cms.getEnd())
+			out = cms.function(x);
 		break;
 	    case MULTIPLIER:
-		out = multiplierSignal.function(x);
+		for (MultiplierSignal cms: multiplierSignal)
+		    if (x >= cms.getStart() && x <= cms.getEnd())
+			out = cms.function(x);
 		break;
 	    case TABULATED:
-		double found = 0;
-		for (FunctionStep fs: integratorSignal)
-		    if (fs.getX() >= x)
-		    {
-			found = fs.getY();
+		for (List<FunctionStep> clfs: integratorSignal)
+		{
+		    boolean found = false;
+		    for (FunctionStep fs: clfs)
+			if (fs.getX() >= x)
+			{
+			    out = fs.getY();
+			    found = true;
+			    break;
+			}
+		    if (found)
 			break;
-		    }
-		out = found;
+		}
 		break;
 	    default:
-		out = 0;
 		break;
 	}
 	return out;

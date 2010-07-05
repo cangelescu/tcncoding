@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class Resolver
 {
-    private List<List<FunctionStep>> summatorSignal;
+    private List<List<List<FunctionStep>>> summatorSignal;
     private double threshold;
     private List<BinaryNumber> outputNumbers;
     private Modulator.ModulationType modulationType;
@@ -35,7 +35,7 @@ public class Resolver
      * @param _summatorSignal signal from summator to operate on
      * @param _modulationType type of using modulation
      */
-    public Resolver(List<List<FunctionStep>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType)
+    public Resolver(List<List<List<FunctionStep>>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType)
     {
 	summatorSignal = _summatorSignal;
 	threshold = _threshold;
@@ -47,25 +47,24 @@ public class Resolver
      */
     public void doResolving()
     {
-	List<Boolean> out = new ArrayList<Boolean>();
-	BinaryNumber outputNumber;
-
-	for (List<FunctionStep> currentSymbol: summatorSignal)
+	outputNumbers = new ArrayList<BinaryNumber>();
+	for (List<List<FunctionStep>> cllfs: summatorSignal)
 	{
-	    double value = currentSymbol.get(currentSymbol.size() - 1).getY();
-	    out.add(value > threshold);
+	    List<Boolean> currentBlock = new ArrayList<Boolean>();
+	    for (List<FunctionStep> clfs: cllfs)
+	    {
+		double value = clfs.get(clfs.size() - 1).getY();
+		currentBlock.add(value > threshold);
+	    }
+	    outputNumbers.add(new BinaryNumber(currentBlock));
 	}
-	outputNumber = new BinaryNumber(out);
+	
 	if (modulationType == Modulator.ModulationType.RPSK)
 	{
-	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(outputNumber.getBinaryArray());
+	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(outputNumbers);
 	    recoder.doDecoding();
-	    outputNumber = new BinaryNumber(recoder.getArray());
+	    outputNumbers = recoder.getList();
 	}
-
-	Splitter splitter = new Splitter(outputNumber);
-	splitter.doSplitting();
-	outputNumbers = splitter.getBlocks();
     }
 
     /**

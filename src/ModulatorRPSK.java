@@ -29,7 +29,7 @@ public class ModulatorRPSK
     private List<BinaryNumber> sequence = null;
     private double bearerAmplitude, bearerFrequency, impulseLength;
 
-    List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
+    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 
     /**
      * Creates RPSK modulator (same as PSK, but recodes sequence first)
@@ -55,20 +55,25 @@ public class ModulatorRPSK
 
 	double currentTime = 0;
 
-	Splitter splitter = new Splitter(sequence);
-	splitter.doSplitting();
-	boolean[] splittedArray = splitter.getBlocks().get(0).getBinaryArray();
-
-	ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(splittedArray);
+	ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(sequence);
 	recoder.doEncoding();
-	boolean[] recodedArray = recoder.getArray();
-	for (boolean cb: recodedArray)
+	List<BinaryNumber> recodedList = recoder.getList();
+
+	for (BinaryNumber cbn: recodedList)
 	{
-	    if (!cb)
-		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
-	    else
-		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, -Math.PI, currentTime, currentTime + impulseLength));
-	    currentTime += impulseLength;
+	    Splitter splitter = new Splitter(cbn);
+	    splitter.doSplitting();
+	    boolean[] bits = splitter.getBlocks().get(0).getBinaryArray();
+	    List<ModulatorSignal> currentSymbolSignals = new ArrayList<ModulatorSignal>();
+	    for (boolean cb: bits)
+	    {
+		if (!cb)
+		    currentSymbolSignals.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
+		else
+		    currentSymbolSignals.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, -Math.PI, currentTime, currentTime + impulseLength));
+		currentTime += impulseLength;
+	    }
+	    modulatedSequence.add(currentSymbolSignals);
 	}
     }
 
@@ -76,7 +81,7 @@ public class ModulatorRPSK
      * Returns modulated signals
      * @return
      */
-    public List<ModulatorSignal> getSignals()
+    public List<List<ModulatorSignal>> getSignals()
     {
 	return modulatedSequence;
     }

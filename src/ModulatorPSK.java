@@ -29,7 +29,7 @@ public class ModulatorPSK
     private List<BinaryNumber> sequence = null;
     private double bearerAmplitude, bearerFrequency, impulseLength;
 
-    List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
+    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 
     /**
      * Creates PSK modulator
@@ -55,16 +55,21 @@ public class ModulatorPSK
 
 	double currentTime = 0;
 
-	Splitter splitter = new Splitter(sequence);
-	splitter.doSplitting();
-	boolean[] splittedArray = splitter.getBlocks().get(0).getBinaryArray();
-	for (boolean cb: splittedArray)
+	for (BinaryNumber cbn: sequence)
 	{
-	    if (!cb)
-		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
-	    else
-		modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, -Math.PI, currentTime, currentTime + impulseLength));
-	    currentTime += impulseLength;
+	    Splitter splitter = new Splitter(cbn);
+	    splitter.doSplitting();
+	    boolean[] bits = splitter.getBlocks().get(0).getBinaryArray();
+	    List<ModulatorSignal> currentSymbolSignals = new ArrayList<ModulatorSignal>();
+	    for (boolean cb: bits)
+	    {
+		if (!cb)
+		    currentSymbolSignals.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
+		else
+		    currentSymbolSignals.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, -Math.PI, currentTime, currentTime + impulseLength));
+		currentTime += impulseLength;
+	    }
+	    modulatedSequence.add(currentSymbolSignals);
 	}
     }
 
@@ -72,7 +77,7 @@ public class ModulatorPSK
      * Returns modulated signals
      * @return
      */
-    public List<ModulatorSignal> getSignals()
+    public List<List<ModulatorSignal>> getSignals()
     {
 	return modulatedSequence;
     }

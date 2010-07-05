@@ -25,16 +25,16 @@ import java.util.List;
  */
 public class Summator
 {
-    private List<List<FunctionStep>> sequence0;
-    private List<List<FunctionStep>> sequence1;
-    private List<List<FunctionStep>> sumResult = new ArrayList<List<FunctionStep>>();
+    private List<List<List<FunctionStep>>> sequence0;
+    private List<List<List<FunctionStep>>> sequence1;
+    private List<List<List<FunctionStep>>> sumResult = new ArrayList<List<List<FunctionStep>>>();
 
     /**
      * Creates summator of two tabulated functions
      * @param _sequence0 first tabulated function
      * @param _sequence1 second tabulated function
      */
-    public Summator(List<List<FunctionStep>> _sequence0, List<List<FunctionStep>> _sequence1)
+    public Summator(List<List<List<FunctionStep>>> _sequence0, List<List<List<FunctionStep>>> _sequence1)
     {
 	sequence0 = _sequence0;
 	sequence1 = _sequence1;
@@ -48,16 +48,23 @@ public class Summator
 	sumResult.clear();
 	for (int i = 0; i < sequence0.size(); i++)
 	{
-	    List<FunctionStep> s0 = sequence0.get(i);
-	    List<FunctionStep> s1 = sequence1.get(i);
-	    List<FunctionStep> newSum = new ArrayList<FunctionStep>();
-	    for (int k = 0; k < s0.size(); k++)
+	    List<List<FunctionStep>> currentBlock0 = sequence0.get(i);
+	    List<List<FunctionStep>> currentBlock1 = sequence1.get(i);
+	    List<List<FunctionStep>> newBlock = new ArrayList<List<FunctionStep>>();
+	    for (int j = 0; j < currentBlock0.size(); j++)
 	    {
-		FunctionStep ss0 = s0.get(k);
-		FunctionStep ss1 = s1.get(k);
-		newSum.add(new FunctionStep(ss1.getX(), ss1.getY() - ss0.getY()));
+		List<FunctionStep> currentSymbol0 = currentBlock0.get(j);
+		List<FunctionStep> currentSymbol1 = currentBlock1.get(j);
+		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
+		for (int k = 0; k < currentSymbol0.size(); k++)
+		{
+		    FunctionStep currentStep0 = currentSymbol0.get(k);
+		    FunctionStep currentStep1 = currentSymbol1.get(k);
+		    newSymbol.add(new FunctionStep(currentStep1.getX(), currentStep1.getY() - currentStep0.getY()));
+		}
+		newBlock.add(newSymbol);
 	    }
-	    sumResult.add(newSum);
+	    sumResult.add(newBlock);
 	}
     }
 
@@ -65,7 +72,7 @@ public class Summator
      * Returns tabulated function
      * @return
      */
-    public List<List<FunctionStep>> getSum()
+    public List<List<List<FunctionStep>>> getSum()
     {
 	return sumResult;
     }

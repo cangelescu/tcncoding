@@ -27,7 +27,7 @@ import java.util.List;
 public class VideoCreator
 {
     private List<BinaryNumber> inputSequence;
-    private List<List<FunctionStep>> outputSequence = new ArrayList<List<FunctionStep>>();
+    private List<List<List<FunctionStep>>> outputSequence = new ArrayList<List<List<FunctionStep>>>();
     private double impulseLength, step, impulseLevel;
 
     /**
@@ -53,22 +53,24 @@ public class VideoCreator
 	double cx = 0, sp = 0;
 	for (BinaryNumber cbn: inputSequence)
 	{
-	    List <FunctionStep> current = new ArrayList<FunctionStep>();
+	    List<List<FunctionStep>> newBlock = new ArrayList<List<FunctionStep>>();
 	    boolean[] matrix = cbn.getBinaryArray();
 	    for (boolean cm: matrix)
 	    {
+		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
 		sp = 0;
 		while (sp <= impulseLength)
 		{
 		    if (cm)
-			current.add(new FunctionStep(cx, impulseLevel));
+			newSymbol.add(new FunctionStep(cx, impulseLevel));
 		    else
-			current.add(new FunctionStep(cx, 0));
+			newSymbol.add(new FunctionStep(cx, 0));
 		    sp += step;
 		    cx += step;
 		}
+		newBlock.add(newSymbol);
 	    }
-	    outputSequence.add(current);
+	    outputSequence.add(newBlock);
 	}
     }
 
@@ -76,7 +78,7 @@ public class VideoCreator
      * Returns resulted videosequence
      * @return
      */
-    public List<List<FunctionStep>> getVideoSequence()
+    public List<List<List<FunctionStep>>> getVideoSequence()
     {
 	return outputSequence;
     }
