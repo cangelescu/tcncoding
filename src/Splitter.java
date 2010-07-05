@@ -53,7 +53,7 @@ public class Splitter
     }
 
     /**
-     * Creates splitter of binary numbers' list into equal parts
+     * Creates splitter of binary number into equal parts
      * @param _sequence source list of binary numbers
      * @param _align width of each block to split to
      */
@@ -66,7 +66,7 @@ public class Splitter
     }
 
     /**
-     * Rectifies binary number sequence into one linear number
+     * Rectifies binary number into one linear number
      * @param _sequence source list of binary numbers
      */
     public Splitter(BinaryNumber _sequence)
