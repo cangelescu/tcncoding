@@ -60,6 +60,13 @@ public class DataVizualizatorProvider
     private String description;
     private Color chartColor;
 
+    /**
+     *
+     * @param _data input list of signals
+     * @param _signalType type of signals to provide to data vizualizator
+     * @param _description description of signal
+     * @param _chartColor color of vizualized chart
+     */
     public DataVizualizatorProvider(List _data, SignalType _signalType, String _description, Color _chartColor)
     {
 	signalType = _signalType;
