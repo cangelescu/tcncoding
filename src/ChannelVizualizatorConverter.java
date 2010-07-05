@@ -33,7 +33,8 @@ public class ChannelVizualizatorConverter
     /**
      * Creates converter for data vizualizator
      * @param _data input list of signals
-     * @param _signalType type of input signals
+     * @param _description description of signal
+     * @param _chartColor color of vizualized chart
      */
 
     public ChannelVizualizatorConverter(List<List<ChannelSignal>> _data, String _description, Color _chartColor)
