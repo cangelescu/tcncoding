@@ -61,7 +61,7 @@ public class DataVizualizatorProvider
     private Color chartColor;
 
     /**
-     *
+     * Creates data vizualizator provider to unify all types of signals
      * @param _data input list of signals
      * @param _signalType type of signals to provide to data vizualizator
      * @param _description description of signal
