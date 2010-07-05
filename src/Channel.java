@@ -32,6 +32,7 @@ public class Channel
     /**
      * Creates channel with given signals on its input
      * @param _inputSignals list of input signals
+     * @param _noisePower power of noise, W
      */
     public Channel(List<List<ModulatorSignal>> _inputSignals, double _noisePower)
     {
