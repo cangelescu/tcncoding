@@ -207,24 +207,24 @@ public class BinaryNumber
     /**
      * Creates binary number from aligned boolean array
      * @param _sequence boolean array, that represents binary number
-     * @param _align count of meaningful digits in source array
+     * @param _alignment count of meaningful digits in source array
      */
-    public BinaryNumber(boolean[] _sequence, int _align)
+    public BinaryNumber(boolean[] _sequence, int _alignment)
     {
 	int len = _sequence.length;
 	int lowBound, highBound;
 
 	//creates list
-	if (len < _align)
+	if (len < _alignment)
 	{
-	    for (int i = 0; i < _align - len; i++)
+	    for (int i = 0; i < _alignment - len; i++)
 		binary.add(false);
 	    lowBound = 0;
 	    highBound = len;
 	} else
-	if (len > _align)
+	if (len > _alignment)
 	{
-	    lowBound = len - _align;
+	    lowBound = len - _alignment;
 	    highBound = len;
 	} else
 	{
@@ -235,9 +235,9 @@ public class BinaryNumber
 	    binary.add(_sequence[i]);
 
 	//calculates integer (decimal) value of binary number
-	for (int i = 0; i < _align; i++)
+	for (int i = 0; i < _alignment; i++)
 	    if (binary.get(i))
-		number += Math.pow(2, _align - 1 - i);
+		number += Math.pow(2, _alignment - 1 - i);
     }
 
     /**
