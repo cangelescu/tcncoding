@@ -23,7 +23,12 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
-public class UIMain extends javax.swing.JFrame {
+/**
+ * 
+ * @author post-factum
+ */
+public class UIMain extends javax.swing.JFrame
+{
     //UI parts
     SourceCoder currentSourceCoder = null;
     VideoCreator currentSourceVideoCreator = null;
@@ -615,7 +620,11 @@ public class UIMain extends javax.swing.JFrame {
 	currentResolverVideoSequenceVizualizator.repaint();
     }
 
-    public UIMain() {
+    /**
+     * 
+     */
+    public UIMain()
+    {
         initComponents();
     }
 
@@ -2215,7 +2224,12 @@ public class UIMain extends javax.swing.JFrame {
 	updateChosenBlock();
     }//GEN-LAST:event_blockResolverVideoSequenceComponentShown
 
-    public static void main(String args[]) {
+    /**
+     * 
+     * @param args
+     */
+    public static void main(String args[])
+    {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 		JFrame mainForm = new UIMain();
