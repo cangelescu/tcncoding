@@ -46,9 +46,8 @@ public class ChannelCoderParityBit
 	{
 	    BinaryNumber shifted = bn.shl2();
 	    if (bn.getWeight() % 2 == 0)
-	    {
 		outputSequence.add(shifted);
-	    } else
+	    else
 	    {
 		BinaryNumber one = new BinaryNumber(1);
 		outputSequence.add(shifted.sum2(one));
