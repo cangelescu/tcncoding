@@ -33,6 +33,7 @@ public class Resolver
     /**
      * Creates resolver
      * @param _summatorSignal signal from summator to operate on
+     * @param _threshold threshold value to decide which symbol should be registered
      * @param _modulationType type of using modulation
      */
     public Resolver(List<List<List<FunctionStep>>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType)
