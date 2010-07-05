@@ -108,7 +108,7 @@ public class UIMain extends javax.swing.JFrame {
     List<List<DataVizualizatorProvider>> summatorOutputProvider = null;
 
     //Resolver data
-    BinaryNumber resolverOutput = null;
+    List<BinaryNumber> resolverOutput = null;
     List<List<FunctionStep>> resolverVideoSequence = null;
     List<List<DataVizualizatorProvider>> resolverVideoSequenceProvider = null;
 
@@ -587,12 +587,10 @@ public class UIMain extends javax.swing.JFrame {
 
 	currentResolver = new Resolver(summatorOutput, threshold, modulationType);
 	currentResolver.doResolving();
-	resolverOutput = currentResolver.getBinaryNumber();
+	resolverOutput = currentResolver.getBinaryNumbers();
 	blockResolverOutput.setText(currentResolver.getStringSequence());
 
-	List<BinaryNumber> resolverOutputList = new ArrayList<BinaryNumber>();
-	resolverOutputList.add(resolverOutput);
-	currentResolverVideoCreator = new VideoCreator(resolverOutputList, channelImpulseLength, 1);
+	currentResolverVideoCreator = new VideoCreator(resolverOutput, channelImpulseLength, 1);
 	currentResolverVideoCreator.doVideoSequence();
 	resolverVideoSequence = currentResolverVideoCreator.getVideoSequence();
 	if (currentResolverVideoSequenceVizualizator != null)

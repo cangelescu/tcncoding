@@ -27,7 +27,7 @@ public class Resolver
 {
     private List<List<FunctionStep>> summatorSignal;
     private double threshold;
-    private BinaryNumber outputNumber;
+    private List<BinaryNumber> outputNumbers;
     private Modulator.ModulationType modulationType;
 
     /**
@@ -48,6 +48,8 @@ public class Resolver
     public void doResolving()
     {
 	List<Boolean> out = new ArrayList<Boolean>();
+	BinaryNumber outputNumber;
+
 	for (List<FunctionStep> currentSymbol: summatorSignal)
 	{
 	    double value = currentSymbol.get(currentSymbol.size() - 1).getY();
@@ -60,15 +62,19 @@ public class Resolver
 	    recoder.doDecoding();
 	    outputNumber = new BinaryNumber(recoder.getArray());
 	}
+
+	Splitter splitter = new Splitter(outputNumber);
+	splitter.doSplitting();
+	outputNumbers = splitter.getBlocks();
     }
 
     /**
      * Returns binary list
      * @return
      */
-    public BinaryNumber getBinaryNumber()
+    public List<BinaryNumber> getBinaryNumbers()
     {
-	return outputNumber;
+	return outputNumbers;
     }
 
     /**
@@ -78,11 +84,14 @@ public class Resolver
     public String getStringSequence()
     {
 	String out = "<html>";
-	for (boolean bn: outputNumber.getBinaryArray())
+	for (BinaryNumber cbn: outputNumbers)
 	{
-	    out += "<font size=\"5\">";
-	    out += bn ? "1" : "0";
-	    out += "</font>";
+	    for (boolean cb: cbn.getBinaryArray())
+	    {
+		out += "<font size=\"5\">";
+		out += cb ? "1" : "0";
+		out += "</font>";
+	    }
 	}
 	out += "</html>";
 	return out;

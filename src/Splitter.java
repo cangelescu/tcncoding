@@ -53,6 +53,31 @@ public class Splitter
     }
 
     /**
+     * Creates splitter of binary numbers' list into equal parts
+     * @param _sequence source list of binary numbers
+     * @param _align width of each block to split to
+     */
+    public Splitter(BinaryNumber _sequence, int _align)
+    {
+	List<BinaryNumber> tmpList = new ArrayList<BinaryNumber>();
+	tmpList.add(_sequence);
+	sequence = tmpList;
+	blockLength = _align;
+    }
+
+    /**
+     * Rectifies binary number sequence into one linear number
+     * @param _sequence source list of binary numbers
+     */
+    public Splitter(BinaryNumber _sequence)
+    {
+	List<BinaryNumber> tmpList = new ArrayList<BinaryNumber>();
+	tmpList.add(_sequence);
+	sequence = tmpList;
+	blockLength = _sequence.getLength();
+    }
+
+    /**
      * Runs splitting
      */
     public void doSplitting()
