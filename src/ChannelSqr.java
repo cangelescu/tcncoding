@@ -32,6 +32,7 @@ public class ChannelSqr
     /**
      * Creates list of channel signals^2
      * @param _inputSignals list of input signals
+     * @param _noisePower power of noise, W
      */
     public ChannelSqr(List<List<ModulatorSignal>> _inputSignals, double _noisePower)
     {
