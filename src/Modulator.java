@@ -63,6 +63,7 @@ public class Modulator
      * @param _bearerFrequency first bearer frequency, Hz
      * @param _bearerFrequencyDeviation second bearer frequency, Hz
      * @param _symbols list of input symbols (input videosequence)
+     * @param _impulseLength length of channel impulse
      */
     public Modulator(ModulationType _modulationType, double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List<BinaryNumber> _symbols, double _impulseLength)
     {
