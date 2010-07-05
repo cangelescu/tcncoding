@@ -81,17 +81,35 @@ public class Resolver
      * Returns HTML-formatted encoded string sequence
      * @return
      */
-    public String getStringSequence()
+    public String getStringSequence(List<BinaryNumber> ethalonList)
     {
-	String out = "<html>";
+	String out = "<html>", color, prevColor;
 	boolean trigger = false;
-	for (BinaryNumber bn: outputNumbers)
+	int listLength = outputNumbers.size();
+	for (int i = 0; i < listLength; i++)
 	{
+	    boolean[] receivedSequence = outputNumbers.get(i).getBinaryArray();
+	    boolean[] ethalonSequence = ethalonList.get(i).getBinaryArray();
+
 	    if (trigger)
-		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + " </font>";
+		color = "blue";
 	    else
-		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + " </font>";
+		color = "green";
+
+	    int sequenceLength = receivedSequence.length;
+	    for (int k = 0; k < sequenceLength; k++)
+	    {
+		prevColor = color;
+		if (receivedSequence[k] != ethalonSequence[k])
+		    color = "red";
+		out += "<font color=\"" + color + "\" size=\"5\">";
+		out += receivedSequence[k] ? "1" : "0";
+		out += "</font>";
+		color = prevColor;
+	    }
+
 	    trigger = !trigger;
+	    out += " ";
 	}
 	out += "</html>";
 	return out;

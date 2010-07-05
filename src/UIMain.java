@@ -593,7 +593,7 @@ public class UIMain extends javax.swing.JFrame
 	currentResolver = new Resolver(summatorOutput, threshold, modulationType);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumbers();
-	blockResolverOutput.setText(currentResolver.getStringSequence());
+	blockResolverOutput.setText(currentResolver.getStringSequence(channelSymbols));
 
 	currentResolverVideoCreator = new VideoCreator(resolverOutput, channelImpulseLength, 1);
 	currentResolverVideoCreator.doVideoSequence();
