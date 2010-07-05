@@ -137,55 +137,38 @@ public class BinaryNumber
     {
 	String sequence = Integer.toBinaryString((int)_number);
 	int len = sequence.length();
+	int lowBound, highBound;
 
 	//creates list
 	if (len < _alignment)
 	{
 	    for (int i = 0; i < _alignment - len; i++)
 		binary.add(false);
-	    for (int i = 0; i < len; i++)
-		switch (sequence.charAt(i))
-		{
-		    case '0':
-			binary.add(false);
-			break;
-		    case '1':
-			binary.add(true);
-			break;
-		    default:
-			binary.add(true);
-			break;
-		}
+	    lowBound = 0;
+	    highBound = len;
 	} else
 	if (len > _alignment)
 	{
-	    for (int i = len - _alignment; i < len; i++)
-		switch (sequence.charAt(i))
-		{
-		    case '0':
-			binary.add(false);
-			break;
-		    case '1':
-			binary.add(true);
-			break;
-		    default:
-			binary.add(true);
-			break;
-		}
+	    lowBound = len - _alignment;
+	    highBound = len;
 	} else
-	    for (int i = 0; i < len; i++)
-		switch (sequence.charAt(i))
-		{
-		    case '0':
-			binary.add(false);
-			break;
-		    case '1':
-			binary.add(true);
-			break;
-		    default:
-			binary.add(true);
-			break;
-		}
+	{
+	    lowBound = 0;
+	    highBound = len;
+	}
+	for (int i = lowBound; i < highBound; i++)
+	    switch (sequence.charAt(i))
+	    {
+	        case '0':
+		binary.add(false);
+		    break;
+		case '1':
+		    binary.add(true);
+		    break;
+		default:
+		    binary.add(true);
+		    break;
+	    }
 
 	number = _number;
     }
