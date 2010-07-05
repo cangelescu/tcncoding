@@ -42,9 +42,11 @@ public class ChannelCoderHamming
      */
     public void doEncode()
     {
+	//makes blocks of equal size
 	Splitter hammingBlocker = new Splitter(sequence, 4);
 	hammingBlocker.doSplitting();
 	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
+	//encodes made blocks
 	for (BinaryNumber bn: blockedSequence)
 	{
 	    boolean[] currentNumberArray = bn.getBinaryArray();
