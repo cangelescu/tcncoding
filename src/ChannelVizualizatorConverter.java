@@ -51,8 +51,8 @@ public class ChannelVizualizatorConverter
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
-	for (List<ChannelSignal> co: data)
-	    out.add(new DataVizualizatorProvider(co, DataVizualizatorProvider.SignalType.CHANNEL, description, chartColor));
+	for (List<ChannelSignal> clcs: data)
+	    out.add(new DataVizualizatorProvider(clcs, DataVizualizatorProvider.SignalType.CHANNEL, description, chartColor));
 	return out;
     }
 }

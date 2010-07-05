@@ -51,8 +51,8 @@ public class MultiplierVizualizatorConverter
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
-	for (List<MultiplierSignal> co: data)
-	    out.add(new DataVizualizatorProvider(co, DataVizualizatorProvider.SignalType.MULTIPLIER, description, chartColor));
+	for (List<MultiplierSignal> clms: data)
+	    out.add(new DataVizualizatorProvider(clms, DataVizualizatorProvider.SignalType.MULTIPLIER, description, chartColor));
 	return out;
     }
 }

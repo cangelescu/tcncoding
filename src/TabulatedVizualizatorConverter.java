@@ -51,8 +51,8 @@ public class TabulatedVizualizatorConverter
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
-	for (List<List<FunctionStep>> co: data)
-	    out.add(new DataVizualizatorProvider(co, DataVizualizatorProvider.SignalType.TABULATED, description, chartColor));
+	for (List<List<FunctionStep>> cllfs: data)
+	    out.add(new DataVizualizatorProvider(cllfs, DataVizualizatorProvider.SignalType.TABULATED, description, chartColor));
 	return out;
     }
 }
