@@ -27,7 +27,8 @@ public class Splitter
 {
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputBlocks = new ArrayList<BinaryNumber>();
-    private int blockLength;
+    private int blockLength = 0, leadingZeroes = 0;
+    private List<Integer> lengthMap;
 
     /**
      * Creates splitter of binary numbers' list into equal parts
@@ -50,6 +51,16 @@ public class Splitter
 	blockLength = 0;
 	for (BinaryNumber cb: _sequence)
 	    blockLength += cb.getLength();
+    }
+
+    /**
+     * Reorganize binary numbers list according to length map
+     * @param _sequence source list of binary numbers
+     */
+    public Splitter(List<BinaryNumber> _sequence, List<Integer> _lengthMap)
+    {
+	sequence = _sequence;
+	lengthMap = _lengthMap;
     }
 
     /**
@@ -87,7 +98,6 @@ public class Splitter
 	for (BinaryNumber bn: sequence)
 	    sequenceLength += bn.getLength();
 	//adds leading zeroes
-	int leadingZeroes = 0;
 	int mod = sequenceLength % blockLength;
 	if (mod > 0)
 	    leadingZeroes = blockLength - mod;
@@ -115,11 +125,35 @@ public class Splitter
     }
 
     /**
+     * Recovers sequence blocking according to length map
+     */
+    public void doRecovering()
+    {
+	Splitter linearSplitter = new Splitter(sequence);
+	linearSplitter.doSplitting();
+	boolean[] linearSequence = linearSplitter.getBlocks().get(0).getBinaryArray();
+
+	int index = 0;
+	for (Integer ci: lengthMap)
+	{
+	    boolean[] newBlock = new boolean[ci];
+	    System.arraycopy(linearSequence, index, newBlock, 0, ci);
+	    outputBlocks.add(new BinaryNumber(newBlock));
+	    index += ci;
+	}
+    }
+
+    /**
      * Returns list of splitted blocks with fixed width
      * @return
      */
     public List<BinaryNumber> getBlocks()
     {
 	return outputBlocks;
+    }
+
+    public int getLeadingZeroesCount()
+    {
+	return leadingZeroes;
     }
 }

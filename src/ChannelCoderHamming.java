@@ -27,6 +27,7 @@ public class ChannelCoderHamming
 {
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private int headLength;
 
     /**
      * Creates Hamming coder for given input sequence of binary numbers
@@ -45,6 +46,7 @@ public class ChannelCoderHamming
 	//makes blocks of equal size
 	Splitter hammingBlocker = new Splitter(sequence, 4);
 	hammingBlocker.doSplitting();
+	headLength = hammingBlocker.getLeadingZeroesCount();
 	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
 	//encodes made blocks
 	for (BinaryNumber bn: blockedSequence)
@@ -68,5 +70,14 @@ public class ChannelCoderHamming
     public List<BinaryNumber> getSequence()
     {
 	return outputSequence;
+    }
+
+    /**
+     * Returns added head length
+     * @return
+     */
+    public int getHeadLength()
+    {
+	return headLength;
     }
 }

@@ -23,42 +23,43 @@ import java.util.List;
  *
  * @author post-factum
  */
-public class ChannelCoderManchester
+public class ChannelDecoderHamming
 {
-    private List<BinaryNumber> sequence;
+    private List<BinaryNumber> sequence = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<Integer> lengthMap;
 
     /**
-     * Creates Manchester coder for given input sequence of binary numbers
+     * Creates decoder with Hamming code for given input sequence of binary numbers
      * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderManchester(List<BinaryNumber> _inputSequence)
+    public ChannelDecoderHamming(List<BinaryNumber> _inputSequence, int _headLength, List<Integer> _lengthMap)
     {
-	sequence = _inputSequence;
+	sequence.add(_inputSequence.get(0).truncLeft(_headLength));
+	for (int i = 1; i < _inputSequence.size(); i++)
+	    sequence.add(_inputSequence.get(i));
+	lengthMap = _lengthMap;
     }
 
     /**
-     * Runs encoding
+     * Runs decoding
      */
-    public void doEncode()
+    public void doDecode()
     {
+	List<BinaryNumber> preSequence = new ArrayList<BinaryNumber>();
 	for (BinaryNumber bn: sequence)
 	{
-	    boolean[] currentNumberArray = bn.getBinaryArray();
-	    boolean[] resultNumber = new boolean[bn.getLength() * 2];
-	    int index = 0;
-	    for (boolean currentSymbol: currentNumberArray)
-	    {
-		resultNumber[index++] = currentSymbol;
-		resultNumber[index++] = !currentSymbol;
-	    }
-	    BinaryNumber ready = new BinaryNumber(resultNumber);
-	    outputSequence.add(ready);
+	    BinaryNumber truncated = bn.truncRight(3);
+	    preSequence.add(truncated);
 	}
+
+	Splitter recovery = new Splitter(preSequence, lengthMap);
+	recovery.doRecovering();
+	outputSequence = recovery.getBlocks();
     }
 
     /**
-     * Returns encoded list of binary numbers
+     * Returns decoded list of binary numbers
      * @return
      */
     public List<BinaryNumber> getSequence()

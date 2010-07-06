@@ -23,42 +23,40 @@ import java.util.List;
  *
  * @author post-factum
  */
-public class ChannelCoderManchester
+public class ChannelDecoderManchester
 {
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
     /**
-     * Creates Manchester coder for given input sequence of binary numbers
+     * Creates Manchester decoder for given input sequence of binary numbers
      * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderManchester(List<BinaryNumber> _inputSequence)
+    public ChannelDecoderManchester(List<BinaryNumber> _inputSequence)
     {
 	sequence = _inputSequence;
     }
 
     /**
-     * Runs encoding
+     * Runs decoding
      */
-    public void doEncode()
+    public void doDecode()
     {
 	for (BinaryNumber bn: sequence)
 	{
 	    boolean[] currentNumberArray = bn.getBinaryArray();
-	    boolean[] resultNumber = new boolean[bn.getLength() * 2];
+	    boolean[] resultNumber = new boolean[bn.getLength() / 2];
 	    int index = 0;
-	    for (boolean currentSymbol: currentNumberArray)
-	    {
-		resultNumber[index++] = currentSymbol;
-		resultNumber[index++] = !currentSymbol;
-	    }
+	    for (int i = 0; i < currentNumberArray.length; i += 2)
+		resultNumber[index++] = currentNumberArray[i];
+
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
 	    outputSequence.add(ready);
 	}
     }
 
     /**
-     * Returns encoded list of binary numbers
+     * Returns decoded list of binary numbers
      * @return
      */
     public List<BinaryNumber> getSequence()

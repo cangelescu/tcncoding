@@ -277,10 +277,40 @@ public class BinaryNumber
     }
 
     /**
-     * Returns boolean digit of given index
+     * Truncates one digit from right side of number
+     * @return 
+     */
+    public BinaryNumber truncRight()
+    {
+	return new BinaryNumber(binary.subList(0, binary.size() - 1));
+    }
+
+    /**
+     * Truncates several digits from right side of number
+     * @param _count count of digits to remove
      * @return
      */
-    private boolean getDigit(int index)
+    public BinaryNumber truncRight(int _count)
+    {
+	return new BinaryNumber(binary.subList(0, binary.size() - _count));
+    }
+
+    /**
+     * Truncates several digits from left side of number
+     * @param _count count of digits to remove
+     * @return
+     */
+    public BinaryNumber truncLeft(int _count)
+    {
+	return new BinaryNumber(binary.subList(_count, binary.size()));
+    }
+
+    /**
+     * Returns boolean digit of given index
+     * @param index number of digit to get
+     * @return
+     */
+    public boolean getDigit(int index)
     {
 	return binary.get(index);
     }

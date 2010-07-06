@@ -23,42 +23,34 @@ import java.util.List;
  *
  * @author post-factum
  */
-public class ChannelCoderManchester
+public class ChannelDecoderParityBit
 {
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
     /**
-     * Creates Manchester coder for given input sequence of binary numbers
+     * Creates decoder for given input sequence of binary numbers with parity bit checking
      * @param _inputSequence list of input binary numbers
      */
-    public ChannelCoderManchester(List<BinaryNumber> _inputSequence)
+    public ChannelDecoderParityBit(List<BinaryNumber> _inputSequence)
     {
 	sequence = _inputSequence;
     }
 
     /**
-     * Runs encoding
+     * Runs decoding
      */
-    public void doEncode()
+    public void doDecode()
     {
 	for (BinaryNumber bn: sequence)
 	{
-	    boolean[] currentNumberArray = bn.getBinaryArray();
-	    boolean[] resultNumber = new boolean[bn.getLength() * 2];
-	    int index = 0;
-	    for (boolean currentSymbol: currentNumberArray)
-	    {
-		resultNumber[index++] = currentSymbol;
-		resultNumber[index++] = !currentSymbol;
-	    }
-	    BinaryNumber ready = new BinaryNumber(resultNumber);
-	    outputSequence.add(ready);
+	    BinaryNumber truncated = bn.truncRight();
+	    outputSequence.add(truncated);
 	}
     }
 
     /**
-     * Returns encoded list of binary numbers
+     * Returns decoded list of binary numbers
      * @return
      */
     public List<BinaryNumber> getSequence()

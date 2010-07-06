@@ -61,6 +61,7 @@ public class SourceCoder
     private HashMap<String, BinaryNumber> codeMap = new HashMap<String, BinaryNumber>();
     private String sourceMessage = null;
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
+    private List<Integer> lengthMap = new ArrayList<Integer>();
 
     /**
      * Creates source coder for input message
@@ -106,7 +107,7 @@ public class SourceCoder
 	    while((line = bfr.readLine()) != null)
 	    {
 		String[] parts = line.split("#");
-		BinaryNumber bnum = new BinaryNumber(parts[0], parts[0].length());
+		BinaryNumber bnum = new BinaryNumber(parts[0]);
 		codeMap.put(parts[1], bnum);
 	    }
 	} catch (Exception ex)
@@ -151,7 +152,10 @@ public class SourceCoder
 	    char current_char = workingMessage.charAt(i);
 	    BinaryNumber num = codeMap.get(String.valueOf(current_char));
 	    if (num != null)
+	    {
 		sourceSequence.add(num);
+		lengthMap.add(num.getLength());
+	    }
 	}
     }
 
@@ -194,5 +198,14 @@ public class SourceCoder
 	}
 	out += "</html>";
 	return out;
+    }
+
+    /**
+     * Returns map of blocks length (used for recovering blocks after e.g. Hamming decoder)
+     * @return
+     */
+    public List<Integer> getLengthMap()
+    {
+	return lengthMap;
     }
 }

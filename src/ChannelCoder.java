@@ -53,13 +53,14 @@ public class ChannelCoder
     private List<BinaryNumber> sourceSymbols = null;
     private ChannelCoderCode usingCode = null;
     private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
+    private int headLength = 0;
 
     /**
      * Creates channel coder with given code and symbols on its input
      * @param _symbols input symbols
      * @param _codeType code to use
      */
-    public ChannelCoder(List _symbols, ChannelCoderCode _codeType)
+    public ChannelCoder(List<BinaryNumber> _symbols, ChannelCoderCode _codeType)
     {
 	sourceSymbols = _symbols;
 	usingCode = _codeType;
@@ -92,6 +93,7 @@ public class ChannelCoder
 		ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
 		channelCoderHamming.doEncode();
 		channelSequence = channelCoderHamming.getSequence();
+		headLength = channelCoderHamming.getHeadLength();
 		break;
 	    default:
 		break;
@@ -102,7 +104,7 @@ public class ChannelCoder
      * Returns encoded sequence
      * @return
      */
-    public List getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return channelSequence;
     }
@@ -137,5 +139,14 @@ public class ChannelCoder
 	}
 	out += "</html>";
 	return out;
+    }
+
+    /**
+     * Returns length of sequence head that was added by splitter in Hamming coder
+     * @return
+     */
+    public int getHeadLength()
+    {
+	return headLength;
     }
 }
