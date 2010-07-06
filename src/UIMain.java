@@ -45,6 +45,7 @@ public class UIMain extends javax.swing.JFrame
     VideoCreator currentResolverVideoCreator = null;
     ChannelDecoder currentChannelDecoder = null;
     VideoCreator currentChannelDecoderVideoCreator = null;
+    SourceDecoder currentSourceDecoder = null;
 
     //UI blocks
     enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, INPUT_VIDEOSEQUENCE, MESSAGE_RECEIVER, CHANNEL_DECODER, CHANNEL_DECODER_VIDEOSEQUENCE;};
@@ -272,14 +273,14 @@ public class UIMain extends javax.swing.JFrame
 	    case INPUT_VIDEOSEQUENCE:
 		TCSTabs.setSelectedComponent(blockResolverVideoSequence);
 		break;
-	    case MESSAGE_RECEIVER:
-		TCSTabs.setSelectedComponent(blockMessageReceiver);
-		break;
 	    case CHANNEL_DECODER:
 		TCSTabs.setSelectedComponent(blockChannelDecoder);
 		break;
 	    case CHANNEL_DECODER_VIDEOSEQUENCE:
 		TCSTabs.setSelectedComponent(blockChannelDecoderVideoSequence);
+		break;
+	    case MESSAGE_RECEIVER:
+		TCSTabs.setSelectedComponent(blockMessageReceiver);
 		break;
 	    default:
 		break;
@@ -660,6 +661,13 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelDecoderVideoSequenceVizualizator.repaint();
     }
 
+    void doSourceDecoding()
+    {
+	currentSourceDecoder = new SourceDecoder(channelDecoderOutput, sourceCode);
+	currentSourceDecoder.doDecode();
+	receivedMessageArea.setText(currentSourceDecoder.getMessage());
+    }
+
     /**
      * 
      */
@@ -762,7 +770,7 @@ public class UIMain extends javax.swing.JFrame
         blockMessageReceiver = new javax.swing.JPanel();
         receivedMessagePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        receivedMessageArea = new javax.swing.JTextPane();
+        receivedMessageArea = new javax.swing.JTextArea();
         systemScheme = new javax.swing.JPanel();
         messageSourceButton = new javax.swing.JButton();
         sourceCoderButton = new javax.swing.JButton();
@@ -1068,7 +1076,7 @@ public class UIMain extends javax.swing.JFrame
         sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         blockMessageArea.setColumns(20);
-        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         blockMessageArea.setRows(5);
         blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(blockMessageArea);
@@ -1627,9 +1635,10 @@ public class UIMain extends javax.swing.JFrame
 
         receivedMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
-        receivedMessageArea.setContentType("text/html");
+        receivedMessageArea.setColumns(20);
         receivedMessageArea.setEditable(false);
-        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
+        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        receivedMessageArea.setRows(5);
         jScrollPane4.setViewportView(receivedMessageArea);
 
         javax.swing.GroupLayout receivedMessagePanelLayout = new javax.swing.GroupLayout(receivedMessagePanel);
@@ -2007,6 +2016,7 @@ public class UIMain extends javax.swing.JFrame
 	    doSumming();
 	    doResolving();
 	    doChannelDecoding();
+	    doSourceDecoding();
 	}
     }//GEN-LAST:event_doModellingItemActionPerformed
 
@@ -2395,7 +2405,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JLabel noisePowerLabel;
     private javax.swing.JLabel noisePowerWattLabel;
     private javax.swing.JTabbedPane optionsTabs;
-    private javax.swing.JTextPane receivedMessageArea;
+    private javax.swing.JTextArea receivedMessageArea;
     private javax.swing.JPanel receivedMessagePanel;
     private javax.swing.JMenuItem shl2Item;
     private javax.swing.JButton sourceCoderButton;
