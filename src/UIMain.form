@@ -803,29 +803,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSourceVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSourceVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="blockSourceVideoSequenceOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -938,29 +930,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockChannelVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockChannelVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="blockChannelVideoSequenceOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1004,29 +988,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modulatorOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="modulatorOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modulatorOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="modulatorOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="modulatorOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1070,29 +1046,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="channelOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="channelOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="channelOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="channelOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="channelOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1136,29 +1104,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField0" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField0" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="multiplierOutputField0">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1202,29 +1162,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField1" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField1" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="multiplierOutputField1">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1268,29 +1220,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField0" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField0" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="integratorOutputField0">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1334,29 +1278,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField1" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField1" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="integratorOutputField1">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1400,29 +1336,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSummatorOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockSummatorOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSummatorOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockSummatorOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="blockSummatorOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1535,29 +1463,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockResolverVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockResolverVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="blockResolverVideoSequenceOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1670,29 +1590,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="1028" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="blockChannelDecoderVideoSequenceOutputField">
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1028" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
                   </Layout>
                 </Container>
               </SubComponents>
