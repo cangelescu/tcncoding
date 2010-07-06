@@ -45,9 +45,10 @@ public class UIMain extends javax.swing.JFrame
     Resolver currentResolver = null;
     VideoCreator currentResolverVideoCreator = null;
     ChannelDecoder currentChannelDecoder = null;
+    VideoCreator currentChannelDecoderVideoCreator = null;
 
     //UI blocks
-    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, INPUT_VIDEOSEQUENCE, MESSAGE_RECEIVER, CHANNEL_DECODER;};
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, SOURCE_VIDEOSEQUENCE, CHANNEL_CODER, CHANNEL_VIDEOSEQUENCE, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, INPUT_VIDEOSEQUENCE, MESSAGE_RECEIVER, CHANNEL_DECODER, CHANNEL_DECODER_VIDEOSEQUENCE;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
@@ -61,6 +62,7 @@ public class UIMain extends javax.swing.JFrame
     DataVizualizator currentIntegratorVizualizator1 = null;
     DataVizualizator currentSummatorVizualizator = null;
     DataVizualizator currentResolverVideoSequenceVizualizator = null;
+    DataVizualizator currentChannelDecoderVideoSequenceVizualizator = null;
 
     //source message
     String message = "";
@@ -124,6 +126,8 @@ public class UIMain extends javax.swing.JFrame
 
     //Channel decoder data
     List<BinaryNumber> channelDecoderOutput = null;
+    List<List<List<FunctionStep>>> channelDecoderVideoSequence = null;
+    List<List<DataVizualizatorProvider>> channelDecoderVideoSequenceProvider = null;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -226,14 +230,14 @@ public class UIMain extends javax.swing.JFrame
 		sourceCoderButton.setBackground(new Color(200, 200, 200));
 		break;
 	    case SOURCE_VIDEOSEQUENCE:
-		TCSTabs.setSelectedComponent(blockSourceVideoSequence);
+		TCSTabs.setSelectedComponent(blockSourceCoderVideoSequence);
 		break;
 	    case CHANNEL_CODER:
 		TCSTabs.setSelectedComponent(blockChannelCoder);
 		channelCoderButton.setBackground(new Color(200, 200, 200));
 		break;
 	    case CHANNEL_VIDEOSEQUENCE:
-		TCSTabs.setSelectedComponent(blockChannelVideoSequence);
+		TCSTabs.setSelectedComponent(blockChannelCoderVideoSequence);
 		break;
 	    case MODULATOR:
 		TCSTabs.setSelectedComponent(blockModulator);
@@ -274,6 +278,10 @@ public class UIMain extends javax.swing.JFrame
 		break;
 	    case CHANNEL_DECODER:
 		TCSTabs.setSelectedComponent(blockChannelDecoder);
+		break;
+	    case CHANNEL_DECODER_VIDEOSEQUENCE:
+		TCSTabs.setSelectedComponent(blockChannelDecoderVideoSequence);
+		break;
 	    default:
 		break;
 	}
@@ -639,6 +647,30 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
 	blockChannelDecoderOutput.setText(currentChannelDecoder.getStringSequence());
+
+	currentChannelDecoderVideoCreator = new VideoCreator(channelDecoderOutput, sourceImpulseLength, 1);
+	currentChannelDecoderVideoCreator.doVideoSequence();
+	channelDecoderVideoSequence = currentChannelDecoderVideoCreator.getVideoSequence();
+	if (currentChannelDecoderVideoSequenceVizualizator != null)
+	{
+	    blockChannelDecoderVideoSequenceOutputField.remove(currentChannelDecoderVideoSequenceVizualizator);
+	    currentChannelDecoderVideoSequenceVizualizator = null;
+	}
+	channelDecoderVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
+	channelDecoderVideoSequenceProvider.add((new TabulatedVizualizatorConverter(channelDecoderVideoSequence, "Декодована відеопослідовність", Color.RED)).getProvided());
+	int cx = blockChannelDecoderVideoSequenceOutputField.getWidth();
+	int cy = blockChannelDecoderVideoSequenceOutputField.getHeight();
+
+	//creates new vizualizator
+	currentChannelDecoderVideoSequenceVizualizator = new DataVizualizator(channelDecoderVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+
+	//shows chart
+	currentChannelDecoderVideoSequenceVizualizator.setVisible(true);
+	blockChannelDecoderVideoSequenceOutputField.setLayout(new GridLayout());
+	blockChannelDecoderVideoSequenceOutputField.add(currentChannelDecoderVideoSequenceVizualizator);
+
+	//repaints chart to show it if VideoSequence block is active
+	currentChannelDecoderVideoSequenceVizualizator.repaint();
     }
 
     /**
@@ -695,14 +727,14 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoderOutputPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         blockSourceCoderOutput = new javax.swing.JTextPane();
-        blockSourceVideoSequence = new javax.swing.JPanel();
+        blockSourceCoderVideoSequence = new javax.swing.JPanel();
         blockSourceVideoSequenceOutputPanel = new javax.swing.JPanel();
         blockSourceVideoSequenceOutputField = new javax.swing.JPanel();
         blockChannelCoder = new javax.swing.JPanel();
         blockChannelCoderOutputPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         blockChannelCoderOutput = new javax.swing.JTextPane();
-        blockChannelVideoSequence = new javax.swing.JPanel();
+        blockChannelCoderVideoSequence = new javax.swing.JPanel();
         blockChannelVideoSequenceOutputPanel = new javax.swing.JPanel();
         blockChannelVideoSequenceOutputField = new javax.swing.JPanel();
         blockModulator = new javax.swing.JPanel();
@@ -737,6 +769,9 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoderOutputPanel = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         blockChannelDecoderOutput = new javax.swing.JTextPane();
+        blockChannelDecoderVideoSequence = new javax.swing.JPanel();
+        blockChannelDecoderVideoSequenceOutputPanel = new javax.swing.JPanel();
+        blockChannelDecoderVideoSequenceOutputField = new javax.swing.JPanel();
         blockMessageReceiver = new javax.swing.JPanel();
         receivedMessagePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -1059,7 +1094,7 @@ public class UIMain extends javax.swing.JFrame
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -1096,7 +1131,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
@@ -1112,9 +1147,9 @@ public class UIMain extends javax.swing.JFrame
 
         TCSTabs.addTab("Кодер джерела повідомлень", blockSourceCoder);
 
-        blockSourceVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
+        blockSourceCoderVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                blockSourceVideoSequenceComponentShown(evt);
+                blockSourceCoderVideoSequenceComponentShown(evt);
             }
         });
 
@@ -1128,7 +1163,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockSourceVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockSourceVideoSequenceOutputPanel);
@@ -1142,18 +1177,18 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout blockSourceVideoSequenceLayout = new javax.swing.GroupLayout(blockSourceVideoSequence);
-        blockSourceVideoSequence.setLayout(blockSourceVideoSequenceLayout);
-        blockSourceVideoSequenceLayout.setHorizontalGroup(
-            blockSourceVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout blockSourceCoderVideoSequenceLayout = new javax.swing.GroupLayout(blockSourceCoderVideoSequence);
+        blockSourceCoderVideoSequence.setLayout(blockSourceCoderVideoSequenceLayout);
+        blockSourceCoderVideoSequenceLayout.setHorizontalGroup(
+            blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(blockSourceVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        blockSourceVideoSequenceLayout.setVerticalGroup(
-            blockSourceVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        blockSourceCoderVideoSequenceLayout.setVerticalGroup(
+            blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(blockSourceVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Вихідна відеопослідовність", blockSourceVideoSequence);
+        TCSTabs.addTab("Вихідна відеопослідовність", blockSourceCoderVideoSequence);
 
         blockChannelCoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1176,7 +1211,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
@@ -1192,9 +1227,9 @@ public class UIMain extends javax.swing.JFrame
 
         TCSTabs.addTab("Кодер каналу", blockChannelCoder);
 
-        blockChannelVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
+        blockChannelCoderVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                blockChannelVideoSequenceComponentShown(evt);
+                blockChannelCoderVideoSequenceComponentShown(evt);
             }
         });
 
@@ -1208,7 +1243,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockChannelVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockChannelVideoSequenceOutputPanel);
@@ -1222,18 +1257,18 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout blockChannelVideoSequenceLayout = new javax.swing.GroupLayout(blockChannelVideoSequence);
-        blockChannelVideoSequence.setLayout(blockChannelVideoSequenceLayout);
-        blockChannelVideoSequenceLayout.setHorizontalGroup(
-            blockChannelVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout blockChannelCoderVideoSequenceLayout = new javax.swing.GroupLayout(blockChannelCoderVideoSequence);
+        blockChannelCoderVideoSequence.setLayout(blockChannelCoderVideoSequenceLayout);
+        blockChannelCoderVideoSequenceLayout.setHorizontalGroup(
+            blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(blockChannelVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        blockChannelVideoSequenceLayout.setVerticalGroup(
-            blockChannelVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        blockChannelCoderVideoSequenceLayout.setVerticalGroup(
+            blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(blockChannelVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Кодована відеопослідовність", blockChannelVideoSequence);
+        TCSTabs.addTab("Кодована відеопослідовність", blockChannelCoderVideoSequence);
 
         blockModulator.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1251,7 +1286,7 @@ public class UIMain extends javax.swing.JFrame
         );
         modulatorOutputFieldLayout.setVerticalGroup(
             modulatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout modulatorOutputPanelLayout = new javax.swing.GroupLayout(modulatorOutputPanel);
@@ -1294,7 +1329,7 @@ public class UIMain extends javax.swing.JFrame
         );
         channelOutputFieldLayout.setVerticalGroup(
             channelOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
@@ -1337,7 +1372,7 @@ public class UIMain extends javax.swing.JFrame
         );
         multiplierOutputField0Layout.setVerticalGroup(
             multiplierOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel0Layout = new javax.swing.GroupLayout(multiplierOutputPanel0);
@@ -1380,7 +1415,7 @@ public class UIMain extends javax.swing.JFrame
         );
         multiplierOutputField1Layout.setVerticalGroup(
             multiplierOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout multiplierOutputPanel1Layout = new javax.swing.GroupLayout(multiplierOutputPanel1);
@@ -1423,7 +1458,7 @@ public class UIMain extends javax.swing.JFrame
         );
         integratorOutputField0Layout.setVerticalGroup(
             integratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel0Layout = new javax.swing.GroupLayout(integratorOutputPanel0);
@@ -1466,7 +1501,7 @@ public class UIMain extends javax.swing.JFrame
         );
         integratorOutputField1Layout.setVerticalGroup(
             integratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout integratorOutputPanel1Layout = new javax.swing.GroupLayout(integratorOutputPanel1);
@@ -1509,7 +1544,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSummatorOutputFieldLayout.setVerticalGroup(
             blockSummatorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSummatorOutputPanelLayout = new javax.swing.GroupLayout(blockSummatorOutputPanel);
@@ -1557,7 +1592,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverOutputPanelLayout.setVerticalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockResolverLayout = new javax.swing.GroupLayout(blockResolver);
@@ -1589,7 +1624,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverVideoSequenceOutputFieldLayout.setVerticalGroup(
             blockResolverVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockResolverVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockResolverVideoSequenceOutputPanel);
@@ -1637,7 +1672,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderOutputPanelLayout.setVerticalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelDecoderLayout = new javax.swing.GroupLayout(blockChannelDecoder);
@@ -1652,6 +1687,49 @@ public class UIMain extends javax.swing.JFrame
         );
 
         TCSTabs.addTab("Декодер каналу", blockChannelDecoder);
+
+        blockChannelDecoderVideoSequence.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockChannelDecoderVideoSequenceComponentShown(evt);
+            }
+        });
+
+        blockChannelDecoderVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Декодована відеопослідовність"));
+
+        javax.swing.GroupLayout blockChannelDecoderVideoSequenceOutputFieldLayout = new javax.swing.GroupLayout(blockChannelDecoderVideoSequenceOutputField);
+        blockChannelDecoderVideoSequenceOutputField.setLayout(blockChannelDecoderVideoSequenceOutputFieldLayout);
+        blockChannelDecoderVideoSequenceOutputFieldLayout.setHorizontalGroup(
+            blockChannelDecoderVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1028, Short.MAX_VALUE)
+        );
+        blockChannelDecoderVideoSequenceOutputFieldLayout.setVerticalGroup(
+            blockChannelDecoderVideoSequenceOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockChannelDecoderVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockChannelDecoderVideoSequenceOutputPanel);
+        blockChannelDecoderVideoSequenceOutputPanel.setLayout(blockChannelDecoderVideoSequenceOutputPanelLayout);
+        blockChannelDecoderVideoSequenceOutputPanelLayout.setHorizontalGroup(
+            blockChannelDecoderVideoSequenceOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockChannelDecoderVideoSequenceOutputPanelLayout.setVerticalGroup(
+            blockChannelDecoderVideoSequenceOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockChannelDecoderVideoSequenceLayout = new javax.swing.GroupLayout(blockChannelDecoderVideoSequence);
+        blockChannelDecoderVideoSequence.setLayout(blockChannelDecoderVideoSequenceLayout);
+        blockChannelDecoderVideoSequenceLayout.setHorizontalGroup(
+            blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockChannelDecoderVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockChannelDecoderVideoSequenceLayout.setVerticalGroup(
+            blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockChannelDecoderVideoSequenceOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Декодована відеопослідовність", blockChannelDecoderVideoSequence);
 
         blockMessageReceiver.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1674,7 +1752,7 @@ public class UIMain extends javax.swing.JFrame
         );
         receivedMessagePanelLayout.setVerticalGroup(
             receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageReceiverLayout = new javax.swing.GroupLayout(blockMessageReceiver);
@@ -1995,7 +2073,7 @@ public class UIMain extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
         );
 
         pack();
@@ -2252,11 +2330,11 @@ public class UIMain extends javax.swing.JFrame
 	updateChosenBlock();
     }//GEN-LAST:event_blockSummatorComponentShown
 
-    private void blockChannelVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelVideoSequenceComponentShown
-    {//GEN-HEADEREND:event_blockChannelVideoSequenceComponentShown
+    private void blockChannelCoderVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelCoderVideoSequenceComponentShown
+    {//GEN-HEADEREND:event_blockChannelCoderVideoSequenceComponentShown
 	selectedBlock = Blocks.CHANNEL_VIDEOSEQUENCE;
 	updateChosenBlock();
-    }//GEN-LAST:event_blockChannelVideoSequenceComponentShown
+    }//GEN-LAST:event_blockChannelCoderVideoSequenceComponentShown
 
     private void doModellingOptionsItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doModellingOptionsItemActionPerformed
     {//GEN-HEADEREND:event_doModellingOptionsItemActionPerformed
@@ -2264,11 +2342,11 @@ public class UIMain extends javax.swing.JFrame
 	modellingOptionsDialog.setVisible(true);
     }//GEN-LAST:event_doModellingOptionsItemActionPerformed
 
-    private void blockSourceVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceVideoSequenceComponentShown
-    {//GEN-HEADEREND:event_blockSourceVideoSequenceComponentShown
+    private void blockSourceCoderVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceCoderVideoSequenceComponentShown
+    {//GEN-HEADEREND:event_blockSourceCoderVideoSequenceComponentShown
 	selectedBlock = Blocks.SOURCE_VIDEOSEQUENCE;
 	updateChosenBlock();
-    }//GEN-LAST:event_blockSourceVideoSequenceComponentShown
+    }//GEN-LAST:event_blockSourceCoderVideoSequenceComponentShown
 
     private void blockResolverComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockResolverComponentShown
     {//GEN-HEADEREND:event_blockResolverComponentShown
@@ -2293,6 +2371,12 @@ public class UIMain extends javax.swing.JFrame
 	selectedBlock = Blocks.CHANNEL_DECODER;
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelDecoderComponentShown
+
+    private void blockChannelDecoderVideoSequenceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelDecoderVideoSequenceComponentShown
+    {//GEN-HEADEREND:event_blockChannelDecoderVideoSequenceComponentShown
+	selectedBlock = Blocks.CHANNEL_DECODER_VIDEOSEQUENCE;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockChannelDecoderVideoSequenceComponentShown
 
     /**
      * 
@@ -2325,10 +2409,13 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockChannelCoder;
     private javax.swing.JTextPane blockChannelCoderOutput;
     private javax.swing.JPanel blockChannelCoderOutputPanel;
+    private javax.swing.JPanel blockChannelCoderVideoSequence;
     private javax.swing.JPanel blockChannelDecoder;
     private javax.swing.JTextPane blockChannelDecoderOutput;
     private javax.swing.JPanel blockChannelDecoderOutputPanel;
-    private javax.swing.JPanel blockChannelVideoSequence;
+    private javax.swing.JPanel blockChannelDecoderVideoSequence;
+    private javax.swing.JPanel blockChannelDecoderVideoSequenceOutputField;
+    private javax.swing.JPanel blockChannelDecoderVideoSequenceOutputPanel;
     private javax.swing.JPanel blockChannelVideoSequenceOutputField;
     private javax.swing.JPanel blockChannelVideoSequenceOutputPanel;
     private javax.swing.JPanel blockIntegrator0;
@@ -2348,7 +2435,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockSourceCoder;
     private javax.swing.JTextPane blockSourceCoderOutput;
     private javax.swing.JPanel blockSourceCoderOutputPanel;
-    private javax.swing.JPanel blockSourceVideoSequence;
+    private javax.swing.JPanel blockSourceCoderVideoSequence;
     private javax.swing.JPanel blockSourceVideoSequenceOutputField;
     private javax.swing.JPanel blockSourceVideoSequenceOutputPanel;
     private javax.swing.JPanel blockSummator;
