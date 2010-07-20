@@ -414,12 +414,22 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="noisePowerLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="noisePower" min="-2" pref="103" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="noisePowerWattLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="noisePowerLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="noisePower" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="noisePowerWattLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="useNoiseErrors" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="1">
+                                  <Component id="forceErrors" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="forceErrorsCount" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace pref="313" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -432,7 +442,14 @@
                               <Component id="noisePower" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="noisePowerWattLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="106" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="useNoiseErrors" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="forceErrors" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="forceErrorsCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="58" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -453,6 +470,31 @@
                 <Component class="javax.swing.JLabel" name="noisePowerWattLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x412;&#x442;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="useNoiseErrors">
+                  <Properties>
+                    <Property name="selected" type="boolean" value="true"/>
+                    <Property name="text" type="java.lang.String" value="&#x412;&#x43d;&#x43e;&#x441;&#x438;&#x442;&#x438; &#x43f;&#x43e;&#x43c;&#x438;&#x43b;&#x43a;&#x438; &#x432;&#x43d;&#x430;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x43a; &#x434;&#x456;&#x457; &#x448;&#x443;&#x43c;&#x443;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="useNoiseErrorsItemStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="forceErrors">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x43c;&#x443;&#x441;&#x43e;&#x432;&#x43e; &#x432;&#x43d;&#x43e;&#x441;&#x438;&#x442;&#x438; &#x43f;&#x43e;&#x43c;&#x438;&#x43b;&#x43a;&#x443; &#x43a;&#x440;&#x430;&#x442;&#x43d;&#x456;&#x441;&#x442;&#x44e;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="forceErrorsItemStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="forceErrorsCount">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>

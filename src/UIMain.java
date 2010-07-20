@@ -18,6 +18,7 @@
 
 import java.awt.Color;
 import flanagan.integration.*;
+import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -99,6 +100,7 @@ public class UIMain extends javax.swing.JFrame
     List<List<ChannelSignal>> channelOutput = null;
     List<List<ChannelSignalSqr>> channelSqrOutput = null;
     List<List<DataVizualizatorProvider>> channelOutputProvider = null;
+    boolean useNoiseErrorsTrigger = true, forceErrorsTrigger = false;
     //TODO: EXPERIMENTAL
     double channelOutputEnergy = 0;
     double errorsProbability = 0;
@@ -600,10 +602,13 @@ public class UIMain extends javax.swing.JFrame
 	    break;
 	}
 
-	currentResolver = new Resolver(summatorOutput, threshold, modulationType);
+	int errorsCount = 0;
+	if (forceErrorsTrigger)
+	    errorsCount = (Integer) forceErrorsCount.getValue();
+	currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, channelSymbols);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumbers();
-	blockResolverOutput.setText(currentResolver.getStringSequence(channelSymbols));
+	blockResolverOutput.setText(currentResolver.getStringSequence());
 
 	currentResolverVideoCreator = new VideoCreator(resolverOutput, channelImpulseLength, 1);
 	currentResolverVideoCreator.doVideoSequence();
@@ -713,6 +718,9 @@ public class UIMain extends javax.swing.JFrame
         noisePowerLabel = new javax.swing.JLabel();
         noisePower = new javax.swing.JSpinner();
         noisePowerWattLabel = new javax.swing.JLabel();
+        useNoiseErrors = new javax.swing.JCheckBox();
+        forceErrors = new javax.swing.JCheckBox();
+        forceErrorsCount = new javax.swing.JSpinner();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
@@ -1029,16 +1037,41 @@ public class UIMain extends javax.swing.JFrame
 
         noisePowerWattLabel.setText("Вт");
 
+        useNoiseErrors.setSelected(true);
+        useNoiseErrors.setText("Вносити помилки внаслідок дії шуму");
+        useNoiseErrors.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                useNoiseErrorsItemStateChanged(evt);
+            }
+        });
+
+        forceErrors.setText("Примусово вносити помилку кратністю");
+        forceErrors.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                forceErrorsItemStateChanged(evt);
+            }
+        });
+
+        forceErrorsCount.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        forceErrorsCount.setEnabled(false);
+
         javax.swing.GroupLayout channelTabLayout = new javax.swing.GroupLayout(channelTab);
         channelTab.setLayout(channelTabLayout);
         channelTabLayout.setHorizontalGroup(
             channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(channelTabLayout.createSequentialGroup()
-                .addComponent(noisePowerLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noisePowerWattLabel)
+                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(channelTabLayout.createSequentialGroup()
+                        .addComponent(noisePowerLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(noisePowerWattLabel))
+                    .addComponent(useNoiseErrors)
+                    .addGroup(channelTabLayout.createSequentialGroup()
+                        .addComponent(forceErrors)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(forceErrorsCount)))
                 .addContainerGap(313, Short.MAX_VALUE))
         );
         channelTabLayout.setVerticalGroup(
@@ -1048,7 +1081,13 @@ public class UIMain extends javax.swing.JFrame
                     .addComponent(noisePowerLabel)
                     .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(noisePowerWattLabel))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(useNoiseErrors)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forceErrors)
+                    .addComponent(forceErrorsCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Канал", channelTab);
@@ -1076,7 +1115,7 @@ public class UIMain extends javax.swing.JFrame
         sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         blockMessageArea.setColumns(20);
-        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         blockMessageArea.setRows(5);
         blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(blockMessageArea);
@@ -1150,7 +1189,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockSourceVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Відеопослідовність"));
 
-        blockSourceVideoSequenceOutputField.setLayout(new java.awt.GridLayout());
+        blockSourceVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockSourceVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockSourceVideoSequenceOutputPanel);
         blockSourceVideoSequenceOutputPanel.setLayout(blockSourceVideoSequenceOutputPanelLayout);
@@ -1221,7 +1260,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockChannelVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Відеопослідовність"));
 
-        blockChannelVideoSequenceOutputField.setLayout(new java.awt.GridLayout());
+        blockChannelVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockChannelVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockChannelVideoSequenceOutputPanel);
         blockChannelVideoSequenceOutputPanel.setLayout(blockChannelVideoSequenceOutputPanelLayout);
@@ -1255,7 +1294,7 @@ public class UIMain extends javax.swing.JFrame
 
         modulatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід модулятора"));
 
-        modulatorOutputField.setLayout(new java.awt.GridLayout());
+        modulatorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout modulatorOutputPanelLayout = new javax.swing.GroupLayout(modulatorOutputPanel);
         modulatorOutputPanel.setLayout(modulatorOutputPanelLayout);
@@ -1289,7 +1328,7 @@ public class UIMain extends javax.swing.JFrame
 
         channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід каналу"));
 
-        channelOutputField.setLayout(new java.awt.GridLayout());
+        channelOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout channelOutputPanelLayout = new javax.swing.GroupLayout(channelOutputPanel);
         channelOutputPanel.setLayout(channelOutputPanelLayout);
@@ -1323,7 +1362,7 @@ public class UIMain extends javax.swing.JFrame
 
         multiplierOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід помножувача 0"));
 
-        multiplierOutputField0.setLayout(new java.awt.GridLayout());
+        multiplierOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout multiplierOutputPanel0Layout = new javax.swing.GroupLayout(multiplierOutputPanel0);
         multiplierOutputPanel0.setLayout(multiplierOutputPanel0Layout);
@@ -1357,7 +1396,7 @@ public class UIMain extends javax.swing.JFrame
 
         multiplierOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід помножувача 1"));
 
-        multiplierOutputField1.setLayout(new java.awt.GridLayout());
+        multiplierOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout multiplierOutputPanel1Layout = new javax.swing.GroupLayout(multiplierOutputPanel1);
         multiplierOutputPanel1.setLayout(multiplierOutputPanel1Layout);
@@ -1391,7 +1430,7 @@ public class UIMain extends javax.swing.JFrame
 
         integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 0"));
 
-        integratorOutputField0.setLayout(new java.awt.GridLayout());
+        integratorOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout integratorOutputPanel0Layout = new javax.swing.GroupLayout(integratorOutputPanel0);
         integratorOutputPanel0.setLayout(integratorOutputPanel0Layout);
@@ -1425,7 +1464,7 @@ public class UIMain extends javax.swing.JFrame
 
         integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 1"));
 
-        integratorOutputField1.setLayout(new java.awt.GridLayout());
+        integratorOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout integratorOutputPanel1Layout = new javax.swing.GroupLayout(integratorOutputPanel1);
         integratorOutputPanel1.setLayout(integratorOutputPanel1Layout);
@@ -1459,7 +1498,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockSummatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід суматора"));
 
-        blockSummatorOutputField.setLayout(new java.awt.GridLayout());
+        blockSummatorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockSummatorOutputPanelLayout = new javax.swing.GroupLayout(blockSummatorOutputPanel);
         blockSummatorOutputPanel.setLayout(blockSummatorOutputPanelLayout);
@@ -1495,7 +1534,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockResolverOutput.setContentType("text/html");
         blockResolverOutput.setEditable(false);
-        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockResolverOutput.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane5.setViewportView(blockResolverOutput);
 
         javax.swing.GroupLayout blockResolverOutputPanelLayout = new javax.swing.GroupLayout(blockResolverOutputPanel);
@@ -1530,7 +1569,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockResolverVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Відеопослідовність на виході вирішуючого пристрою"));
 
-        blockResolverVideoSequenceOutputField.setLayout(new java.awt.GridLayout());
+        blockResolverVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockResolverVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockResolverVideoSequenceOutputPanel);
         blockResolverVideoSequenceOutputPanel.setLayout(blockResolverVideoSequenceOutputPanelLayout);
@@ -1566,7 +1605,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockChannelDecoderOutput.setContentType("text/html");
         blockChannelDecoderOutput.setEditable(false);
-        blockChannelDecoderOutput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockChannelDecoderOutput.setFont(new java.awt.Font("Dialog", 0, 24));
         jScrollPane6.setViewportView(blockChannelDecoderOutput);
 
         javax.swing.GroupLayout blockChannelDecoderOutputPanelLayout = new javax.swing.GroupLayout(blockChannelDecoderOutputPanel);
@@ -1601,7 +1640,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockChannelDecoderVideoSequenceOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Декодована відеопослідовність"));
 
-        blockChannelDecoderVideoSequenceOutputField.setLayout(new java.awt.GridLayout());
+        blockChannelDecoderVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockChannelDecoderVideoSequenceOutputPanelLayout = new javax.swing.GroupLayout(blockChannelDecoderVideoSequenceOutputPanel);
         blockChannelDecoderVideoSequenceOutputPanel.setLayout(blockChannelDecoderVideoSequenceOutputPanelLayout);
@@ -1637,7 +1676,7 @@ public class UIMain extends javax.swing.JFrame
 
         receivedMessageArea.setColumns(20);
         receivedMessageArea.setEditable(false);
-        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         receivedMessageArea.setRows(5);
         jScrollPane4.setViewportView(receivedMessageArea);
 
@@ -2276,6 +2315,18 @@ public class UIMain extends javax.swing.JFrame
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelDecoderVideoSequenceComponentShown
 
+    private void forceErrorsItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_forceErrorsItemStateChanged
+    {//GEN-HEADEREND:event_forceErrorsItemStateChanged
+	boolean newState = evt.getStateChange() == ItemEvent.SELECTED;
+	forceErrorsCount.setEnabled(newState);
+	forceErrorsTrigger = newState;
+    }//GEN-LAST:event_forceErrorsItemStateChanged
+
+    private void useNoiseErrorsItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_useNoiseErrorsItemStateChanged
+    {//GEN-HEADEREND:event_useNoiseErrorsItemStateChanged
+	useNoiseErrorsTrigger = evt.getStateChange() == ItemEvent.SELECTED;
+    }//GEN-LAST:event_useNoiseErrorsItemStateChanged
+
     /**
      * 
      * @param args
@@ -2354,6 +2405,8 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JMenuItem doModellingOptionsItem;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JCheckBox forceErrors;
+    private javax.swing.JSpinner forceErrorsCount;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JLabel hzBearerLabel;
     private javax.swing.JLabel hzDeviationLabel;
@@ -2416,6 +2469,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JMenuItem sum2Item;
     private javax.swing.JButton summatorButton;
     private javax.swing.JPanel systemScheme;
+    private javax.swing.JCheckBox useNoiseErrors;
     private javax.swing.JLabel voltsLabel;
     private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables
