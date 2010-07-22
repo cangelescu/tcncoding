@@ -86,7 +86,7 @@ public class Resolver
 	    Random generator = new Random();
 
 	    //store calculated error vectors not to compensate one error with another
-	    List<TwistedInteger> positions = new ArrayList<TwistedInteger>();
+	    List<List<Integer>> positions = new ArrayList<List<Integer>>();
 	    for (int i = 0; i < errorsCount; i++)
 	    {
 		int injectionBlock, injectionBlockLength, injectionSymbol;
@@ -98,11 +98,14 @@ public class Resolver
 		    injectionSymbol = (int) Math.round(generator.nextDouble() * (injectionBlockLength - 1));
 
 		    found = false;
-		    for (TwistedInteger cti: positions)
-			if (cti.getX1() == injectionBlock && cti.getX2() == injectionSymbol)
+		    for (List<Integer> cti: positions)
+			if (cti.get(0) == injectionBlock && cti.get(1) == injectionSymbol)
 			    found = true;
 		} while (found);
-		positions.add(new TwistedInteger(injectionBlock, injectionSymbol));
+		List<Integer> record = new ArrayList<Integer>();
+		record.add(injectionBlock);
+		record.add(injectionSymbol);
+		positions.add(record);
 
 		//inject errors
 		boolean[] errorVector = new boolean[injectionBlockLength];
