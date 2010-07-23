@@ -80,6 +80,14 @@ public class Resolver
 	    for (BinaryNumber cbn: ethalonBinarySequence)
 		outputNumbers.add(cbn);
 
+	//recode sequence if it's RPSK
+	if (modulationType == Modulator.ModulationType.RPSK)
+	{
+	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(outputNumbers);
+	    recoder.doDecoding();
+	    outputNumbers = recoder.getList();
+	}
+
 	//inject errors if enabled
 	if (forceErrors)
 	{
@@ -114,14 +122,6 @@ public class Resolver
 		BinaryNumber injectedNumber = outputNumbers.get(injectionBlock).sum2(errorVectorNumber);
 		outputNumbers.set(injectionBlock, injectedNumber);
 	    }
-	}
-
-	//recode sequence if it's RPSK
-	if (modulationType == Modulator.ModulationType.RPSK)
-	{
-	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(outputNumbers);
-	    recoder.doDecoding();
-	    outputNumbers = recoder.getList();
 	}
     }
 
