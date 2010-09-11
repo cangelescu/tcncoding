@@ -42,6 +42,7 @@ public class ChannelSignal extends Signal
         phase = _phase;
 	noise = _noise;
 	maxValue = _amplitude + 3 * Math.sqrt(_noise);
+	minValue = -(_amplitude + 3 * Math.sqrt(_noise));
 	xStart = _start;
 	xEnd = _end;
     }

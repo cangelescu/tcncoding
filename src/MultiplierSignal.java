@@ -51,6 +51,7 @@ public class MultiplierSignal extends Signal
 	ethalonAmplitude = _ethalonAmplitude;
 	ethalonPhase = _ethalonPhase;
 	maxValue = (_amplitude + _noise) * _ethalonAmplitude;
+	minValue = -(_amplitude + _noise) * _ethalonAmplitude;
 	xStart = _start;
 	xEnd = _end;
     }

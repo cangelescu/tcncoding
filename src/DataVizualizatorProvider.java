@@ -56,7 +56,7 @@ public class DataVizualizatorProvider
     private List<MultiplierSignal> multiplierSignal = null;
     private List<List<FunctionStep>> integratorSignal = null;
 
-    private double xStart, xEnd, maxValue;
+    private double xStart, xEnd, maxValue, minValue;
     private String description;
     private Color chartColor;
 
@@ -77,27 +77,42 @@ public class DataVizualizatorProvider
 		xStart = modulatorSignal.get(0).getStart();
 		xEnd = modulatorSignal.get(modulatorSignal.size() - 1).getEnd();
 		maxValue = modulatorSignal.get(0).getMaxValue();
+		minValue = modulatorSignal.get(0).getMinValue();
 		for (ModulatorSignal cms: modulatorSignal)
+		{
 		    if (cms.getMaxValue() > maxValue)
 			maxValue = cms.getMaxValue();
+		    if (cms.getMinValue() < minValue)
+			minValue = cms.getMinValue();
+		}
 		break;
 	    case CHANNEL:
 		channelSignal = _data;
 		xStart = channelSignal.get(0).getStart();
 		xEnd = channelSignal.get(channelSignal.size() - 1).getEnd();
 		maxValue = channelSignal.get(0).getMaxValue();
+		minValue = channelSignal.get(0).getMinValue();
 		for (ChannelSignal cms: channelSignal)
+		{
 		    if (cms.getMaxValue() > maxValue)
 			maxValue = cms.getMaxValue();
+		    if (cms.getMinValue() < minValue)
+			minValue = cms.getMinValue();
+		}
 		break;
 	    case MULTIPLIER:
 		multiplierSignal = _data;
 		xStart = multiplierSignal.get(0).getStart();
 		xEnd = multiplierSignal.get(multiplierSignal.size() - 1).getEnd();
 		maxValue = multiplierSignal.get(0).getMaxValue();
+		minValue = multiplierSignal.get(0).getMinValue();
 		for (MultiplierSignal cms: multiplierSignal)
+		{
 		    if (cms.getMaxValue() > maxValue)
 			maxValue = cms.getMaxValue();
+		    if (cms.getMinValue() > minValue)
+			minValue = cms.getMinValue();
+		}
 		break;
 	    case TABULATED:
 		integratorSignal = _data;
@@ -106,10 +121,15 @@ public class DataVizualizatorProvider
 		int lastSymbol = integratorSignal.get(lastBlock).size() - 1;
 		xEnd = integratorSignal.get(lastBlock).get(lastSymbol).getX();
 		maxValue = integratorSignal.get(0).get(0).getY();
+		minValue = integratorSignal.get(0).get(0).getY();
 		for (List<FunctionStep> clfs: integratorSignal)
 		    for (FunctionStep cfs: clfs)
+		    {
 			if (cfs.getY() > maxValue)
 			    maxValue = cfs.getY();
+			if (cfs.getY() < minValue)
+			    minValue = cfs.getY();
+		    }
 		break;
 	    default:
 		break;
@@ -190,6 +210,15 @@ public class DataVizualizatorProvider
     public double getMaxValue()
     {
 	return maxValue;
+    }
+
+    /**
+     * Returns signal minimum value
+     * @return
+     */
+    public double getMinValue()
+    {
+	return minValue;
     }
 
     /**

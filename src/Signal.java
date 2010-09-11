@@ -28,6 +28,7 @@ public class Signal implements IntegralFunction
     double amplitude;
     double phase;
     double maxValue;
+    double minValue;
     double xStart, xEnd;
 
     /**
@@ -74,6 +75,15 @@ public class Signal implements IntegralFunction
     public double getMaxValue()
     {
 	return maxValue;
+    }
+
+    /**
+     * Returns signal minimum value, V
+     * @return
+     */
+    public double getMinValue()
+    {
+	return minValue;
     }
 
     /**

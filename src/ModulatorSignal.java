@@ -36,6 +36,7 @@ public class ModulatorSignal extends Signal
         amplitude = _amplitude;
         phase = _phase;
 	maxValue = _amplitude;
+	minValue = -_amplitude;
 	xStart = _start;
 	xEnd = _end;
     }

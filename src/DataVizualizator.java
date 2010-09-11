@@ -101,8 +101,9 @@ public class DataVizualizator extends JPanel
 	for (List<DataVizualizatorProvider> cldvp: chartData)
 	    for (DataVizualizatorProvider cdvp: cldvp)
 	    {
-		if (cdvp.getMaxValue() > maxY)
-		    maxY = cdvp.getMaxValue();
+		double currentMax = Math.max(Math.abs(cdvp.getMaxValue()), Math.abs(cdvp.getMinValue()));
+		if (currentMax > maxY)
+		    maxY = currentMax;
 		if (cdvp.getEnd() > maxX)
 		    maxX = cdvp.getEnd();
 		if (cdvp.getStart() < minX)
