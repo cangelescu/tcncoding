@@ -41,7 +41,7 @@ public class VideoCreator
 	inputSequence = _channelSymbols;
 	impulseLength = _impulseLength;
 	impulseLevel = _impulseLevel;
-	step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength));
+	step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength * _channelSymbols.size()));
     }
 
     /**
