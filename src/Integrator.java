@@ -27,6 +27,7 @@ public class Integrator
 {
     private List<List<MultiplierSignal>> signals;
     private List<List<List<FunctionStep>>> out = new ArrayList<List<List<FunctionStep>>>();
+    private double step;
 
     /**
      * Creates integrator for input signals
@@ -35,6 +36,8 @@ public class Integrator
     public Integrator(List<List<MultiplierSignal>> _signals)
     {
 	signals = _signals;
+	double end = _signals.get(_signals.size() - 1).get(_signals.get(_signals.size() - 1).size() - 1).getEnd();
+	step = end / 30240; //MAGIC
     }
 
     /**
@@ -49,8 +52,6 @@ public class Integrator
 	    for (MultiplierSignal cms: clms)
 	    {
 		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
-		double length = cms.getEnd() - cms.getStart();
-		double step = Math.pow(Math.sqrt(3) * Math.E, Math.log(length));
 		double sum = 0;
 		double sp = cms.getStart();
 		while (sp <= cms.getEnd())
@@ -73,5 +74,14 @@ public class Integrator
     public List<List<List<FunctionStep>>> getIntegrals()
     {
 	return out;
+    }
+
+    /**
+     * Returns step size
+     * @return
+     */
+    public double getStepSize()
+    {
+	return step;
     }
 }

@@ -324,7 +324,7 @@ public class UIMain extends javax.swing.JFrame
 	    currentSourceVideoSequenceVizualizator = null;
 	}
 	sourceVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	sourceVideoSequenceSingleProvider = (new TabulatedVizualizatorConverter(sourceVideoSequence, "Вихідна відеопослідовність", Color.BLUE)).getProvided();
+	sourceVideoSequenceSingleProvider = (new TabulatedVizualizatorConverter(sourceVideoSequence, sourceImpulseLength, "Вихідна відеопослідовність", Color.BLUE)).getProvided();
 	sourceVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
@@ -357,7 +357,7 @@ public class UIMain extends javax.swing.JFrame
 	}
 	channelVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	channelVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
-	channelVideoSequenceProvider.add((new TabulatedVizualizatorConverter(channelVideoSequence, "Кодована відеопослідовність", Color.RED)).getProvided());
+	channelVideoSequenceProvider.add((new TabulatedVizualizatorConverter(channelVideoSequence, channelImpulseLength, "Кодована відеопослідовність", Color.RED)).getProvided());
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
 
@@ -531,7 +531,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy0 = integratorOutputField0.getHeight();
 
 	integrator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator0OutputProvider.add((new TabulatedVizualizatorConverter(integrator0Output, "Сигнал на виході 0-го інтегратора", Color.BLUE)).getProvided());
+	integrator0OutputProvider.add((new TabulatedVizualizatorConverter(integrator0Output, currentIntegrator0.getStepSize(), "Сигнал на виході 0-го інтегратора", Color.BLUE)).getProvided());
 	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t, с", "Si0(t), В");
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
@@ -547,7 +547,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy1 = integratorOutputField1.getHeight();
 
 	integrator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator1OutputProvider.add((new TabulatedVizualizatorConverter(integrator1Output, "Сигнал на виході 1-го інтегратора", Color.BLUE)).getProvided());
+	integrator1OutputProvider.add((new TabulatedVizualizatorConverter(integrator1Output, currentIntegrator0.getStepSize(), "Сигнал на виході 1-го інтегратора", Color.BLUE)).getProvided());
 	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t, с", "Si1(t), В");
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
@@ -572,7 +572,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy1 = blockSummatorOutputField.getHeight();
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	summatorOutputProvider.add((new TabulatedVizualizatorConverter(summatorOutput, "Сигнал на виході суматора", Color.BLUE)).getProvided());
+	summatorOutputProvider.add((new TabulatedVizualizatorConverter(summatorOutput, currentIntegrator0.getStepSize(), "Сигнал на виході суматора", Color.BLUE)).getProvided());
 	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t, с", "Ssum(t), В");
 	currentSummatorVizualizator.setVisible(true);
 	blockSummatorOutputField.add(currentSummatorVizualizator);
@@ -619,7 +619,7 @@ public class UIMain extends javax.swing.JFrame
 	    currentResolverVideoSequenceVizualizator = null;
 	}
 	resolverVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	resolverVideoSequenceProvider.add((new TabulatedVizualizatorConverter(resolverVideoSequence, "Вхідна відеопослідовність", Color.RED)).getProvided());
+	resolverVideoSequenceProvider.add((new TabulatedVizualizatorConverter(resolverVideoSequence, channelImpulseLength, "Вхідна відеопослідовність", Color.RED)).getProvided());
 	int cx = blockResolverVideoSequenceOutputField.getWidth();
 	int cy = blockResolverVideoSequenceOutputField.getHeight();
 
@@ -651,7 +651,7 @@ public class UIMain extends javax.swing.JFrame
 	    currentChannelDecoderVideoSequenceVizualizator = null;
 	}
 	channelDecoderVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	channelDecoderVideoSequenceProvider.add((new TabulatedVizualizatorConverter(channelDecoderVideoSequence, "Декодована відеопослідовність", Color.RED)).getProvided());
+	channelDecoderVideoSequenceProvider.add((new TabulatedVizualizatorConverter(channelDecoderVideoSequence, sourceImpulseLength, "Декодована відеопослідовність", Color.RED)).getProvided());
 	int cx = blockChannelDecoderVideoSequenceOutputField.getWidth();
 	int cy = blockChannelDecoderVideoSequenceOutputField.getHeight();
 

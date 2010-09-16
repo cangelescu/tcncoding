@@ -29,6 +29,7 @@ public class TabulatedVizualizatorConverter
     private List<List<List<FunctionStep>>> data;
     private String description;
     private Color chartColor;
+    private double stepSize;
 
     /**
      * Creates converter for data vizualizator
@@ -37,11 +38,12 @@ public class TabulatedVizualizatorConverter
      * @param _chartColor color of vizualized chart
      */
 
-    public TabulatedVizualizatorConverter(List<List<List<FunctionStep>>> _data, String _description, Color _chartColor)
+    public TabulatedVizualizatorConverter(List<List<List<FunctionStep>>> _data, double _stepSize, String _description, Color _chartColor)
     {
 	data = _data;
 	description = _description;
 	chartColor = _chartColor;
+	stepSize = _stepSize;
     }
 
     /**
@@ -52,7 +54,7 @@ public class TabulatedVizualizatorConverter
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	for (List<List<FunctionStep>> cllfs: data)
-	    out.add(new DataVizualizatorProvider(cllfs, DataVizualizatorProvider.SignalType.TABULATED, description, chartColor));
+	    out.add(new DataVizualizatorProvider(cllfs, stepSize, DataVizualizatorProvider.SignalType.TABULATED, description, chartColor));
 	return out;
     }
 }

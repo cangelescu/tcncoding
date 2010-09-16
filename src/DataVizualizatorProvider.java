@@ -56,7 +56,7 @@ public class DataVizualizatorProvider
     private List<MultiplierSignal> multiplierSignal = null;
     private List<List<FunctionStep>> integratorSignal = null;
 
-    private double xStart, xEnd, maxValue, minValue;
+    private double xStart, xEnd, maxValue, minValue, stepSize;
     private String description;
     private Color chartColor;
 
@@ -67,9 +67,10 @@ public class DataVizualizatorProvider
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
-    public DataVizualizatorProvider(List _data, SignalType _signalType, String _description, Color _chartColor)
+    public DataVizualizatorProvider(List _data, double _stepSize, SignalType _signalType, String _description, Color _chartColor)
     {
 	signalType = _signalType;
+	stepSize = _stepSize;
 	switch (signalType)
 	{
 	    case MODULATOR:
@@ -116,10 +117,12 @@ public class DataVizualizatorProvider
 		break;
 	    case TABULATED:
 		integratorSignal = _data;
+		int count = 0;
+		for (List<FunctionStep> clfs: integratorSignal)
+		    for(FunctionStep cfs: clfs)
+			count++;
 		xStart = integratorSignal.get(0).get(0).getX();
-		int lastBlock = integratorSignal.size() - 1;
-		int lastSymbol = integratorSignal.get(lastBlock).size() - 1;
-		xEnd = integratorSignal.get(lastBlock).get(lastSymbol).getX();
+		xEnd = xStart + stepSize * count;
 		maxValue = integratorSignal.get(0).get(0).getY();
 		minValue = integratorSignal.get(0).get(0).getY();
 		for (List<FunctionStep> clfs: integratorSignal)
@@ -169,7 +172,7 @@ public class DataVizualizatorProvider
 		{
 		    boolean found = false;
 		    for (FunctionStep fs: clfs)
-			if (fs.getX() >= x)
+			if (x >= fs.getX() && x <= fs.getX() + stepSize)
 			{
 			    out = fs.getY();
 			    found = true;

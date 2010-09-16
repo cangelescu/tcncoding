@@ -28,7 +28,7 @@ public class VideoCreator
 {
     private List<BinaryNumber> inputSequence;
     private List<List<List<FunctionStep>>> outputSequence = new ArrayList<List<List<FunctionStep>>>();
-    private double impulseLength, step, impulseLevel;
+    private double impulseLength, impulseLevel;
 
     /**
      * Creates videosequence
@@ -41,34 +41,28 @@ public class VideoCreator
 	inputSequence = _channelSymbols;
 	impulseLength = _impulseLength;
 	impulseLevel = _impulseLevel;
-	step = Math.pow(Math.sqrt(3) * Math.E, Math.log(_impulseLength * _channelSymbols.size()));
     }
 
     /**
-     * Runs videsequence creating
+     * Runs videosequence creating
      */
     public void doVideoSequence()
     {
 	outputSequence.clear();
-	double cx = 0, sp = 0;
+	double cx = 0;
 	for (BinaryNumber cbn: inputSequence)
 	{
-	    List<List<FunctionStep>> newBlock = new ArrayList<List<FunctionStep>>();
 	    boolean[] matrix = cbn.getBinaryArray();
+	    List<List<FunctionStep>> newBlock = new ArrayList<List<FunctionStep>>();
 	    for (boolean cm: matrix)
 	    {
-		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
-		sp = 0;
-		while (sp <= impulseLength)
-		{
-		    if (cm)
-			newSymbol.add(new FunctionStep(cx, impulseLevel));
-		    else
-			newSymbol.add(new FunctionStep(cx, 0));
-		    sp += step;
-		    cx += step;
-		}
-		newBlock.add(newSymbol);
+		List<FunctionStep> newStep = new ArrayList<FunctionStep>();
+		if (cm)
+		    newStep.add(new FunctionStep(cx, impulseLevel));
+		else
+		    newStep.add(new FunctionStep(cx, 0));
+		newBlock.add(newStep);
+		cx += impulseLength;
 	    }
 	    outputSequence.add(newBlock);
 	}
@@ -81,5 +75,14 @@ public class VideoCreator
     public List<List<List<FunctionStep>>> getVideoSequence()
     {
 	return outputSequence;
+    }
+
+    /**
+     * Returns step size
+     * @return
+     */
+    public double getStepSize()
+    {
+	return impulseLength;
     }
 }

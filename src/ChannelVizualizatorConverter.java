@@ -52,7 +52,7 @@ public class ChannelVizualizatorConverter
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	for (List<ChannelSignal> clcs: data)
-	    out.add(new DataVizualizatorProvider(clcs, DataVizualizatorProvider.SignalType.CHANNEL, description, chartColor));
+	    out.add(new DataVizualizatorProvider(clcs, 0, DataVizualizatorProvider.SignalType.CHANNEL, description, chartColor));
 	return out;
     }
 }
