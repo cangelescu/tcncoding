@@ -38,7 +38,7 @@ public class Integrator
 	signals = _signals;
 	double end = _signals.get(_signals.size() - 1).get(_signals.get(_signals.size() - 1).size() - 1).getEnd();
 	double step1 = end / _maxWidth;
-	double step2 = 1 / (2 * _maxFrequency);
+	double step2 = 1 / (5 * _maxFrequency);
 	step = Math.min(step1, step2);
     }
 
