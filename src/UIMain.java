@@ -112,6 +112,7 @@ public class UIMain extends javax.swing.JFrame
     List<List<DataVizualizatorProvider>> multiplier1OutputProvider = null;
 
     //integrators data
+    double maxFrequency;
     List<List<List<FunctionStep>>> integrator0Output = null;
     List<List<List<FunctionStep>>> integrator1Output = null;
     List<List<DataVizualizatorProvider>> integrator0OutputProvider = null;
@@ -452,20 +453,24 @@ public class UIMain extends javax.swing.JFrame
 	switch (modulationType)
 	{
 	    case ASK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), 0, 0, channelOutput);
+		maxFrequency = (Double)bearerFrequency.getValue();
+		currentMultiplier0 = new Multiplier(maxFrequency, 0, 0, channelOutput);
 		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
 		break;
 	    case FSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue() - (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		maxFrequency = (Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue();
+		currentMultiplier0 = new Multiplier(maxFrequency - 2 * (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
 		break;
 	    case PSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
+		maxFrequency = (Double)bearerFrequency.getValue();
+		currentMultiplier0 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
 		break;
 	    case RPSK:
-		currentMultiplier0 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
+		maxFrequency = (Double)bearerFrequency.getValue();
+		currentMultiplier0 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
 		break;
 	}
 
@@ -513,25 +518,6 @@ public class UIMain extends javax.swing.JFrame
     //integrates signals from multipliers
     void doIntegrating()
     {
-	double maxFrequency;
-	switch (modulationType)
-	{
-	    case ASK:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		break;
-	    case FSK:
-		maxFrequency = (Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue();
-		break;
-	    case PSK:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		break;
-	    case RPSK:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		break;
-	    default:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		break;
-	}
 	//integrates multipliers output
 	currentIntegrator0 = new Integrator(multiplier0Output, maxFrequency, integratorOutputField0.getWidth());
 	currentIntegrator1 = new Integrator(multiplier1Output, maxFrequency, integratorOutputField0.getWidth());
