@@ -119,8 +119,7 @@ public class DataVizualizatorProvider
 		integratorSignal = _data;
 		int count = 0;
 		for (List<FunctionStep> clfs: integratorSignal)
-		    for(FunctionStep cfs: clfs)
-			count++;
+		    count += clfs.size();
 		xStart = integratorSignal.get(0).get(0).getX();
 		xEnd = xStart + stepSize * count;
 		maxValue = integratorSignal.get(0).get(0).getY();
