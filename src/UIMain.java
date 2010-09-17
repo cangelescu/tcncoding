@@ -513,9 +513,28 @@ public class UIMain extends javax.swing.JFrame
     //integrates signals from multipliers
     void doIntegrating()
     {
+	double maxFrequency;
+	switch (modulationType)
+	{
+	    case ASK:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		break;
+	    case FSK:
+		maxFrequency = (Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue();
+		break;
+	    case PSK:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		break;
+	    case RPSK:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		break;
+	    default:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		break;
+	}
 	//integrates multipliers output
-	currentIntegrator0 = new Integrator(multiplier0Output);
-	currentIntegrator1 = new Integrator(multiplier1Output);
+	currentIntegrator0 = new Integrator(multiplier0Output, maxFrequency, integratorOutputField0.getWidth());
+	currentIntegrator1 = new Integrator(multiplier1Output, maxFrequency, integratorOutputField0.getWidth());
 	currentIntegrator0.doIntegrating();
 	currentIntegrator1.doIntegrating();
 	integrator0Output = currentIntegrator0.getIntegrals();

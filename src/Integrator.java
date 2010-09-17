@@ -33,11 +33,13 @@ public class Integrator
      * Creates integrator for input signals
      * @param _signals list of input signals
      */
-    public Integrator(List<List<MultiplierSignal>> _signals)
+    public Integrator(List<List<MultiplierSignal>> _signals, double _maxFrequency, double _maxWidth)
     {
 	signals = _signals;
 	double end = _signals.get(_signals.size() - 1).get(_signals.get(_signals.size() - 1).size() - 1).getEnd();
-	step = end / 30240; //MAGIC
+	double step1 = end / _maxWidth;
+	double step2 = 1 / (2 * _maxFrequency);
+	step = Math.min(step1, step2);
     }
 
     /**
