@@ -16,10 +16,7 @@
 
 */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -58,7 +55,6 @@ public class SourceCoder
     };
 
     private SourceCoderCode usingCode = null;
-    private HashMap<String, BinaryNumber> codeMap = new HashMap<String, BinaryNumber>();
     private String sourceMessage = null;
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap = new ArrayList<Integer>();
@@ -71,49 +67,7 @@ public class SourceCoder
     public SourceCoder(SourceCoderCode _codeType, String _message)
     {
 	sourceMessage = _message;
-	String filename = "";
-	switch (_codeType)
-	{
-	    case MTK2:
-		usingCode = SourceCoderCode.MTK2;
-		filename = "mtk2";
-		break;
-	    case MTK5:
-		usingCode = SourceCoderCode.MTK5;
-		filename = "mtk5";
-		break;
-	    case KOI8U:
-		usingCode = SourceCoderCode.KOI8U;
-		filename = "koi8u";
-		break;
-	    case MORSE:
-		usingCode = SourceCoderCode.MORSE;
-		filename = "morse";
-		break;
-	    case SHANNON:
-		usingCode = SourceCoderCode.SHANNON;
-		filename = "shannon";
-		break;
-	    default:
-		break;
-	}
-	codeMap.clear();
-	String line = "";
-	try
-	{
-	    //files of code tables must be present in working directory
-	    FileReader fr = new FileReader(filename);
-	    BufferedReader bfr = new BufferedReader(fr);
-	    while((line = bfr.readLine()) != null)
-	    {
-		String[] parts = line.split("#");
-		BinaryNumber bnum = new BinaryNumber(parts[0]);
-		codeMap.put(parts[1], bnum);
-	    }
-	} catch (Exception ex)
-	{
-	    System.err.println(ex.getMessage());
-	}
+	usingCode = _codeType;
     }
 
     /**
@@ -121,42 +75,40 @@ public class SourceCoder
      */
     public void doEncode()
     {
-	sourceSequence.clear();
-	String workingMessage = "";
-	/*
-	 * ITC-2, Morse and Shannon-Fano codes do not depend on letters' case
-	 */
 	switch (usingCode)
 	{
 	    case MTK2:
-		workingMessage = sourceMessage.toUpperCase();
+		SourceCoderMTK2 coderMTK2 = new SourceCoderMTK2(sourceMessage);
+		coderMTK2.doEncoding();
+		sourceSequence = coderMTK2.getSequence();
 		break;
 	    case MTK5:
-		workingMessage = sourceMessage;
+		SourceCoderMTK5 coderMTK5 = new SourceCoderMTK5(sourceMessage);
+		coderMTK5.doEncoding();
+		sourceSequence = coderMTK5.getSequence();
 		break;
 	    case KOI8U:
-		workingMessage = sourceMessage;
+		SourceCoderKOI8U coderKOI8U = new SourceCoderKOI8U(sourceMessage);
+		coderKOI8U.doEncoding();
+		sourceSequence = coderKOI8U.getSequence();
 		break;
 	    case MORSE:
-		workingMessage = sourceMessage.toUpperCase();
+		SourceCoderMorse coderMorse = new SourceCoderMorse(sourceMessage);
+		coderMorse.doEncoding();
+		sourceSequence = coderMorse.getSequence();
 		break;
 	    case SHANNON:
-		workingMessage = sourceMessage.toUpperCase();
+		SourceCoderShannon coderShannon = new SourceCoderShannon(sourceMessage);
+		coderShannon.doEncoding();
+		sourceSequence = coderShannon.getSequence();
 		break;
 	    default:
 		break;
 	}
-	int len = workingMessage.length();
-	for (int i = 0; i < len; i++)
-	{
-	    char current_char = workingMessage.charAt(i);
-	    BinaryNumber num = codeMap.get(String.valueOf(current_char));
-	    if (num != null)
-	    {
-		sourceSequence.add(num);
-		lengthMap.add(num.getLength());
-	    }
-	}
+
+	lengthMap.clear();
+	for (BinaryNumber cbn: sourceSequence)
+	    lengthMap.add(cbn.getLength());
     }
 
     /**
