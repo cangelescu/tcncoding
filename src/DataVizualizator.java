@@ -123,11 +123,13 @@ public class DataVizualizator extends JPanel
 	    gridYStepSize = (bottomYBorder - topYBorder + 1) / 10;
 
 	//X axis steps
+	//calculate maximum time to display
 	double flippedTime = 1 / maxX;
 	double flippedGridXAxisApproximateMaximum = Math.pow(10, Math.floor(Math.log10(flippedTime)));
 	double gridXAxisMaximum = 1 / (flippedGridXAxisApproximateMaximum * Math.floor(flippedTime / flippedGridXAxisApproximateMaximum));
 	double maxXAxisGridDistance = xScalingFactor * gridXAxisMaximum;
 
+	//calculate amount of graphic points
 	double gridXAxisTimeStepSize = gridXAxisMaximum / 10;
 	double gridXStepSize = xScalingFactor * gridXAxisTimeStepSize;
 
@@ -138,6 +140,7 @@ public class DataVizualizator extends JPanel
 	g2.setColor(Color.BLACK);
 	g2.drawString("0", zeroX - 3 * yStepsMargin, zeroY + g2.getFontMetrics().getHeight() / 3);
 	g2.setColor(gridColor);
+
 	//Y axis step
 	for (double i = zeroY + gridYStepSize * 5; i >= zeroY - gridYStepSize * 5 - 1; i -= gridYStepSize)
 	{
