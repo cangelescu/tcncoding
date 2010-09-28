@@ -34,7 +34,7 @@ public class SourceCoderMTK2
     private HashMap<String, BinaryNumber> codeMapNum = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapCtl = new HashMap<String, BinaryNumber>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
-    private enum CodeMapPart {
+    public enum CodeMapPart {
 	LAT,
 	INT,
 	NUM,

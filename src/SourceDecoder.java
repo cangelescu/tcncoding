@@ -16,9 +16,6 @@
 
 */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -28,9 +25,9 @@ import java.util.List;
 public class SourceDecoder
 {
 
-    private HashMap<String, String> codeMap = new HashMap<String, String>();
     private String sourceMessage = "";
     private List<BinaryNumber> sourceSequence;
+    SourceCoder.SourceCoderCode usingCode;
 
     /**
      * Creates source decoder for input source sequence
@@ -40,45 +37,7 @@ public class SourceDecoder
     public SourceDecoder(List<BinaryNumber> _sourceSequence, SourceCoder.SourceCoderCode _codeType)
     {
 	sourceSequence = _sourceSequence;
-
-	String filename = "";
-	switch (_codeType)
-	{
-	    case MTK2:
-		filename = "mtk2";
-		break;
-	    case MTK5:
-		filename = "mtk5";
-		break;
-	    case KOI8U:
-		filename = "koi8u";
-		break;
-	    case MORSE:
-		filename = "morse";
-		break;
-	    case SHANNON:
-		filename = "shannon";
-		break;
-	    default:
-		break;
-	}
-	codeMap.clear();
-	String line = "";
-	try
-	{
-	    //files of code tables must be present in working directory
-	    FileReader fr = new FileReader(filename);
-	    BufferedReader bfr = new BufferedReader(fr);
-	    while((line = bfr.readLine()) != null)
-	    {
-		String[] parts = line.split("#");
-		BinaryNumber bnum = new BinaryNumber(parts[0]);
-		codeMap.put(bnum.getStringSequence(), parts[1]);
-	    }
-	} catch (Exception ex)
-	{
-	    System.err.println(ex.getMessage());
-	}
+	usingCode = _codeType;
     }
 
     /**
@@ -86,13 +45,35 @@ public class SourceDecoder
      */
     public void doDecode()
     {
-	for (BinaryNumber cbn: sourceSequence)
+	switch (usingCode)
 	{
-	    String currentChar = codeMap.get(cbn.getStringSequence());
-	    if (currentChar != null)
-		sourceMessage += currentChar;
-	    else
-		sourceMessage += "*";
+	    case MTK2:
+		SourceDecoderMTK2 decoderMTK2 = new SourceDecoderMTK2(sourceSequence);
+		decoderMTK2.doDecoding();
+		sourceMessage = decoderMTK2.getMessage();
+		break;
+	    case MTK5:
+		SourceDecoderMTK5 decoderMTK5 = new SourceDecoderMTK5(sourceSequence);
+		decoderMTK5.doDecoding();
+		sourceMessage = decoderMTK5.getMessage();
+		break;
+	    case KOI8U:
+		SourceDecoderKOI8U decoderKOI8U = new SourceDecoderKOI8U(sourceSequence);
+		decoderKOI8U.doDecoding();
+		sourceMessage = decoderKOI8U.getMessage();
+		break;
+	    case MORSE:
+		SourceDecoderMorse decoderMorse = new SourceDecoderMorse(sourceSequence);
+		decoderMorse.doDecoding();
+		sourceMessage = decoderMorse.getMessage();
+		break;
+	    case SHANNON:
+		SourceDecoderShannon decoderShannon = new SourceDecoderShannon(sourceSequence);
+		decoderShannon.doDecoding();
+		sourceMessage = decoderShannon.getMessage();
+		break;
+	    default:
+		break;
 	}
     }
 
