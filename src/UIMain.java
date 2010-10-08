@@ -80,6 +80,7 @@ public class UIMain extends javax.swing.JFrame
     //channel coder
     List<BinaryNumber> channelSymbols = new ArrayList();
     int headLength;
+    boolean useChannelCoderTrigger = true;
 
     //source videosequence
     double sourceImpulseLength = 0;
@@ -303,7 +304,7 @@ public class UIMain extends javax.swing.JFrame
     //encodes source code with selected Channel code
     void doChannelCoding()
     {
-	currentChannelCoder = new ChannelCoder(sourceSymbols, channelCode);
+	currentChannelCoder = new ChannelCoder(sourceSymbols, channelCode, useChannelCoderTrigger);
 	currentChannelCoder.doEncode();
 	channelSymbols = currentChannelCoder.getSequence();
 	blockChannelCoderOutput.setText(currentChannelCoder.getStringSequence());
@@ -311,7 +312,7 @@ public class UIMain extends javax.swing.JFrame
     }
 
     //shows source videosequence
-    void doSourceVideoSequence()
+    void doSourceCodingVideoSequence()
     {
 	//calculates source impulse length according to chosen informational speed
 	sourceImpulseLength = 1 / (Double)informationalSpeed.getValue();
@@ -343,7 +344,7 @@ public class UIMain extends javax.swing.JFrame
     }
 
     //shows channel videosequence
-    void doChannelVideoSequence()
+    void doChannelCodingVideoSequence()
     {
 	//calculates channel impulse length according to chosen code
 	channelImpulseLength = sourceImpulseLength * ((double)currentSourceCoder.getSequenceLength() / (double)currentChannelCoder.getSequenceLength());
@@ -642,11 +643,15 @@ public class UIMain extends javax.swing.JFrame
     //decodes source code with selected Channel code
     void doChannelDecoding()
     {
-	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap);
+	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
 	blockChannelDecoderOutput.setText(currentChannelDecoder.getStringSequence());
+    }
 
+    //decodes source code with selected Channel code
+    void doChannelDecodingVideoSequence()
+    {
 	currentChannelDecoderVideoCreator = new VideoCreator(channelDecoderOutput, sourceImpulseLength, 1);
 	currentChannelDecoderVideoCreator.doVideoSequence();
 	channelDecoderVideoSequence = currentChannelDecoderVideoCreator.getVideoSequence();
@@ -707,6 +712,7 @@ public class UIMain extends javax.swing.JFrame
         channelCoderTab = new javax.swing.JPanel();
         channelCodesChooserLabel = new javax.swing.JLabel();
         channelCodesChooser = new javax.swing.JComboBox();
+        useChannelCoder = new javax.swing.JCheckBox();
         modulatorTab = new javax.swing.JPanel();
         modulationTypeLabel = new javax.swing.JLabel();
         modulationTypeChooser = new javax.swing.JComboBox();
@@ -935,22 +941,36 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
+        useChannelCoder.setSelected(true);
+        useChannelCoder.setText("Використовувати надлишкове кодування");
+        useChannelCoder.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                useChannelCoderItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout channelCoderTabLayout = new javax.swing.GroupLayout(channelCoderTab);
         channelCoderTab.setLayout(channelCoderTabLayout);
         channelCoderTabLayout.setHorizontalGroup(
             channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(channelCoderTabLayout.createSequentialGroup()
-                .addComponent(channelCodesChooserLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(channelCodesChooser, 0, 614, Short.MAX_VALUE))
+                .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(channelCoderTabLayout.createSequentialGroup()
+                        .addComponent(channelCodesChooserLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(channelCodesChooser, 0, 602, Short.MAX_VALUE))
+                    .addComponent(useChannelCoder))
+                .addContainerGap())
         );
         channelCoderTabLayout.setVerticalGroup(
             channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(channelCoderTabLayout.createSequentialGroup()
+                .addComponent(useChannelCoder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(channelCodesChooserLabel)
                     .addComponent(channelCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Кодер каналу", channelCoderTab);
@@ -1111,7 +1131,7 @@ public class UIMain extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Система зв'язку");
 
-        TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16));
 
         blockMessageSource.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -2052,9 +2072,9 @@ public class UIMain extends javax.swing.JFrame
 	if (!message.isEmpty())
 	{
 	    doSourceCoding();
-	    doSourceVideoSequence();
+	    doSourceCodingVideoSequence();
 	    doChannelCoding();
-	    doChannelVideoSequence();
+	    doChannelCodingVideoSequence();
 	    doModulating();
 	    doChannel();
 	    doMultiplying();
@@ -2062,6 +2082,7 @@ public class UIMain extends javax.swing.JFrame
 	    doSumming();
 	    doResolving();
 	    doChannelDecoding();
+	    doChannelDecodingVideoSequence();
 	    doSourceDecoding();
 	}
     }//GEN-LAST:event_doModellingItemActionPerformed
@@ -2334,6 +2355,13 @@ public class UIMain extends javax.swing.JFrame
 	useNoiseErrorsTrigger = evt.getStateChange() == ItemEvent.SELECTED;
     }//GEN-LAST:event_useNoiseErrorsItemStateChanged
 
+    private void useChannelCoderItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_useChannelCoderItemStateChanged
+    {//GEN-HEADEREND:event_useChannelCoderItemStateChanged
+	useChannelCoderTrigger = evt.getStateChange() == ItemEvent.SELECTED;
+	channelCodesChooser.setEnabled(useChannelCoderTrigger);
+	channelCodesChooserLabel.setEnabled(useChannelCoderTrigger);
+    }//GEN-LAST:event_useChannelCoderItemStateChanged
+
     /**
      * 
      * @param args
@@ -2476,6 +2504,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JMenuItem sum2Item;
     private javax.swing.JButton summatorButton;
     private javax.swing.JPanel systemScheme;
+    private javax.swing.JCheckBox useChannelCoder;
     private javax.swing.JCheckBox useNoiseErrors;
     private javax.swing.JLabel voltsLabel;
     private javax.swing.JMenuItem weightItem;

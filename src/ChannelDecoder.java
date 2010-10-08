@@ -31,18 +31,20 @@ public class ChannelDecoder
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     private int headLength;
     private List<Integer> lengthMap;
+    private boolean enabled;
 
     /**
      * Creates channel decoder with given code and symbols on its input
      * @param _symbols input symbols
      * @param _codeType code to use
      */
-    public ChannelDecoder(List<BinaryNumber> _symbols, ChannelCoder.ChannelCoderCode _codeType, int _headLength, List<Integer> _lengthMap)
+    public ChannelDecoder(List<BinaryNumber> _symbols, ChannelCoder.ChannelCoderCode _codeType, int _headLength, List<Integer> _lengthMap, boolean _enabled)
     {
 	inputSequence = _symbols;
 	usingCode = _codeType;
 	headLength = _headLength;
 	lengthMap = _lengthMap;
+	enabled = _enabled;
     }
 
     /**
@@ -51,31 +53,35 @@ public class ChannelDecoder
     public void doDecode()
     {
 	outputSequence.clear();
-	switch (usingCode)
+	if (enabled)
 	{
-	    case PARITY_BIT:
-		ChannelDecoderParityBit channelDecoderParityBit = new ChannelDecoderParityBit(inputSequence);
-		channelDecoderParityBit.doDecode();
-		outputSequence = channelDecoderParityBit.getSequence();
-		break;
-	    case INVERSED:
-		ChannelDecoderInversed channelDecoderInversed = new ChannelDecoderInversed(inputSequence);
-		channelDecoderInversed.doDecode();
-		outputSequence = channelDecoderInversed.getSequence();
-		break;
-	    case MANCHESTER:
-		ChannelDecoderManchester channelDecoderManchester = new ChannelDecoderManchester(inputSequence);
-		channelDecoderManchester.doDecode();
-		outputSequence = channelDecoderManchester.getSequence();
-		break;
-	    case HAMMING:
-		ChannelDecoderHamming channelDecoderHamming = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
-		channelDecoderHamming.doDecode();
-		outputSequence = channelDecoderHamming.getSequence();
-		break;
-	    default:
-		break;
-	}
+	    switch (usingCode)
+	    {
+		case PARITY_BIT:
+		    ChannelDecoderParityBit channelDecoderParityBit = new ChannelDecoderParityBit(inputSequence);
+		    channelDecoderParityBit.doDecode();
+		    outputSequence = channelDecoderParityBit.getSequence();
+		    break;
+		case INVERSED:
+		    ChannelDecoderInversed channelDecoderInversed = new ChannelDecoderInversed(inputSequence);
+		    channelDecoderInversed.doDecode();
+		    outputSequence = channelDecoderInversed.getSequence();
+		    break;
+		case MANCHESTER:
+		    ChannelDecoderManchester channelDecoderManchester = new ChannelDecoderManchester(inputSequence);
+		    channelDecoderManchester.doDecode();
+		    outputSequence = channelDecoderManchester.getSequence();
+		    break;
+		case HAMMING:
+		    ChannelDecoderHamming channelDecoderHamming = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
+		    channelDecoderHamming.doDecode();
+		    outputSequence = channelDecoderHamming.getSequence();
+		    break;
+		default:
+		    break;
+	    }
+	} else
+	    outputSequence = inputSequence;
     }
 
     /**

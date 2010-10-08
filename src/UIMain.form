@@ -208,21 +208,29 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="channelCodesChooser" pref="602" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="useChannelCoder" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="channelCodesChooser" pref="614" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="useChannelCoder" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="channelCodesChooser" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="channelCodesChooser" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="102" max="32767" attributes="0"/>
+                          <EmptySpace pref="77" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -249,6 +257,15 @@
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="channelCodesChooserItemStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="useChannelCoder">
+                  <Properties>
+                    <Property name="selected" type="boolean" value="true"/>
+                    <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x43a;&#x43e;&#x440;&#x438;&#x441;&#x442;&#x43e;&#x432;&#x443;&#x432;&#x430;&#x442;&#x438; &#x43d;&#x430;&#x434;&#x43b;&#x438;&#x448;&#x43a;&#x43e;&#x432;&#x435; &#x43a;&#x43e;&#x434;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="useChannelCoderItemStateChanged"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -50,20 +50,22 @@ public class ChannelCoder
 	HAMMING;
     };
 
-    private List<BinaryNumber> sourceSymbols = null;
-    private ChannelCoderCode usingCode = null;
+    private List<BinaryNumber> sourceSymbols;
+    private ChannelCoderCode usingCode;
     private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
     private int headLength = 0;
+    private boolean enabled;
 
     /**
      * Creates channel coder with given code and symbols on its input
      * @param _symbols input symbols
      * @param _codeType code to use
      */
-    public ChannelCoder(List<BinaryNumber> _symbols, ChannelCoderCode _codeType)
+    public ChannelCoder(List<BinaryNumber> _symbols, ChannelCoderCode _codeType, boolean _enabled)
     {
 	sourceSymbols = _symbols;
 	usingCode = _codeType;
+	enabled = _enabled;
     }
 
     /**
@@ -72,31 +74,38 @@ public class ChannelCoder
     public void doEncode()
     {
 	channelSequence.clear();
-	switch (usingCode)
+	if (enabled)
 	{
-	    case PARITY_BIT:
-		ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(sourceSymbols);
-		channelCoderParityBit.doEncode();
-		channelSequence = channelCoderParityBit.getSequence();
-		break;
-	    case INVERSED:
-		ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(sourceSymbols);
-		channelCoderInversed.doEncode();
-		channelSequence = channelCoderInversed.getSequence();
-		break;
-	    case MANCHESTER:
-		ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(sourceSymbols);
-		channelCoderManchester.doEncode();
-		channelSequence = channelCoderManchester.getSequence();
-		break;
-	    case HAMMING:
-		ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
-		channelCoderHamming.doEncode();
-		channelSequence = channelCoderHamming.getSequence();
-		headLength = channelCoderHamming.getHeadLength();
-		break;
-	    default:
-		break;
+	    switch (usingCode)
+	    {
+		case PARITY_BIT:
+		    ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(sourceSymbols);
+		    channelCoderParityBit.doEncode();
+		    channelSequence = channelCoderParityBit.getSequence();
+		    break;
+		case INVERSED:
+		    ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(sourceSymbols);
+		    channelCoderInversed.doEncode();
+		    channelSequence = channelCoderInversed.getSequence();
+		    break;
+		case MANCHESTER:
+		    ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(sourceSymbols);
+		    channelCoderManchester.doEncode();
+		    channelSequence = channelCoderManchester.getSequence();
+		    break;
+		case HAMMING:
+		    ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
+		    channelCoderHamming.doEncode();
+		    channelSequence = channelCoderHamming.getSequence();
+		    headLength = channelCoderHamming.getHeadLength();
+		    break;
+		default:
+		    break;
+	    }
+	} else
+	{
+	    channelSequence = sourceSymbols;
+	    headLength = 0;
 	}
     }
 
