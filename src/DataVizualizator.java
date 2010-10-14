@@ -74,7 +74,7 @@ public class DataVizualizator extends JPanel
 
 	//chart margins
 	final int yStepsMargin = g2.getFontMetrics().charWidth('0') / 2;
-	final int leftMarginX = 16 * yStepsMargin;
+	final int leftMarginX = 18 * yStepsMargin;
 	final int rightMarginX = 10;
 	final int topMarginY = 10;
 	final int bottomMarginY = 10;
@@ -152,6 +152,7 @@ public class DataVizualizator extends JPanel
 	g2.setColor(gridColor);
 
 	//Y axis step
+	NumberFormat formatter = new DecimalFormat("0.00E0");
 	for (double i = zeroY + gridYStepSize * 5; i >= zeroY - gridYStepSize * 5 - 1; i -= gridYStepSize)
 	{
 	    g2.drawLine(zeroX + 1, (int)i, zeroX + distance, (int)i);
@@ -159,7 +160,7 @@ public class DataVizualizator extends JPanel
 	    //omit printing zero mark due to its present
 	    if (Math.abs((i - zeroY) / yScalingFactor) > gridYStepSize / (2 * yScalingFactor))
 	    {
-		String csValue = String.format("%1.3f", cdValue);
+		String csValue = formatter.format(cdValue);
 		g2.setColor(Color.BLACK);
 		g2.drawString(csValue, zeroX - g2.getFontMetrics().stringWidth(csValue) - yStepsMargin, (int)i + g2.getFontMetrics().getHeight() / 3);
 		g2.setColor(gridColor);
@@ -236,7 +237,6 @@ public class DataVizualizator extends JPanel
 	}
 
 	//X axis steps values
-	NumberFormat formatter = new DecimalFormat("0.000E0");
 	g2.setColor(Color.BLACK);
 	for (double i = zeroX + gridXStepSize; i <= zeroX + maxXAxisGridDistance; i += gridXStepSize)
 	{
