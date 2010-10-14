@@ -80,6 +80,8 @@ public class DataVizualizator extends JPanel
 	final int bottomMarginY = 10;
 	final int xBorder = 10;
 	final int yBorder = 10;
+	final int xSteps = 10;
+	final int ySteps = 10;
 	final int topYBorder = topMarginY + yBorder;
 	final int bottomYBorder = getHeight() - bottomMarginY;
 
@@ -118,22 +120,30 @@ public class DataVizualizator extends JPanel
 
 	double gridYStepSize;
 	if (maxY != 0)
-	    gridYStepSize = 2 * maxY * yScalingFactor / 10;
+	    gridYStepSize = 2 * maxY * yScalingFactor / ySteps;
 	else
-	    gridYStepSize = (bottomYBorder - topYBorder + 1) / 10;
+	    gridYStepSize = (bottomYBorder - topYBorder + 1) / ySteps;
 
 	//X axis steps
 	//calculate maximum time to display
-	double flippedTime = 1 / maxX;
-	double flippedGridXAxisApproximateMaximum = Math.pow(10, Math.floor(Math.log10(flippedTime)));
-	double gridXAxisMaximum = 1 / (flippedGridXAxisApproximateMaximum * Math.floor(flippedTime / flippedGridXAxisApproximateMaximum));
+	double gridXAxisApproximateMaximum = Math.pow(10, Math.floor(Math.log10(maxX)));
+	double gridXAxisMaximum = 0;
+	while (true)
+	{
+	    gridXAxisMaximum += gridXAxisApproximateMaximum / xSteps;
+	    if (gridXAxisMaximum > maxX)
+	    {
+		gridXAxisMaximum -= gridXAxisApproximateMaximum / xSteps;
+		break;
+	    }
+	}
 	double maxXAxisGridDistance = xScalingFactor * gridXAxisMaximum;
 
 	//calculate amount of graphic points
-	double gridXAxisTimeStepSize = gridXAxisMaximum / 10;
+	double gridXAxisTimeStepSize = gridXAxisMaximum / xSteps;
 	double gridXStepSize = xScalingFactor * gridXAxisTimeStepSize;
 
-	for (double i = zeroX + gridXStepSize; i <= zeroX + maxXAxisGridDistance; i+= gridXStepSize)
+	for (double i = zeroX + gridXStepSize; i <= zeroX + maxXAxisGridDistance; i += gridXStepSize)
 	    g2.drawLine((int)i, bottomYBorder, (int)i, topYBorder);
 
 	//0
@@ -226,7 +236,7 @@ public class DataVizualizator extends JPanel
 	}
 
 	//X axis steps values
-	NumberFormat formatter = new DecimalFormat("0.00E0");
+	NumberFormat formatter = new DecimalFormat("0.000E0");
 	g2.setColor(Color.BLACK);
 	for (double i = zeroX + gridXStepSize; i <= zeroX + maxXAxisGridDistance; i += gridXStepSize)
 	{
