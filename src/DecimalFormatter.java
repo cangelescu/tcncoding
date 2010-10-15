@@ -44,9 +44,9 @@ public class DecimalFormatter {
 	//gets absolute value of given number with precision rounding trick
 	double absoluteValue = Double.valueOf(String.format("%f", Math.abs(_value)).replace(',', '.'));
 	//calculates rounded value of log10
-	int power = (int)Math.floor(Math.log10(absoluteValue));
+	int power = absoluteValue == 0 ? 0 : (int)Math.floor(Math.log10(absoluteValue));
 	//calculates number's mantissa
-	double mantissa = absoluteValue / Math.pow(10, power);
+	double mantissa = absoluteValue == 0 ? 0 : absoluteValue / Math.pow(10, power);
 	//formes resulting string including number sign
 	String numberSignum = _value < 0 ? "-" : "";
 	String numberMantissa = String.format("%1." + precision + "f", mantissa);
