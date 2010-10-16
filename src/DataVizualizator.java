@@ -128,10 +128,10 @@ public class DataVizualizator extends JPanel
 	double gridXAxisMaximum = 0;
 	while (true)
 	{
-	    gridXAxisMaximum += gridXAxisApproximateMaximum / xSteps;
+	    gridXAxisMaximum += gridXAxisApproximateMaximum / 2;
 	    if (gridXAxisMaximum > maxX)
 	    {
-		gridXAxisMaximum -= gridXAxisApproximateMaximum / xSteps;
+		gridXAxisMaximum -= gridXAxisApproximateMaximum / 2;
 		break;
 	    }
 	}
