@@ -116,16 +116,7 @@ public class BinaryNumber
 
 	//creates list
 	for (int i = 0; i < bin.length(); i++)
-	    switch (bin.charAt(i))
-	    {
-		case '0':
-		    binary.add(false);
-		    break;
-		case '1':
-		    binary.add(true);
-		    break;
-		default: break;
-	    }
+	    binary.add(bin.charAt(i) == '0' ? false : true);
     }
 
     /**
