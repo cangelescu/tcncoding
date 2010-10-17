@@ -228,10 +228,7 @@ public class BinaryNumber
     {
 	String out = "";
 	for (Boolean cb: binary)
-	    if (cb)
-		out += '1';
-	    else
-		out += '0';
+	    out += cb ? '1' : '0';
 	return out;
     }
 
