@@ -38,6 +38,7 @@ public class Integrator
 	signals = _signals;
 	double end = _signals.get(_signals.size() - 1).get(_signals.get(_signals.size() - 1).size() - 1).getEnd();
 	double step1 = end / _maxWidth;
+	//Kotelnokov's teorem works here not in boundary case
 	double step2 = 1 / (3 * _maxFrequency);
 	step = Math.min(step1, step2);
     }
