@@ -116,7 +116,7 @@ public class BinaryNumber
 
 	//creates list
 	for (int i = 0; i < bin.length(); i++)
-	    binary.add(bin.charAt(i) == '0' ? false : true);
+	    binary.add(bin.charAt(i) != '0');
     }
 
     /**
@@ -148,7 +148,7 @@ public class BinaryNumber
 	    highBound = len;
 	}
 	for (int i = lowBound; i < highBound; i++)
-	    binary.add(sequence.charAt(i) == '0' ? false : true);
+	    binary.add(sequence.charAt(i) != '0');
 
 	number = _number;
     }
