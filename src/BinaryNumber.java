@@ -148,18 +148,7 @@ public class BinaryNumber
 	    highBound = len;
 	}
 	for (int i = lowBound; i < highBound; i++)
-	    switch (sequence.charAt(i))
-	    {
-	        case '0':
-		binary.add(false);
-		    break;
-		case '1':
-		    binary.add(true);
-		    break;
-		default:
-		    binary.add(true);
-		    break;
-	    }
+	    binary.add(sequence.charAt(i) == '0' ? false : true);
 
 	number = _number;
     }
