@@ -27,6 +27,8 @@ public class ChannelDecoderParityBit
 {
     private List<BinaryNumber> sequence;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
 
     /**
      * Creates decoder for given input sequence of binary numbers with parity bit checking
@@ -45,7 +47,14 @@ public class ChannelDecoderParityBit
 	for (BinaryNumber bn: sequence)
 	{
 	    BinaryNumber truncated = bn.truncRight();
+	    BinaryNumber checked = bn.truncRight().shl2().sum2(new BinaryNumber(truncated.getWeight() % 2 == 0 ? 0 : 1));
+	    boolean correct = checked.toInt() == bn.toInt();
+	    boolean[] newErrorVector = new boolean[truncated.getLength()];
+	    for (int i = 0; i < newErrorVector.length; i++)
+		newErrorVector[i] = !correct;
+	    errorVector.add(new BinaryNumber(newErrorVector));
 	    outputSequence.add(truncated);
+	    checkingSequence.add(checked);
 	}
     }
 
@@ -56,5 +65,63 @@ public class ChannelDecoderParityBit
     public List<BinaryNumber> getSequence()
     {
 	return outputSequence;
+    }
+
+    /**
+     * Returns error vector of decoded sequence
+     * @return
+     */
+    public String getReport()
+    {
+	final String fontBlue = "<font color=\"blue\" size=\"5\">";
+	final String fontGreen = "<font color=\"green\" size=\"5\">";
+	final String fontRed = "<font color=\"red\" size=\"5\">";
+
+	String out = "<html>";
+
+	out += "Прийнята послідовність:<br/>";
+	boolean trigger = false;
+	for (BinaryNumber bn: sequence)
+	{
+	    if (trigger)
+		out += fontBlue + bn.getStringSequence() + " </font>";
+	    else
+		out += fontGreen + bn.getStringSequence() + " </font>";
+	    trigger = !trigger;
+	}
+
+	out += "<br/>Перевірочна послідовність:<br/>";
+	trigger = false;
+	for (BinaryNumber bn: checkingSequence)
+	{
+	    out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + " </font>";
+	    trigger = !trigger;
+	}
+
+	out += "<br/>Вектор помилок:<br/>";
+	trigger = false;
+	for (BinaryNumber bn: errorVector)
+	{
+	    if (bn.getWeight() > 0)
+		out += fontRed + bn.getStringSequence() + " </font>";
+	    else
+		out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + " </font>";
+	    trigger = !trigger;
+	}
+
+	out += "<br/>Декодована послідовність:<br/>";
+	trigger = false;
+	for (int i = 0; i < outputSequence.size(); i++)
+	{
+	    if (errorVector.get(i).getWeight() > 0)
+		out += fontRed + outputSequence.get(i).getStringSequence() + " </font>";
+	    else
+	    out += (trigger ? fontBlue : fontGreen) + outputSequence.get(i).getStringSequence() + " </font>";
+	    trigger = !trigger;
+	}
+
+	out += "</html>";
+
+	return out;
     }
 }

@@ -646,7 +646,7 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
-	blockChannelDecoderOutput.setText(currentChannelDecoder.getStringSequence());
+	blockChannelDecoderOutput.setText(currentChannelDecoder.getHTMLReport());
     }
 
     //decodes source code with selected Channel code
