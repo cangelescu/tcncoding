@@ -84,9 +84,9 @@ public class ChannelDecoderParityBit
 	for (BinaryNumber bn: sequence)
 	{
 	    if (trigger)
-		out += fontBlue + bn.getStringSequence() + " </font>";
+		out += fontBlue + bn.getStringSequence() + "</font>&#09;";
 	    else
-		out += fontGreen + bn.getStringSequence() + " </font>";
+		out += fontGreen + bn.getStringSequence() + "</font>&#09;";
 	    trigger = !trigger;
 	}
 
@@ -94,7 +94,7 @@ public class ChannelDecoderParityBit
 	trigger = false;
 	for (BinaryNumber bn: checkingSequence)
 	{
-	    out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + " </font>";
+	    out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + "</font>&#09;";
 	    trigger = !trigger;
 	}
 
@@ -103,9 +103,9 @@ public class ChannelDecoderParityBit
 	for (BinaryNumber bn: errorVector)
 	{
 	    if (bn.getWeight() > 0)
-		out += fontRed + bn.getStringSequence() + " </font>";
+		out += fontRed + bn.getStringSequence() + "</font>&#09;";
 	    else
-		out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + " </font>";
+		out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + "</font>&#09;";
 	    trigger = !trigger;
 	}
 
@@ -114,9 +114,9 @@ public class ChannelDecoderParityBit
 	for (int i = 0; i < outputSequence.size(); i++)
 	{
 	    if (errorVector.get(i).getWeight() > 0)
-		out += fontRed + outputSequence.get(i).getStringSequence() + " </font>";
+		out += fontRed + outputSequence.get(i).getStringSequence() + "</font>&#09;";
 	    else
-	    out += (trigger ? fontBlue : fontGreen) + outputSequence.get(i).getStringSequence() + " </font>";
+	    out += (trigger ? fontBlue : fontGreen) + outputSequence.get(i).getStringSequence() + "</font>&#09;";
 	    trigger = !trigger;
 	}
 
