@@ -49,7 +49,7 @@ public class ChannelDecoderParityBit
 	    BinaryNumber truncated = bn.truncRight();
 	    BinaryNumber checked = bn.truncRight().shl2().sum2(new BinaryNumber(truncated.getWeight() % 2 == 0 ? 0 : 1));
 	    boolean correct = checked.toInt() == bn.toInt();
-	    boolean[] newErrorVector = new boolean[truncated.getLength()];
+	    boolean[] newErrorVector = new boolean[bn.getLength()];
 	    for (int i = 0; i < newErrorVector.length; i++)
 		newErrorVector[i] = !correct;
 	    errorVector.add(new BinaryNumber(newErrorVector));
@@ -68,7 +68,7 @@ public class ChannelDecoderParityBit
     }
 
     /**
-     * Returns error vector of decoded sequence
+     * Returns HTML report of sequence decoding
      * @return
      */
     public String getReport()

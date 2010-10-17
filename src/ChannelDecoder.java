@@ -68,6 +68,7 @@ public class ChannelDecoder
 		    ChannelDecoderInversed channelDecoderInversed = new ChannelDecoderInversed(inputSequence);
 		    channelDecoderInversed.doDecode();
 		    outputSequence = channelDecoderInversed.getSequence();
+		    report = channelDecoderInversed.getReport();
 		    break;
 		case MANCHESTER:
 		    ChannelDecoderManchester channelDecoderManchester = new ChannelDecoderManchester(inputSequence);
