@@ -59,6 +59,7 @@ public class Integrator
 		double sp = cms.getStart();
 		while (sp <= cms.getEnd())
 		{
+		    //integrate using method of rectangles
 		    double area = cms.function(sp) * step;
 		    sum += area;
 		    newSymbol.add(new FunctionStep(sp, sum));
