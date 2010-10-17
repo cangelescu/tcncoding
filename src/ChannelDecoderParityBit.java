@@ -48,10 +48,12 @@ public class ChannelDecoderParityBit
 	{
 	    BinaryNumber truncated = bn.truncRight();
 	    boolean parityBit = truncated.getWeight() % 2 != 0;
+
 	    boolean correct = bn.getDigit(bn.getLength() - 1) == parityBit;
 	    boolean[] newErrorVector = new boolean[bn.getLength()];
 	    for (int i = 0; i < newErrorVector.length; i++)
 		newErrorVector[i] = !correct;
+
 	    errorVector.add(new BinaryNumber(newErrorVector));
 	    outputSequence.add(truncated);
 	    checkingSequence.add(truncated.shl2().sum2(new BinaryNumber(parityBit ? 1 : 0)));

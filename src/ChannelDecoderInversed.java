@@ -47,14 +47,16 @@ public class ChannelDecoderInversed
 	for (BinaryNumber bn: sequence)
 	{
 	    BinaryNumber truncated = bn.truncRight(bn.getLength() / 2);
-	    BinaryNumber checked = bn.truncRight(bn.getLength() / 2).shl2(bn.getLength() / 2).sum2(truncated.getWeight() % 2 == 0 ? truncated : truncated.not2());
-	    boolean correct = checked.toInt() == bn.toInt();
+	    BinaryNumber inversed = truncated.getWeight() % 2 == 0 ? truncated : truncated.not2();
+
+	    boolean correct = bn.truncLeft(bn.getLength() / 2).toInt() == inversed.toInt();
 	    boolean[] newErrorVector = new boolean[bn.getLength()];
 	    for (int i = 0; i < newErrorVector.length; i++)
 		newErrorVector[i] = !correct;
+
 	    errorVector.add(new BinaryNumber(newErrorVector));
 	    outputSequence.add(truncated);
-	    checkingSequence.add(checked);
+	    checkingSequence.add(truncated.shl2(bn.getLength() / 2).sum2(inversed));
 	}
     }
 
