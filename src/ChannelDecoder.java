@@ -74,6 +74,7 @@ public class ChannelDecoder
 		    ChannelDecoderManchester channelDecoderManchester = new ChannelDecoderManchester(inputSequence);
 		    channelDecoderManchester.doDecode();
 		    outputSequence = channelDecoderManchester.getSequence();
+		    report = channelDecoderManchester.getReport();
 		    break;
 		case HAMMING:
 		    ChannelDecoderHamming channelDecoderHamming = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
