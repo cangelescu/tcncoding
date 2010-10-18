@@ -55,9 +55,9 @@ public class ChannelCoderHamming
 	    boolean[] resultNumber = new boolean[bn.getLength() + 3];
 	    System.arraycopy(currentNumberArray, 0, resultNumber, 0, currentNumberArray.length);
 
-	    resultNumber[currentNumberArray.length] = currentNumberArray[0] ^ currentNumberArray[1] ^ currentNumberArray[3];
+	    resultNumber[currentNumberArray.length] = currentNumberArray[1] ^ currentNumberArray[2] ^ currentNumberArray[3];
 	    resultNumber[currentNumberArray.length + 1] = currentNumberArray[0] ^ currentNumberArray[2] ^ currentNumberArray[3];
-	    resultNumber[currentNumberArray.length + 2] = currentNumberArray[1] ^ currentNumberArray[2] ^ currentNumberArray[3];
+	    resultNumber[currentNumberArray.length + 2] = currentNumberArray[0] ^ currentNumberArray[1] ^ currentNumberArray[3];
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
 	    outputSequence.add(ready);
 	}

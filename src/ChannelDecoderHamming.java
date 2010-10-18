@@ -25,9 +25,12 @@ import java.util.List;
  */
 public class ChannelDecoderHamming
 {
-    private List<BinaryNumber> sequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> inputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> syndromeSequence = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap;
+    private int headLength;
 
     /**
      * Creates decoder with Hamming code for given input sequence of binary numbers
@@ -35,9 +38,8 @@ public class ChannelDecoderHamming
      */
     public ChannelDecoderHamming(List<BinaryNumber> _inputSequence, int _headLength, List<Integer> _lengthMap)
     {
-	sequence.add(_inputSequence.get(0).truncLeft(_headLength));
-	for (int i = 1; i < _inputSequence.size(); i++)
-	    sequence.add(_inputSequence.get(i));
+	inputSequence = _inputSequence;
+	headLength = _headLength;
 	lengthMap = _lengthMap;
     }
 
@@ -46,14 +48,37 @@ public class ChannelDecoderHamming
      */
     public void doDecode()
     {
-	List<BinaryNumber> preSequence = new ArrayList<BinaryNumber>();
-	for (BinaryNumber bn: sequence)
+	List<BinaryNumber> pre1Sequence = new ArrayList<BinaryNumber>();
+	List<BinaryNumber> pre2Sequence = new ArrayList<BinaryNumber>();
+
+	for (BinaryNumber bn: inputSequence)
 	{
-	    BinaryNumber truncated = bn.truncRight(3);
-	    preSequence.add(truncated);
+	    boolean syndrome[] = new boolean[3];
+	    syndrome[0] = bn.getDigit(3) ^ bn.getDigit(4) ^ bn.getDigit(5) ^ bn.getDigit(6);
+	    syndrome[1] = bn.getDigit(1) ^ bn.getDigit(2) ^ bn.getDigit(5) ^ bn.getDigit(6);
+	    syndrome[2] = bn.getDigit(0) ^ bn.getDigit(2) ^ bn.getDigit(4) ^ bn.getDigit(6);
+	    BinaryNumber syndromeNumber = new BinaryNumber(syndrome);
+	    int errorBit = (int)syndromeNumber.toInt();
+	    syndromeSequence.add(syndromeNumber);
+
+	    boolean[] errorVector = new boolean[bn.getLength()];
+	    for (int i = 0; i < errorVector.length; i++)
+		errorVector[i] = errorBit - 1 == i;
+	    errorSequence.add(new BinaryNumber(errorVector));
+
+	    boolean[] preDecodedBlock = bn.getBinaryArray();
+	    if (errorBit > 0)
+		preDecodedBlock[errorBit - 1] = !bn.getDigit(errorBit - 1);
+	    boolean[] decodedBlock = new boolean[preDecodedBlock.length - 3];
+	    System.arraycopy(preDecodedBlock, 0, decodedBlock, 0, decodedBlock.length);
+	    pre1Sequence.add(new BinaryNumber(decodedBlock));
 	}
 
-	Splitter recovery = new Splitter(preSequence, lengthMap);
+	pre2Sequence.add(pre1Sequence.get(0).truncLeft(headLength));
+	for (int i = 1; i < pre1Sequence.size(); i++)
+	    pre2Sequence.add(pre1Sequence.get(i));
+
+	Splitter recovery = new Splitter(pre2Sequence, lengthMap);
 	recovery.doRecovering();
 	outputSequence = recovery.getBlocks();
     }
@@ -65,5 +90,64 @@ public class ChannelDecoderHamming
     public List<BinaryNumber> getSequence()
     {
 	return outputSequence;
+    }
+
+    /**
+     * Returns HTML report of sequence decoding
+     * @return
+     */
+    public String getReport()
+    {
+	final String fontBlue = "<font color=\"blue\" size=\"5\">";
+	final String fontGreen = "<font color=\"green\" size=\"5\">";
+	final String fontRed = "<font color=\"red\" size=\"5\">";
+
+	String out = "<html>";
+
+	out += "Прийнята послідовність:<br/>";
+	boolean trigger = false;
+	for (BinaryNumber bn: inputSequence)
+	{
+	    if (trigger)
+		out += fontBlue + bn.getStringSequence() + "</font> ";
+	    else
+		out += fontGreen + bn.getStringSequence() + "</font> ";
+	    trigger = !trigger;
+	}
+
+	out += "<br/>Послідовність синдромів:<br/>";
+	trigger = false;
+	for (BinaryNumber bn: syndromeSequence)
+	{
+	    out += (trigger ? fontBlue : fontGreen) + bn.getStringSequence() + "</font> ";
+	    trigger = !trigger;
+	}
+
+	out += "<br/>Вектор помилок:<br/>";
+	trigger = false;
+	for (BinaryNumber bn: errorSequence)
+	{
+	    for (boolean cb: bn.getBinaryArray())
+	    {
+		if (cb)
+		    out += fontRed + "1</font>";
+		else
+		    out += (trigger ? fontBlue : fontGreen) + "0</font>";
+	    }
+	    out += " ";
+	    trigger = !trigger;
+	}
+
+	out += "<br/>Декодована послідовність:<br/>";
+	trigger = false;
+	for (int i = 0; i < outputSequence.size(); i++)
+	{
+	    out += (trigger ? fontBlue : fontGreen) + outputSequence.get(i).getStringSequence() + "</font> ";
+	    trigger = !trigger;
+	}
+
+	out += "</html>";
+
+	return out;
     }
 }

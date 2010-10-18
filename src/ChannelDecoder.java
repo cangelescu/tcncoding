@@ -80,6 +80,7 @@ public class ChannelDecoder
 		    ChannelDecoderHamming channelDecoderHamming = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
 		    channelDecoderHamming.doDecode();
 		    outputSequence = channelDecoderHamming.getSequence();
+		    report = channelDecoderHamming.getReport();
 		    break;
 		default:
 		    break;
