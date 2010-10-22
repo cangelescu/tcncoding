@@ -53,6 +53,7 @@ public class ChannelDecoderHamming
 
 	for (BinaryNumber bn: inputSequence)
 	{
+	    //calculates Hamming code syndrome
 	    boolean syndrome[] = new boolean[3];
 	    syndrome[0] = bn.getDigit(3) ^ bn.getDigit(4) ^ bn.getDigit(5) ^ bn.getDigit(6);
 	    syndrome[1] = bn.getDigit(1) ^ bn.getDigit(2) ^ bn.getDigit(5) ^ bn.getDigit(6);
@@ -61,11 +62,13 @@ public class ChannelDecoderHamming
 	    int errorBit = (int)syndromeNumber.toInt();
 	    syndromeSequence.add(syndromeNumber);
 
+	    //creates error vector based on calculated syndrome
 	    boolean[] errorVector = new boolean[bn.getLength()];
 	    for (int i = 0; i < errorVector.length; i++)
 		errorVector[i] = errorBit - 1 == i;
 	    errorSequence.add(new BinaryNumber(errorVector));
 
+	    //recovers code sequence using calculated integer value of syndrome
 	    boolean[] preDecodedBlock = bn.getBinaryArray();
 	    if (errorBit > 0)
 		preDecodedBlock[errorBit - 1] = !bn.getDigit(errorBit - 1);
@@ -74,10 +77,12 @@ public class ChannelDecoderHamming
 	    pre1Sequence.add(new BinaryNumber(decodedBlock));
 	}
 
+	//truncates alignment head of the whole code sequence
 	pre2Sequence.add(pre1Sequence.get(0).truncLeft(headLength));
 	for (int i = 1; i < pre1Sequence.size(); i++)
 	    pre2Sequence.add(pre1Sequence.get(i));
 
+	//recovers original blocks of sequence
 	Splitter recovery = new Splitter(pre2Sequence, lengthMap);
 	recovery.doRecovering();
 	outputSequence = recovery.getBlocks();
