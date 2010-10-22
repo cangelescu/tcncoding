@@ -823,6 +823,7 @@ public class UIMain extends javax.swing.JFrame
         integrateItem = new javax.swing.JMenuItem();
         blockingItem = new javax.swing.JMenuItem();
         formattingItem = new javax.swing.JMenuItem();
+        blocksErrorsInjectorItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -2017,6 +2018,14 @@ public class UIMain extends javax.swing.JFrame
         });
         developerMenu.add(formattingItem);
 
+        blocksErrorsInjectorItem.setText("Помилки поблоково");
+        blocksErrorsInjectorItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blocksErrorsInjectorItemActionPerformed(evt);
+            }
+        });
+        developerMenu.add(blocksErrorsInjectorItem);
+
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -2383,6 +2392,33 @@ public class UIMain extends javax.swing.JFrame
 	System.out.println(formatter.formatValue(-8192.398));
     }//GEN-LAST:event_formattingItemActionPerformed
 
+    private void blocksErrorsInjectorItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blocksErrorsInjectorItemActionPerformed
+    {//GEN-HEADEREND:event_blocksErrorsInjectorItemActionPerformed
+	List<BinaryNumber> symbols = new ArrayList<BinaryNumber>();
+	symbols.add(new BinaryNumber(619));
+	symbols.add(new BinaryNumber(357));
+	symbols.add(new BinaryNumber(37));
+
+	ErrorsInjector injector = new ErrorsInjector(symbols, 3, true);
+	injector.injectErrors();
+	List<BinaryNumber> brokenSymbols = new ArrayList<BinaryNumber>();
+	brokenSymbols = injector.getSequence();
+
+	List<BinaryNumber> errorsVectors = new ArrayList<BinaryNumber>();
+	for (int i = 0; i < symbols.size(); i++)
+	    errorsVectors.add(symbols.get(i).sum2(brokenSymbols.get(i)));
+
+	for (BinaryNumber cbn: symbols)
+	    System.out.print(cbn.getStringSequence() + " ");
+	System.out.println();
+	for (BinaryNumber cbn: brokenSymbols)
+	    System.out.print(cbn.getStringSequence() + " ");
+	System.out.println();
+	for (BinaryNumber cbn: errorsVectors)
+	    System.out.print(cbn.getStringSequence() + " ");
+	System.out.println();
+    }//GEN-LAST:event_blocksErrorsInjectorItemActionPerformed
+
     /**
      * 
      * @param args
@@ -2447,6 +2483,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockSummatorOutputField;
     private javax.swing.JPanel blockSummatorOutputPanel;
     private javax.swing.JMenuItem blockingItem;
+    private javax.swing.JMenuItem blocksErrorsInjectorItem;
     private javax.swing.JLabel bpsLabel;
     private javax.swing.JButton channelButton;
     private javax.swing.JButton channelCoderButton;
