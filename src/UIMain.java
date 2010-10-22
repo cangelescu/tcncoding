@@ -17,7 +17,6 @@
 */
 
 import java.awt.Color;
-import flanagan.integration.*;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.ArrayList;
