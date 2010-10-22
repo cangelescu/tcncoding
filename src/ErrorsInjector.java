@@ -62,8 +62,12 @@ public class ErrorsInjector {
 		{
 		    //store each new position in order not to repeat them
 		    List<Integer> positions = new ArrayList<Integer>();
-		    //makes errorsCount injections
-		    for (int j = 0; j < errorsCount; j++)
+		    //prevent injecting more errors than block has
+		    int steps = errorsCount;
+		    if (errorsCount > inputSequence.get(i).getLength())
+			steps = inputSequence.get(i).getLength();
+		    //makes steps injections
+		    for (int j = 0; j < steps; j++)
 		    {
 			int injectionPosition;
 			boolean ok;
@@ -99,8 +103,14 @@ public class ErrorsInjector {
 	    {
 		//store pairs [block, position] in order not to repeat them
 		List<List<Integer>> positions = new ArrayList<List<Integer>>();
-		//repeat the algorithm errorsCount times
-		for (int i = 0; i < errorsCount; i++)
+		//prevent injecting more errors than input sequence has
+		int steps = errorsCount, commonLength = 0;
+		for (int i = 0; i < inputSequence.size(); i++)
+		    commonLength += inputSequence.get(i).getLength();
+		if (errorsCount > commonLength)
+		    steps = commonLength;
+		//repeat the algorithm steps times
+		for (int i = 0; i < steps; i++)
 		{
 		    int injectionBlock, injectionPosition;
 		    boolean ok;
