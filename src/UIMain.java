@@ -825,7 +825,6 @@ public class UIMain extends javax.swing.JFrame
         weightItem = new javax.swing.JMenuItem();
         integrateItem = new javax.swing.JMenuItem();
         blockingItem = new javax.swing.JMenuItem();
-        formattingItem = new javax.swing.JMenuItem();
         blocksErrorsInjectorItem = new javax.swing.JMenuItem();
         sequenceErrorsInjector = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
@@ -2040,14 +2039,6 @@ public class UIMain extends javax.swing.JFrame
         });
         developerMenu.add(blockingItem);
 
-        formattingItem.setText("Форматування чисел");
-        formattingItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formattingItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(formattingItem);
-
         blocksErrorsInjectorItem.setText("Помилки поблоково");
         blocksErrorsInjectorItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2420,18 +2411,6 @@ public class UIMain extends javax.swing.JFrame
 	channelCodesChooserLabel.setEnabled(useChannelCoderTrigger);
     }//GEN-LAST:event_useChannelCoderItemStateChanged
 
-    private void formattingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_formattingItemActionPerformed
-    {//GEN-HEADEREND:event_formattingItemActionPerformed
-	DecimalFormatter formatter = new DecimalFormatter(2);
-	System.out.println(formatter.formatValue(0));
-	System.out.println(formatter.formatValue(1024));
-	System.out.println(formatter.formatValue(-2048));
-	System.out.println(formatter.formatValue(0.000000567));
-	System.out.println(formatter.formatValue(-0.0000345));
-	System.out.println(formatter.formatValue(1024.112));
-	System.out.println(formatter.formatValue(-8192.398));
-    }//GEN-LAST:event_formattingItemActionPerformed
-
     private void blocksErrorsInjectorItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blocksErrorsInjectorItemActionPerformed
     {//GEN-HEADEREND:event_blocksErrorsInjectorItemActionPerformed
 	List<BinaryNumber> symbols = new ArrayList<BinaryNumber>();
@@ -2580,7 +2559,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JMenu fileMenu;
     private javax.swing.JCheckBox forceErrors;
     private javax.swing.JSpinner forceErrorsCount;
-    private javax.swing.JMenuItem formattingItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JLabel hzBearerLabel;
     private javax.swing.JLabel hzDeviationLabel;
