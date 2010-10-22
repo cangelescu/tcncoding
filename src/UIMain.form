@@ -431,7 +431,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="noisePowerLabel" min="-2" max="-2" attributes="0"/>
@@ -447,7 +447,12 @@
                                   <Component id="forceErrorsCount" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="313" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="errorsInjectorPerSequence" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="errorsInjectorPerBlock" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="154" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -465,8 +470,11 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="forceErrors" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="forceErrorsCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="errorsInjectorPerBlock" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="58" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="errorsInjectorPerSequence" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="34" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -514,12 +522,39 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JRadioButton" name="errorsInjectorPerBlock">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="errorsInjectorTypeChooserGroup"/>
+                    </Property>
+                    <Property name="selected" type="boolean" value="true"/>
+                    <Property name="text" type="java.lang.String" value="&#x43f;&#x43e;&#x431;&#x43b;&#x43e;&#x43a;&#x43e;&#x432;&#x43e;"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="errorsInjectorPerBlockItemStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="errorsInjectorPerSequence">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="errorsInjectorTypeChooserGroup"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x443; &#x432;&#x441;&#x44e; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="errorsInjectorPerSequenceItemStateChanged"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.ButtonGroup" name="errorsInjectorTypeChooserGroup">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="mainMenu">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">

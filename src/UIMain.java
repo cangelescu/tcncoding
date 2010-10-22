@@ -101,7 +101,7 @@ public class UIMain extends javax.swing.JFrame
     List<List<ChannelSignal>> channelOutput = null;
     List<List<ChannelSignalSqr>> channelSqrOutput = null;
     List<List<DataVizualizatorProvider>> channelOutputProvider = null;
-    boolean useNoiseErrorsTrigger = true, forceErrorsTrigger = false;
+    boolean useNoiseErrorsTrigger = true, forceErrorsTrigger = false, injectErrorsPerBlock = true;
     //TODO: EXPERIMENTAL
     double channelOutputEnergy = 0;
     double errorsProbability = 0;
@@ -611,7 +611,7 @@ public class UIMain extends javax.swing.JFrame
 	int errorsCount = 0;
 	if (forceErrorsTrigger)
 	    errorsCount = (Integer) forceErrorsCount.getValue();
-	currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, channelSymbols);
+	currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumbers();
 	blockResolverOutput.setText(currentResolver.getStringSequence());
@@ -732,6 +732,9 @@ public class UIMain extends javax.swing.JFrame
         useNoiseErrors = new javax.swing.JCheckBox();
         forceErrors = new javax.swing.JCheckBox();
         forceErrorsCount = new javax.swing.JSpinner();
+        errorsInjectorPerBlock = new javax.swing.JRadioButton();
+        errorsInjectorPerSequence = new javax.swing.JRadioButton();
+        errorsInjectorTypeChooserGroup = new javax.swing.ButtonGroup();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
@@ -1083,6 +1086,25 @@ public class UIMain extends javax.swing.JFrame
         forceErrorsCount.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         forceErrorsCount.setEnabled(false);
 
+        errorsInjectorTypeChooserGroup.add(errorsInjectorPerBlock);
+        errorsInjectorPerBlock.setSelected(true);
+        errorsInjectorPerBlock.setText("поблоково");
+        errorsInjectorPerBlock.setEnabled(false);
+        errorsInjectorPerBlock.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                errorsInjectorPerBlockItemStateChanged(evt);
+            }
+        });
+
+        errorsInjectorTypeChooserGroup.add(errorsInjectorPerSequence);
+        errorsInjectorPerSequence.setText("у всю послідовність");
+        errorsInjectorPerSequence.setEnabled(false);
+        errorsInjectorPerSequence.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                errorsInjectorPerSequenceItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout channelTabLayout = new javax.swing.GroupLayout(channelTab);
         channelTab.setLayout(channelTabLayout);
         channelTabLayout.setHorizontalGroup(
@@ -1100,7 +1122,11 @@ public class UIMain extends javax.swing.JFrame
                         .addComponent(forceErrors)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(forceErrorsCount)))
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorsInjectorPerSequence)
+                    .addComponent(errorsInjectorPerBlock))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         channelTabLayout.setVerticalGroup(
             channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1114,8 +1140,11 @@ public class UIMain extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(forceErrors)
-                    .addComponent(forceErrorsCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(forceErrorsCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorsInjectorPerBlock))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorsInjectorPerSequence)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         optionsTabs.addTab("Канал", channelTab);
@@ -2374,6 +2403,8 @@ public class UIMain extends javax.swing.JFrame
     {//GEN-HEADEREND:event_forceErrorsItemStateChanged
 	boolean newState = evt.getStateChange() == ItemEvent.SELECTED;
 	forceErrorsCount.setEnabled(newState);
+	errorsInjectorPerBlock.setEnabled(newState);
+	errorsInjectorPerSequence.setEnabled(newState);
 	forceErrorsTrigger = newState;
     }//GEN-LAST:event_forceErrorsItemStateChanged
 
@@ -2455,6 +2486,16 @@ public class UIMain extends javax.swing.JFrame
 	System.out.println();
     }//GEN-LAST:event_sequenceErrorsInjectorActionPerformed
 
+    private void errorsInjectorPerBlockItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_errorsInjectorPerBlockItemStateChanged
+    {//GEN-HEADEREND:event_errorsInjectorPerBlockItemStateChanged
+	injectErrorsPerBlock = evt.getStateChange() == ItemEvent.SELECTED;
+    }//GEN-LAST:event_errorsInjectorPerBlockItemStateChanged
+
+    private void errorsInjectorPerSequenceItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_errorsInjectorPerSequenceItemStateChanged
+    {//GEN-HEADEREND:event_errorsInjectorPerSequenceItemStateChanged
+	injectErrorsPerBlock = !(evt.getStateChange() == ItemEvent.SELECTED);
+    }//GEN-LAST:event_errorsInjectorPerSequenceItemStateChanged
+
     /**
      * 
      * @param args
@@ -2532,6 +2573,9 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JMenu developerMenu;
     private javax.swing.JMenuItem doModellingItem;
     private javax.swing.JMenuItem doModellingOptionsItem;
+    private javax.swing.JRadioButton errorsInjectorPerBlock;
+    private javax.swing.JRadioButton errorsInjectorPerSequence;
+    private javax.swing.ButtonGroup errorsInjectorTypeChooserGroup;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JCheckBox forceErrors;

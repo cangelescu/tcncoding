@@ -18,7 +18,6 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -28,12 +27,13 @@ public class Resolver
 {
     private List<List<List<FunctionStep>>> summatorSignal;
     private double threshold;
-    private List<BinaryNumber> outputNumbers;
+    private List<BinaryNumber> outputNumbers = new ArrayList<BinaryNumber>();
     private Modulator.ModulationType modulationType;
     private boolean useNoiseErrors;
     private boolean forceErrors;
     private List<BinaryNumber> ethalonBinarySequence;
     private int errorsCount;
+    private boolean perBlock;
 
     /**
      * Creates resolver
@@ -43,9 +43,10 @@ public class Resolver
      * @param _useNoiseErrors whether to use errors, made by channel noise
      * @param _forceErrors whether to force errors injection
      * @param _errorsCount number of errors to inject
+     * @param _perBlock indicates using per-block injection
      * @param _ethalonBinarySequence ethalon binary sequence to compare with
      */
-    public Resolver(List<List<List<FunctionStep>>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, List<BinaryNumber> _ethalonBinarySequence)
+    public Resolver(List<List<List<FunctionStep>>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
     {
 	summatorSignal = _summatorSignal;
 	threshold = _threshold;
@@ -54,6 +55,7 @@ public class Resolver
 	forceErrors = _forceErrors;
 	ethalonBinarySequence = _ethalonBinarySequence;
 	errorsCount = _errorsCount;
+	perBlock = _perBlock;
     }
 
     /**
@@ -61,7 +63,7 @@ public class Resolver
      */
     public void doResolving()
     {
-	outputNumbers = new ArrayList<BinaryNumber>();
+	List<BinaryNumber> preOutputNumbers = new ArrayList<BinaryNumber>();
 
 	//use classic resolving algorithm if enabled
 	if (useNoiseErrors)
@@ -74,55 +76,30 @@ public class Resolver
 		    double value = clfs.get(clfs.size() - 1).getY();
 		    currentBlock.add(value > threshold);
 		}
-		outputNumbers.add(new BinaryNumber(currentBlock));
+		preOutputNumbers.add(new BinaryNumber(currentBlock));
 	    }
 	} else
 	    for (BinaryNumber cbn: ethalonBinarySequence)
-		outputNumbers.add(cbn);
+		preOutputNumbers.add(cbn);
 
 	//recode sequence if it's RPSK
 	if (modulationType == Modulator.ModulationType.RPSK)
 	{
-	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(outputNumbers);
+	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(preOutputNumbers);
 	    recoder.doDecoding();
-	    outputNumbers = recoder.getList();
+	    preOutputNumbers = recoder.getList();
 	}
 
 	//inject errors if enabled
 	if (forceErrors)
 	{
-	    Random generator = new Random();
-
-	    //store calculated error vectors not to compensate one error with another
-	    List<List<Integer>> positions = new ArrayList<List<Integer>>();
-	    for (int i = 0; i < errorsCount; i++)
-	    {
-		int injectionBlock, injectionBlockLength, injectionSymbol;
-		boolean found;
-		do
-		{
-		    injectionBlock = (int) Math.round(generator.nextDouble() * (outputNumbers.size() - 1));
-		    injectionBlockLength = outputNumbers.get(injectionBlock).getLength();
-		    injectionSymbol = (int) Math.round(generator.nextDouble() * (injectionBlockLength - 1));
-
-		    found = false;
-		    for (List<Integer> cti: positions)
-			if (cti.get(0) == injectionBlock && cti.get(1) == injectionSymbol)
-			    found = true;
-		} while (found);
-		List<Integer> record = new ArrayList<Integer>();
-		record.add(injectionBlock);
-		record.add(injectionSymbol);
-		positions.add(record);
-
-		//inject errors
-		boolean[] errorVector = new boolean[injectionBlockLength];
-		errorVector[injectionSymbol] = true;
-		BinaryNumber errorVectorNumber = new BinaryNumber(errorVector);
-		BinaryNumber injectedNumber = outputNumbers.get(injectionBlock).sum2(errorVectorNumber);
-		outputNumbers.set(injectionBlock, injectedNumber);
-	    }
-	}
+	    ErrorsInjector injector = new ErrorsInjector(preOutputNumbers, errorsCount, perBlock);
+	    injector.injectErrors();
+	    outputNumbers = injector.getSequence();
+	} else
+	//otherwise copy unaffected sequence
+	    for (BinaryNumber cbn: preOutputNumbers)
+		outputNumbers.add(cbn);
     }
 
     /**
