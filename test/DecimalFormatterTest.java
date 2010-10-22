@@ -35,7 +35,6 @@ public class DecimalFormatterTest {
     public void test000FormatValue()
     {
 	double _value = 0.0;
-	System.out.println("formatValue: " + _value);
 	DecimalFormatter instance = new DecimalFormatter(2);
 	String expResult = "0,00";
 	String result = instance.formatValue(_value);
@@ -49,7 +48,6 @@ public class DecimalFormatterTest {
     public void test001FormatValue()
     {
 	double _value = 0.000023;
-	System.out.println("formatValue: " + _value);
 	DecimalFormatter instance = new DecimalFormatter(2);
 	String expResult = "2,30*10^-5";
 	String result = instance.formatValue(_value);
@@ -63,7 +61,6 @@ public class DecimalFormatterTest {
     public void test002FormatValue()
     {
 	double _value = -0.003;
-	System.out.println("formatValue: " + _value);
 	DecimalFormatter instance = new DecimalFormatter(2);
 	String expResult = "-3,00*10^-3";
 	String result = instance.formatValue(_value);
@@ -77,7 +74,6 @@ public class DecimalFormatterTest {
     public void test003FormatValue()
     {
 	double _value = 1536.22;
-	System.out.println("formatValue: " + _value);
 	DecimalFormatter instance = new DecimalFormatter(2);
 	String expResult = "1,54*10^3";
 	String result = instance.formatValue(_value);
@@ -91,7 +87,6 @@ public class DecimalFormatterTest {
     public void test004FormatValue()
     {
 	double _value = -667.345;
-	System.out.println("formatValue: " + _value);
 	DecimalFormatter instance = new DecimalFormatter(2);
 	String expResult = "-6,67*10^2";
 	String result = instance.formatValue(_value);
