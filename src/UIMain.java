@@ -818,7 +818,6 @@ public class UIMain extends javax.swing.JFrame
         doModellingOptionsItem = new javax.swing.JMenuItem();
         doModellingItem = new javax.swing.JMenuItem();
         developerMenu = new javax.swing.JMenu();
-        blockingItem = new javax.swing.JMenuItem();
         blocksErrorsInjectorItem = new javax.swing.JMenuItem();
         sequenceErrorsInjector = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
@@ -1985,14 +1984,6 @@ public class UIMain extends javax.swing.JFrame
 
         developerMenu.setText("Розробка");
 
-        blockingItem.setText("Розбиття на блоки");
-        blockingItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                blockingItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(blockingItem);
-
         blocksErrorsInjectorItem.setText("Помилки поблоково");
         blocksErrorsInjectorItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2158,23 +2149,6 @@ public class UIMain extends javax.swing.JFrame
 	selectedBlock = Blocks.CHANNEL;
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelComponentShown
-
-    //blocking demo
-    private void blockingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blockingItemActionPerformed
-    {//GEN-HEADEREND:event_blockingItemActionPerformed
-	BinaryNumber test1 = new BinaryNumber("11011010001101");
-	BinaryNumber test2 = new BinaryNumber("01011");
-	BinaryNumber test3 = new BinaryNumber("100111");
-	List<BinaryNumber> testList = new ArrayList<BinaryNumber>();
-	testList.add(test1);
-	testList.add(test2);
-	testList.add(test3);
-	Splitter test_blocker = new Splitter(testList, 4);
-	test_blocker.doSplitting();
-	List<BinaryNumber> blocks = test_blocker.getBlocks();
-	for (BinaryNumber bn: blocks)
-	    System.out.println(bn.getStringSequence());
-    }//GEN-LAST:event_blockingItemActionPerformed
 
     private void multiplier0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier0ButtonActionPerformed
     {//GEN-HEADEREND:event_multiplier0ButtonActionPerformed
@@ -2432,7 +2406,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockSummator;
     private javax.swing.JPanel blockSummatorOutputField;
     private javax.swing.JPanel blockSummatorOutputPanel;
-    private javax.swing.JMenuItem blockingItem;
     private javax.swing.JMenuItem blocksErrorsInjectorItem;
     private javax.swing.JLabel bpsLabel;
     private javax.swing.JButton channelButton;
