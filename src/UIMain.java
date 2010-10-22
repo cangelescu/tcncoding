@@ -2164,16 +2164,6 @@ public class UIMain extends javax.swing.JFrame
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelComponentShown
 
-    //implements test function to integrate
-    private class TFun implements IntegralFunction
-    {
-	public double function(double x)
-	{
-	    return Math.abs(Math.sin(x)) + Math.exp(x);
-	}
-    }
-
-    //integrating demo
     //blocking demo
     private void blockingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blockingItemActionPerformed
     {//GEN-HEADEREND:event_blockingItemActionPerformed
