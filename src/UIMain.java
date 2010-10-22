@@ -819,7 +819,6 @@ public class UIMain extends javax.swing.JFrame
         doModellingOptionsItem = new javax.swing.JMenuItem();
         doModellingItem = new javax.swing.JMenuItem();
         developerMenu = new javax.swing.JMenu();
-        integrateItem = new javax.swing.JMenuItem();
         blockingItem = new javax.swing.JMenuItem();
         blocksErrorsInjectorItem = new javax.swing.JMenuItem();
         sequenceErrorsInjector = new javax.swing.JMenuItem();
@@ -1987,14 +1986,6 @@ public class UIMain extends javax.swing.JFrame
 
         developerMenu.setText("Розробка");
 
-        integrateItem.setText("Інтегрування функції");
-        integrateItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                integrateItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(integrateItem);
-
         blockingItem.setText("Розбиття на блоки");
         blockingItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2183,13 +2174,6 @@ public class UIMain extends javax.swing.JFrame
     }
 
     //integrating demo
-    private void integrateItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrateItemActionPerformed
-    {//GEN-HEADEREND:event_integrateItemActionPerformed
-	TFun testFunction = new TFun();
-	double result = Integration.gaussQuad(testFunction, 0, 2 * Math.PI, 128);
-	System.out.printf("Integral of |sin(x)|+e^x from 0 to 2pi: %1.4f\n", result);
-    }//GEN-LAST:event_integrateItemActionPerformed
-
     //blocking demo
     private void blockingItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blockingItemActionPerformed
     {//GEN-HEADEREND:event_blockingItemActionPerformed
@@ -2489,7 +2473,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JLabel hzDeviationLabel;
     private javax.swing.JSpinner informationalSpeed;
     private javax.swing.JLabel informationalSpeedLabel;
-    private javax.swing.JMenuItem integrateItem;
     private javax.swing.JButton integrator0Button;
     private javax.swing.JButton integrator1Button;
     private javax.swing.JPanel integratorOutputField0;

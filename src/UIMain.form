@@ -609,14 +609,6 @@
             <Property name="text" type="java.lang.String" value="&#x420;&#x43e;&#x437;&#x440;&#x43e;&#x431;&#x43a;&#x430;"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="integrateItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x444;&#x443;&#x43d;&#x43a;&#x446;&#x456;&#x457;"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="integrateItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="blockingItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x420;&#x43e;&#x437;&#x431;&#x438;&#x442;&#x442;&#x44f; &#x43d;&#x430; &#x431;&#x43b;&#x43e;&#x43a;&#x438;"/>
