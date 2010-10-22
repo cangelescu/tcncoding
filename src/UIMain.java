@@ -824,6 +824,7 @@ public class UIMain extends javax.swing.JFrame
         blockingItem = new javax.swing.JMenuItem();
         formattingItem = new javax.swing.JMenuItem();
         blocksErrorsInjectorItem = new javax.swing.JMenuItem();
+        sequenceErrorsInjector = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -2026,6 +2027,14 @@ public class UIMain extends javax.swing.JFrame
         });
         developerMenu.add(blocksErrorsInjectorItem);
 
+        sequenceErrorsInjector.setText("Помилки у послідовність");
+        sequenceErrorsInjector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sequenceErrorsInjectorActionPerformed(evt);
+            }
+        });
+        developerMenu.add(sequenceErrorsInjector);
+
         mainMenu.add(developerMenu);
 
         helpMenu.setText("Допомога");
@@ -2419,6 +2428,33 @@ public class UIMain extends javax.swing.JFrame
 	System.out.println();
     }//GEN-LAST:event_blocksErrorsInjectorItemActionPerformed
 
+    private void sequenceErrorsInjectorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sequenceErrorsInjectorActionPerformed
+    {//GEN-HEADEREND:event_sequenceErrorsInjectorActionPerformed
+	List<BinaryNumber> symbols = new ArrayList<BinaryNumber>();
+	symbols.add(new BinaryNumber(619));
+	symbols.add(new BinaryNumber(357));
+	symbols.add(new BinaryNumber(37));
+
+	ErrorsInjector injector = new ErrorsInjector(symbols, 3, false);
+	injector.injectErrors();
+	List<BinaryNumber> brokenSymbols = new ArrayList<BinaryNumber>();
+	brokenSymbols = injector.getSequence();
+
+	List<BinaryNumber> errorsVectors = new ArrayList<BinaryNumber>();
+	for (int i = 0; i < symbols.size(); i++)
+	    errorsVectors.add(symbols.get(i).sum2(brokenSymbols.get(i)));
+
+	for (BinaryNumber cbn: symbols)
+	    System.out.print(cbn.getStringSequence() + " ");
+	System.out.println();
+	for (BinaryNumber cbn: brokenSymbols)
+	    System.out.print(cbn.getStringSequence() + " ");
+	System.out.println();
+	for (BinaryNumber cbn: errorsVectors)
+	    System.out.print(cbn.getStringSequence() + " ");
+	System.out.println();
+    }//GEN-LAST:event_sequenceErrorsInjectorActionPerformed
+
     /**
      * 
      * @param args
@@ -2554,6 +2590,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JTabbedPane optionsTabs;
     private javax.swing.JTextArea receivedMessageArea;
     private javax.swing.JPanel receivedMessagePanel;
+    private javax.swing.JMenuItem sequenceErrorsInjector;
     private javax.swing.JMenuItem shl2Item;
     private javax.swing.JButton sourceCoderButton;
     private javax.swing.JPanel sourceCoderTab;

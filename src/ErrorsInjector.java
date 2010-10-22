@@ -50,32 +50,60 @@ public class ErrorsInjector {
 		    List<Integer> positions = new ArrayList<Integer>();
 		    for (int j = 0; j < errorsCount; j++)
 		    {
-			int newPosition;
+			int injectionPosition;
 			boolean ok;
 			do
 			{
-			    newPosition = (int)Math.round(randomizer.nextDouble() * (inputSequence.get(i).getLength() - 1));
+			    injectionPosition = (int)Math.round(randomizer.nextDouble() * (inputSequence.get(i).getLength() - 1));
 			    ok = true;
 			    for (int ci: positions)
-				if (ci == newPosition)
+				if (ci == injectionPosition)
 				    ok = false;
 			}
 			while (!ok);
-			positions.add(newPosition);
+			positions.add(injectionPosition);
 		    }
 
-		    boolean[] newBlock = inputSequence.get(i).getBinaryArray();
+		    boolean[] injectedBlock = inputSequence.get(i).getBinaryArray();
 		    for (int ci: positions)
 		    {
-			boolean bit = newBlock[ci];
-			newBlock[ci] = !bit;
+			boolean bit = injectedBlock[ci];
+			injectedBlock[ci] = !bit;
 		    }
 
-		    outputSequence.add(new BinaryNumber(newBlock));
+		    outputSequence.add(new BinaryNumber(injectedBlock));
 		}
 	    } else
 	    {
-
+		List<List<Integer>> positions = new ArrayList<List<Integer>>();
+		for (int i = 0; i < errorsCount; i++)
+		{
+		    int injectionBlock, injectionPosition;
+		    boolean ok;
+		    do
+		    {
+			injectionBlock = (int)Math.round(randomizer.nextDouble() * (inputSequence.size() - 1));
+			injectionPosition = (int)Math.round(randomizer.nextDouble() * (inputSequence.get(injectionBlock).getLength() - 1));
+			ok = true;
+			for (List<Integer> cli: positions)
+			    if (cli.get(0) == injectionBlock && cli.get(1) == injectionPosition)
+				ok = false;
+		    }
+		    while (!ok);
+		    List<Integer> injectionPair = new ArrayList<Integer>();
+		    injectionPair.add(injectionBlock);
+		    injectionPair.add(injectionPosition);
+		    positions.add(injectionPair);
+		}
+		for (BinaryNumber cbn: inputSequence)
+		    outputSequence.add(cbn);
+		for (List<Integer> cli: positions)
+		{
+		    boolean[] injectedBlock = outputSequence.get(cli.get(0)).getBinaryArray();
+		    boolean bit = injectedBlock[cli.get(1)];
+		    injectedBlock[cli.get(1)] = !bit;
+		    outputSequence.set(cli.get(0), new BinaryNumber(injectedBlock));
+		}
 	    }
 	}
     }
