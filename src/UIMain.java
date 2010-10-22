@@ -817,9 +817,6 @@ public class UIMain extends javax.swing.JFrame
         modellingMenu = new javax.swing.JMenu();
         doModellingOptionsItem = new javax.swing.JMenuItem();
         doModellingItem = new javax.swing.JMenuItem();
-        developerMenu = new javax.swing.JMenu();
-        blocksErrorsInjectorItem = new javax.swing.JMenuItem();
-        sequenceErrorsInjector = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -1982,26 +1979,6 @@ public class UIMain extends javax.swing.JFrame
 
         mainMenu.add(modellingMenu);
 
-        developerMenu.setText("Розробка");
-
-        blocksErrorsInjectorItem.setText("Помилки поблоково");
-        blocksErrorsInjectorItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                blocksErrorsInjectorItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(blocksErrorsInjectorItem);
-
-        sequenceErrorsInjector.setText("Помилки у послідовність");
-        sequenceErrorsInjector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sequenceErrorsInjectorActionPerformed(evt);
-            }
-        });
-        developerMenu.add(sequenceErrorsInjector);
-
-        mainMenu.add(developerMenu);
-
         helpMenu.setText("Допомога");
 
         aboutItem.setText("Про програму…");
@@ -2279,60 +2256,6 @@ public class UIMain extends javax.swing.JFrame
 	channelCodesChooserLabel.setEnabled(useChannelCoderTrigger);
     }//GEN-LAST:event_useChannelCoderItemStateChanged
 
-    private void blocksErrorsInjectorItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blocksErrorsInjectorItemActionPerformed
-    {//GEN-HEADEREND:event_blocksErrorsInjectorItemActionPerformed
-	List<BinaryNumber> symbols = new ArrayList<BinaryNumber>();
-	symbols.add(new BinaryNumber(619));
-	symbols.add(new BinaryNumber(357));
-	symbols.add(new BinaryNumber(37));
-
-	ErrorsInjector injector = new ErrorsInjector(symbols, 3, true);
-	injector.injectErrors();
-	List<BinaryNumber> brokenSymbols = new ArrayList<BinaryNumber>();
-	brokenSymbols = injector.getSequence();
-
-	List<BinaryNumber> errorsVectors = new ArrayList<BinaryNumber>();
-	for (int i = 0; i < symbols.size(); i++)
-	    errorsVectors.add(symbols.get(i).sum2(brokenSymbols.get(i)));
-
-	for (BinaryNumber cbn: symbols)
-	    System.out.print(cbn.getStringSequence() + " ");
-	System.out.println();
-	for (BinaryNumber cbn: brokenSymbols)
-	    System.out.print(cbn.getStringSequence() + " ");
-	System.out.println();
-	for (BinaryNumber cbn: errorsVectors)
-	    System.out.print(cbn.getStringSequence() + " ");
-	System.out.println();
-    }//GEN-LAST:event_blocksErrorsInjectorItemActionPerformed
-
-    private void sequenceErrorsInjectorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sequenceErrorsInjectorActionPerformed
-    {//GEN-HEADEREND:event_sequenceErrorsInjectorActionPerformed
-	List<BinaryNumber> symbols = new ArrayList<BinaryNumber>();
-	symbols.add(new BinaryNumber(619));
-	symbols.add(new BinaryNumber(357));
-	symbols.add(new BinaryNumber(37));
-
-	ErrorsInjector injector = new ErrorsInjector(symbols, 3, false);
-	injector.injectErrors();
-	List<BinaryNumber> brokenSymbols = new ArrayList<BinaryNumber>();
-	brokenSymbols = injector.getSequence();
-
-	List<BinaryNumber> errorsVectors = new ArrayList<BinaryNumber>();
-	for (int i = 0; i < symbols.size(); i++)
-	    errorsVectors.add(symbols.get(i).sum2(brokenSymbols.get(i)));
-
-	for (BinaryNumber cbn: symbols)
-	    System.out.print(cbn.getStringSequence() + " ");
-	System.out.println();
-	for (BinaryNumber cbn: brokenSymbols)
-	    System.out.print(cbn.getStringSequence() + " ");
-	System.out.println();
-	for (BinaryNumber cbn: errorsVectors)
-	    System.out.print(cbn.getStringSequence() + " ");
-	System.out.println();
-    }//GEN-LAST:event_sequenceErrorsInjectorActionPerformed
-
     private void errorsInjectorPerBlockItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_errorsInjectorPerBlockItemStateChanged
     {//GEN-HEADEREND:event_errorsInjectorPerBlockItemStateChanged
 	injectErrorsPerBlock = evt.getStateChange() == ItemEvent.SELECTED;
@@ -2406,7 +2329,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockSummator;
     private javax.swing.JPanel blockSummatorOutputField;
     private javax.swing.JPanel blockSummatorOutputPanel;
-    private javax.swing.JMenuItem blocksErrorsInjectorItem;
     private javax.swing.JLabel bpsLabel;
     private javax.swing.JButton channelButton;
     private javax.swing.JButton channelCoderButton;
@@ -2416,7 +2338,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel channelOutputField;
     private javax.swing.JPanel channelOutputPanel;
     private javax.swing.JPanel channelTab;
-    private javax.swing.JMenu developerMenu;
     private javax.swing.JMenuItem doModellingItem;
     private javax.swing.JMenuItem doModellingOptionsItem;
     private javax.swing.JRadioButton errorsInjectorPerBlock;
@@ -2477,7 +2398,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JTabbedPane optionsTabs;
     private javax.swing.JTextArea receivedMessageArea;
     private javax.swing.JPanel receivedMessagePanel;
-    private javax.swing.JMenuItem sequenceErrorsInjector;
     private javax.swing.JButton sourceCoderButton;
     private javax.swing.JPanel sourceCoderTab;
     private javax.swing.JComboBox sourceCodesChooser;
