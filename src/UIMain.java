@@ -2049,7 +2049,6 @@ public class UIMain extends javax.swing.JFrame
 	System.exit(0);
     }//GEN-LAST:event_exitItemActionPerformed
 
-    //checks summing by module 2
     private void sourceCodesChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sourceCodesChooserItemStateChanged
     {//GEN-HEADEREND:event_sourceCodesChooserItemStateChanged
 	updateChosenCodeSource();
