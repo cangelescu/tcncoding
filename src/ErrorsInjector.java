@@ -40,6 +40,7 @@ public class ErrorsInjector {
 
     public void injectErrors()
     {
+	//acts only if count of errors is greater than zero
 	if (errorsCount > 0)
 	{
 	    Random randomizer = new Random();
@@ -105,6 +106,10 @@ public class ErrorsInjector {
 		    outputSequence.set(cli.get(0), new BinaryNumber(injectedBlock));
 		}
 	    }
+	} else
+	{
+	    for (BinaryNumber cbn: inputSequence)
+		outputSequence.add(cbn);
 	}
     }
 
