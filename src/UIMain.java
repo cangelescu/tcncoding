@@ -819,10 +819,6 @@ public class UIMain extends javax.swing.JFrame
         doModellingOptionsItem = new javax.swing.JMenuItem();
         doModellingItem = new javax.swing.JMenuItem();
         developerMenu = new javax.swing.JMenu();
-        sum2Item = new javax.swing.JMenuItem();
-        inversionItem = new javax.swing.JMenuItem();
-        shl2Item = new javax.swing.JMenuItem();
-        weightItem = new javax.swing.JMenuItem();
         integrateItem = new javax.swing.JMenuItem();
         blockingItem = new javax.swing.JMenuItem();
         blocksErrorsInjectorItem = new javax.swing.JMenuItem();
@@ -1173,7 +1169,7 @@ public class UIMain extends javax.swing.JFrame
         sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
 
         blockMessageArea.setColumns(20);
-        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         blockMessageArea.setRows(5);
         blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(blockMessageArea);
@@ -1991,38 +1987,6 @@ public class UIMain extends javax.swing.JFrame
 
         developerMenu.setText("Розробка");
 
-        sum2Item.setText("Сума по модулю 2");
-        sum2Item.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sum2ItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(sum2Item);
-
-        inversionItem.setText("Інверсія");
-        inversionItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inversionItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(inversionItem);
-
-        shl2Item.setText("Зсув вліво на 1 розряд");
-        shl2Item.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shl2ItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(shl2Item);
-
-        weightItem.setText("Вага кодової комбінації");
-        weightItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                weightItemActionPerformed(evt);
-            }
-        });
-        developerMenu.add(weightItem);
-
         integrateItem.setText("Інтегрування функції");
         integrateItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2095,18 +2059,6 @@ public class UIMain extends javax.swing.JFrame
     }//GEN-LAST:event_exitItemActionPerformed
 
     //checks summing by module 2
-    private void sum2ItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sum2ItemActionPerformed
-    {//GEN-HEADEREND:event_sum2ItemActionPerformed
-	BinaryNumber num1 = new BinaryNumber(10);
-	BinaryNumber num2 = new BinaryNumber(20);
-	BinaryNumber num3 = num1.sum2(num2);
-	System.out.println(num1.toInt() +
-		" + " +
-		num2.toInt() + 
-		" == " +
-		num3.getStringSequence());
-    }//GEN-LAST:event_sum2ItemActionPerformed
-
     private void sourceCodesChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sourceCodesChooserItemStateChanged
     {//GEN-HEADEREND:event_sourceCodesChooserItemStateChanged
 	updateChosenCodeSource();
@@ -2135,35 +2087,8 @@ public class UIMain extends javax.swing.JFrame
     }//GEN-LAST:event_doModellingItemActionPerformed
 
     //checks binary number inversion
-    private void inversionItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_inversionItemActionPerformed
-    {//GEN-HEADEREND:event_inversionItemActionPerformed
-	BinaryNumber num1 = new BinaryNumber(10);
-	System.out.println("inversed " +
-		num1.getStringSequence() +
-		" == " +
-		num1.not2().getStringSequence());
-    }//GEN-LAST:event_inversionItemActionPerformed
-
     //checks binary number shifting
-    private void shl2ItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_shl2ItemActionPerformed
-    {//GEN-HEADEREND:event_shl2ItemActionPerformed
-	BinaryNumber num1 = new BinaryNumber(10);
-	System.out.println("shifted " +
-		num1.getStringSequence() +
-		" == " +
-		num1.shl2().getStringSequence());
-    }//GEN-LAST:event_shl2ItemActionPerformed
-
     //checks getting weight of binary number
-    private void weightItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_weightItemActionPerformed
-    {//GEN-HEADEREND:event_weightItemActionPerformed
-	BinaryNumber num1 = new BinaryNumber(10);
-	System.out.println("weight " +
-		num1.getStringSequence() +
-		" == " +
-		num1.getWeight());
-    }//GEN-LAST:event_weightItemActionPerformed
-
     private void channelCodesChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_channelCodesChooserItemStateChanged
     {//GEN-HEADEREND:event_channelCodesChooserItemStateChanged
 	updateChosenCodeChannel();
@@ -2571,7 +2496,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel integratorOutputField1;
     private javax.swing.JPanel integratorOutputPanel0;
     private javax.swing.JPanel integratorOutputPanel1;
-    private javax.swing.JMenuItem inversionItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2613,19 +2537,16 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JTextArea receivedMessageArea;
     private javax.swing.JPanel receivedMessagePanel;
     private javax.swing.JMenuItem sequenceErrorsInjector;
-    private javax.swing.JMenuItem shl2Item;
     private javax.swing.JButton sourceCoderButton;
     private javax.swing.JPanel sourceCoderTab;
     private javax.swing.JComboBox sourceCodesChooser;
     private javax.swing.JLabel sourceCodesChooserLabel;
     private javax.swing.JPanel sourceMessagePanel;
-    private javax.swing.JMenuItem sum2Item;
     private javax.swing.JButton summatorButton;
     private javax.swing.JPanel systemScheme;
     private javax.swing.JCheckBox useChannelCoder;
     private javax.swing.JCheckBox useNoiseErrors;
     private javax.swing.JLabel voltsLabel;
-    private javax.swing.JMenuItem weightItem;
     // End of variables declaration//GEN-END:variables
 
 }
