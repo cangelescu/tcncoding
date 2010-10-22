@@ -2077,9 +2077,6 @@ public class UIMain extends javax.swing.JFrame
 	}
     }//GEN-LAST:event_doModellingItemActionPerformed
 
-    //checks binary number inversion
-    //checks binary number shifting
-    //checks getting weight of binary number
     private void channelCodesChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_channelCodesChooserItemStateChanged
     {//GEN-HEADEREND:event_channelCodesChooserItemStateChanged
 	updateChosenCodeChannel();
