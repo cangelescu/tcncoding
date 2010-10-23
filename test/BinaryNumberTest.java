@@ -16,6 +16,8 @@
 
 */
 
+import java.util.List;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,6 +28,62 @@ import static org.junit.Assert.*;
 public class BinaryNumberTest {
 
     public BinaryNumberTest() {
+    }
+
+    /**
+     * Test of BinaryNumber class constructor.
+     */
+    @Test
+    public void test000Constructor()
+    {
+	BinaryNumber instance = new BinaryNumber("101101");
+	long expResult = 45L;
+	long result = instance.toInt();
+	assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of BinaryNumber class constructor.
+     */
+    @Test
+    public void test001Constructor()
+    {
+	List<Boolean> bits = new ArrayList<Boolean>();
+	bits.add(true);
+	bits.add(false);
+	bits.add(true);
+	bits.add(true);
+	bits.add(false);
+	bits.add(true);
+	BinaryNumber instance = new BinaryNumber(bits);
+	long expResult = 45L;
+	long result = instance.toInt();
+	assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of BinaryNumber class constructor.
+     */
+    @Test
+    public void test002Constructor()
+    {
+	boolean[] bits = {true, false, true, true, false, true};
+	BinaryNumber instance = new BinaryNumber(bits);
+	long expResult = 45L;
+	long result = instance.toInt();
+	assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of BinaryNumber class constructor.
+     */
+    @Test
+    public void test003Constructor()
+    {
+	BinaryNumber instance = new BinaryNumber(45);
+	long expResult = 45L;
+	long result = instance.toInt();
+	assertEquals(expResult, result);
     }
 
     /**
