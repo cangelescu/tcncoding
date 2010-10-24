@@ -48,7 +48,7 @@ public class UIMain extends javax.swing.JFrame
     SourceDecoder currentSourceDecoder = null;
 
     //UI blocks
-    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, MESSAGE_RECEIVER, CHANNEL_DECODER;};
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
@@ -221,6 +221,9 @@ public class UIMain extends javax.swing.JFrame
 	integrator0Button.setBackground(new Color(240, 240, 240));
 	integrator1Button.setBackground(new Color(240, 240, 240));
 	summatorButton.setBackground(new Color(240, 240, 240));
+	resolverButton.setBackground(new Color(240, 240, 240));
+	channelDecoderButton.setBackground(new Color(240, 240, 240));
+	sourceDecoderButton.setBackground(new Color(240, 240, 240));
 	//highlight selected block
 	switch (selectedBlock)
 	{
@@ -266,12 +269,15 @@ public class UIMain extends javax.swing.JFrame
 		break;
 	    case RESOLVER:
 		TCSTabs.setSelectedComponent(blockResolver);
+		resolverButton.setBackground(new Color(200, 200, 200));
 		break;
 	    case CHANNEL_DECODER:
 		TCSTabs.setSelectedComponent(blockChannelDecoder);
+		channelDecoderButton.setBackground(new Color(200, 200, 200));
 		break;
-	    case MESSAGE_RECEIVER:
-		TCSTabs.setSelectedComponent(blockMessageReceiver);
+	    case SOURCE_DECODER:
+		TCSTabs.setSelectedComponent(blockSourceDecoder);
+		sourceDecoderButton.setBackground(new Color(200, 200, 200));
 		break;
 	    default:
 		break;
@@ -681,6 +687,7 @@ public class UIMain extends javax.swing.JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         aboutDialog = new javax.swing.JDialog();
         aboutDialogClose = new javax.swing.JButton();
@@ -780,29 +787,40 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoderOutput = new javax.swing.JTextPane();
         blockChannelDecoderVideoSequence = new javax.swing.JPanel();
         blockChannelDecoderVideoSequenceOutputField = new javax.swing.JPanel();
-        blockMessageReceiver = new javax.swing.JPanel();
-        receivedMessagePanel = new javax.swing.JPanel();
+        blockSourceDecoder = new javax.swing.JPanel();
+        sourceDecoderPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         receivedMessageArea = new javax.swing.JTextArea();
         systemScheme = new javax.swing.JPanel();
-        messageSourceButton = new javax.swing.JButton();
-        sourceCoderButton = new javax.swing.JButton();
         channelCoderButton = new javax.swing.JButton();
         modulatorButton = new javax.swing.JButton();
         channelButton = new javax.swing.JButton();
+        integrator0Button = new javax.swing.JButton();
+        sourceCoderButton = new javax.swing.JButton();
         multiplier0Button = new javax.swing.JButton();
         multiplier1Button = new javax.swing.JButton();
-        integrator0Button = new javax.swing.JButton();
+        messageSourceButton = new javax.swing.JButton();
+        rightArrowLabel5 = new javax.swing.JLabel();
         integrator1Button = new javax.swing.JButton();
         summatorButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        drArrowLabel = new javax.swing.JLabel();
+        leftTripleLabel = new javax.swing.JLabel();
+        dlArrowLabel = new javax.swing.JLabel();
+        ulArrowLabel = new javax.swing.JLabel();
+        urArrowLabel = new javax.swing.JLabel();
+        rightTripleLabel = new javax.swing.JLabel();
+        rightArrowLabel2 = new javax.swing.JLabel();
+        rightArrowLabel3 = new javax.swing.JLabel();
+        rightArrowLabel4 = new javax.swing.JLabel();
+        rightArrowLabel6 = new javax.swing.JLabel();
+        rightArrowLabel1 = new javax.swing.JLabel();
+        resolverButton = new javax.swing.JButton();
+        rightArrowLabel7 = new javax.swing.JLabel();
+        rightArrowLabel8 = new javax.swing.JLabel();
+        rightArrowLabel9 = new javax.swing.JLabel();
+        rightArrowLabel10 = new javax.swing.JLabel();
+        channelDecoderButton = new javax.swing.JButton();
+        sourceDecoderButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -1164,11 +1182,11 @@ public class UIMain extends javax.swing.JFrame
         sourceMessagePanel.setLayout(sourceMessagePanelLayout);
         sourceMessagePanelLayout.setHorizontalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -1199,11 +1217,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoderOutputPanel.setLayout(blockSourceCoderOutputPanelLayout);
         blockSourceCoderOutputPanelLayout.setHorizontalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockSourceCoderBinarySequence);
@@ -1225,11 +1243,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoderVideoSequence.setLayout(blockSourceCoderVideoSequenceLayout);
         blockSourceCoderVideoSequenceLayout.setHorizontalGroup(
             blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockSourceCoderVideoSequenceLayout.setVerticalGroup(
             blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         blockSourceCoderTabs.addTab("Відеопослідовність", blockSourceCoderVideoSequence);
@@ -1238,11 +1256,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoder.setLayout(blockSourceCoderLayout);
         blockSourceCoderLayout.setHorizontalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
         );
         blockSourceCoderLayout.setVerticalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Кодер джерела", blockSourceCoder);
@@ -1262,11 +1280,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelCoderOutputPanel.setLayout(blockChannelCoderOutputPanelLayout);
         blockChannelCoderOutputPanelLayout.setHorizontalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelCoderBinarySequence);
@@ -1288,11 +1306,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelCoderVideoSequence.setLayout(blockChannelCoderVideoSequenceLayout);
         blockChannelCoderVideoSequenceLayout.setHorizontalGroup(
             blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockChannelCoderVideoSequenceLayout.setVerticalGroup(
             blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         blockChannelCoderTabs.addTab("Відеопослідовність", blockChannelCoderVideoSequence);
@@ -1301,11 +1319,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelCoder.setLayout(blockChannelCoderLayout);
         blockChannelCoderLayout.setHorizontalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
         );
         blockChannelCoderLayout.setVerticalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Кодер каналу", blockChannelCoder);
@@ -1324,11 +1342,11 @@ public class UIMain extends javax.swing.JFrame
         modulatorOutputPanel.setLayout(modulatorOutputPanelLayout);
         modulatorOutputPanelLayout.setHorizontalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -1358,11 +1376,11 @@ public class UIMain extends javax.swing.JFrame
         channelOutputPanel.setLayout(channelOutputPanelLayout);
         channelOutputPanelLayout.setHorizontalGroup(
             channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         channelOutputPanelLayout.setVerticalGroup(
             channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelLayout = new javax.swing.GroupLayout(blockChannel);
@@ -1392,11 +1410,11 @@ public class UIMain extends javax.swing.JFrame
         multiplierOutputPanel0.setLayout(multiplierOutputPanel0Layout);
         multiplierOutputPanel0Layout.setHorizontalGroup(
             multiplierOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         multiplierOutputPanel0Layout.setVerticalGroup(
             multiplierOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier0Layout = new javax.swing.GroupLayout(blockMultiplier0);
@@ -1426,11 +1444,11 @@ public class UIMain extends javax.swing.JFrame
         multiplierOutputPanel1.setLayout(multiplierOutputPanel1Layout);
         multiplierOutputPanel1Layout.setHorizontalGroup(
             multiplierOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         multiplierOutputPanel1Layout.setVerticalGroup(
             multiplierOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier1Layout = new javax.swing.GroupLayout(blockMultiplier1);
@@ -1460,11 +1478,11 @@ public class UIMain extends javax.swing.JFrame
         integratorOutputPanel0.setLayout(integratorOutputPanel0Layout);
         integratorOutputPanel0Layout.setHorizontalGroup(
             integratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         integratorOutputPanel0Layout.setVerticalGroup(
             integratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator0Layout = new javax.swing.GroupLayout(blockIntegrator0);
@@ -1494,11 +1512,11 @@ public class UIMain extends javax.swing.JFrame
         integratorOutputPanel1.setLayout(integratorOutputPanel1Layout);
         integratorOutputPanel1Layout.setHorizontalGroup(
             integratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         integratorOutputPanel1Layout.setVerticalGroup(
             integratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator1Layout = new javax.swing.GroupLayout(blockIntegrator1);
@@ -1528,11 +1546,11 @@ public class UIMain extends javax.swing.JFrame
         blockSummatorOutputPanel.setLayout(blockSummatorOutputPanelLayout);
         blockSummatorOutputPanelLayout.setHorizontalGroup(
             blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         blockSummatorOutputPanelLayout.setVerticalGroup(
             blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSummatorLayout = new javax.swing.GroupLayout(blockSummator);
@@ -1563,11 +1581,11 @@ public class UIMain extends javax.swing.JFrame
         blockResolverOutputPanel.setLayout(blockResolverOutputPanelLayout);
         blockResolverOutputPanelLayout.setHorizontalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockResolverOutputPanelLayout.setVerticalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockResolverBinarySequenceLayout = new javax.swing.GroupLayout(blockResolverBinarySequence);
@@ -1589,11 +1607,11 @@ public class UIMain extends javax.swing.JFrame
         blockResolverVideoSequence.setLayout(blockResolverVideoSequenceLayout);
         blockResolverVideoSequenceLayout.setHorizontalGroup(
             blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockResolverVideoSequenceLayout.setVerticalGroup(
             blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         blockResolverTabs.addTab("Відеопослідовність", blockResolverVideoSequence);
@@ -1602,11 +1620,11 @@ public class UIMain extends javax.swing.JFrame
         blockResolver.setLayout(blockResolverLayout);
         blockResolverLayout.setHorizontalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
         );
         blockResolverLayout.setVerticalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Вирішуючий пристрій", blockResolver);
@@ -1626,11 +1644,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoderOutputPanel.setLayout(blockChannelDecoderOutputPanelLayout);
         blockChannelDecoderOutputPanelLayout.setHorizontalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockChannelDecoderOutputPanelLayout.setVerticalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelDecoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelDecoderBinarySequence);
@@ -1652,11 +1670,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoderVideoSequence.setLayout(blockChannelDecoderVideoSequenceLayout);
         blockChannelDecoderVideoSequenceLayout.setHorizontalGroup(
             blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
         );
         blockChannelDecoderVideoSequenceLayout.setVerticalGroup(
             blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
         blockChannelDecoderTabs.addTab("Відеопослідовність", blockChannelDecoderVideoSequence);
@@ -1665,72 +1683,56 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoder.setLayout(blockChannelDecoderLayout);
         blockChannelDecoderLayout.setHorizontalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
         );
         blockChannelDecoderLayout.setVerticalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Декодер каналу", blockChannelDecoder);
 
-        blockMessageReceiver.addComponentListener(new java.awt.event.ComponentAdapter() {
+        blockSourceDecoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                blockMessageReceiverComponentShown(evt);
+                blockSourceDecoderComponentShown(evt);
             }
         });
 
-        receivedMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
+        sourceDecoderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Отримане повідомлення"));
 
         receivedMessageArea.setColumns(20);
         receivedMessageArea.setEditable(false);
-        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
+        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         receivedMessageArea.setRows(5);
         jScrollPane4.setViewportView(receivedMessageArea);
 
-        javax.swing.GroupLayout receivedMessagePanelLayout = new javax.swing.GroupLayout(receivedMessagePanel);
-        receivedMessagePanel.setLayout(receivedMessagePanelLayout);
-        receivedMessagePanelLayout.setHorizontalGroup(
-            receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+        javax.swing.GroupLayout sourceDecoderPanelLayout = new javax.swing.GroupLayout(sourceDecoderPanel);
+        sourceDecoderPanel.setLayout(sourceDecoderPanelLayout);
+        sourceDecoderPanelLayout.setHorizontalGroup(
+            sourceDecoderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
-        receivedMessagePanelLayout.setVerticalGroup(
-            receivedMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout blockMessageReceiverLayout = new javax.swing.GroupLayout(blockMessageReceiver);
-        blockMessageReceiver.setLayout(blockMessageReceiverLayout);
-        blockMessageReceiverLayout.setHorizontalGroup(
-            blockMessageReceiverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(receivedMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        blockMessageReceiverLayout.setVerticalGroup(
-            blockMessageReceiverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(receivedMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        sourceDecoderPanelLayout.setVerticalGroup(
+            sourceDecoderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Отримувач повідомлень", blockMessageReceiver);
+        javax.swing.GroupLayout blockSourceDecoderLayout = new javax.swing.GroupLayout(blockSourceDecoder);
+        blockSourceDecoder.setLayout(blockSourceDecoderLayout);
+        blockSourceDecoderLayout.setHorizontalGroup(
+            blockSourceDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sourceDecoderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockSourceDecoderLayout.setVerticalGroup(
+            blockSourceDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sourceDecoderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Декодер джерела", blockSourceDecoder);
 
         systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Структурна схема"));
-
-        messageSourceButton.setBackground(new java.awt.Color(200, 200, 200));
-        messageSourceButton.setText("ДжП");
-        messageSourceButton.setToolTipText("Джерело повідомлень");
-        messageSourceButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                messageSourceButtonActionPerformed(evt);
-            }
-        });
-
-        sourceCoderButton.setBackground(new java.awt.Color(240, 240, 240));
-        sourceCoderButton.setText("КДж");
-        sourceCoderButton.setToolTipText("Кодер джерела повідомлень");
-        sourceCoderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sourceCoderButtonActionPerformed(evt);
-            }
-        });
+        systemScheme.setDoubleBuffered(true);
+        systemScheme.setLayout(new java.awt.GridBagLayout());
 
         channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
         channelCoderButton.setText("КК");
@@ -1740,6 +1742,10 @@ public class UIMain extends javax.swing.JFrame
                 channelCoderButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(channelCoderButton, gridBagConstraints);
 
         modulatorButton.setBackground(new java.awt.Color(240, 240, 240));
         modulatorButton.setText("М");
@@ -1749,6 +1755,10 @@ public class UIMain extends javax.swing.JFrame
                 modulatorButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(modulatorButton, gridBagConstraints);
 
         channelButton.setBackground(new java.awt.Color(240, 240, 240));
         channelButton.setText("К");
@@ -1758,24 +1768,10 @@ public class UIMain extends javax.swing.JFrame
                 channelButtonActionPerformed(evt);
             }
         });
-
-        multiplier0Button.setBackground(new java.awt.Color(240, 240, 240));
-        multiplier0Button.setText("П0");
-        multiplier0Button.setToolTipText("Помножувач 0");
-        multiplier0Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                multiplier0ButtonActionPerformed(evt);
-            }
-        });
-
-        multiplier1Button.setBackground(new java.awt.Color(240, 240, 240));
-        multiplier1Button.setText("П1");
-        multiplier1Button.setToolTipText("Помножувач 1");
-        multiplier1Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                multiplier1ButtonActionPerformed(evt);
-            }
-        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(channelButton, gridBagConstraints);
 
         integrator0Button.setBackground(new java.awt.Color(240, 240, 240));
         integrator0Button.setText("І0");
@@ -1785,6 +1781,65 @@ public class UIMain extends javax.swing.JFrame
                 integrator0ButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        systemScheme.add(integrator0Button, gridBagConstraints);
+
+        sourceCoderButton.setBackground(new java.awt.Color(240, 240, 240));
+        sourceCoderButton.setText("КДж");
+        sourceCoderButton.setToolTipText("Кодер джерела повідомлень");
+        sourceCoderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sourceCoderButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(sourceCoderButton, gridBagConstraints);
+
+        multiplier0Button.setBackground(new java.awt.Color(240, 240, 240));
+        multiplier0Button.setText("П0");
+        multiplier0Button.setToolTipText("Помножувач 0");
+        multiplier0Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiplier0ButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        systemScheme.add(multiplier0Button, gridBagConstraints);
+
+        multiplier1Button.setBackground(new java.awt.Color(240, 240, 240));
+        multiplier1Button.setText("П1");
+        multiplier1Button.setToolTipText("Помножувач 1");
+        multiplier1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiplier1ButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 2;
+        systemScheme.add(multiplier1Button, gridBagConstraints);
+
+        messageSourceButton.setBackground(new java.awt.Color(200, 200, 200));
+        messageSourceButton.setText("ДжП");
+        messageSourceButton.setToolTipText("Джерело повідомлень");
+        messageSourceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                messageSourceButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(messageSourceButton, gridBagConstraints);
+
+        rightArrowLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        systemScheme.add(rightArrowLabel5, new java.awt.GridBagConstraints());
 
         integrator1Button.setBackground(new java.awt.Color(240, 240, 240));
         integrator1Button.setText("І1");
@@ -1794,6 +1849,10 @@ public class UIMain extends javax.swing.JFrame
                 integrator1ButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 2;
+        systemScheme.add(integrator1Button, gridBagConstraints);
 
         summatorButton.setBackground(new java.awt.Color(240, 240, 240));
         summatorButton.setText("С");
@@ -1803,106 +1862,139 @@ public class UIMain extends javax.swing.JFrame
                 summatorButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(summatorButton, gridBagConstraints);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        drArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dr.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 2;
+        systemScheme.add(drArrowLabel, gridBagConstraints);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        leftTripleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/triplel.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(leftTripleLabel, gridBagConstraints);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        dlArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dl.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 2;
+        systemScheme.add(dlArrowLabel, gridBagConstraints);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        ulArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ul.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        systemScheme.add(ulArrowLabel, gridBagConstraints);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        urArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ur.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
+        systemScheme.add(urArrowLabel, gridBagConstraints);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        rightTripleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tripler.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightTripleLabel, gridBagConstraints);
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        rightArrowLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel2, gridBagConstraints);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        rightArrowLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel3, gridBagConstraints);
 
-        javax.swing.GroupLayout systemSchemeLayout = new javax.swing.GroupLayout(systemScheme);
-        systemScheme.setLayout(systemSchemeLayout);
-        systemSchemeLayout.setHorizontalGroup(
-            systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(systemSchemeLayout.createSequentialGroup()
-                .addComponent(messageSourceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sourceCoderButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(channelCoderButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(modulatorButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(channelButton)
-                        .addGap(232, 232, 232)
-                        .addComponent(summatorButton))
-                    .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(multiplier0Button)
-                            .addComponent(multiplier1Button))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(integrator1Button)
-                            .addComponent(integrator0Button))))
-                .addContainerGap(302, Short.MAX_VALUE))
-        );
-        systemSchemeLayout.setVerticalGroup(
-            systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(systemSchemeLayout.createSequentialGroup()
-                .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(multiplier0Button)
-                            .addComponent(jLabel14)
-                            .addComponent(integrator0Button)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel11)
-                            .addComponent(modulatorButton)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel13)
-                            .addComponent(multiplier1Button)
-                            .addComponent(jLabel15)
-                            .addComponent(integrator1Button)))
-                    .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel8)
-                            .addComponent(messageSourceButton)
-                            .addComponent(sourceCoderButton)
-                            .addComponent(jLabel9)
-                            .addComponent(channelCoderButton)))
-                    .addGroup(systemSchemeLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(systemSchemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(channelButton)
-                            .addComponent(summatorButton))))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+        rightArrowLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel4, gridBagConstraints);
+
+        rightArrowLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel6, gridBagConstraints);
+
+        rightArrowLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel1, gridBagConstraints);
+
+        resolverButton.setBackground(new java.awt.Color(240, 240, 240));
+        resolverButton.setText("ВП");
+        resolverButton.setToolTipText("Пристрій прийняття рішень");
+        resolverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resolverButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(resolverButton, gridBagConstraints);
+
+        rightArrowLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 2;
+        systemScheme.add(rightArrowLabel7, gridBagConstraints);
+
+        rightArrowLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 19;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel8, gridBagConstraints);
+
+        rightArrowLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel9, gridBagConstraints);
+
+        rightArrowLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(rightArrowLabel10, gridBagConstraints);
+
+        channelDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
+        channelDecoderButton.setText("ДКК");
+        channelDecoderButton.setToolTipText("Декодер каналу");
+        channelDecoderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                channelDecoderButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 18;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(channelDecoderButton, gridBagConstraints);
+
+        sourceDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
+        sourceDecoderButton.setText("ДКДж");
+        sourceDecoderButton.setToolTipText("Декодер джерела");
+        sourceDecoderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sourceDecoderButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 20;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(sourceDecoderButton, gridBagConstraints);
 
         fileMenu.setText("Файл");
 
@@ -1957,15 +2049,15 @@ public class UIMain extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
-            .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
+            .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
+                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
         );
 
         pack();
@@ -2141,11 +2233,11 @@ public class UIMain extends javax.swing.JFrame
 	modellingOptionsDialog.setVisible(true);
     }//GEN-LAST:event_doModellingOptionsItemActionPerformed
 
-    private void blockMessageReceiverComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMessageReceiverComponentShown
-    {//GEN-HEADEREND:event_blockMessageReceiverComponentShown
-	selectedBlock = Blocks.MESSAGE_RECEIVER;
+    private void blockSourceDecoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceDecoderComponentShown
+    {//GEN-HEADEREND:event_blockSourceDecoderComponentShown
+	selectedBlock = Blocks.SOURCE_DECODER;
 	updateChosenBlock();
-    }//GEN-LAST:event_blockMessageReceiverComponentShown
+    }//GEN-LAST:event_blockSourceDecoderComponentShown
 
     private void forceErrorsItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_forceErrorsItemStateChanged
     {//GEN-HEADEREND:event_forceErrorsItemStateChanged
@@ -2202,6 +2294,24 @@ public class UIMain extends javax.swing.JFrame
 	updateChosenBlock();
     }//GEN-LAST:event_blockChannelDecoderComponentShown
 
+    private void resolverButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resolverButtonActionPerformed
+    {//GEN-HEADEREND:event_resolverButtonActionPerformed
+	selectedBlock = Blocks.RESOLVER;
+	updateChosenBlock();
+    }//GEN-LAST:event_resolverButtonActionPerformed
+
+    private void channelDecoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelDecoderButtonActionPerformed
+    {//GEN-HEADEREND:event_channelDecoderButtonActionPerformed
+	selectedBlock = Blocks.CHANNEL_DECODER;
+	updateChosenBlock();
+    }//GEN-LAST:event_channelDecoderButtonActionPerformed
+
+    private void sourceDecoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sourceDecoderButtonActionPerformed
+    {//GEN-HEADEREND:event_sourceDecoderButtonActionPerformed
+	selectedBlock = Blocks.SOURCE_DECODER;
+	updateChosenBlock();
+    }//GEN-LAST:event_sourceDecoderButtonActionPerformed
+
     /**
      * 
      * @param args
@@ -2247,7 +2357,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockIntegrator0;
     private javax.swing.JPanel blockIntegrator1;
     private javax.swing.JTextArea blockMessageArea;
-    private javax.swing.JPanel blockMessageReceiver;
     private javax.swing.JPanel blockMessageSource;
     private javax.swing.JPanel blockModulator;
     private javax.swing.JPanel blockMultiplier0;
@@ -2265,6 +2374,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockSourceCoderOutputPanel;
     private javax.swing.JTabbedPane blockSourceCoderTabs;
     private javax.swing.JPanel blockSourceCoderVideoSequence;
+    private javax.swing.JPanel blockSourceDecoder;
     private javax.swing.JPanel blockSourceVideoSequenceOutputField;
     private javax.swing.JPanel blockSummator;
     private javax.swing.JPanel blockSummatorOutputField;
@@ -2275,11 +2385,14 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel channelCoderTab;
     private javax.swing.JComboBox channelCodesChooser;
     private javax.swing.JLabel channelCodesChooserLabel;
+    private javax.swing.JButton channelDecoderButton;
     private javax.swing.JPanel channelOutputField;
     private javax.swing.JPanel channelOutputPanel;
     private javax.swing.JPanel channelTab;
+    private javax.swing.JLabel dlArrowLabel;
     private javax.swing.JMenuItem doModellingItem;
     private javax.swing.JMenuItem doModellingOptionsItem;
+    private javax.swing.JLabel drArrowLabel;
     private javax.swing.JRadioButton errorsInjectorPerBlock;
     private javax.swing.JRadioButton errorsInjectorPerSequence;
     private javax.swing.ButtonGroup errorsInjectorTypeChooserGroup;
@@ -2299,23 +2412,16 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel integratorOutputPanel0;
     private javax.swing.JPanel integratorOutputPanel1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JLabel leftTripleLabel;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JButton messageSourceButton;
     private javax.swing.JMenu modellingMenu;
@@ -2337,14 +2443,29 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JLabel noisePowerWattLabel;
     private javax.swing.JTabbedPane optionsTabs;
     private javax.swing.JTextArea receivedMessageArea;
-    private javax.swing.JPanel receivedMessagePanel;
+    private javax.swing.JButton resolverButton;
+    private javax.swing.JLabel rightArrowLabel1;
+    private javax.swing.JLabel rightArrowLabel10;
+    private javax.swing.JLabel rightArrowLabel2;
+    private javax.swing.JLabel rightArrowLabel3;
+    private javax.swing.JLabel rightArrowLabel4;
+    private javax.swing.JLabel rightArrowLabel5;
+    private javax.swing.JLabel rightArrowLabel6;
+    private javax.swing.JLabel rightArrowLabel7;
+    private javax.swing.JLabel rightArrowLabel8;
+    private javax.swing.JLabel rightArrowLabel9;
+    private javax.swing.JLabel rightTripleLabel;
     private javax.swing.JButton sourceCoderButton;
     private javax.swing.JPanel sourceCoderTab;
     private javax.swing.JComboBox sourceCodesChooser;
     private javax.swing.JLabel sourceCodesChooserLabel;
+    private javax.swing.JButton sourceDecoderButton;
+    private javax.swing.JPanel sourceDecoderPanel;
     private javax.swing.JPanel sourceMessagePanel;
     private javax.swing.JButton summatorButton;
     private javax.swing.JPanel systemScheme;
+    private javax.swing.JLabel ulArrowLabel;
+    private javax.swing.JLabel urArrowLabel;
     private javax.swing.JCheckBox useChannelCoder;
     private javax.swing.JCheckBox useNoiseErrors;
     private javax.swing.JLabel voltsLabel;
