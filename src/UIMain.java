@@ -38,6 +38,7 @@ public class UIMain extends javax.swing.JFrame
     ChannelSqr currentChannelSqr = null;
     EnergyComputator currentEnergyComputator = null;
     ErrorsComputator currentErrorsComputator = null;
+    EthalonGenerator currentEthalonGenerator0 = null, currentEthalonGenerator1 = null;
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
     Summator currentSummator = null;
@@ -48,7 +49,7 @@ public class UIMain extends javax.swing.JFrame
     SourceDecoder currentSourceDecoder = null;
 
     //UI blocks
-    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, ETHALON_GENERATOR0, ETHALON_GENERATOR1, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
@@ -56,6 +57,8 @@ public class UIMain extends javax.swing.JFrame
     DataVizualizator currentChannelVideoSequenceVizualizator = null;
     DataVizualizator currentModulatorVizualizator = null;
     DataVizualizator currentChannelVizualizator = null;
+    DataVizualizator currentEthalonGeneratorVizualizator0 = null;
+    DataVizualizator currentEthalonGeneratorVizualizator1 = null;
     DataVizualizator currentMultiplierVizualizator0 = null;
     DataVizualizator currentMultiplierVizualizator1 = null;
     DataVizualizator currentIntegratorVizualizator0 = null;
@@ -104,6 +107,12 @@ public class UIMain extends javax.swing.JFrame
     //TODO: EXPERIMENTAL
     double channelOutputEnergy = 0;
     double errorsProbability = 0;
+
+    //ethalon generators data
+    List<List<ModulatorSignal>> ethalonGenerator0Output = null;
+    List<List<ModulatorSignal>> ethalonGenerator1Output = null;
+    List<List<DataVizualizatorProvider>> ethalonGenerator0OutputProvider = null;
+    List<List<DataVizualizatorProvider>> ethalonGenerator1OutputProvider = null;
 
     //multipliers data
     List<List<MultiplierSignal>> multiplier0Output = null;
@@ -216,6 +225,8 @@ public class UIMain extends javax.swing.JFrame
 	channelCoderButton.setBackground(new Color(240, 240, 240));
 	modulatorButton.setBackground(new Color(240, 240, 240));
 	channelButton.setBackground(new Color(240, 240, 240));
+	ethalonGenerator0Button.setBackground(new Color(240, 240, 240));
+	ethalonGenerator1Button.setBackground(new Color(240, 240, 240));
 	multiplier0Button.setBackground(new Color(240, 240, 240));
 	multiplier1Button.setBackground(new Color(240, 240, 240));
 	integrator0Button.setBackground(new Color(240, 240, 240));
@@ -246,6 +257,14 @@ public class UIMain extends javax.swing.JFrame
 	    case CHANNEL:
 		TCSTabs.setSelectedComponent(blockChannel);
 		channelButton.setBackground(new Color(200, 200, 200));
+		break;
+	    case ETHALON_GENERATOR0:
+		TCSTabs.setSelectedComponent(blockEthalonGenerator0);
+		ethalonGenerator0Button.setBackground(new Color(200, 200, 200));
+		break;
+	    case ETHALON_GENERATOR1:
+		TCSTabs.setSelectedComponent(blockEthalonGenerator1);
+		ethalonGenerator1Button.setBackground(new Color(200, 200, 200));
 		break;
 	    case MULTIPLIER0:
 		TCSTabs.setSelectedComponent(blockMultiplier0);
@@ -440,6 +459,74 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelVizualizator.repaint();
     }
 
+    //generates ethalon signals
+    void doGenerating()
+    {
+	switch (modulationType)
+	{
+	    case ASK:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		currentEthalonGenerator0 = new EthalonGenerator(maxFrequency, 0, 0, channelOutput);
+		currentEthalonGenerator1 = new EthalonGenerator(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		break;
+	    case FSK:
+		maxFrequency = (Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue();
+		currentEthalonGenerator0 = new EthalonGenerator(maxFrequency - 2 * (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentEthalonGenerator1 = new EthalonGenerator(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		break;
+	    case PSK:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		currentEthalonGenerator0 = new EthalonGenerator(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentEthalonGenerator1 = new EthalonGenerator(maxFrequency, (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
+		break;
+	    case RPSK:
+		maxFrequency = (Double)bearerFrequency.getValue();
+		currentEthalonGenerator0 = new EthalonGenerator(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentEthalonGenerator1 = new EthalonGenerator(maxFrequency, (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
+		break;
+	    default:
+		break;
+	}
+	currentEthalonGenerator0.generate();
+	currentEthalonGenerator1.generate();
+	ethalonGenerator0Output = currentEthalonGenerator0.getSignals();
+	ethalonGenerator1Output = currentEthalonGenerator1.getSignals();
+
+	//prepares vizualizator
+	if (currentEthalonGeneratorVizualizator0 != null)
+	{
+	    ethalonGeneratorOutputField0.remove(currentEthalonGeneratorVizualizator0);
+	    currentEthalonGeneratorVizualizator0 = null;
+	}
+	int cx0 = ethalonGeneratorOutputField0.getWidth();
+	int cy0 = ethalonGeneratorOutputField0.getHeight();
+
+	//vizualizes signal
+	ethalonGenerator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
+	ethalonGenerator0OutputProvider.add((new ModulatorVizualizatorConverter(ethalonGenerator0Output, "Сигнал на виході 0-го опорного генератора", Color.BLUE)).getProvided());
+	currentEthalonGeneratorVizualizator0 = new DataVizualizator(ethalonGenerator0OutputProvider, cx0, cy0, "t, с", "So0(t), В");
+	currentEthalonGeneratorVizualizator0.setVisible(true);
+	ethalonGeneratorOutputField0.add(currentEthalonGeneratorVizualizator0);
+	currentEthalonGeneratorVizualizator0.repaint();
+
+	//does the same for second generator
+	if (currentEthalonGeneratorVizualizator1 != null)
+	{
+	    ethalonGeneratorOutputField1.remove(currentEthalonGeneratorVizualizator1);
+	    currentEthalonGeneratorVizualizator1 = null;
+	}
+	int cx1 = ethalonGeneratorOutputField1.getWidth();
+	int cy1 = ethalonGeneratorOutputField1.getHeight();
+
+	//shows multipliers charts
+	ethalonGenerator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
+	ethalonGenerator1OutputProvider.add((new ModulatorVizualizatorConverter(ethalonGenerator1Output, "Сигнал на виході 1-го опорного генератора", Color.BLUE)).getProvided());
+	currentEthalonGeneratorVizualizator1 = new DataVizualizator(ethalonGenerator1OutputProvider, cx1, cy1, "t, с", "So1(t), В");
+	currentEthalonGeneratorVizualizator1.setVisible(true);
+	ethalonGeneratorOutputField1.add(currentEthalonGeneratorVizualizator1);
+	currentEthalonGeneratorVizualizator1.repaint();
+    }
+
     //multiplies signals and ethalons
     void doMultiplying()
     {
@@ -449,7 +536,7 @@ public class UIMain extends javax.swing.JFrame
 	    case ASK:
 		maxFrequency = (Double)bearerFrequency.getValue();
 		currentMultiplier0 = new Multiplier(maxFrequency, 0, 0, channelOutput);
-		currentMultiplier1 = new Multiplier((Double)bearerFrequency.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
+		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
 		break;
 	    case FSK:
 		maxFrequency = (Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue();
@@ -491,7 +578,7 @@ public class UIMain extends javax.swing.JFrame
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
 
-	//does the same for second MULTIPLIER0
+	//does the same for second multiplier
 	if (currentMultiplierVizualizator1 != null)
 	{
 	    multiplierOutputField1.remove(currentMultiplierVizualizator1);
@@ -756,9 +843,15 @@ public class UIMain extends javax.swing.JFrame
         blockChannel = new javax.swing.JPanel();
         channelOutputPanel = new javax.swing.JPanel();
         channelOutputField = new javax.swing.JPanel();
+        blockEthalonGenerator0 = new javax.swing.JPanel();
+        ethalonGeneratorOutputPanel0 = new javax.swing.JPanel();
+        ethalonGeneratorOutputField0 = new javax.swing.JPanel();
         blockMultiplier0 = new javax.swing.JPanel();
         multiplierOutputPanel0 = new javax.swing.JPanel();
         multiplierOutputField0 = new javax.swing.JPanel();
+        blockEthalonGenerator1 = new javax.swing.JPanel();
+        ethalonGeneratorOutputPanel1 = new javax.swing.JPanel();
+        ethalonGeneratorOutputField1 = new javax.swing.JPanel();
         blockMultiplier1 = new javax.swing.JPanel();
         multiplierOutputPanel1 = new javax.swing.JPanel();
         multiplierOutputField1 = new javax.swing.JPanel();
@@ -800,7 +893,6 @@ public class UIMain extends javax.swing.JFrame
         multiplier0Button = new javax.swing.JButton();
         multiplier1Button = new javax.swing.JButton();
         messageSourceButton = new javax.swing.JButton();
-        rightArrowLabel5 = new javax.swing.JLabel();
         integrator1Button = new javax.swing.JButton();
         summatorButton = new javax.swing.JButton();
         drArrowLabel = new javax.swing.JLabel();
@@ -818,9 +910,13 @@ public class UIMain extends javax.swing.JFrame
         rightArrowLabel7 = new javax.swing.JLabel();
         rightArrowLabel8 = new javax.swing.JLabel();
         rightArrowLabel9 = new javax.swing.JLabel();
-        rightArrowLabel10 = new javax.swing.JLabel();
+        upArrowLabel = new javax.swing.JLabel();
         channelDecoderButton = new javax.swing.JButton();
         sourceDecoderButton = new javax.swing.JButton();
+        ethalonGenerator0Button = new javax.swing.JButton();
+        ethalonGenerator1Button = new javax.swing.JButton();
+        downArrowLabel = new javax.swing.JLabel();
+        rightArrowLabel12 = new javax.swing.JLabel();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -1186,7 +1282,7 @@ public class UIMain extends javax.swing.JFrame
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -1221,7 +1317,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockSourceCoderBinarySequence);
@@ -1247,7 +1343,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderVideoSequenceLayout.setVerticalGroup(
             blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         blockSourceCoderTabs.addTab("Відеопослідовність", blockSourceCoderVideoSequence);
@@ -1260,7 +1356,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderLayout.setVerticalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Кодер джерела", blockSourceCoder);
@@ -1284,7 +1380,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelCoderBinarySequence);
@@ -1310,7 +1406,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderVideoSequenceLayout.setVerticalGroup(
             blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         blockChannelCoderTabs.addTab("Відеопослідовність", blockChannelCoderVideoSequence);
@@ -1323,7 +1419,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderLayout.setVerticalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Кодер каналу", blockChannelCoder);
@@ -1346,7 +1442,7 @@ public class UIMain extends javax.swing.JFrame
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -1380,7 +1476,7 @@ public class UIMain extends javax.swing.JFrame
         );
         channelOutputPanelLayout.setVerticalGroup(
             channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelLayout = new javax.swing.GroupLayout(blockChannel);
@@ -1395,6 +1491,49 @@ public class UIMain extends javax.swing.JFrame
         );
 
         TCSTabs.addTab("Канал", blockChannel);
+
+        blockEthalonGenerator0.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockEthalonGenerator0ComponentShown(evt);
+            }
+        });
+
+        ethalonGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід опорного генератора 0"));
+
+        javax.swing.GroupLayout ethalonGeneratorOutputField0Layout = new javax.swing.GroupLayout(ethalonGeneratorOutputField0);
+        ethalonGeneratorOutputField0.setLayout(ethalonGeneratorOutputField0Layout);
+        ethalonGeneratorOutputField0Layout.setHorizontalGroup(
+            ethalonGeneratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 967, Short.MAX_VALUE)
+        );
+        ethalonGeneratorOutputField0Layout.setVerticalGroup(
+            ethalonGeneratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 295, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout ethalonGeneratorOutputPanel0Layout = new javax.swing.GroupLayout(ethalonGeneratorOutputPanel0);
+        ethalonGeneratorOutputPanel0.setLayout(ethalonGeneratorOutputPanel0Layout);
+        ethalonGeneratorOutputPanel0Layout.setHorizontalGroup(
+            ethalonGeneratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ethalonGeneratorOutputPanel0Layout.setVerticalGroup(
+            ethalonGeneratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockEthalonGenerator0Layout = new javax.swing.GroupLayout(blockEthalonGenerator0);
+        blockEthalonGenerator0.setLayout(blockEthalonGenerator0Layout);
+        blockEthalonGenerator0Layout.setHorizontalGroup(
+            blockEthalonGenerator0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockEthalonGenerator0Layout.setVerticalGroup(
+            blockEthalonGenerator0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Опорний генератор 0", blockEthalonGenerator0);
 
         blockMultiplier0.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1414,7 +1553,7 @@ public class UIMain extends javax.swing.JFrame
         );
         multiplierOutputPanel0Layout.setVerticalGroup(
             multiplierOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier0Layout = new javax.swing.GroupLayout(blockMultiplier0);
@@ -1429,6 +1568,49 @@ public class UIMain extends javax.swing.JFrame
         );
 
         TCSTabs.addTab("Помножувач 0", blockMultiplier0);
+
+        blockEthalonGenerator1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockEthalonGenerator1ComponentShown(evt);
+            }
+        });
+
+        ethalonGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід опорного генератора 1"));
+
+        javax.swing.GroupLayout ethalonGeneratorOutputField1Layout = new javax.swing.GroupLayout(ethalonGeneratorOutputField1);
+        ethalonGeneratorOutputField1.setLayout(ethalonGeneratorOutputField1Layout);
+        ethalonGeneratorOutputField1Layout.setHorizontalGroup(
+            ethalonGeneratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 967, Short.MAX_VALUE)
+        );
+        ethalonGeneratorOutputField1Layout.setVerticalGroup(
+            ethalonGeneratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 295, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout ethalonGeneratorOutputPanel1Layout = new javax.swing.GroupLayout(ethalonGeneratorOutputPanel1);
+        ethalonGeneratorOutputPanel1.setLayout(ethalonGeneratorOutputPanel1Layout);
+        ethalonGeneratorOutputPanel1Layout.setHorizontalGroup(
+            ethalonGeneratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ethalonGeneratorOutputPanel1Layout.setVerticalGroup(
+            ethalonGeneratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockEthalonGenerator1Layout = new javax.swing.GroupLayout(blockEthalonGenerator1);
+        blockEthalonGenerator1.setLayout(blockEthalonGenerator1Layout);
+        blockEthalonGenerator1Layout.setHorizontalGroup(
+            blockEthalonGenerator1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockEthalonGenerator1Layout.setVerticalGroup(
+            blockEthalonGenerator1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ethalonGeneratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Опорний генератор 1", blockEthalonGenerator1);
 
         blockMultiplier1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1448,7 +1630,7 @@ public class UIMain extends javax.swing.JFrame
         );
         multiplierOutputPanel1Layout.setVerticalGroup(
             multiplierOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier1Layout = new javax.swing.GroupLayout(blockMultiplier1);
@@ -1482,7 +1664,7 @@ public class UIMain extends javax.swing.JFrame
         );
         integratorOutputPanel0Layout.setVerticalGroup(
             integratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator0Layout = new javax.swing.GroupLayout(blockIntegrator0);
@@ -1516,7 +1698,7 @@ public class UIMain extends javax.swing.JFrame
         );
         integratorOutputPanel1Layout.setVerticalGroup(
             integratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator1Layout = new javax.swing.GroupLayout(blockIntegrator1);
@@ -1550,7 +1732,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSummatorOutputPanelLayout.setVerticalGroup(
             blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSummatorLayout = new javax.swing.GroupLayout(blockSummator);
@@ -1585,7 +1767,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverOutputPanelLayout.setVerticalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockResolverBinarySequenceLayout = new javax.swing.GroupLayout(blockResolverBinarySequence);
@@ -1611,7 +1793,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverVideoSequenceLayout.setVerticalGroup(
             blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         blockResolverTabs.addTab("Відеопослідовність", blockResolverVideoSequence);
@@ -1624,7 +1806,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverLayout.setVerticalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Вирішуючий пристрій", blockResolver);
@@ -1648,7 +1830,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderOutputPanelLayout.setVerticalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelDecoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelDecoderBinarySequence);
@@ -1674,7 +1856,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderVideoSequenceLayout.setVerticalGroup(
             blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         blockChannelDecoderTabs.addTab("Відеопослідовність", blockChannelDecoderVideoSequence);
@@ -1687,7 +1869,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderLayout.setVerticalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab("Декодер каналу", blockChannelDecoder);
@@ -1702,7 +1884,7 @@ public class UIMain extends javax.swing.JFrame
 
         receivedMessageArea.setColumns(20);
         receivedMessageArea.setEditable(false);
-        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        receivedMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         receivedMessageArea.setRows(5);
         jScrollPane4.setViewportView(receivedMessageArea);
 
@@ -1714,7 +1896,7 @@ public class UIMain extends javax.swing.JFrame
         );
         sourceDecoderPanelLayout.setVerticalGroup(
             sourceDecoderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceDecoderLayout = new javax.swing.GroupLayout(blockSourceDecoder);
@@ -1731,7 +1913,6 @@ public class UIMain extends javax.swing.JFrame
         TCSTabs.addTab("Декодер джерела", blockSourceDecoder);
 
         systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Структурна схема"));
-        systemScheme.setDoubleBuffered(true);
         systemScheme.setLayout(new java.awt.GridBagLayout());
 
         channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1744,7 +1925,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(channelCoderButton, gridBagConstraints);
 
         modulatorButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1757,7 +1938,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(modulatorButton, gridBagConstraints);
 
         channelButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1770,7 +1951,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(channelButton, gridBagConstraints);
 
         integrator0Button.setBackground(new java.awt.Color(240, 240, 240));
@@ -1783,7 +1964,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         systemScheme.add(integrator0Button, gridBagConstraints);
 
         sourceCoderButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1796,7 +1977,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(sourceCoderButton, gridBagConstraints);
 
         multiplier0Button.setBackground(new java.awt.Color(240, 240, 240));
@@ -1809,7 +1990,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         systemScheme.add(multiplier0Button, gridBagConstraints);
 
         multiplier1Button.setBackground(new java.awt.Color(240, 240, 240));
@@ -1822,7 +2003,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         systemScheme.add(multiplier1Button, gridBagConstraints);
 
         messageSourceButton.setBackground(new java.awt.Color(200, 200, 200));
@@ -1835,11 +2016,8 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(messageSourceButton, gridBagConstraints);
-
-        rightArrowLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
-        systemScheme.add(rightArrowLabel5, new java.awt.GridBagConstraints());
 
         integrator1Button.setBackground(new java.awt.Color(240, 240, 240));
         integrator1Button.setText("І1");
@@ -1851,7 +2029,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         systemScheme.add(integrator1Button, gridBagConstraints);
 
         summatorButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1864,73 +2042,73 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(summatorButton, gridBagConstraints);
 
         drArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dr.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         systemScheme.add(drArrowLabel, gridBagConstraints);
 
         leftTripleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/triplel.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(leftTripleLabel, gridBagConstraints);
 
         dlArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dl.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         systemScheme.add(dlArrowLabel, gridBagConstraints);
 
         ulArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ul.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         systemScheme.add(ulArrowLabel, gridBagConstraints);
 
         urArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ur.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         systemScheme.add(urArrowLabel, gridBagConstraints);
 
         rightTripleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tripler.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightTripleLabel, gridBagConstraints);
 
         rightArrowLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel2, gridBagConstraints);
 
         rightArrowLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel3, gridBagConstraints);
 
         rightArrowLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel4, gridBagConstraints);
 
         rightArrowLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel6, gridBagConstraints);
 
         rightArrowLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel1, gridBagConstraints);
 
         resolverButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1943,32 +2121,32 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 16;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(resolverButton, gridBagConstraints);
 
         rightArrowLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         systemScheme.add(rightArrowLabel7, gridBagConstraints);
 
         rightArrowLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 19;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel8, gridBagConstraints);
 
         rightArrowLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel9, gridBagConstraints);
 
-        rightArrowLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        upArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 1;
-        systemScheme.add(rightArrowLabel10, gridBagConstraints);
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 5;
+        systemScheme.add(upArrowLabel, gridBagConstraints);
 
         channelDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
         channelDecoderButton.setText("ДКК");
@@ -1980,7 +2158,7 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 18;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(channelDecoderButton, gridBagConstraints);
 
         sourceDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
@@ -1993,8 +2171,44 @@ public class UIMain extends javax.swing.JFrame
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         systemScheme.add(sourceDecoderButton, gridBagConstraints);
+
+        ethalonGenerator0Button.setBackground(new java.awt.Color(240, 240, 240));
+        ethalonGenerator0Button.setText("Г0");
+        ethalonGenerator0Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ethalonGenerator0ButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        systemScheme.add(ethalonGenerator0Button, gridBagConstraints);
+
+        ethalonGenerator1Button.setBackground(new java.awt.Color(240, 240, 240));
+        ethalonGenerator1Button.setText("Г1");
+        ethalonGenerator1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ethalonGenerator1ButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 6;
+        systemScheme.add(ethalonGenerator1Button, gridBagConstraints);
+
+        downArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/down_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 1;
+        systemScheme.add(downArrowLabel, gridBagConstraints);
+
+        rightArrowLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/right_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 2;
+        systemScheme.add(rightArrowLabel12, gridBagConstraints);
 
         fileMenu.setText("Файл");
 
@@ -2057,7 +2271,7 @@ public class UIMain extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
         );
 
         pack();
@@ -2085,6 +2299,7 @@ public class UIMain extends javax.swing.JFrame
 	    doChannelCodingVideoSequence();
 	    doModulating();
 	    doChannel();
+	    doGenerating();
 	    doMultiplying();
 	    doIntegrating();
 	    doSumming();
@@ -2312,6 +2527,30 @@ public class UIMain extends javax.swing.JFrame
 	updateChosenBlock();
     }//GEN-LAST:event_sourceDecoderButtonActionPerformed
 
+    private void blockEthalonGenerator0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockEthalonGenerator0ComponentShown
+    {//GEN-HEADEREND:event_blockEthalonGenerator0ComponentShown
+	selectedBlock = Blocks.ETHALON_GENERATOR0;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockEthalonGenerator0ComponentShown
+
+    private void blockEthalonGenerator1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockEthalonGenerator1ComponentShown
+    {//GEN-HEADEREND:event_blockEthalonGenerator1ComponentShown
+	selectedBlock = Blocks.ETHALON_GENERATOR1;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockEthalonGenerator1ComponentShown
+
+    private void ethalonGenerator0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ethalonGenerator0ButtonActionPerformed
+    {//GEN-HEADEREND:event_ethalonGenerator0ButtonActionPerformed
+	selectedBlock = Blocks.ETHALON_GENERATOR0;
+	updateChosenBlock();
+    }//GEN-LAST:event_ethalonGenerator0ButtonActionPerformed
+
+    private void ethalonGenerator1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ethalonGenerator1ButtonActionPerformed
+    {//GEN-HEADEREND:event_ethalonGenerator1ButtonActionPerformed
+	selectedBlock = Blocks.ETHALON_GENERATOR1;
+	updateChosenBlock();
+    }//GEN-LAST:event_ethalonGenerator1ButtonActionPerformed
+
     /**
      * 
      * @param args
@@ -2354,6 +2593,8 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockChannelDecoderVideoSequence;
     private javax.swing.JPanel blockChannelDecoderVideoSequenceOutputField;
     private javax.swing.JPanel blockChannelVideoSequenceOutputField;
+    private javax.swing.JPanel blockEthalonGenerator0;
+    private javax.swing.JPanel blockEthalonGenerator1;
     private javax.swing.JPanel blockIntegrator0;
     private javax.swing.JPanel blockIntegrator1;
     private javax.swing.JTextArea blockMessageArea;
@@ -2392,10 +2633,17 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JLabel dlArrowLabel;
     private javax.swing.JMenuItem doModellingItem;
     private javax.swing.JMenuItem doModellingOptionsItem;
+    private javax.swing.JLabel downArrowLabel;
     private javax.swing.JLabel drArrowLabel;
     private javax.swing.JRadioButton errorsInjectorPerBlock;
     private javax.swing.JRadioButton errorsInjectorPerSequence;
     private javax.swing.ButtonGroup errorsInjectorTypeChooserGroup;
+    private javax.swing.JButton ethalonGenerator0Button;
+    private javax.swing.JButton ethalonGenerator1Button;
+    private javax.swing.JPanel ethalonGeneratorOutputField0;
+    private javax.swing.JPanel ethalonGeneratorOutputField1;
+    private javax.swing.JPanel ethalonGeneratorOutputPanel0;
+    private javax.swing.JPanel ethalonGeneratorOutputPanel1;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JCheckBox forceErrors;
@@ -2445,11 +2693,10 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JTextArea receivedMessageArea;
     private javax.swing.JButton resolverButton;
     private javax.swing.JLabel rightArrowLabel1;
-    private javax.swing.JLabel rightArrowLabel10;
+    private javax.swing.JLabel rightArrowLabel12;
     private javax.swing.JLabel rightArrowLabel2;
     private javax.swing.JLabel rightArrowLabel3;
     private javax.swing.JLabel rightArrowLabel4;
-    private javax.swing.JLabel rightArrowLabel5;
     private javax.swing.JLabel rightArrowLabel6;
     private javax.swing.JLabel rightArrowLabel7;
     private javax.swing.JLabel rightArrowLabel8;
@@ -2465,6 +2712,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JButton summatorButton;
     private javax.swing.JPanel systemScheme;
     private javax.swing.JLabel ulArrowLabel;
+    private javax.swing.JLabel upArrowLabel;
     private javax.swing.JLabel urArrowLabel;
     private javax.swing.JCheckBox useChannelCoder;
     private javax.swing.JCheckBox useNoiseErrors;
