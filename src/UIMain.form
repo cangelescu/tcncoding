@@ -5,34 +5,40 @@
     <Container class="javax.swing.JDialog" name="aboutDialog">
       <Properties>
         <Property name="title" type="java.lang.String" value="&#x41f;&#x440;&#x43e; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x443;"/>
+        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="559" max="32767" attributes="0"/>
+                  <EmptySpace pref="312" max="32767" attributes="0"/>
                   <Component id="aboutDialogClose" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="417" max="32767" attributes="0"/>
+                  <Component id="programNameLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="170" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="512" max="32767" attributes="0"/>
+                  <Component id="instituteNameLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="265" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="339" max="32767" attributes="0"/>
+                  <Component id="copyrightLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="92" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="licenseLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="showLicense" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="234" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -40,13 +46,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="programNameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="instituteNameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="copyrightLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="licenseLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="showLicense" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="aboutDialogClose" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -62,25 +70,33 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutDialogCloseActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="programNameLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x435;&#x43b;&#x44c; &#x446;&#x438;&#x444;&#x440;&#x43e;&#x432;&#x43e;&#x457; &#x441;&#x438;&#x441;&#x442;&#x435;&#x43c;&#x438; &#x437;&#x432;&apos;&#x44f;&#x437;&#x43a;&#x443;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="instituteNameLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x41d;&#x414; &#x406;&#x422;&#x421; &#x41d;&#x422;&#x423;&#x423; &#xab;&#x41a;&#x41f;&#x406;&#xbb;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="copyrightLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xa9; 2009-2010, &#x41e;&#x43b;&#x435;&#x43a;&#x441;&#x430;&#x43d;&#x434;&#x440; &#x406;&#x433;&#x43e;&#x440;&#x43e;&#x432;&#x438;&#x447; &#x41d;&#x430;&#x442;&#x430;&#x43b;&#x435;&#x43d;&#x43a;&#x43e;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="licenseLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x430; &#x440;&#x43e;&#x437;&#x43f;&#x43e;&#x432;&#x441;&#x44e;&#x434;&#x436;&#x443;&#x454;&#x442;&#x44c;&#x441;&#x44f; &#x437;&#x433;&#x456;&#x434;&#x43d;&#x43e; &#x443;&#x43c;&#x43e;&#x432;&#x430;&#x43c; &#x43b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x457; UPLv4 (&#x434;&#x438;&#x432;&#x456;&#x442;&#x44c;&#x441;&#x44f; &#x444;&#x430;&#x439;&#x43b; COPYING &#x434;&#x43b;&#x44f; &#x434;&#x435;&#x442;&#x430;&#x43b;&#x435;&#x439;)."/>
+            <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x430; &#x440;&#x43e;&#x437;&#x43f;&#x43e;&#x432;&#x441;&#x44e;&#x434;&#x436;&#x443;&#x454;&#x442;&#x44c;&#x441;&#x44f; &#x437;&#x433;&#x456;&#x434;&#x43d;&#x43e; &#x443;&#x43c;&#x43e;&#x432;&#x430;&#x43c; &#x43b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x457; UPLv4"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="showLicense">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43a;&#x430;&#x437;&#x430;&#x442;&#x438; &#x43b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x44e;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showLicenseActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -558,6 +574,59 @@
     </Container>
     <Component class="javax.swing.ButtonGroup" name="errorsInjectorTypeChooserGroup">
     </Component>
+    <Container class="javax.swing.JDialog" name="licenseDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="&#x41b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x44f;"/>
+        <Property name="resizable" type="boolean" value="false"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="650" max="32767" attributes="0"/>
+                  <Component id="closeLicenseWindowButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Component id="jScrollPane7" alignment="0" pref="735" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="jScrollPane7" pref="446" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="closeLicenseWindowButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="licenseTextArea">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="closeLicenseWindowButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x417;&#x430;&#x43a;&#x440;&#x438;&#x442;&#x438;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeLicenseWindowButtonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="mainMenu">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
