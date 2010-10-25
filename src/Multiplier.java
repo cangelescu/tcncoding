@@ -50,9 +50,7 @@ public class Multiplier
 	    List<MultiplierSignal> newMultiplierSignals = new ArrayList<MultiplierSignal>();
 	    for (int j = 0; j < channelSignals.get(i).size(); j++)
 	    {
-		ChannelSignal currentChannelSignal = channelSignals.get(i).get(j);
-		ModulatorSignal currentEthalonSignal = ethalonSignals.get(i).get(j);
-		MultiplierSignal newSignal = new MultiplierSignal(currentChannelSignal, currentEthalonSignal);
+		MultiplierSignal newSignal = new MultiplierSignal(channelSignals.get(i).get(j), ethalonSignals.get(i).get(j));
 		newMultiplierSignals.add(newSignal);
 	    }
 	    output.add(newMultiplierSignals);
