@@ -35,9 +35,6 @@ public class UIMain extends javax.swing.JFrame
     VideoCreator currentChannelVideoCreator = null;
     Modulator currentModulator = null;
     Channel currentChannel = null;
-    ChannelSqr currentChannelSqr = null;
-    EnergyComputator currentEnergyComputator = null;
-    ErrorsComputator currentErrorsComputator = null;
     EthalonGenerator currentEthalonGenerator0 = null, currentEthalonGenerator1 = null;
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
     Integrator currentIntegrator0 = null, currentIntegrator1 = null;
@@ -101,12 +98,8 @@ public class UIMain extends javax.swing.JFrame
 
     //Channel data
     List<List<ChannelSignal>> channelOutput = null;
-    List<List<ChannelSignalSqr>> channelSqrOutput = null;
     List<List<DataVizualizatorProvider>> channelOutputProvider = null;
     boolean useNoiseErrorsTrigger = true, forceErrorsTrigger = false, injectErrorsPerBlock = true;
-    //TODO: EXPERIMENTAL
-    double channelOutputEnergy = 0;
-    double errorsProbability = 0;
 
     //ethalon generators data
     List<List<ModulatorSignal>> ethalonGenerator0Output = null;
@@ -423,18 +416,6 @@ public class UIMain extends javax.swing.JFrame
 	currentChannel = new Channel(modulatorData, (Double)noisePower.getValue());
 	currentChannel.doNoising();
 	channelOutput = currentChannel.getSignals();
-
-	//TODO: EXPERIMENTAL
-	//gets channel output signal energy
-	currentChannelSqr = new ChannelSqr(modulatorData, (Double)noisePower.getValue());
-	currentChannelSqr.doNoising();
-	channelSqrOutput = currentChannelSqr.getSignals();
-	currentEnergyComputator = new EnergyComputator(channelSqrOutput);
-	currentEnergyComputator.computeEnergy();
-	channelOutputEnergy = currentEnergyComputator.getEnergy();
-	//computes errors probability
-	currentErrorsComputator = new ErrorsComputator(channelOutputEnergy, 1.0E-2, modulationType);
-	errorsProbability = currentErrorsComputator.getErrorProbability();
 
 	//removes old vizualizator if exists
 	if (currentChannelVizualizator != null)
