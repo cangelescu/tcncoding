@@ -20,7 +20,7 @@ import java.awt.Color;
 import java.util.List;
 
 /**
- *
+ * Provides vizualizer with data
  * @author post-factum
  */
 public class DataVizualizatorProvider
@@ -63,6 +63,7 @@ public class DataVizualizatorProvider
     /**
      * Creates data vizualizator provider to unify all types of signals
      * @param _data input list of signals
+     * @param _stepSize size of step for tabulated functions
      * @param _signalType type of signals to provide to data vizualizator
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
@@ -143,35 +144,35 @@ public class DataVizualizatorProvider
 
     /**
      * Returns f(x) of current signal
-     * @param x time variable, s
-     * @return
+     * @param _x time variable, s
+     * @return real value of signal function in x point
      */
-    public double getFunction(double x)
+    public double getFunction(double _x)
     {
 	double out = 0;
 	switch (signalType)
 	{
 	    case MODULATOR:
 		for (ModulatorSignal cms: modulatorSignal)
-		    if (x >= cms.getStart() && x <= cms.getEnd())
-			out = cms.function(x);
+		    if (_x >= cms.getStart() && _x <= cms.getEnd())
+			out = cms.function(_x);
 		break;
 	    case CHANNEL:
 		for (ChannelSignal cms: channelSignal)
-		    if (x >= cms.getStart() && x <= cms.getEnd())
-			out = cms.function(x);
+		    if (_x >= cms.getStart() && _x <= cms.getEnd())
+			out = cms.function(_x);
 		break;
 	    case MULTIPLIER:
 		for (MultiplierSignal cms: multiplierSignal)
-		    if (x >= cms.getStart() && x <= cms.getEnd())
-			out = cms.function(x);
+		    if (_x >= cms.getStart() && _x <= cms.getEnd())
+			out = cms.function(_x);
 		break;
 	    case TABULATED:
 		for (List<FunctionStep> clfs: integratorSignal)
 		{
 		    boolean found = false;
 		    for (FunctionStep fs: clfs)
-			if (x >= fs.getX() && x <= fs.getX() + stepSize)
+			if (_x >= fs.getX() && _x <= fs.getX() + stepSize)
 			{
 			    out = fs.getY();
 			    found = true;
@@ -189,7 +190,7 @@ public class DataVizualizatorProvider
 
     /**
      * Returns signal start
-     * @return
+     * @return real value of time, when signal starts
      */
     public double getStart()
     {
@@ -198,7 +199,7 @@ public class DataVizualizatorProvider
 
     /**
      * Returns signal end
-     * @return
+     * @return real value of time, when signal ends
      */
     public double getEnd()
     {
@@ -207,7 +208,7 @@ public class DataVizualizatorProvider
 
     /**
      * Returns signal maximum value
-     * @return
+     * @return real maximum signal value
      */
     public double getMaxValue()
     {
@@ -216,7 +217,7 @@ public class DataVizualizatorProvider
 
     /**
      * Returns signal minimum value
-     * @return
+     * @return real minimum signal value
      */
     public double getMinValue()
     {
@@ -225,7 +226,7 @@ public class DataVizualizatorProvider
 
     /**
      * Returns signal description
-     * @return
+     * @return string representation of signal description
      */
     public String getDescription()
     {
@@ -234,7 +235,7 @@ public class DataVizualizatorProvider
 
     /**
      * Returns signal chart color
-     * @return
+     * @return color of visual signal representation
      */
     public Color getChartColor()
     {

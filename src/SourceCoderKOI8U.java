@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using KOI8-U
  * @author post-factum
  */
 public class SourceCoderKOI8U
@@ -44,7 +44,7 @@ public class SourceCoderKOI8U
     }
 
     /**
-     * Encodes source sequence with KOI8-U)
+     * Encodes source sequence with KOI8-U
      */
     public void doEncoding()
     {
@@ -62,9 +62,9 @@ public class SourceCoderKOI8U
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of binary numbers that represents source message
      */
-    public List getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return sourceSequence;
     }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Control class for decoding channel codes
  * @author post-factum
  */
 public class ChannelDecoder
@@ -91,7 +91,7 @@ public class ChannelDecoder
 
     /**
      * Returns decoded sequence
-     * @return
+     * @return list of decoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
@@ -100,7 +100,7 @@ public class ChannelDecoder
 
     /**
      * Returns decoded sequence length
-     * @return
+     * @return integer value of decoded sequence length
      */
     public int getSequenceLength()
     {
@@ -112,7 +112,7 @@ public class ChannelDecoder
 
     /**
      * Returns HTML-formatted encoded string sequence
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getHTMLReport()
     {

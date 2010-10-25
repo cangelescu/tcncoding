@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Models integrator device
  * @author post-factum
  */
 public class Integrator
@@ -32,6 +32,8 @@ public class Integrator
     /**
      * Creates integrator for input signals
      * @param _signals list of input signals
+     * @param _maxFrequency maximum frequency of a signal
+     * @param _maxWidth maximum width of visible area
      */
     public Integrator(List<List<MultiplierSignal>> _signals, double _maxFrequency, double _maxWidth)
     {
@@ -73,7 +75,7 @@ public class Integrator
 
     /**
      * Returns list of lists of function steps
-     * @return
+     * @return tabulated integration result of input signal
      */
     public List<List<List<FunctionStep>>> getIntegrals()
     {
@@ -82,7 +84,7 @@ public class Integrator
 
     /**
      * Returns step size
-     * @return
+     * @return real value of integration step size
      */
     public double getStepSize()
     {

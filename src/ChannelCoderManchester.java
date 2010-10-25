@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using Manchester code
  * @author post-factum
  */
 public class ChannelCoderManchester
@@ -59,7 +59,7 @@ public class ChannelCoderManchester
 
     /**
      * Returns encoded list of binary numbers
-     * @return
+     * @return list of encoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {

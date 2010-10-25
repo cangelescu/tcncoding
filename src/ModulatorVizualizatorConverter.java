@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Converts modulator data to vizualizer-friendly form
  * @author post-factum
  */
 public class ModulatorVizualizatorConverter
@@ -46,7 +46,7 @@ public class ModulatorVizualizatorConverter
 
     /**
      * Returns list of provided data
-     * @return
+     * @return list of vizualizer-friendly data
      */
     public List<DataVizualizatorProvider> getProvided()
     {

@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using Shannon-Fano code
  * @author post-factum
  */
-public class SourceCoderShannon
+public class SourceCoderShannonFano
 {
 
     private String message;
@@ -32,10 +32,10 @@ public class SourceCoderShannon
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
-     * Creates Shannon source coder
+     * Creates Shannon-Fano source coder
      * @param _message
      */
-    public SourceCoderShannon(String _message)
+    public SourceCoderShannonFano(String _message)
     {
 	message = _message;
 
@@ -44,7 +44,7 @@ public class SourceCoderShannon
     }
 
     /**
-     * Encodes source sequence with Shannon code)
+     * Encodes source sequence with Shannon-Fano code
      */
     public void doEncoding()
     {
@@ -64,7 +64,7 @@ public class SourceCoderShannon
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of binary numbers that represents source message
      */
     public List getSequence()
     {

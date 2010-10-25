@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of ASK modulator
  * @author post-factum
  */
 public class ModulatorASK
@@ -75,7 +75,7 @@ public class ModulatorASK
 
     /**
      * Returns modulated signals
-     * @return
+     * @return list of modulated signals
      */
     public List<List<ModulatorSignal>> getSignals()
     {

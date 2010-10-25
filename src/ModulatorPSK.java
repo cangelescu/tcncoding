@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of PSK modulator
  * @author post-factum
  */
 public class ModulatorPSK
@@ -75,7 +75,7 @@ public class ModulatorPSK
 
     /**
      * Returns modulated signals
-     * @return
+     * @return list of modulated signals
      */
     public List<List<ModulatorSignal>> getSignals()
     {

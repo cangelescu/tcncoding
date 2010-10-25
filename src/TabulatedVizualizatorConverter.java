@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Converts tabulated function values into vizualizator-friendly form
  * @author post-factum
  */
 public class TabulatedVizualizatorConverter
@@ -34,6 +34,7 @@ public class TabulatedVizualizatorConverter
     /**
      * Creates converter for data vizualizator
      * @param _data input list of signals
+     * @param _stepSize size of tabulating step
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
@@ -48,7 +49,7 @@ public class TabulatedVizualizatorConverter
 
     /**
      * Returns list of provided data
-     * @return
+     * @return list of vizualizator-friendly data
      */
     public List<DataVizualizatorProvider> getProvided()
     {

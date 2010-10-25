@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using Morse code
  * @author post-factum
  */
 public class SourceDecoderMorse
@@ -62,7 +62,7 @@ public class SourceDecoderMorse
 
     /**
      * Returns decoded message
-     * @return
+     * @return string representation of source message
      */
     public String getMessage()
     {

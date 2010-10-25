@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using inversed code decoder
  * @author post-factum
  */
 public class ChannelDecoderInversed
@@ -62,7 +62,7 @@ public class ChannelDecoderInversed
 
     /**
      * Returns decoded list of binary numbers
-     * @return
+     * @return list of decoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
@@ -71,7 +71,7 @@ public class ChannelDecoderInversed
 
     /**
      * Returns HTML report of sequence decoding
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getReport()
     {

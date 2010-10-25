@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using ITC-2
  * @author post-factum
  */
-public class SourceDecoderMTK2
+public class SourceDecoderITC2
 {
 
     private String sourceMessage;
@@ -38,7 +38,7 @@ public class SourceDecoderMTK2
      * Creates ITC-2 source decoder
      * @param _sourceSequence
      */
-    public SourceDecoderMTK2(List<BinaryNumber> _sourceSequence)
+    public SourceDecoderITC2(List<BinaryNumber> _sourceSequence)
     {
 	sourceSequence = _sourceSequence;
 
@@ -59,7 +59,7 @@ public class SourceDecoderMTK2
     {
 	sourceMessage = "";
 
-	SourceCoderMTK2.CodeMapPart codeMapPart = SourceCoderMTK2.CodeMapPart.INT;
+	SourceCoderITC2.CodeMapPart codeMapPart = SourceCoderITC2.CodeMapPart.INT;
 
 	for (BinaryNumber cbn: sourceSequence)
 	{
@@ -89,20 +89,20 @@ public class SourceDecoderMTK2
 	    } else
 	    {
 		if (currentCharCtl.equals("LAT"))
-		    codeMapPart = SourceCoderMTK2.CodeMapPart.LAT;
+		    codeMapPart = SourceCoderITC2.CodeMapPart.LAT;
 		else
 		if (currentCharCtl.equals("INT"))
-		    codeMapPart = SourceCoderMTK2.CodeMapPart.INT;
+		    codeMapPart = SourceCoderITC2.CodeMapPart.INT;
 		else
 		if (currentCharCtl.equals("NUM"))
-		    codeMapPart = SourceCoderMTK2.CodeMapPart.NUM;
+		    codeMapPart = SourceCoderITC2.CodeMapPart.NUM;
 	    }
 	}
     }
 
     /**
      * Returns decoded message
-     * @return
+     * @return string representation of source message
      */
     public String getMessage()
     {

@@ -19,7 +19,7 @@
 import java.util.List;
 
 /**
- *
+ * Common class to control source decoders
  * @author post-factum
  */
 public class SourceDecoder
@@ -31,8 +31,8 @@ public class SourceDecoder
 
     /**
      * Creates source decoder for input source sequence
+     * @param _sourceSequence binary sequence to decode
      * @param _codeType type of using code
-     * @param _message input string message
      */
     public SourceDecoder(List<BinaryNumber> _sourceSequence, SourceCoder.SourceCoderCode _codeType)
     {
@@ -48,12 +48,12 @@ public class SourceDecoder
 	switch (usingCode)
 	{
 	    case MTK2:
-		SourceDecoderMTK2 decoderMTK2 = new SourceDecoderMTK2(sourceSequence);
+		SourceDecoderITC2 decoderMTK2 = new SourceDecoderITC2(sourceSequence);
 		decoderMTK2.doDecoding();
 		sourceMessage = decoderMTK2.getMessage();
 		break;
 	    case MTK5:
-		SourceDecoderMTK5 decoderMTK5 = new SourceDecoderMTK5(sourceSequence);
+		SourceDecoderITC5 decoderMTK5 = new SourceDecoderITC5(sourceSequence);
 		decoderMTK5.doDecoding();
 		sourceMessage = decoderMTK5.getMessage();
 		break;
@@ -68,7 +68,7 @@ public class SourceDecoder
 		sourceMessage = decoderMorse.getMessage();
 		break;
 	    case SHANNON:
-		SourceDecoderShannon decoderShannon = new SourceDecoderShannon(sourceSequence);
+		SourceDecoderShannonFano decoderShannon = new SourceDecoderShannonFano(sourceSequence);
 		decoderShannon.doDecoding();
 		sourceMessage = decoderShannon.getMessage();
 		break;
@@ -79,7 +79,7 @@ public class SourceDecoder
 
     /**
      * Returns decoded messaage
-     * @return
+     * @return string representation of source message
      */
     public String getMessage()
     {

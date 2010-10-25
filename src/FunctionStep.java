@@ -17,7 +17,7 @@
 */
 
 /**
- *
+ * Models tablulated function step
  * @author post-factum
  */
 public class FunctionStep
@@ -37,7 +37,7 @@ public class FunctionStep
 
     /**
      * Returns x value
-     * @return
+     * @return real x value of step
      */
     public double getX()
     {
@@ -46,7 +46,7 @@ public class FunctionStep
 
     /**
      * Returns y value
-     * @return
+     * @return real y value of step
      */
     public double getY()
     {

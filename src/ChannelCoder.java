@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Control class of applying channel codes
  * @author post-factum
  */
 public class ChannelCoder
@@ -60,6 +60,7 @@ public class ChannelCoder
      * Creates channel coder with given code and symbols on its input
      * @param _symbols input symbols
      * @param _codeType code to use
+     * @param _enabled indicates whether to enable channel coding
      */
     public ChannelCoder(List<BinaryNumber> _symbols, ChannelCoderCode _codeType, boolean _enabled)
     {
@@ -103,15 +104,12 @@ public class ChannelCoder
 		    break;
 	    }
 	} else
-	{
 	    channelSequence = sourceSymbols;
-	    headLength = 0;
-	}
     }
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of encoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
@@ -120,7 +118,7 @@ public class ChannelCoder
 
     /**
      * Returns encoded sequence length
-     * @return
+     * @return integer value of encoded sequence length
      */
     public int getSequenceLength()
     {
@@ -132,7 +130,7 @@ public class ChannelCoder
 
     /**
      * Returns HTML-formatted encoded string sequence
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getStringSequence()
     {
@@ -152,7 +150,7 @@ public class ChannelCoder
 
     /**
      * Returns length of sequence head that was added by splitter in Hamming coder
-     * @return
+     * @return integer value of trailing head length
      */
     public int getHeadLength()
     {

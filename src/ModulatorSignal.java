@@ -17,7 +17,7 @@
 */
 
 /**
- *
+ * Model of modulator signal
  * @author post-factum
  */
 public class ModulatorSignal extends Signal
@@ -43,12 +43,12 @@ public class ModulatorSignal extends Signal
 
     /**
      * Returns f(x) for current signal
-     * @param x time variable, s
-     * @return
+     * @param _x time variable, s
+     * @return real value of signal function in x point
      */
     @Override
-    public double function(double x)
+    public double function(double _x)
     {
-	return amplitude * Math.sin(2 * Math.PI * frequency * x + phase);
+	return amplitude * Math.sin(2 * Math.PI * frequency * _x + phase);
     }
 }

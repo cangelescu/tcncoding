@@ -19,7 +19,7 @@
 import java.util.Random;
 
 /**
- *
+ * Model of channel signal
  * @author post-factum
  */
 public class ChannelSignal extends Signal
@@ -49,19 +49,19 @@ public class ChannelSignal extends Signal
 
     /**
      * Returns f(x) value for this signal
-     * @param x time variable, s
-     * @return
+     * @param _x time variable, s
+     * @return real value of signal function in x point
      */
     @Override
-    public double function(double x)
+    public double function(double _x)
     {
 	Random noiseGenerator = new Random();
-	return amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + Math.sqrt(noise) * noiseGenerator.nextGaussian();
+	return amplitude * Math.sin(2 * Math.PI * frequency * _x + phase) + Math.sqrt(noise) * noiseGenerator.nextGaussian();
     }
 
     /**
      * Returns amplitude of noise
-     * @return
+     * @return real value of noise
      */
     public double getNoise()
     {

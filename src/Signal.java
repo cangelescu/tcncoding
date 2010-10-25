@@ -19,7 +19,7 @@
 import flanagan.integration.IntegralFunction;
 
 /**
- *
+ * Base class of signal model
  * @author post-factum
  */
 public class Signal implements IntegralFunction
@@ -33,17 +33,17 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns f(x) for current signal
-     * @param x time variable, s
-     * @return
+     * @param _x time variable, s
+     * @return real value of signal function in x point
      */
-    public double function(double x)
+    public double function(double _x)
     {
 	return 0;
     }
 
     /**
      * Returns signal frequency, Hz
-     * @return
+     * @return real value of signal frequency
      */
     public double getFrequency()
     {
@@ -52,7 +52,7 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns signal amplitude, V
-     * @return
+     * @return real value of signal amplitude
      */
     public double getAmplitude()
     {
@@ -61,7 +61,7 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns signal phase, rad
-     * @return
+     * @return real value of signal phase
      */
     public double getPhase()
     {
@@ -70,7 +70,7 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns signal maximum value, V
-     * @return
+     * @return real maximum signal value
      */
     public double getMaxValue()
     {
@@ -79,7 +79,7 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns signal minimum value, V
-     * @return
+     * @return real minimum signal value
      */
     public double getMinValue()
     {
@@ -88,7 +88,7 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns signal start point, s
-     * @return
+     * @return real signal start time
      */
     public double getStart()
     {
@@ -97,7 +97,7 @@ public class Signal implements IntegralFunction
 
     /**
      * Returns signal end point, s
-     * @return
+     * @return real signal end time
      */
     public double getEnd()
     {

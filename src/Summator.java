@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of summing device
  * @author post-factum
  */
 public class Summator
@@ -70,7 +70,7 @@ public class Summator
 
     /**
      * Returns tabulated function
-     * @return
+     * @return tabulated function
      */
     public List<List<List<FunctionStep>>> getSum()
     {

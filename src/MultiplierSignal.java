@@ -17,7 +17,7 @@
 */
 
 /**
- *
+ * Model of multiplier signal
  * @author post-factum
  */
 public class MultiplierSignal extends Signal
@@ -49,7 +49,7 @@ public class MultiplierSignal extends Signal
     /**
      * Returns f(x) for current signal
      * @param _x time variable, s
-     * @return
+     * @return real value of signal function in x point
      */
     @Override
     public double function(double _x)
@@ -58,8 +58,8 @@ public class MultiplierSignal extends Signal
     }
 
     /**
-     * Returns noise amplitude, V
-     * @return
+     * Returns noise level, V
+     * @return real value of noise level
      */
     public double getNoise()
     {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows working with binary numbers
  * @author post-factum
  */
 public class BinaryNumber
@@ -107,7 +107,7 @@ public class BinaryNumber
 
     /**
      * Creates binary number from decimal value
-     * @param _number integer number, that is to to binary number
+     * @param _number integer number, that is converted to binary number
      */
     public BinaryNumber(long _number)
     {
@@ -222,7 +222,7 @@ public class BinaryNumber
 
     /**
      * Returns string representation of binary number
-     * @return
+     * @return string of zeroes and ones that represents binary number
      */
     public String getStringSequence()
     {
@@ -234,7 +234,7 @@ public class BinaryNumber
 
     /**
      * Returns decimal value of binary number
-     * @return
+     * @return integer representation of binary number
      */
     public long toInt()
     {
@@ -243,7 +243,7 @@ public class BinaryNumber
 
     /**
      * Returns boolean array, that represents binary number
-     * @return
+     * @return array representation of binary number
      */
     public boolean[] getBinaryArray()
     {
@@ -255,7 +255,7 @@ public class BinaryNumber
 
     /**
      * Truncates one digit from right side of number
-     * @return 
+     * @return truncated binary number
      */
     public BinaryNumber truncRight()
     {
@@ -265,7 +265,7 @@ public class BinaryNumber
     /**
      * Truncates several digits from right side of number
      * @param _count count of digits to remove
-     * @return
+     * @return truncated binary number
      */
     public BinaryNumber truncRight(int _count)
     {
@@ -275,7 +275,7 @@ public class BinaryNumber
     /**
      * Truncates several digits from left side of number
      * @param _count count of digits to remove
-     * @return
+     * @return truncated binary number
      */
     public BinaryNumber truncLeft(int _count)
     {
@@ -285,7 +285,7 @@ public class BinaryNumber
     /**
      * Returns boolean digit of given index
      * @param index number of digit to get
-     * @return
+     * @return boolean representation of bit with given index
      */
     public boolean getDigit(int index)
     {
@@ -295,7 +295,7 @@ public class BinaryNumber
     /**
      * Sums current binary number with given and returns new binary number
      * @param _number binary number to sum with
-     * @return
+     * @return binary number, that is the sum of current binary number and given
      */
     public BinaryNumber sum2(BinaryNumber _number)
     {
@@ -327,7 +327,7 @@ public class BinaryNumber
 
     /**
      * Inverses binary number
-     * @return
+     * @return binary number with inversed bits
      */
     public BinaryNumber not2()
     {
@@ -340,7 +340,7 @@ public class BinaryNumber
 
     /**
      * Shifts binary number to left
-     * @return
+     * @return shifted binary number
      */
     public BinaryNumber shl2()
     {
@@ -355,7 +355,7 @@ public class BinaryNumber
     /**
      * Shifts binary number to left by several positions
      * @param _count digits to shift number on
-     * @return
+     * @return shifted binary number
      */
     public BinaryNumber shl2(int _count)
     {
@@ -370,7 +370,7 @@ public class BinaryNumber
 
     /**
      * Returns weight (count of 1) of binary number
-     * @return
+     * @return integer value of binary number's weight
      */
     public int getWeight()
     {
@@ -383,7 +383,7 @@ public class BinaryNumber
 
     /**
      * Returns length of binary number
-     * @return
+     * @return integer value of bits count
      */
     public int getLength()
     {

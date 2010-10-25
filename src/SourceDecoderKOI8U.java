@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using KOI8-U
  * @author post-factum
  */
 public class SourceDecoderKOI8U
@@ -62,7 +62,7 @@ public class SourceDecoderKOI8U
 
     /**
      * Returns decoded message
-     * @return
+     * @return string representation of source message
      */
     public String getMessage()
     {

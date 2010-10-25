@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of multiplier device
  * @author post-factum
  */
 public class Multiplier
@@ -61,7 +61,7 @@ public class Multiplier
 
     /**
      * Returns list of multiplied signals
-     * @return
+     * @return list of multiplied signals
      */
     public List<List<MultiplierSignal>> getSignals()
     {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using Manchester code decoder
  * @author post-factum
  */
 public class ChannelDecoderManchester
@@ -75,7 +75,7 @@ public class ChannelDecoderManchester
 
     /**
      * Returns decoded list of binary numbers
-     * @return
+     * @return list of decoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
@@ -84,7 +84,7 @@ public class ChannelDecoderManchester
 
     /**
      * Returns HTML report of sequence decoding
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getReport()
     {

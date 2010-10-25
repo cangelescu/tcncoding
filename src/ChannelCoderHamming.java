@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using Hamming code (7,4)
  * @author post-factum
  */
 public class ChannelCoderHamming
@@ -65,7 +65,7 @@ public class ChannelCoderHamming
 
     /**
      * Returns encoded list of binary numbers
-     * @return
+     * @return list of encoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
@@ -74,7 +74,7 @@ public class ChannelCoderHamming
 
     /**
      * Returns added head length
-     * @return
+     * @return integer value of trailing head length
      */
     public int getHeadLength()
     {

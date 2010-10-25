@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * Injects errors into binary sequence
  * @author post-factum
  */
 public class ErrorsInjector {
@@ -157,7 +157,7 @@ public class ErrorsInjector {
 
     /**
      * Returns injected sequence
-     * @return
+     * @return list of binary numbers with injected errors
      */
     public List<BinaryNumber> getSequence()
     {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using decoder for code with parity bit checking
  * @author post-factum
  */
 public class ChannelDecoderParityBit
@@ -62,7 +62,7 @@ public class ChannelDecoderParityBit
 
     /**
      * Returns decoded list of binary numbers
-     * @return
+     * @return list of decoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
@@ -71,7 +71,7 @@ public class ChannelDecoderParityBit
 
     /**
      * Returns HTML report of sequence decoding
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getReport()
     {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using code with inversed checking
  * @author post-factum
  */
 public class ChannelCoderInversed
@@ -57,7 +57,7 @@ public class ChannelCoderInversed
 
     /**
      * Returns encoded list of binary numbers
-     * @return
+     * @return list of encoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {

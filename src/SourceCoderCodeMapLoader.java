@@ -21,7 +21,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 
 /**
- *
+ * Loads code table and creates its map
  * @author post-factum
  */
 public class SourceCoderCodeMapLoader
@@ -55,7 +55,7 @@ public class SourceCoderCodeMapLoader
 
     /**
      * Returns loaded code map
-     * @return
+     * @return list of pairs string, binary number that represents loaded code map
      */
     public HashMap<String, BinaryNumber> getCodeMap()
     {

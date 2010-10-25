@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Models ethalon generator of correlative receiver
  * @author post-factum
  */
 public class EthalonGenerator
@@ -63,7 +63,7 @@ public class EthalonGenerator
 
     /**
      * Returns list of generated signals
-     * @return
+     * @return list of ethalon signals
      */
     public List<List<ModulatorSignal>> getSignals()
     {

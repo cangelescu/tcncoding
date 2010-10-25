@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Converts channel data to vizualizer-friendly form
  * @author post-factum
  */
 public class ChannelVizualizatorConverter
@@ -36,7 +36,6 @@ public class ChannelVizualizatorConverter
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
-
     public ChannelVizualizatorConverter(List<List<ChannelSignal>> _data, String _description, Color _chartColor)
     {
 	data = _data;
@@ -46,7 +45,7 @@ public class ChannelVizualizatorConverter
 
     /**
      * Returns list of provided data
-     * @return
+     * @return list of vizualizer-friendly data
      */
     public List<DataVizualizatorProvider> getProvided()
     {

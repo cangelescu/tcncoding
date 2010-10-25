@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using Morse code
  * @author post-factum
  */
 public class SourceCoderMorse
@@ -44,7 +44,7 @@ public class SourceCoderMorse
     }
 
     /**
-     * Encodes source sequence with Morse code)
+     * Encodes source sequence with Morse code
      */
     public void doEncoding()
     {
@@ -64,9 +64,9 @@ public class SourceCoderMorse
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of binary numbers that represents source message
      */
-    public List getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return sourceSequence;
     }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Common class to control source coders
  * @author post-factum
  */
 public class SourceCoder
@@ -78,12 +78,12 @@ public class SourceCoder
 	switch (usingCode)
 	{
 	    case MTK2:
-		SourceCoderMTK2 coderMTK2 = new SourceCoderMTK2(sourceMessage);
+		SourceCoderITC2 coderMTK2 = new SourceCoderITC2(sourceMessage);
 		coderMTK2.doEncoding();
 		sourceSequence = coderMTK2.getSequence();
 		break;
 	    case MTK5:
-		SourceCoderMTK5 coderMTK5 = new SourceCoderMTK5(sourceMessage);
+		SourceCoderITC5 coderMTK5 = new SourceCoderITC5(sourceMessage);
 		coderMTK5.doEncoding();
 		sourceSequence = coderMTK5.getSequence();
 		break;
@@ -98,7 +98,7 @@ public class SourceCoder
 		sourceSequence = coderMorse.getSequence();
 		break;
 	    case SHANNON:
-		SourceCoderShannon coderShannon = new SourceCoderShannon(sourceMessage);
+		SourceCoderShannonFano coderShannon = new SourceCoderShannonFano(sourceMessage);
 		coderShannon.doEncoding();
 		sourceSequence = coderShannon.getSequence();
 		break;
@@ -113,16 +113,16 @@ public class SourceCoder
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of encoded binary numbers
      */
-    public List getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return sourceSequence;
     }
 
     /**
      * Returns encoded sequence length
-     * @return
+     * @return integer value of encoded sequence length
      */
     public int getSequenceLength()
     {
@@ -134,7 +134,7 @@ public class SourceCoder
 
     /**
      * Returns encoded HTML-formatted string sequence
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getStringSequence()
     {
@@ -154,7 +154,7 @@ public class SourceCoder
 
     /**
      * Returns map of blocks length (used for recovering blocks after e.g. Hamming decoder)
-     * @return
+     * @return list of blocks length
      */
     public List<Integer> getLengthMap()
     {

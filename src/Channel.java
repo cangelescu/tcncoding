@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of transmission channel with Gaussian noise
  * @author post-factum
  */
 public class Channel
@@ -59,7 +59,7 @@ public class Channel
 
     /**
      * Returns list of noised signals
-     * @return
+     * @return list of channel signals
      */
     public List<List<ChannelSignal>> getSignals()
     {

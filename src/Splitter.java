@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Creates blocks of binary numbers from given blocks of binary numbers
  * @author post-factum
  */
 public class Splitter
@@ -56,6 +56,7 @@ public class Splitter
     /**
      * Reorganize binary numbers list according to length map
      * @param _sequence source list of binary numbers
+     * @param _lengthMap list of blocks' length
      */
     public Splitter(List<BinaryNumber> _sequence, List<Integer> _lengthMap)
     {
@@ -145,13 +146,17 @@ public class Splitter
 
     /**
      * Returns list of splitted blocks with fixed width
-     * @return
+     * @return list of recoded blocks
      */
     public List<BinaryNumber> getBlocks()
     {
 	return outputBlocks;
     }
 
+    /**
+     * Returns leading zeroes count
+     * @return integer value of leading zeroes count in recoded sequence
+     */
     public int getLeadingZeroesCount()
     {
 	return leadingZeroes;

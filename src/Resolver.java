@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of resolver device
  * @author post-factum
  */
 public class Resolver
@@ -104,7 +104,7 @@ public class Resolver
 
     /**
      * Returns binary list
-     * @return
+     * @return list of binary numbers
      */
     public List<BinaryNumber> getBinaryNumbers()
     {
@@ -113,7 +113,7 @@ public class Resolver
 
     /**
      * Returns HTML-formatted encoded string sequence
-     * @return
+     * @return string representation of HTML-formatted report
      */
     public String getStringSequence()
     {

@@ -21,30 +21,30 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using ITC-2
  * @author post-factum
  */
-public class SourceDecoderShannon
+public class SourceDecoderITC5
 {
 
     private String sourceMessage;
-    private HashMap<String, String> codeMapShannon = new HashMap<String, String>();
+    private HashMap<String, String> codeMapMTK5 = new HashMap<String, String>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
-     * Creates Shannon source decoder
+     * Creates ITC-5 source decoder
      * @param _sourceSequence
      */
-    public SourceDecoderShannon(List<BinaryNumber> _sourceSequence)
+    public SourceDecoderITC5(List<BinaryNumber> _sourceSequence)
     {
 	sourceSequence = _sourceSequence;
 
-	SourceDecoderCodeMapLoader loader = new SourceDecoderCodeMapLoader("shannon");
-	codeMapShannon = loader.getCodeMap();
+	SourceDecoderCodeMapLoader loader = new SourceDecoderCodeMapLoader("mtk5");
+	codeMapMTK5 = loader.getCodeMap();
     }
 
     /**
-     * Decodes source message with Shannon code
+     * Decodes source message with ITC-5
      */
     public void doDecoding()
     {
@@ -52,7 +52,7 @@ public class SourceDecoderShannon
 
 	for (BinaryNumber cbn: sourceSequence)
 	{
-	    String currentChar = codeMapShannon.get(cbn.getStringSequence());
+	    String currentChar = codeMapMTK5.get(cbn.getStringSequence());
 	    if (currentChar != null)
 		sourceMessage += currentChar;
 	    else
@@ -62,7 +62,7 @@ public class SourceDecoderShannon
 
     /**
      * Returns decoded message
-     * @return
+     * @return string representation of source message
      */
     public String getMessage()
     {

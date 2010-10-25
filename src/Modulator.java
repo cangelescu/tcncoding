@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Common class to control modulators
  * @author post-factum
  */
 public class Modulator
@@ -109,7 +109,7 @@ public class Modulator
 
     /**
      * Returns modulated signals
-     * @return
+     * @return list of modulated signals
      */
     public List<List<ModulatorSignal>> getSignals()
     {

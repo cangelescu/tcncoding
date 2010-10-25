@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Allows using code with parity bit checking
  * @author post-factum
  */
 public class ChannelCoderParityBit
@@ -57,7 +57,7 @@ public class ChannelCoderParityBit
 
     /**
      * Returns encoded list of binary numbers
-     * @return
+     * @return list of encoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {

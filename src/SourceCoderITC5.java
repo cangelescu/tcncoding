@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using ITC-5
  * @author post-factum
  */
-public class SourceCoderMTK5
+public class SourceCoderITC5
 {
 
     private String message;
@@ -35,7 +35,7 @@ public class SourceCoderMTK5
      * Creates ITC-5 source coder
      * @param _message
      */
-    public SourceCoderMTK5(String _message)
+    public SourceCoderITC5(String _message)
     {
 	message = _message;
 
@@ -62,9 +62,9 @@ public class SourceCoderMTK5
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of binary numbers that represents source message
      */
-    public List getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return sourceSequence;
     }

@@ -21,7 +21,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 
 /**
- *
+ * Loads code table and creates its map
  * @author post-factum
  */
 public class SourceDecoderCodeMapLoader
@@ -55,7 +55,7 @@ public class SourceDecoderCodeMapLoader
 
     /**
      * Returns loaded code map
-     * @return
+     * @return list of string pairs that represents loaded code map
      */
     public HashMap<String, String> getCodeMap()
     {

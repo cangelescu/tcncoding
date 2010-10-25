@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of RPSK recoder
  * @author post-factum
  */
 public class ModulatorRPSKRecoder
@@ -85,7 +85,7 @@ public class ModulatorRPSKRecoder
 
     /**
      * Returns formed array
-     * @return
+     * @return list of recoded binary sequence
      */
     public List<BinaryNumber> getList()
     {

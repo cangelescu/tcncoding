@@ -17,7 +17,7 @@
 */
 
 /**
- *
+ * Formats numbers into human-readable form
  * @author post-factum
  */
 public class DecimalFormatter {
@@ -36,7 +36,7 @@ public class DecimalFormatter {
     /**
      * Formats given number and returns string like a*10^b
      * @param _value number to format
-     * @return
+     * @return string human-readable representation of number
      */
     public String formatValue(double _value)
     {

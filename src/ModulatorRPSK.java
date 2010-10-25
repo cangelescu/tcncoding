@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model of RPSK modulator
  * @author post-factum
  */
 public class ModulatorRPSK
@@ -79,7 +79,7 @@ public class ModulatorRPSK
 
     /**
      * Returns modulated signals
-     * @return
+     * @return list of modulated signals
      */
     public List<List<ModulatorSignal>> getSignals()
     {

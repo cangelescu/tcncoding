@@ -22,10 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Allows using ITC-2
  * @author post-factum
  */
-public class SourceCoderMTK2
+public class SourceCoderITC2
 {
 
     private String message;
@@ -34,10 +34,26 @@ public class SourceCoderMTK2
     private HashMap<String, BinaryNumber> codeMapNum = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapCtl = new HashMap<String, BinaryNumber>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
-    public enum CodeMapPart {
+    /**
+     * Parts of code map
+     */
+    public enum CodeMapPart
+    {
+	/**
+	 * Latin symbols
+	 */
 	LAT,
+	/**
+	 * International symbols
+	 */
 	INT,
+	/**
+	 * Numeric symbols
+	 */
 	NUM,
+	/**
+	 * Control symbols
+	 */
 	CTL;
     };
 
@@ -45,7 +61,7 @@ public class SourceCoderMTK2
      * Creates ITC-2 source coder
      * @param _message
      */
-    public SourceCoderMTK2(String _message)
+    public SourceCoderITC2(String _message)
     {
 	message = _message;
 
@@ -109,9 +125,9 @@ public class SourceCoderMTK2
 
     /**
      * Returns encoded sequence
-     * @return
+     * @return list of binary numbers that represents source message
      */
-    public List getSequence()
+    public List<BinaryNumber> getSequence()
     {
 	return sourceSequence;
     }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Creates videosequence from given binary sequence
  * @author post-factum
  */
 public class VideoCreator
@@ -70,7 +70,7 @@ public class VideoCreator
 
     /**
      * Returns resulted videosequence
-     * @return
+     * @return tabulated function
      */
     public List<List<List<FunctionStep>>> getVideoSequence()
     {
@@ -79,7 +79,7 @@ public class VideoCreator
 
     /**
      * Returns step size
-     * @return
+     * @return real value of function tabulation step
      */
     public double getStepSize()
     {

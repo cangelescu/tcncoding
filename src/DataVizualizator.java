@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 /**
- *
+ * Vizualizes input data
  * @author post-factum
  */
 public class DataVizualizator extends JPanel
