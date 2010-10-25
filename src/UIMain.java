@@ -886,6 +886,8 @@ public class UIMain extends javax.swing.JFrame
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
+        aboutDialog.setTitle("Про програму");
+
         aboutDialogClose.setText("Закрити");
         aboutDialogClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -897,33 +899,33 @@ public class UIMain extends javax.swing.JFrame
 
         jLabel2.setText("НД ІТС НТУУ «КПІ»");
 
-        jLabel3.setText("Розробник: Олександр Ігорович Наталенко");
+        jLabel3.setText("© 2009-2010, Олександр Ігорович Наталенко");
 
-        jLabel4.setText("Програма розповсюджується згідно умовам ліцензії UPL.");
+        jLabel4.setText("Програма розповсюджується згідно умовам ліцензії UPLv4 (дивіться файл COPYING для деталей).");
 
         javax.swing.GroupLayout aboutDialogLayout = new javax.swing.GroupLayout(aboutDialog.getContentPane());
         aboutDialog.getContentPane().setLayout(aboutDialogLayout);
         aboutDialogLayout.setHorizontalGroup(
             aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
-                .addContainerGap(315, Short.MAX_VALUE)
+                .addContainerGap(559, Short.MAX_VALUE)
                 .addComponent(aboutDialogClose))
             .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(417, Short.MAX_VALUE))
             .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(512, Short.MAX_VALUE))
             .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(339, Short.MAX_VALUE))
             .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         aboutDialogLayout.setVerticalGroup(
             aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -936,7 +938,7 @@ public class UIMain extends javax.swing.JFrame
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(aboutDialogClose))
         );
 
@@ -2278,7 +2280,7 @@ public class UIMain extends javax.swing.JFrame
     //shows about dialog
     private void aboutItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutItemActionPerformed
     {//GEN-HEADEREND:event_aboutItemActionPerformed
-	aboutDialog.setSize(400, 300);
+	aboutDialog.setSize(660, 190);
 	aboutDialog.setVisible(true);
     }//GEN-LAST:event_aboutItemActionPerformed
 
