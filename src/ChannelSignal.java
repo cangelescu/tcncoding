@@ -28,23 +28,19 @@ public class ChannelSignal extends Signal
 
     /**
      * Creates channel signal with given parameters
-     * @param _frequency frequency of signal, Hz
-     * @param _amplitude amplitude of signal, V
-     * @param _phase phase of signal, rad
+     * @param _modulatorSignal modulator signal on the input of the channel
      * @param _noise amplitude of noise, V
-     * @param _start start time, s
-     * @param _end end time, s
      */
-    public ChannelSignal(double _frequency, double _amplitude, double _phase, double _noise, double _start, double _end)
+    public ChannelSignal(ModulatorSignal _modulatorSignal, double _noise)
     {
-        frequency = _frequency;
-        amplitude = _amplitude;
-        phase = _phase;
+        frequency = _modulatorSignal.getFrequency();
+        amplitude = _modulatorSignal.getAmplitude();
+        phase = _modulatorSignal.getPhase();
 	noise = _noise;
-	maxValue = _amplitude + 3 * Math.sqrt(_noise);
-	minValue = -(_amplitude + 3 * Math.sqrt(_noise));
-	xStart = _start;
-	xEnd = _end;
+	maxValue = amplitude + 3 * Math.sqrt(noise);
+	minValue = -(amplitude + 3 * Math.sqrt(noise));
+	xStart = _modulatorSignal.getStart();
+	xEnd = _modulatorSignal.getEnd();
     }
 
     /**
