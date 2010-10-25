@@ -530,30 +530,9 @@ public class UIMain extends javax.swing.JFrame
     //multiplies signals and ethalons
     void doMultiplying()
     {
-	//create multipliers according to modulation type
-	switch (modulationType)
-	{
-	    case ASK:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		currentMultiplier0 = new Multiplier(maxFrequency, 0, 0, channelOutput);
-		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		break;
-	    case FSK:
-		maxFrequency = (Double)bearerFrequency.getValue() + (Double)bearerFrequencyDeviation.getValue();
-		currentMultiplier0 = new Multiplier(maxFrequency - 2 * (Double)bearerFrequencyDeviation.getValue(), (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		break;
-	    case PSK:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		currentMultiplier0 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
-		break;
-	    case RPSK:
-		maxFrequency = (Double)bearerFrequency.getValue();
-		currentMultiplier0 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), 0, channelOutput);
-		currentMultiplier1 = new Multiplier(maxFrequency, (Double)bearerAmplitude.getValue(), -Math.PI, channelOutput);
-		break;
-	}
+	//create multipliers
+	currentMultiplier0 = new Multiplier(channelOutput, ethalonGenerator0Output);
+	currentMultiplier1 = new Multiplier(channelOutput, ethalonGenerator1Output);
 
 	//multiplies
 	currentMultiplier0.doMultiply();

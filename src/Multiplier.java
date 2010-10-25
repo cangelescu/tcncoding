@@ -25,23 +25,19 @@ import java.util.List;
  */
 public class Multiplier
 {
-    private double ethalonFrequency, ethalonAmplitude, ethalonPhase;
-    private List<List<ChannelSignal>> receivedSignals;
+    private List<List<ChannelSignal>> channelSignals;
+    private List<List<ModulatorSignal>> ethalonSignals;
     private List<List<MultiplierSignal>> output = new ArrayList<List<MultiplierSignal>>();
 
     /**
      * Creates multiplier
-     * @param _frequency ethalon frequency, Hz
-     * @param _amplitude ethalon amplitude, V
-     * @param _phase ethalon phase, rad
-     * @param _signals list of input signals
+     * @param _channelSignals list of channel signals
+     * @param _ethalonSignals list of ethalon signals
      */
-    public Multiplier(double _frequency, double _amplitude, double _phase, List<List<ChannelSignal>> _signals)
+    public Multiplier(List<List<ChannelSignal>> _channelSignals, List<List<ModulatorSignal>> _ethalonSignals)
     {
-	ethalonFrequency = _frequency;
-	ethalonAmplitude = _amplitude;
-	ethalonPhase = _phase;
-	receivedSignals = _signals;
+	channelSignals = _channelSignals;
+	ethalonSignals = _ethalonSignals;
     }
 
     /**
@@ -49,15 +45,17 @@ public class Multiplier
      */
     public void doMultiply()
     {
-	for (List<ChannelSignal> clcs: receivedSignals)
+	for (int i = 0; i < channelSignals.size(); i++)
 	{
-	    List<MultiplierSignal> newMultiplierSignalList = new ArrayList<MultiplierSignal>();
-	    for (ChannelSignal crs: clcs)
+	    List<MultiplierSignal> newMultiplierSignals = new ArrayList<MultiplierSignal>();
+	    for (int j = 0; j < channelSignals.get(i).size(); j++)
 	    {
-		MultiplierSignal mbfcrs = new MultiplierSignal(crs.getFrequency(), crs.getAmplitude(), crs.getPhase(), crs.getNoise(), ethalonFrequency, ethalonAmplitude, ethalonPhase, crs.getStart(), crs.getEnd());
-		newMultiplierSignalList.add(mbfcrs);
+		ChannelSignal currentChannelSignal = channelSignals.get(i).get(j);
+		ModulatorSignal currentEthalonSignal = ethalonSignals.get(i).get(j);
+		MultiplierSignal newSignal = new MultiplierSignal(currentChannelSignal, currentEthalonSignal);
+		newMultiplierSignals.add(newSignal);
 	    }
-	    output.add(newMultiplierSignalList);
+	    output.add(newMultiplierSignals);
 	}
     }
 

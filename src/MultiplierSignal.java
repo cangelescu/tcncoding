@@ -16,57 +16,45 @@
 
 */
 
-import java.util.Random;
-
 /**
  *
  * @author post-factum
  */
 public class MultiplierSignal extends Signal
 {
-    private double noise = 0;
-    private double ethalonFrequency = 0;
-    private double ethalonAmplitude = 0;
-    private double ethalonPhase = 0;
+    private ChannelSignal channelSignal;
+    private ModulatorSignal ethalonSignal;
+    private double noise;
 
     /**
      * Creates multiplier signal
-     * @param _frequency signal frequency, Hz
-     * @param _amplitude signal amplitude, V
-     * @param _phase signal phase, rad
-     * @param _noise noise amplitude, V
-     * @param _ethalonFrequency ethalon frequency, Hz
-     * @param _ethalonAmplitude ethalon amplitude, V
-     * @param _ethalonPhase ethalon phase, rad
-     * @param _start start time, s
-     * @param _end end time, s
+     * @param _channelSignal channel signal
+     * @param _ethalonSignal signal from ethalon generator
      */
-    public MultiplierSignal(double _frequency, double _amplitude, double _phase, double _noise, double _ethalonFrequency, double _ethalonAmplitude, double _ethalonPhase, double _start, double _end)
+    public MultiplierSignal(ChannelSignal _channelSignal, ModulatorSignal _ethalonSignal)
     {
-        frequency = _frequency;
-        amplitude = _amplitude;
-        phase = _phase;
-	noise = _noise;
-	ethalonFrequency = _ethalonFrequency;
-	ethalonAmplitude = _ethalonAmplitude;
-	ethalonPhase = _ethalonPhase;
-	maxValue = (_amplitude + _noise) * _ethalonAmplitude;
-	minValue = -(_amplitude + _noise) * _ethalonAmplitude;
-	xStart = _start;
-	xEnd = _end;
+	channelSignal = _channelSignal;
+	ethalonSignal = _ethalonSignal;
+
+        frequency = channelSignal.getFrequency();
+        amplitude = channelSignal.getAmplitude() * ethalonSignal.getAmplitude();
+        phase = channelSignal.getPhase();
+	noise = channelSignal.getNoise();
+	maxValue = Math.abs(_channelSignal.getMaxValue() * _ethalonSignal.getMaxValue());
+	minValue = -Math.abs(_channelSignal.getMinValue() * _ethalonSignal.getMinValue());
+	xStart = channelSignal.getStart();
+	xEnd = channelSignal.getEnd();
     }
 
     /**
      * Returns f(x) for current signal
-     * @param x time variable, s
+     * @param _x time variable, s
      * @return
      */
     @Override
-    public double function(double x)
+    public double function(double _x)
     {
-	Random noise_generator = new Random();
-	return (amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + noise * noise_generator.nextGaussian()) *
-	        (ethalonAmplitude * Math.sin(2 * Math.PI * ethalonFrequency * x + ethalonPhase));
+	return channelSignal.function(_x) * ethalonSignal.function(_x);
     }
 
     /**
