@@ -656,7 +656,7 @@ public class UIMain extends javax.swing.JFrame
 	currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumbers();
-	blockResolverOutput.setText(currentResolver.getStringSequence());
+	blockResolverOutput.setText("<html>" + currentResolver.getStringSequence());
 
 	currentResolverVideoCreator = new VideoCreator(resolverOutput, channelImpulseLength, 1);
 	currentResolverVideoCreator.doVideoSequence();
@@ -688,7 +688,9 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
-	blockChannelDecoderOutput.setText(currentChannelDecoder.getHTMLReport());
+	String text = "<html>Отримана послідовність: <br/>" + currentResolver.getStringSequence() + "<br/>";
+	text += currentChannelDecoder.getHTMLReport();
+	blockChannelDecoderOutput.setText(text);
     }
 
     //decodes source code with selected Channel code

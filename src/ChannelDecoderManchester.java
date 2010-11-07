@@ -92,20 +92,10 @@ public class ChannelDecoderManchester
 	final String fontGreen = "<font color=\"green\" size=\"5\">";
 	final String fontRed = "<font color=\"red\" size=\"5\">";
 
-	String out = "<html>";
-
-	out += "Прийнята послідовність:<br/>";
+	String out = "";
 	boolean trigger = false;
-	for (BinaryNumber bn: sequence)
-	{
-	    if (trigger)
-		out += fontBlue + bn.getStringSequence() + "</font>&#09;";
-	    else
-		out += fontGreen + bn.getStringSequence() + "</font>&#09;";
-	    trigger = !trigger;
-	}
 
-	out += "<br/>Перевірочна послідовність:<br/>";
+	out += "Перевірочна послідовність:<br/>";
 	trigger = false;
 	for (BinaryNumber bn: checkingSequence)
 	{

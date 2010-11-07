@@ -107,31 +107,10 @@ public class ChannelDecoderHamming
 	final String fontGreen = "<font color=\"green\" size=\"5\">";
 	final String fontRed = "<font color=\"red\" size=\"5\">";
 
-	String out = "<html>";
-
-	out += "Прийнята послідовність:<br/>";
+	String out = "";
 	boolean trigger = false;
-	for (int i = 0; i < inputSequence.size(); i++)
-	{
-	    if (trigger)
-		out += fontBlue;
-	    else
-		out += fontGreen;
 
-	    for (int j = 0; j < inputSequence.get(i).getLength(); j++)
-	    {
-		if (errorSequence.get(i).getDigit(j))
-		    out += fontRed + (inputSequence.get(i).getDigit(j) ? "1" : "0") + "</font>";
-		else
-		    out += inputSequence.get(i).getDigit(j) ? "1" : "0";
-	    }
-
-	    out += "</font> ";
-
-	    trigger = !trigger;
-	}
-
-	out += "<br/>Послідовність синдромів:<br/>";
+	out += "Послідовність синдромів:<br/>";
 	trigger = false;
 	for (BinaryNumber bn: syndromeSequence)
 	{

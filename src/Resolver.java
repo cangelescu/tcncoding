@@ -117,7 +117,7 @@ public class Resolver
      */
     public String getStringSequence()
     {
-	String out = "<html>", color, prevColor;
+	String out = "", color, prevColor;
 	boolean trigger = false;
 	int listLength = outputNumbers.size();
 	for (int i = 0; i < listLength; i++)
@@ -145,7 +145,6 @@ public class Resolver
 	    trigger = !trigger;
 	    out += " ";
 	}
-	out += "</html>";
 	return out;
     }
 }
