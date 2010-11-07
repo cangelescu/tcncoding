@@ -314,7 +314,7 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelCoder = new ChannelCoder(sourceSymbols, channelCode, useChannelCoderTrigger);
 	currentChannelCoder.doEncode();
 	channelSymbols = currentChannelCoder.getSequence();
-	blockChannelCoderOutput.setText(currentChannelCoder.getStringSequence());
+	blockChannelCoderOutput.setText(currentChannelCoder.getHTMLReport());
 	headLength = currentChannelCoder.getHeadLength();
     }
 

@@ -63,4 +63,24 @@ public class ChannelCoderParityBit
     {
 	return outputSequence;
     }
+
+    /**
+     * Returns HTML-formatted report
+     * @return string representation of HTML-formatted report
+     */
+    public String getReport()
+    {
+	String out = "<html>";
+	boolean trigger = false;
+	for (BinaryNumber bn: outputSequence)
+	{
+	    if (trigger)
+		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + " </font>";
+	    else
+		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + " </font>";
+	    trigger = !trigger;
+	}
+	out += "</html>";
+	return out;
+    }
 }

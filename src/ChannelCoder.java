@@ -55,6 +55,7 @@ public class ChannelCoder
     private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
     private int headLength = 0;
     private boolean enabled;
+    private String report;
 
     /**
      * Creates channel coder with given code and symbols on its input
@@ -83,22 +84,26 @@ public class ChannelCoder
 		    ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(sourceSymbols);
 		    channelCoderParityBit.doEncode();
 		    channelSequence = channelCoderParityBit.getSequence();
+		    report = channelCoderParityBit.getReport();
 		    break;
 		case INVERSED:
 		    ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(sourceSymbols);
 		    channelCoderInversed.doEncode();
 		    channelSequence = channelCoderInversed.getSequence();
+		    report = channelCoderInversed.getReport();
 		    break;
 		case MANCHESTER:
 		    ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(sourceSymbols);
 		    channelCoderManchester.doEncode();
 		    channelSequence = channelCoderManchester.getSequence();
+		    report = channelCoderManchester.getReport();
 		    break;
 		case HAMMING:
 		    ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
 		    channelCoderHamming.doEncode();
 		    channelSequence = channelCoderHamming.getSequence();
 		    headLength = channelCoderHamming.getHeadLength();
+		    report = channelCoderHamming.getReport();
 		    break;
 		default:
 		    break;
@@ -132,20 +137,9 @@ public class ChannelCoder
      * Returns HTML-formatted encoded string sequence
      * @return string representation of HTML-formatted report
      */
-    public String getStringSequence()
+    public String getHTMLReport()
     {
-	String out = "<html>";
-	boolean trigger = false;
-	for (BinaryNumber bn: channelSequence)
-	{
-	    if (trigger)
-		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + " </font>";
-	    else
-		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + " </font>";
-	    trigger = !trigger;
-	}
-	out += "</html>";
-	return out;
+	return report;
     }
 
     /**

@@ -80,4 +80,47 @@ public class ChannelCoderHamming
     {
 	return headLength;
     }
+
+    /**
+     * Returns HTML-formatted report
+     * @return string representation of HTML-formatted report
+     */
+    public String getReport()
+    {
+	String out = "<html>";
+	boolean trigger = false;
+	for (BinaryNumber bn: outputSequence)
+	{
+	    if (trigger)
+		out += "<font color=\"blue\" size=\"5\">" + bn.getStringSequence() + " </font>";
+	    else
+		out += "<font color=\"green\" size=\"5\">" + bn.getStringSequence() + " </font>";
+	    trigger = !trigger;
+	}
+
+	String symbolsText = "";
+	if (headLength >= 10 && headLength <= 19)
+	    symbolsText = "символів";
+	else
+	{
+	    String headLengthText = String.valueOf(headLength);
+	    int headLengthTextLength = headLengthText.length();
+	    int lastDigit = Integer.valueOf(headLengthText.substring(headLengthTextLength - 1));
+
+	    if ((lastDigit == 0) || (lastDigit >= 5 && lastDigit <= 9))
+		symbolsText = "символів";
+	    else
+	    if (lastDigit == 1)
+	        symbolsText = "символ";
+	    else
+	    if (lastDigit >= 2 && lastDigit <= 4)
+		symbolsText = "символи";
+	}
+
+	if (headLength > 0)
+	    out += "<br/>До вхідної послідовності додано " + String.valueOf(headLength) + " " + symbolsText + " для вирівнювання блоків";
+
+	out += "</html>";
+	return out;
+    }
 }
