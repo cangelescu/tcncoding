@@ -118,7 +118,7 @@ public class ChannelCoderHamming
 	}
 
 	if (headLength > 0)
-	    out += "<br/>До вхідної послідовності додано " + String.valueOf(headLength) + " " + symbolsText + " для вирівнювання блоків";
+	    out += "<br/>На початок вхідної послідовності додано " + String.valueOf(headLength) + " " + symbolsText + " для вирівнювання блоків";
 
 	out += "</html>";
 	return out;
