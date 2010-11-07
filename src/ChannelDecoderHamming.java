@@ -111,12 +111,23 @@ public class ChannelDecoderHamming
 
 	out += "Прийнята послідовність:<br/>";
 	boolean trigger = false;
-	for (BinaryNumber bn: inputSequence)
+	for (int i = 0; i < inputSequence.size(); i++)
 	{
 	    if (trigger)
-		out += fontBlue + bn.getStringSequence() + "</font> ";
+		out += fontBlue;
 	    else
-		out += fontGreen + bn.getStringSequence() + "</font> ";
+		out += fontGreen;
+
+	    for (int j = 0; j < inputSequence.get(i).getLength(); j++)
+	    {
+		if (errorSequence.get(i).getDigit(j))
+		    out += fontRed + (inputSequence.get(i).getDigit(j) ? "1" : "0") + "</font>";
+		else
+		    out += inputSequence.get(i).getDigit(j) ? "1" : "0";
+	    }
+
+	    out += "</font> ";
+
 	    trigger = !trigger;
 	}
 
