@@ -28,7 +28,8 @@ public class SourceDecoderShannonFano
 {
 
     private String sourceMessage;
-    private HashMap<String, String> codeMapShannon = new HashMap<String, String>();
+    private HashMap<String, String> codeMapCyr = new HashMap<String, String>();
+    private HashMap<String, String> codeMapLat = new HashMap<String, String>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
@@ -39,8 +40,10 @@ public class SourceDecoderShannonFano
     {
 	sourceSequence = _sourceSequence;
 
-	SourceDecoderCodeMapLoader loader = new SourceDecoderCodeMapLoader("shannon");
-	codeMapShannon = loader.getCodeMap();
+	SourceDecoderCodeMapLoader loaderCyr = new SourceDecoderCodeMapLoader("shannon_cyr");
+	SourceDecoderCodeMapLoader loaderLat = new SourceDecoderCodeMapLoader("shannon_lat");
+	codeMapCyr = loaderCyr.getCodeMap();
+	codeMapLat = loaderLat.getCodeMap();
     }
 
     /**
@@ -52,9 +55,13 @@ public class SourceDecoderShannonFano
 
 	for (BinaryNumber cbn: sourceSequence)
 	{
-	    String currentChar = codeMapShannon.get(cbn.getStringSequence());
-	    if (currentChar != null)
-		sourceMessage += currentChar;
+	    String currentCharCyr = codeMapCyr.get(cbn.getStringSequence());
+	    String currentCharLat = codeMapLat.get(cbn.getStringSequence());
+	    if (currentCharCyr != null)
+		sourceMessage += currentCharCyr;
+	    else
+	    if (currentCharLat != null)
+		sourceMessage += currentCharLat;
 	    else
 		sourceMessage += "*";
 	}

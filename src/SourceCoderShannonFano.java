@@ -28,7 +28,8 @@ public class SourceCoderShannonFano
 {
 
     private String message;
-    private HashMap<String, BinaryNumber> codeMapShannon = new HashMap<String, BinaryNumber>();
+    private HashMap<String, BinaryNumber> codeMapCyr = new HashMap<String, BinaryNumber>();
+    private HashMap<String, BinaryNumber> codeMapLat = new HashMap<String, BinaryNumber>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
@@ -39,8 +40,10 @@ public class SourceCoderShannonFano
     {
 	message = _message;
 
-	SourceCoderCodeMapLoader loader = new SourceCoderCodeMapLoader("shannon");
-	codeMapShannon = loader.getCodeMap();
+	SourceCoderCodeMapLoader loaderCyr = new SourceCoderCodeMapLoader("shannon_cyr");
+	SourceCoderCodeMapLoader loaderLat = new SourceCoderCodeMapLoader("shannon_lat");
+	codeMapCyr = loaderCyr.getCodeMap();
+	codeMapLat = loaderLat.getCodeMap();
     }
 
     /**
@@ -56,9 +59,13 @@ public class SourceCoderShannonFano
 	{
 	    char wChar = wMessage.charAt(i);
 
-	    BinaryNumber bShannon = codeMapShannon.get(String.valueOf(wChar));
-	    if (bShannon != null)
-	    	sourceSequence.add(bShannon);
+	    BinaryNumber bShannonCyr = codeMapCyr.get(String.valueOf(wChar));
+	    BinaryNumber bShannonLat = codeMapLat.get(String.valueOf(wChar));
+	    if (bShannonCyr != null)
+	    	sourceSequence.add(bShannonCyr);
+	    else
+	    if (bShannonLat != null)
+		sourceSequence.add(bShannonLat);
 	}
     }
 
