@@ -58,6 +58,7 @@ public class SourceCoder
     private String sourceMessage = null;
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap = new ArrayList<Integer>();
+    private boolean isCyr = true;
 
     /**
      * Creates source coder for input message
@@ -101,6 +102,7 @@ public class SourceCoder
 		SourceCoderShannonFano coderShannon = new SourceCoderShannonFano(sourceMessage);
 		coderShannon.doEncoding();
 		sourceSequence = coderShannon.getSequence();
+		isCyr = coderShannon.isCyrillic();
 		break;
 	    default:
 		break;
@@ -159,5 +161,14 @@ public class SourceCoder
     public List<Integer> getLengthMap()
     {
 	return lengthMap;
+    }
+
+    /**
+     * Returns if character set is cyrillic
+     * @return true if source message is formed using cyrillic characters
+     */
+    public boolean isCyrillic()
+    {
+	return isCyr;
     }
 }

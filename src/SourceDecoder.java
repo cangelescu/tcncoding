@@ -27,17 +27,19 @@ public class SourceDecoder
 
     private String sourceMessage = "";
     private List<BinaryNumber> sourceSequence;
-    SourceCoder.SourceCoderCode usingCode;
+    private boolean isCyr;
+    private SourceCoder.SourceCoderCode usingCode;
 
     /**
      * Creates source decoder for input source sequence
      * @param _sourceSequence binary sequence to decode
      * @param _codeType type of using code
      */
-    public SourceDecoder(List<BinaryNumber> _sourceSequence, SourceCoder.SourceCoderCode _codeType)
+    public SourceDecoder(List<BinaryNumber> _sourceSequence, SourceCoder.SourceCoderCode _codeType, boolean _isCyr)
     {
 	sourceSequence = _sourceSequence;
 	usingCode = _codeType;
+	isCyr = _isCyr;
     }
 
     /**
@@ -68,7 +70,7 @@ public class SourceDecoder
 		sourceMessage = decoderMorse.getMessage();
 		break;
 	    case SHANNON:
-		SourceDecoderShannonFano decoderShannon = new SourceDecoderShannonFano(sourceSequence);
+		SourceDecoderShannonFano decoderShannon = new SourceDecoderShannonFano(sourceSequence, isCyr);
 		decoderShannon.doDecoding();
 		sourceMessage = decoderShannon.getMessage();
 		break;

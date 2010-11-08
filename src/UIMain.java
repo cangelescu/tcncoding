@@ -77,6 +77,7 @@ public class UIMain extends javax.swing.JFrame
     //source coder
     List<BinaryNumber> sourceSymbols = new ArrayList();
     List<Integer> lengthMap;
+    boolean isCyr = true;
 
     //channel coder
     List<BinaryNumber> channelSymbols = new ArrayList();
@@ -305,6 +306,7 @@ public class UIMain extends javax.swing.JFrame
 	currentSourceCoder.doEncode();
 	sourceSymbols = currentSourceCoder.getSequence();
 	lengthMap = currentSourceCoder.getLengthMap();
+	isCyr = currentSourceCoder.isCyrillic();
 	blockSourceCoderOutput.setText(currentSourceCoder.getStringSequence());
     }
 
@@ -722,7 +724,7 @@ public class UIMain extends javax.swing.JFrame
 
     void doSourceDecoding()
     {
-	currentSourceDecoder = new SourceDecoder(channelDecoderOutput, sourceCode);
+	currentSourceDecoder = new SourceDecoder(channelDecoderOutput, sourceCode, isCyr);
 	currentSourceDecoder.doDecode();
 	receivedMessageArea.setText(currentSourceDecoder.getMessage());
     }

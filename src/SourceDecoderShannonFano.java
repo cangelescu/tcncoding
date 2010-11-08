@@ -28,22 +28,23 @@ public class SourceDecoderShannonFano
 {
 
     private String sourceMessage;
-    private HashMap<String, String> codeMapCyr = new HashMap<String, String>();
-    private HashMap<String, String> codeMapLat = new HashMap<String, String>();
+    private HashMap<String, String> codeMap = new HashMap<String, String>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates Shannon-Fano source decoder
      * @param _sourceSequence
      */
-    public SourceDecoderShannonFano(List<BinaryNumber> _sourceSequence)
+    public SourceDecoderShannonFano(List<BinaryNumber> _sourceSequence, boolean _isCyr)
     {
 	sourceSequence = _sourceSequence;
 
-	SourceDecoderCodeMapLoader loaderCyr = new SourceDecoderCodeMapLoader("shannon_cyr");
-	SourceDecoderCodeMapLoader loaderLat = new SourceDecoderCodeMapLoader("shannon_lat");
-	codeMapCyr = loaderCyr.getCodeMap();
-	codeMapLat = loaderLat.getCodeMap();
+	SourceDecoderCodeMapLoader loader;
+	if (_isCyr)
+	    loader = new SourceDecoderCodeMapLoader("shannon_cyr");
+	else
+	    loader = new SourceDecoderCodeMapLoader("shannon_lat");
+	codeMap = loader.getCodeMap();
     }
 
     /**
@@ -53,15 +54,43 @@ public class SourceDecoderShannonFano
     {
 	sourceMessage = "";
 
+	//gets bits count
+	int length = 0;
 	for (BinaryNumber cbn: sourceSequence)
+	    length += cbn.getLength();
+
+	//creates map with 1 block
+	List<Integer> unifiedMap = new ArrayList<Integer>();
+	unifiedMap.add(length);
+
+	//forms 1 binary number from source sequence
+	Splitter splitter = new Splitter(sourceSequence, unifiedMap);
+	splitter.doRecovering();
+	BinaryNumber sequence = splitter.getBlocks().get(0);
+
+	//goes through sequence bit by bit
+	String buffer = "";
+	for (int i = 0; i < sequence.getLength(); i++)
 	{
-	    String currentCharCyr = codeMapCyr.get(cbn.getStringSequence());
-	    String currentCharLat = codeMapLat.get(cbn.getStringSequence());
-	    if (currentCharCyr != null)
-		sourceMessage += currentCharCyr;
-	    else
-	    if (currentCharLat != null)
-		sourceMessage += currentCharLat;
+	    buffer += sequence.getDigit(i) ? "1" : "0";
+
+	    String currentChar = codeMap.get(buffer);
+
+	    if (currentChar != null)
+	    {
+		sourceMessage += currentChar;
+		buffer = "";
+	    } else
+		continue;
+	}
+
+	//tries to recognize last symbol from buffer
+	if (buffer.length() > 0)
+	{
+	    String currentChar = codeMap.get(buffer);
+
+	    if (currentChar != null)
+		sourceMessage += currentChar;
 	    else
 		sourceMessage += "*";
 	}

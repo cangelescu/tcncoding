@@ -31,6 +31,7 @@ public class SourceCoderShannonFano
     private HashMap<String, BinaryNumber> codeMapCyr = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapLat = new HashMap<String, BinaryNumber>();
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
+    private boolean isCyr = true;
 
     /**
      * Creates Shannon-Fano source coder
@@ -55,17 +56,41 @@ public class SourceCoderShannonFano
 
 	String wMessage = message.toUpperCase();
 
+	//determines character set of the message
+	for (int i = 0; i < wMessage.length(); i++)
+	{
+	    char wChar = wMessage.charAt(0);
+	    BinaryNumber bShannonCyr = codeMapCyr.get(String.valueOf(wChar));
+	    BinaryNumber bShannonLat = codeMapLat.get(String.valueOf(wChar));
+	    if (bShannonCyr != null)
+	    {
+		isCyr = true;
+		break;
+	    } else
+	    if (bShannonLat != null)
+	    {
+		isCyr = false;
+		break;
+	    } else
+		continue;
+	}
+
+	//encodes message according to determined character set
 	for (int i = 0; i < wMessage.length(); i++)
 	{
 	    char wChar = wMessage.charAt(i);
 
-	    BinaryNumber bShannonCyr = codeMapCyr.get(String.valueOf(wChar));
-	    BinaryNumber bShannonLat = codeMapLat.get(String.valueOf(wChar));
-	    if (bShannonCyr != null)
+	    if (isCyr)
+	    {
+		BinaryNumber bShannonCyr = codeMapCyr.get(String.valueOf(wChar));
+		if (bShannonCyr != null)
 	    	sourceSequence.add(bShannonCyr);
-	    else
-	    if (bShannonLat != null)
-		sourceSequence.add(bShannonLat);
+	    } else
+	    {
+		BinaryNumber bShannonLat = codeMapLat.get(String.valueOf(wChar));
+		if (bShannonLat != null)
+		    sourceSequence.add(bShannonLat);
+	    }
 	}
     }
 
@@ -76,5 +101,14 @@ public class SourceCoderShannonFano
     public List getSequence()
     {
 	return sourceSequence;
+    }
+
+    /**
+     * Returns if character set is cyrillic
+     * @return true if source message is formed using cyrillic characters
+     */
+    public boolean isCyrillic()
+    {
+	return isCyr;
     }
 }
