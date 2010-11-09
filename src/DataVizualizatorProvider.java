@@ -122,6 +122,7 @@ public class DataVizualizatorProvider
 		int lastBlock = tabulatedSignal.size() - 1;
 		int lastSample = tabulatedSignal.get(lastBlock).size() - 1;
 
+		//finds tabulated function step for general cause
 		double cur = 0, prev = 0, index = 0;
 		boolean found = false;
 		for (int i = 0; i < tabulatedSignal.size(); i++)
@@ -144,6 +145,7 @@ public class DataVizualizatorProvider
 
 		xEnd = tabulatedSignal.get(lastBlock).get(lastSample).getX() + delta;
 
+		//finds minimum and maximum function values
 		maxValue = tabulatedSignal.get(0).get(0).getY();
 		minValue = tabulatedSignal.get(0).get(0).getY();
 		for (List<FunctionStep> clfs: tabulatedSignal)
@@ -224,14 +226,25 @@ public class DataVizualizatorProvider
 		    for (int i = 0; i < tabulatedSignal.size(); i++)
 		    {
 			List<FunctionStep> cBlock = tabulatedSignal.get(i);
-			for (int j = 0; j < cBlock.size(); j++)
+			for (int j = 0; j < cBlock.size() - 1; j++)
 			{
 			    FunctionStep cStep = cBlock.get(j);
-			    if (cStep.getX() >= _x)
+			    FunctionStep nStep = cBlock.get(j + 1);
+			    if (_x >= cStep.getX() && _x < nStep.getX())
 			    {
 				out = cStep.getY();
 				found = true;
 				break;
+			    }
+			}
+			//last step
+			if (!found)
+			{
+			    FunctionStep lastStep = tabulatedSignal.get(tabulatedSignal.size() - 1).get(tabulatedSignal.get(tabulatedSignal.size() - 1).size() - 1);
+			    if (_x >= lastStep.getX() && _x <= lastStep.getX() + delta)
+			    {
+				out = lastStep.getY();
+				found = true;
 			    }
 			}
 			if (found)
