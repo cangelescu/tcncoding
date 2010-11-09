@@ -88,13 +88,4 @@ public class Integrator
     {
 	return out;
     }
-
-    /**
-     * Returns step size
-     * @return real value of integration step size
-     */
-    public double getStepSize()
-    {
-	return step;
-    }
 }

@@ -54,9 +54,9 @@ public class DataVizualizatorProvider
     private List<ModulatorSignal> modulatorSignal = null;
     private List<ChannelSignal> channelSignal = null;
     private List<MultiplierSignal> multiplierSignal = null;
-    private List<List<FunctionStep>> integratorSignal = null;
+    private List<List<FunctionStep>> tabulatedSignal = null;
 
-    private double xStart, xEnd, maxValue, minValue, stepSize;
+    private double xStart, xEnd, maxValue, minValue, delta = 0;
     private String description;
     private Color chartColor;
 
@@ -68,10 +68,9 @@ public class DataVizualizatorProvider
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
-    public DataVizualizatorProvider(List _data, double _stepSize, SignalType _signalType, String _description, Color _chartColor)
+    public DataVizualizatorProvider(List _data, SignalType _signalType, String _description, Color _chartColor)
     {
 	signalType = _signalType;
-	stepSize = _stepSize;
 	switch (signalType)
 	{
 	    case MODULATOR:
@@ -117,15 +116,37 @@ public class DataVizualizatorProvider
 		}
 		break;
 	    case TABULATED:
-		integratorSignal = _data;
-		int count = 0;
-		for (List<FunctionStep> clfs: integratorSignal)
-		    count += clfs.size();
-		xStart = integratorSignal.get(0).get(0).getX();
-		xEnd = xStart + stepSize * count;
-		maxValue = integratorSignal.get(0).get(0).getY();
-		minValue = integratorSignal.get(0).get(0).getY();
-		for (List<FunctionStep> clfs: integratorSignal)
+		tabulatedSignal = _data;
+
+		xStart = tabulatedSignal.get(0).get(0).getX();
+		int lastBlock = tabulatedSignal.size() - 1;
+		int lastSample = tabulatedSignal.get(lastBlock).size() - 1;
+
+		double cur = 0, prev = 0, index = 0;
+		boolean found = false;
+		for (int i = 0; i < tabulatedSignal.size(); i++)
+		{
+		    for (int j = 0; j < tabulatedSignal.get(i).size(); j++)
+		    {
+			cur = tabulatedSignal.get(i).get(j).getX();
+			delta = cur - prev;
+			prev = cur;
+			index++;
+			if (index > 1)
+			{
+			    found = true;
+			    break;
+			}
+		    }
+		    if (found)
+			break;
+		}
+
+		xEnd = tabulatedSignal.get(lastBlock).get(lastSample).getX() + delta;
+
+		maxValue = tabulatedSignal.get(0).get(0).getY();
+		minValue = tabulatedSignal.get(0).get(0).getY();
+		for (List<FunctionStep> clfs: tabulatedSignal)
 		    for (FunctionStep cfs: clfs)
 		    {
 			if (cfs.getY() > maxValue)
@@ -168,18 +189,54 @@ public class DataVizualizatorProvider
 			out = cms.function(_x);
 		break;
 	    case TABULATED:
-		for (List<FunctionStep> clfs: integratorSignal)
+		//finds maximum block size
+		int size = 0;
+		for (List<FunctionStep> clfs: tabulatedSignal)
+		    if (clfs.size() > size)
+			size = clfs.size();
+
+		//impulse sequence
+		if (size == 1)
 		{
 		    boolean found = false;
-		    for (FunctionStep fs: clfs)
-			if (_x >= fs.getX() && _x <= fs.getX() + stepSize)
+		    for (int i = 0; i < tabulatedSignal.size() - 1; i++)
+		    {
+			FunctionStep cStep = tabulatedSignal.get(i).get(0);
+			FunctionStep nStep = tabulatedSignal.get(i + 1).get(0);
+			if (_x >= cStep.getX() && _x < nStep.getX())
 			{
-			    out = fs.getY();
+			    out = cStep.getY();
 			    found = true;
 			    break;
 			}
-		    if (found)
-			break;
+		    }
+		    //should be the last bit in the sequence
+		    if (!found)
+		    {
+			FunctionStep lastStep = tabulatedSignal.get(tabulatedSignal.size() - 1).get(0);
+			if (_x >= lastStep.getX() && _x <= lastStep.getX() + delta)
+			    out = lastStep.getY();
+		    }
+		} else
+		//other sequence
+		{
+		    boolean found = false;
+		    for (int i = 0; i < tabulatedSignal.size(); i++)
+		    {
+			List<FunctionStep> cBlock = tabulatedSignal.get(i);
+			for (int j = 0; j < cBlock.size(); j++)
+			{
+			    FunctionStep cStep = cBlock.get(j);
+			    if (cStep.getX() >= _x)
+			    {
+				out = cStep.getY();
+				found = true;
+				break;
+			    }
+			}
+			if (found)
+			    break;
+		    }
 		}
 		break;
 	    default:
