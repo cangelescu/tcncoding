@@ -38,10 +38,17 @@ public class Integrator
     public Integrator(List<List<MultiplierSignal>> _signals, double _maxFrequency, double _maxWidth)
     {
 	signals = _signals;
-	double end = _signals.get(_signals.size() - 1).get(_signals.get(_signals.size() - 1).size() - 1).getEnd();
+
+	int lastBlock = _signals.size() - 1;
+	int lastSignal = _signals.get(lastBlock).size() - 1;
+	double end = _signals.get(lastBlock).get(lastSignal).getEnd();
+
+	//uses display width
 	double step1 = end / _maxWidth;
 	//Kotelnokov's teorem works here not in boundary case
 	double step2 = 1 / (3 * _maxFrequency);
+
+	//takes less step for more accuracy
 	step = Math.min(step1, step2);
     }
 
@@ -62,9 +69,9 @@ public class Integrator
 		while (sp <= cms.getEnd())
 		{
 		    //integrate using method of rectangles
-		    double area = cms.function(sp) * step;
-		    sum += area;
+		    double area = (cms.function(sp) + cms.function(sp + step)) * step / 2;
 		    newSymbol.add(new FunctionStep(sp, sum));
+		    sum += area;
 		    sp += step;
 		}
 		newBlock.add(newSymbol);
