@@ -16,6 +16,8 @@
 
 */
 
+import tcncoding.Splitter;
+import tcncoding.BinaryNumber;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
