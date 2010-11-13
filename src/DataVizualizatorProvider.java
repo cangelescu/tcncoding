@@ -124,12 +124,17 @@ public class DataVizualizatorProvider
 			digitalBlockSize = cds.getSamplesCount();
 
 		if (digitalBlockSize == 1)
+		{
 		    delta = digitalSignal.get(1).getSample(0).getX() - digitalSignal.get(0).getSample(0).getX();
+		    xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd();
+		}
 		else
+		{
 		    delta = digitalSignal.get(0).getDelta();
+		    xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd() + delta;
+		}
 
 		xStart = digitalSignal.get(0).getStart();
-		xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd() + delta;
 		maxValue = digitalSignal.get(0).getMaxValue();
 		minValue = digitalSignal.get(0).getMinValue();
 		for (DigitalSignal cds: digitalSignal)
@@ -174,60 +179,9 @@ public class DataVizualizatorProvider
 			out = cms.function(_x);
 		break;
 	    case TABULATED:
-		//impulse sequence
-		if (digitalBlockSize == 1)
-		{
-		    boolean found = false;
-		    for (int i = 0; i < digitalSignal.size() - 1; i++)
-		    {
-			FunctionStep cStep = digitalSignal.get(i).getSample(0);
-			FunctionStep nStep = digitalSignal.get(i + 1).getSample(0);
-			if (_x >= cStep.getX() && _x < nStep.getX())
-			{
-			    out = cStep.getY();
-			    found = true;
-			    break;
-			}
-		    }
-		    //should be the last bit in the sequence
-		    if (!found)
-		    {
-			FunctionStep lastStep = digitalSignal.get(digitalSignal.size() - 1).getSample(0);
-			if (_x >= lastStep.getX() && _x <= lastStep.getX() + delta)
-			    out = lastStep.getY();
-		    }
-		} else
-		//other sequence
-		{
-		    boolean found = false;
-		    for (int i = 0; i < digitalSignal.size(); i++)
-		    {
-			DigitalSignal cBlock = digitalSignal.get(i);
-			for (int j = 0; j < cBlock.getSamplesCount() - 1; j++)
-			{
-			    FunctionStep cStep = cBlock.getSample(j);
-			    FunctionStep nStep = cBlock.getSample(j + 1);
-			    if (_x >= cStep.getX() && _x < nStep.getX())
-			    {
-				out = cStep.getY();
-				found = true;
-				break;
-			    }
-			}
-			//last step
-			if (!found)
-			{
-			    FunctionStep lastStep = digitalSignal.get(digitalSignal.size() - 1).getSample(digitalSignal.get(digitalSignal.size() - 1).getSamplesCount() - 1);
-			    if (_x >= lastStep.getX() && _x <= lastStep.getX() + delta)
-			    {
-				out = lastStep.getY();
-				found = true;
-			    }
-			}
-			if (found)
-			    break;
-		    }
-		}
+		for (DigitalSignal cms: digitalSignal)
+		    if (_x >= cms.getStart() && _x <= cms.getEnd())
+			out = cms.function(_x);
 		break;
 	    default:
 		break;

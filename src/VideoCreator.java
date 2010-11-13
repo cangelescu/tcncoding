@@ -61,7 +61,9 @@ public class VideoCreator
 		    newBit.add(new FunctionStep(cx, impulseLevel));
 		else
 		    newBit.add(new FunctionStep(cx, 0));
-		newBlock.add(new DigitalSignal(newBit));
+		DigitalSignal newDigitalSignal = new DigitalSignal(newBit);
+		newDigitalSignal.setEnd(cx + impulseLength);
+		newBlock.add(newDigitalSignal);
 		cx += impulseLength;
 	    }
 	    outputSequence.add(newBlock);
