@@ -2,8 +2,9 @@ tcncoding
 Copyright (C) Oleksandr Natalenko, 2009-2010
 Model of digital telecommunication system
 --------------------------------------------
+
 		Universal Program License
-		version 4.0, (C) Oleksandr Natalenko, 2004-2010
+		version 4.1, (C) Oleksandr Natalenko, 2004-2010
 
 
 		The legitimate author of this text is Oleksandr Natalenko.
@@ -168,8 +169,8 @@ the program is forbidden.
 the author(s) and/or the developer(s) of the program.
 
 
-6. The License prohibits getting the patent on the program, licensed under the
-License, its copies, source code and documentation.
+6. The License prohibits getting the patent on the algorithms, that are used in
+the program, licensed under the License, its copies and source code.
 
 
 7. There is no warranty for the program, licensed under the License. The entire
@@ -194,7 +195,7 @@ lines at the beginning of this document:
 	Appendix B: How to get the License.
 
 	The newest version of the License is publicly available via following
-URL: http://postfactum.pl.ua/myfiles/upl.txt
+URL: http://natalenko.name/myfiles/upl.txt
 
 
 	Appendix C: The recommendation of using the License.
