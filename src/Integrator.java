@@ -26,7 +26,7 @@ import java.util.List;
 public class Integrator
 {
     private List<List<MultiplierSignal>> signals;
-    private List<List<List<FunctionStep>>> out = new ArrayList<List<List<FunctionStep>>>();
+    private List<List<DigitalSignal>> out = new ArrayList<List<DigitalSignal>>();
     private double step;
 
     /**
@@ -60,7 +60,7 @@ public class Integrator
 	out.clear();
 	for (List<MultiplierSignal> clms: signals)
 	{
-	    List<List<FunctionStep>> newBlock = new ArrayList<List<FunctionStep>>();
+	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
 	    for (MultiplierSignal cms: clms)
 	    {
 		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
@@ -74,7 +74,8 @@ public class Integrator
 		    sum += area;
 		    sp += step;
 		}
-		newBlock.add(newSymbol);
+		DigitalSignal newDigitalSignal = new DigitalSignal(newSymbol);
+		newBlock.add(newDigitalSignal);
 	    }
 	    out.add(newBlock);
 	}
@@ -84,7 +85,7 @@ public class Integrator
      * Returns list of lists of function steps
      * @return tabulated integration result of input signal
      */
-    public List<List<List<FunctionStep>>> getIntegrals()
+    public List<List<DigitalSignal>> getIntegrals()
     {
 	return out;
     }

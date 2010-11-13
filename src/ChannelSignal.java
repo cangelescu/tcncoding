@@ -22,7 +22,7 @@ import java.util.Random;
  * Model of channel signal
  * @author post-factum
  */
-public class ChannelSignal extends Signal
+public class ChannelSignal extends AnalogSignal
 {
     private double noise;
 

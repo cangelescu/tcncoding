@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class Resolver
 {
-    private List<List<List<FunctionStep>>> summatorSignal;
+    private List<List<DigitalSignal>> summatorSignal;
     private double threshold;
     private List<BinaryNumber> outputNumbers = new ArrayList<BinaryNumber>();
     private Modulator.ModulationType modulationType;
@@ -46,7 +46,7 @@ public class Resolver
      * @param _perBlock indicates using per-block injection
      * @param _ethalonBinarySequence ethalon binary sequence to compare with
      */
-    public Resolver(List<List<List<FunctionStep>>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
+    public Resolver(List<List<DigitalSignal>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
     {
 	summatorSignal = _summatorSignal;
 	threshold = _threshold;
@@ -68,12 +68,12 @@ public class Resolver
 	//use classic resolving algorithm if enabled
 	if (useNoiseErrors)
 	{
-	    for (List<List<FunctionStep>> cllfs: summatorSignal)
+	    for (List<DigitalSignal> clds: summatorSignal)
 	    {
 		List<Boolean> currentBlock = new ArrayList<Boolean>();
-		for (List<FunctionStep> clfs: cllfs)
+		for (DigitalSignal cds: clds)
 		{
-		    double value = clfs.get(clfs.size() - 1).getY();
+		    double value = cds.getSample(cds.getSamplesCount() - 1).getY();
 		    currentBlock.add(value > threshold);
 		}
 		preOutputNumbers.add(new BinaryNumber(currentBlock));

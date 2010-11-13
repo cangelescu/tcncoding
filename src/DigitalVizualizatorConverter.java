@@ -24,9 +24,9 @@ import java.util.List;
  * Converts tabulated function values into vizualizator-friendly form
  * @author post-factum
  */
-public class TabulatedVizualizatorConverter
+public class DigitalVizualizatorConverter
 {
-    private List<List<List<FunctionStep>>> data;
+    private List<List<DigitalSignal>> data;
     private String description;
     private Color chartColor;
 
@@ -38,7 +38,7 @@ public class TabulatedVizualizatorConverter
      * @param _chartColor color of vizualized chart
      */
 
-    public TabulatedVizualizatorConverter(List<List<List<FunctionStep>>> _data, String _description, Color _chartColor)
+    public DigitalVizualizatorConverter(List<List<DigitalSignal>> _data, String _description, Color _chartColor)
     {
 	data = _data;
 	description = _description;
@@ -52,8 +52,8 @@ public class TabulatedVizualizatorConverter
     public List<DataVizualizatorProvider> getProvided()
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
-	for (List<List<FunctionStep>> cllfs: data)
-	    out.add(new DataVizualizatorProvider(cllfs, DataVizualizatorProvider.SignalType.TABULATED, description, chartColor));
+	for (List<DigitalSignal> clds: data)
+	    out.add(new DataVizualizatorProvider(clds, DataVizualizatorProvider.SignalType.TABULATED, description, chartColor));
 	return out;
     }
 }

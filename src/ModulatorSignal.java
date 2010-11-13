@@ -20,7 +20,7 @@
  * Model of modulator signal
  * @author post-factum
  */
-public class ModulatorSignal extends Signal
+public class ModulatorSignal extends AnalogSignal
 {
     /**
      * Creates modulator signal

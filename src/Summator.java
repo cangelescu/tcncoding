@@ -25,16 +25,16 @@ import java.util.List;
  */
 public class Summator
 {
-    private List<List<List<FunctionStep>>> sequence0;
-    private List<List<List<FunctionStep>>> sequence1;
-    private List<List<List<FunctionStep>>> sumResult = new ArrayList<List<List<FunctionStep>>>();
+    private List<List<DigitalSignal>> sequence0;
+    private List<List<DigitalSignal>> sequence1;
+    private List<List<DigitalSignal>> sumResult = new ArrayList<List<DigitalSignal>>();
 
     /**
      * Creates summator of two tabulated functions
      * @param _sequence0 first tabulated function
      * @param _sequence1 second tabulated function
      */
-    public Summator(List<List<List<FunctionStep>>> _sequence0, List<List<List<FunctionStep>>> _sequence1)
+    public Summator(List<List<DigitalSignal>> _sequence0, List<List<DigitalSignal>> _sequence1)
     {
 	sequence0 = _sequence0;
 	sequence1 = _sequence1;
@@ -48,21 +48,21 @@ public class Summator
 	sumResult.clear();
 	for (int i = 0; i < sequence0.size(); i++)
 	{
-	    List<List<FunctionStep>> currentBlock0 = sequence0.get(i);
-	    List<List<FunctionStep>> currentBlock1 = sequence1.get(i);
-	    List<List<FunctionStep>> newBlock = new ArrayList<List<FunctionStep>>();
+	    List<DigitalSignal> currentBlock0 = sequence0.get(i);
+	    List<DigitalSignal> currentBlock1 = sequence1.get(i);
+	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
 	    for (int j = 0; j < currentBlock0.size(); j++)
 	    {
-		List<FunctionStep> currentSymbol0 = currentBlock0.get(j);
-		List<FunctionStep> currentSymbol1 = currentBlock1.get(j);
+		DigitalSignal currentSymbol0 = currentBlock0.get(j);
+		DigitalSignal currentSymbol1 = currentBlock1.get(j);
 		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
-		for (int k = 0; k < currentSymbol0.size(); k++)
+		for (int k = 0; k < currentSymbol0.getSamplesCount(); k++)
 		{
-		    FunctionStep currentStep0 = currentSymbol0.get(k);
-		    FunctionStep currentStep1 = currentSymbol1.get(k);
+		    FunctionStep currentStep0 = currentSymbol0.getSample(k);
+		    FunctionStep currentStep1 = currentSymbol1.getSample(k);
 		    newSymbol.add(new FunctionStep(currentStep1.getX(), currentStep1.getY() - currentStep0.getY()));
 		}
-		newBlock.add(newSymbol);
+		newBlock.add(new DigitalSignal(newSymbol));
 	    }
 	    sumResult.add(newBlock);
 	}
@@ -72,7 +72,7 @@ public class Summator
      * Returns tabulated function
      * @return tabulated function
      */
-    public List<List<List<FunctionStep>>> getSum()
+    public List<List<DigitalSignal>> getSum()
     {
 	return sumResult;
     }

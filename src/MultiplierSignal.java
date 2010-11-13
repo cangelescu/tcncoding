@@ -20,7 +20,7 @@
  * Model of multiplier signal
  * @author post-factum
  */
-public class MultiplierSignal extends Signal
+public class MultiplierSignal extends AnalogSignal
 {
     private ChannelSignal channelSignal;
     private ModulatorSignal ethalonSignal;

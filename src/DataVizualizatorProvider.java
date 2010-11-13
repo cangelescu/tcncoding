@@ -54,9 +54,10 @@ public class DataVizualizatorProvider
     private List<ModulatorSignal> modulatorSignal = null;
     private List<ChannelSignal> channelSignal = null;
     private List<MultiplierSignal> multiplierSignal = null;
-    private List<List<FunctionStep>> tabulatedSignal = null;
+    private List<DigitalSignal> digitalSignal = null;
 
     private double xStart, xEnd, maxValue, minValue, delta = 0;
+    private int digitalBlockSize = 0;
     private String description;
     private Color chartColor;
 
@@ -116,46 +117,28 @@ public class DataVizualizatorProvider
 		}
 		break;
 	    case TABULATED:
-		tabulatedSignal = _data;
+		digitalSignal = _data;
 
-		xStart = tabulatedSignal.get(0).get(0).getX();
-		int lastBlock = tabulatedSignal.size() - 1;
-		int lastSample = tabulatedSignal.get(lastBlock).size() - 1;
+		for (DigitalSignal cds: digitalSignal)
+		    if (cds.getSamplesCount() > digitalBlockSize)
+			digitalBlockSize = cds.getSamplesCount();
 
-		//finds tabulated function step for general cause
-		double cur = 0, prev = 0, index = 0;
-		boolean found = false;
-		for (int i = 0; i < tabulatedSignal.size(); i++)
+		if (digitalBlockSize == 1)
+		    delta = digitalSignal.get(1).getSample(0).getX() - digitalSignal.get(0).getSample(0).getX();
+		else
+		    delta = digitalSignal.get(0).getDelta();
+
+		xStart = digitalSignal.get(0).getStart();
+		xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd() + delta;
+		maxValue = digitalSignal.get(0).getMaxValue();
+		minValue = digitalSignal.get(0).getMinValue();
+		for (DigitalSignal cds: digitalSignal)
 		{
-		    for (int j = 0; j < tabulatedSignal.get(i).size(); j++)
-		    {
-			cur = tabulatedSignal.get(i).get(j).getX();
-			delta = cur - prev;
-			prev = cur;
-			index++;
-			if (index > 1)
-			{
-			    found = true;
-			    break;
-			}
-		    }
-		    if (found)
-			break;
+		    if (cds.getMaxValue() > maxValue)
+			maxValue = cds.getMaxValue();
+		    if (cds.getMinValue() > minValue)
+			minValue = cds.getMinValue();
 		}
-
-		xEnd = tabulatedSignal.get(lastBlock).get(lastSample).getX() + delta;
-
-		//finds minimum and maximum function values
-		maxValue = tabulatedSignal.get(0).get(0).getY();
-		minValue = tabulatedSignal.get(0).get(0).getY();
-		for (List<FunctionStep> clfs: tabulatedSignal)
-		    for (FunctionStep cfs: clfs)
-		    {
-			if (cfs.getY() > maxValue)
-			    maxValue = cfs.getY();
-			if (cfs.getY() < minValue)
-			    minValue = cfs.getY();
-		    }
 		break;
 	    default:
 		break;
@@ -191,20 +174,14 @@ public class DataVizualizatorProvider
 			out = cms.function(_x);
 		break;
 	    case TABULATED:
-		//finds maximum block size
-		int size = 0;
-		for (List<FunctionStep> clfs: tabulatedSignal)
-		    if (clfs.size() > size)
-			size = clfs.size();
-
 		//impulse sequence
-		if (size == 1)
+		if (digitalBlockSize == 1)
 		{
 		    boolean found = false;
-		    for (int i = 0; i < tabulatedSignal.size() - 1; i++)
+		    for (int i = 0; i < digitalSignal.size() - 1; i++)
 		    {
-			FunctionStep cStep = tabulatedSignal.get(i).get(0);
-			FunctionStep nStep = tabulatedSignal.get(i + 1).get(0);
+			FunctionStep cStep = digitalSignal.get(i).getSample(0);
+			FunctionStep nStep = digitalSignal.get(i + 1).getSample(0);
 			if (_x >= cStep.getX() && _x < nStep.getX())
 			{
 			    out = cStep.getY();
@@ -215,7 +192,7 @@ public class DataVizualizatorProvider
 		    //should be the last bit in the sequence
 		    if (!found)
 		    {
-			FunctionStep lastStep = tabulatedSignal.get(tabulatedSignal.size() - 1).get(0);
+			FunctionStep lastStep = digitalSignal.get(digitalSignal.size() - 1).getSample(0);
 			if (_x >= lastStep.getX() && _x <= lastStep.getX() + delta)
 			    out = lastStep.getY();
 		    }
@@ -223,13 +200,13 @@ public class DataVizualizatorProvider
 		//other sequence
 		{
 		    boolean found = false;
-		    for (int i = 0; i < tabulatedSignal.size(); i++)
+		    for (int i = 0; i < digitalSignal.size(); i++)
 		    {
-			List<FunctionStep> cBlock = tabulatedSignal.get(i);
-			for (int j = 0; j < cBlock.size() - 1; j++)
+			DigitalSignal cBlock = digitalSignal.get(i);
+			for (int j = 0; j < cBlock.getSamplesCount() - 1; j++)
 			{
-			    FunctionStep cStep = cBlock.get(j);
-			    FunctionStep nStep = cBlock.get(j + 1);
+			    FunctionStep cStep = cBlock.getSample(j);
+			    FunctionStep nStep = cBlock.getSample(j + 1);
 			    if (_x >= cStep.getX() && _x < nStep.getX())
 			    {
 				out = cStep.getY();
@@ -240,7 +217,7 @@ public class DataVizualizatorProvider
 			//last step
 			if (!found)
 			{
-			    FunctionStep lastStep = tabulatedSignal.get(tabulatedSignal.size() - 1).get(tabulatedSignal.get(tabulatedSignal.size() - 1).size() - 1);
+			    FunctionStep lastStep = digitalSignal.get(digitalSignal.size() - 1).getSample(digitalSignal.get(digitalSignal.size() - 1).getSamplesCount() - 1);
 			    if (_x >= lastStep.getX() && _x <= lastStep.getX() + delta)
 			    {
 				out = lastStep.getY();
