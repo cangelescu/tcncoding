@@ -745,7 +745,6 @@ public class UIMain extends javax.swing.JFrame
         java.awt.GridBagConstraints gridBagConstraints;
 
         aboutDialog = new javax.swing.JDialog();
-        aboutDialogClose = new javax.swing.JButton();
         programNameLabel = new javax.swing.JLabel();
         instituteNameLabel = new javax.swing.JLabel();
         copyrightLabel = new javax.swing.JLabel();
@@ -788,7 +787,6 @@ public class UIMain extends javax.swing.JFrame
         licenseDialog = new javax.swing.JDialog();
         jScrollPane7 = new javax.swing.JScrollPane();
         licenseTextArea = new javax.swing.JTextArea();
-        closeLicenseWindowButton = new javax.swing.JButton();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         sourceMessagePanel = new javax.swing.JPanel();
@@ -902,20 +900,13 @@ public class UIMain extends javax.swing.JFrame
         aboutDialog.setTitle("Про програму");
         aboutDialog.setResizable(false);
 
-        aboutDialogClose.setText("Закрити");
-        aboutDialogClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutDialogCloseActionPerformed(evt);
-            }
-        });
-
         programNameLabel.setText("Модель цифрової системи зв'язку");
 
         instituteNameLabel.setText("НД ІТС НТУУ «КПІ»");
 
         copyrightLabel.setText("© 2009-2010, Олександр Ігорович Наталенко");
 
-        licenseLabel.setText("Програма розповсюджується згідно умовам ліцензії UPLv4");
+        licenseLabel.setText("Програма розповсюджується згідно умовам ліцензії UPLv4.1");
 
         showLicense.setText("Показати ліцензію");
         showLicense.addActionListener(new java.awt.event.ActionListener() {
@@ -928,33 +919,19 @@ public class UIMain extends javax.swing.JFrame
         aboutDialog.getContentPane().setLayout(aboutDialogLayout);
         aboutDialogLayout.setHorizontalGroup(
             aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
-                .addContainerGap(312, Short.MAX_VALUE)
-                .addComponent(aboutDialogClose))
             .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(programNameLabel)
-                .addContainerGap(170, Short.MAX_VALUE))
-            .addGroup(aboutDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(instituteNameLabel)
-                .addContainerGap(265, Short.MAX_VALUE))
-            .addGroup(aboutDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(copyrightLabel)
-                .addContainerGap(92, Short.MAX_VALUE))
-            .addGroup(aboutDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(licenseLabel)
+                .addGroup(aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(programNameLabel)
+                    .addComponent(instituteNameLabel)
+                    .addComponent(copyrightLabel)
+                    .addComponent(licenseLabel)
+                    .addComponent(showLicense))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(aboutDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(showLicense)
-                .addContainerGap(234, Short.MAX_VALUE))
         );
         aboutDialogLayout.setVerticalGroup(
             aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
+            .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(programNameLabel)
                 .addGap(18, 18, 18)
@@ -965,8 +942,7 @@ public class UIMain extends javax.swing.JFrame
                 .addComponent(licenseLabel)
                 .addGap(18, 18, 18)
                 .addComponent(showLicense)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(aboutDialogClose))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         modellingOptionsDialog.setTitle("Налаштування моделювання");
@@ -1249,31 +1225,20 @@ public class UIMain extends javax.swing.JFrame
 
         licenseTextArea.setColumns(20);
         licenseTextArea.setEditable(false);
+        licenseTextArea.setLineWrap(true);
         licenseTextArea.setRows(5);
+        licenseTextArea.setWrapStyleWord(true);
         jScrollPane7.setViewportView(licenseTextArea);
-
-        closeLicenseWindowButton.setText("Закрити");
-        closeLicenseWindowButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeLicenseWindowButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout licenseDialogLayout = new javax.swing.GroupLayout(licenseDialog.getContentPane());
         licenseDialog.getContentPane().setLayout(licenseDialogLayout);
         licenseDialogLayout.setHorizontalGroup(
             licenseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(licenseDialogLayout.createSequentialGroup()
-                .addContainerGap(650, Short.MAX_VALUE)
-                .addComponent(closeLicenseWindowButton))
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
         );
         licenseDialogLayout.setVerticalGroup(
             licenseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, licenseDialogLayout.createSequentialGroup()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(closeLicenseWindowButton))
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2339,16 +2304,11 @@ public class UIMain extends javax.swing.JFrame
     //shows about dialog
     private void aboutItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutItemActionPerformed
     {//GEN-HEADEREND:event_aboutItemActionPerformed
-	aboutDialog.setSize(410, 230);
+	aboutDialog.setSize(410, 205);
 	aboutDialog.setVisible(true);
     }//GEN-LAST:event_aboutItemActionPerformed
 
     //hides about dialog
-    private void aboutDialogCloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutDialogCloseActionPerformed
-    {//GEN-HEADEREND:event_aboutDialogCloseActionPerformed
-	aboutDialog.setVisible(false);
-    }//GEN-LAST:event_aboutDialogCloseActionPerformed
-
     //updates modulation type on choosing it from combobox
     private void modulationTypeChooserItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_modulationTypeChooserItemStateChanged
     {//GEN-HEADEREND:event_modulationTypeChooserItemStateChanged
@@ -2574,7 +2534,7 @@ public class UIMain extends javax.swing.JFrame
 
     private void showLicenseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_showLicenseActionPerformed
     {//GEN-HEADEREND:event_showLicenseActionPerformed
-	licenseDialog.setSize(750, 520);
+	licenseDialog.setSize(700, 600);
 	licenseTextArea.setText("");
 	try
 	{
@@ -2582,9 +2542,7 @@ public class UIMain extends javax.swing.JFrame
 	    BufferedReader bfr = new BufferedReader(fr);
 	    String line;
 	    while((line = bfr.readLine()) != null)
-	    {
 		licenseTextArea.setText(licenseTextArea.getText() + line + "\n");
-	    }
 	}
 	catch (Exception ex)
 	{
@@ -2594,11 +2552,6 @@ public class UIMain extends javax.swing.JFrame
 	licenseTextArea.setSelectionEnd(0);
 	licenseDialog.setVisible(true);
     }//GEN-LAST:event_showLicenseActionPerformed
-
-    private void closeLicenseWindowButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_closeLicenseWindowButtonActionPerformed
-    {//GEN-HEADEREND:event_closeLicenseWindowButtonActionPerformed
-	licenseDialog.setVisible(false);
-    }//GEN-LAST:event_closeLicenseWindowButtonActionPerformed
 
     /**
      * 
@@ -2619,7 +2572,6 @@ public class UIMain extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TCSTabs;
     private javax.swing.JDialog aboutDialog;
-    private javax.swing.JButton aboutDialogClose;
     private javax.swing.JMenuItem aboutItem;
     private javax.swing.JSpinner bearerAmplitude;
     private javax.swing.JLabel bearerAmplitudeLabel;
@@ -2679,7 +2631,6 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel channelOutputField;
     private javax.swing.JPanel channelOutputPanel;
     private javax.swing.JPanel channelTab;
-    private javax.swing.JButton closeLicenseWindowButton;
     private javax.swing.JLabel copyrightLabel;
     private javax.swing.JLabel dlArrowLabel;
     private javax.swing.JMenuItem doModellingItem;
