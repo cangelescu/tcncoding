@@ -1,5 +1,3 @@
-package tcncoding;
-
 /*
 
  Copyright (C) 2009-2010 Oleksandr Natalenko aka post-factum
@@ -17,6 +15,8 @@ package tcncoding;
  pfactum@gmail.com
 
 */
+
+package tcncoding;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

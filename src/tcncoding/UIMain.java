@@ -1,5 +1,3 @@
-package tcncoding;
-
 /*
 
  Copyright (C) 2009-2010 Oleksandr Natalenko aka post-factum
@@ -18,6 +16,8 @@ package tcncoding;
 
 */
 
+package tcncoding;
+
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.io.BufferedReader;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
- * 
+ * Main UI
  * @author post-factum
  */
 public class UIMain extends javax.swing.JFrame
