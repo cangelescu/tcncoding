@@ -82,8 +82,8 @@ public class Integrator
     }
 
     /**
-     * Returns list of lists of function steps
-     * @return tabulated integration result of input signal
+     * Returns list of lists of digital signals
+     * @return digital integration result of input signal
      */
     public List<List<DigitalSignal>> getIntegrals()
     {

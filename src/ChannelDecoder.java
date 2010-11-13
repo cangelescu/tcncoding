@@ -38,6 +38,9 @@ public class ChannelDecoder
      * Creates channel decoder with given code and symbols on its input
      * @param _symbols input symbols
      * @param _codeType code to use
+     * @param _headLength length of trailing head in the sequence
+     * @param _lengthMap map of blocks' length
+     * @param _enabled indicates if to use channel coding
      */
     public ChannelDecoder(List<BinaryNumber> _symbols, ChannelCoder.ChannelCoderCode _codeType, int _headLength, List<Integer> _lengthMap, boolean _enabled)
     {

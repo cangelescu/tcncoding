@@ -30,9 +30,9 @@ public class Summator
     private List<List<DigitalSignal>> sumResult = new ArrayList<List<DigitalSignal>>();
 
     /**
-     * Creates summator of two tabulated functions
-     * @param _sequence0 first tabulated function
-     * @param _sequence1 second tabulated function
+     * Creates summator of two digital functions
+     * @param _sequence0 first digital function
+     * @param _sequence1 second digital function
      */
     public Summator(List<List<DigitalSignal>> _sequence0, List<List<DigitalSignal>> _sequence1)
     {
@@ -58,9 +58,9 @@ public class Summator
 		List<Sample> newSymbol = new ArrayList<Sample>();
 		for (int k = 0; k < currentSymbol0.getSamplesCount(); k++)
 		{
-		    Sample currentStep0 = currentSymbol0.getSample(k);
-		    Sample currentStep1 = currentSymbol1.getSample(k);
-		    newSymbol.add(new Sample(currentStep1.getX(), currentStep1.getY() - currentStep0.getY()));
+		    Sample currentSample0 = currentSymbol0.getSample(k);
+		    Sample currentSample1 = currentSymbol1.getSample(k);
+		    newSymbol.add(new Sample(currentSample1.getX(), currentSample1.getY() - currentSample0.getY()));
 		}
 		newBlock.add(new DigitalSignal(newSymbol));
 	    }
@@ -69,8 +69,8 @@ public class Summator
     }
 
     /**
-     * Returns tabulated function
-     * @return tabulated function
+     * Returns digital function
+     * @return digital function
      */
     public List<List<DigitalSignal>> getSum()
     {

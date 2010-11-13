@@ -35,6 +35,8 @@ public class ChannelDecoderHamming
     /**
      * Creates decoder with Hamming code for given input sequence of binary numbers
      * @param _inputSequence list of input binary numbers
+     * @param _headLength length of trailing head in the sequence
+     * @param _lengthMap map of blocks' length
      */
     public ChannelDecoderHamming(List<BinaryNumber> _inputSequence, int _headLength, List<Integer> _lengthMap)
     {

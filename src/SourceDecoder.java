@@ -34,6 +34,7 @@ public class SourceDecoder
      * Creates source decoder for input source sequence
      * @param _sourceSequence binary sequence to decode
      * @param _codeType type of using code
+     * @param _isCyr indicates if to use cyrillic table
      */
     public SourceDecoder(List<BinaryNumber> _sourceSequence, SourceCoder.SourceCoderCode _codeType, boolean _isCyr)
     {

@@ -72,19 +72,10 @@ public class VideoCreator
 
     /**
      * Returns resulted videosequence
-     * @return tabulated function
+     * @return digital functions
      */
     public List<List<DigitalSignal>> getVideoSequence()
     {
 	return outputSequence;
-    }
-
-    /**
-     * Returns step size
-     * @return real value of function tabulation step
-     */
-    public double getStepSize()
-    {
-	return impulseLength;
     }
 }

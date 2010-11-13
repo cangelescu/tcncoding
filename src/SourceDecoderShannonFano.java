@@ -34,6 +34,7 @@ public class SourceDecoderShannonFano
     /**
      * Creates Shannon-Fano source decoder
      * @param _sourceSequence
+     * @param _isCyr indicates if to use cyrillic table
      */
     public SourceDecoderShannonFano(List<BinaryNumber> _sourceSequence, boolean _isCyr)
     {

@@ -19,7 +19,7 @@
 import java.util.List;
 
 /**
- *
+ * Digital signal model
  * @author post-factum
  */
 public class DigitalSignal {
@@ -27,11 +27,20 @@ public class DigitalSignal {
     private List<Sample> data;
     private double signalEnd = 0;
 
+    /**
+     * Creates digital signal class from the list of samples
+     * @param _data
+     */
     public DigitalSignal(List<Sample> _data)
     {
 	data = _data;
     }
 
+    /**
+     * Returns function value in _x point
+     * @param _x x variable of digital function
+     * @return double representation of function value in _x point
+     */
     public double function(double _x)
     {
 	double out = 0;
@@ -48,11 +57,20 @@ public class DigitalSignal {
 	return out;
     }
 
+    /**
+     * Returns sample with given index
+     * @param _index integer index of sample in the sequence
+     * @return sample with given index
+     */
     public Sample getSample(int _index)
     {
 	return data.get(_index);
     }
 
+    /**
+     * Returns maximum value of digital signal
+     * @return double representation of maximum value of digital signal
+     */
     public double getMaxValue()
     {
 	double max = data.get(0).getY();
@@ -62,6 +80,10 @@ public class DigitalSignal {
 	return max;
     }
     
+    /**
+     * Returns minimum value of digital signal
+     * @return double representation of minimum value of digital signal
+     */
     public double getMinValue()
     {
 	double min = data.get(0).getY();
@@ -71,11 +93,19 @@ public class DigitalSignal {
 	return min;
     }
 
+    /**
+     * Returns start point of the signal
+     * @return double representation of signal's start point
+     */
     public double getStart()
     {
 	return data.get(0).getX();
     }
 
+    /**
+     * Returns end point of the signal
+     * @return double representation of signal's end point
+     */
     public double getEnd()
     {
 	if (signalEnd == 0)
@@ -84,11 +114,19 @@ public class DigitalSignal {
 	    return signalEnd;
     }
 
+    /**
+     * Force setting of signal's end point. Used for impulse signals
+     * @param _end double value of end point
+     */
     public void setEnd(double _end)
     {
 	signalEnd = _end;
     }
 
+    /**
+     * Returns the difference between two neighbour samples
+     * @return double representation of delta value
+     */
     public double getDelta()
     {
 	if (data.size() > 1)
@@ -97,6 +135,10 @@ public class DigitalSignal {
 	    return 0;
     }
 
+    /**
+     * Returns count of samples in digital signals
+     * @return double representation of samples' count
+     */
     public int getSamplesCount()
     {
 	return data.size();

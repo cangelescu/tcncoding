@@ -17,7 +17,7 @@
 */
 
 /**
- * Models tablulated function step
+ * Models digital sample
  * @author post-factum
  */
 public class Sample
@@ -25,7 +25,7 @@ public class Sample
     private double x, y;
 
     /**
-     * Creates step of function
+     * Creates digital sample
      * @param _x x value of function
      * @param _y y value of function
      */
@@ -37,7 +37,7 @@ public class Sample
 
     /**
      * Returns x value
-     * @return real x value of step
+     * @return real x value of sample
      */
     public double getX()
     {
@@ -46,7 +46,7 @@ public class Sample
 
     /**
      * Returns y value
-     * @return real y value of step
+     * @return real y value of sample
      */
     public double getY()
     {

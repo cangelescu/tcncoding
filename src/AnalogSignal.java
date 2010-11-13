@@ -19,7 +19,7 @@
 import flanagan.integration.IntegralFunction;
 
 /**
- * Base class of signal model
+ * Base class of analog signal model
  * @author post-factum
  */
 public class AnalogSignal implements IntegralFunction
