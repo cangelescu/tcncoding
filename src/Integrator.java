@@ -63,14 +63,14 @@ public class Integrator
 	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
 	    for (MultiplierSignal cms: clms)
 	    {
-		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
+		List<Sample> newSymbol = new ArrayList<Sample>();
 		double sum = 0;
 		double sp = cms.getStart();
 		while (sp <= cms.getEnd())
 		{
 		    //integrate using method of rectangles
 		    double area = (cms.function(sp) + cms.function(sp + step)) * step / 2;
-		    newSymbol.add(new FunctionStep(sp, sum));
+		    newSymbol.add(new Sample(sp, sum));
 		    sum += area;
 		    sp += step;
 		}

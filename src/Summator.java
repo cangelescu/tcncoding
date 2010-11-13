@@ -55,12 +55,12 @@ public class Summator
 	    {
 		DigitalSignal currentSymbol0 = currentBlock0.get(j);
 		DigitalSignal currentSymbol1 = currentBlock1.get(j);
-		List<FunctionStep> newSymbol = new ArrayList<FunctionStep>();
+		List<Sample> newSymbol = new ArrayList<Sample>();
 		for (int k = 0; k < currentSymbol0.getSamplesCount(); k++)
 		{
-		    FunctionStep currentStep0 = currentSymbol0.getSample(k);
-		    FunctionStep currentStep1 = currentSymbol1.getSample(k);
-		    newSymbol.add(new FunctionStep(currentStep1.getX(), currentStep1.getY() - currentStep0.getY()));
+		    Sample currentStep0 = currentSymbol0.getSample(k);
+		    Sample currentStep1 = currentSymbol1.getSample(k);
+		    newSymbol.add(new Sample(currentStep1.getX(), currentStep1.getY() - currentStep0.getY()));
 		}
 		newBlock.add(new DigitalSignal(newSymbol));
 	    }

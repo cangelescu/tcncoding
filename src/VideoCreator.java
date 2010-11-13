@@ -56,11 +56,11 @@ public class VideoCreator
 	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
 	    for (boolean cm: matrix)
 	    {
-		List<FunctionStep> newBit = new ArrayList<FunctionStep>();
+		List<Sample> newBit = new ArrayList<Sample>();
 		if (cm)
-		    newBit.add(new FunctionStep(cx, impulseLevel));
+		    newBit.add(new Sample(cx, impulseLevel));
 		else
-		    newBit.add(new FunctionStep(cx, 0));
+		    newBit.add(new Sample(cx, 0));
 		DigitalSignal newDigitalSignal = new DigitalSignal(newBit);
 		newDigitalSignal.setEnd(cx + impulseLength);
 		newBlock.add(newDigitalSignal);

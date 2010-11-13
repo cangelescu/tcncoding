@@ -24,10 +24,10 @@ import java.util.List;
  */
 public class DigitalSignal {
 
-    private List<FunctionStep> data;
+    private List<Sample> data;
     private double signalEnd = 0;
 
-    public DigitalSignal(List<FunctionStep> _data)
+    public DigitalSignal(List<Sample> _data)
     {
 	data = _data;
     }
@@ -36,7 +36,7 @@ public class DigitalSignal {
     {
 	double out = 0;
 	boolean found = false;
-	for (FunctionStep cfs: data)
+	for (Sample cfs: data)
 	    if (cfs.getX() >= _x)
 	    {
 		out = cfs.getY();
@@ -48,7 +48,7 @@ public class DigitalSignal {
 	return out;
     }
 
-    public FunctionStep getSample(int _index)
+    public Sample getSample(int _index)
     {
 	return data.get(_index);
     }

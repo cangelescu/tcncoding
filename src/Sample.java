@@ -20,7 +20,7 @@
  * Models tablulated function step
  * @author post-factum
  */
-public class FunctionStep
+public class Sample
 {
     private double x, y;
 
@@ -29,7 +29,7 @@ public class FunctionStep
      * @param _x x value of function
      * @param _y y value of function
      */
-    public FunctionStep(double _x, double _y)
+    public Sample(double _x, double _y)
     {
 	x = _x;
 	y = _y;
