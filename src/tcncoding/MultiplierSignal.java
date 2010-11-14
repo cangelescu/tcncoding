@@ -25,25 +25,25 @@ package tcncoding;
 public class MultiplierSignal extends AnalogSignal
 {
     private ChannelSignal channelSignal;
-    private ModulatorSignal ethalonSignal;
+    private ModulatorSignal referenceSignal;
     private double noise;
 
     /**
      * Creates multiplier signal
      * @param _channelSignal channel signal
-     * @param _ethalonSignal signal from ethalon generator
+     * @param _referenceSignal signal from reference generator
      */
-    public MultiplierSignal(ChannelSignal _channelSignal, ModulatorSignal _ethalonSignal)
+    public MultiplierSignal(ChannelSignal _channelSignal, ModulatorSignal _referenceSignal)
     {
 	channelSignal = _channelSignal;
-	ethalonSignal = _ethalonSignal;
+	referenceSignal = _referenceSignal;
 
         frequency = channelSignal.getFrequency();
-        amplitude = channelSignal.getAmplitude() * ethalonSignal.getAmplitude();
+        amplitude = channelSignal.getAmplitude() * referenceSignal.getAmplitude();
         phase = channelSignal.getPhase();
 	noise = channelSignal.getNoise();
-	maxValue = Math.abs(_channelSignal.getMaxValue() * _ethalonSignal.getMaxValue());
-	minValue = -Math.abs(_channelSignal.getMinValue() * _ethalonSignal.getMinValue());
+	maxValue = Math.abs(_channelSignal.getMaxValue() * _referenceSignal.getMaxValue());
+	minValue = -Math.abs(_channelSignal.getMinValue() * _referenceSignal.getMinValue());
 	xStart = channelSignal.getStart();
 	xEnd = channelSignal.getEnd();
     }
@@ -56,7 +56,7 @@ public class MultiplierSignal extends AnalogSignal
     @Override
     public double function(double _x)
     {
-	return channelSignal.function(_x) * ethalonSignal.function(_x);
+	return channelSignal.function(_x) * referenceSignal.function(_x);
     }
 
     /**

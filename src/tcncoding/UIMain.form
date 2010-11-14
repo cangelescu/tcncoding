@@ -1134,9 +1134,9 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="blockEthalonGenerator0">
+        <Container class="javax.swing.JPanel" name="blockReferenceGenerator0">
           <Events>
-            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockEthalonGenerator0ComponentShown"/>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockReferenceGenerator0ComponentShown"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1149,17 +1149,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ethalonGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="referenceGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ethalonGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="referenceGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="ethalonGeneratorOutputPanel0">
+            <Container class="javax.swing.JPanel" name="referenceGeneratorOutputPanel0">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1171,17 +1171,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ethalonGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="referenceGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ethalonGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="referenceGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="ethalonGeneratorOutputField0">
+                <Container class="javax.swing.JPanel" name="referenceGeneratorOutputField0">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1258,9 +1258,9 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="blockEthalonGenerator1">
+        <Container class="javax.swing.JPanel" name="blockReferenceGenerator1">
           <Events>
-            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockEthalonGenerator1ComponentShown"/>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="blockReferenceGenerator1ComponentShown"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1273,17 +1273,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ethalonGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="referenceGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ethalonGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="referenceGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="ethalonGeneratorOutputPanel1">
+            <Container class="javax.swing.JPanel" name="referenceGeneratorOutputPanel1">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1295,17 +1295,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ethalonGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="referenceGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ethalonGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="referenceGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="ethalonGeneratorOutputField1">
+                <Container class="javax.swing.JPanel" name="referenceGeneratorOutputField1">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -2286,15 +2286,16 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="ethalonGenerator0Button">
+        <Component class="javax.swing.JButton" name="referenceGenerator0Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x413;0"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 0"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ethalonGenerator0ButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenceGenerator0ButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -2302,15 +2303,16 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="ethalonGenerator1Button">
+        <Component class="javax.swing.JButton" name="referenceGenerator1Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x413;1"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 1"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ethalonGenerator1ButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenceGenerator1ButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

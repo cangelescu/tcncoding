@@ -28,18 +28,18 @@ import java.util.List;
 public class Multiplier
 {
     private List<List<ChannelSignal>> channelSignals;
-    private List<List<ModulatorSignal>> ethalonSignals;
+    private List<List<ModulatorSignal>> referenceSignals;
     private List<List<MultiplierSignal>> output = new ArrayList<List<MultiplierSignal>>();
 
     /**
      * Creates multiplier
      * @param _channelSignals list of channel signals
-     * @param _ethalonSignals list of ethalon signals
+     * @param _referenceSignals list of reference signals
      */
-    public Multiplier(List<List<ChannelSignal>> _channelSignals, List<List<ModulatorSignal>> _ethalonSignals)
+    public Multiplier(List<List<ChannelSignal>> _channelSignals, List<List<ModulatorSignal>> _referenceSignals)
     {
 	channelSignals = _channelSignals;
-	ethalonSignals = _ethalonSignals;
+	referenceSignals = _referenceSignals;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Multiplier
 	    List<MultiplierSignal> newMultiplierSignals = new ArrayList<MultiplierSignal>();
 	    for (int j = 0; j < channelSignals.get(i).size(); j++)
 	    {
-		MultiplierSignal newSignal = new MultiplierSignal(channelSignals.get(i).get(j), ethalonSignals.get(i).get(j));
+		MultiplierSignal newSignal = new MultiplierSignal(channelSignals.get(i).get(j), referenceSignals.get(i).get(j));
 		newMultiplierSignals.add(newSignal);
 	    }
 	    output.add(newMultiplierSignals);

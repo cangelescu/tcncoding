@@ -22,27 +22,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Models ethalon generator of correlative receiver
+ * Models reference generator of correlative receiver
  * @author post-factum
  */
-public class EthalonGenerator
+public class ReferenceGenerator
 {
-    private double ethalonFrequency, ethalonAmplitude, ethalonPhase;
+    private double referenceFrequency, referenceAmplitude, referencePhase;
     private List<List<ChannelSignal>> receivedSignals;
     private List<List<ModulatorSignal>> output = new ArrayList<List<ModulatorSignal>>();
 
     /**
-     * Creates ethalon generator
-     * @param _frequency ethalon frequency, Hz
-     * @param _amplitude ethalon amplitude, V
-     * @param _phase ethalon phase, rad
+     * Creates reference generator
+     * @param _frequency reference frequency, Hz
+     * @param _amplitude reference amplitude, V
+     * @param _phase reference phase, rad
      * @param _signals list of input signals
      */
-    public EthalonGenerator(double _frequency, double _amplitude, double _phase, List<List<ChannelSignal>> _signals)
+    public ReferenceGenerator(double _frequency, double _amplitude, double _phase, List<List<ChannelSignal>> _signals)
     {
-	ethalonFrequency = _frequency;
-	ethalonAmplitude = _amplitude;
-	ethalonPhase = _phase;
+	referenceFrequency = _frequency;
+	referenceAmplitude = _amplitude;
+	referencePhase = _phase;
 	receivedSignals = _signals;
     }
 
@@ -56,7 +56,7 @@ public class EthalonGenerator
 	    List<ModulatorSignal> newModulatorSignalList = new ArrayList<ModulatorSignal>();
 	    for (ChannelSignal crs: clcs)
 	    {
-		ModulatorSignal mbfcrs = new ModulatorSignal(ethalonFrequency, ethalonAmplitude, ethalonPhase, crs.getStart(), crs.getEnd());
+		ModulatorSignal mbfcrs = new ModulatorSignal(referenceFrequency, referenceAmplitude, referencePhase, crs.getStart(), crs.getEnd());
 		newModulatorSignalList.add(mbfcrs);
 	    }
 	    output.add(newModulatorSignalList);
@@ -65,7 +65,7 @@ public class EthalonGenerator
 
     /**
      * Returns list of generated signals
-     * @return list of ethalon signals
+     * @return list of reference signals
      */
     public List<List<ModulatorSignal>> getSignals()
     {
