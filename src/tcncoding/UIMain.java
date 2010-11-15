@@ -337,13 +337,13 @@ public class UIMain extends javax.swing.JFrame
 	    currentSourceVideoSequenceVizualizator = null;
 	}
 	sourceVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	sourceVideoSequenceSingleProvider = (new DigitalVizualizatorConverter(sourceVideoSequence, "Вихідна відеопослідовність", Color.BLUE)).getProvided();
+	sourceVideoSequenceSingleProvider = (new DigitalVizualizatorConverter(sourceVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SOURCE VIDEOSEQUENCE"), Color.BLUE)).getProvided();
 	sourceVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSV(T), V"));
 
 	//shows chart
 	currentSourceVideoSequenceVizualizator.setVisible(true);
@@ -370,12 +370,12 @@ public class UIMain extends javax.swing.JFrame
 	}
 	channelVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	channelVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
-	channelVideoSequenceProvider.add((new DigitalVizualizatorConverter(channelVideoSequence, "Кодована відеопослідовність", Color.RED)).getProvided());
+	channelVideoSequenceProvider.add((new DigitalVizualizatorConverter(channelVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL VIDEOSEQUENCE"), Color.RED)).getProvided());
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SCHV(T), V"));
 
 	//shows chart
 	currentChannelVideoSequenceVizualizator.setVisible(true);
@@ -401,12 +401,12 @@ public class UIMain extends javax.swing.JFrame
 	}
 	//creates new vizualizator data provider
 	modulatorDataProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	modulatorDataProvider.add((new ModulatorVizualizatorConverter(modulatorData, "Сигнал на виході модулятора", Color.BLUE)).getProvided());
+	modulatorDataProvider.add((new ModulatorVizualizatorConverter(modulatorData, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MODULATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = modulatorOutputField.getWidth();
 	int cy = modulatorOutputField.getHeight();
 	//creates new vizualizator
-	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, "t, с", "S(t), В");
+	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SMOD(T), V"));
 	//shows chart
 	currentModulatorVizualizator.setVisible(true);
 	modulatorOutputField.add(currentModulatorVizualizator);
@@ -431,12 +431,12 @@ public class UIMain extends javax.swing.JFrame
 	}
 	//creates new vizualizator data provider
 	channelOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	channelOutputProvider.add((new ChannelVizualizatorConverter(channelOutput, "Сигнал на виході каналу", Color.BLUE)).getProvided());
+	channelOutputProvider.add((new ChannelVizualizatorConverter(channelOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = channelOutputField.getWidth();
 	int cy = channelOutputField.getHeight();
 	//creates new vizualizator
-	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, "t, с", "S'(t), В");
+	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("S'(T), V"));
 
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
@@ -490,8 +490,8 @@ public class UIMain extends javax.swing.JFrame
 
 	//vizualizes signal
 	referenceGenerator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	referenceGenerator0OutputProvider.add((new ModulatorVizualizatorConverter(referenceGenerator0Output, "Сигнал на виході 0-го опорного генератора", Color.BLUE)).getProvided());
-	currentReferenceGeneratorVizualizator0 = new DataVizualizator(referenceGenerator0OutputProvider, cx0, cy0, "t, с", "So0(t), В");
+	referenceGenerator0OutputProvider.add((new ModulatorVizualizatorConverter(referenceGenerator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentReferenceGeneratorVizualizator0 = new DataVizualizator(referenceGenerator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG0(T), V"));
 	currentReferenceGeneratorVizualizator0.setVisible(true);
 	referenceGeneratorOutputField0.add(currentReferenceGeneratorVizualizator0);
 	currentReferenceGeneratorVizualizator0.repaint();
@@ -507,8 +507,8 @@ public class UIMain extends javax.swing.JFrame
 
 	//shows multipliers charts
 	referenceGenerator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	referenceGenerator1OutputProvider.add((new ModulatorVizualizatorConverter(referenceGenerator1Output, "Сигнал на виході 1-го опорного генератора", Color.BLUE)).getProvided());
-	currentReferenceGeneratorVizualizator1 = new DataVizualizator(referenceGenerator1OutputProvider, cx1, cy1, "t, с", "So1(t), В");
+	referenceGenerator1OutputProvider.add((new ModulatorVizualizatorConverter(referenceGenerator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentReferenceGeneratorVizualizator1 = new DataVizualizator(referenceGenerator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG1(T), V"));
 	currentReferenceGeneratorVizualizator1.setVisible(true);
 	referenceGeneratorOutputField1.add(currentReferenceGeneratorVizualizator1);
 	currentReferenceGeneratorVizualizator1.repaint();
@@ -538,8 +538,8 @@ public class UIMain extends javax.swing.JFrame
 
 	//vizualizes signal
 	multiplier0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	multiplier0OutputProvider.add((new MultiplierVizualizatorConverter(multiplier0Output, "Сигнал на виході 0-го помножувача", Color.BLUE)).getProvided());
-	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, "t, с", "Sm0(t), В");
+	multiplier0OutputProvider.add((new MultiplierVizualizatorConverter(multiplier0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM0(T), V"));
 	currentMultiplierVizualizator0.setVisible(true);
 	multiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
@@ -555,8 +555,8 @@ public class UIMain extends javax.swing.JFrame
 
 	//shows multipliers charts
 	multiplier1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	multiplier1OutputProvider.add((new MultiplierVizualizatorConverter(multiplier1Output, "Сигнал на виході 1-го помножувача", Color.BLUE)).getProvided());
-	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, "t, с", "Sm1(t), В");
+	multiplier1OutputProvider.add((new MultiplierVizualizatorConverter(multiplier1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM1(T), V"));
 	currentMultiplierVizualizator1.setVisible(true);
 	multiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
@@ -583,8 +583,8 @@ public class UIMain extends javax.swing.JFrame
 	int cy0 = integratorOutputField0.getHeight();
 
 	integrator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator0OutputProvider.add((new DigitalVizualizatorConverter(integrator0Output, "Сигнал на виході 0-го інтегратора", Color.BLUE)).getProvided());
-	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, "t, с", "Si0(t), В");
+	integrator0OutputProvider.add((new DigitalVizualizatorConverter(integrator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI0(T), V"));
 	currentIntegratorVizualizator0.setVisible(true);
 	integratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
@@ -599,8 +599,8 @@ public class UIMain extends javax.swing.JFrame
 	int cy1 = integratorOutputField1.getHeight();
 
 	integrator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator1OutputProvider.add((new DigitalVizualizatorConverter(integrator1Output, "Сигнал на виході 1-го інтегратора", Color.BLUE)).getProvided());
-	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, "t, с", "Si1(t), В");
+	integrator1OutputProvider.add((new DigitalVizualizatorConverter(integrator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI1(T), V"));
 	currentIntegratorVizualizator1.setVisible(true);
 	integratorOutputField1.add(currentIntegratorVizualizator1);
 	currentIntegratorVizualizator1.repaint();
@@ -624,8 +624,8 @@ public class UIMain extends javax.swing.JFrame
 	int cy1 = blockSummatorOutputField.getHeight();
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	summatorOutputProvider.add((new DigitalVizualizatorConverter(summatorOutput, "Сигнал на виході суматора", Color.BLUE)).getProvided());
-	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, "t, с", "Ssum(t), В");
+	summatorOutputProvider.add((new DigitalVizualizatorConverter(summatorOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SUMMATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSUM(T), V"));
 	currentSummatorVizualizator.setVisible(true);
 	blockSummatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();
@@ -671,12 +671,12 @@ public class UIMain extends javax.swing.JFrame
 	    currentResolverVideoSequenceVizualizator = null;
 	}
 	resolverVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	resolverVideoSequenceProvider.add((new DigitalVizualizatorConverter(resolverVideoSequence, "Вхідна відеопослідовність", Color.RED)).getProvided());
+	resolverVideoSequenceProvider.add((new DigitalVizualizatorConverter(resolverVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RESOLVER VIDEOSEQUENCE"), Color.RED)).getProvided());
 	int cx = blockResolverVideoSequenceOutputField.getWidth();
 	int cy = blockResolverVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentResolverVideoSequenceVizualizator = new DataVizualizator(resolverVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+	currentResolverVideoSequenceVizualizator = new DataVizualizator(resolverVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRES(T), V"));
 
 	//shows chart
 	currentResolverVideoSequenceVizualizator.setVisible(true);
@@ -692,7 +692,7 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
-	String text = "<html> " + "Отримана послідовність:" + " <br/>" + currentResolver.getStringSequence() + "<br/>";
+	String text = "<html> " + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RECEIVED SEQUENCE:") + " <br/>" + currentResolver.getStringSequence() + "<br/>";
 	text += currentChannelDecoder.getHTMLReport();
 	blockChannelDecoderOutput.setText(text);
     }
@@ -709,12 +709,12 @@ public class UIMain extends javax.swing.JFrame
 	    currentChannelDecoderVideoSequenceVizualizator = null;
 	}
 	channelDecoderVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	channelDecoderVideoSequenceProvider.add((new DigitalVizualizatorConverter(channelDecoderVideoSequence, "Декодована відеопослідовність", Color.RED)).getProvided());
+	channelDecoderVideoSequenceProvider.add((new DigitalVizualizatorConverter(channelDecoderVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL DECODER VIDEOSEQUENCE"), Color.RED)).getProvided());
 	int cx = blockChannelDecoderVideoSequenceOutputField.getWidth();
 	int cy = blockChannelDecoderVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentChannelDecoderVideoSequenceVizualizator = new DataVizualizator(channelDecoderVideoSequenceProvider, cx, cy, "t, с", "Sv(t), В");
+	currentChannelDecoderVideoSequenceVizualizator = new DataVizualizator(channelDecoderVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SCHDV(T), V"));
 
 	//shows chart
 	currentChannelDecoderVideoSequenceVizualizator.setVisible(true);
@@ -897,18 +897,19 @@ public class UIMain extends javax.swing.JFrame
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
-        aboutDialog.setTitle("Про програму");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian"); // NOI18N
+        aboutDialog.setTitle(bundle.getString("ABOUT")); // NOI18N
         aboutDialog.setResizable(false);
 
-        programNameLabel.setText("Модель цифрової системи зв'язку");
+        programNameLabel.setText(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM MODEL")); // NOI18N
 
-        instituteNameLabel.setText("НД ІТС НТУУ «КПІ»");
+        instituteNameLabel.setText(bundle.getString("ITS NTUU «KPI»")); // NOI18N
 
-        copyrightLabel.setText("© 2009-2010, Олександр Ігорович Наталенко");
+        copyrightLabel.setText(bundle.getString("© 2009-2010, OLEKSANDR NATALENKO")); // NOI18N
 
-        licenseLabel.setText("Програма розповсюджується згідно умовам ліцензії UPLv4.1");
+        licenseLabel.setText(bundle.getString("DISTRIBUTED UNDER TERMS AND CONDITIONS OF UPLV4.1")); // NOI18N
 
-        showLicense.setText("Показати ліцензію");
+        showLicense.setText(bundle.getString("SHOW LICENSE")); // NOI18N
         showLicense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showLicenseActionPerformed(evt);
@@ -927,7 +928,7 @@ public class UIMain extends javax.swing.JFrame
                     .addComponent(copyrightLabel)
                     .addComponent(licenseLabel)
                     .addComponent(showLicense))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         aboutDialogLayout.setVerticalGroup(
             aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -945,10 +946,10 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        modellingOptionsDialog.setTitle("Налаштування моделювання");
+        modellingOptionsDialog.setTitle(bundle.getString("MODELLING OPTIONS")); // NOI18N
         modellingOptionsDialog.setResizable(false);
 
-        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "МТК-2", "МТК-5", "KOI8-U", "Морзе", "Шенона-Фано" }));
+        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ITC-2", "ITC-5", "KOI8-U", "Morse", "Shannon-Fano" }));
         sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 sourceCodesChooserItemStateChanged(evt);
@@ -956,13 +957,13 @@ public class UIMain extends javax.swing.JFrame
         });
 
         sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
-        sourceCodesChooserLabel.setText("Код:");
+        sourceCodesChooserLabel.setText(bundle.getString("CODE:")); // NOI18N
 
-        informationalSpeedLabel.setText("Інформаційна швидкість:");
+        informationalSpeedLabel.setText(bundle.getString("INFORMATIONAL RATE:")); // NOI18N
 
         informationalSpeed.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(166666.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
 
-        bpsLabel.setText("біт/с");
+        bpsLabel.setText(bundle.getString("BPS")); // NOI18N
 
         javax.swing.GroupLayout sourceCoderTabLayout = new javax.swing.GroupLayout(sourceCoderTab);
         sourceCoderTab.setLayout(sourceCoderTabLayout);
@@ -974,7 +975,7 @@ public class UIMain extends javax.swing.JFrame
                     .addComponent(sourceCodesChooserLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sourceCodesChooser, 0, 481, Short.MAX_VALUE)
+                    .addComponent(sourceCodesChooser, 0, 533, Short.MAX_VALUE)
                     .addGroup(sourceCoderTabLayout.createSequentialGroup()
                         .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -995,12 +996,12 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Кодер джерела", sourceCoderTab);
+        optionsTabs.addTab("Source coder", sourceCoderTab);
 
         channelCodesChooserLabel.setLabelFor(channelCodesChooser);
-        channelCodesChooserLabel.setText("Код:");
+        channelCodesChooserLabel.setText("Code:");
 
-        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "із перевіркою на парність", "інверсний", "манчестерський", "Хемінга" }));
+        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "with parity bit checking", "inversed", "Manchester", "Hamming (7, 4)" }));
         channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 channelCodesChooserItemStateChanged(evt);
@@ -1008,7 +1009,7 @@ public class UIMain extends javax.swing.JFrame
         });
 
         useChannelCoder.setSelected(true);
-        useChannelCoder.setText("Використовувати надлишкове кодування");
+        useChannelCoder.setText("Use redundand coding");
         useChannelCoder.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 useChannelCoderItemStateChanged(evt);
@@ -1039,37 +1040,37 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Кодер каналу", channelCoderTab);
+        optionsTabs.addTab("Channel coder", channelCoderTab);
 
         modulationTypeLabel.setLabelFor(modulationTypeChooser);
-        modulationTypeLabel.setText("Вид модуляції:");
+        modulationTypeLabel.setText("Modulation type:");
 
-        modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "АМн (амплітудна маніпуляція)", "ЧМн (частотна маніпуляція)", "ФМн (фазова маніпуляція)", "ВФМн (відносна фазова маніпуляція)" }));
+        modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASK (amplitude-shift keying)", "FSK (frequency-shift keying)", "PSK (phase-shift keying)", "RPSK (relative phase-shift keying)" }));
         modulationTypeChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 modulationTypeChooserItemStateChanged(evt);
             }
         });
 
-        bearerAmplitudeLabel.setText("Амплітуда несучої:");
+        bearerAmplitudeLabel.setText("Bearer amplitude:");
 
         bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(10.0d), Double.valueOf(0.0d), null, Double.valueOf(0.5d)));
 
-        bearerFrequencyDeviationLabel.setText("Девіація частоти:");
+        bearerFrequencyDeviationLabel.setText("Frequency deviation:");
         bearerFrequencyDeviationLabel.setEnabled(false);
 
-        bearerFrequencyLabel.setText("Частота несучої:");
+        bearerFrequencyLabel.setText("Bearer frequency:");
 
         bearerFrequencyDeviation.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(20000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
         bearerFrequencyDeviation.setEnabled(false);
 
         bearerFrequency.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
 
-        voltsLabel.setText("В");
+        voltsLabel.setText("V");
 
-        hzBearerLabel.setText("Гц");
+        hzBearerLabel.setText("Hz");
 
-        hzDeviationLabel.setText("Гц");
+        hzDeviationLabel.setText("Hz");
 
         javax.swing.GroupLayout modulatorTabLayout = new javax.swing.GroupLayout(modulatorTab);
         modulatorTab.setLayout(modulatorTabLayout);
@@ -1120,23 +1121,23 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Модулятор", modulatorTab);
+        optionsTabs.addTab("Modulator", modulatorTab);
 
-        noisePowerLabel.setText("Максимальна потужність шуму:");
+        noisePowerLabel.setText("Maximum noise power:");
 
         noisePower.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
 
-        noisePowerWattLabel.setText("Вт");
+        noisePowerWattLabel.setText("W");
 
         useNoiseErrors.setSelected(true);
-        useNoiseErrors.setText("Вносити помилки внаслідок дії шуму");
+        useNoiseErrors.setText("Inject errors caused by channel noise");
         useNoiseErrors.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 useNoiseErrorsItemStateChanged(evt);
             }
         });
 
-        forceErrors.setText("Примусово вносити помилку кратністю");
+        forceErrors.setText("Force injecting errors of factor");
         forceErrors.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 forceErrorsItemStateChanged(evt);
@@ -1148,7 +1149,7 @@ public class UIMain extends javax.swing.JFrame
 
         errorsInjectorTypeChooserGroup.add(errorsInjectorPerBlock);
         errorsInjectorPerBlock.setSelected(true);
-        errorsInjectorPerBlock.setText("поблоково");
+        errorsInjectorPerBlock.setText("by block");
         errorsInjectorPerBlock.setEnabled(false);
         errorsInjectorPerBlock.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1157,7 +1158,7 @@ public class UIMain extends javax.swing.JFrame
         });
 
         errorsInjectorTypeChooserGroup.add(errorsInjectorPerSequence);
-        errorsInjectorPerSequence.setText("у всю послідовність");
+        errorsInjectorPerSequence.setText("to whole sequence");
         errorsInjectorPerSequence.setEnabled(false);
         errorsInjectorPerSequence.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1186,7 +1187,7 @@ public class UIMain extends javax.swing.JFrame
                 .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(errorsInjectorPerSequence)
                     .addComponent(errorsInjectorPerBlock))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         channelTabLayout.setVerticalGroup(
             channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1207,20 +1208,20 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Канал", channelTab);
+        optionsTabs.addTab("Channel", channelTab);
 
         javax.swing.GroupLayout modellingOptionsDialogLayout = new javax.swing.GroupLayout(modellingOptionsDialog.getContentPane());
         modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
         modellingOptionsDialogLayout.setHorizontalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+            .addComponent(optionsTabs)
         );
         modellingOptionsDialogLayout.setVerticalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
         );
 
-        licenseDialog.setTitle("Ліцензія");
+        licenseDialog.setTitle("License");
         licenseDialog.setResizable(false);
 
         licenseTextArea.setColumns(20);
@@ -1242,7 +1243,7 @@ public class UIMain extends javax.swing.JFrame
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Система зв'язку");
+        setTitle("Digital telecommunication system");
 
         TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16));
 
@@ -1252,7 +1253,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Повідомлення"));
+        sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Message"));
 
         blockMessageArea.setColumns(20);
         blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
@@ -1282,7 +1283,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(sourceMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Джерело повідомлень", blockMessageSource);
+        TCSTabs.addTab("Message source", blockMessageSource);
 
         blockSourceCoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1317,7 +1318,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSourceCoderOutputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockSourceCoderTabs.addTab("Бінарна послідовність", blockSourceCoderBinarySequence);
+        blockSourceCoderTabs.addTab("Binary sequence", blockSourceCoderBinarySequence);
 
         blockSourceVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1332,20 +1333,20 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
-        blockSourceCoderTabs.addTab("Відеопослідовність", blockSourceCoderVideoSequence);
+        blockSourceCoderTabs.addTab("Videosequence", blockSourceCoderVideoSequence);
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
         blockSourceCoder.setLayout(blockSourceCoderLayout);
         blockSourceCoderLayout.setHorizontalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs)
         );
         blockSourceCoderLayout.setVerticalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs)
         );
 
-        TCSTabs.addTab("Кодер джерела", blockSourceCoder);
+        TCSTabs.addTab(bundle.getString("SOURCE CODER"), blockSourceCoder); // NOI18N
 
         blockChannelCoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1380,7 +1381,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelCoderOutputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockChannelCoderTabs.addTab("Бінарна послідовність", blockChannelCoderBinarySequence);
+        blockChannelCoderTabs.addTab("Binary sequence", blockChannelCoderBinarySequence);
 
         blockChannelVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1395,20 +1396,20 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
-        blockChannelCoderTabs.addTab("Відеопослідовність", blockChannelCoderVideoSequence);
+        blockChannelCoderTabs.addTab("Videosequence", blockChannelCoderVideoSequence);
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
         blockChannelCoder.setLayout(blockChannelCoderLayout);
         blockChannelCoderLayout.setHorizontalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs)
         );
         blockChannelCoderLayout.setVerticalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs)
         );
 
-        TCSTabs.addTab("Кодер каналу", blockChannelCoder);
+        TCSTabs.addTab("Channel coder", blockChannelCoder);
 
         blockModulator.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1416,7 +1417,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        modulatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід модулятора"));
+        modulatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Modulator output"));
 
         modulatorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1442,7 +1443,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(modulatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Модулятор", blockModulator);
+        TCSTabs.addTab("Modulator", blockModulator);
 
         blockChannel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1450,7 +1451,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід каналу"));
+        channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Channel output"));
 
         channelOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1476,7 +1477,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(channelOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Канал", blockChannel);
+        TCSTabs.addTab("Channel", blockChannel);
 
         blockReferenceGenerator0.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1484,7 +1485,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        referenceGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід опорного генератора 0"));
+        referenceGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Reference generator 0 output"));
 
         javax.swing.GroupLayout referenceGeneratorOutputField0Layout = new javax.swing.GroupLayout(referenceGeneratorOutputField0);
         referenceGeneratorOutputField0.setLayout(referenceGeneratorOutputField0Layout);
@@ -1519,7 +1520,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(referenceGeneratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Опорний генератор 0", blockReferenceGenerator0);
+        TCSTabs.addTab("Reference generator 0", blockReferenceGenerator0);
 
         blockMultiplier0.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1527,7 +1528,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        multiplierOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід помножувача 0"));
+        multiplierOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Multiplier 0 output"));
 
         multiplierOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1553,7 +1554,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(multiplierOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Помножувач 0", blockMultiplier0);
+        TCSTabs.addTab("Multiplier 0", blockMultiplier0);
 
         blockReferenceGenerator1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1561,7 +1562,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        referenceGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід опорного генератора 1"));
+        referenceGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Reference generator 1 output"));
 
         javax.swing.GroupLayout referenceGeneratorOutputField1Layout = new javax.swing.GroupLayout(referenceGeneratorOutputField1);
         referenceGeneratorOutputField1.setLayout(referenceGeneratorOutputField1Layout);
@@ -1596,7 +1597,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(referenceGeneratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Опорний генератор 1", blockReferenceGenerator1);
+        TCSTabs.addTab("Reference generator 1", blockReferenceGenerator1);
 
         blockMultiplier1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1604,7 +1605,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        multiplierOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід помножувача 1"));
+        multiplierOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Multiplier 1 output"));
 
         multiplierOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1630,7 +1631,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(multiplierOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Помножувач 1", blockMultiplier1);
+        TCSTabs.addTab("Multiplier 1", blockMultiplier1);
 
         blockIntegrator0.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1638,7 +1639,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 0"));
+        integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Integrator 0 output"));
 
         integratorOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1664,7 +1665,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(integratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Інтегратор 0", blockIntegrator0);
+        TCSTabs.addTab("Integrator 0", blockIntegrator0);
 
         blockIntegrator1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1672,7 +1673,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід інтегратора 1"));
+        integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Integrator 1 output"));
 
         integratorOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1698,7 +1699,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(integratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Інтегратор 1", blockIntegrator1);
+        TCSTabs.addTab("Integrator 1", blockIntegrator1);
 
         blockSummator.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1706,7 +1707,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        blockSummatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Вихід суматора"));
+        blockSummatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Summator output"));
 
         blockSummatorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1732,7 +1733,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSummatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Суматор", blockSummator);
+        TCSTabs.addTab("Summator", blockSummator);
 
         blockResolver.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1767,7 +1768,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockResolverOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockResolverTabs.addTab("Бінарна послідовність", blockResolverBinarySequence);
+        blockResolverTabs.addTab("Binary sequence", blockResolverBinarySequence);
 
         blockResolverVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1782,20 +1783,20 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
-        blockResolverTabs.addTab("Відеопослідовність", blockResolverVideoSequence);
+        blockResolverTabs.addTab("Videosequence", blockResolverVideoSequence);
 
         javax.swing.GroupLayout blockResolverLayout = new javax.swing.GroupLayout(blockResolver);
         blockResolver.setLayout(blockResolverLayout);
         blockResolverLayout.setHorizontalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs)
         );
         blockResolverLayout.setVerticalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs)
         );
 
-        TCSTabs.addTab("Вирішуючий пристрій", blockResolver);
+        TCSTabs.addTab("Resolver", blockResolver);
 
         blockChannelDecoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1830,7 +1831,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelDecoderOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockChannelDecoderTabs.addTab("Бінарна послідовність", blockChannelDecoderBinarySequence);
+        blockChannelDecoderTabs.addTab("Binary sequence", blockChannelDecoderBinarySequence);
 
         blockChannelDecoderVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1845,20 +1846,20 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
-        blockChannelDecoderTabs.addTab("Відеопослідовність", blockChannelDecoderVideoSequence);
+        blockChannelDecoderTabs.addTab("Videosequence", blockChannelDecoderVideoSequence);
 
         javax.swing.GroupLayout blockChannelDecoderLayout = new javax.swing.GroupLayout(blockChannelDecoder);
         blockChannelDecoder.setLayout(blockChannelDecoderLayout);
         blockChannelDecoderLayout.setHorizontalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs)
         );
         blockChannelDecoderLayout.setVerticalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs)
         );
 
-        TCSTabs.addTab("Декодер каналу", blockChannelDecoder);
+        TCSTabs.addTab("Channel decoder", blockChannelDecoder);
 
         blockSourceDecoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1866,7 +1867,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        sourceDecoderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Отримане повідомлення"));
+        sourceDecoderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Received sequence"));
 
         receivedMessageArea.setColumns(20);
         receivedMessageArea.setEditable(false);
@@ -1896,14 +1897,14 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(sourceDecoderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Декодер джерела", blockSourceDecoder);
+        TCSTabs.addTab("Source decoder", blockSourceDecoder);
 
-        systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Структурна схема"));
+        systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Structure scheme"));
         systemScheme.setLayout(new java.awt.GridBagLayout());
 
         channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
-        channelCoderButton.setText("КК");
-        channelCoderButton.setToolTipText("Кодер каналу");
+        channelCoderButton.setText("ChC");
+        channelCoderButton.setToolTipText("Channel coder");
         channelCoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 channelCoderButtonActionPerformed(evt);
@@ -1915,8 +1916,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(channelCoderButton, gridBagConstraints);
 
         modulatorButton.setBackground(new java.awt.Color(240, 240, 240));
-        modulatorButton.setText("М");
-        modulatorButton.setToolTipText("Модулятор");
+        modulatorButton.setText("Mod");
+        modulatorButton.setToolTipText("Modulator");
         modulatorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modulatorButtonActionPerformed(evt);
@@ -1928,8 +1929,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(modulatorButton, gridBagConstraints);
 
         channelButton.setBackground(new java.awt.Color(240, 240, 240));
-        channelButton.setText("К");
-        channelButton.setToolTipText("Канал");
+        channelButton.setText("Ch");
+        channelButton.setToolTipText("Channel");
         channelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 channelButtonActionPerformed(evt);
@@ -1941,8 +1942,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(channelButton, gridBagConstraints);
 
         integrator0Button.setBackground(new java.awt.Color(240, 240, 240));
-        integrator0Button.setText("І0");
-        integrator0Button.setToolTipText("Інтегратор 0");
+        integrator0Button.setText("I0");
+        integrator0Button.setToolTipText("Integrator 0");
         integrator0Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 integrator0ButtonActionPerformed(evt);
@@ -1954,8 +1955,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(integrator0Button, gridBagConstraints);
 
         sourceCoderButton.setBackground(new java.awt.Color(240, 240, 240));
-        sourceCoderButton.setText("КДж");
-        sourceCoderButton.setToolTipText("Кодер джерела повідомлень");
+        sourceCoderButton.setText("SC");
+        sourceCoderButton.setToolTipText(bundle.getString("SOURCE CODER")); // NOI18N
         sourceCoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sourceCoderButtonActionPerformed(evt);
@@ -1967,8 +1968,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(sourceCoderButton, gridBagConstraints);
 
         multiplier0Button.setBackground(new java.awt.Color(240, 240, 240));
-        multiplier0Button.setText("П0");
-        multiplier0Button.setToolTipText("Помножувач 0");
+        multiplier0Button.setText("M0");
+        multiplier0Button.setToolTipText("Multiplier 0");
         multiplier0Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multiplier0ButtonActionPerformed(evt);
@@ -1980,8 +1981,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(multiplier0Button, gridBagConstraints);
 
         multiplier1Button.setBackground(new java.awt.Color(240, 240, 240));
-        multiplier1Button.setText("П1");
-        multiplier1Button.setToolTipText("Помножувач 1");
+        multiplier1Button.setText("M1");
+        multiplier1Button.setToolTipText("Multiplier 1");
         multiplier1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multiplier1ButtonActionPerformed(evt);
@@ -1993,8 +1994,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(multiplier1Button, gridBagConstraints);
 
         messageSourceButton.setBackground(new java.awt.Color(200, 200, 200));
-        messageSourceButton.setText("ДжП");
-        messageSourceButton.setToolTipText("Джерело повідомлень");
+        messageSourceButton.setText("MS");
+        messageSourceButton.setToolTipText(bundle.getString("MESSAGE SOURCE")); // NOI18N
         messageSourceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 messageSourceButtonActionPerformed(evt);
@@ -2006,8 +2007,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(messageSourceButton, gridBagConstraints);
 
         integrator1Button.setBackground(new java.awt.Color(240, 240, 240));
-        integrator1Button.setText("І1");
-        integrator1Button.setToolTipText("Інтегратор 1");
+        integrator1Button.setText("I1");
+        integrator1Button.setToolTipText("Integrator 1");
         integrator1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 integrator1ButtonActionPerformed(evt);
@@ -2019,8 +2020,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(integrator1Button, gridBagConstraints);
 
         summatorButton.setBackground(new java.awt.Color(240, 240, 240));
-        summatorButton.setText("С");
-        summatorButton.setToolTipText("Суматор");
+        summatorButton.setText("Sum (-)");
+        summatorButton.setToolTipText("Summator");
         summatorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 summatorButtonActionPerformed(evt);
@@ -2098,8 +2099,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(rightArrowLabel1, gridBagConstraints);
 
         resolverButton.setBackground(new java.awt.Color(240, 240, 240));
-        resolverButton.setText("ВП");
-        resolverButton.setToolTipText("Пристрій прийняття рішень");
+        resolverButton.setText("Res");
+        resolverButton.setToolTipText("Resolver");
         resolverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resolverButtonActionPerformed(evt);
@@ -2135,8 +2136,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(upArrowLabel, gridBagConstraints);
 
         channelDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
-        channelDecoderButton.setText("ДКК");
-        channelDecoderButton.setToolTipText("Декодер каналу");
+        channelDecoderButton.setText("ChD");
+        channelDecoderButton.setToolTipText("Channel decoder");
         channelDecoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 channelDecoderButtonActionPerformed(evt);
@@ -2148,8 +2149,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(channelDecoderButton, gridBagConstraints);
 
         sourceDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
-        sourceDecoderButton.setText("ДКДж");
-        sourceDecoderButton.setToolTipText("Декодер джерела");
+        sourceDecoderButton.setText("SD");
+        sourceDecoderButton.setToolTipText("Source decoder");
         sourceDecoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sourceDecoderButtonActionPerformed(evt);
@@ -2161,8 +2162,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(sourceDecoderButton, gridBagConstraints);
 
         referenceGenerator0Button.setBackground(new java.awt.Color(240, 240, 240));
-        referenceGenerator0Button.setText("Г0");
-        referenceGenerator0Button.setToolTipText("Опорний генератор 0");
+        referenceGenerator0Button.setText("G0");
+        referenceGenerator0Button.setToolTipText(bundle.getString("REFERENCE GENERATOR 0")); // NOI18N
         referenceGenerator0Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 referenceGenerator0ButtonActionPerformed(evt);
@@ -2174,8 +2175,8 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(referenceGenerator0Button, gridBagConstraints);
 
         referenceGenerator1Button.setBackground(new java.awt.Color(240, 240, 240));
-        referenceGenerator1Button.setText("Г1");
-        referenceGenerator1Button.setToolTipText("Опорний генератор 1");
+        referenceGenerator1Button.setText("G1");
+        referenceGenerator1Button.setToolTipText(bundle.getString("REFERENCE GENERATOR 1")); // NOI18N
         referenceGenerator1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 referenceGenerator1ButtonActionPerformed(evt);
@@ -2198,10 +2199,10 @@ public class UIMain extends javax.swing.JFrame
         gridBagConstraints.gridy = 2;
         systemScheme.add(rightArrowLabel12, gridBagConstraints);
 
-        fileMenu.setText("Файл");
+        fileMenu.setText(bundle.getString("FILE")); // NOI18N
 
         exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
-        exitItem.setText("Вихід");
+        exitItem.setText(bundle.getString("EXIT")); // NOI18N
         exitItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitItemActionPerformed(evt);
@@ -2211,10 +2212,10 @@ public class UIMain extends javax.swing.JFrame
 
         mainMenu.add(fileMenu);
 
-        modellingMenu.setText("Моделювання");
+        modellingMenu.setText(bundle.getString("MODELLING")); // NOI18N
 
         doModellingOptionsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        doModellingOptionsItem.setText("Налаштування моделювання…");
+        doModellingOptionsItem.setText(bundle.getString("OPTIONS…")); // NOI18N
         doModellingOptionsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doModellingOptionsItemActionPerformed(evt);
@@ -2223,7 +2224,7 @@ public class UIMain extends javax.swing.JFrame
         modellingMenu.add(doModellingOptionsItem);
 
         doModellingItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-        doModellingItem.setText("Виконати моделювання");
+        doModellingItem.setText(bundle.getString("RUN")); // NOI18N
         doModellingItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doModellingItemActionPerformed(evt);
@@ -2233,9 +2234,9 @@ public class UIMain extends javax.swing.JFrame
 
         mainMenu.add(modellingMenu);
 
-        helpMenu.setText("Допомога");
+        helpMenu.setText(bundle.getString("HELP")); // NOI18N
 
-        aboutItem.setText("Про програму…");
+        aboutItem.setText(bundle.getString("ABOUT…")); // NOI18N
         aboutItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutItemActionPerformed(evt);

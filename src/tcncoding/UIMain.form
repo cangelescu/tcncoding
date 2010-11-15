@@ -4,7 +4,9 @@
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="aboutDialog">
       <Properties>
-        <Property name="title" type="java.lang.String" value="&#x41f;&#x440;&#x43e; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x443;"/>
+        <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="ABOUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+        </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
@@ -20,7 +22,7 @@
                       <Component id="licenseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="showLicense" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -45,27 +47,37 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="programNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x435;&#x43b;&#x44c; &#x446;&#x438;&#x444;&#x440;&#x43e;&#x432;&#x43e;&#x457; &#x441;&#x438;&#x441;&#x442;&#x435;&#x43c;&#x438; &#x437;&#x432;&apos;&#x44f;&#x437;&#x43a;&#x443;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="DIGITAL TELECOMMUNICATION SYSTEM MODEL" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="instituteNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x41d;&#x414; &#x406;&#x422;&#x421; &#x41d;&#x422;&#x423;&#x423; &#xab;&#x41a;&#x41f;&#x406;&#xbb;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="ITS NTUU &#xab;KPI&#xbb;" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="copyrightLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#xa9; 2009-2010, &#x41e;&#x43b;&#x435;&#x43a;&#x441;&#x430;&#x43d;&#x434;&#x440; &#x406;&#x433;&#x43e;&#x440;&#x43e;&#x432;&#x438;&#x447; &#x41d;&#x430;&#x442;&#x430;&#x43b;&#x435;&#x43d;&#x43a;&#x43e;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="&#xa9; 2009-2010, OLEKSANDR NATALENKO" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="licenseLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x430; &#x440;&#x43e;&#x437;&#x43f;&#x43e;&#x432;&#x441;&#x44e;&#x434;&#x436;&#x443;&#x454;&#x442;&#x44c;&#x441;&#x44f; &#x437;&#x433;&#x456;&#x434;&#x43d;&#x43e; &#x443;&#x43c;&#x43e;&#x432;&#x430;&#x43c; &#x43b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x457; UPLv4.1"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="DISTRIBUTED UNDER TERMS AND CONDITIONS OF UPLV4.1" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="showLicense">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43a;&#x430;&#x437;&#x430;&#x442;&#x438; &#x43b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x44e;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SHOW LICENSE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showLicenseActionPerformed"/>
@@ -75,14 +87,16 @@
     </Container>
     <Container class="javax.swing.JDialog" name="modellingOptionsDialog">
       <Properties>
-        <Property name="title" type="java.lang.String" value="&#x41d;&#x430;&#x43b;&#x430;&#x448;&#x442;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x43c;&#x43e;&#x434;&#x435;&#x43b;&#x44e;&#x432;&#x430;&#x43d;&#x43d;&#x44f;"/>
+        <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MODELLING OPTIONS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+        </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="optionsTabs" alignment="0" pref="658" max="32767" attributes="0"/>
+              <Component id="optionsTabs" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -99,8 +113,8 @@
             <Container class="javax.swing.JPanel" name="sourceCoderTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;"/>
+                  <JTabbedPaneConstraints tabName="Source coder">
+                    <Property name="tabTitle" type="java.lang.String" value="Source coder"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -115,7 +129,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="sourceCodesChooser" alignment="0" pref="481" max="32767" attributes="0"/>
+                              <Component id="sourceCodesChooser" alignment="0" pref="533" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="informationalSpeed" min="-2" pref="125" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -149,11 +163,11 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
-                        <StringItem index="0" value="&#x41c;&#x422;&#x41a;-2"/>
-                        <StringItem index="1" value="&#x41c;&#x422;&#x41a;-5"/>
+                        <StringItem index="0" value="ITC-2"/>
+                        <StringItem index="1" value="ITC-5"/>
                         <StringItem index="2" value="KOI8-U"/>
-                        <StringItem index="3" value="&#x41c;&#x43e;&#x440;&#x437;&#x435;"/>
-                        <StringItem index="4" value="&#x428;&#x435;&#x43d;&#x43e;&#x43d;&#x430;-&#x424;&#x430;&#x43d;&#x43e;"/>
+                        <StringItem index="3" value="Morse"/>
+                        <StringItem index="4" value="Shannon-Fano"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -166,12 +180,16 @@
                     <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="sourceCodesChooser"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x41a;&#x43e;&#x434;:"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="CODE:" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="informationalSpeedLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x406;&#x43d;&#x444;&#x43e;&#x440;&#x43c;&#x430;&#x446;&#x456;&#x439;&#x43d;&#x430; &#x448;&#x432;&#x438;&#x434;&#x43a;&#x456;&#x441;&#x442;&#x44c;:"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="INFORMATIONAL RATE:" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="informationalSpeed">
@@ -183,7 +201,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="bpsLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x431;&#x456;&#x442;/&#x441;"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="BPS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -191,8 +211,8 @@
             <Container class="javax.swing.JPanel" name="channelCoderTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+                  <JTabbedPaneConstraints tabName="Channel coder">
+                    <Property name="tabTitle" type="java.lang.String" value="Channel coder"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -233,17 +253,17 @@
                     <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="channelCodesChooser"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x41a;&#x43e;&#x434;:"/>
+                    <Property name="text" type="java.lang.String" value="Code:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="channelCodesChooser">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="&#x456;&#x437; &#x43f;&#x435;&#x440;&#x435;&#x432;&#x456;&#x440;&#x43a;&#x43e;&#x44e; &#x43d;&#x430; &#x43f;&#x430;&#x440;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
-                        <StringItem index="1" value="&#x456;&#x43d;&#x432;&#x435;&#x440;&#x441;&#x43d;&#x438;&#x439;"/>
-                        <StringItem index="2" value="&#x43c;&#x430;&#x43d;&#x447;&#x435;&#x441;&#x442;&#x435;&#x440;&#x441;&#x44c;&#x43a;&#x438;&#x439;"/>
-                        <StringItem index="3" value="&#x425;&#x435;&#x43c;&#x456;&#x43d;&#x433;&#x430;"/>
+                        <StringItem index="0" value="with parity bit checking"/>
+                        <StringItem index="1" value="inversed"/>
+                        <StringItem index="2" value="Manchester"/>
+                        <StringItem index="3" value="Hamming (7, 4)"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -254,7 +274,7 @@
                 <Component class="javax.swing.JCheckBox" name="useChannelCoder">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x43a;&#x43e;&#x440;&#x438;&#x441;&#x442;&#x43e;&#x432;&#x443;&#x432;&#x430;&#x442;&#x438; &#x43d;&#x430;&#x434;&#x43b;&#x438;&#x448;&#x43a;&#x43e;&#x432;&#x435; &#x43a;&#x43e;&#x434;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f;"/>
+                    <Property name="text" type="java.lang.String" value="Use redundand coding"/>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="useChannelCoderItemStateChanged"/>
@@ -265,8 +285,8 @@
             <Container class="javax.swing.JPanel" name="modulatorTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
+                  <JTabbedPaneConstraints tabName="Modulator">
+                    <Property name="tabTitle" type="java.lang.String" value="Modulator"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -338,17 +358,17 @@
                     <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="modulationTypeChooser"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x434; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x446;&#x456;&#x457;:"/>
+                    <Property name="text" type="java.lang.String" value="Modulation type:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="modulationTypeChooser">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="&#x410;&#x41c;&#x43d; (&#x430;&#x43c;&#x43f;&#x43b;&#x456;&#x442;&#x443;&#x434;&#x43d;&#x430; &#x43c;&#x430;&#x43d;&#x456;&#x43f;&#x443;&#x43b;&#x44f;&#x446;&#x456;&#x44f;)"/>
-                        <StringItem index="1" value="&#x427;&#x41c;&#x43d; (&#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x43d;&#x430; &#x43c;&#x430;&#x43d;&#x456;&#x43f;&#x443;&#x43b;&#x44f;&#x446;&#x456;&#x44f;)"/>
-                        <StringItem index="2" value="&#x424;&#x41c;&#x43d; (&#x444;&#x430;&#x437;&#x43e;&#x432;&#x430; &#x43c;&#x430;&#x43d;&#x456;&#x43f;&#x443;&#x43b;&#x44f;&#x446;&#x456;&#x44f;)"/>
-                        <StringItem index="3" value="&#x412;&#x424;&#x41c;&#x43d; (&#x432;&#x456;&#x434;&#x43d;&#x43e;&#x441;&#x43d;&#x430; &#x444;&#x430;&#x437;&#x43e;&#x432;&#x430; &#x43c;&#x430;&#x43d;&#x456;&#x43f;&#x443;&#x43b;&#x44f;&#x446;&#x456;&#x44f;)"/>
+                        <StringItem index="0" value="ASK (amplitude-shift keying)"/>
+                        <StringItem index="1" value="FSK (frequency-shift keying)"/>
+                        <StringItem index="2" value="PSK (phase-shift keying)"/>
+                        <StringItem index="3" value="RPSK (relative phase-shift keying)"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -358,7 +378,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="bearerAmplitudeLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x410;&#x43c;&#x43f;&#x43b;&#x456;&#x442;&#x443;&#x434;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457;:"/>
+                    <Property name="text" type="java.lang.String" value="Bearer amplitude:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="bearerAmplitude">
@@ -370,13 +390,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="bearerFrequencyDeviationLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x414;&#x435;&#x432;&#x456;&#x430;&#x446;&#x456;&#x44f; &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x438;:"/>
+                    <Property name="text" type="java.lang.String" value="Frequency deviation:"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="bearerFrequencyLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x427;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430; &#x43d;&#x435;&#x441;&#x443;&#x447;&#x43e;&#x457;:"/>
+                    <Property name="text" type="java.lang.String" value="Bearer frequency:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="bearerFrequencyDeviation">
@@ -396,17 +416,17 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="voltsLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x412;"/>
+                    <Property name="text" type="java.lang.String" value="V"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="hzBearerLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
+                    <Property name="text" type="java.lang.String" value="Hz"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="hzDeviationLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x413;&#x446;"/>
+                    <Property name="text" type="java.lang.String" value="Hz"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -414,8 +434,8 @@
             <Container class="javax.swing.JPanel" name="channelTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#x41a;&#x430;&#x43d;&#x430;&#x43b;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x430;&#x43d;&#x430;&#x43b;"/>
+                  <JTabbedPaneConstraints tabName="Channel">
+                    <Property name="tabTitle" type="java.lang.String" value="Channel"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -444,7 +464,7 @@
                               <Component id="errorsInjectorPerSequence" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="errorsInjectorPerBlock" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="154" max="32767" attributes="0"/>
+                          <EmptySpace pref="228" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -474,7 +494,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="noisePowerLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x41c;&#x430;&#x43a;&#x441;&#x438;&#x43c;&#x430;&#x43b;&#x44c;&#x43d;&#x430; &#x43f;&#x43e;&#x442;&#x443;&#x436;&#x43d;&#x456;&#x441;&#x442;&#x44c; &#x448;&#x443;&#x43c;&#x443;:"/>
+                    <Property name="text" type="java.lang.String" value="Maximum noise power:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="noisePower">
@@ -486,13 +506,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="noisePowerWattLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x412;&#x442;"/>
+                    <Property name="text" type="java.lang.String" value="W"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="useNoiseErrors">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="&#x412;&#x43d;&#x43e;&#x441;&#x438;&#x442;&#x438; &#x43f;&#x43e;&#x43c;&#x438;&#x43b;&#x43a;&#x438; &#x432;&#x43d;&#x430;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x43a; &#x434;&#x456;&#x457; &#x448;&#x443;&#x43c;&#x443;"/>
+                    <Property name="text" type="java.lang.String" value="Inject errors caused by channel noise"/>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="useNoiseErrorsItemStateChanged"/>
@@ -500,7 +520,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="forceErrors">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x43c;&#x443;&#x441;&#x43e;&#x432;&#x43e; &#x432;&#x43d;&#x43e;&#x441;&#x438;&#x442;&#x438; &#x43f;&#x43e;&#x43c;&#x438;&#x43b;&#x43a;&#x443; &#x43a;&#x440;&#x430;&#x442;&#x43d;&#x456;&#x441;&#x442;&#x44e;"/>
+                    <Property name="text" type="java.lang.String" value="Force injecting errors of factor"/>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="forceErrorsItemStateChanged"/>
@@ -520,7 +540,7 @@
                       <ComponentRef name="errorsInjectorTypeChooserGroup"/>
                     </Property>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="&#x43f;&#x43e;&#x431;&#x43b;&#x43e;&#x43a;&#x43e;&#x432;&#x43e;"/>
+                    <Property name="text" type="java.lang.String" value="by block"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -532,7 +552,7 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="errorsInjectorTypeChooserGroup"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x443; &#x432;&#x441;&#x44e; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                    <Property name="text" type="java.lang.String" value="to whole sequence"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -549,7 +569,7 @@
     </Component>
     <Container class="javax.swing.JDialog" name="licenseDialog">
       <Properties>
-        <Property name="title" type="java.lang.String" value="&#x41b;&#x456;&#x446;&#x435;&#x43d;&#x437;&#x456;&#x44f;"/>
+        <Property name="title" type="java.lang.String" value="License"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
@@ -590,7 +610,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x424;&#x430;&#x439;&#x43b;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="FILE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="exitItem">
@@ -598,7 +620,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+X"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x445;&#x456;&#x434;"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="EXIT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitItemActionPerformed"/>
@@ -608,7 +632,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="modellingMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x435;&#x43b;&#x44e;&#x432;&#x430;&#x43d;&#x43d;&#x44f;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MODELLING" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="doModellingOptionsItem">
@@ -616,7 +642,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F5"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x43b;&#x430;&#x448;&#x442;&#x443;&#x432;&#x430;&#x43d;&#x43d;&#x44f; &#x43c;&#x43e;&#x434;&#x435;&#x43b;&#x44e;&#x432;&#x430;&#x43d;&#x43d;&#x44f;&#x2026;"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="OPTIONS&#x2026;" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doModellingOptionsItemActionPerformed"/>
@@ -627,7 +655,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F9"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x43a;&#x43e;&#x43d;&#x430;&#x442;&#x438; &#x43c;&#x43e;&#x434;&#x435;&#x43b;&#x44e;&#x432;&#x430;&#x43d;&#x43d;&#x44f;"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="RUN" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doModellingItemActionPerformed"/>
@@ -637,12 +667,16 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x43f;&#x43e;&#x43c;&#x43e;&#x433;&#x430;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="HELP" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="aboutItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x43e; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x443;&#x2026;"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="ABOUT&#x2026;" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutItemActionPerformed"/>
@@ -655,7 +689,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="&#x421;&#x438;&#x441;&#x442;&#x435;&#x43c;&#x430; &#x437;&#x432;&apos;&#x44f;&#x437;&#x43a;&#x443;"/>
+    <Property name="title" type="java.lang.String" value="Digital telecommunication system"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="mainMenu"/>
@@ -706,8 +740,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x414;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x43e; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x414;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x43e; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;"/>
+              <JTabbedPaneConstraints tabName="Message source">
+                <Property name="tabTitle" type="java.lang.String" value="Message source"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -729,7 +763,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x41f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x43d;&#x44f;"/>
+                    <TitledBorder title="Message"/>
                   </Border>
                 </Property>
               </Properties>
@@ -779,7 +813,9 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;"/>
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SOURCE CODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -787,12 +823,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockSourceCoderTabs" alignment="0" pref="977" max="32767" attributes="0"/>
+                  <Component id="blockSourceCoderTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockSourceCoderTabs" alignment="0" pref="320" max="32767" attributes="0"/>
+                  <Component id="blockSourceCoderTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -804,8 +840,8 @@
                 <Container class="javax.swing.JPanel" name="blockSourceCoderBinarySequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Binary sequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Binary sequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -863,8 +899,8 @@
                 <Container class="javax.swing.JPanel" name="blockSourceCoderVideoSequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Videosequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Videosequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -901,8 +937,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+              <JTabbedPaneConstraints tabName="Channel coder">
+                <Property name="tabTitle" type="java.lang.String" value="Channel coder"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -910,12 +946,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelCoderTabs" alignment="0" pref="977" max="32767" attributes="0"/>
+                  <Component id="blockChannelCoderTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelCoderTabs" alignment="0" pref="320" max="32767" attributes="0"/>
+                  <Component id="blockChannelCoderTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -927,8 +963,8 @@
                 <Container class="javax.swing.JPanel" name="blockChannelCoderBinarySequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Binary sequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Binary sequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -986,8 +1022,8 @@
                 <Container class="javax.swing.JPanel" name="blockChannelCoderVideoSequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Videosequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Videosequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1024,8 +1060,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
+              <JTabbedPaneConstraints tabName="Modulator">
+                <Property name="tabTitle" type="java.lang.String" value="Modulator"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1047,7 +1083,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;&#x430;"/>
+                    <TitledBorder title="Modulator output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1082,8 +1118,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41a;&#x430;&#x43d;&#x430;&#x43b;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41a;&#x430;&#x43d;&#x430;&#x43b;"/>
+              <JTabbedPaneConstraints tabName="Channel">
+                <Property name="tabTitle" type="java.lang.String" value="Channel"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1105,7 +1141,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+                    <TitledBorder title="Channel output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1140,8 +1176,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 0">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 0"/>
+              <JTabbedPaneConstraints tabName="Reference generator 0">
+                <Property name="tabTitle" type="java.lang.String" value="Reference generator 0"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1163,7 +1199,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43e;&#x43f;&#x43e;&#x440;&#x43d;&#x43e;&#x433;&#x43e; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 0"/>
+                    <TitledBorder title="Reference generator 0 output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1206,8 +1242,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 0">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 0"/>
+              <JTabbedPaneConstraints tabName="Multiplier 0">
+                <Property name="tabTitle" type="java.lang.String" value="Multiplier 0"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1229,7 +1265,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447;&#x430; 0"/>
+                    <TitledBorder title="Multiplier 0 output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1264,8 +1300,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 1">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 1"/>
+              <JTabbedPaneConstraints tabName="Reference generator 1">
+                <Property name="tabTitle" type="java.lang.String" value="Reference generator 1"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1287,7 +1323,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43e;&#x43f;&#x43e;&#x440;&#x43d;&#x43e;&#x433;&#x43e; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 1"/>
+                    <TitledBorder title="Reference generator 1 output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1330,8 +1366,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 1">
-                <Property name="tabTitle" type="java.lang.String" value="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 1"/>
+              <JTabbedPaneConstraints tabName="Multiplier 1">
+                <Property name="tabTitle" type="java.lang.String" value="Multiplier 1"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1353,7 +1389,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447;&#x430; 1"/>
+                    <TitledBorder title="Multiplier 1 output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1388,8 +1424,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440; 0">
-                <Property name="tabTitle" type="java.lang.String" value="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440; 0"/>
+              <JTabbedPaneConstraints tabName="Integrator 0">
+                <Property name="tabTitle" type="java.lang.String" value="Integrator 0"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1411,7 +1447,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x456;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 0"/>
+                    <TitledBorder title="Integrator 0 output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1446,8 +1482,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440; 1">
-                <Property name="tabTitle" type="java.lang.String" value="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440; 1"/>
+              <JTabbedPaneConstraints tabName="Integrator 1">
+                <Property name="tabTitle" type="java.lang.String" value="Integrator 1"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1469,7 +1505,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x456;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 1"/>
+                    <TitledBorder title="Integrator 1 output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1504,8 +1540,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x421;&#x443;&#x43c;&#x430;&#x442;&#x43e;&#x440;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x421;&#x443;&#x43c;&#x430;&#x442;&#x43e;&#x440;"/>
+              <JTabbedPaneConstraints tabName="Summator">
+                <Property name="tabTitle" type="java.lang.String" value="Summator"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1527,7 +1563,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x441;&#x443;&#x43c;&#x430;&#x442;&#x43e;&#x440;&#x430;"/>
+                    <TitledBorder title="Summator output"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1562,8 +1598,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x412;&#x438;&#x440;&#x456;&#x448;&#x443;&#x44e;&#x447;&#x438;&#x439; &#x43f;&#x440;&#x438;&#x441;&#x442;&#x440;&#x456;&#x439;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x412;&#x438;&#x440;&#x456;&#x448;&#x443;&#x44e;&#x447;&#x438;&#x439; &#x43f;&#x440;&#x438;&#x441;&#x442;&#x440;&#x456;&#x439;"/>
+              <JTabbedPaneConstraints tabName="Resolver">
+                <Property name="tabTitle" type="java.lang.String" value="Resolver"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1571,12 +1607,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockResolverTabs" alignment="0" pref="977" max="32767" attributes="0"/>
+                  <Component id="blockResolverTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockResolverTabs" alignment="0" pref="320" max="32767" attributes="0"/>
+                  <Component id="blockResolverTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1588,8 +1624,8 @@
                 <Container class="javax.swing.JPanel" name="blockResolverBinarySequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Binary sequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Binary sequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1647,8 +1683,8 @@
                 <Container class="javax.swing.JPanel" name="blockResolverVideoSequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Videosequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Videosequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1685,8 +1721,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+              <JTabbedPaneConstraints tabName="Channel decoder">
+                <Property name="tabTitle" type="java.lang.String" value="Channel decoder"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1694,12 +1730,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelDecoderTabs" alignment="0" pref="977" max="32767" attributes="0"/>
+                  <Component id="blockChannelDecoderTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelDecoderTabs" alignment="0" pref="320" max="32767" attributes="0"/>
+                  <Component id="blockChannelDecoderTabs" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1711,8 +1747,8 @@
                 <Container class="javax.swing.JPanel" name="blockChannelDecoderBinarySequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Binary sequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Binary sequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1770,8 +1806,8 @@
                 <Container class="javax.swing.JPanel" name="blockChannelDecoderVideoSequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
-                        <Property name="tabTitle" type="java.lang.String" value="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;"/>
+                      <JTabbedPaneConstraints tabName="Videosequence">
+                        <Property name="tabTitle" type="java.lang.String" value="Videosequence"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1808,8 +1844,8 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;"/>
+              <JTabbedPaneConstraints tabName="Source decoder">
+                <Property name="tabTitle" type="java.lang.String" value="Source decoder"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1831,7 +1867,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="&#x41e;&#x442;&#x440;&#x438;&#x43c;&#x430;&#x43d;&#x435; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x43d;&#x44f;"/>
+                    <TitledBorder title="Received sequence"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1878,7 +1914,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="&#x421;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x43d;&#x430; &#x441;&#x445;&#x435;&#x43c;&#x430;"/>
+            <TitledBorder title="Structure scheme"/>
           </Border>
         </Property>
       </Properties>
@@ -1890,8 +1926,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41a;&#x41a;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+            <Property name="text" type="java.lang.String" value="ChC"/>
+            <Property name="toolTipText" type="java.lang.String" value="Channel coder"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="channelCoderButtonActionPerformed"/>
@@ -1907,8 +1943,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41c;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;"/>
+            <Property name="text" type="java.lang.String" value="Mod"/>
+            <Property name="toolTipText" type="java.lang.String" value="Modulator"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modulatorButtonActionPerformed"/>
@@ -1924,8 +1960,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41a;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x430;&#x43d;&#x430;&#x43b;"/>
+            <Property name="text" type="java.lang.String" value="Ch"/>
+            <Property name="toolTipText" type="java.lang.String" value="Channel"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="channelButtonActionPerformed"/>
@@ -1941,8 +1977,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x406;0"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440; 0"/>
+            <Property name="text" type="java.lang.String" value="I0"/>
+            <Property name="toolTipText" type="java.lang.String" value="Integrator 0"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="integrator0ButtonActionPerformed"/>
@@ -1958,8 +1994,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41a;&#x414;&#x436;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;"/>
+            <Property name="text" type="java.lang.String" value="SC"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SOURCE CODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sourceCoderButtonActionPerformed"/>
@@ -1975,8 +2013,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41f;0"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 0"/>
+            <Property name="text" type="java.lang.String" value="M0"/>
+            <Property name="toolTipText" type="java.lang.String" value="Multiplier 0"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="multiplier0ButtonActionPerformed"/>
@@ -1992,8 +2030,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41f;1"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447; 1"/>
+            <Property name="text" type="java.lang.String" value="M1"/>
+            <Property name="toolTipText" type="java.lang.String" value="Multiplier 1"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="multiplier1ButtonActionPerformed"/>
@@ -2009,8 +2047,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c8" green="c8" red="c8" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x414;&#x436;&#x41f;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x414;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x43e; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x44c;"/>
+            <Property name="text" type="java.lang.String" value="MS"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MESSAGE SOURCE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="messageSourceButtonActionPerformed"/>
@@ -2026,8 +2066,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x406;1"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x406;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440; 1"/>
+            <Property name="text" type="java.lang.String" value="I1"/>
+            <Property name="toolTipText" type="java.lang.String" value="Integrator 1"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="integrator1ButtonActionPerformed"/>
@@ -2043,8 +2083,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x421;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x421;&#x443;&#x43c;&#x430;&#x442;&#x43e;&#x440;"/>
+            <Property name="text" type="java.lang.String" value="Sum (-)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Summator"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="summatorButtonActionPerformed"/>
@@ -2192,8 +2232,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x412;&#x41f;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x441;&#x442;&#x440;&#x456;&#x439; &#x43f;&#x440;&#x438;&#x439;&#x43d;&#x44f;&#x442;&#x442;&#x44f; &#x440;&#x456;&#x448;&#x435;&#x43d;&#x44c;"/>
+            <Property name="text" type="java.lang.String" value="Res"/>
+            <Property name="toolTipText" type="java.lang.String" value="Resolver"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resolverButtonActionPerformed"/>
@@ -2257,8 +2297,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x414;&#x41a;&#x41a;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;"/>
+            <Property name="text" type="java.lang.String" value="ChD"/>
+            <Property name="toolTipText" type="java.lang.String" value="Channel decoder"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="channelDecoderButtonActionPerformed"/>
@@ -2274,8 +2314,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x414;&#x41a;&#x414;&#x436;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x434;&#x436;&#x435;&#x440;&#x435;&#x43b;&#x430;"/>
+            <Property name="text" type="java.lang.String" value="SD"/>
+            <Property name="toolTipText" type="java.lang.String" value="Source decoder"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sourceDecoderButtonActionPerformed"/>
@@ -2291,8 +2331,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x413;0"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 0"/>
+            <Property name="text" type="java.lang.String" value="G0"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="REFERENCE GENERATOR 0" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenceGenerator0ButtonActionPerformed"/>
@@ -2308,8 +2350,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x413;1"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x41e;&#x43f;&#x43e;&#x440;&#x43d;&#x438;&#x439; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440; 1"/>
+            <Property name="text" type="java.lang.String" value="G1"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="REFERENCE GENERATOR 1" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenceGenerator1ButtonActionPerformed"/>
