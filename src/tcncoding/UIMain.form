@@ -213,8 +213,10 @@
             <Container class="javax.swing.JPanel" name="channelCoderTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Channel coder">
-                    <Property name="tabTitle" type="java.lang.String" value="Channel coder"/>
+                  <JTabbedPaneConstraints tabName="&#x41a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="CHANNEL CODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -364,7 +366,9 @@
                     <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="modulationTypeChooser"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Modulation type:"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MODULATION TYPE:" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="modulationTypeChooser">
@@ -384,7 +388,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="bearerAmplitudeLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bearer amplitude:"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="BEARER AMPLITUDE:" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="bearerAmplitude">
@@ -396,13 +402,17 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="bearerFrequencyDeviationLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Frequency deviation:"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="FREQUENCY DEVIATION:" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="bearerFrequencyLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bearer frequency:"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="BEARER FREQUENCY:" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="bearerFrequencyDeviation">
@@ -422,17 +432,23 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="voltsLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="V"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="V" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="hzBearerLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Hz"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="HZ" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="hzDeviationLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Hz"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="HZ" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -725,7 +741,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="systemScheme" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TCSTabs" pref="398" max="32767" attributes="0"/>
+              <Component id="TCSTabs" pref="421" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -782,7 +798,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -834,7 +850,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockSourceCoderTabs" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockSourceCoderTabs" alignment="0" pref="343" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -875,7 +891,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" pref="293" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" pref="316" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -919,7 +935,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="293" max="32767" attributes="0"/>
+                          <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -959,7 +975,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelCoderTabs" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockChannelCoderTabs" alignment="0" pref="343" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1000,7 +1016,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" alignment="0" pref="293" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" pref="316" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1044,7 +1060,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="293" max="32767" attributes="0"/>
+                          <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1068,8 +1084,10 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Modulator">
-                <Property name="tabTitle" type="java.lang.String" value="Modulator"/>
+              <JTabbedPaneConstraints tabName="&#x41c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;">
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MODULATOR" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1104,7 +1122,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modulatorOutputField" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="modulatorOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1126,8 +1144,10 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Channel">
-                <Property name="tabTitle" type="java.lang.String" value="Channel"/>
+              <JTabbedPaneConstraints tabName="&#x41a;&#x430;&#x43d;&#x430;&#x43b;">
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="CHANNEL" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1162,7 +1182,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="channelOutputField" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="channelOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1235,7 +1255,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="295" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1286,7 +1306,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField0" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField0" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1359,7 +1379,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="295" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1410,7 +1430,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField1" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField1" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1468,7 +1488,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField0" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField0" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1526,7 +1546,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField1" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField1" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1584,7 +1604,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSummatorOutputField" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="blockSummatorOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1620,7 +1640,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockResolverTabs" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockResolverTabs" alignment="0" pref="343" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1661,7 +1681,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" alignment="0" pref="293" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="316" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1705,7 +1725,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="293" max="32767" attributes="0"/>
+                          <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1743,7 +1763,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelDecoderTabs" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockChannelDecoderTabs" alignment="0" pref="343" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1755,8 +1775,10 @@
                 <Container class="javax.swing.JPanel" name="blockChannelDecoderBinarySequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Binary sequence">
-                        <Property name="tabTitle" type="java.lang.String" value="Binary sequence"/>
+                      <JTabbedPaneConstraints tabName="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
+                        <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                          <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="BINARY SEQUENCE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                        </Property>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1784,7 +1806,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane6" alignment="0" pref="293" max="32767" attributes="0"/>
+                              <Component id="jScrollPane6" alignment="0" pref="316" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1814,8 +1836,10 @@
                 <Container class="javax.swing.JPanel" name="blockChannelDecoderVideoSequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Videosequence">
-                        <Property name="tabTitle" type="java.lang.String" value="Videosequence"/>
+                      <JTabbedPaneConstraints tabName="&#x412;&#x456;&#x434;&#x435;&#x43e;&#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
+                        <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                          <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="VIDEOSEQUENCE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                        </Property>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1828,7 +1852,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="293" max="32767" attributes="0"/>
+                          <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1888,7 +1912,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane4" alignment="0" pref="295" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1992,7 +2016,9 @@
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="I0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Integrator 0"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="INTEGRATOR 0" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="integrator0ButtonActionPerformed"/>
@@ -2008,7 +2034,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SC"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SC" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SOURCE CODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2027,7 +2055,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M0"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="M0" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MULTIPLIER 0" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2046,7 +2076,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M1"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="M1" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MULTIPLIER 1" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2065,7 +2097,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c8" green="c8" red="c8" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="MS"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="MESSAGE SOURCE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2084,7 +2118,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="I1"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="I1" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="INTEGRATOR 1" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2103,7 +2139,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Sum (-)"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SUM (-)" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SUMMATOR" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2254,7 +2292,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Res"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="RES" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="RESOLVER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2321,7 +2361,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ChD"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="CHD" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="CHANNEL DECODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
@@ -2340,7 +2382,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SD"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SD" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="SOURCE DECODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
