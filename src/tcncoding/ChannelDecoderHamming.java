@@ -114,7 +114,7 @@ public class ChannelDecoderHamming
 	String out = "";
 	boolean trigger = false;
 
-	out += "Послідовність синдромів:" + "<br/>";
+	out += java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SYNDROMES SEQUENCE:") + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: syndromeSequence)
 	{
@@ -122,7 +122,7 @@ public class ChannelDecoderHamming
 	    trigger = !trigger;
 	}
 
-	out += "<br/>" + "Вектор помилок:" + "<br/>";
+	out += "<br/>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("ERRORS VECTOR:") + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: errorSequence)
 	{
@@ -137,7 +137,7 @@ public class ChannelDecoderHamming
 	    trigger = !trigger;
 	}
 
-	out += "<br/>" + "Декодована послідовність:" + "<br/>";
+	out += "<br/>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("DECODED SEQUENCE:") + "<br/>";
 	trigger = false;
 	for (int i = 0; i < outputSequence.size(); i++)
 	{

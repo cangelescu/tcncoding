@@ -97,7 +97,7 @@ public class ChannelDecoderManchester
 	String out = "";
 	boolean trigger = false;
 
-	out += "Перевірочна послідовність:" + "<br/>";
+	out += java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHECKING SEQUENCE:") + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: checkingSequence)
 	{
@@ -105,7 +105,7 @@ public class ChannelDecoderManchester
 	    trigger = !trigger;
 	}
 
-	out += "<br/>" + "Вектор помилок:" + "<br/>";
+	out += "<br/>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("ERRORS VECTOR:") + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: errorVector)
 	{
@@ -120,7 +120,7 @@ public class ChannelDecoderManchester
 	    trigger = !trigger;
 	}
 
-	out += "<br/>" + "Декодована послідовність:" + "<br/>";
+	out += "<br/>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("DECODED SEQUENCE:") + "<br/>";
 	trigger = false;
 	for (int i = 0; i < outputSequence.size(); i++)
 	{
