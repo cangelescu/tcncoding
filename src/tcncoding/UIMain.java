@@ -1121,23 +1121,23 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Modulator", modulatorTab);
+        optionsTabs.addTab(bundle.getString("MODULATOR"), modulatorTab); // NOI18N
 
-        noisePowerLabel.setText("Maximum noise power:");
+        noisePowerLabel.setText(bundle.getString("MAXIMUM NOISE POWER:")); // NOI18N
 
         noisePower.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
 
-        noisePowerWattLabel.setText("W");
+        noisePowerWattLabel.setText(bundle.getString("W")); // NOI18N
 
         useNoiseErrors.setSelected(true);
-        useNoiseErrors.setText("Inject errors caused by channel noise");
+        useNoiseErrors.setText(bundle.getString("INJECT ERRORS CAUSED BY CHANNEL NOISE")); // NOI18N
         useNoiseErrors.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 useNoiseErrorsItemStateChanged(evt);
             }
         });
 
-        forceErrors.setText("Force injecting errors of factor");
+        forceErrors.setText(bundle.getString("FORCE INJECTING ERRORS OF FACTOR")); // NOI18N
         forceErrors.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 forceErrorsItemStateChanged(evt);
@@ -1149,7 +1149,7 @@ public class UIMain extends javax.swing.JFrame
 
         errorsInjectorTypeChooserGroup.add(errorsInjectorPerBlock);
         errorsInjectorPerBlock.setSelected(true);
-        errorsInjectorPerBlock.setText("by block");
+        errorsInjectorPerBlock.setText(bundle.getString("BY BLOCK")); // NOI18N
         errorsInjectorPerBlock.setEnabled(false);
         errorsInjectorPerBlock.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1158,7 +1158,7 @@ public class UIMain extends javax.swing.JFrame
         });
 
         errorsInjectorTypeChooserGroup.add(errorsInjectorPerSequence);
-        errorsInjectorPerSequence.setText("to whole sequence");
+        errorsInjectorPerSequence.setText(bundle.getString("TO WHOLE SEQUENCE")); // NOI18N
         errorsInjectorPerSequence.setEnabled(false);
         errorsInjectorPerSequence.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1208,7 +1208,7 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Channel", channelTab);
+        optionsTabs.addTab(bundle.getString("CHANNEL"), channelTab); // NOI18N
 
         javax.swing.GroupLayout modellingOptionsDialogLayout = new javax.swing.GroupLayout(modellingOptionsDialog.getContentPane());
         modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
@@ -1221,7 +1221,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
         );
 
-        licenseDialog.setTitle("License");
+        licenseDialog.setTitle(bundle.getString("LICENSE")); // NOI18N
         licenseDialog.setResizable(false);
 
         licenseTextArea.setColumns(20);
@@ -1243,7 +1243,7 @@ public class UIMain extends javax.swing.JFrame
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Digital telecommunication system");
+        setTitle(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM")); // NOI18N
 
         TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16));
 
@@ -1283,7 +1283,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(sourceMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Message source", blockMessageSource);
+        TCSTabs.addTab(bundle.getString("MESSAGE SOURCE"), blockMessageSource); // NOI18N
 
         blockSourceCoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1333,7 +1333,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
         );
 
-        blockSourceCoderTabs.addTab("Videosequence", blockSourceCoderVideoSequence);
+        blockSourceCoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockSourceCoderVideoSequence); // NOI18N
 
         javax.swing.GroupLayout blockSourceCoderLayout = new javax.swing.GroupLayout(blockSourceCoder);
         blockSourceCoder.setLayout(blockSourceCoderLayout);
@@ -1381,7 +1381,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelCoderOutputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockChannelCoderTabs.addTab("Binary sequence", blockChannelCoderBinarySequence);
+        blockChannelCoderTabs.addTab(bundle.getString("BINARY SEQUENCE"), blockChannelCoderBinarySequence); // NOI18N
 
         blockChannelVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1396,7 +1396,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
         );
 
-        blockChannelCoderTabs.addTab("Videosequence", blockChannelCoderVideoSequence);
+        blockChannelCoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockChannelCoderVideoSequence); // NOI18N
 
         javax.swing.GroupLayout blockChannelCoderLayout = new javax.swing.GroupLayout(blockChannelCoder);
         blockChannelCoder.setLayout(blockChannelCoderLayout);
@@ -1520,7 +1520,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(referenceGeneratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Reference generator 0", blockReferenceGenerator0);
+        TCSTabs.addTab(bundle.getString("REFERENCE GENERATOR 0"), blockReferenceGenerator0); // NOI18N
 
         blockMultiplier0.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1554,7 +1554,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(multiplierOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Multiplier 0", blockMultiplier0);
+        TCSTabs.addTab(bundle.getString("MULTIPLIER 0"), blockMultiplier0); // NOI18N
 
         blockReferenceGenerator1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1597,7 +1597,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(referenceGeneratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Reference generator 1", blockReferenceGenerator1);
+        TCSTabs.addTab(bundle.getString("REFERENCE GENERATOR 1"), blockReferenceGenerator1); // NOI18N
 
         blockMultiplier1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1631,7 +1631,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(multiplierOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Multiplier 1", blockMultiplier1);
+        TCSTabs.addTab(bundle.getString("MULTIPLIER 1"), blockMultiplier1); // NOI18N
 
         blockIntegrator0.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1665,7 +1665,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(integratorOutputPanel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Integrator 0", blockIntegrator0);
+        TCSTabs.addTab(bundle.getString("INTEGRATOR 0"), blockIntegrator0); // NOI18N
 
         blockIntegrator1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1699,7 +1699,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(integratorOutputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Integrator 1", blockIntegrator1);
+        TCSTabs.addTab(bundle.getString("INTEGRATOR 1"), blockIntegrator1); // NOI18N
 
         blockSummator.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1733,7 +1733,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSummatorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Summator", blockSummator);
+        TCSTabs.addTab(bundle.getString("SUMMATOR"), blockSummator); // NOI18N
 
         blockResolver.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1768,7 +1768,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockResolverOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockResolverTabs.addTab("Binary sequence", blockResolverBinarySequence);
+        blockResolverTabs.addTab(bundle.getString("BINARY SEQUENCE"), blockResolverBinarySequence); // NOI18N
 
         blockResolverVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1783,7 +1783,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
         );
 
-        blockResolverTabs.addTab("Videosequence", blockResolverVideoSequence);
+        blockResolverTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockResolverVideoSequence); // NOI18N
 
         javax.swing.GroupLayout blockResolverLayout = new javax.swing.GroupLayout(blockResolver);
         blockResolver.setLayout(blockResolverLayout);
@@ -1897,13 +1897,13 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(sourceDecoderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Source decoder", blockSourceDecoder);
+        TCSTabs.addTab(bundle.getString("SOURCE DECODER"), blockSourceDecoder); // NOI18N
 
         systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Structure scheme"));
         systemScheme.setLayout(new java.awt.GridBagLayout());
 
         channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
-        channelCoderButton.setText("ChC");
+        channelCoderButton.setText(bundle.getString("CHC")); // NOI18N
         channelCoderButton.setToolTipText(bundle.getString("CHANNEL CODER")); // NOI18N
         channelCoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1916,7 +1916,7 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(channelCoderButton, gridBagConstraints);
 
         modulatorButton.setBackground(new java.awt.Color(240, 240, 240));
-        modulatorButton.setText("Mod");
+        modulatorButton.setText(bundle.getString("MOD")); // NOI18N
         modulatorButton.setToolTipText(bundle.getString("MODULATOR")); // NOI18N
         modulatorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1929,7 +1929,7 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(modulatorButton, gridBagConstraints);
 
         channelButton.setBackground(new java.awt.Color(240, 240, 240));
-        channelButton.setText("Ch");
+        channelButton.setText(bundle.getString("CH")); // NOI18N
         channelButton.setToolTipText(bundle.getString("CHANNEL")); // NOI18N
         channelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1942,7 +1942,7 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(channelButton, gridBagConstraints);
 
         integrator0Button.setBackground(new java.awt.Color(240, 240, 240));
-        integrator0Button.setText("I0");
+        integrator0Button.setText(bundle.getString("I0")); // NOI18N
         integrator0Button.setToolTipText(bundle.getString("INTEGRATOR 0")); // NOI18N
         integrator0Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
