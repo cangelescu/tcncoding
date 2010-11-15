@@ -114,7 +114,7 @@ public class ChannelDecoderHamming
 	String out = "";
 	boolean trigger = false;
 
-	out += "Послідовність синдромів:<br/>";
+	out += "Послідовність синдромів:" + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: syndromeSequence)
 	{
@@ -122,22 +122,22 @@ public class ChannelDecoderHamming
 	    trigger = !trigger;
 	}
 
-	out += "<br/>Вектор помилок:<br/>";
+	out += "<br/>" + "Вектор помилок:" + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: errorSequence)
 	{
 	    for (boolean cb: bn.getBinaryArray())
 	    {
 		if (cb)
-		    out += fontRed + "1</font>";
+		    out += fontRed + "1" + "</font>";
 		else
-		    out += (trigger ? fontBlue : fontGreen) + "0</font>";
+		    out += (trigger ? fontBlue : fontGreen) + "0" + "</font>";
 	    }
 	    out += " ";
 	    trigger = !trigger;
 	}
 
-	out += "<br/>Декодована послідовність:<br/>";
+	out += "<br/>" + "Декодована послідовність:" + "<br/>";
 	trigger = false;
 	for (int i = 0; i < outputSequence.size(); i++)
 	{

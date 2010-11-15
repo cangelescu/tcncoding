@@ -692,7 +692,7 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
-	String text = "<html>Отримана послідовність: <br/>" + currentResolver.getStringSequence() + "<br/>";
+	String text = "<html> " + "Отримана послідовність:" + " <br/>" + currentResolver.getStringSequence() + "<br/>";
 	text += currentChannelDecoder.getHTMLReport();
 	blockChannelDecoderOutput.setText(text);
     }

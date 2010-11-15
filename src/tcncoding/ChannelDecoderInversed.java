@@ -84,7 +84,7 @@ public class ChannelDecoderInversed
 	String out = "";
 	boolean trigger = false;
 
-	out += "Перевірочна послідовність:<br/>";
+	out += "Перевірочна послідовність:" + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: checkingSequence)
 	{
@@ -92,7 +92,7 @@ public class ChannelDecoderInversed
 	    trigger = !trigger;
 	}
 
-	out += "<br/>Вектор помилок:<br/>";
+	out += "<br/>" + "Вектор помилок:" + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: errorVector)
 	{
@@ -103,7 +103,7 @@ public class ChannelDecoderInversed
 	    trigger = !trigger;
 	}
 
-	out += "<br/>Декодована послідовність:<br/>";
+	out += "<br/>" + "Декодована послідовність:" + "<br/>";
 	trigger = false;
 	for (int i = 0; i < outputSequence.size(); i++)
 	{

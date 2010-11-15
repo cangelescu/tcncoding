@@ -97,7 +97,7 @@ public class ChannelDecoderManchester
 	String out = "";
 	boolean trigger = false;
 
-	out += "Перевірочна послідовність:<br/>";
+	out += "Перевірочна послідовність:" + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: checkingSequence)
 	{
@@ -105,22 +105,22 @@ public class ChannelDecoderManchester
 	    trigger = !trigger;
 	}
 
-	out += "<br/>Вектор помилок:<br/>";
+	out += "<br/>" + "Вектор помилок:" + "<br/>";
 	trigger = false;
 	for (BinaryNumber bn: errorVector)
 	{
 	    for (boolean cb: bn.getBinaryArray())
 	    {
 		if (cb)
-		    out += fontRed + "1</font>";
+		    out += fontRed + "1" + "</font>";
 		else
-		    out += (trigger ? fontBlue : fontGreen) + "0</font>";
+		    out += (trigger ? fontBlue : fontGreen) + "0" + "</font>";
 	    }
 	    out += "&#09;";
 	    trigger = !trigger;
 	}
 
-	out += "<br/>Декодована послідовність:<br/>";
+	out += "<br/>" + "Декодована послідовність:" + "<br/>";
 	trigger = false;
 	for (int i = 0; i < outputSequence.size(); i++)
 	{
