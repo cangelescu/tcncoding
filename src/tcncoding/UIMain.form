@@ -131,7 +131,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="sourceCodesChooser" alignment="0" pref="533" max="32767" attributes="0"/>
+                              <Component id="sourceCodesChooser" alignment="0" pref="555" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="informationalSpeed" min="-2" pref="125" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -229,7 +229,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="channelCodesChooserLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="channelCodesChooser" pref="602" max="32767" attributes="0"/>
+                                  <Component id="channelCodesChooser" pref="676" max="32767" attributes="0"/>
                               </Group>
                               <Component id="useChannelCoder" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -807,7 +807,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Message"/>
+                    <TitledBorder title="&#x41f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x43d;&#x44f;">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="MESSAGE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -884,8 +886,10 @@
                 <Container class="javax.swing.JPanel" name="blockSourceCoderBinarySequence">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Binary sequence">
-                        <Property name="tabTitle" type="java.lang.String" value="Binary sequence"/>
+                      <JTabbedPaneConstraints tabName="&#x411;&#x456;&#x43d;&#x430;&#x440;&#x43d;&#x430; &#x43f;&#x43e;&#x441;&#x43b;&#x456;&#x434;&#x43e;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;">
+                        <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                          <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="BINARY SEQUENCE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                        </Property>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1137,7 +1141,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Modulator output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43c;&#x43e;&#x434;&#x443;&#x43b;&#x44f;&#x442;&#x43e;&#x440;&#x430;">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="MODULATOR OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1197,7 +1203,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Channel output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="CHANNEL OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1257,7 +1265,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Reference generator 0 output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43e;&#x43f;&#x43e;&#x440;&#x43d;&#x43e;&#x433;&#x43e; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 0">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="REFERENCE GENERATOR 0 OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1325,7 +1335,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Multiplier 0 output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447;&#x430; 0">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="MULTIPLIER 0 OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1385,7 +1397,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Reference generator 1 output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43e;&#x43f;&#x43e;&#x440;&#x43d;&#x43e;&#x433;&#x43e; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 1">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="REFERENCE GENERATOR 1 OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1453,7 +1467,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Multiplier 1 output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x43f;&#x43e;&#x43c;&#x43d;&#x43e;&#x436;&#x443;&#x432;&#x430;&#x447;&#x430; 1">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="MULTIPLIER 1 OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1513,7 +1529,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Integrator 0 output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x456;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 0">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="INTEGRATOR 0 OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1573,7 +1591,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Integrator 1 output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x456;&#x43d;&#x442;&#x435;&#x433;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; 1">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="INTEGRATOR 1 OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1633,7 +1653,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Summator output"/>
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x441;&#x443;&#x43c;&#x430;&#x442;&#x43e;&#x440;&#x430;">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="SUMMATOR OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1668,8 +1690,10 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Resolver">
-                <Property name="tabTitle" type="java.lang.String" value="Resolver"/>
+              <JTabbedPaneConstraints tabName="&#x412;&#x438;&#x440;&#x456;&#x448;&#x443;&#x44e;&#x447;&#x438;&#x439; &#x43f;&#x440;&#x438;&#x441;&#x442;&#x440;&#x456;&#x439;">
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="RESOLVER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1795,8 +1819,10 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Channel decoder">
-                <Property name="tabTitle" type="java.lang.String" value="Channel decoder"/>
+              <JTabbedPaneConstraints tabName="&#x414;&#x435;&#x43a;&#x43e;&#x434;&#x435;&#x440; &#x43a;&#x430;&#x43d;&#x430;&#x43b;&#x443;">
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="CHANNEL DECODER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1947,7 +1973,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Received sequence"/>
+                    <TitledBorder title="&#x41e;&#x442;&#x440;&#x438;&#x43c;&#x430;&#x43d;&#x435; &#x43f;&#x43e;&#x432;&#x456;&#x434;&#x43e;&#x43c;&#x43b;&#x435;&#x43d;&#x43d;&#x44f;">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="RECEIVED MESSAGE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -1994,7 +2022,9 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Structure scheme"/>
+            <TitledBorder title="&#x421;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x43d;&#x430; &#x441;&#x445;&#x435;&#x43c;&#x430;">
+              <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="STRUCTURED SCHEME" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>

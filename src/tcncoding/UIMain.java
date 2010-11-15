@@ -975,7 +975,7 @@ public class UIMain extends javax.swing.JFrame
                     .addComponent(sourceCodesChooserLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sourceCodesChooser, 0, 533, Short.MAX_VALUE)
+                    .addComponent(sourceCodesChooser, 0, 555, Short.MAX_VALUE)
                     .addGroup(sourceCoderTabLayout.createSequentialGroup()
                         .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1025,7 +1025,7 @@ public class UIMain extends javax.swing.JFrame
                     .addGroup(channelCoderTabLayout.createSequentialGroup()
                         .addComponent(channelCodesChooserLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(channelCodesChooser, 0, 602, Short.MAX_VALUE))
+                        .addComponent(channelCodesChooser, 0, 676, Short.MAX_VALUE))
                     .addComponent(useChannelCoder))
                 .addContainerGap())
         );
@@ -1253,7 +1253,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Message"));
+        sourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MESSAGE"))); // NOI18N
 
         blockMessageArea.setColumns(20);
         blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
@@ -1318,7 +1318,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockSourceCoderOutputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        blockSourceCoderTabs.addTab("Binary sequence", blockSourceCoderBinarySequence);
+        blockSourceCoderTabs.addTab(bundle.getString("BINARY SEQUENCE"), blockSourceCoderBinarySequence); // NOI18N
 
         blockSourceVideoSequenceOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1417,7 +1417,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        modulatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Modulator output"));
+        modulatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MODULATOR OUTPUT"))); // NOI18N
 
         modulatorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1451,7 +1451,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Channel output"));
+        channelOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("CHANNEL OUTPUT"))); // NOI18N
 
         channelOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1485,7 +1485,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        referenceGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Reference generator 0 output"));
+        referenceGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("REFERENCE GENERATOR 0 OUTPUT"))); // NOI18N
 
         javax.swing.GroupLayout referenceGeneratorOutputField0Layout = new javax.swing.GroupLayout(referenceGeneratorOutputField0);
         referenceGeneratorOutputField0.setLayout(referenceGeneratorOutputField0Layout);
@@ -1528,7 +1528,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        multiplierOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Multiplier 0 output"));
+        multiplierOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MULTIPLIER 0 OUTPUT"))); // NOI18N
 
         multiplierOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1562,7 +1562,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        referenceGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Reference generator 1 output"));
+        referenceGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("REFERENCE GENERATOR 1 OUTPUT"))); // NOI18N
 
         javax.swing.GroupLayout referenceGeneratorOutputField1Layout = new javax.swing.GroupLayout(referenceGeneratorOutputField1);
         referenceGeneratorOutputField1.setLayout(referenceGeneratorOutputField1Layout);
@@ -1605,7 +1605,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        multiplierOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Multiplier 1 output"));
+        multiplierOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MULTIPLIER 1 OUTPUT"))); // NOI18N
 
         multiplierOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1639,7 +1639,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder("Integrator 0 output"));
+        integratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("INTEGRATOR 0 OUTPUT"))); // NOI18N
 
         integratorOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1673,7 +1673,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Integrator 1 output"));
+        integratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("INTEGRATOR 1 OUTPUT"))); // NOI18N
 
         integratorOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1707,7 +1707,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        blockSummatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Summator output"));
+        blockSummatorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SUMMATOR OUTPUT"))); // NOI18N
 
         blockSummatorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -1796,7 +1796,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Resolver", blockResolver);
+        TCSTabs.addTab(bundle.getString("RESOLVER"), blockResolver); // NOI18N
 
         blockChannelDecoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1859,7 +1859,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
         );
 
-        TCSTabs.addTab("Channel decoder", blockChannelDecoder);
+        TCSTabs.addTab(bundle.getString("CHANNEL DECODER"), blockChannelDecoder); // NOI18N
 
         blockSourceDecoder.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1867,7 +1867,7 @@ public class UIMain extends javax.swing.JFrame
             }
         });
 
-        sourceDecoderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Received sequence"));
+        sourceDecoderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RECEIVED MESSAGE"))); // NOI18N
 
         receivedMessageArea.setColumns(20);
         receivedMessageArea.setEditable(false);
@@ -1899,7 +1899,7 @@ public class UIMain extends javax.swing.JFrame
 
         TCSTabs.addTab(bundle.getString("SOURCE DECODER"), blockSourceDecoder); // NOI18N
 
-        systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder("Structure scheme"));
+        systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("STRUCTURED SCHEME"))); // NOI18N
         systemScheme.setLayout(new java.awt.GridBagLayout());
 
         channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
