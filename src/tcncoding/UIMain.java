@@ -996,10 +996,10 @@ public class UIMain extends javax.swing.JFrame
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        optionsTabs.addTab("Source coder", sourceCoderTab);
+        optionsTabs.addTab(bundle.getString("SOURCE CODER"), sourceCoderTab); // NOI18N
 
         channelCodesChooserLabel.setLabelFor(channelCodesChooser);
-        channelCodesChooserLabel.setText("Code:");
+        channelCodesChooserLabel.setText(bundle.getString("CODE:")); // NOI18N
 
         channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "with parity bit checking", "inversed", "Manchester", "Hamming (7, 4)" }));
         channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
@@ -1009,7 +1009,7 @@ public class UIMain extends javax.swing.JFrame
         });
 
         useChannelCoder.setSelected(true);
-        useChannelCoder.setText("Use redundand coding");
+        useChannelCoder.setText(bundle.getString("USE REDUNDAND CODING")); // NOI18N
         useChannelCoder.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 useChannelCoderItemStateChanged(evt);
@@ -1409,7 +1409,7 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(blockChannelCoderTabs)
         );
 
-        TCSTabs.addTab("Channel coder", blockChannelCoder);
+        TCSTabs.addTab(bundle.getString("CHANNEL CODER"), blockChannelCoder); // NOI18N
 
         blockModulator.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1904,7 +1904,7 @@ public class UIMain extends javax.swing.JFrame
 
         channelCoderButton.setBackground(new java.awt.Color(240, 240, 240));
         channelCoderButton.setText("ChC");
-        channelCoderButton.setToolTipText("Channel coder");
+        channelCoderButton.setToolTipText(bundle.getString("CHANNEL CODER")); // NOI18N
         channelCoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 channelCoderButtonActionPerformed(evt);
@@ -1917,7 +1917,7 @@ public class UIMain extends javax.swing.JFrame
 
         modulatorButton.setBackground(new java.awt.Color(240, 240, 240));
         modulatorButton.setText("Mod");
-        modulatorButton.setToolTipText("Modulator");
+        modulatorButton.setToolTipText(bundle.getString("MODULATOR")); // NOI18N
         modulatorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modulatorButtonActionPerformed(evt);
@@ -1930,7 +1930,7 @@ public class UIMain extends javax.swing.JFrame
 
         channelButton.setBackground(new java.awt.Color(240, 240, 240));
         channelButton.setText("Ch");
-        channelButton.setToolTipText("Channel");
+        channelButton.setToolTipText(bundle.getString("CHANNEL")); // NOI18N
         channelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 channelButtonActionPerformed(evt);
@@ -1969,7 +1969,7 @@ public class UIMain extends javax.swing.JFrame
 
         multiplier0Button.setBackground(new java.awt.Color(240, 240, 240));
         multiplier0Button.setText("M0");
-        multiplier0Button.setToolTipText("Multiplier 0");
+        multiplier0Button.setToolTipText(bundle.getString("MULTIPLIER 0")); // NOI18N
         multiplier0Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multiplier0ButtonActionPerformed(evt);
@@ -1982,7 +1982,7 @@ public class UIMain extends javax.swing.JFrame
 
         multiplier1Button.setBackground(new java.awt.Color(240, 240, 240));
         multiplier1Button.setText("M1");
-        multiplier1Button.setToolTipText("Multiplier 1");
+        multiplier1Button.setToolTipText(bundle.getString("MULTIPLIER 1")); // NOI18N
         multiplier1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multiplier1ButtonActionPerformed(evt);
@@ -2008,7 +2008,7 @@ public class UIMain extends javax.swing.JFrame
 
         integrator1Button.setBackground(new java.awt.Color(240, 240, 240));
         integrator1Button.setText("I1");
-        integrator1Button.setToolTipText("Integrator 1");
+        integrator1Button.setToolTipText(bundle.getString("INTEGRATOR 1")); // NOI18N
         integrator1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 integrator1ButtonActionPerformed(evt);
@@ -2021,7 +2021,7 @@ public class UIMain extends javax.swing.JFrame
 
         summatorButton.setBackground(new java.awt.Color(240, 240, 240));
         summatorButton.setText("Sum (-)");
-        summatorButton.setToolTipText("Summator");
+        summatorButton.setToolTipText(bundle.getString("SUMMATOR")); // NOI18N
         summatorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 summatorButtonActionPerformed(evt);
@@ -2100,7 +2100,7 @@ public class UIMain extends javax.swing.JFrame
 
         resolverButton.setBackground(new java.awt.Color(240, 240, 240));
         resolverButton.setText("Res");
-        resolverButton.setToolTipText("Resolver");
+        resolverButton.setToolTipText(bundle.getString("RESOLVER")); // NOI18N
         resolverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resolverButtonActionPerformed(evt);
@@ -2137,7 +2137,7 @@ public class UIMain extends javax.swing.JFrame
 
         channelDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
         channelDecoderButton.setText("ChD");
-        channelDecoderButton.setToolTipText("Channel decoder");
+        channelDecoderButton.setToolTipText(bundle.getString("CHANNEL DECODER")); // NOI18N
         channelDecoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 channelDecoderButtonActionPerformed(evt);
@@ -2150,7 +2150,7 @@ public class UIMain extends javax.swing.JFrame
 
         sourceDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
         sourceDecoderButton.setText("SD");
-        sourceDecoderButton.setToolTipText("Source decoder");
+        sourceDecoderButton.setToolTipText(bundle.getString("SOURCE DECODER")); // NOI18N
         sourceDecoderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sourceDecoderButtonActionPerformed(evt);
@@ -2162,7 +2162,7 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(sourceDecoderButton, gridBagConstraints);
 
         referenceGenerator0Button.setBackground(new java.awt.Color(240, 240, 240));
-        referenceGenerator0Button.setText("G0");
+        referenceGenerator0Button.setText(bundle.getString("G0")); // NOI18N
         referenceGenerator0Button.setToolTipText(bundle.getString("REFERENCE GENERATOR 0")); // NOI18N
         referenceGenerator0Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2175,7 +2175,7 @@ public class UIMain extends javax.swing.JFrame
         systemScheme.add(referenceGenerator0Button, gridBagConstraints);
 
         referenceGenerator1Button.setBackground(new java.awt.Color(240, 240, 240));
-        referenceGenerator1Button.setText("G1");
+        referenceGenerator1Button.setText(bundle.getString("G1")); // NOI18N
         referenceGenerator1Button.setToolTipText(bundle.getString("REFERENCE GENERATOR 1")); // NOI18N
         referenceGenerator1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
