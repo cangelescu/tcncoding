@@ -163,14 +163,8 @@
               <SubComponents>
                 <Component class="javax.swing.JComboBox" name="sourceCodesChooser">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
-                        <StringItem index="0" value="ITC-2"/>
-                        <StringItem index="1" value="ITC-5"/>
-                        <StringItem index="2" value="KOI8-U"/>
-                        <StringItem index="3" value="Morse"/>
-                        <StringItem index="4" value="Shannon-Fano"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString(&quot;ITC-2&quot;), bundle.getString(&quot;ITC-5&quot;), bundle.getString(&quot;KOI8-U&quot;), bundle.getString(&quot;MORSE&quot;), bundle.getString(&quot;SHANNON-FANO&quot;) })" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -264,13 +258,8 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="channelCodesChooser">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="with parity bit checking"/>
-                        <StringItem index="1" value="inversed"/>
-                        <StringItem index="2" value="Manchester"/>
-                        <StringItem index="3" value="Hamming (7, 4)"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString(&quot;WITH PARITY BIT CHECKING&quot;), bundle.getString(&quot;INVERSED&quot;), bundle.getString(&quot;MANCHESTER&quot;), bundle.getString(&quot;HAMMING (7, 4)&quot;)})" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -375,13 +364,8 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="modulationTypeChooser">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="ASK (amplitude-shift keying)"/>
-                        <StringItem index="1" value="FSK (frequency-shift keying)"/>
-                        <StringItem index="2" value="PSK (phase-shift keying)"/>
-                        <StringItem index="3" value="RPSK (relative phase-shift keying)"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString(&quot;ASK&quot;), bundle.getString(&quot;FSK&quot;), bundle.getString(&quot;PSK&quot;), bundle.getString(&quot;RPSK&quot;)})" type="code"/>
                     </Property>
                   </Properties>
                   <Events>

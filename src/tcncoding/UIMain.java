@@ -949,7 +949,7 @@ public class UIMain extends javax.swing.JFrame
         modellingOptionsDialog.setTitle(bundle.getString("MODELLING OPTIONS")); // NOI18N
         modellingOptionsDialog.setResizable(false);
 
-        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ITC-2", "ITC-5", "KOI8-U", "Morse", "Shannon-Fano" }));
+        sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("ITC-2"), bundle.getString("ITC-5"), bundle.getString("KOI8-U"), bundle.getString("MORSE"), bundle.getString("SHANNON-FANO") }));
         sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 sourceCodesChooserItemStateChanged(evt);
@@ -1001,7 +1001,7 @@ public class UIMain extends javax.swing.JFrame
         channelCodesChooserLabel.setLabelFor(channelCodesChooser);
         channelCodesChooserLabel.setText(bundle.getString("CODE:")); // NOI18N
 
-        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "with parity bit checking", "inversed", "Manchester", "Hamming (7, 4)" }));
+        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("WITH PARITY BIT CHECKING"), bundle.getString("INVERSED"), bundle.getString("MANCHESTER"), bundle.getString("HAMMING (7, 4)")}));
         channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 channelCodesChooserItemStateChanged(evt);
@@ -1045,7 +1045,7 @@ public class UIMain extends javax.swing.JFrame
         modulationTypeLabel.setLabelFor(modulationTypeChooser);
         modulationTypeLabel.setText(bundle.getString("MODULATION TYPE:")); // NOI18N
 
-        modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASK (amplitude-shift keying)", "FSK (frequency-shift keying)", "PSK (phase-shift keying)", "RPSK (relative phase-shift keying)" }));
+        modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("ASK"), bundle.getString("FSK"), bundle.getString("PSK"), bundle.getString("RPSK")}));
         modulationTypeChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 modulationTypeChooserItemStateChanged(evt);

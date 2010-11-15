@@ -102,7 +102,7 @@ public class ChannelCoderHamming
 
 	String symbolsText = "";
 	if (headLength >= 10 && headLength <= 19)
-	    symbolsText = "символів";
+	    symbolsText = java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SYMBOLS");
 	else
 	{
 	    String headLengthText = String.valueOf(headLength);
@@ -110,17 +110,17 @@ public class ChannelCoderHamming
 	    int lastDigit = Integer.valueOf(headLengthText.substring(headLengthTextLength - 1));
 
 	    if ((lastDigit == 0) || (lastDigit >= 5 && lastDigit <= 9))
-		symbolsText = "символів";
+		symbolsText = java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SYMBOLS");
 	    else
 	    if (lastDigit == 1)
-	        symbolsText = "символ";
+	        symbolsText = java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SYMBOL");
 	    else
 	    if (lastDigit >= 2 && lastDigit <= 4)
-		symbolsText = "символи";
+		symbolsText = java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SYMBOLS2");
 	}
 
 	if (headLength > 0)
-	    out += "<br/>На початок вхідної послідовності додано " + String.valueOf(headLength) + " " + symbolsText + " для вирівнювання блоків";
+	    out += "<br/>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("ADDED") + " " + String.valueOf(headLength) + " " + symbolsText + " " + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("TO HEAD OF SEQUENCE FOR BLOCKS ALIGNING");
 
 	out += "</html>";
 	return out;
