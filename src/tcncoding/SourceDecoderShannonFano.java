@@ -86,11 +86,7 @@ public class SourceDecoderShannonFano extends SourceDecoder
 	if (buffer.length() > 0)
 	{
 	    String currentChar = codeMap.get(buffer);
-
-	    if (currentChar != null)
-		sourceMessage += currentChar;
-	    else
-		sourceMessage += "*";
+	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
     }
 }
