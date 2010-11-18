@@ -26,12 +26,10 @@ import java.util.List;
  * Allows using Shannon-Fano code
  * @author post-factum
  */
-public class SourceDecoderShannonFano
+public class SourceDecoderShannonFano extends SourceDecoder
 {
 
-    private String sourceMessage;
     private HashMap<String, String> codeMap = new HashMap<String, String>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates Shannon-Fano source decoder
@@ -97,14 +95,5 @@ public class SourceDecoderShannonFano
 	    else
 		sourceMessage += "*";
 	}
-    }
-
-    /**
-     * Returns decoded message
-     * @return string representation of source message
-     */
-    public String getMessage()
-    {
-	return sourceMessage;
     }
 }

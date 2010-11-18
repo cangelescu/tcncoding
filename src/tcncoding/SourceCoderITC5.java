@@ -18,20 +18,16 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Allows using ITC-5
  * @author post-factum
  */
-public class SourceCoderITC5
+public class SourceCoderITC5 extends SourceCoder
 {
 
-    private String message;
     private HashMap<String, BinaryNumber> codeMapMTK5 = new HashMap<String, BinaryNumber>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates ITC-5 source coder
@@ -60,14 +56,5 @@ public class SourceCoderITC5
 	    if (bMTK5 != null)
 	    	sourceSequence.add(bMTK5);
 	}
-    }
-
-    /**
-     * Returns encoded sequence
-     * @return list of binary numbers that represents source message
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return sourceSequence;
     }
 }

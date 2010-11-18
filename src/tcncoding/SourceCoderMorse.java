@@ -18,20 +18,16 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Allows using Morse code
  * @author post-factum
  */
-public class SourceCoderMorse
+public class SourceCoderMorse extends SourceCoder
 {
 
-    private String message;
     private HashMap<String, BinaryNumber> codeMapMorse = new HashMap<String, BinaryNumber>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates Morse source coder
@@ -62,14 +58,5 @@ public class SourceCoderMorse
 	    if (bMorse != null)
 	    	sourceSequence.add(bMorse);
 	}
-    }
-
-    /**
-     * Returns encoded sequence
-     * @return list of binary numbers that represents source message
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return sourceSequence;
     }
 }

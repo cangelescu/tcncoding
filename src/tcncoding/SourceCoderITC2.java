@@ -18,23 +18,20 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Allows using ITC-2
  * @author post-factum
  */
-public class SourceCoderITC2
+public class SourceCoderITC2 extends SourceCoder
 {
 
-    private String message;
     private HashMap<String, BinaryNumber> codeMapLat = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapInt = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapNum = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapCtl = new HashMap<String, BinaryNumber>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
+
     /**
      * Parts of code map
      */
@@ -122,14 +119,5 @@ public class SourceCoderITC2
 		sourceSequence.add(bNum);
 	    }
 	}
-    }
-
-    /**
-     * Returns encoded sequence
-     * @return list of binary numbers that represents source message
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return sourceSequence;
     }
 }

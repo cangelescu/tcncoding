@@ -18,77 +18,24 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Common class to control source decoders
+ * Base class of source decoders
  * @author post-factum
  */
-public class SourceDecoder
-{
+public class SourceDecoder {
 
-    private String sourceMessage = "";
-    private List<BinaryNumber> sourceSequence;
-    private boolean isCyr;
-    private SourceCoder.SourceCoderCode usingCode;
+    protected String sourceMessage;
+    protected List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
-     * Creates source decoder for input source sequence
-     * @param _sourceSequence binary sequence to decode
-     * @param _codeType type of using code
-     * @param _isCyr indicates if to use cyrillic table
-     */
-    public SourceDecoder(List<BinaryNumber> _sourceSequence, SourceCoder.SourceCoderCode _codeType, boolean _isCyr)
-    {
-	sourceSequence = _sourceSequence;
-	usingCode = _codeType;
-	isCyr = _isCyr;
-    }
-
-    /**
-     * Runs decoding
-     */
-    public void doDecode()
-    {
-	switch (usingCode)
-	{
-	    case MTK2:
-		SourceDecoderITC2 decoderMTK2 = new SourceDecoderITC2(sourceSequence);
-		decoderMTK2.doDecoding();
-		sourceMessage = decoderMTK2.getMessage();
-		break;
-	    case MTK5:
-		SourceDecoderITC5 decoderMTK5 = new SourceDecoderITC5(sourceSequence);
-		decoderMTK5.doDecoding();
-		sourceMessage = decoderMTK5.getMessage();
-		break;
-	    case KOI8U:
-		SourceDecoderKOI8U decoderKOI8U = new SourceDecoderKOI8U(sourceSequence);
-		decoderKOI8U.doDecoding();
-		sourceMessage = decoderKOI8U.getMessage();
-		break;
-	    case MORSE:
-		SourceDecoderMorse decoderMorse = new SourceDecoderMorse(sourceSequence);
-		decoderMorse.doDecoding();
-		sourceMessage = decoderMorse.getMessage();
-		break;
-	    case SHANNON:
-		SourceDecoderShannonFano decoderShannon = new SourceDecoderShannonFano(sourceSequence, isCyr);
-		decoderShannon.doDecoding();
-		sourceMessage = decoderShannon.getMessage();
-		break;
-	    default:
-		break;
-	}
-    }
-
-    /**
-     * Returns decoded messaage
+     * Returns decoded message
      * @return string representation of source message
      */
     public String getMessage()
     {
 	return sourceMessage;
     }
-
 }

@@ -18,7 +18,6 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,12 +25,10 @@ import java.util.List;
  * Allows using ITC-2
  * @author post-factum
  */
-public class SourceDecoderITC5
+public class SourceDecoderITC5 extends SourceDecoder
 {
 
-    private String sourceMessage;
     private HashMap<String, String> codeMapMTK5 = new HashMap<String, String>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates ITC-5 source decoder
@@ -60,14 +57,5 @@ public class SourceDecoderITC5
 	    else
 		sourceMessage += "*";
 	}
-    }
-
-    /**
-     * Returns decoded message
-     * @return string representation of source message
-     */
-    public String getMessage()
-    {
-	return sourceMessage;
     }
 }

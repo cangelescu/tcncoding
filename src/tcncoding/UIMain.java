@@ -33,7 +33,7 @@ import javax.swing.JFrame;
 public class UIMain extends javax.swing.JFrame
 {
     //UI parts
-    SourceCoder currentSourceCoder = null;
+    SourceCoderController currentSourceCoder = null;
     VideoCreator currentSourceVideoCreator = null;
     ChannelCoderController currentChannelCoder = null;
     VideoCreator currentChannelVideoCreator = null;
@@ -47,7 +47,7 @@ public class UIMain extends javax.swing.JFrame
     VideoCreator currentResolverVideoCreator = null;
     ChannelDecoderController currentChannelDecoder = null;
     VideoCreator currentChannelDecoderVideoCreator = null;
-    SourceDecoder currentSourceDecoder = null;
+    SourceDecoderController currentSourceDecoder = null;
 
     //UI blocks
     enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, REFERENCE_GENERATOR0, REFERENCE_GENERATOR1, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
@@ -72,7 +72,7 @@ public class UIMain extends javax.swing.JFrame
     String message = "";
 
     //simulating parameters
-    SourceCoder.SourceCoderCode sourceCode = SourceCoder.SourceCoderCode.MTK2;
+    SourceCoderController.SourceCoderCode sourceCode = SourceCoderController.SourceCoderCode.MTK2;
     ChannelCoderController.ChannelCoderCode channelCode = ChannelCoderController.ChannelCoderCode.PARITY_BIT;
     Modulator.ModulationType modulationType = Modulator.ModulationType.ASK;
 
@@ -145,19 +145,19 @@ public class UIMain extends javax.swing.JFrame
 	switch (sourceCodesChooser.getSelectedIndex())
 	{
 	    case 0:
-		sourceCode = SourceCoder.SourceCoderCode.MTK2;
+		sourceCode = SourceCoderController.SourceCoderCode.MTK2;
 		break;
 	    case 1:
-		sourceCode = SourceCoder.SourceCoderCode.MTK5;
+		sourceCode = SourceCoderController.SourceCoderCode.MTK5;
 		break;
 	    case 2:
-		sourceCode = SourceCoder.SourceCoderCode.KOI8U;
+		sourceCode = SourceCoderController.SourceCoderCode.KOI8U;
 		break;
 	    case 3:
-		sourceCode = SourceCoder.SourceCoderCode.MORSE;
+		sourceCode = SourceCoderController.SourceCoderCode.MORSE;
 		break;
 	    case 4:
-		sourceCode = SourceCoder.SourceCoderCode.SHANNON;
+		sourceCode = SourceCoderController.SourceCoderCode.SHANNON;
 		break;
 	    default:
 		break;
@@ -304,7 +304,7 @@ public class UIMain extends javax.swing.JFrame
     //encodes source message with selected source code
     void doSourceCoding()
     {
-	currentSourceCoder = new SourceCoder(sourceCode, message);
+	currentSourceCoder = new SourceCoderController(sourceCode, message);
 	currentSourceCoder.doEncode();
 	sourceSymbols = currentSourceCoder.getSequence();
 	lengthMap = currentSourceCoder.getLengthMap();
@@ -726,7 +726,7 @@ public class UIMain extends javax.swing.JFrame
 
     void doSourceDecoding()
     {
-	currentSourceDecoder = new SourceDecoder(channelDecoderOutput, sourceCode, isCyr);
+	currentSourceDecoder = new SourceDecoderController(channelDecoderOutput, sourceCode, isCyr);
 	currentSourceDecoder.doDecode();
 	receivedMessageArea.setText(currentSourceDecoder.getMessage());
     }

@@ -18,20 +18,16 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Allows using KOI8-U
  * @author post-factum
  */
-public class SourceCoderKOI8U
+public class SourceCoderKOI8U extends SourceCoder
 {
 
-    private String message;
     private HashMap<String, BinaryNumber> codeMapKOI8U = new HashMap<String, BinaryNumber>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates KOI8-U source coder
@@ -60,14 +56,5 @@ public class SourceCoderKOI8U
 	    if (bKOI8U != null)
 	    	sourceSequence.add(bKOI8U);
 	}
-    }
-
-    /**
-     * Returns encoded sequence
-     * @return list of binary numbers that represents source message
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return sourceSequence;
     }
 }

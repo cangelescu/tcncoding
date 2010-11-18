@@ -18,21 +18,17 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Allows using Shannon-Fano code
  * @author post-factum
  */
-public class SourceCoderShannonFano
+public class SourceCoderShannonFano extends SourceCoder
 {
 
-    private String message;
     private HashMap<String, BinaryNumber> codeMapCyr = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapLat = new HashMap<String, BinaryNumber>();
-    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private boolean isCyr = true;
 
     /**
@@ -94,15 +90,6 @@ public class SourceCoderShannonFano
 		    sourceSequence.add(bShannonLat);
 	    }
 	}
-    }
-
-    /**
-     * Returns encoded sequence
-     * @return list of binary numbers that represents source message
-     */
-    public List getSequence()
-    {
-	return sourceSequence;
     }
 
     /**
