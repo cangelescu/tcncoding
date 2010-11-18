@@ -52,10 +52,7 @@ public class SourceDecoderMorse extends SourceDecoder
 	for (BinaryNumber cbn: sourceSequence)
 	{
 	    String currentChar = codeMapMorse.get(cbn.getStringSequence());
-	    if (currentChar != null)
-		sourceMessage += currentChar;
-	    else
-		sourceMessage += "*";
+	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
     }
 }
