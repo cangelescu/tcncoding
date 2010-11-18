@@ -1,5 +1,4 @@
 *.class
 *.jar
-!flanagan.jar
 dist
 build

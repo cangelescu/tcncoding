@@ -18,13 +18,12 @@
 
 package tcncoding;
 
-import flanagan.integration.IntegralFunction;
 
 /**
  * Base class of analog signal model
  * @author post-factum
  */
-public class AnalogSignal implements IntegralFunction
+public class AnalogSignal
 {
     double frequency;
     double amplitude;
