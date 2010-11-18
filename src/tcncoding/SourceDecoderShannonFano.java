@@ -41,10 +41,7 @@ public class SourceDecoderShannonFano extends SourceDecoder
 	sourceSequence = _sourceSequence;
 
 	SourceDecoderCodeMapLoader loader;
-	if (_isCyr)
-	    loader = new SourceDecoderCodeMapLoader("shannon_cyr");
-	else
-	    loader = new SourceDecoderCodeMapLoader("shannon_lat");
+	loader = new SourceDecoderCodeMapLoader(_isCyr ? "shannon_cyr" : "shannon_lat");
 	codeMap = loader.getCodeMap();
     }
 
