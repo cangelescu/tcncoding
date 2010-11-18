@@ -52,10 +52,7 @@ public class SourceDecoderKOI8U extends SourceDecoder
 	for (BinaryNumber cbn: sourceSequence)
 	{
 	    String currentChar = codeMapKOI8U.get(cbn.getStringSequence());
-	    if (currentChar != null)
-		sourceMessage += currentChar;
-	    else
-		sourceMessage += "*";
+	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
     }
 }

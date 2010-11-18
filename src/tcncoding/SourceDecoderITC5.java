@@ -52,10 +52,7 @@ public class SourceDecoderITC5 extends SourceDecoder
 	for (BinaryNumber cbn: sourceSequence)
 	{
 	    String currentChar = codeMapMTK5.get(cbn.getStringSequence());
-	    if (currentChar != null)
-		sourceMessage += currentChar;
-	    else
-		sourceMessage += "*";
+	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
     }
 }

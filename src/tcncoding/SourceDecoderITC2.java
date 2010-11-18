@@ -81,10 +81,7 @@ public class SourceDecoderITC2 extends SourceDecoder
 		    default:
 			break;
 		}
-		if (currentChar != null)
-		    sourceMessage += currentChar;
-		else
-		    sourceMessage += "*";
+		sourceMessage += (currentChar != null) ? currentChar : "*";
 	    } else
 	    {
 		if (currentCharCtl.equals("LAT"))
