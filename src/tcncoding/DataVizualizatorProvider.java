@@ -124,16 +124,8 @@ public class DataVizualizatorProvider
 		    if (cds.getSamplesCount() > digitalBlockSize)
 			digitalBlockSize = cds.getSamplesCount();
 
-		if (digitalBlockSize == 1)
-		{
-		    delta = digitalSignal.get(1).getSample(0).getX() - digitalSignal.get(0).getSample(0).getX();
-		    xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd();
-		}
-		else
-		{
-		    delta = digitalSignal.get(0).getDelta();
-		    xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd() + delta;
-		}
+		delta = (digitalBlockSize == 1) ? digitalSignal.get(0).getDelta() : (digitalSignal.get(0).getSample(1).getX() - digitalSignal.get(0).getSample(0).getX());
+		xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd() + delta;
 
 		xStart = digitalSignal.get(0).getStart();
 		maxValue = digitalSignal.get(0).getMaxValue();
