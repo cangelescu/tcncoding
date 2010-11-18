@@ -18,17 +18,14 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using Hamming code (7,4)
  * @author post-factum
  */
-public class ChannelCoderHamming
+public class ChannelCoderHamming extends ChannelCoder
 {
-    private List<BinaryNumber> sequence;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     private int headLength;
 
     /**
@@ -37,7 +34,7 @@ public class ChannelCoderHamming
      */
     public ChannelCoderHamming(List<BinaryNumber> _inputSequence)
     {
-	sequence = _inputSequence;
+	inputSequence = _inputSequence;
     }
 
     /**
@@ -46,7 +43,7 @@ public class ChannelCoderHamming
     public void doEncode()
     {
 	//makes blocks of equal size
-	Splitter hammingBlocker = new Splitter(sequence, 4);
+	Splitter hammingBlocker = new Splitter(inputSequence, 4);
 	hammingBlocker.doSplitting();
 	headLength = hammingBlocker.getLeadingZeroesCount();
 	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
@@ -63,15 +60,6 @@ public class ChannelCoderHamming
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
 	    outputSequence.add(ready);
 	}
-    }
-
-    /**
-     * Returns encoded list of binary numbers
-     * @return list of encoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**

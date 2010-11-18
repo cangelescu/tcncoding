@@ -25,11 +25,9 @@ import java.util.List;
  * Allows using inversed code decoder
  * @author post-factum
  */
-public class ChannelDecoderInversed
+public class ChannelDecoderInversed extends ChannelDecoder
 {
-    private List<BinaryNumber> sequence;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
-    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
+
     private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
 
     /**
@@ -38,7 +36,7 @@ public class ChannelDecoderInversed
      */
     public ChannelDecoderInversed(List<BinaryNumber> _inputSequence)
     {
-	sequence = _inputSequence;
+	inputSequence = _inputSequence;
     }
 
     /**
@@ -46,7 +44,7 @@ public class ChannelDecoderInversed
      */
     public void doDecode()
     {
-	for (BinaryNumber bn: sequence)
+	for (BinaryNumber bn: inputSequence)
 	{
 	    BinaryNumber truncated = bn.truncRight(bn.getLength() / 2);
 	    BinaryNumber inversed = truncated.getWeight() % 2 == 0 ? truncated : truncated.not2();
@@ -60,15 +58,6 @@ public class ChannelDecoderInversed
 	    outputSequence.add(truncated);
 	    checkingSequence.add(truncated.shl2(bn.getLength() / 2).sum2(inversed));
 	}
-    }
-
-    /**
-     * Returns decoded list of binary numbers
-     * @return list of decoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**

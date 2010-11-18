@@ -35,7 +35,7 @@ public class UIMain extends javax.swing.JFrame
     //UI parts
     SourceCoder currentSourceCoder = null;
     VideoCreator currentSourceVideoCreator = null;
-    ChannelCoder currentChannelCoder = null;
+    ChannelCoderController currentChannelCoder = null;
     VideoCreator currentChannelVideoCreator = null;
     Modulator currentModulator = null;
     Channel currentChannel = null;
@@ -45,7 +45,7 @@ public class UIMain extends javax.swing.JFrame
     Summator currentSummator = null;
     Resolver currentResolver = null;
     VideoCreator currentResolverVideoCreator = null;
-    ChannelDecoder currentChannelDecoder = null;
+    ChannelDecoderController currentChannelDecoder = null;
     VideoCreator currentChannelDecoderVideoCreator = null;
     SourceDecoder currentSourceDecoder = null;
 
@@ -73,7 +73,7 @@ public class UIMain extends javax.swing.JFrame
 
     //simulating parameters
     SourceCoder.SourceCoderCode sourceCode = SourceCoder.SourceCoderCode.MTK2;
-    ChannelCoder.ChannelCoderCode channelCode = ChannelCoder.ChannelCoderCode.PARITY_BIT;
+    ChannelCoderController.ChannelCoderCode channelCode = ChannelCoderController.ChannelCoderCode.PARITY_BIT;
     Modulator.ModulationType modulationType = Modulator.ModulationType.ASK;
 
     //source coder
@@ -170,16 +170,16 @@ public class UIMain extends javax.swing.JFrame
 	switch (channelCodesChooser.getSelectedIndex())
 	{
 	    case 0:
-		channelCode = ChannelCoder.ChannelCoderCode.PARITY_BIT;
+		channelCode = ChannelCoderController.ChannelCoderCode.PARITY_BIT;
 		break;
 	    case 1:
-		channelCode = ChannelCoder.ChannelCoderCode.INVERSED;
+		channelCode = ChannelCoderController.ChannelCoderCode.INVERSED;
 		break;
 	    case 2:
-		channelCode = ChannelCoder.ChannelCoderCode.MANCHESTER;
+		channelCode = ChannelCoderController.ChannelCoderCode.MANCHESTER;
 		break;
 	    case 3:
-		channelCode = ChannelCoder.ChannelCoderCode.HAMMING;
+		channelCode = ChannelCoderController.ChannelCoderCode.HAMMING;
 		break;
 	    default:
 		break;
@@ -315,7 +315,7 @@ public class UIMain extends javax.swing.JFrame
     //encodes source code with selected Channel code
     void doChannelCoding()
     {
-	currentChannelCoder = new ChannelCoder(sourceSymbols, channelCode, useChannelCoderTrigger);
+	currentChannelCoder = new ChannelCoderController(sourceSymbols, channelCode, useChannelCoderTrigger);
 	currentChannelCoder.doEncode();
 	channelSymbols = currentChannelCoder.getSequence();
 	blockChannelCoderOutput.setText(currentChannelCoder.getHTMLReport());
@@ -689,7 +689,7 @@ public class UIMain extends javax.swing.JFrame
     //decodes source code with selected Channel code
     void doChannelDecoding()
     {
-	currentChannelDecoder = new ChannelDecoder(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
+	currentChannelDecoder = new ChannelDecoderController(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
 	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
 	String text = "<html> " + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RECEIVED SEQUENCE:") + " <br/>" + currentResolver.getStringSequence() + "<br/>";

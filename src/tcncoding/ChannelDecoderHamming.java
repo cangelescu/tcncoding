@@ -25,12 +25,10 @@ import java.util.List;
  * Allows using Hamming code (7,4) decoder
  * @author post-factum
  */
-public class ChannelDecoderHamming
+public class ChannelDecoderHamming extends ChannelDecoder
 {
-    private List<BinaryNumber> inputSequence = new ArrayList<BinaryNumber>();
+
     private List<BinaryNumber> syndromeSequence = new ArrayList<BinaryNumber>();
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
-    private List<BinaryNumber> errorSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap;
     private int headLength;
 
@@ -67,10 +65,10 @@ public class ChannelDecoderHamming
 	    syndromeSequence.add(syndromeNumber);
 
 	    //creates error vector based on calculated syndrome
-	    boolean[] errorVector = new boolean[bn.getLength()];
-	    for (int i = 0; i < errorVector.length; i++)
-		errorVector[i] = errorBit - 1 == i;
-	    errorSequence.add(new BinaryNumber(errorVector));
+	    boolean[] errorVectorArray = new boolean[bn.getLength()];
+	    for (int i = 0; i < errorVectorArray.length; i++)
+		errorVectorArray[i] = errorBit - 1 == i;
+	    errorVector.add(new BinaryNumber(errorVectorArray));
 
 	    //recovers code sequence using calculated integer value of syndrome
 	    boolean[] preDecodedBlock = bn.getBinaryArray();
@@ -90,15 +88,6 @@ public class ChannelDecoderHamming
 	Splitter recovery = new Splitter(pre2Sequence, lengthMap);
 	recovery.doRecovering();
 	outputSequence = recovery.getBlocks();
-    }
-
-    /**
-     * Returns decoded list of binary numbers
-     * @return list of decoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**
@@ -124,7 +113,7 @@ public class ChannelDecoderHamming
 
 	out += "<br/>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("ERRORS VECTOR:") + "<br/>";
 	trigger = false;
-	for (BinaryNumber bn: errorSequence)
+	for (BinaryNumber bn: errorVector)
 	{
 	    for (boolean cb: bn.getBinaryArray())
 	    {

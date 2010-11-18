@@ -25,11 +25,9 @@ import java.util.List;
  * Allows using Manchester code decoder
  * @author post-factum
  */
-public class ChannelDecoderManchester
+public class ChannelDecoderManchester extends ChannelDecoder
 {
-    private List<BinaryNumber> sequence;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
-    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
+
     private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
 
     /**
@@ -38,7 +36,7 @@ public class ChannelDecoderManchester
      */
     public ChannelDecoderManchester(List<BinaryNumber> _inputSequence)
     {
-	sequence = _inputSequence;
+	inputSequence = _inputSequence;
     }
 
     /**
@@ -46,7 +44,7 @@ public class ChannelDecoderManchester
      */
     public void doDecode()
     {
-	for (BinaryNumber bn: sequence)
+	for (BinaryNumber bn: inputSequence)
 	{
 	    boolean[] currentNumberArray = bn.getBinaryArray();
 	    boolean[] resultNumber = new boolean[bn.getLength() / 2];
@@ -73,15 +71,6 @@ public class ChannelDecoderManchester
 	    outputSequence.add(ready);
 	    checkingSequence.add(checkedNumber);
 	}
-    }
-
-    /**
-     * Returns decoded list of binary numbers
-     * @return list of decoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**

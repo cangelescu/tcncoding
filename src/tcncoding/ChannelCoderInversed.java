@@ -18,17 +18,14 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using code with inversed checking
  * @author post-factum
  */
-public class ChannelCoderInversed
+public class ChannelCoderInversed extends ChannelCoder
 {
-    private List<BinaryNumber> sequence;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates coder with inversed code for given input sequence of binary numbers
@@ -36,7 +33,7 @@ public class ChannelCoderInversed
      */
     public ChannelCoderInversed(List<BinaryNumber> _inputSequence)
     {
-	sequence = _inputSequence;
+	inputSequence = _inputSequence;
     }
 
     /**
@@ -44,7 +41,7 @@ public class ChannelCoderInversed
      */
     public void doEncode()
     {
-	for (BinaryNumber bn: sequence)
+	for (BinaryNumber bn: inputSequence)
 	{
 	    BinaryNumber shifted = bn.shl2(bn.getLength());
 	    if (bn.getWeight() % 2 == 0)
@@ -55,15 +52,6 @@ public class ChannelCoderInversed
 		outputSequence.add(shifted.sum2(inversed));
 	    }
 	}
-    }
-
-    /**
-     * Returns encoded list of binary numbers
-     * @return list of encoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**

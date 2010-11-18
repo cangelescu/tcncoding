@@ -18,17 +18,14 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using Manchester code
  * @author post-factum
  */
-public class ChannelCoderManchester
+public class ChannelCoderManchester extends ChannelCoder
 {
-    private List<BinaryNumber> sequence;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates Manchester coder for given input sequence of binary numbers
@@ -36,7 +33,7 @@ public class ChannelCoderManchester
      */
     public ChannelCoderManchester(List<BinaryNumber> _inputSequence)
     {
-	sequence = _inputSequence;
+	inputSequence = _inputSequence;
     }
 
     /**
@@ -44,7 +41,7 @@ public class ChannelCoderManchester
      */
     public void doEncode()
     {
-	for (BinaryNumber bn: sequence)
+	for (BinaryNumber bn: inputSequence)
 	{
 	    boolean[] currentNumberArray = bn.getBinaryArray();
 	    boolean[] resultNumber = new boolean[bn.getLength() * 2];
@@ -57,15 +54,6 @@ public class ChannelCoderManchester
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
 	    outputSequence.add(ready);
 	}
-    }
-
-    /**
-     * Returns encoded list of binary numbers
-     * @return list of encoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**

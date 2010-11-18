@@ -22,105 +22,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Control class for decoding channel codes
+ * Base class of channel decoders
  * @author post-factum
  */
-public class ChannelDecoder
-{
+public class ChannelDecoder {
 
-    private List<BinaryNumber> inputSequence = null;
-    private ChannelCoder.ChannelCoderCode usingCode = null;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
-    private String report;
-    private int headLength;
-    private List<Integer> lengthMap;
-    private boolean enabled;
+    protected List<BinaryNumber> inputSequence;
+    protected List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    protected List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
 
     /**
-     * Creates channel decoder with given code and symbols on its input
-     * @param _symbols input symbols
-     * @param _codeType code to use
-     * @param _headLength length of trailing head in the sequence
-     * @param _lengthMap map of blocks' length
-     * @param _enabled indicates if to use channel coding
-     */
-    public ChannelDecoder(List<BinaryNumber> _symbols, ChannelCoder.ChannelCoderCode _codeType, int _headLength, List<Integer> _lengthMap, boolean _enabled)
-    {
-	inputSequence = _symbols;
-	usingCode = _codeType;
-	headLength = _headLength;
-	lengthMap = _lengthMap;
-	enabled = _enabled;
-    }
-
-    /**
-     * Runs decoding
-     */
-    public void doDecode()
-    {
-	outputSequence.clear();
-	if (enabled)
-	{
-	    switch (usingCode)
-	    {
-		case PARITY_BIT:
-		    ChannelDecoderParityBit channelDecoderParityBit = new ChannelDecoderParityBit(inputSequence);
-		    channelDecoderParityBit.doDecode();
-		    outputSequence = channelDecoderParityBit.getSequence();
-		    report = channelDecoderParityBit.getReport();
-		    break;
-		case INVERSED:
-		    ChannelDecoderInversed channelDecoderInversed = new ChannelDecoderInversed(inputSequence);
-		    channelDecoderInversed.doDecode();
-		    outputSequence = channelDecoderInversed.getSequence();
-		    report = channelDecoderInversed.getReport();
-		    break;
-		case MANCHESTER:
-		    ChannelDecoderManchester channelDecoderManchester = new ChannelDecoderManchester(inputSequence);
-		    channelDecoderManchester.doDecode();
-		    outputSequence = channelDecoderManchester.getSequence();
-		    report = channelDecoderManchester.getReport();
-		    break;
-		case HAMMING:
-		    ChannelDecoderHamming channelDecoderHamming = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
-		    channelDecoderHamming.doDecode();
-		    outputSequence = channelDecoderHamming.getSequence();
-		    report = channelDecoderHamming.getReport();
-		    break;
-		default:
-		    break;
-	    }
-	} else
-	    outputSequence = inputSequence;
-    }
-
-    /**
-     * Returns decoded sequence
+     * Returns decoded list of binary numbers
      * @return list of decoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
 	return outputSequence;
-    }
-
-    /**
-     * Returns decoded sequence length
-     * @return integer value of decoded sequence length
-     */
-    public int getSequenceLength()
-    {
-	int out = 0;
-	for (BinaryNumber cbn: outputSequence)
-	    out += cbn.getLength();
-	return out;
-    }
-
-    /**
-     * Returns HTML-formatted encoded string sequence
-     * @return string representation of HTML-formatted report
-     */
-    public String getHTMLReport()
-    {
-	return report;
     }
 }

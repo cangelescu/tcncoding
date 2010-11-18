@@ -25,12 +25,10 @@ import java.util.List;
  * Allows using decoder for code with parity bit checking
  * @author post-factum
  */
-public class ChannelDecoderParityBit
+public class ChannelDecoderParityBit extends ChannelDecoder
 {
-    private List<BinaryNumber> sequence;
-    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+
     private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
-    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
 
     /**
      * Creates decoder for given input sequence of binary numbers with parity bit checking
@@ -38,7 +36,7 @@ public class ChannelDecoderParityBit
      */
     public ChannelDecoderParityBit(List<BinaryNumber> _inputSequence)
     {
-	sequence = _inputSequence;
+	inputSequence = _inputSequence;
     }
 
     /**
@@ -46,7 +44,7 @@ public class ChannelDecoderParityBit
      */
     public void doDecode()
     {
-	for (BinaryNumber bn: sequence)
+	for (BinaryNumber bn: inputSequence)
 	{
 	    BinaryNumber truncated = bn.truncRight();
 	    boolean parityBit = truncated.getWeight() % 2 != 0;
@@ -60,15 +58,6 @@ public class ChannelDecoderParityBit
 	    outputSequence.add(truncated);
 	    checkingSequence.add(truncated.shl2().sum2(new BinaryNumber(parityBit ? 1 : 0)));
 	}
-    }
-
-    /**
-     * Returns decoded list of binary numbers
-     * @return list of decoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
     }
 
     /**

@@ -22,134 +22,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Control class of applying channel codes
+ * Base class of channel coders
  * @author post-factum
  */
-public class ChannelCoder
-{
+public class ChannelCoder {
 
+    protected List<BinaryNumber> inputSequence;
+    protected List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    
     /**
-     * List of possible channel coder codes
-     */
-    public enum ChannelCoderCode
-    {
-
-	/**
-	 * Code with parity bit checking
-	 */
-	PARITY_BIT,
-	/**
-	 * Inversed code
-	 */
-	INVERSED,
-	/**
-	 * Manchester code
-	 */
-	MANCHESTER,
-	/**
-	 * Hamming code
-	 */
-	HAMMING;
-    };
-
-    private List<BinaryNumber> sourceSymbols;
-    private ChannelCoderCode usingCode;
-    private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
-    private int headLength = 0;
-    private boolean enabled;
-    private String report;
-
-    /**
-     * Creates channel coder with given code and symbols on its input
-     * @param _symbols input symbols
-     * @param _codeType code to use
-     * @param _enabled indicates whether to enable channel coding
-     */
-    public ChannelCoder(List<BinaryNumber> _symbols, ChannelCoderCode _codeType, boolean _enabled)
-    {
-	sourceSymbols = _symbols;
-	usingCode = _codeType;
-	enabled = _enabled;
-    }
-
-    /**
-     * Runs encoding
-     */
-    public void doEncode()
-    {
-	channelSequence.clear();
-	if (enabled)
-	{
-	    switch (usingCode)
-	    {
-		case PARITY_BIT:
-		    ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(sourceSymbols);
-		    channelCoderParityBit.doEncode();
-		    channelSequence = channelCoderParityBit.getSequence();
-		    report = channelCoderParityBit.getReport();
-		    break;
-		case INVERSED:
-		    ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(sourceSymbols);
-		    channelCoderInversed.doEncode();
-		    channelSequence = channelCoderInversed.getSequence();
-		    report = channelCoderInversed.getReport();
-		    break;
-		case MANCHESTER:
-		    ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(sourceSymbols);
-		    channelCoderManchester.doEncode();
-		    channelSequence = channelCoderManchester.getSequence();
-		    report = channelCoderManchester.getReport();
-		    break;
-		case HAMMING:
-		    ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
-		    channelCoderHamming.doEncode();
-		    channelSequence = channelCoderHamming.getSequence();
-		    headLength = channelCoderHamming.getHeadLength();
-		    report = channelCoderHamming.getReport();
-		    break;
-		default:
-		    break;
-	    }
-	} else
-	    channelSequence = sourceSymbols;
-    }
-
-    /**
-     * Returns encoded sequence
+     * Returns encoded list of binary numbers
      * @return list of encoded binary numbers
      */
     public List<BinaryNumber> getSequence()
     {
-	return channelSequence;
-    }
-
-    /**
-     * Returns encoded sequence length
-     * @return integer value of encoded sequence length
-     */
-    public int getSequenceLength()
-    {
-	int out = 0;
-	for (BinaryNumber cbn: channelSequence)
-	    out += cbn.getLength();
-	return out;
-    }
-
-    /**
-     * Returns HTML-formatted encoded string sequence
-     * @return string representation of HTML-formatted report
-     */
-    public String getHTMLReport()
-    {
-	return report;
-    }
-
-    /**
-     * Returns length of sequence head that was added by splitter in Hamming coder
-     * @return integer value of trailing head length
-     */
-    public int getHeadLength()
-    {
-	return headLength;
+	return outputSequence;
     }
 }
