@@ -25,13 +25,8 @@ import java.util.List;
  * Model of ASK modulator
  * @author post-factum
  */
-public class ModulatorASK
+public class ModulatorASK extends Modulator
 {
-
-    private List<BinaryNumber> sequence = null;
-    private double bearerAmplitude, bearerFrequency, impulseLength;
-
-    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 
     /**
      * Creates ASK modulator
@@ -42,7 +37,7 @@ public class ModulatorASK
      */
     public ModulatorASK(double _bearerAmplitude, double _bearerFrequency, List<BinaryNumber> _symbols, double _impulseLength)
     {
-	sequence = _symbols;
+	inputSequence = _symbols;
 	bearerAmplitude = _bearerAmplitude;
 	bearerFrequency = _bearerFrequency;
 	impulseLength = _impulseLength;
@@ -57,7 +52,7 @@ public class ModulatorASK
 
 	double currentTime = 0;
 
-	for (BinaryNumber cbn: sequence)
+	for (BinaryNumber cbn: inputSequence)
 	{
 	    Splitter splitter = new Splitter(cbn);
 	    splitter.doSplitting();

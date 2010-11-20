@@ -25,25 +25,22 @@ import java.util.List;
  * Model of FSK modulator
  * @author post-factum
  */
-public class ModulatorFSK
+public class ModulatorFSK extends Modulator
 {
 
-    private List<BinaryNumber> sequence = null;
-    private double bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, impulseLength;
-
-    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
+    private double bearerFrequencyDeviation;
 
     /**
      * Creates FSK modulator with phase breaking
      * @param _bearerAmplitude bearer amplitude, V
      * @param _bearerFrequency bearer frequency, Hz
      * @param _bearerFrequencyDeviation bearer frequency deviation, Hz
-     * @param _symbols input binary sequence
+     * @param _inputSequence input binary sequence
      * @param _impulseLength length of impulse, s
      */
-    public ModulatorFSK(double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List<BinaryNumber> _symbols, double _impulseLength)
+    public ModulatorFSK(double _bearerAmplitude, double _bearerFrequency, double _bearerFrequencyDeviation, List<BinaryNumber> _inputSequence, double _impulseLength)
     {
-	sequence = _symbols;
+	inputSequence = _inputSequence;
 	bearerAmplitude = _bearerAmplitude;
 	bearerFrequency = _bearerFrequency;
 	bearerFrequencyDeviation = _bearerFrequencyDeviation;
@@ -59,7 +56,7 @@ public class ModulatorFSK
 
 	double currentTime = 0;
 
-	for (BinaryNumber cbn: sequence)
+	for (BinaryNumber cbn: inputSequence)
 	{
 	    Splitter splitter = new Splitter(cbn);
 	    splitter.doSplitting();

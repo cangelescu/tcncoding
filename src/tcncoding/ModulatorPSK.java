@@ -25,24 +25,19 @@ import java.util.List;
  * Model of PSK modulator
  * @author post-factum
  */
-public class ModulatorPSK
+public class ModulatorPSK extends Modulator
 {
-
-    private List<BinaryNumber> sequence = null;
-    private double bearerAmplitude, bearerFrequency, impulseLength;
-
-    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 
     /**
      * Creates PSK modulator
      * @param _bearerAmplitude bearer amplitude, V
      * @param _bearerFrequency bearer frequency, Hz
-     * @param _symbols input binary sequence
+     * @param _inputSequence input binary sequence
      * @param _impulseLength length of impulse, s
      */
-    public ModulatorPSK(double _bearerAmplitude, double _bearerFrequency, List<BinaryNumber> _symbols, double _impulseLength)
+    public ModulatorPSK(double _bearerAmplitude, double _bearerFrequency, List<BinaryNumber> _inputSequence, double _impulseLength)
     {
-	sequence = _symbols;
+	inputSequence = _inputSequence;
 	bearerAmplitude = _bearerAmplitude;
 	bearerFrequency = _bearerFrequency;
 	impulseLength = _impulseLength;
@@ -57,7 +52,7 @@ public class ModulatorPSK
 
 	double currentTime = 0;
 
-	for (BinaryNumber cbn: sequence)
+	for (BinaryNumber cbn: inputSequence)
 	{
 	    Splitter splitter = new Splitter(cbn);
 	    splitter.doSplitting();

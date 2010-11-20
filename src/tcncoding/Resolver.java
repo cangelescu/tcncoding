@@ -30,7 +30,7 @@ public class Resolver
     private List<List<DigitalSignal>> summatorSignal;
     private double threshold;
     private List<BinaryNumber> outputNumbers = new ArrayList<BinaryNumber>();
-    private Modulator.ModulationType modulationType;
+    private ModulatorController.ModulationType modulationType;
     private boolean useNoiseErrors;
     private boolean forceErrors;
     private List<BinaryNumber> ethalonBinarySequence;
@@ -48,7 +48,7 @@ public class Resolver
      * @param _perBlock indicates using per-block injection
      * @param _ethalonBinarySequence ethalon binary sequence to compare with
      */
-    public Resolver(List<List<DigitalSignal>> _summatorSignal, double _threshold, Modulator.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
+    public Resolver(List<List<DigitalSignal>> _summatorSignal, double _threshold, ModulatorController.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
     {
 	summatorSignal = _summatorSignal;
 	threshold = _threshold;
@@ -85,7 +85,7 @@ public class Resolver
 		preOutputNumbers.add(cbn);
 
 	//recode sequence if it's RPSK
-	if (modulationType == Modulator.ModulationType.RPSK)
+	if (modulationType == ModulatorController.ModulationType.RPSK)
 	{
 	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(preOutputNumbers);
 	    recoder.doDecoding();

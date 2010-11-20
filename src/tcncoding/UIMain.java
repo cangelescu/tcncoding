@@ -37,7 +37,7 @@ public class UIMain extends javax.swing.JFrame
     VideoCreator currentSourceVideoCreator = null;
     ChannelCoderController currentChannelCoder = null;
     VideoCreator currentChannelVideoCreator = null;
-    Modulator currentModulator = null;
+    ModulatorController currentModulator = null;
     Channel currentChannel = null;
     ReferenceGenerator currentReferenceGenerator0 = null, currentReferenceGenerator1 = null;
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
@@ -74,7 +74,7 @@ public class UIMain extends javax.swing.JFrame
     //simulating parameters
     SourceCoderController.SourceCoderCode sourceCode = SourceCoderController.SourceCoderCode.MTK2;
     ChannelCoderController.ChannelCoderCode channelCode = ChannelCoderController.ChannelCoderCode.PARITY_BIT;
-    Modulator.ModulationType modulationType = Modulator.ModulationType.ASK;
+    ModulatorController.ModulationType modulationType = ModulatorController.ModulationType.ASK;
 
     //source coder
     List<BinaryNumber> sourceSymbols = new ArrayList();
@@ -97,7 +97,7 @@ public class UIMain extends javax.swing.JFrame
     List<List<DigitalSignal>> channelVideoSequence = null;
     List<List<DataVizualizatorProvider>> channelVideoSequenceProvider = null;
 
-    //Modulator data
+    //ModulatorController data
     List<List<ModulatorSignal>> modulatorData = null;
     List<List<DataVizualizatorProvider>> modulatorDataProvider = null;
 
@@ -195,19 +195,19 @@ public class UIMain extends javax.swing.JFrame
 	switch (modulationTypeChooser.getSelectedIndex())
 	{
 	    case 0:
-		modulationType = Modulator.ModulationType.ASK;
+		modulationType = ModulatorController.ModulationType.ASK;
 		break;
 	    case 1:
-		modulationType = Modulator.ModulationType.FSK;
+		modulationType = ModulatorController.ModulationType.FSK;
 		//enable bearer frequency deviation options
 		bearerFrequencyDeviation.setEnabled(true);
 		bearerFrequencyDeviationLabel.setEnabled(true);
 		break;
 	    case 2:
-		modulationType = Modulator.ModulationType.PSK;
+		modulationType = ModulatorController.ModulationType.PSK;
 		break;
 	    case 3:
-		modulationType = Modulator.ModulationType.RPSK;
+		modulationType = ModulatorController.ModulationType.RPSK;
 		break;
 	    default:
 		break;
@@ -389,7 +389,7 @@ public class UIMain extends javax.swing.JFrame
     void doModulating()
     {
 	//gets modulator output signals
-	currentModulator = new Modulator(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), (Double)bearerFrequencyDeviation.getValue(), channelSymbols, channelImpulseLength);
+	currentModulator = new ModulatorController(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), (Double)bearerFrequencyDeviation.getValue(), channelSymbols, channelImpulseLength);
 	currentModulator.doModulation();
 	modulatorData = currentModulator.getSignals();
 
