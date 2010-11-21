@@ -99,6 +99,7 @@ public class SourceCoderController
 		SourceCoderMorse coderMorse = new SourceCoderMorse(sourceMessage);
 		coderMorse.doEncoding();
 		sourceSequence = coderMorse.getSequence();
+		isCyr = coderMorse.isCyrillic();
 		break;
 	    case SHANNON:
 		SourceCoderShannonFano coderShannon = new SourceCoderShannonFano(sourceMessage);

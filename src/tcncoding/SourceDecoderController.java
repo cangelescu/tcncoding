@@ -68,7 +68,7 @@ public class SourceDecoderController
 		sourceMessage = decoderKOI8U.getMessage();
 		break;
 	    case MORSE:
-		SourceDecoderMorse decoderMorse = new SourceDecoderMorse(sourceSequence);
+		SourceDecoderMorse decoderMorse = new SourceDecoderMorse(sourceSequence, isCyr);
 		decoderMorse.doDecoding();
 		sourceMessage = decoderMorse.getMessage();
 		break;

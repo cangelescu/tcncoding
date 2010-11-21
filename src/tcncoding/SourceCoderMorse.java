@@ -27,7 +27,10 @@ import java.util.HashMap;
 public class SourceCoderMorse extends SourceCoder
 {
 
-    private HashMap<String, BinaryNumber> codeMapMorse = new HashMap<String, BinaryNumber>();
+    private HashMap<String, BinaryNumber> codeMapCyr = new HashMap<String, BinaryNumber>();
+    private HashMap<String, BinaryNumber> codeMapLat = new HashMap<String, BinaryNumber>();
+    private HashMap<String, BinaryNumber> codeMapNum = new HashMap<String, BinaryNumber>();
+    private boolean isCyr = true;
 
     /**
      * Creates Morse source coder
@@ -37,8 +40,12 @@ public class SourceCoderMorse extends SourceCoder
     {
 	message = _message;
 
-	SourceCoderCodeMapLoader loader = new SourceCoderCodeMapLoader("morse");
-	codeMapMorse = loader.getCodeMap();
+	SourceCoderCodeMapLoader loaderCyr = new SourceCoderCodeMapLoader("morse_cyr");
+	SourceCoderCodeMapLoader loaderLat = new SourceCoderCodeMapLoader("morse_lat");
+	SourceCoderCodeMapLoader loaderNum = new SourceCoderCodeMapLoader("morse_num");
+	codeMapCyr = loaderCyr.getCodeMap();
+	codeMapLat = loaderLat.getCodeMap();
+	codeMapNum = loaderNum.getCodeMap();
     }
 
     /**
@@ -50,13 +57,47 @@ public class SourceCoderMorse extends SourceCoder
 
 	String wMessage = message.toUpperCase();
 
+	//determines character set of the message
+	for (int i = 0; i < wMessage.length(); i++)
+	{
+	    char wChar = wMessage.charAt(0);
+	    BinaryNumber bMorseCyr = codeMapCyr.get(String.valueOf(wChar));
+	    BinaryNumber bMorseLat = codeMapLat.get(String.valueOf(wChar));
+	    if (bMorseCyr != null)
+	    {
+		isCyr = true;
+		break;
+	    } else
+	    if (bMorseLat != null)
+	    {
+		isCyr = false;
+		break;
+	    } else
+		continue;
+	}
+
 	for (int i = 0; i < wMessage.length(); i++)
 	{
 	    char wChar = wMessage.charAt(i);
 
-	    BinaryNumber bMorse = codeMapMorse.get(String.valueOf(wChar));
-	    if (bMorse != null)
-	    	sourceSequence.add(bMorse);
+	    BinaryNumber newSymbol = isCyr ? codeMapCyr.get(String.valueOf(wChar)) : codeMapLat.get(String.valueOf(wChar));
+	    if (newSymbol != null)
+		sourceSequence.add(newSymbol);
+	    else
+	    {
+		newSymbol = codeMapNum.get(String.valueOf(wChar));
+		if (newSymbol != null)
+		    sourceSequence.add(newSymbol);
+	    }
 	}
+    }
+
+    /**
+     * Returns if character set is cyrillic
+     * @return true if source message is formed using cyrillic characters
+     */
+    public boolean isCyrillic()
+    {
+	return isCyr;
     }
 }

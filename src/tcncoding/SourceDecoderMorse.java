@@ -29,17 +29,20 @@ public class SourceDecoderMorse extends SourceDecoder
 {
 
     private HashMap<String, String> codeMapMorse = new HashMap<String, String>();
+    private HashMap<String, String> codeMapMorseNum = new HashMap<String, String>();
 
     /**
      * Creates Morse source decoder
      * @param _sourceSequence
      */
-    public SourceDecoderMorse(List<BinaryNumber> _sourceSequence)
+    public SourceDecoderMorse(List<BinaryNumber> _sourceSequence, boolean _isCyr)
     {
 	sourceSequence = _sourceSequence;
 
-	SourceDecoderCodeMapLoader loader = new SourceDecoderCodeMapLoader("morse");
+	SourceDecoderCodeMapLoader loader = new SourceDecoderCodeMapLoader(_isCyr ? "morse_cyr" : "morse_lat");
+	SourceDecoderCodeMapLoader loaderNum = new SourceDecoderCodeMapLoader("morse_num");
 	codeMapMorse = loader.getCodeMap();
+	codeMapMorseNum = loaderNum.getCodeMap();
     }
 
     /**
@@ -52,7 +55,13 @@ public class SourceDecoderMorse extends SourceDecoder
 	for (BinaryNumber cbn: sourceSequence)
 	{
 	    String currentChar = codeMapMorse.get(cbn.getStringSequence());
-	    sourceMessage += (currentChar != null) ? currentChar : "*";
+	    if (currentChar != null)
+		sourceMessage += currentChar;
+	    else
+	    {
+		currentChar = codeMapMorseNum.get(cbn.getStringSequence());
+		sourceMessage += (currentChar != null) ? currentChar : "*";
+	    }
 	}
     }
 }
