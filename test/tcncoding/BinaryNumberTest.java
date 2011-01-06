@@ -16,7 +16,8 @@
 
 */
 
-import tcncoding.BinaryNumber;
+package tcncoding;
+
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.Test;

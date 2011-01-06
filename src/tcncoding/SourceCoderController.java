@@ -141,7 +141,7 @@ public class SourceCoderController
      * Returns encoded HTML-formatted string sequence
      * @return string representation of HTML-formatted report
      */
-    public String getStringSequence()
+    public String getHTMLStringSequence()
     {
 	String out = "<html>";
 	boolean trigger = false;
@@ -154,6 +154,18 @@ public class SourceCoderController
 	    trigger = !trigger;
 	}
 	out += "</html>";
+	return out;
+    }
+
+    /**
+     * Returns encoded string sequence
+     * @return string representation encoded sequence
+     */
+    public String getStringSequence()
+    {
+	String out = "";
+	for (BinaryNumber bn: sourceSequence)
+	out += bn.getStringSequence();
 	return out;
     }
 

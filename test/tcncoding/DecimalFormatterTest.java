@@ -16,7 +16,8 @@
 
 */
 
-import tcncoding.DecimalFormatter;
+package tcncoding;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 

@@ -309,7 +309,7 @@ public class UIMain extends javax.swing.JFrame
 	sourceSymbols = currentSourceCoder.getSequence();
 	lengthMap = currentSourceCoder.getLengthMap();
 	isCyr = currentSourceCoder.isCyrillic();
-	blockSourceCoderOutput.setText(currentSourceCoder.getStringSequence());
+	blockSourceCoderOutput.setText(currentSourceCoder.getHTMLStringSequence());
     }
 
     //encodes source code with selected Channel code
