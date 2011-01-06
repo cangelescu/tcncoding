@@ -26,7 +26,6 @@ public class MultiplierSignal extends AnalogSignal
 {
     private ChannelSignal channelSignal;
     private ModulatorSignal referenceSignal;
-    private double noise;
 
     /**
      * Creates multiplier signal
@@ -41,7 +40,6 @@ public class MultiplierSignal extends AnalogSignal
         frequency = channelSignal.getFrequency();
         amplitude = channelSignal.getAmplitude() * referenceSignal.getAmplitude();
         phase = channelSignal.getPhase();
-	noise = channelSignal.getNoise();
 	maxValue = Math.abs(_channelSignal.getMaxValue() * _referenceSignal.getMaxValue());
 	minValue = -Math.abs(_channelSignal.getMinValue() * _referenceSignal.getMinValue());
 	xStart = channelSignal.getStart();
@@ -57,14 +55,5 @@ public class MultiplierSignal extends AnalogSignal
     public double function(double _x)
     {
 	return channelSignal.function(_x) * referenceSignal.function(_x);
-    }
-
-    /**
-     * Returns noise level, V
-     * @return real value of noise level
-     */
-    public double getNoise()
-    {
-	return noise;
     }
 }

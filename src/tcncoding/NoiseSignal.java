@@ -18,29 +18,28 @@
 
 package tcncoding;
 
+import java.util.Random;
+
 /**
  * Model of channel signal
  * @author post-factum
  */
-public class ChannelSignal extends AnalogSignal
+public class NoiseSignal extends AnalogSignal
 {
-    private NoiseSignal noiseSignal;
+    private double power;
+    Random noiseGenerator = new Random();
 
     /**
      * Creates channel signal with given parameters
      * @param _modulatorSignal modulator signal on the input of the channel
-     * @param _noise amplitude of noise, V
+     * @param _noise power of noise, W
      */
-    public ChannelSignal(ModulatorSignal _modulatorSignal, NoiseSignal _noiseSignal)
+    public NoiseSignal(double _power)
     {
-        frequency = _modulatorSignal.getFrequency();
-        amplitude = _modulatorSignal.getAmplitude();
-        phase = _modulatorSignal.getPhase();
-	noiseSignal = _noiseSignal;
-	maxValue = amplitude + noiseSignal.getMaxValue();
-	minValue = -(amplitude + noiseSignal.getMaxValue());
-	xStart = _modulatorSignal.getStart();
-	xEnd = _modulatorSignal.getEnd();
+        power = _power;
+        amplitude = Math.sqrt(power);
+	maxValue = Math.PI * amplitude;
+	minValue = -Math.PI * amplitude;
     }
 
     /**
@@ -51,6 +50,6 @@ public class ChannelSignal extends AnalogSignal
     @Override
     public double function(double _x)
     {
-	return amplitude * Math.sin(2 * Math.PI * frequency * _x + phase) + noiseSignal.function(_x);
+	return amplitude * noiseGenerator.nextGaussian();
     }
 }

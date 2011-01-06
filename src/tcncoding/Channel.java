@@ -52,7 +52,7 @@ public class Channel
 	    List<ChannelSignal> newChannelSignalsList = new ArrayList<ChannelSignal>();
 	    for (ModulatorSignal cms: clms)
 	    {
-		ChannelSignal ncfs = new ChannelSignal(cms, noisePower);
+		ChannelSignal ncfs = new ChannelSignal(cms, new NoiseSignal(noisePower));
 		newChannelSignalsList.add(ncfs);
 	    }
 	    outputSignals.add(newChannelSignalsList);
