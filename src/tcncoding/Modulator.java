@@ -27,7 +27,19 @@ import java.util.List;
  */
 public class Modulator {
 
+    /**
+     * input binary sequence
+     */
     protected List<BinaryNumber> inputSequence;
+    /**
+     * bearer amplitude, V
+     */
+    /**
+     * bearer frequency, Hz
+     */
+    /**
+     * length of 1 impulse, s
+     */
     protected double bearerAmplitude, bearerFrequency, impulseLength;
     List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 }

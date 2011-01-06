@@ -27,7 +27,13 @@ import java.util.List;
  */
 public class ChannelCoder {
 
+    /**
+     * input binary sequence
+     */
     protected List<BinaryNumber> inputSequence;
+    /**
+     * encoded binary sequence
+     */
     protected List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     
     /**

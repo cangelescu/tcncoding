@@ -27,7 +27,13 @@ import java.util.List;
  */
 public class SourceDecoder {
 
+    /**
+     * output decoded sequence
+     */
     protected String sourceMessage;
+    /**
+     * input encoded sequence
+     */
     protected List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
 
     /**

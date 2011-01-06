@@ -34,6 +34,7 @@ public class SourceDecoderMorse extends SourceDecoder
     /**
      * Creates Morse source decoder
      * @param _sourceSequence
+     * @param _isCyr indicates whether to use cyrillic table
      */
     public SourceDecoderMorse(List<BinaryNumber> _sourceSequence, boolean _isCyr)
     {

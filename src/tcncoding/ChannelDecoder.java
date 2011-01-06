@@ -27,8 +27,17 @@ import java.util.List;
  */
 public class ChannelDecoder {
 
+    /**
+     * encoded binary sequence
+     */
     protected List<BinaryNumber> inputSequence;
+    /**
+     * decoded binary sequence
+     */
     protected List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    /**
+     * vectors of errors
+     */
     protected List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
 
     /**

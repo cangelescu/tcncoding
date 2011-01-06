@@ -29,7 +29,7 @@ public class ChannelSignal extends AnalogSignal
     /**
      * Creates channel signal with given parameters
      * @param _modulatorSignal modulator signal on the input of the channel
-     * @param _noise amplitude of noise, V
+     * @param _noiseSignal noise signal
      */
     public ChannelSignal(ModulatorSignal _modulatorSignal, NoiseSignal _noiseSignal)
     {
