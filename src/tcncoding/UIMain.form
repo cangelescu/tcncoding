@@ -777,17 +777,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sourceMessagePanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockSourceMessagePanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sourceMessagePanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockSourceMessagePanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="sourceMessagePanel">
+            <Container class="javax.swing.JPanel" name="blockSourceMessagePanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1111,17 +1111,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="modulatorOutputPanel" alignment="1" max="32767" attributes="0"/>
+                  <Component id="blockModulatorOutputPanel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="modulatorOutputPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockModulatorOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="modulatorOutputPanel">
+            <Container class="javax.swing.JPanel" name="blockModulatorOutputPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1135,17 +1135,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modulatorOutputField" alignment="0" pref="967" max="32767" attributes="0"/>
+                      <Component id="blockModulatorOutputField" alignment="0" pref="967" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modulatorOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockModulatorOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="modulatorOutputField">
+                <Container class="javax.swing.JPanel" name="blockModulatorOutputField">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
@@ -1238,17 +1238,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="channelOutputPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockChannelOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="channelOutputPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockChannelOutputPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="channelOutputPanel">
+            <Container class="javax.swing.JPanel" name="blockChannelOutputPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1262,17 +1262,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="channelOutputField" alignment="0" pref="967" max="32767" attributes="0"/>
+                      <Component id="blockChannelOutputField" alignment="0" pref="967" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="channelOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockChannelOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="channelOutputField">
+                <Container class="javax.swing.JPanel" name="blockChannelOutputField">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
@@ -1300,17 +1300,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="referenceGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockReferenceGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="referenceGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockReferenceGeneratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="referenceGeneratorOutputPanel0">
+            <Container class="javax.swing.JPanel" name="blockReferenceGeneratorOutputPanel0">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1324,17 +1324,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="referenceGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockReferenceGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="referenceGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockReferenceGeneratorOutputField0" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="referenceGeneratorOutputField0">
+                <Container class="javax.swing.JPanel" name="blockReferenceGeneratorOutputField0">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1370,17 +1370,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="multiplierOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockMultiplierOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="multiplierOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockMultiplierOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="multiplierOutputPanel0">
+            <Container class="javax.swing.JPanel" name="blockMultiplierOutputPanel0">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1394,17 +1394,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField0" alignment="0" pref="967" max="32767" attributes="0"/>
+                      <Component id="blockMultiplierOutputField0" alignment="0" pref="967" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockMultiplierOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="multiplierOutputField0">
+                <Container class="javax.swing.JPanel" name="blockMultiplierOutputField0">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
@@ -1432,17 +1432,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="referenceGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockReferenceGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="referenceGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockReferenceGeneratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="referenceGeneratorOutputPanel1">
+            <Container class="javax.swing.JPanel" name="blockReferenceGeneratorOutputPanel1">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1456,17 +1456,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="referenceGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockReferenceGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="referenceGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="blockReferenceGeneratorOutputField1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="referenceGeneratorOutputField1">
+                <Container class="javax.swing.JPanel" name="blockReferenceGeneratorOutputField1">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1502,17 +1502,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="multiplierOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockMultiplierOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="multiplierOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockMultiplierOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="multiplierOutputPanel1">
+            <Container class="javax.swing.JPanel" name="blockMultiplierOutputPanel1">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1526,17 +1526,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField1" alignment="0" pref="967" max="32767" attributes="0"/>
+                      <Component id="blockMultiplierOutputField1" alignment="0" pref="967" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockMultiplierOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="multiplierOutputField1">
+                <Container class="javax.swing.JPanel" name="blockMultiplierOutputField1">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
@@ -1564,17 +1564,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="integratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockIntegratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="integratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockIntegratorOutputPanel0" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="integratorOutputPanel0">
+            <Container class="javax.swing.JPanel" name="blockIntegratorOutputPanel0">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1588,17 +1588,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField0" alignment="0" pref="967" max="32767" attributes="0"/>
+                      <Component id="blockIntegratorOutputField0" alignment="0" pref="967" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockIntegratorOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="integratorOutputField0">
+                <Container class="javax.swing.JPanel" name="blockIntegratorOutputField0">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
@@ -1626,17 +1626,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="integratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockIntegratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="integratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockIntegratorOutputPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="integratorOutputPanel1">
+            <Container class="javax.swing.JPanel" name="blockIntegratorOutputPanel1">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1650,17 +1650,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField1" alignment="0" pref="967" max="32767" attributes="0"/>
+                      <Component id="blockIntegratorOutputField1" alignment="0" pref="967" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockIntegratorOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="integratorOutputField1">
+                <Container class="javax.swing.JPanel" name="blockIntegratorOutputField1">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
@@ -2008,17 +2008,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sourceDecoderPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockSourceDecoderPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sourceDecoderPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="blockSourceDecoderPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="sourceDecoderPanel">
+            <Container class="javax.swing.JPanel" name="blockSourceDecoderPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
