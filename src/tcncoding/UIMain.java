@@ -52,7 +52,6 @@ public class UIMain extends javax.swing.JFrame
 
     //UI blocks
     enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, NOISE_GENERATOR, CHANNEL, REFERENCE_GENERATOR0, REFERENCE_GENERATOR1, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
-    Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
     DataVizualizator currentSourceVideoSequenceVizualizator;
@@ -221,7 +220,7 @@ public class UIMain extends javax.swing.JFrame
     }
 
     //acts on block changing
-    void updateChosenBlock()
+    void updateChosenBlock(Blocks _block)
     {
         Color inactiveColor = new Color(240, 240, 240);
         Color activeColor = new Color(200, 200, 200);
@@ -243,7 +242,7 @@ public class UIMain extends javax.swing.JFrame
 	channelDecoderButton.setBackground(inactiveColor);
 	sourceDecoderButton.setBackground(inactiveColor);
 	//highlight selected block
-	switch (selectedBlock)
+	switch (_block)
 	{
 	    case MESSAGE_SOURCE:
 		TCSTabs.setSelectedComponent(blockMessageSource);
@@ -2431,110 +2430,92 @@ public class UIMain extends javax.swing.JFrame
 
     private void messageSourceButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_messageSourceButtonActionPerformed
     {//GEN-HEADEREND:event_messageSourceButtonActionPerformed
-	selectedBlock = Blocks.MESSAGE_SOURCE;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MESSAGE_SOURCE);
     }//GEN-LAST:event_messageSourceButtonActionPerformed
 
     private void sourceCoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sourceCoderButtonActionPerformed
     {//GEN-HEADEREND:event_sourceCoderButtonActionPerformed
-	selectedBlock = Blocks.SOURCE_CODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.SOURCE_CODER);
     }//GEN-LAST:event_sourceCoderButtonActionPerformed
 
     private void channelCoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelCoderButtonActionPerformed
     {//GEN-HEADEREND:event_channelCoderButtonActionPerformed
-	selectedBlock = Blocks.CHANNEL_CODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.CHANNEL_CODER);
     }//GEN-LAST:event_channelCoderButtonActionPerformed
 
     private void modulatorButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modulatorButtonActionPerformed
     {//GEN-HEADEREND:event_modulatorButtonActionPerformed
-	selectedBlock = Blocks.MODULATOR;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MODULATOR);
     }//GEN-LAST:event_modulatorButtonActionPerformed
 
     private void channelButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelButtonActionPerformed
     {//GEN-HEADEREND:event_channelButtonActionPerformed
-	selectedBlock = Blocks.CHANNEL;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.CHANNEL);
     }//GEN-LAST:event_channelButtonActionPerformed
 
     private void blockMessageSourceComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMessageSourceComponentShown
     {//GEN-HEADEREND:event_blockMessageSourceComponentShown
-	selectedBlock = Blocks.MESSAGE_SOURCE;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MESSAGE_SOURCE);
     }//GEN-LAST:event_blockMessageSourceComponentShown
 
     private void blockModulatorComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockModulatorComponentShown
     {//GEN-HEADEREND:event_blockModulatorComponentShown
-	selectedBlock = Blocks.MODULATOR;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MODULATOR);
     }//GEN-LAST:event_blockModulatorComponentShown
 
     private void blockChannelComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelComponentShown
     {//GEN-HEADEREND:event_blockChannelComponentShown
-	selectedBlock = Blocks.CHANNEL;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.CHANNEL);
     }//GEN-LAST:event_blockChannelComponentShown
 
     private void multiplier0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier0ButtonActionPerformed
     {//GEN-HEADEREND:event_multiplier0ButtonActionPerformed
-	selectedBlock = Blocks.MULTIPLIER0;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MULTIPLIER0);
     }//GEN-LAST:event_multiplier0ButtonActionPerformed
 
     private void multiplier1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_multiplier1ButtonActionPerformed
     {//GEN-HEADEREND:event_multiplier1ButtonActionPerformed
-	selectedBlock = Blocks.MULTIPLIER1;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MULTIPLIER1);
     }//GEN-LAST:event_multiplier1ButtonActionPerformed
 
     private void integrator0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrator0ButtonActionPerformed
     {//GEN-HEADEREND:event_integrator0ButtonActionPerformed
-	selectedBlock = Blocks.INTEGRATOR0;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.INTEGRATOR0);
     }//GEN-LAST:event_integrator0ButtonActionPerformed
 
     private void integrator1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_integrator1ButtonActionPerformed
     {//GEN-HEADEREND:event_integrator1ButtonActionPerformed
-	selectedBlock = Blocks.INTEGRATOR1;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.INTEGRATOR1);
     }//GEN-LAST:event_integrator1ButtonActionPerformed
 
     private void summatorButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_summatorButtonActionPerformed
     {//GEN-HEADEREND:event_summatorButtonActionPerformed
-	selectedBlock = Blocks.SUMMATOR;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.SUMMATOR);
     }//GEN-LAST:event_summatorButtonActionPerformed
 
     private void blockMultiplier0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMultiplier0ComponentShown
     {//GEN-HEADEREND:event_blockMultiplier0ComponentShown
-	selectedBlock = Blocks.MULTIPLIER0;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MULTIPLIER0);
     }//GEN-LAST:event_blockMultiplier0ComponentShown
 
     private void blockMultiplier1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockMultiplier1ComponentShown
     {//GEN-HEADEREND:event_blockMultiplier1ComponentShown
-	selectedBlock = Blocks.MULTIPLIER1;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.MULTIPLIER1);
     }//GEN-LAST:event_blockMultiplier1ComponentShown
 
     private void blockIntegrator0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockIntegrator0ComponentShown
     {//GEN-HEADEREND:event_blockIntegrator0ComponentShown
-	selectedBlock = Blocks.INTEGRATOR0;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.INTEGRATOR0);
     }//GEN-LAST:event_blockIntegrator0ComponentShown
 
     private void blockIntegrator1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockIntegrator1ComponentShown
     {//GEN-HEADEREND:event_blockIntegrator1ComponentShown
-	selectedBlock = Blocks.INTEGRATOR1;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.INTEGRATOR1);
     }//GEN-LAST:event_blockIntegrator1ComponentShown
 
     private void blockSummatorComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSummatorComponentShown
     {//GEN-HEADEREND:event_blockSummatorComponentShown
-	selectedBlock = Blocks.SUMMATOR;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.SUMMATOR);
     }//GEN-LAST:event_blockSummatorComponentShown
 
     private void doModellingOptionsItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doModellingOptionsItemActionPerformed
@@ -2545,8 +2526,7 @@ public class UIMain extends javax.swing.JFrame
 
     private void blockSourceDecoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceDecoderComponentShown
     {//GEN-HEADEREND:event_blockSourceDecoderComponentShown
-	selectedBlock = Blocks.SOURCE_DECODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.SOURCE_DECODER);
     }//GEN-LAST:event_blockSourceDecoderComponentShown
 
     private void forceErrorsItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_forceErrorsItemStateChanged
@@ -2582,68 +2562,57 @@ public class UIMain extends javax.swing.JFrame
 
     private void blockSourceCoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockSourceCoderComponentShown
     {//GEN-HEADEREND:event_blockSourceCoderComponentShown
-	selectedBlock = Blocks.SOURCE_CODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.SOURCE_CODER);
     }//GEN-LAST:event_blockSourceCoderComponentShown
 
     private void blockChannelCoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelCoderComponentShown
     {//GEN-HEADEREND:event_blockChannelCoderComponentShown
-	selectedBlock = Blocks.CHANNEL_CODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.CHANNEL_CODER);
     }//GEN-LAST:event_blockChannelCoderComponentShown
 
     private void blockResolverComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockResolverComponentShown
     {//GEN-HEADEREND:event_blockResolverComponentShown
-	selectedBlock = Blocks.RESOLVER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.RESOLVER);
     }//GEN-LAST:event_blockResolverComponentShown
 
     private void blockChannelDecoderComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockChannelDecoderComponentShown
     {//GEN-HEADEREND:event_blockChannelDecoderComponentShown
-	selectedBlock = Blocks.CHANNEL_DECODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.CHANNEL_DECODER);
     }//GEN-LAST:event_blockChannelDecoderComponentShown
 
     private void resolverButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resolverButtonActionPerformed
     {//GEN-HEADEREND:event_resolverButtonActionPerformed
-	selectedBlock = Blocks.RESOLVER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.RESOLVER);
     }//GEN-LAST:event_resolverButtonActionPerformed
 
     private void channelDecoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_channelDecoderButtonActionPerformed
     {//GEN-HEADEREND:event_channelDecoderButtonActionPerformed
-	selectedBlock = Blocks.CHANNEL_DECODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.CHANNEL_DECODER);
     }//GEN-LAST:event_channelDecoderButtonActionPerformed
 
     private void sourceDecoderButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sourceDecoderButtonActionPerformed
     {//GEN-HEADEREND:event_sourceDecoderButtonActionPerformed
-	selectedBlock = Blocks.SOURCE_DECODER;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.SOURCE_DECODER);
     }//GEN-LAST:event_sourceDecoderButtonActionPerformed
 
     private void blockReferenceGenerator0ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockReferenceGenerator0ComponentShown
     {//GEN-HEADEREND:event_blockReferenceGenerator0ComponentShown
-	selectedBlock = Blocks.REFERENCE_GENERATOR0;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.REFERENCE_GENERATOR0);
     }//GEN-LAST:event_blockReferenceGenerator0ComponentShown
 
     private void blockReferenceGenerator1ComponentShown(java.awt.event.ComponentEvent evt)//GEN-FIRST:event_blockReferenceGenerator1ComponentShown
     {//GEN-HEADEREND:event_blockReferenceGenerator1ComponentShown
-	selectedBlock = Blocks.REFERENCE_GENERATOR1;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.REFERENCE_GENERATOR1);
     }//GEN-LAST:event_blockReferenceGenerator1ComponentShown
 
     private void referenceGenerator0ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_referenceGenerator0ButtonActionPerformed
     {//GEN-HEADEREND:event_referenceGenerator0ButtonActionPerformed
-	selectedBlock = Blocks.REFERENCE_GENERATOR0;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.REFERENCE_GENERATOR0);
     }//GEN-LAST:event_referenceGenerator0ButtonActionPerformed
 
     private void referenceGenerator1ButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_referenceGenerator1ButtonActionPerformed
     {//GEN-HEADEREND:event_referenceGenerator1ButtonActionPerformed
-	selectedBlock = Blocks.REFERENCE_GENERATOR1;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.REFERENCE_GENERATOR1);
     }//GEN-LAST:event_referenceGenerator1ButtonActionPerformed
 
     private void showLicenseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_showLicenseActionPerformed
@@ -2668,13 +2637,11 @@ public class UIMain extends javax.swing.JFrame
     }//GEN-LAST:event_showLicenseActionPerformed
 
     private void noiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noiseButtonActionPerformed
-        selectedBlock = Blocks.NOISE_GENERATOR;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.NOISE_GENERATOR);
     }//GEN-LAST:event_noiseButtonActionPerformed
 
     private void blockNoiseGeneratorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_blockNoiseGeneratorComponentShown
-        selectedBlock = Blocks.NOISE_GENERATOR;
-	updateChosenBlock();
+	updateChosenBlock(Blocks.NOISE_GENERATOR);
     }//GEN-LAST:event_blockNoiseGeneratorComponentShown
 
     /**
