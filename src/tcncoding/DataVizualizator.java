@@ -1,6 +1,6 @@
 /*
 
- Copyright (C) 2009-2010 Oleksandr Natalenko aka post-factum
+ Copyright (C) 2009-2011 Oleksandr Natalenko aka post-factum
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the Universal Program License as published by
