@@ -32,6 +32,8 @@ public class NoiseSignal extends AnalogSignal
     /**
      * Creates channel signal with given parameters
      * @param _power power of noise, W
+     * @param _start begin of noise signal, s
+     * @param _end end of noise signal, s
      */
     public NoiseSignal(double _power, double _start, double _end)
     {
