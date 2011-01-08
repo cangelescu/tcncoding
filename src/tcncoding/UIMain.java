@@ -262,6 +262,7 @@ public class UIMain extends javax.swing.JFrame
 		modulatorButton.setBackground(activeColor);
 		break;
             case NOISE_GENERATOR:
+                TCSTabs.setSelectedComponent(blockNoiseGenerator);
                 noiseButton.setBackground(activeColor);
                 break;
 	    case CHANNEL:
@@ -1493,6 +1494,12 @@ public class UIMain extends javax.swing.JFrame
 
         TCSTabs.addTab(bundle.getString("MODULATOR"), blockModulator); // NOI18N
 
+        blockNoiseGenerator.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                blockNoiseGeneratorComponentShown(evt);
+            }
+        });
+
         blockNoiseGeneratorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("NOISE GENERATOR OUTPUT"))); // NOI18N
 
         javax.swing.GroupLayout blockNoiseGeneratorOutputFieldLayout = new javax.swing.GroupLayout(blockNoiseGeneratorOutputField);
@@ -2665,6 +2672,11 @@ public class UIMain extends javax.swing.JFrame
         selectedBlock = Blocks.NOISE_GENERATOR;
 	updateChosenBlock();
     }//GEN-LAST:event_noiseButtonActionPerformed
+
+    private void blockNoiseGeneratorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_blockNoiseGeneratorComponentShown
+        selectedBlock = Blocks.NOISE_GENERATOR;
+	updateChosenBlock();
+    }//GEN-LAST:event_blockNoiseGeneratorComponentShown
 
     /**
      * 
