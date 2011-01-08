@@ -38,6 +38,7 @@ public class UIMain extends javax.swing.JFrame
     ChannelCoderController currentChannelCoder = null;
     VideoCreator currentChannelVideoCreator = null;
     ModulatorController currentModulator = null;
+    NoiseGenerator currentNoiseGenerator = null;
     Channel currentChannel = null;
     ReferenceGenerator currentReferenceGenerator0 = null, currentReferenceGenerator1 = null;
     Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
@@ -100,6 +101,9 @@ public class UIMain extends javax.swing.JFrame
     //ModulatorController data
     List<List<ModulatorSignal>> modulatorData = null;
     List<List<DataVizualizatorProvider>> modulatorDataProvider = null;
+
+    //NoiseGenerator data
+    List<List<NoiseSignal>> noiseSignals = null;
 
     //Channel data
     List<List<ChannelSignal>> channelOutput = null;
@@ -415,11 +419,19 @@ public class UIMain extends javax.swing.JFrame
 	currentModulatorVizualizator.repaint();
     }
 
+    //generates noise
+    void doNoiseCreating()
+    {
+        currentNoiseGenerator = new NoiseGenerator(modulatorData, (Double)noisePower.getValue());
+        currentNoiseGenerator.doGenerating();
+        noiseSignals = currentNoiseGenerator.getSignals();
+    }
+
     //adds noise
     void doChannel()
     {
 	//gets channel output signal
-	currentChannel = new Channel(modulatorData, (Double)noisePower.getValue());
+	currentChannel = new Channel(modulatorData, noiseSignals);
 	currentChannel.doNoising();
 	channelOutput = currentChannel.getSignals();
 
@@ -2287,6 +2299,7 @@ public class UIMain extends javax.swing.JFrame
 	    doChannelCoding();
 	    doChannelCodingVideoSequence();
 	    doModulating();
+            doNoiseCreating();
 	    doChannel();
 	    doGenerating();
 	    doMultiplying();

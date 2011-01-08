@@ -27,19 +27,19 @@ import java.util.List;
  */
 public class Channel
 {
-    private List<List<ModulatorSignal>> inputSignals;
+    private List<List<ModulatorSignal>> inputModulatorSignals;
+    private List<List<NoiseSignal>> inputNoiseSignals;
     private List<List<ChannelSignal>> outputSignals = new ArrayList<List<ChannelSignal>>();
-    private double noisePower;
 
     /**
      * Creates channel with given signals on its input
-     * @param _inputSignals list of input signals
-     * @param _noisePower power of noise, W
+     * @param _inputModulatorSignals list of input signals from modulator
+     * @param _inputNoiseSignals list of input signals from noise generator
      */
-    public Channel(List<List<ModulatorSignal>> _inputSignals, double _noisePower)
+    public Channel(List<List<ModulatorSignal>> _inputModulatorSignals, List<List<NoiseSignal>> _inputNoiseSignals)
     {
-	inputSignals = _inputSignals;
-	noisePower = _noisePower;
+	inputModulatorSignals = _inputModulatorSignals;
+        inputNoiseSignals = _inputNoiseSignals;
     }
 
     /**
@@ -47,16 +47,19 @@ public class Channel
      */
     public void doNoising()
     {
-	for(List<ModulatorSignal> clms: inputSignals)
-	{
-	    List<ChannelSignal> newChannelSignalsList = new ArrayList<ChannelSignal>();
-	    for (ModulatorSignal cms: clms)
-	    {
-		ChannelSignal ncfs = new ChannelSignal(cms, new NoiseSignal(noisePower));
-		newChannelSignalsList.add(ncfs);
-	    }
-	    outputSignals.add(newChannelSignalsList);
-	}
+        for (int k = 0; k < inputModulatorSignals.size(); k++)
+        {
+            List<ModulatorSignal> clms = inputModulatorSignals.get(k);
+            List<NoiseSignal> clns = inputNoiseSignals.get(k);
+            List<ChannelSignal> clchs = new ArrayList<ChannelSignal>();
+            for (int n = 0; n < clms.size(); n++)
+            {
+                ModulatorSignal cms = clms.get(n);
+                NoiseSignal cns = clns.get(n);
+                clchs.add(new ChannelSignal(cms, cns));
+            }
+            outputSignals.add(clchs);
+        }
     }
 
     /**

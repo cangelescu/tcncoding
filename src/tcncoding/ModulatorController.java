@@ -56,7 +56,7 @@ public class ModulatorController
     private List<BinaryNumber> inputSequence;
     private double bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, impulseLength;
 
-    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
+    private List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
 
     /**
      * Creates modulator with given parameters

@@ -33,12 +33,14 @@ public class NoiseSignal extends AnalogSignal
      * Creates channel signal with given parameters
      * @param _power power of noise, W
      */
-    public NoiseSignal(double _power)
+    public NoiseSignal(double _power, double _start, double _end)
     {
         power = _power;
         amplitude = Math.sqrt(power);
 	maxValue = Math.PI * amplitude;
 	minValue = -Math.PI * amplitude;
+        xStart = _start;
+	xEnd = _end;
     }
 
     /**
