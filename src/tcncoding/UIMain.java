@@ -33,42 +33,42 @@ import javax.swing.JFrame;
 public class UIMain extends javax.swing.JFrame
 {
     //UI parts
-    SourceCoderController currentSourceCoder = null;
-    VideoCreator currentSourceVideoCreator = null;
-    ChannelCoderController currentChannelCoder = null;
-    VideoCreator currentChannelVideoCreator = null;
-    ModulatorController currentModulator = null;
-    NoiseGenerator currentNoiseGenerator = null;
-    Channel currentChannel = null;
-    ReferenceGenerator currentReferenceGenerator0 = null, currentReferenceGenerator1 = null;
-    Multiplier currentMultiplier0 = null, currentMultiplier1 = null;
-    Integrator currentIntegrator0 = null, currentIntegrator1 = null;
-    Summator currentSummator = null;
-    Resolver currentResolver = null;
-    VideoCreator currentResolverVideoCreator = null;
-    ChannelDecoderController currentChannelDecoder = null;
-    VideoCreator currentChannelDecoderVideoCreator = null;
-    SourceDecoderController currentSourceDecoder = null;
+    SourceCoderController currentSourceCoder;
+    VideoCreator currentSourceVideoCreator;
+    ChannelCoderController currentChannelCoder;
+    VideoCreator currentChannelVideoCreator;
+    ModulatorController currentModulator;
+    NoiseGenerator currentNoiseGenerator;
+    Channel currentChannel;
+    ReferenceGenerator currentReferenceGenerator0, currentReferenceGenerator1;
+    Multiplier currentMultiplier0, currentMultiplier1;
+    Integrator currentIntegrator0, currentIntegrator1;
+    Summator currentSummator;
+    Resolver currentResolver;
+    VideoCreator currentResolverVideoCreator;
+    ChannelDecoderController currentChannelDecoder;
+    VideoCreator currentChannelDecoderVideoCreator;
+    SourceDecoderController currentSourceDecoder;
 
     //UI blocks
     enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, NOISE_GENERATOR, CHANNEL, REFERENCE_GENERATOR0, REFERENCE_GENERATOR1, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
-    DataVizualizator currentSourceVideoSequenceVizualizator = null;
-    DataVizualizator currentChannelVideoSequenceVizualizator = null;
-    DataVizualizator currentModulatorVizualizator = null;
-    DataVizualizator currentNoiseGeneratorVizualizator = null;
-    DataVizualizator currentChannelVizualizator = null;
-    DataVizualizator currentReferenceGeneratorVizualizator0 = null;
-    DataVizualizator currentReferenceGeneratorVizualizator1 = null;
-    DataVizualizator currentMultiplierVizualizator0 = null;
-    DataVizualizator currentMultiplierVizualizator1 = null;
-    DataVizualizator currentIntegratorVizualizator0 = null;
-    DataVizualizator currentIntegratorVizualizator1 = null;
-    DataVizualizator currentSummatorVizualizator = null;
-    DataVizualizator currentResolverVideoSequenceVizualizator = null;
-    DataVizualizator currentChannelDecoderVideoSequenceVizualizator = null;
+    DataVizualizator currentSourceVideoSequenceVizualizator;
+    DataVizualizator currentChannelVideoSequenceVizualizator;
+    DataVizualizator currentModulatorVizualizator;
+    DataVizualizator currentNoiseGeneratorVizualizator;
+    DataVizualizator currentChannelVizualizator;
+    DataVizualizator currentReferenceGeneratorVizualizator0;
+    DataVizualizator currentReferenceGeneratorVizualizator1;
+    DataVizualizator currentMultiplierVizualizator0;
+    DataVizualizator currentMultiplierVizualizator1;
+    DataVizualizator currentIntegratorVizualizator0;
+    DataVizualizator currentIntegratorVizualizator1;
+    DataVizualizator currentSummatorVizualizator;
+    DataVizualizator currentResolverVideoSequenceVizualizator;
+    DataVizualizator currentChannelDecoderVideoSequenceVizualizator;
 
     //source message
     String message = "";
@@ -79,71 +79,71 @@ public class UIMain extends javax.swing.JFrame
     ModulatorController.ModulationType modulationType = ModulatorController.ModulationType.ASK;
 
     //source coder
-    List<BinaryNumber> sourceSymbols = new ArrayList();
+    List<BinaryNumber> sourceSymbols;
     List<Integer> lengthMap;
     boolean isCyr = true;
 
     //channel coder
-    List<BinaryNumber> channelSymbols = new ArrayList();
+    List<BinaryNumber> channelSymbols;
     int headLength;
     boolean useChannelCoderTrigger = true;
 
     //source videosequence
-    double sourceImpulseLength = 0;
-    List<List<DigitalSignal>> sourceVideoSequence = null;
-    List<DataVizualizatorProvider> sourceVideoSequenceSingleProvider = null;
-    List<List<DataVizualizatorProvider>> sourceVideoSequenceProvider = null;
+    double sourceImpulseLength;
+    List<List<DigitalSignal>> sourceVideoSequence;
+    List<DataVizualizatorProvider> sourceVideoSequenceSingleProvider;
+    List<List<DataVizualizatorProvider>> sourceVideoSequenceProvider;
 
     //channel videosequence
-    double channelImpulseLength = 0;
-    List<List<DigitalSignal>> channelVideoSequence = null;
-    List<List<DataVizualizatorProvider>> channelVideoSequenceProvider = null;
+    double channelImpulseLength;
+    List<List<DigitalSignal>> channelVideoSequence;
+    List<List<DataVizualizatorProvider>> channelVideoSequenceProvider;
 
     //ModulatorController data
-    List<List<ModulatorSignal>> modulatorData = null;
-    List<List<DataVizualizatorProvider>> modulatorDataProvider = null;
+    List<List<ModulatorSignal>> modulatorData;
+    List<List<DataVizualizatorProvider>> modulatorDataProvider;
 
     //NoiseGenerator data
-    List<List<NoiseSignal>> noiseSignals = null;
-    List<List<DataVizualizatorProvider>> noiseGeneratorDataProvider = null;
+    List<List<NoiseSignal>> noiseSignals;
+    List<List<DataVizualizatorProvider>> noiseGeneratorDataProvider;
 
     //Channel data
-    List<List<ChannelSignal>> channelOutput = null;
-    List<List<DataVizualizatorProvider>> channelOutputProvider = null;
+    List<List<ChannelSignal>> channelOutput;
+    List<List<DataVizualizatorProvider>> channelOutputProvider;
     boolean useNoiseErrorsTrigger = true, forceErrorsTrigger = false, injectErrorsPerBlock = true;
 
     //reference generators data
-    List<List<ModulatorSignal>> referenceGenerator0Output = null;
-    List<List<ModulatorSignal>> referenceGenerator1Output = null;
-    List<List<DataVizualizatorProvider>> referenceGenerator0OutputProvider = null;
-    List<List<DataVizualizatorProvider>> referenceGenerator1OutputProvider = null;
+    List<List<ModulatorSignal>> referenceGenerator0Output;
+    List<List<ModulatorSignal>> referenceGenerator1Output;
+    List<List<DataVizualizatorProvider>> referenceGenerator0OutputProvider;
+    List<List<DataVizualizatorProvider>> referenceGenerator1OutputProvider;
 
     //multipliers data
-    List<List<MultiplierSignal>> multiplier0Output = null;
-    List<List<MultiplierSignal>> multiplier1Output = null;
-    List<List<DataVizualizatorProvider>> multiplier0OutputProvider = null;
-    List<List<DataVizualizatorProvider>> multiplier1OutputProvider = null;
+    List<List<MultiplierSignal>> multiplier0Output;
+    List<List<MultiplierSignal>> multiplier1Output;
+    List<List<DataVizualizatorProvider>> multiplier0OutputProvider;
+    List<List<DataVizualizatorProvider>> multiplier1OutputProvider;
 
     //integrators data
     double maxFrequency;
-    List<List<DigitalSignal>> integrator0Output = null;
-    List<List<DigitalSignal>> integrator1Output = null;
-    List<List<DataVizualizatorProvider>> integrator0OutputProvider = null;
-    List<List<DataVizualizatorProvider>> integrator1OutputProvider = null;
+    List<List<DigitalSignal>> integrator0Output;
+    List<List<DigitalSignal>> integrator1Output;
+    List<List<DataVizualizatorProvider>> integrator0OutputProvider;
+    List<List<DataVizualizatorProvider>> integrator1OutputProvider;
 
     //Summator data
-    List<List<DigitalSignal>> summatorOutput = null;
-    List<List<DataVizualizatorProvider>> summatorOutputProvider = null;
+    List<List<DigitalSignal>> summatorOutput;
+    List<List<DataVizualizatorProvider>> summatorOutputProvider;
 
     //Resolver data
-    List<BinaryNumber> resolverOutput = null;
-    List<List<DigitalSignal>> resolverVideoSequence = null;
-    List<List<DataVizualizatorProvider>> resolverVideoSequenceProvider = null;
+    List<BinaryNumber> resolverOutput;
+    List<List<DigitalSignal>> resolverVideoSequence;
+    List<List<DataVizualizatorProvider>> resolverVideoSequenceProvider;
 
     //Channel decoder data
-    List<BinaryNumber> channelDecoderOutput = null;
-    List<List<DigitalSignal>> channelDecoderVideoSequence = null;
-    List<List<DataVizualizatorProvider>> channelDecoderVideoSequenceProvider = null;
+    List<BinaryNumber> channelDecoderOutput;
+    List<List<DigitalSignal>> channelDecoderVideoSequence;
+    List<List<DataVizualizatorProvider>> channelDecoderVideoSequenceProvider;
 
     //acts on choosing code of source
     void updateChosenCodeSource()
@@ -698,10 +698,9 @@ public class UIMain extends javax.swing.JFrame
 	    break;
 	}
 
-	int errorsCount = 0;
-	if (forceErrorsTrigger)
-	    errorsCount = (Integer) forceErrorsCount.getValue();
-	currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
+	int errorsCount = forceErrorsTrigger ? (Integer) forceErrorsCount.getValue() : 0;
+
+        currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
 	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumbers();
 	blockResolverOutput.setText("<html>" + currentResolver.getStringSequence());
