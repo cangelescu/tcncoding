@@ -745,7 +745,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="systemScheme" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TCSTabs" pref="421" max="32767" attributes="0"/>
+              <Component id="TCSTabs" pref="491" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -806,7 +806,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -858,7 +858,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockSourceCoderTabs" alignment="0" pref="343" max="32767" attributes="0"/>
+                  <Component id="blockSourceCoderTabs" alignment="0" pref="413" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -901,7 +901,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" pref="316" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" pref="386" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -947,7 +947,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
+                          <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -987,7 +987,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelCoderTabs" alignment="0" pref="343" max="32767" attributes="0"/>
+                  <Component id="blockChannelCoderTabs" alignment="0" pref="413" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1030,7 +1030,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" alignment="0" pref="316" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" pref="386" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1076,7 +1076,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
+                          <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1140,7 +1140,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modulatorOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="modulatorOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1150,6 +1150,71 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                     <Property name="columns" type="int" value="0"/>
                     <Property name="rows" type="int" value="1"/>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="blockNoiseGenerator">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="&#x417;&#x430;&#x432;&#x430;&#x434;&#x438;">
+                <Property name="tabTitle" type="java.lang.String" value="&#x417;&#x430;&#x432;&#x430;&#x434;&#x438;"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="blockNoiseGeneratorOutputPanel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="blockNoiseGeneratorOutputPanel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="blockNoiseGeneratorOutputPanel">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="&#x412;&#x438;&#x445;&#x456;&#x434; &#x433;&#x435;&#x43d;&#x435;&#x440;&#x430;&#x442;&#x43e;&#x440;&#x430; &#x437;&#x430;&#x432;&#x430;&#x434;">
+                      <ResourceString PropertyName="titleX" bundle="tcncoding/LanguageUkrainian.properties" key="NOISE GENERATOR OUTPUT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="blockNoiseGeneratorOutputField" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="blockNoiseGeneratorOutputField" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="blockNoiseGeneratorOutputField">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="967" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="388" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
                   </Layout>
                 </Container>
               </SubComponents>
@@ -1202,7 +1267,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="channelOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="channelOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1279,7 +1344,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="388" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1334,7 +1399,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField0" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1411,7 +1476,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="388" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1466,7 +1531,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="multiplierOutputField1" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="multiplierOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1528,7 +1593,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField0" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1590,7 +1655,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="integratorOutputField1" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="integratorOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1652,7 +1717,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSummatorOutputField" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="blockSummatorOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1690,7 +1755,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockResolverTabs" alignment="0" pref="343" max="32767" attributes="0"/>
+                  <Component id="blockResolverTabs" alignment="0" pref="413" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1733,7 +1798,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" alignment="0" pref="316" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="386" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1779,7 +1844,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
+                          <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1819,7 +1884,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelDecoderTabs" alignment="0" pref="343" max="32767" attributes="0"/>
+                  <Component id="blockChannelDecoderTabs" alignment="0" pref="413" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1862,7 +1927,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane6" alignment="0" pref="316" max="32767" attributes="0"/>
+                              <Component id="jScrollPane6" alignment="0" pref="386" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1908,7 +1973,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="316" max="32767" attributes="0"/>
+                          <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1972,7 +2037,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane4" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -2414,7 +2479,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="upArrowLabel">
+        <Component class="javax.swing.JLabel" name="upArrowLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/tcncoding/up_arrow.png"/>
@@ -2531,6 +2596,39 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="11" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="upArrowLabel2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/tcncoding/up_arrow.png"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="8" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="noiseButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="NOISEINT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="tcncoding/LanguageUkrainian.properties" key="NOISEINTTOOLTIP" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noiseButtonActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="8" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>

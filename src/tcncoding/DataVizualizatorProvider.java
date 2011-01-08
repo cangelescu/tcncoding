@@ -38,6 +38,10 @@ public class DataVizualizatorProvider
 	 * Signal from modulator
 	 */
 	MODULATOR,
+        /**
+         * Signal from noise generator
+         */
+        NOISE,
 	/**
 	 * Signal from channel
 	 */
@@ -54,6 +58,7 @@ public class DataVizualizatorProvider
     private SignalType signalType;
 
     private List<ModulatorSignal> modulatorSignal = null;
+    private List<NoiseSignal> noiseSignal = null;
     private List<ChannelSignal> channelSignal = null;
     private List<MultiplierSignal> multiplierSignal = null;
     private List<DigitalSignal> digitalSignal = null;
@@ -89,18 +94,32 @@ public class DataVizualizatorProvider
 			minValue = cms.getMinValue();
 		}
 		break;
+            case NOISE:
+		noiseSignal = _data;
+		xStart = noiseSignal.get(0).getStart();
+		xEnd = noiseSignal.get(noiseSignal.size() - 1).getEnd();
+		maxValue = noiseSignal.get(0).getMaxValue();
+		minValue = noiseSignal.get(0).getMinValue();
+		for (NoiseSignal cns: noiseSignal)
+		{
+		    if (cns.getMaxValue() > maxValue)
+			maxValue = cns.getMaxValue();
+		    if (cns.getMinValue() < minValue)
+			minValue = cns.getMinValue();
+		}
+		break;
 	    case CHANNEL:
 		channelSignal = _data;
 		xStart = channelSignal.get(0).getStart();
 		xEnd = channelSignal.get(channelSignal.size() - 1).getEnd();
 		maxValue = channelSignal.get(0).getMaxValue();
 		minValue = channelSignal.get(0).getMinValue();
-		for (ChannelSignal cms: channelSignal)
+		for (ChannelSignal cchs: channelSignal)
 		{
-		    if (cms.getMaxValue() > maxValue)
-			maxValue = cms.getMaxValue();
-		    if (cms.getMinValue() < minValue)
-			minValue = cms.getMinValue();
+		    if (cchs.getMaxValue() > maxValue)
+			maxValue = cchs.getMaxValue();
+		    if (cchs.getMinValue() < minValue)
+			minValue = cchs.getMinValue();
 		}
 		break;
 	    case MULTIPLIER:
@@ -161,10 +180,15 @@ public class DataVizualizatorProvider
 		    if (_x >= cms.getStart() && _x <= cms.getEnd())
 			out = cms.function(_x);
 		break;
+            case NOISE:
+		for (NoiseSignal cns: noiseSignal)
+		    if (_x >= cns.getStart() && _x <= cns.getEnd())
+			out = cns.function(_x);
+		break;
 	    case CHANNEL:
-		for (ChannelSignal cms: channelSignal)
-		    if (_x >= cms.getStart() && _x <= cms.getEnd())
-			out = cms.function(_x);
+		for (ChannelSignal cchs: channelSignal)
+		    if (_x >= cchs.getStart() && _x <= cchs.getEnd())
+			out = cchs.function(_x);
 		break;
 	    case MULTIPLIER:
 		for (MultiplierSignal cms: multiplierSignal)
@@ -172,9 +196,9 @@ public class DataVizualizatorProvider
 			out = cms.function(_x);
 		break;
 	    case TABULATED:
-		for (DigitalSignal cms: digitalSignal)
-		    if (_x >= cms.getStart() && _x <= cms.getEnd())
-			out = cms.function(_x);
+		for (DigitalSignal cds: digitalSignal)
+		    if (_x >= cds.getStart() && _x <= cds.getEnd())
+			out = cds.function(_x);
 		break;
 	    default:
 		break;

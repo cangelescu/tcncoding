@@ -51,13 +51,14 @@ public class UIMain extends javax.swing.JFrame
     SourceDecoderController currentSourceDecoder = null;
 
     //UI blocks
-    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, CHANNEL, REFERENCE_GENERATOR0, REFERENCE_GENERATOR1, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
+    enum Blocks {MESSAGE_SOURCE, SOURCE_CODER, CHANNEL_CODER, MODULATOR, NOISE_GENERATOR, CHANNEL, REFERENCE_GENERATOR0, REFERENCE_GENERATOR1, MULTIPLIER0, MULTIPLIER1, INTEGRATOR0, INTEGRATOR1, SUMMATOR, RESOLVER, SOURCE_DECODER, CHANNEL_DECODER;};
     Blocks selectedBlock = Blocks.MESSAGE_SOURCE;
 
     //UI vizualization tools
     DataVizualizator currentSourceVideoSequenceVizualizator = null;
     DataVizualizator currentChannelVideoSequenceVizualizator = null;
     DataVizualizator currentModulatorVizualizator = null;
+    DataVizualizator currentNoiseGeneratorVizualizator = null;
     DataVizualizator currentChannelVizualizator = null;
     DataVizualizator currentReferenceGeneratorVizualizator0 = null;
     DataVizualizator currentReferenceGeneratorVizualizator1 = null;
@@ -104,6 +105,7 @@ public class UIMain extends javax.swing.JFrame
 
     //NoiseGenerator data
     List<List<NoiseSignal>> noiseSignals = null;
+    List<List<DataVizualizatorProvider>> noiseGeneratorDataProvider = null;
 
     //Channel data
     List<List<ChannelSignal>> channelOutput = null;
@@ -221,84 +223,90 @@ public class UIMain extends javax.swing.JFrame
     //acts on block changing
     void updateChosenBlock()
     {
+        Color inactiveColor = new Color(240, 240, 240);
+        Color activeColor = new Color(200, 200, 200);
 	//make all buttons unselected
-	messageSourceButton.setBackground(new Color(240, 240, 240));
-	sourceCoderButton.setBackground(new Color(240, 240, 240));
-	channelCoderButton.setBackground(new Color(240, 240, 240));
-	modulatorButton.setBackground(new Color(240, 240, 240));
-	channelButton.setBackground(new Color(240, 240, 240));
-	referenceGenerator0Button.setBackground(new Color(240, 240, 240));
-	referenceGenerator1Button.setBackground(new Color(240, 240, 240));
-	multiplier0Button.setBackground(new Color(240, 240, 240));
-	multiplier1Button.setBackground(new Color(240, 240, 240));
-	integrator0Button.setBackground(new Color(240, 240, 240));
-	integrator1Button.setBackground(new Color(240, 240, 240));
-	summatorButton.setBackground(new Color(240, 240, 240));
-	resolverButton.setBackground(new Color(240, 240, 240));
-	channelDecoderButton.setBackground(new Color(240, 240, 240));
-	sourceDecoderButton.setBackground(new Color(240, 240, 240));
+	messageSourceButton.setBackground(inactiveColor);
+	sourceCoderButton.setBackground(inactiveColor);
+	channelCoderButton.setBackground(inactiveColor);
+	modulatorButton.setBackground(inactiveColor);
+        noiseButton.setBackground(inactiveColor);
+	channelButton.setBackground(inactiveColor);
+	referenceGenerator0Button.setBackground(inactiveColor);
+	referenceGenerator1Button.setBackground(inactiveColor);
+	multiplier0Button.setBackground(inactiveColor);
+	multiplier1Button.setBackground(inactiveColor);
+	integrator0Button.setBackground(inactiveColor);
+	integrator1Button.setBackground(inactiveColor);
+	summatorButton.setBackground(inactiveColor);
+	resolverButton.setBackground(inactiveColor);
+	channelDecoderButton.setBackground(inactiveColor);
+	sourceDecoderButton.setBackground(inactiveColor);
 	//highlight selected block
 	switch (selectedBlock)
 	{
 	    case MESSAGE_SOURCE:
 		TCSTabs.setSelectedComponent(blockMessageSource);
-		messageSourceButton.setBackground(new Color(200, 200, 200));
+		messageSourceButton.setBackground(activeColor);
 		break;
 	    case SOURCE_CODER:
 		TCSTabs.setSelectedComponent(blockSourceCoder);
-		sourceCoderButton.setBackground(new Color(200, 200, 200));
+		sourceCoderButton.setBackground(activeColor);
 		break;
 	    case CHANNEL_CODER:
 		TCSTabs.setSelectedComponent(blockChannelCoder);
-		channelCoderButton.setBackground(new Color(200, 200, 200));
+		channelCoderButton.setBackground(activeColor);
 		break;
 	    case MODULATOR:
 		TCSTabs.setSelectedComponent(blockModulator);
-		modulatorButton.setBackground(new Color(200, 200, 200));
+		modulatorButton.setBackground(activeColor);
 		break;
+            case NOISE_GENERATOR:
+                noiseButton.setBackground(activeColor);
+                break;
 	    case CHANNEL:
 		TCSTabs.setSelectedComponent(blockChannel);
-		channelButton.setBackground(new Color(200, 200, 200));
+		channelButton.setBackground(activeColor);
 		break;
 	    case REFERENCE_GENERATOR0:
 		TCSTabs.setSelectedComponent(blockReferenceGenerator0);
-		referenceGenerator0Button.setBackground(new Color(200, 200, 200));
+		referenceGenerator0Button.setBackground(activeColor);
 		break;
 	    case REFERENCE_GENERATOR1:
 		TCSTabs.setSelectedComponent(blockReferenceGenerator1);
-		referenceGenerator1Button.setBackground(new Color(200, 200, 200));
+		referenceGenerator1Button.setBackground(activeColor);
 		break;
 	    case MULTIPLIER0:
 		TCSTabs.setSelectedComponent(blockMultiplier0);
-		multiplier0Button.setBackground(new Color(200, 200, 200));
+		multiplier0Button.setBackground(activeColor);
 		break;
 	    case MULTIPLIER1:
 		TCSTabs.setSelectedComponent(blockMultiplier1);
-		multiplier1Button.setBackground(new Color(200, 200, 200));
+		multiplier1Button.setBackground(activeColor);
 		break;
 	    case INTEGRATOR0:
 		TCSTabs.setSelectedComponent(blockIntegrator0);
-		integrator0Button.setBackground(new Color(200, 200, 200));
+		integrator0Button.setBackground(activeColor);
 		break;
 	    case INTEGRATOR1:
 		TCSTabs.setSelectedComponent(blockIntegrator1);
-		integrator1Button.setBackground(new Color(200, 200, 200));
+		integrator1Button.setBackground(activeColor);
 		break;
 	    case SUMMATOR:
 		TCSTabs.setSelectedComponent(blockSummator);
-		summatorButton.setBackground(new Color(200, 200, 200));
+		summatorButton.setBackground(activeColor);
 		break;
 	    case RESOLVER:
 		TCSTabs.setSelectedComponent(blockResolver);
-		resolverButton.setBackground(new Color(200, 200, 200));
+		resolverButton.setBackground(activeColor);
 		break;
 	    case CHANNEL_DECODER:
 		TCSTabs.setSelectedComponent(blockChannelDecoder);
-		channelDecoderButton.setBackground(new Color(200, 200, 200));
+		channelDecoderButton.setBackground(activeColor);
 		break;
 	    case SOURCE_DECODER:
 		TCSTabs.setSelectedComponent(blockSourceDecoder);
-		sourceDecoderButton.setBackground(new Color(200, 200, 200));
+		sourceDecoderButton.setBackground(activeColor);
 		break;
 	    default:
 		break;
@@ -422,9 +430,32 @@ public class UIMain extends javax.swing.JFrame
     //generates noise
     void doNoiseCreating()
     {
+        //gets noise generator data
         currentNoiseGenerator = new NoiseGenerator(modulatorData, (Double)noisePower.getValue());
         currentNoiseGenerator.doGenerating();
         noiseSignals = currentNoiseGenerator.getSignals();
+
+        //removes old vizualizator if exists
+	if (currentNoiseGeneratorVizualizator != null)
+	{
+	    blockNoiseGeneratorOutputField.remove(currentNoiseGeneratorVizualizator);
+	    currentNoiseGeneratorVizualizator = null;
+	}
+	//creates new vizualizator data provider
+	noiseGeneratorDataProvider = new ArrayList<List<DataVizualizatorProvider>>();
+	noiseGeneratorDataProvider.add((new NoiseGeneratorVizualizatorConverter(noiseSignals, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("NOISE GENERATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	//gets chart width and height
+	int cx = blockNoiseGeneratorOutputField.getWidth();
+	int cy = blockNoiseGeneratorOutputField.getHeight();
+	//creates new vizualizator
+	currentNoiseGeneratorVizualizator = new DataVizualizator(noiseGeneratorDataProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("Sn(T), V"));
+
+	//shows chart
+	currentNoiseGeneratorVizualizator.setVisible(true);
+	blockNoiseGeneratorOutputField.add(currentNoiseGeneratorVizualizator);
+
+	//repaints chart to show it if noise generator block is active
+	currentNoiseGeneratorVizualizator.repaint();
     }
 
     //adds noise
@@ -454,7 +485,7 @@ public class UIMain extends javax.swing.JFrame
 	currentChannelVizualizator.setVisible(true);
 	channelOutputField.add(currentChannelVizualizator);
 
-	//repaints chart to show it if MODULATOR block is active
+	//repaints chart to show it if channel block is active
 	currentChannelVizualizator.repaint();
     }
 
@@ -823,6 +854,9 @@ public class UIMain extends javax.swing.JFrame
         blockModulator = new javax.swing.JPanel();
         modulatorOutputPanel = new javax.swing.JPanel();
         modulatorOutputField = new javax.swing.JPanel();
+        blockNoiseGenerator = new javax.swing.JPanel();
+        blockNoiseGeneratorOutputPanel = new javax.swing.JPanel();
+        blockNoiseGeneratorOutputField = new javax.swing.JPanel();
         blockChannel = new javax.swing.JPanel();
         channelOutputPanel = new javax.swing.JPanel();
         channelOutputField = new javax.swing.JPanel();
@@ -893,13 +927,15 @@ public class UIMain extends javax.swing.JFrame
         rightArrowLabel7 = new javax.swing.JLabel();
         rightArrowLabel8 = new javax.swing.JLabel();
         rightArrowLabel9 = new javax.swing.JLabel();
-        upArrowLabel = new javax.swing.JLabel();
+        upArrowLabel1 = new javax.swing.JLabel();
         channelDecoderButton = new javax.swing.JButton();
         sourceDecoderButton = new javax.swing.JButton();
         referenceGenerator0Button = new javax.swing.JButton();
         referenceGenerator1Button = new javax.swing.JButton();
         downArrowLabel = new javax.swing.JLabel();
         rightArrowLabel12 = new javax.swing.JLabel();
+        upArrowLabel2 = new javax.swing.JLabel();
+        noiseButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -1257,7 +1293,7 @@ public class UIMain extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM")); // NOI18N
 
-        TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16));
+        TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
 
         blockMessageSource.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1281,7 +1317,7 @@ public class UIMain extends javax.swing.JFrame
         );
         sourceMessagePanelLayout.setVerticalGroup(
             sourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -1316,7 +1352,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockSourceCoderBinarySequence);
@@ -1342,7 +1378,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderVideoSequenceLayout.setVerticalGroup(
             blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         blockSourceCoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockSourceCoderVideoSequence); // NOI18N
@@ -1355,7 +1391,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSourceCoderLayout.setVerticalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("SOURCE CODER"), blockSourceCoder); // NOI18N
@@ -1379,7 +1415,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelCoderBinarySequence);
@@ -1405,7 +1441,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderVideoSequenceLayout.setVerticalGroup(
             blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         blockChannelCoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockChannelCoderVideoSequence); // NOI18N
@@ -1418,7 +1454,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelCoderLayout.setVerticalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("CHANNEL CODER"), blockChannelCoder); // NOI18N
@@ -1441,7 +1477,7 @@ public class UIMain extends javax.swing.JFrame
         );
         modulatorOutputPanelLayout.setVerticalGroup(
             modulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(modulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -1456,6 +1492,43 @@ public class UIMain extends javax.swing.JFrame
         );
 
         TCSTabs.addTab(bundle.getString("MODULATOR"), blockModulator); // NOI18N
+
+        blockNoiseGeneratorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("NOISE GENERATOR OUTPUT"))); // NOI18N
+
+        javax.swing.GroupLayout blockNoiseGeneratorOutputFieldLayout = new javax.swing.GroupLayout(blockNoiseGeneratorOutputField);
+        blockNoiseGeneratorOutputField.setLayout(blockNoiseGeneratorOutputFieldLayout);
+        blockNoiseGeneratorOutputFieldLayout.setHorizontalGroup(
+            blockNoiseGeneratorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 967, Short.MAX_VALUE)
+        );
+        blockNoiseGeneratorOutputFieldLayout.setVerticalGroup(
+            blockNoiseGeneratorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 388, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockNoiseGeneratorOutputPanelLayout = new javax.swing.GroupLayout(blockNoiseGeneratorOutputPanel);
+        blockNoiseGeneratorOutputPanel.setLayout(blockNoiseGeneratorOutputPanelLayout);
+        blockNoiseGeneratorOutputPanelLayout.setHorizontalGroup(
+            blockNoiseGeneratorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockNoiseGeneratorOutputPanelLayout.setVerticalGroup(
+            blockNoiseGeneratorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout blockNoiseGeneratorLayout = new javax.swing.GroupLayout(blockNoiseGenerator);
+        blockNoiseGenerator.setLayout(blockNoiseGeneratorLayout);
+        blockNoiseGeneratorLayout.setHorizontalGroup(
+            blockNoiseGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockNoiseGeneratorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        blockNoiseGeneratorLayout.setVerticalGroup(
+            blockNoiseGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(blockNoiseGeneratorOutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        TCSTabs.addTab("Завади", blockNoiseGenerator);
 
         blockChannel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1475,7 +1548,7 @@ public class UIMain extends javax.swing.JFrame
         );
         channelOutputPanelLayout.setVerticalGroup(
             channelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(channelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelLayout = new javax.swing.GroupLayout(blockChannel);
@@ -1507,7 +1580,7 @@ public class UIMain extends javax.swing.JFrame
         );
         referenceGeneratorOutputField0Layout.setVerticalGroup(
             referenceGeneratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 318, Short.MAX_VALUE)
+            .addGap(0, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout referenceGeneratorOutputPanel0Layout = new javax.swing.GroupLayout(referenceGeneratorOutputPanel0);
@@ -1552,7 +1625,7 @@ public class UIMain extends javax.swing.JFrame
         );
         multiplierOutputPanel0Layout.setVerticalGroup(
             multiplierOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier0Layout = new javax.swing.GroupLayout(blockMultiplier0);
@@ -1584,7 +1657,7 @@ public class UIMain extends javax.swing.JFrame
         );
         referenceGeneratorOutputField1Layout.setVerticalGroup(
             referenceGeneratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 318, Short.MAX_VALUE)
+            .addGap(0, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout referenceGeneratorOutputPanel1Layout = new javax.swing.GroupLayout(referenceGeneratorOutputPanel1);
@@ -1629,7 +1702,7 @@ public class UIMain extends javax.swing.JFrame
         );
         multiplierOutputPanel1Layout.setVerticalGroup(
             multiplierOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(multiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier1Layout = new javax.swing.GroupLayout(blockMultiplier1);
@@ -1663,7 +1736,7 @@ public class UIMain extends javax.swing.JFrame
         );
         integratorOutputPanel0Layout.setVerticalGroup(
             integratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(integratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator0Layout = new javax.swing.GroupLayout(blockIntegrator0);
@@ -1697,7 +1770,7 @@ public class UIMain extends javax.swing.JFrame
         );
         integratorOutputPanel1Layout.setVerticalGroup(
             integratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(integratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator1Layout = new javax.swing.GroupLayout(blockIntegrator1);
@@ -1731,7 +1804,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockSummatorOutputPanelLayout.setVerticalGroup(
             blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSummatorLayout = new javax.swing.GroupLayout(blockSummator);
@@ -1766,7 +1839,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverOutputPanelLayout.setVerticalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockResolverBinarySequenceLayout = new javax.swing.GroupLayout(blockResolverBinarySequence);
@@ -1792,7 +1865,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverVideoSequenceLayout.setVerticalGroup(
             blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         blockResolverTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockResolverVideoSequence); // NOI18N
@@ -1805,7 +1878,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockResolverLayout.setVerticalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("RESOLVER"), blockResolver); // NOI18N
@@ -1829,7 +1902,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderOutputPanelLayout.setVerticalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelDecoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelDecoderBinarySequence);
@@ -1855,7 +1928,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderVideoSequenceLayout.setVerticalGroup(
             blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         blockChannelDecoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockChannelDecoderVideoSequence); // NOI18N
@@ -1868,7 +1941,7 @@ public class UIMain extends javax.swing.JFrame
         );
         blockChannelDecoderLayout.setVerticalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("CHANNEL DECODER"), blockChannelDecoder); // NOI18N
@@ -1895,7 +1968,7 @@ public class UIMain extends javax.swing.JFrame
         );
         sourceDecoderPanelLayout.setVerticalGroup(
             sourceDecoderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceDecoderLayout = new javax.swing.GroupLayout(blockSourceDecoder);
@@ -2141,11 +2214,11 @@ public class UIMain extends javax.swing.JFrame
         gridBagConstraints.gridy = 3;
         systemScheme.add(rightArrowLabel9, gridBagConstraints);
 
-        upArrowLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tcncoding/up_arrow.png"))); // NOI18N
+        upArrowLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tcncoding/up_arrow.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 5;
-        systemScheme.add(upArrowLabel, gridBagConstraints);
+        systemScheme.add(upArrowLabel1, gridBagConstraints);
 
         channelDecoderButton.setBackground(new java.awt.Color(240, 240, 240));
         channelDecoderButton.setText(bundle.getString("CHD")); // NOI18N
@@ -2211,6 +2284,25 @@ public class UIMain extends javax.swing.JFrame
         gridBagConstraints.gridy = 2;
         systemScheme.add(rightArrowLabel12, gridBagConstraints);
 
+        upArrowLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tcncoding/up_arrow.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 4;
+        systemScheme.add(upArrowLabel2, gridBagConstraints);
+
+        noiseButton.setBackground(new java.awt.Color(240, 240, 240));
+        noiseButton.setText(bundle.getString("NOISEINT")); // NOI18N
+        noiseButton.setToolTipText(bundle.getString("NOISEINTTOOLTIP")); // NOI18N
+        noiseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noiseButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 5;
+        systemScheme.add(noiseButton, gridBagConstraints);
+
         fileMenu.setText(bundle.getString("FILE")); // NOI18N
 
         exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
@@ -2272,7 +2364,7 @@ public class UIMain extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
         );
 
         pack();
@@ -2569,6 +2661,11 @@ public class UIMain extends javax.swing.JFrame
 	licenseDialog.setVisible(true);
     }//GEN-LAST:event_showLicenseActionPerformed
 
+    private void noiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noiseButtonActionPerformed
+        selectedBlock = Blocks.NOISE_GENERATOR;
+	updateChosenBlock();
+    }//GEN-LAST:event_noiseButtonActionPerformed
+
     /**
      * 
      * @param args
@@ -2617,6 +2714,9 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel blockModulator;
     private javax.swing.JPanel blockMultiplier0;
     private javax.swing.JPanel blockMultiplier1;
+    private javax.swing.JPanel blockNoiseGenerator;
+    private javax.swing.JPanel blockNoiseGeneratorOutputField;
+    private javax.swing.JPanel blockNoiseGeneratorOutputPanel;
     private javax.swing.JPanel blockReferenceGenerator0;
     private javax.swing.JPanel blockReferenceGenerator1;
     private javax.swing.JPanel blockResolver;
@@ -2699,6 +2799,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JPanel multiplierOutputField1;
     private javax.swing.JPanel multiplierOutputPanel0;
     private javax.swing.JPanel multiplierOutputPanel1;
+    private javax.swing.JButton noiseButton;
     private javax.swing.JSpinner noisePower;
     private javax.swing.JLabel noisePowerLabel;
     private javax.swing.JLabel noisePowerWattLabel;
@@ -2733,7 +2834,8 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JButton summatorButton;
     private javax.swing.JPanel systemScheme;
     private javax.swing.JLabel ulArrowLabel;
-    private javax.swing.JLabel upArrowLabel;
+    private javax.swing.JLabel upArrowLabel1;
+    private javax.swing.JLabel upArrowLabel2;
     private javax.swing.JLabel urArrowLabel;
     private javax.swing.JCheckBox useChannelCoder;
     private javax.swing.JCheckBox useNoiseErrors;
