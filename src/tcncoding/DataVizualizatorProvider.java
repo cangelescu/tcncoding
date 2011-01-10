@@ -57,11 +57,11 @@ public class DataVizualizatorProvider
     };
     private SignalType signalType;
 
-    private List<ModulatorSignal> modulatorSignal = null;
-    private List<NoiseSignal> noiseSignal = null;
-    private List<ChannelSignal> channelSignal = null;
-    private List<MultiplierSignal> multiplierSignal = null;
-    private List<DigitalSignal> digitalSignal = null;
+    private List<ModulatorSignal> modulatorSignal;
+    private List<NoiseSignal> noiseSignal;
+    private List<ChannelSignal> channelSignal;
+    private List<MultiplierSignal> multiplierSignal;
+    private List<DigitalSignal> digitalSignal;
 
     private double xStart, xEnd, maxValue, minValue, delta = 0;
     private int digitalBlockSize = 0;
