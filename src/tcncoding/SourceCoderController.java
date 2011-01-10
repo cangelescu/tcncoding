@@ -56,8 +56,8 @@ public class SourceCoderController
 	SHANNON;
     };
 
-    private SourceCoderCode usingCode = null;
-    private String sourceMessage = null;
+    private SourceCoderCode usingCode;
+    private String sourceMessage;
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap = new ArrayList<Integer>();
     private boolean isCyr = true;

@@ -28,8 +28,8 @@ import java.util.List;
 public class ChannelDecoderController
 {
 
-    private List<BinaryNumber> inputSequence = null;
-    private ChannelCoderController.ChannelCoderCode usingCode = null;
+    private List<BinaryNumber> inputSequence;
+    private ChannelCoderController.ChannelCoderCode usingCode;
     private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     private String report;
     private int headLength;
