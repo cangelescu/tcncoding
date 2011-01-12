@@ -66,17 +66,22 @@ public class Integrator
 	    for (MultiplierSignal cms: clms)
 	    {
 		List<Sample> newSymbol = new ArrayList<Sample>();
-		double sum = 0;
-		double sp = cms.getStart();
-		while (sp <= cms.getEnd())
-		{
-		    //integrate using method of rectangles
-		    double area = (cms.function(sp) + cms.function(sp + step)) * step / 2;
-		    newSymbol.add(new Sample(sp, sum));
-		    sum += area;
-		    sp += step;
-		}
-		DigitalSignal newDigitalSignal = new DigitalSignal(newSymbol);
+
+                //integrating using Simpson's rule
+                double currentPoint = cms.getStart();
+                double endPoint = cms.getEnd();
+                double sum = 0;
+                while (currentPoint <= endPoint)
+                {
+                    double leftBorder = currentPoint;
+                    double rightBorder = leftBorder + step;
+                    double area = ((rightBorder - leftBorder) / 6) * (cms.function(leftBorder) + 4 * cms.function((leftBorder + rightBorder) / 2) + cms.function(rightBorder));
+                    newSymbol.add(new Sample(currentPoint, sum));
+                    sum += area;
+                    currentPoint += step;
+                }
+
+                DigitalSignal newDigitalSignal = new DigitalSignal(newSymbol);
 		newBlock.add(newDigitalSignal);
 	    }
 	    out.add(newBlock);
