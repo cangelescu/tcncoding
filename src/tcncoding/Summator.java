@@ -20,6 +20,9 @@ package tcncoding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Model of summing device
@@ -48,26 +51,24 @@ public class Summator
     public void doSumming()
     {
 	sumResult.clear();
-	for (int i = 0; i < sequence0.size(); i++)
-	{
-	    List<DigitalSignal> currentBlock0 = sequence0.get(i);
-	    List<DigitalSignal> currentBlock1 = sequence1.get(i);
-	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
-	    for (int j = 0; j < currentBlock0.size(); j++)
-	    {
-		DigitalSignal currentSymbol0 = currentBlock0.get(j);
-		DigitalSignal currentSymbol1 = currentBlock1.get(j);
-		List<Sample> newSymbol = new ArrayList<Sample>();
-		for (int k = 0; k < currentSymbol0.getSamplesCount(); k++)
-		{
-		    Sample currentSample0 = currentSymbol0.getSample(k);
-		    Sample currentSample1 = currentSymbol1.getSample(k);
-		    newSymbol.add(new Sample(currentSample1.getX(), currentSample1.getY() - currentSample0.getY()));
-		}
-		newBlock.add(new DigitalSignal(newSymbol));
-	    }
-	    sumResult.add(newBlock);
-	}
+
+        //creates workers stack
+        List<Future<List<DigitalSignal>>> workersStack = new ArrayList<Future<List<DigitalSignal>>>();
+        ExecutorService es = Executors.newFixedThreadPool(sequence0.size());
+        for (int i = 0; i < sequence0.size(); i++)
+            workersStack.add(es.submit(new SummatorWorker(sequence0.get(i), sequence1.get(i))));
+
+
+        //retrieves results
+	for (Future<List<DigitalSignal>> cflds: workersStack)
+        {
+            try {
+                sumResult.add(cflds.get());
+            } catch (Exception ex) {
+                System.err.println(ex.getLocalizedMessage());
+            }
+        }
+        es.shutdown();
     }
 
     /**
