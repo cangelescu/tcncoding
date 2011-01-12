@@ -736,8 +736,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="TCSTabs" alignment="0" pref="982" max="32767" attributes="0"/>
           <Component id="systemScheme" alignment="0" pref="982" max="32767" attributes="0"/>
+          <Component id="TCSTabs" alignment="0" pref="982" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -745,7 +745,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="systemScheme" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TCSTabs" pref="491" max="32767" attributes="0"/>
+              <Component id="TCSTabs" pref="459" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -806,7 +806,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -858,7 +858,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockSourceCoderTabs" alignment="0" pref="413" max="32767" attributes="0"/>
+                  <Component id="blockSourceCoderTabs" alignment="0" pref="381" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -901,7 +901,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" pref="386" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" pref="354" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -947,7 +947,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
+                          <Component id="blockSourceVideoSequenceOutputField" alignment="0" pref="354" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -987,7 +987,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelCoderTabs" alignment="0" pref="413" max="32767" attributes="0"/>
+                  <Component id="blockChannelCoderTabs" alignment="0" pref="381" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1030,7 +1030,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" alignment="0" pref="386" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" pref="354" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1076,7 +1076,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
+                          <Component id="blockChannelVideoSequenceOutputField" alignment="0" pref="354" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1140,7 +1140,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockModulatorOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockModulatorOutputField" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1215,7 +1215,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="388" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="356" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1270,7 +1270,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockChannelOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockChannelOutputField" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1347,7 +1347,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="388" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="356" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1402,7 +1402,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockMultiplierOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockMultiplierOutputField0" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1479,7 +1479,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="388" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="356" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1534,7 +1534,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockMultiplierOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockMultiplierOutputField1" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1596,7 +1596,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockIntegratorOutputField0" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockIntegratorOutputField0" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1658,7 +1658,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockIntegratorOutputField1" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockIntegratorOutputField1" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1720,7 +1720,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="blockSummatorOutputField" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="blockSummatorOutputField" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1758,7 +1758,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockResolverTabs" alignment="0" pref="413" max="32767" attributes="0"/>
+                  <Component id="blockResolverTabs" alignment="0" pref="381" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1801,7 +1801,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" alignment="0" pref="386" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="354" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1847,7 +1847,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
+                          <Component id="blockResolverVideoSequenceOutputField" alignment="0" pref="354" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1887,7 +1887,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="blockChannelDecoderTabs" alignment="0" pref="413" max="32767" attributes="0"/>
+                  <Component id="blockChannelDecoderTabs" alignment="0" pref="381" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1930,7 +1930,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane6" alignment="0" pref="386" max="32767" attributes="0"/>
+                              <Component id="jScrollPane6" alignment="0" pref="354" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1976,7 +1976,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="386" max="32767" attributes="0"/>
+                          <Component id="blockChannelDecoderVideoSequenceOutputField" alignment="0" pref="354" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -2040,7 +2040,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane4" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" alignment="0" pref="356" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

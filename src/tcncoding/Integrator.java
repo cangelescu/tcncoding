@@ -20,6 +20,9 @@ package tcncoding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Models integrator device
@@ -60,32 +63,23 @@ public class Integrator
     public void doIntegrating()
     {
 	out.clear();
-	for (List<MultiplierSignal> clms: signals)
-	{
-	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
-	    for (MultiplierSignal cms: clms)
-	    {
-		List<Sample> newSymbol = new ArrayList<Sample>();
 
-                //integrating using Simpson's rule
-                double currentPoint = cms.getStart();
-                double endPoint = cms.getEnd();
-                double sum = 0;
-                while (currentPoint <= endPoint)
-                {
-                    double leftBorder = currentPoint;
-                    double rightBorder = leftBorder + step;
-                    double area = ((rightBorder - leftBorder) / 6) * (cms.function(leftBorder) + 4 * cms.function((leftBorder + rightBorder) / 2) + cms.function(rightBorder));
-                    newSymbol.add(new Sample(currentPoint, sum));
-                    sum += area;
-                    currentPoint += step;
-                }
+        //creates workers stack
+        List<Future<List<DigitalSignal>>> workersStack = new ArrayList<Future<List<DigitalSignal>>>();
+        ExecutorService es = Executors.newFixedThreadPool(signals.size());
+        for (List<MultiplierSignal> clms: signals)
+            workersStack.add(es.submit(new IntegratorWorker(clms, step)));
 
-                DigitalSignal newDigitalSignal = new DigitalSignal(newSymbol);
-		newBlock.add(newDigitalSignal);
-	    }
-	    out.add(newBlock);
-	}
+        //retrieves results
+	for (Future<List<DigitalSignal>> cflds: workersStack)
+        {
+            try {
+                out.add(cflds.get());
+            } catch (Exception ex) {
+                System.err.println(ex.getLocalizedMessage());
+            }
+        }
+        es.shutdown();
     }
 
     /**
