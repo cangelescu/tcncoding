@@ -1303,7 +1303,7 @@ public class UIMain extends javax.swing.JFrame
         blockSourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MESSAGE"))); // NOI18N
 
         blockMessageArea.setColumns(20);
-        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
         blockMessageArea.setRows(5);
         blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(blockMessageArea);
@@ -1500,26 +1500,17 @@ public class UIMain extends javax.swing.JFrame
 
         blockNoiseGeneratorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("NOISE GENERATOR OUTPUT"))); // NOI18N
 
-        javax.swing.GroupLayout blockNoiseGeneratorOutputFieldLayout = new javax.swing.GroupLayout(blockNoiseGeneratorOutputField);
-        blockNoiseGeneratorOutputField.setLayout(blockNoiseGeneratorOutputFieldLayout);
-        blockNoiseGeneratorOutputFieldLayout.setHorizontalGroup(
-            blockNoiseGeneratorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 967, Short.MAX_VALUE)
-        );
-        blockNoiseGeneratorOutputFieldLayout.setVerticalGroup(
-            blockNoiseGeneratorOutputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
-        );
+        blockNoiseGeneratorOutputField.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout blockNoiseGeneratorOutputPanelLayout = new javax.swing.GroupLayout(blockNoiseGeneratorOutputPanel);
         blockNoiseGeneratorOutputPanel.setLayout(blockNoiseGeneratorOutputPanelLayout);
         blockNoiseGeneratorOutputPanelLayout.setHorizontalGroup(
             blockNoiseGeneratorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         blockNoiseGeneratorOutputPanelLayout.setVerticalGroup(
             blockNoiseGeneratorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockNoiseGeneratorLayout = new javax.swing.GroupLayout(blockNoiseGenerator);
@@ -1577,26 +1568,17 @@ public class UIMain extends javax.swing.JFrame
 
         blockReferenceGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("REFERENCE GENERATOR 0 OUTPUT"))); // NOI18N
 
-        javax.swing.GroupLayout blockReferenceGeneratorOutputField0Layout = new javax.swing.GroupLayout(blockReferenceGeneratorOutputField0);
-        blockReferenceGeneratorOutputField0.setLayout(blockReferenceGeneratorOutputField0Layout);
-        blockReferenceGeneratorOutputField0Layout.setHorizontalGroup(
-            blockReferenceGeneratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 967, Short.MAX_VALUE)
-        );
-        blockReferenceGeneratorOutputField0Layout.setVerticalGroup(
-            blockReferenceGeneratorOutputField0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
-        );
+        blockReferenceGeneratorOutputField0.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout blockReferenceGeneratorOutputPanel0Layout = new javax.swing.GroupLayout(blockReferenceGeneratorOutputPanel0);
         blockReferenceGeneratorOutputPanel0.setLayout(blockReferenceGeneratorOutputPanel0Layout);
         blockReferenceGeneratorOutputPanel0Layout.setHorizontalGroup(
             blockReferenceGeneratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         blockReferenceGeneratorOutputPanel0Layout.setVerticalGroup(
             blockReferenceGeneratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockReferenceGenerator0Layout = new javax.swing.GroupLayout(blockReferenceGenerator0);
@@ -1654,26 +1636,17 @@ public class UIMain extends javax.swing.JFrame
 
         blockReferenceGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("REFERENCE GENERATOR 1 OUTPUT"))); // NOI18N
 
-        javax.swing.GroupLayout blockReferenceGeneratorOutputField1Layout = new javax.swing.GroupLayout(blockReferenceGeneratorOutputField1);
-        blockReferenceGeneratorOutputField1.setLayout(blockReferenceGeneratorOutputField1Layout);
-        blockReferenceGeneratorOutputField1Layout.setHorizontalGroup(
-            blockReferenceGeneratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 967, Short.MAX_VALUE)
-        );
-        blockReferenceGeneratorOutputField1Layout.setVerticalGroup(
-            blockReferenceGeneratorOutputField1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
-        );
+        blockReferenceGeneratorOutputField1.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout blockReferenceGeneratorOutputPanel1Layout = new javax.swing.GroupLayout(blockReferenceGeneratorOutputPanel1);
         blockReferenceGeneratorOutputPanel1.setLayout(blockReferenceGeneratorOutputPanel1Layout);
         blockReferenceGeneratorOutputPanel1Layout.setHorizontalGroup(
             blockReferenceGeneratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         blockReferenceGeneratorOutputPanel1Layout.setVerticalGroup(
             blockReferenceGeneratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockReferenceGenerator1Layout = new javax.swing.GroupLayout(blockReferenceGenerator1);
