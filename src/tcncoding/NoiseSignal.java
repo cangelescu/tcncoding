@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -27,7 +28,8 @@ import java.util.Random;
 public class NoiseSignal extends AnalogSignal
 {
     private double power;
-    Random noiseGenerator = new Random();
+    private Random noiseGenerator = new Random();
+    private HashMap<Double, Double> cachedValues = new HashMap<Double, Double>();
 
     /**
      * Creates channel signal with given parameters
@@ -53,6 +55,14 @@ public class NoiseSignal extends AnalogSignal
     @Override
     public double function(double _x)
     {
-	return amplitude * noiseGenerator.nextGaussian();
+        double noiseValue;
+        if (cachedValues.containsKey(_x))
+            noiseValue = cachedValues.get(_x);
+        else
+        {
+            noiseValue = noiseGenerator.nextGaussian();
+            cachedValues.put(_x, noiseValue);
+        }
+	return amplitude * noiseValue;
     }
 }
