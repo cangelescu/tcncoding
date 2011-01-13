@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of ASK modulator
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ModulatorASK extends Modulator
 {

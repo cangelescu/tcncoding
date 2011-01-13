@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Allows using Shannon-Fano code
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceDecoderShannonFano extends SourceDecoder
 {

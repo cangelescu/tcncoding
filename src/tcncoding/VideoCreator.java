@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Creates videosequence from given binary sequence
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class VideoCreator
 {

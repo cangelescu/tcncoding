@@ -20,7 +20,7 @@ package tcncoding;
 
 /**
  * Model of modulator signal
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ModulatorSignal extends AnalogSignal
 {

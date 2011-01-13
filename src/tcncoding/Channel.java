@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of transmission channel with Gaussian noise
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Channel
 {

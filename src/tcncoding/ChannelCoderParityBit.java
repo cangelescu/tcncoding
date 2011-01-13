@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Allows using code with parity bit checking
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelCoderParityBit extends ChannelCoder
 {

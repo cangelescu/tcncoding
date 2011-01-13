@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Base class of modulators
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Modulator {
 

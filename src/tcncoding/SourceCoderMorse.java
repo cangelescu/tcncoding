@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 /**
  * Allows using Morse code
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceCoderMorse extends SourceCoder
 {

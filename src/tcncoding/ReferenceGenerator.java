@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Models reference generator of correlative receiver
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ReferenceGenerator
 {

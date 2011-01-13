@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Provides vizualizer with data
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class DataVizualizatorProvider
 {

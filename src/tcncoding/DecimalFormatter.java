@@ -20,7 +20,7 @@ package tcncoding;
 
 /**
  * Formats numbers into human-readable form
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class DecimalFormatter {
 

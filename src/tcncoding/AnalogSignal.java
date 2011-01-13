@@ -21,7 +21,7 @@ package tcncoding;
 
 /**
  * Base class of analog signal model
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class AnalogSignal
 {

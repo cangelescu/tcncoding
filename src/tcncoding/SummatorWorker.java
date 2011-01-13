@@ -22,10 +22,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/**
+ * Thread worker of summator
+ * @author Oleksandr Natalenko aka post-factum
+ */
 public class SummatorWorker implements Callable<List<DigitalSignal>>{
 
     private List<DigitalSignal> block0, block1;
 
+    /**
+     * Creates summator worker
+     * @param _block0 list of first digital signals
+     * @param _block1 list of second digital signals
+     */
     public SummatorWorker(List<DigitalSignal> _block0, List<DigitalSignal> _block1)
     {
         block0 = _block0;

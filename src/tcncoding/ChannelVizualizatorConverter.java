@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Converts channel data to vizualizer-friendly form
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelVizualizatorConverter
 {

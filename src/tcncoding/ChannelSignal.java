@@ -20,7 +20,7 @@ package tcncoding;
 
 /**
  * Model of channel signal
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelSignal extends AnalogSignal
 {

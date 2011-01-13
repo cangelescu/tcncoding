@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of PSK modulator
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ModulatorPSK extends Modulator
 {

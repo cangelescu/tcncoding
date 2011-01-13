@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of RPSK recoder
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ModulatorRPSKRecoder
 {

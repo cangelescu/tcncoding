@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Allows working with binary numbers
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class BinaryNumber
 {

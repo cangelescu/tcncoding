@@ -20,7 +20,7 @@ package tcncoding;
 
 /**
  * Model of multiplier signal
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class MultiplierSignal extends AnalogSignal
 {

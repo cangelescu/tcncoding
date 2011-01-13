@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Converts multiplier data into vizualizer-friendly form
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class MultiplierVizualizatorConverter
 {

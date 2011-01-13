@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 
 /**
  * Models integrator device
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Integrator
 {

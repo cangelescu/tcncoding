@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 /**
  * Loads code table and creates its map
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceCoderCodeMapLoader
 {

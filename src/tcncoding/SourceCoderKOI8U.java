@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 /**
  * Allows using KOI8-U
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceCoderKOI8U extends SourceCoder
 {

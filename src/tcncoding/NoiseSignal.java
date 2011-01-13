@@ -23,7 +23,7 @@ import java.util.Random;
 
 /**
  * Model of channel signal
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class NoiseSignal extends AnalogSignal
 {

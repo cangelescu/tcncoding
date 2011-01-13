@@ -20,7 +20,7 @@ package tcncoding;
 
 /**
  * Models digital sample
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Sample
 {

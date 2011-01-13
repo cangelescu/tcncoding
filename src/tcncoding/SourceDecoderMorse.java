@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Allows using Morse code
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceDecoderMorse extends SourceDecoder
 {

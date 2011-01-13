@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Control class for decoding channel codes
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelDecoderController
 {

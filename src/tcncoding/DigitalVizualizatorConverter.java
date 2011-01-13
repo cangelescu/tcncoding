@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Converts digital function values into vizualizator-friendly form
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class DigitalVizualizatorConverter
 {

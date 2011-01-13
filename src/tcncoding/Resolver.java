@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of resolver device
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Resolver
 {

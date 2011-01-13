@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Creates blocks of binary numbers from given blocks of binary numbers
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Splitter
 {

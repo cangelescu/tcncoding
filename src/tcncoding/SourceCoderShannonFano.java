@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 /**
  * Allows using Shannon-Fano code
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceCoderShannonFano extends SourceCoder
 {

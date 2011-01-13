@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Allows using Manchester code decoder
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelDecoderManchester extends ChannelDecoder
 {

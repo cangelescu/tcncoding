@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Common class to control source coders
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceCoderController
 {

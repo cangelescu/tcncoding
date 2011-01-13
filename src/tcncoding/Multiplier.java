@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of multiplier device
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Multiplier
 {

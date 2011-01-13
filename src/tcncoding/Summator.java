@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 
 /**
  * Model of summing device
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class Summator
 {

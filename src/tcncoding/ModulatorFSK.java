@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Model of FSK modulator
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ModulatorFSK extends Modulator
 {

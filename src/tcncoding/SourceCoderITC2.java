@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 /**
  * Allows using ITC-2
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceCoderITC2 extends SourceCoder
 {

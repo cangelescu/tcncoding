@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Allows using Hamming code (7,4) decoder
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelDecoderHamming extends ChannelDecoder
 {

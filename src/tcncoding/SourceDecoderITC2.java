@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Allows using ITC-2
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceDecoderITC2 extends SourceDecoder
 {

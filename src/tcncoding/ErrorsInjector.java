@@ -24,7 +24,7 @@ import java.util.Random;
 
 /**
  * Injects errors into binary sequence
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ErrorsInjector {
 

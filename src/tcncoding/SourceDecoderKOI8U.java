@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Allows using KOI8-U
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class SourceDecoderKOI8U extends SourceDecoder
 {

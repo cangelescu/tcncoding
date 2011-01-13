@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Allows using code with inversed checking
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class ChannelCoderInversed extends ChannelCoder
 {

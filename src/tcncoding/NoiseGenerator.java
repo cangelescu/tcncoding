@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * Noise generator routine
- * @author post-factum
+ * @author Oleksandr Natalenko aka post-factum
  */
 public class NoiseGenerator
 {

@@ -22,11 +22,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/**
+ * Thread worker of integrator
+ * @author Oleksandr Natalenko aka post-factum
+ */
 public class IntegratorWorker implements Callable<List<DigitalSignal>>{
 
     private List<MultiplierSignal> multiplierSignals;
     private double step;
 
+    /**
+     * Creates integrator worker
+     * @param _multiplierSignals list of input signals
+     * @param _step integration step
+     */
     public IntegratorWorker(List<MultiplierSignal> _multiplierSignals, double _step)
     {
         multiplierSignals = _multiplierSignals;
