@@ -24,10 +24,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Stroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Vizualizes input data
@@ -53,6 +62,32 @@ public class DataVizualizator extends JPanel
 	chartData = _data;
 	lX = _legendX;
 	lY = _legendY;
+    }
+
+    /**
+     * Saves chart to file
+     * @param _file file to save to
+     */
+    public void saveAsPNG(File _file)
+    {
+        //adds .png extension automatically if it hasn't been added before
+        File remastered;
+        if (!_file.getAbsolutePath().endsWith(".png") &&  !_file.getAbsolutePath().endsWith(".PNG"))
+            remastered = new File(_file.getAbsolutePath() + ".png");
+        else
+            remastered = _file;
+
+        //creates image
+        BufferedImage bufferedImage = (BufferedImage) createImage(getWidth(), getHeight());
+        Graphics imageContext = bufferedImage.getGraphics();
+        paint(imageContext);
+        imageContext.dispose();
+        try {
+            ImageIO.write(bufferedImage, "png", remastered);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getLocalizedMessage());
+        }
     }
 
     @Override
@@ -238,6 +273,34 @@ public class DataVizualizator extends JPanel
 	    String csValue = XFormatter.formatValue(cdValue);
 	    g2.drawString(csValue, (int)i - g2.getFontMetrics().stringWidth(csValue), zeroY + g2.getFontMetrics().getHeight());
 	}
+
+        //creates item of image saving
+        JMenuItem saveImageItem = new JMenuItem(java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SAVE IMAGE…"));
+        ActionListener saveImageAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("PNG FILES"), "png", "PNG"));
+                fileChooser.setDialogTitle(java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SAVE IMAGE"));
+
+                int returnValue = fileChooser.showSaveDialog(DataVizualizator.this);
+
+                switch (returnValue)
+                {
+                    case JFileChooser.APPROVE_OPTION:
+                        saveAsPNG(fileChooser.getSelectedFile());
+                        break;
+                    case JFileChooser.CANCEL_OPTION:
+                        break;
+                    case JFileChooser.ERROR_OPTION:
+                        JOptionPane.showMessageDialog(DataVizualizator.this, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("ERROR OCCURED WHILE SAVING IMAGE!"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("ERROR"), JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+        saveImageItem.addActionListener(saveImageAction);
+        pMenu.add(saveImageItem);
 
 	setComponentPopupMenu(pMenu);
     }
