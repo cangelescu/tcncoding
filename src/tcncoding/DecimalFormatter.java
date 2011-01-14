@@ -18,6 +18,8 @@
 
 package tcncoding;
 
+import java.util.HashMap;
+
 /**
  * Formats numbers into human-readable form
  * @author Oleksandr Natalenko aka post-factum
@@ -25,6 +27,19 @@ package tcncoding;
 public class DecimalFormatter {
 
     private int precision;
+    private HashMap<Character, Character> superscripts = new HashMap<Character, Character>() {{
+        put('-', '⁻');
+        put('0', '⁰');
+        put('1', '¹');
+        put('2', '²');
+        put('3', '³');
+        put('4', '⁴');
+        put('5', '⁵');
+        put('6', '⁶');
+        put('7', '⁷');
+        put('8', '⁸');
+        put('9', '⁹');
+    }};
 
     /**
      * Creates decimal formatter
@@ -46,12 +61,17 @@ public class DecimalFormatter {
 	double absoluteValue = Double.valueOf(String.format("%f", Math.abs(_value)).replace(',', '.'));
 	//calculates rounded value of log10
 	int power = absoluteValue == 0 ? 0 : (int)Math.floor(Math.log10(absoluteValue));
+        //replaces power digits with superscript Unicode characters
+        String powerString = String.valueOf(power);
+        String powerSuperString = "";
+        for (int i = 0; i < powerString.length(); i++)
+            powerSuperString += superscripts.get(powerString.charAt(i));
 	//calculates number's mantissa
 	double mantissa = absoluteValue == 0 ? 0 : absoluteValue / Math.pow(10, power);
 	//formes resulting string including number sign
 	String numberSignum = _value < 0 ? "-" : "";
 	String numberMantissa = String.format("%1." + precision + "f", mantissa);
-	String numberCharacteristic = power == 0 ? "" : "*10^" + power;
+	String numberCharacteristic = power == 0 ? "" : "×10" + powerSuperString;
 	return numberSignum + numberMantissa + numberCharacteristic;
     }
 }
