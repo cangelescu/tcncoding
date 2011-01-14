@@ -36,11 +36,8 @@ import javax.swing.JPopupMenu;
 public class DataVizualizator extends JPanel
 {
     private List<List<DataVizualizatorProvider>> chartData;
-
     private Paint paint;
-
     private String lX, lY;
-
 
     /**
      * Creates vizualizator for provided data
