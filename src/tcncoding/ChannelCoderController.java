@@ -111,7 +111,10 @@ public class ChannelCoderController
 		    break;
 	    }
 	} else
+        {
 	    channelSequence = sourceSymbols;
+            report = "<html>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL CODING IS NOT USED") + "</html>";
+        }
     }
 
     /**
