@@ -64,22 +64,80 @@ public class Integrator
     {
 	out.clear();
 
+        //creates signals map
+        List<Integer> signalsMap = new ArrayList<Integer>();
+        for (List<MultiplierSignal> clms: signals)
+            signalsMap.add(clms.size());
+
+        //creates flat list of signals
+        List<MultiplierSignal> flatList = new ArrayList<MultiplierSignal>();
+        for (List<MultiplierSignal> clms: signals)
+            for (MultiplierSignal cms: clms)
+                flatList.add(cms);
+
+        //creates workers map, each worker gets its amount of pieces to process
+        int workers = Runtime.getRuntime().availableProcessors();
+        int tickets = flatList.size();
+        int basePiece = tickets / workers;
+        if (basePiece < 1)
+            basePiece = 1;
+        List<Integer> workersMap = new ArrayList<Integer>();
+        for (int i = 0; i < workers - 1; i++)
+        {
+            workersMap.add(basePiece);
+            tickets -= basePiece;
+        }
+        //but the last worker may get more
+        workersMap.add(tickets);
+
+        //create signals map according to workers map
+        List<List<MultiplierSignal>> newSignalsMap = new ArrayList<List<MultiplierSignal>>();
+        int index = 0;
+        for (Integer ci: workersMap)
+        {
+            List<MultiplierSignal> newBlock = new ArrayList<MultiplierSignal>();
+            for (int i = index; i < index + ci; i++)
+                newBlock.add(flatList.get(i));
+            newSignalsMap.add(newBlock);
+            index += ci;
+        }
+
         //creates workers stack
         List<Future<List<DigitalSignal>>> workersStack = new ArrayList<Future<List<DigitalSignal>>>();
-        ExecutorService es = Executors.newFixedThreadPool(signals.size());
-        for (List<MultiplierSignal> clms: signals)
+        ExecutorService es = Executors.newFixedThreadPool(workers);
+
+        //starts signals processing
+        for (List<MultiplierSignal> clms: newSignalsMap)
             workersStack.add(es.submit(new IntegratorWorker(clms, step)));
 
         //retrieves results
+        List<List<DigitalSignal>> rawResult = new ArrayList<List<DigitalSignal>>();
 	for (Future<List<DigitalSignal>> cflds: workersStack)
         {
             try {
-                out.add(cflds.get());
+                rawResult.add(cflds.get());
             } catch (Exception ex) {
                 System.err.println(ex.getLocalizedMessage());
             }
         }
         es.shutdown();
+
+        //creates flat list from raw results
+        List<DigitalSignal> flatRawList = new ArrayList<DigitalSignal>();
+        for (List<DigitalSignal> clms: rawResult)
+            for (DigitalSignal cms: clms)
+                flatRawList.add(cms);
+
+        //repacks raw results according to signals map
+        index = 0;
+        for (Integer ci: signalsMap)
+        {
+            List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
+            for (int i = index; i < index + ci; i++)
+                newBlock.add(flatRawList.get(i));
+            index += ci;
+            out.add(newBlock);
+        }
     }
 
     /**
