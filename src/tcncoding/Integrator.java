@@ -31,7 +31,7 @@ import java.util.concurrent.Future;
 public class Integrator
 {
     private List<List<MultiplierSignal>> signals;
-    private List<List<DigitalSignal>> out = new ArrayList<List<DigitalSignal>>();
+    private List<List<DigitalSignal>> result = new ArrayList<List<DigitalSignal>>();
     private double step;
 
     /**
@@ -62,7 +62,7 @@ public class Integrator
      */
     public void doIntegrating()
     {
-	out.clear();
+	result.clear();
 
         //creates signals map
         List<Integer> signalsMap = new ArrayList<Integer>();
@@ -90,15 +90,15 @@ public class Integrator
         //but the last worker may get more
         workersMap.add(tickets);
 
-        //create signals map according to workers map
-        List<List<MultiplierSignal>> newSignalsMap = new ArrayList<List<MultiplierSignal>>();
+        //create signals list according to workers map
+        List<List<MultiplierSignal>> newSignals = new ArrayList<List<MultiplierSignal>>();
         int index = 0;
         for (Integer ci: workersMap)
         {
             List<MultiplierSignal> newBlock = new ArrayList<MultiplierSignal>();
             for (int i = index; i < index + ci; i++)
                 newBlock.add(flatList.get(i));
-            newSignalsMap.add(newBlock);
+            newSignals.add(newBlock);
             index += ci;
         }
 
@@ -107,7 +107,7 @@ public class Integrator
         ExecutorService es = Executors.newFixedThreadPool(workers);
 
         //starts signals processing
-        for (List<MultiplierSignal> clms: newSignalsMap)
+        for (List<MultiplierSignal> clms: newSignals)
             workersStack.add(es.submit(new IntegratorWorker(clms, step)));
 
         //retrieves results
@@ -136,7 +136,7 @@ public class Integrator
             for (int i = index; i < index + ci; i++)
                 newBlock.add(flatRawList.get(i));
             index += ci;
-            out.add(newBlock);
+            result.add(newBlock);
         }
     }
 
@@ -146,6 +146,6 @@ public class Integrator
      */
     public List<List<DigitalSignal>> getIntegrals()
     {
-	return out;
+	return result;
     }
 }
