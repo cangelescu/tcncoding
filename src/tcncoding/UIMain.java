@@ -355,7 +355,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSV(T), V"));
+	currentSourceVideoSequenceVizualizator = new DataVizualizator(sourceVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSV(T), V"), (Integer)linesWidth.getValue());
 
 	//shows chart
 	currentSourceVideoSequenceVizualizator.setVisible(true);
@@ -387,7 +387,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SCHV(T), V"));
+	currentChannelVideoSequenceVizualizator = new DataVizualizator(channelVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SCHV(T), V"), (Integer)linesWidth.getValue());
 
 	//shows chart
 	currentChannelVideoSequenceVizualizator.setVisible(true);
@@ -418,7 +418,7 @@ public class UIMain extends javax.swing.JFrame
 	int cx = blockModulatorOutputField.getWidth();
 	int cy = blockModulatorOutputField.getHeight();
 	//creates new vizualizator
-	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SMOD(T), V"));
+	currentModulatorVizualizator = new DataVizualizator(modulatorDataProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SMOD(T), V"), (Integer)linesWidth.getValue());
 	//shows chart
 	currentModulatorVizualizator.setVisible(true);
 	blockModulatorOutputField.add(currentModulatorVizualizator);
@@ -448,7 +448,7 @@ public class UIMain extends javax.swing.JFrame
 	int cx = blockNoiseGeneratorOutputField.getWidth();
 	int cy = blockNoiseGeneratorOutputField.getHeight();
 	//creates new vizualizator
-	currentNoiseGeneratorVizualizator = new DataVizualizator(noiseGeneratorDataProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("Sn(T), V"));
+	currentNoiseGeneratorVizualizator = new DataVizualizator(noiseGeneratorDataProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("Sn(T), V"), (Integer)linesWidth.getValue());
 
 	//shows chart
 	currentNoiseGeneratorVizualizator.setVisible(true);
@@ -479,7 +479,7 @@ public class UIMain extends javax.swing.JFrame
 	int cx = blockChannelOutputField.getWidth();
 	int cy = blockChannelOutputField.getHeight();
 	//creates new vizualizator
-	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("S'(T), V"));
+	currentChannelVizualizator = new DataVizualizator(channelOutputProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("S'(T), V"), (Integer)linesWidth.getValue());
 
 	//shows chart
 	currentChannelVizualizator.setVisible(true);
@@ -534,7 +534,7 @@ public class UIMain extends javax.swing.JFrame
 	//vizualizes signal
 	referenceGenerator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	referenceGenerator0OutputProvider.add((new ModulatorVizualizatorConverter(referenceGenerator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentReferenceGeneratorVizualizator0 = new DataVizualizator(referenceGenerator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG0(T), V"));
+	currentReferenceGeneratorVizualizator0 = new DataVizualizator(referenceGenerator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG0(T), V"), (Integer)linesWidth.getValue());
 	currentReferenceGeneratorVizualizator0.setVisible(true);
 	blockReferenceGeneratorOutputField0.add(currentReferenceGeneratorVizualizator0);
 	currentReferenceGeneratorVizualizator0.repaint();
@@ -551,7 +551,7 @@ public class UIMain extends javax.swing.JFrame
 	//shows multipliers charts
 	referenceGenerator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	referenceGenerator1OutputProvider.add((new ModulatorVizualizatorConverter(referenceGenerator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentReferenceGeneratorVizualizator1 = new DataVizualizator(referenceGenerator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG1(T), V"));
+	currentReferenceGeneratorVizualizator1 = new DataVizualizator(referenceGenerator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG1(T), V"), (Integer)linesWidth.getValue());
 	currentReferenceGeneratorVizualizator1.setVisible(true);
 	blockReferenceGeneratorOutputField1.add(currentReferenceGeneratorVizualizator1);
 	currentReferenceGeneratorVizualizator1.repaint();
@@ -582,7 +582,7 @@ public class UIMain extends javax.swing.JFrame
 	//vizualizes signal
 	multiplier0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	multiplier0OutputProvider.add((new MultiplierVizualizatorConverter(multiplier0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM0(T), V"));
+	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM0(T), V"), (Integer)linesWidth.getValue());
 	currentMultiplierVizualizator0.setVisible(true);
 	blockMultiplierOutputField0.add(currentMultiplierVizualizator0);
 	currentMultiplierVizualizator0.repaint();
@@ -599,7 +599,7 @@ public class UIMain extends javax.swing.JFrame
 	//shows multipliers charts
 	multiplier1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	multiplier1OutputProvider.add((new MultiplierVizualizatorConverter(multiplier1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM1(T), V"));
+	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM1(T), V"), (Integer)linesWidth.getValue());
 	currentMultiplierVizualizator1.setVisible(true);
 	blockMultiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
@@ -627,7 +627,7 @@ public class UIMain extends javax.swing.JFrame
 
 	integrator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	integrator0OutputProvider.add((new DigitalVizualizatorConverter(integrator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI0(T), V"));
+	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI0(T), V"), (Integer)linesWidth.getValue());
 	currentIntegratorVizualizator0.setVisible(true);
 	blockIntegratorOutputField0.add(currentIntegratorVizualizator0);
 	currentIntegratorVizualizator0.repaint();
@@ -643,7 +643,7 @@ public class UIMain extends javax.swing.JFrame
 
 	integrator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	integrator1OutputProvider.add((new DigitalVizualizatorConverter(integrator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI1(T), V"));
+	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI1(T), V"), (Integer)linesWidth.getValue());
 	currentIntegratorVizualizator1.setVisible(true);
 	blockIntegratorOutputField1.add(currentIntegratorVizualizator1);
 	currentIntegratorVizualizator1.repaint();
@@ -668,7 +668,7 @@ public class UIMain extends javax.swing.JFrame
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	summatorOutputProvider.add((new DigitalVizualizatorConverter(summatorOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SUMMATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
-	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSUM(T), V"));
+	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSUM(T), V"), (Integer)linesWidth.getValue());
 	currentSummatorVizualizator.setVisible(true);
 	blockSummatorOutputField.add(currentSummatorVizualizator);
 	currentSummatorVizualizator.repaint();
@@ -718,7 +718,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy = blockResolverVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentResolverVideoSequenceVizualizator = new DataVizualizator(resolverVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRES(T), V"));
+	currentResolverVideoSequenceVizualizator = new DataVizualizator(resolverVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRES(T), V"), (Integer)linesWidth.getValue());
 
 	//shows chart
 	currentResolverVideoSequenceVizualizator.setVisible(true);
@@ -756,7 +756,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy = blockChannelDecoderVideoSequenceOutputField.getHeight();
 
 	//creates new vizualizator
-	currentChannelDecoderVideoSequenceVizualizator = new DataVizualizator(channelDecoderVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SCHDV(T), V"));
+	currentChannelDecoderVideoSequenceVizualizator = new DataVizualizator(channelDecoderVideoSequenceProvider, cx, cy, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SCHDV(T), V"), (Integer)linesWidth.getValue());
 
 	//shows chart
 	currentChannelDecoderVideoSequenceVizualizator.setVisible(true);
@@ -829,6 +829,12 @@ public class UIMain extends javax.swing.JFrame
         licenseDialog = new javax.swing.JDialog();
         jScrollPane7 = new javax.swing.JScrollPane();
         licenseTextArea = new javax.swing.JTextArea();
+        appearanceOptionsDialog = new javax.swing.JDialog();
+        appearanceOptionsTabs = new javax.swing.JTabbedPane();
+        chartsOptionsTab = new javax.swing.JPanel();
+        linesWidthLabel = new javax.swing.JLabel();
+        linesWidth = new javax.swing.JSpinner();
+        pixelsLabel = new javax.swing.JLabel();
         TCSTabs = new javax.swing.JTabbedPane();
         blockMessageSource = new javax.swing.JPanel();
         blockSourceMessagePanel = new javax.swing.JPanel();
@@ -941,6 +947,8 @@ public class UIMain extends javax.swing.JFrame
         modellingMenu = new javax.swing.JMenu();
         doModellingOptionsItem = new javax.swing.JMenuItem();
         doModellingItem = new javax.swing.JMenuItem();
+        optionsMenu = new javax.swing.JMenu();
+        appearanceOptionsItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutItem = new javax.swing.JMenuItem();
 
@@ -1289,6 +1297,38 @@ public class UIMain extends javax.swing.JFrame
             .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
+        appearanceOptionsDialog.setTitle(bundle.getString("APPEARANCE OPTIONS")); // NOI18N
+        appearanceOptionsDialog.setMinimumSize(new java.awt.Dimension(169, 74));
+        appearanceOptionsDialog.setResizable(false);
+
+        chartsOptionsTab.setLayout(new java.awt.GridBagLayout());
+
+        linesWidthLabel.setText(bundle.getString("LINES WIDTH:")); // NOI18N
+        chartsOptionsTab.add(linesWidthLabel, new java.awt.GridBagConstraints());
+
+        linesWidth.setModel(new javax.swing.SpinnerNumberModel(2, 1, 5, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        chartsOptionsTab.add(linesWidth, gridBagConstraints);
+
+        pixelsLabel.setText(bundle.getString("PIX.")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        chartsOptionsTab.add(pixelsLabel, gridBagConstraints);
+
+        appearanceOptionsTabs.addTab(bundle.getString("CHARTS"), chartsOptionsTab); // NOI18N
+
+        javax.swing.GroupLayout appearanceOptionsDialogLayout = new javax.swing.GroupLayout(appearanceOptionsDialog.getContentPane());
+        appearanceOptionsDialog.getContentPane().setLayout(appearanceOptionsDialogLayout);
+        appearanceOptionsDialogLayout.setHorizontalGroup(
+            appearanceOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(appearanceOptionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+        );
+        appearanceOptionsDialogLayout.setVerticalGroup(
+            appearanceOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(appearanceOptionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM")); // NOI18N
 
@@ -1500,7 +1540,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockNoiseGeneratorOutputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("NOISE GENERATOR OUTPUT"))); // NOI18N
 
-        blockNoiseGeneratorOutputField.setLayout(new java.awt.GridLayout());
+        blockNoiseGeneratorOutputField.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockNoiseGeneratorOutputPanelLayout = new javax.swing.GroupLayout(blockNoiseGeneratorOutputPanel);
         blockNoiseGeneratorOutputPanel.setLayout(blockNoiseGeneratorOutputPanelLayout);
@@ -1568,7 +1608,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockReferenceGeneratorOutputPanel0.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("REFERENCE GENERATOR 0 OUTPUT"))); // NOI18N
 
-        blockReferenceGeneratorOutputField0.setLayout(new java.awt.GridLayout());
+        blockReferenceGeneratorOutputField0.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockReferenceGeneratorOutputPanel0Layout = new javax.swing.GroupLayout(blockReferenceGeneratorOutputPanel0);
         blockReferenceGeneratorOutputPanel0.setLayout(blockReferenceGeneratorOutputPanel0Layout);
@@ -1636,7 +1676,7 @@ public class UIMain extends javax.swing.JFrame
 
         blockReferenceGeneratorOutputPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("REFERENCE GENERATOR 1 OUTPUT"))); // NOI18N
 
-        blockReferenceGeneratorOutputField1.setLayout(new java.awt.GridLayout());
+        blockReferenceGeneratorOutputField1.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout blockReferenceGeneratorOutputPanel1Layout = new javax.swing.GroupLayout(blockReferenceGeneratorOutputPanel1);
         blockReferenceGeneratorOutputPanel1.setLayout(blockReferenceGeneratorOutputPanel1Layout);
@@ -2316,6 +2356,19 @@ public class UIMain extends javax.swing.JFrame
 
         mainMenu.add(modellingMenu);
 
+        optionsMenu.setText(bundle.getString("OPTIONS")); // NOI18N
+
+        appearanceOptionsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        appearanceOptionsItem.setText("Зовнішній вигляд…");
+        appearanceOptionsItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appearanceOptionsItemActionPerformed(evt);
+            }
+        });
+        optionsMenu.add(appearanceOptionsItem);
+
+        mainMenu.add(optionsMenu);
+
         helpMenu.setText(bundle.getString("HELP")); // NOI18N
 
         aboutItem.setText(bundle.getString("ABOUT…")); // NOI18N
@@ -2617,6 +2670,10 @@ public class UIMain extends javax.swing.JFrame
 	updateChosenBlock(Blocks.NOISE_GENERATOR);
     }//GEN-LAST:event_blockNoiseGeneratorComponentShown
 
+    private void appearanceOptionsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appearanceOptionsItemActionPerformed
+        appearanceOptionsDialog.setVisible(true);
+    }//GEN-LAST:event_appearanceOptionsItemActionPerformed
+
     /**
      * 
      * @param args
@@ -2637,6 +2694,9 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JTabbedPane TCSTabs;
     private javax.swing.JDialog aboutDialog;
     private javax.swing.JMenuItem aboutItem;
+    private javax.swing.JDialog appearanceOptionsDialog;
+    private javax.swing.JMenuItem appearanceOptionsItem;
+    private javax.swing.JTabbedPane appearanceOptionsTabs;
     private javax.swing.JSpinner bearerAmplitude;
     private javax.swing.JLabel bearerAmplitudeLabel;
     private javax.swing.JSpinner bearerFrequency;
@@ -2714,6 +2774,7 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JLabel channelCodesChooserLabel;
     private javax.swing.JButton channelDecoderButton;
     private javax.swing.JPanel channelTab;
+    private javax.swing.JPanel chartsOptionsTab;
     private javax.swing.JLabel copyrightLabel;
     private javax.swing.JLabel dlArrowLabel;
     private javax.swing.JMenuItem doModellingItem;
@@ -2746,6 +2807,8 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JDialog licenseDialog;
     private javax.swing.JLabel licenseLabel;
     private javax.swing.JTextArea licenseTextArea;
+    private javax.swing.JSpinner linesWidth;
+    private javax.swing.JLabel linesWidthLabel;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JButton messageSourceButton;
     private javax.swing.JMenu modellingMenu;
@@ -2760,7 +2823,9 @@ public class UIMain extends javax.swing.JFrame
     private javax.swing.JSpinner noisePower;
     private javax.swing.JLabel noisePowerLabel;
     private javax.swing.JLabel noisePowerWattLabel;
+    private javax.swing.JMenu optionsMenu;
     private javax.swing.JTabbedPane optionsTabs;
+    private javax.swing.JLabel pixelsLabel;
     private javax.swing.JLabel programNameLabel;
     private javax.swing.JTextArea receivedMessageArea;
     private javax.swing.JButton referenceGenerator0Button;

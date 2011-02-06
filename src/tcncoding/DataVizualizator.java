@@ -47,6 +47,7 @@ public class DataVizualizator extends JPanel
     private List<List<DataVizualizatorProvider>> chartData;
     private Paint paint;
     private String lX, lY;
+    private int lineWidth;
 
     /**
      * Creates vizualizator for provided data
@@ -56,12 +57,13 @@ public class DataVizualizator extends JPanel
      * @param _legendX X axis legend
      * @param _legendY Y axis legend
      */
-    public DataVizualizator(List<List<DataVizualizatorProvider>> _data, int _width, int _height, String _legendX, String _legendY)
+    public DataVizualizator(List<List<DataVizualizatorProvider>> _data, int _width, int _height, String _legendX, String _legendY, int _lineWidth)
     {
 	setSize(_width, _height);
 	chartData = _data;
 	lX = _legendX;
 	lY = _legendY;
+        lineWidth = _lineWidth;
     }
 
     /**
@@ -213,7 +215,7 @@ public class DataVizualizator extends JPanel
 	g2.drawString(lY, zeroX - g2.getFontMetrics().stringWidth(lY) - yStepsMargin, topMarginY);
 
 	//set stroke
-	Stroke cStroke = new BasicStroke(2);
+	Stroke cStroke = new BasicStroke(lineWidth);
 	g2.setStroke(cStroke);
 	for (List<DataVizualizatorProvider> cldvp: chartData)
 	{
