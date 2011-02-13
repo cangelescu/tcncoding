@@ -954,15 +954,45 @@ public class UIMain extends javax.swing.JFrame
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian"); // NOI18N
         aboutDialog.setTitle(bundle.getString("ABOUT")); // NOI18N
+        aboutDialog.setMinimumSize(new java.awt.Dimension(326, 132));
         aboutDialog.setResizable(false);
+        aboutDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         programNameLabel.setText(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM MODEL")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        aboutDialog.getContentPane().add(programNameLabel, gridBagConstraints);
 
         instituteNameLabel.setText(bundle.getString("ITS NTUU «KPI»")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        aboutDialog.getContentPane().add(instituteNameLabel, gridBagConstraints);
 
         copyrightLabel.setText(bundle.getString("© 2009-2010, OLEKSANDR NATALENKO")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        aboutDialog.getContentPane().add(copyrightLabel, gridBagConstraints);
 
         licenseLabel.setText(bundle.getString("DISTRIBUTED UNDER TERMS AND CONDITIONS OF UPLV4.1")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        aboutDialog.getContentPane().add(licenseLabel, gridBagConstraints);
 
         showLicense.setText(bundle.getString("SHOW LICENSE")); // NOI18N
         showLicense.addActionListener(new java.awt.event.ActionListener() {
@@ -970,39 +1000,20 @@ public class UIMain extends javax.swing.JFrame
                 showLicenseActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout aboutDialogLayout = new javax.swing.GroupLayout(aboutDialog.getContentPane());
-        aboutDialog.getContentPane().setLayout(aboutDialogLayout);
-        aboutDialogLayout.setHorizontalGroup(
-            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aboutDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(programNameLabel)
-                    .addComponent(instituteNameLabel)
-                    .addComponent(copyrightLabel)
-                    .addComponent(licenseLabel)
-                    .addComponent(showLicense))
-                .addContainerGap(78, Short.MAX_VALUE))
-        );
-        aboutDialogLayout.setVerticalGroup(
-            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aboutDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(programNameLabel)
-                .addGap(18, 18, 18)
-                .addComponent(instituteNameLabel)
-                .addGap(18, 18, 18)
-                .addComponent(copyrightLabel)
-                .addGap(18, 18, 18)
-                .addComponent(licenseLabel)
-                .addGap(18, 18, 18)
-                .addComponent(showLicense)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        aboutDialog.getContentPane().add(showLicense, gridBagConstraints);
 
         modellingOptionsDialog.setTitle(bundle.getString("MODELLING OPTIONS")); // NOI18N
+        modellingOptionsDialog.setMinimumSize(new java.awt.Dimension(595, 145));
         modellingOptionsDialog.setResizable(false);
+
+        optionsTabs.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        sourceCoderTab.setLayout(new java.awt.GridBagLayout());
 
         sourceCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("ITC-2"), bundle.getString("ITC-5"), bundle.getString("KOI8-U"), bundle.getString("MORSE"), bundle.getString("SHANNON-FANO") }));
         sourceCodesChooser.addItemListener(new java.awt.event.ItemListener() {
@@ -1010,51 +1021,55 @@ public class UIMain extends javax.swing.JFrame
                 sourceCodesChooserItemStateChanged(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        sourceCoderTab.add(sourceCodesChooser, gridBagConstraints);
 
         sourceCodesChooserLabel.setLabelFor(sourceCodesChooser);
         sourceCodesChooserLabel.setText(bundle.getString("CODE:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        sourceCoderTab.add(sourceCodesChooserLabel, gridBagConstraints);
 
         informationalSpeedLabel.setText(bundle.getString("INFORMATIONAL RATE:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        sourceCoderTab.add(informationalSpeedLabel, gridBagConstraints);
 
         informationalSpeed.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(166666.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        sourceCoderTab.add(informationalSpeed, gridBagConstraints);
 
         bpsLabel.setText(bundle.getString("BPS")); // NOI18N
-
-        javax.swing.GroupLayout sourceCoderTabLayout = new javax.swing.GroupLayout(sourceCoderTab);
-        sourceCoderTab.setLayout(sourceCoderTabLayout);
-        sourceCoderTabLayout.setHorizontalGroup(
-            sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sourceCoderTabLayout.createSequentialGroup()
-                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(informationalSpeedLabel)
-                    .addComponent(sourceCodesChooserLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sourceCodesChooser, 0, 555, Short.MAX_VALUE)
-                    .addGroup(sourceCoderTabLayout.createSequentialGroup()
-                        .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bpsLabel)
-                        .addGap(267, 267, 267))))
-        );
-        sourceCoderTabLayout.setVerticalGroup(
-            sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sourceCoderTabLayout.createSequentialGroup()
-                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sourceCodesChooserLabel)
-                    .addComponent(sourceCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(sourceCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(informationalSpeedLabel)
-                    .addComponent(informationalSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bpsLabel))
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        sourceCoderTab.add(bpsLabel, gridBagConstraints);
 
         optionsTabs.addTab(bundle.getString("SOURCE CODER"), sourceCoderTab); // NOI18N
 
+        channelCoderTab.setLayout(new java.awt.GridBagLayout());
+
         channelCodesChooserLabel.setLabelFor(channelCodesChooser);
         channelCodesChooserLabel.setText(bundle.getString("CODE:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelCoderTab.add(channelCodesChooserLabel, gridBagConstraints);
 
         channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("WITH PARITY BIT CHECKING"), bundle.getString("INVERSED"), bundle.getString("MANCHESTER"), bundle.getString("HAMMING (7, 4)")}));
         channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
@@ -1062,6 +1077,12 @@ public class UIMain extends javax.swing.JFrame
                 channelCodesChooserItemStateChanged(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelCoderTab.add(channelCodesChooser, gridBagConstraints);
 
         useChannelCoder.setSelected(true);
         useChannelCoder.setText(bundle.getString("USE REDUNDAND CODING")); // NOI18N
@@ -1070,35 +1091,24 @@ public class UIMain extends javax.swing.JFrame
                 useChannelCoderItemStateChanged(evt);
             }
         });
-
-        javax.swing.GroupLayout channelCoderTabLayout = new javax.swing.GroupLayout(channelCoderTab);
-        channelCoderTab.setLayout(channelCoderTabLayout);
-        channelCoderTabLayout.setHorizontalGroup(
-            channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(channelCoderTabLayout.createSequentialGroup()
-                .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(channelCoderTabLayout.createSequentialGroup()
-                        .addComponent(channelCodesChooserLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(channelCodesChooser, 0, 676, Short.MAX_VALUE))
-                    .addComponent(useChannelCoder))
-                .addContainerGap())
-        );
-        channelCoderTabLayout.setVerticalGroup(
-            channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(channelCoderTabLayout.createSequentialGroup()
-                .addComponent(useChannelCoder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(channelCoderTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(channelCodesChooserLabel)
-                    .addComponent(channelCodesChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelCoderTab.add(useChannelCoder, gridBagConstraints);
 
         optionsTabs.addTab(bundle.getString("CHANNEL CODER"), channelCoderTab); // NOI18N
 
+        modulatorTab.setLayout(new java.awt.GridBagLayout());
+
         modulationTypeLabel.setLabelFor(modulationTypeChooser);
         modulationTypeLabel.setText(bundle.getString("MODULATION TYPE:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(modulationTypeLabel, gridBagConstraints);
 
         modulationTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("ASK"), bundle.getString("FSK"), bundle.getString("PSK"), bundle.getString("RPSK")}));
         modulationTypeChooser.addItemListener(new java.awt.event.ItemListener() {
@@ -1106,83 +1116,110 @@ public class UIMain extends javax.swing.JFrame
                 modulationTypeChooserItemStateChanged(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(modulationTypeChooser, gridBagConstraints);
 
         bearerAmplitudeLabel.setText(bundle.getString("BEARER AMPLITUDE:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(bearerAmplitudeLabel, gridBagConstraints);
 
         bearerAmplitude.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(10.0d), Double.valueOf(0.0d), null, Double.valueOf(0.5d)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(bearerAmplitude, gridBagConstraints);
 
         bearerFrequencyDeviationLabel.setText(bundle.getString("FREQUENCY DEVIATION:")); // NOI18N
         bearerFrequencyDeviationLabel.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(bearerFrequencyDeviationLabel, gridBagConstraints);
 
         bearerFrequencyLabel.setText(bundle.getString("BEARER FREQUENCY:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(bearerFrequencyLabel, gridBagConstraints);
 
         bearerFrequencyDeviation.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(20000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
         bearerFrequencyDeviation.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(bearerFrequencyDeviation, gridBagConstraints);
 
         bearerFrequency.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200000.0d), Double.valueOf(0.0d), null, Double.valueOf(1.0d)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(bearerFrequency, gridBagConstraints);
 
         voltsLabel.setText(bundle.getString("V")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(voltsLabel, gridBagConstraints);
 
         hzBearerLabel.setText(bundle.getString("HZ")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(hzBearerLabel, gridBagConstraints);
 
         hzDeviationLabel.setText(bundle.getString("HZ")); // NOI18N
-
-        javax.swing.GroupLayout modulatorTabLayout = new javax.swing.GroupLayout(modulatorTab);
-        modulatorTab.setLayout(modulatorTabLayout);
-        modulatorTabLayout.setHorizontalGroup(
-            modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modulatorTabLayout.createSequentialGroup()
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bearerAmplitudeLabel)
-                    .addComponent(modulationTypeLabel)
-                    .addComponent(bearerFrequencyDeviationLabel)
-                    .addComponent(bearerFrequencyLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(modulatorTabLayout.createSequentialGroup()
-                        .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bearerFrequencyDeviation)
-                            .addComponent(bearerFrequency)
-                            .addComponent(bearerAmplitude, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hzDeviationLabel)
-                            .addComponent(hzBearerLabel)
-                            .addComponent(voltsLabel)))
-                    .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        modulatorTabLayout.setVerticalGroup(
-            modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(modulatorTabLayout.createSequentialGroup()
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modulationTypeLabel)
-                    .addComponent(modulationTypeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerAmplitudeLabel)
-                    .addComponent(bearerAmplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(voltsLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerFrequencyLabel)
-                    .addComponent(bearerFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hzBearerLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(modulatorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bearerFrequencyDeviationLabel)
-                    .addComponent(bearerFrequencyDeviation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hzDeviationLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        modulatorTab.add(hzDeviationLabel, gridBagConstraints);
 
         optionsTabs.addTab(bundle.getString("MODULATOR"), modulatorTab); // NOI18N
 
+        channelTab.setLayout(new java.awt.GridBagLayout());
+
         noisePowerLabel.setText(bundle.getString("MAXIMUM NOISE POWER:")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(noisePowerLabel, gridBagConstraints);
 
         noisePower.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 71;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(noisePower, gridBagConstraints);
 
         noisePowerWattLabel.setText(bundle.getString("W")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(noisePowerWattLabel, gridBagConstraints);
 
         useNoiseErrors.setSelected(true);
         useNoiseErrors.setText(bundle.getString("INJECT ERRORS CAUSED BY CHANNEL NOISE")); // NOI18N
@@ -1191,6 +1228,12 @@ public class UIMain extends javax.swing.JFrame
                 useNoiseErrorsItemStateChanged(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(useNoiseErrors, gridBagConstraints);
 
         forceErrors.setText(bundle.getString("FORCE INJECTING ERRORS OF FACTOR")); // NOI18N
         forceErrors.addItemListener(new java.awt.event.ItemListener() {
@@ -1198,9 +1241,22 @@ public class UIMain extends javax.swing.JFrame
                 forceErrorsItemStateChanged(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(forceErrors, gridBagConstraints);
 
         forceErrorsCount.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         forceErrorsCount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 71;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(forceErrorsCount, gridBagConstraints);
 
         errorsInjectorTypeChooserGroup.add(errorsInjectorPerBlock);
         errorsInjectorPerBlock.setSelected(true);
@@ -1211,6 +1267,12 @@ public class UIMain extends javax.swing.JFrame
                 errorsInjectorPerBlockItemStateChanged(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(errorsInjectorPerBlock, gridBagConstraints);
 
         errorsInjectorTypeChooserGroup.add(errorsInjectorPerSequence);
         errorsInjectorPerSequence.setText(bundle.getString("TO WHOLE SEQUENCE")); // NOI18N
@@ -1220,48 +1282,12 @@ public class UIMain extends javax.swing.JFrame
                 errorsInjectorPerSequenceItemStateChanged(evt);
             }
         });
-
-        javax.swing.GroupLayout channelTabLayout = new javax.swing.GroupLayout(channelTab);
-        channelTab.setLayout(channelTabLayout);
-        channelTabLayout.setHorizontalGroup(
-            channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(channelTabLayout.createSequentialGroup()
-                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(channelTabLayout.createSequentialGroup()
-                        .addComponent(noisePowerLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noisePowerWattLabel))
-                    .addComponent(useNoiseErrors)
-                    .addGroup(channelTabLayout.createSequentialGroup()
-                        .addComponent(forceErrors)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(forceErrorsCount)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorsInjectorPerSequence)
-                    .addComponent(errorsInjectorPerBlock))
-                .addContainerGap(228, Short.MAX_VALUE))
-        );
-        channelTabLayout.setVerticalGroup(
-            channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(channelTabLayout.createSequentialGroup()
-                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noisePowerLabel)
-                    .addComponent(noisePower, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noisePowerWattLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(useNoiseErrors)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(channelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(forceErrors)
-                    .addComponent(forceErrorsCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorsInjectorPerBlock))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorsInjectorPerSequence)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        channelTab.add(errorsInjectorPerSequence, gridBagConstraints);
 
         optionsTabs.addTab(bundle.getString("CHANNEL"), channelTab); // NOI18N
 
@@ -1269,15 +1295,17 @@ public class UIMain extends javax.swing.JFrame
         modellingOptionsDialog.getContentPane().setLayout(modellingOptionsDialogLayout);
         modellingOptionsDialogLayout.setHorizontalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         modellingOptionsDialogLayout.setVerticalGroup(
             modellingOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(optionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+            .addComponent(optionsTabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         licenseDialog.setTitle(bundle.getString("LICENSE")); // NOI18N
+        licenseDialog.setMinimumSize(new java.awt.Dimension(700, 600));
         licenseDialog.setResizable(false);
+        licenseDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         licenseTextArea.setColumns(20);
         licenseTextArea.setEditable(false);
@@ -1286,16 +1314,16 @@ public class UIMain extends javax.swing.JFrame
         licenseTextArea.setWrapStyleWord(true);
         jScrollPane7.setViewportView(licenseTextArea);
 
-        javax.swing.GroupLayout licenseDialogLayout = new javax.swing.GroupLayout(licenseDialog.getContentPane());
-        licenseDialog.getContentPane().setLayout(licenseDialogLayout);
-        licenseDialogLayout.setHorizontalGroup(
-            licenseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-        );
-        licenseDialogLayout.setVerticalGroup(
-            licenseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 678;
+        gridBagConstraints.ipady = 578;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        licenseDialog.getContentPane().add(jScrollPane7, gridBagConstraints);
 
         appearanceOptionsDialog.setTitle(bundle.getString("APPEARANCE OPTIONS")); // NOI18N
         appearanceOptionsDialog.setMinimumSize(new java.awt.Dimension(169, 74));
@@ -2443,7 +2471,6 @@ public class UIMain extends javax.swing.JFrame
     //shows about dialog
     private void aboutItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutItemActionPerformed
     {//GEN-HEADEREND:event_aboutItemActionPerformed
-	aboutDialog.setSize(410, 205);
 	aboutDialog.setVisible(true);
     }//GEN-LAST:event_aboutItemActionPerformed
 
@@ -2546,7 +2573,6 @@ public class UIMain extends javax.swing.JFrame
 
     private void doModellingOptionsItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_doModellingOptionsItemActionPerformed
     {//GEN-HEADEREND:event_doModellingOptionsItemActionPerformed
-	modellingOptionsDialog.setSize(670, 180);
 	modellingOptionsDialog.setVisible(true);
     }//GEN-LAST:event_doModellingOptionsItemActionPerformed
 
@@ -2643,7 +2669,6 @@ public class UIMain extends javax.swing.JFrame
 
     private void showLicenseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_showLicenseActionPerformed
     {//GEN-HEADEREND:event_showLicenseActionPerformed
-	licenseDialog.setSize(700, 600);
 	licenseTextArea.setText("");
 	try
 	{
