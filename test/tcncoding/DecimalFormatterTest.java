@@ -54,7 +54,7 @@ public class DecimalFormatterTest {
     {
 	double _value = 0.000023;
 	DecimalFormatter instance = new DecimalFormatter(2);
-	String expResult = "2,30*10^-5";
+	String expResult = "2,30×10⁻⁵";
 	String result = instance.formatValue(_value);
 	assertEquals(expResult, result);
     }
@@ -67,7 +67,7 @@ public class DecimalFormatterTest {
     {
 	double _value = -0.003;
 	DecimalFormatter instance = new DecimalFormatter(2);
-	String expResult = "-3,00*10^-3";
+	String expResult = "-3,00×10⁻³";
 	String result = instance.formatValue(_value);
 	assertEquals(expResult, result);
     }
@@ -80,7 +80,7 @@ public class DecimalFormatterTest {
     {
 	double _value = 1536.22;
 	DecimalFormatter instance = new DecimalFormatter(2);
-	String expResult = "1,54*10^3";
+	String expResult = "1,54×10³";
 	String result = instance.formatValue(_value);
 	assertEquals(expResult, result);
     }
@@ -93,7 +93,7 @@ public class DecimalFormatterTest {
     {
 	double _value = -667.345;
 	DecimalFormatter instance = new DecimalFormatter(2);
-	String expResult = "-6,67*10^2";
+	String expResult = "-6,67×10²";
 	String result = instance.formatValue(_value);
 	assertEquals(expResult, result);
     }
