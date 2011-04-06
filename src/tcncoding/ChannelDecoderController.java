@@ -87,6 +87,12 @@ public class ChannelDecoderController
 		    outputSequence = channelDecoderHamming.getSequence();
 		    report = channelDecoderHamming.getReport();
 		    break;
+                case CYCLIC:
+		    ChannelDecoderCyclic channelDecoderCyclic = new ChannelDecoderCyclic(inputSequence, headLength, lengthMap);
+		    channelDecoderCyclic.doDecode();
+		    outputSequence = channelDecoderCyclic.getSequence();
+		    report = channelDecoderCyclic.getReport();
+		    break;
 		default:
 		    break;
 	    }

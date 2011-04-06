@@ -49,7 +49,11 @@ public class ChannelCoderController
 	/**
 	 * Hamming code
 	 */
-	HAMMING;
+	HAMMING,
+        /**
+         * Cyclic code
+         */
+        CYCLIC;
     };
 
     private List<BinaryNumber> sourceSymbols;
@@ -106,6 +110,13 @@ public class ChannelCoderController
 		    channelSequence = channelCoderHamming.getSequence();
 		    headLength = channelCoderHamming.getHeadLength();
 		    report = channelCoderHamming.getReport();
+		    break;
+                case CYCLIC:
+		    ChannelCoderCyclic channelCoderCyclic = new ChannelCoderCyclic(sourceSymbols);
+		    channelCoderCyclic.doEncode();
+		    channelSequence = channelCoderCyclic.getSequence();
+		    headLength = channelCoderCyclic.getHeadLength();
+		    report = channelCoderCyclic.getReport();
 		    break;
 		default:
 		    break;

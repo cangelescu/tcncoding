@@ -381,15 +381,17 @@ public class BinaryNumber
         //sums numbers from left
         if (binary.size() >= _number.getLength())
         {
-            out = binary;
             for (int i = 0; i < _number.getLength(); i++)
-                out.set(i, binary.get(i) ^ _number.getDigit(i));
+                out.add(binary.get(i) ^ _number.getDigit(i));
+            for (int i = _number.getLength(); i < binary.size(); i++)
+                out.add(binary.get(i));
         } else
         if (binary.size() < _number.getLength())
         {
-            out = _number.binary;
             for (int i = 0; i < binary.size(); i++)
-                out.set(i, binary.get(i) ^ _number.getDigit(i));
+                out.add(binary.get(i) ^ _number.getDigit(i));
+            for (int i = binary.size(); i < _number.getLength(); i++)
+                out.add(_number.getDigit(i));
         }
 
         //removes trailing zeroes
@@ -408,7 +410,6 @@ public class BinaryNumber
                 out2.add(out.get(i));
         else
             out2 = out;
-
         return new BinaryNumber(out2);
     }
 
@@ -419,10 +420,10 @@ public class BinaryNumber
      */
     public BinaryNumber divmod2(BinaryNumber _denominator)
     {
-        BinaryNumber dividend = this;
+        BinaryNumber dividend = new BinaryNumber(binary);
         do {
             dividend = dividend.lsum2(_denominator);
-        }  while (dividend.toInt() > _denominator.toInt());
+        }  while (dividend.getLength() >= _denominator.getLength() && dividend.toInt() != 0);
         return dividend;
     }
 

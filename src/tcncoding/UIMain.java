@@ -186,6 +186,9 @@ public class UIMain extends javax.swing.JFrame
 	    case 3:
 		channelCode = ChannelCoderController.ChannelCoderCode.HAMMING;
 		break;
+            case 4:
+		channelCode = ChannelCoderController.ChannelCoderCode.CYCLIC;
+		break;
 	    default:
 		break;
 	}
@@ -1071,7 +1074,7 @@ public class UIMain extends javax.swing.JFrame
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         channelCoderTab.add(channelCodesChooserLabel, gridBagConstraints);
 
-        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("WITH PARITY BIT CHECKING"), bundle.getString("INVERSED"), bundle.getString("MANCHESTER"), bundle.getString("HAMMING (7, 4)")}));
+        channelCodesChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString("WITH PARITY BIT CHECKING"), bundle.getString("INVERSED"), bundle.getString("MANCHESTER"), bundle.getString("HAMMING (7, 4)"), bundle.getString("CYCLIC (8, 5)")}));
         channelCodesChooser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 channelCodesChooserItemStateChanged(evt);

@@ -225,7 +225,7 @@
                 <Component class="javax.swing.JComboBox" name="channelCodesChooser">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString(&quot;WITH PARITY BIT CHECKING&quot;), bundle.getString(&quot;INVERSED&quot;), bundle.getString(&quot;MANCHESTER&quot;), bundle.getString(&quot;HAMMING (7, 4)&quot;)})" type="code"/>
+                      <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { bundle.getString(&quot;WITH PARITY BIT CHECKING&quot;), bundle.getString(&quot;INVERSED&quot;), bundle.getString(&quot;MANCHESTER&quot;), bundle.getString(&quot;HAMMING (7, 4)&quot;), bundle.getString(&quot;CYCLIC (8, 5)&quot;)})" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
