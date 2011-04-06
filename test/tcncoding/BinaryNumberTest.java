@@ -29,6 +29,9 @@ import static org.junit.Assert.*;
  */
 public class BinaryNumberTest {
 
+    /**
+     *
+     */
     public BinaryNumberTest() {
     }
 
@@ -230,6 +233,43 @@ public class BinaryNumberTest {
 	BinaryNumber expResult = new BinaryNumber("111001000");
 	BinaryNumber result = instance.shl2(_count);
 	assertEquals(expResult.toInt(), result.toInt());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testLsum2()
+    {
+	BinaryNumber n1 = new BinaryNumber("1010110");
+	BinaryNumber n2 = new BinaryNumber("101");
+        BinaryNumber expResult = new BinaryNumber("110");
+	BinaryNumber result = n1.lsum2(n2);
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testDivmod2_1()
+    {
+        BinaryNumber instance = new BinaryNumber("1011011");
+        BinaryNumber divider = new BinaryNumber("1101");
+        BinaryNumber expResult = new BinaryNumber("111");
+        assertEquals(expResult.toInt(), instance.divmod2(divider).toInt());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testDivmod2_2()
+    {
+        BinaryNumber instance = new BinaryNumber("111011001110");
+        BinaryNumber divider = new BinaryNumber("10111");
+        BinaryNumber expResult = new BinaryNumber("1111");
+        assertEquals(expResult.toInt(), instance.divmod2(divider).toInt());
     }
 
     /**

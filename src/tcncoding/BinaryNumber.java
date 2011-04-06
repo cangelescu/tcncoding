@@ -371,6 +371,62 @@ public class BinaryNumber
     }
 
     /**
+     * Sums two binary numbers from left
+     * @param _number number to sum with
+     * @return sum of two number
+     */
+    public BinaryNumber lsum2(BinaryNumber _number)
+    {
+        List<Boolean> out = new ArrayList<Boolean>();
+        //sums numbers from left
+        if (binary.size() >= _number.getLength())
+        {
+            out = binary;
+            for (int i = 0; i < _number.getLength(); i++)
+                out.set(i, binary.get(i) ^ _number.getDigit(i));
+        } else
+        if (binary.size() < _number.getLength())
+        {
+            out = _number.binary;
+            for (int i = 0; i < binary.size(); i++)
+                out.set(i, binary.get(i) ^ _number.getDigit(i));
+        }
+
+        //removes trailing zeroes
+        boolean nonzero = false;
+        int nonzeroIndex = 0;
+        for (int i = 0; i < out.size(); i++)
+            if (out.get(i))
+            {
+                nonzero = true;
+                nonzeroIndex = i;
+                break;
+            }
+        List<Boolean> out2 = new ArrayList<Boolean>();
+        if (nonzero)
+            for (int i = nonzeroIndex; i < out.size(); i++)
+                out2.add(out.get(i));
+        else
+            out2 = out;
+
+        return new BinaryNumber(out2);
+    }
+
+    /**
+     * Divides binary number and returns reminder
+     * @param _denominator binary denominator to divide by
+     * @return binary reminder of division
+     */
+    public BinaryNumber divmod2(BinaryNumber _denominator)
+    {
+        BinaryNumber dividend = this;
+        do {
+            dividend = dividend.lsum2(_denominator);
+        }  while (dividend.toInt() > _denominator.toInt());
+        return dividend;
+    }
+
+    /**
      * Returns weight (count of 1) of binary number
      * @return integer value of binary number's weight
      */
