@@ -98,4 +98,21 @@ public class ChannelCoderControllerTest {
         boolean ok = result.equals("0100101");
 	assertEquals(true, ok);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void testCyclic()
+    {
+        BinaryNumber source = new BinaryNumber("10011");
+        List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
+        numbers.add(source);
+        ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.CYCLIC, true);
+        coder.doEncode();
+        String result = coder.getSequence().get(0).getStringSequence();
+        System.out.println(result);
+        boolean ok = result.equals("10011100");
+	assertEquals(true, ok);
+    }
 }

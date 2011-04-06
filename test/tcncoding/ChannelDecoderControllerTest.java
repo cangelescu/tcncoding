@@ -106,4 +106,22 @@ public class ChannelDecoderControllerTest {
         boolean ok = result.equals("0100");
 	assertEquals(true, ok);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void testCyclic()
+    {
+        BinaryNumber source = new BinaryNumber("10011100");
+        List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
+        numbers.add(source);
+        List<Integer> lengthMap = new ArrayList<Integer>();
+        lengthMap.add(5);
+        ChannelDecoderController decoder = new ChannelDecoderController(numbers, ChannelCoderController.ChannelCoderCode.CYCLIC, 0, lengthMap, true);
+        decoder.doDecode();
+        String result = decoder.getSequence().get(0).getStringSequence();
+        boolean ok = result.equals("10011");
+	assertEquals(true, ok);
+    }
 }
