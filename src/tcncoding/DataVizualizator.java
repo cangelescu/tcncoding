@@ -56,6 +56,7 @@ public class DataVizualizator extends JPanel
      * @param _height height of output area
      * @param _legendX X axis legend
      * @param _legendY Y axis legend
+     * @param _lineWidth width of line, px
      */
     public DataVizualizator(List<List<DataVizualizatorProvider>> _data, int _width, int _height, String _legendX, String _legendY, int _lineWidth)
     {
