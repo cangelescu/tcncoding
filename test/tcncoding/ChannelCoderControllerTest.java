@@ -29,9 +29,15 @@ import static org.junit.Assert.*;
  */
 public class ChannelCoderControllerTest {
 
+    /**
+     *
+     */
     public ChannelCoderControllerTest() {
     }
 
+    /**
+     *
+     */
     @Test
     public void testParityBit()
     {
@@ -45,6 +51,9 @@ public class ChannelCoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testInversed()
     {
@@ -58,6 +67,9 @@ public class ChannelCoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testManchester()
     {
@@ -71,6 +83,9 @@ public class ChannelCoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testHamming()
     {

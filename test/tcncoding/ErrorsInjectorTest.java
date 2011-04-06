@@ -29,6 +29,9 @@ import static org.junit.Assert.*;
  */
 public class ErrorsInjectorTest {
 
+    /**
+     *
+     */
     public ErrorsInjectorTest() {
     }
 

@@ -27,6 +27,9 @@ import static org.junit.Assert.*;
  */
 public class DecimalFormatterTest {
 
+    /**
+     *
+     */
     public DecimalFormatterTest() {
     }
 

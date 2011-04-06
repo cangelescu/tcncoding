@@ -29,9 +29,15 @@ import static org.junit.Assert.*;
  */
 public class SourceDecoderControllerTest {
 
+    /**
+     *
+     */
     public SourceDecoderControllerTest() {
     }
 
+    /**
+     *
+     */
     @Test
     public void testITC2()
     {
@@ -50,6 +56,9 @@ public class SourceDecoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testITC5()
     {
@@ -68,6 +77,9 @@ public class SourceDecoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testKOI8U()
     {
@@ -86,6 +98,9 @@ public class SourceDecoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testMorse()
     {
@@ -104,6 +119,9 @@ public class SourceDecoderControllerTest {
 	assertEquals(true, ok);
     }
 
+    /**
+     *
+     */
     @Test
     public void testShannon()
     {
