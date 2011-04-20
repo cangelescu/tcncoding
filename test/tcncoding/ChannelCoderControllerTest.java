@@ -111,7 +111,6 @@ public class ChannelCoderControllerTest {
         ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.CYCLIC, true);
         coder.doEncode();
         String result = coder.getSequence().get(0).getStringSequence();
-        System.out.println(result);
         boolean ok = result.equals("10011100");
 	assertEquals(true, ok);
     }
