@@ -293,6 +293,11 @@ public class BinaryNumber
             return new BinaryNumber(binary.subList(_count, binary.size()));
     }
     
+    /**
+     * Returns binary number with specified count of digits from the right side
+     * @param _count count of digits to leave
+     * @return binary number with specified count of digits
+     */
     public BinaryNumber leaveRight(int _count)
     {
         if (_count < 1 || _count > binary.size())
@@ -301,6 +306,10 @@ public class BinaryNumber
             return new BinaryNumber(binary.subList(binary.size() - _count, binary.size()));
     }
     
+    /**
+     * Returns binary number leading zeroes
+     * @return count of leading zeroes
+     */
     public int getLeadingZeroes()
     {
         for (int i = 0; i < binary.size(); i++)
