@@ -90,6 +90,18 @@ public class BinaryNumberTest {
 	long result = instance.toInt();
 	assertEquals(expResult, result);
     }
+    
+    /**
+     * Test of BinaryNumber class constructor.
+     */
+    @Test
+    public void test004Constructor()
+    {
+	BinaryNumber instance = new BinaryNumber("010011101", 5);
+	String expResult = "11101";
+	String result = instance.getStringSequence();
+	assertEquals(true, result.equals(expResult));
+    }
 
     /**
      * Test of getStringSequence method, of class BinaryNumber.
@@ -138,10 +150,22 @@ public class BinaryNumberTest {
      * Test of truncRight method, of class BinaryNumber.
      */
     @Test
-    public void testTruncRight_0args()
+    public void testTruncRight_0args_OK()
     {
 	BinaryNumber instance = new BinaryNumber("101");
 	BinaryNumber expResult = new BinaryNumber("10");
+	BinaryNumber result = instance.truncRight();
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+    
+    /**
+     * Test of truncRight method, of class BinaryNumber.
+     */
+    @Test
+    public void testTruncRight_0args_FAIL()
+    {
+	BinaryNumber instance = new BinaryNumber("1");
+	BinaryNumber expResult = new BinaryNumber("1");
 	BinaryNumber result = instance.truncRight();
 	assertEquals(expResult.toInt(), result.toInt());
     }
@@ -150,7 +174,7 @@ public class BinaryNumberTest {
      * Test of truncRight method, of class BinaryNumber.
      */
     @Test
-    public void testTruncRight_int()
+    public void testTruncRight_int_OK()
     {
 	int _count = 2;
 	BinaryNumber instance = new BinaryNumber("10111011");
@@ -159,6 +183,45 @@ public class BinaryNumberTest {
 	assertEquals(expResult.toInt(), result.toInt());
     }
 
+    /**
+     * Test of truncRight method, of class BinaryNumber.
+     */
+    @Test
+    public void testTruncRight_int_FAIL1()
+    {
+	int _count = 0;
+	BinaryNumber instance = new BinaryNumber("10111011");
+	BinaryNumber expResult = new BinaryNumber("10111011");
+	BinaryNumber result = instance.truncRight(_count);
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+    
+    /**
+     * Test of truncRight method, of class BinaryNumber.
+     */
+    @Test
+    public void testTruncRight_int_FAIL2()
+    {
+	int _count = 1;
+	BinaryNumber instance = new BinaryNumber("1");
+	BinaryNumber expResult = new BinaryNumber("1");
+	BinaryNumber result = instance.truncRight(_count);
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+    
+    /**
+     * Test of truncRight method, of class BinaryNumber.
+     */
+    @Test
+    public void testTruncRight_int_FAIL3()
+    {
+	int _count = 5;
+	BinaryNumber instance = new BinaryNumber("10111");
+	BinaryNumber expResult = new BinaryNumber("10111");
+	BinaryNumber result = instance.truncRight(_count);
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+    
     /**
      * Test of truncLeft method, of class BinaryNumber.
      */
