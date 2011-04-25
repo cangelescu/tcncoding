@@ -53,11 +53,6 @@ public class BinaryNumber
 		    binary.add(true);
 		    break;
 	    }
-
-	//calculates integer (decimal) value of binary number
-	for (int i = 0; i < len; i++)
-	    if (binary.get(i))
-		number += Math.pow(2, len - 1 - i);
     }
 
     /**
@@ -100,11 +95,6 @@ public class BinaryNumber
 		    binary.add(true);
 		    break;
 	    }
-
-	//calculates integer (decimal) value of binary number
-	for (int i = 0; i < _alignment; i++)
-	    if (binary.get(i))
-		number += Math.pow(2, len - 1 - i);
     }
 
     /**
@@ -113,7 +103,6 @@ public class BinaryNumber
      */
     public BinaryNumber(long _number)
     {
-	number = _number;
 	String bin = Integer.toBinaryString((int) _number);
 
 	//creates list
@@ -151,8 +140,6 @@ public class BinaryNumber
 	}
 	for (int i = lowBound; i < highBound; i++)
 	    binary.add(sequence.charAt(i) != '0');
-
-	number = _number;
     }
 
     /**
@@ -164,11 +151,6 @@ public class BinaryNumber
 	//creates list
 	for (int i = 0; i < _sequence.length; i++)
 	    binary.add(_sequence[i]);
-
-	//calculates integer (decimal) value of binary number
-	for (int i = 0; i < _sequence.length; i++)
-	    if (binary.get(i))
-		number += Math.pow(2, _sequence.length - 1 - i);
     }
 
     /**
@@ -179,11 +161,6 @@ public class BinaryNumber
     {
 	//creates list
 	binary = _sequence;
-
-	//calculates integer (decimal) value of binary number
-	for (int i = 0; i < _sequence.size(); i++)
-	    if (binary.get(i))
-		number += Math.pow(2, _sequence.size() - 1 - i);
     }
 
     /**
@@ -215,13 +192,8 @@ public class BinaryNumber
 	}
 	for (int i = lowBound; i < highBound; i++)
 	    binary.add(_sequence[i]);
-
-	//calculates integer (decimal) value of binary number
-	for (int i = 0; i < _alignment; i++)
-	    if (binary.get(i))
-		number += Math.pow(2, _alignment - 1 - i);
     }
-
+    
     /**
      * Returns string representation of binary number
      * @return string of zeroes and ones that represents binary number
@@ -240,6 +212,10 @@ public class BinaryNumber
      */
     public long toInt()
     {
+        int size = binary.size();
+        for (int i = 0; i < size; i++)
+	    if (binary.get(i))
+		number += Math.pow(2, size - 1 - i);
 	return number;
     }
 
