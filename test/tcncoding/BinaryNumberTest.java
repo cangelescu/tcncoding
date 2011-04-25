@@ -300,7 +300,7 @@ public class BinaryNumberTest {
      * 
      */
     @Test
-    public void testLeaveRight()
+    public void testLeaveRightOK()
     {
         BinaryNumber instance = new BinaryNumber("1011011101001");
         BinaryNumber result = instance.leaveRight(4);
@@ -308,4 +308,27 @@ public class BinaryNumberTest {
         assertEquals(true, expResult.equals(result.getStringSequence()));
     }
 
+    /**
+     * 
+     */
+    @Test
+    public void testLeaveRightFAIL1()
+    {
+        BinaryNumber instance = new BinaryNumber("01");
+        BinaryNumber result = instance.leaveRight(4);
+        String expResult = "01";
+        assertEquals(true, expResult.equals(result.getStringSequence()));
+    }
+    
+    /**
+     * 
+     */
+    @Test
+    public void testLeaveRightFAIL2()
+    {
+        BinaryNumber instance = new BinaryNumber("01011101");
+        BinaryNumber result = instance.leaveRight(0);
+        String expResult = "01011101";
+        assertEquals(true, expResult.equals(result.getStringSequence()));
+    }
 }

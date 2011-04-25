@@ -295,7 +295,7 @@ public class BinaryNumber
     
     public BinaryNumber leaveRight(int _count)
     {
-        if (_count < 1)
+        if (_count < 1 || _count > binary.size())
             return new BinaryNumber(binary.subList(0, binary.size()));
         else
             return new BinaryNumber(binary.subList(binary.size() - _count, binary.size()));
