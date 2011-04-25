@@ -261,7 +261,10 @@ public class BinaryNumber
      */
     public BinaryNumber truncRight()
     {
-	return new BinaryNumber(binary.subList(0, binary.size() - 1));
+        if (binary.size() < 2)
+            return new BinaryNumber(binary.subList(0, binary.size()));
+        else
+            return new BinaryNumber(binary.subList(0, binary.size() - 1));
     }
 
     /**
@@ -271,7 +274,10 @@ public class BinaryNumber
      */
     public BinaryNumber truncRight(int _count)
     {
-	return new BinaryNumber(binary.subList(0, binary.size() - _count));
+        if (_count < 1)
+            return new BinaryNumber(binary.subList(0, binary.size()));
+        else
+            return new BinaryNumber(binary.subList(0, binary.size() - _count));
     }
 
     /**
@@ -281,7 +287,26 @@ public class BinaryNumber
      */
     public BinaryNumber truncLeft(int _count)
     {
-	return new BinaryNumber(binary.subList(_count, binary.size()));
+        if (_count < 1)
+            return new BinaryNumber(binary.subList(0, binary.size()));
+        else
+            return new BinaryNumber(binary.subList(_count, binary.size()));
+    }
+    
+    public BinaryNumber leaveRight(int _count)
+    {
+        if (_count < 1)
+            return new BinaryNumber(binary.subList(0, binary.size()));
+        else
+            return new BinaryNumber(binary.subList(binary.size() - _count, binary.size()));
+    }
+    
+    public int getLeadingZeroes()
+    {
+        for (int i = 0; i < binary.size(); i++)
+            if (binary.get(i))
+                return i;
+        return -1;
     }
 
     /**
@@ -393,26 +418,13 @@ public class BinaryNumber
             for (int i = binary.size(); i < _number.getLength(); i++)
                 out.add(_number.getDigit(i));
         }
+        
+        BinaryNumber outBinary = new BinaryNumber(out);
+        BinaryNumber out2Binary = outBinary.truncLeft(outBinary.getLeadingZeroes());
 
-        //removes trailing zeroes
-        boolean nonzero = false;
-        int nonzeroIndex = 0;
-        for (int i = 0; i < out.size(); i++)
-            if (out.get(i))
-            {
-                nonzero = true;
-                nonzeroIndex = i;
-                break;
-            }
-        List<Boolean> out2 = new ArrayList<Boolean>();
-        if (nonzero)
-            for (int i = nonzeroIndex; i < out.size(); i++)
-                out2.add(out.get(i));
-        else
-            out2 = out;
-        return new BinaryNumber(out2);
+        return out2Binary;
     }
-
+    
     /**
      * Divides binary number and returns reminder
      * @param _denominator binary denominator to divide by

@@ -56,55 +56,31 @@ public class ChannelDecoderCyclic extends ChannelDecoder
 	for (BinaryNumber bn: inputSequence)
 	{
 	    //calculates cyclic code syndrome
-            BinaryNumber syndrome = bn.divmod2(new BinaryNumber("1011"));
+            BinaryNumber syndrome = bn.divmod2(new BinaryNumber("1011")).leaveRight(3);
             String syndromeString = syndrome.getStringSequence();
             int errorBit;
-            if (syndromeString.equals("1"))
-            {
-                syndrome = new BinaryNumber("001");
+            if (syndromeString.equals("001"))
                 errorBit = 1;
-            }
             else
             if (syndromeString.equals("101"))
-            {
-                syndrome = new BinaryNumber("101");
                 errorBit = 2;
-            }
             else
             if (syndromeString.equals("111"))
-            {
-                syndrome = new BinaryNumber("111");
                 errorBit = 3;
-            }
             else
             if (syndromeString.equals("110"))
-            {
-                syndrome = new BinaryNumber("110");
                 errorBit = 4;
-            }
             else
-            if (syndromeString.equals("11"))
-            {
-                syndrome = new BinaryNumber("011");
+            if (syndromeString.equals("011"))
                 errorBit = 5;
-            }
             else
             if (syndromeString.equals("100"))
-            {
-                syndrome = new BinaryNumber("100");
                 errorBit = 6;
-            }
             else
             if (syndromeString.equals("10"))
-            {
-                syndrome = new BinaryNumber("010");
                 errorBit = 7;
-            }
             else
-            {
-                syndrome = new BinaryNumber("000");
                 errorBit = 0;
-            }
 	    syndromeSequence.add(syndrome);
 
 	    //creates error vector based on calculated syndrome

@@ -295,5 +295,17 @@ public class BinaryNumberTest {
 	int result = instance.getLength();
 	assertEquals(expResult, result);
     }
+    
+    /**
+     * 
+     */
+    @Test
+    public void testLeaveRight()
+    {
+        BinaryNumber instance = new BinaryNumber("1011011101001");
+        BinaryNumber result = instance.leaveRight(4);
+        String expResult = "1001";
+        assertEquals(true, expResult.equals(result.getStringSequence()));
+    }
 
 }
