@@ -37,10 +37,7 @@ public class BinaryNumber
      */
     public BinaryNumber(String _sequence)
     {
-	int len = _sequence.length();
-
-	//creates list
-	for (int i = 0; i < len; i++)
+	for (int i = 0; i < _sequence.length(); i++)
 	    switch (_sequence.charAt(i))
 	    {
 		case '0':
@@ -63,9 +60,9 @@ public class BinaryNumber
     public BinaryNumber(String _sequence, int _alignment)
     {
 	int len = _sequence.length();
-	int lowBound, highBound;
+	int lowBound = 0, highBound = len;
 
-	//creates list
+	//calculates boundaries
 	if (len < _alignment)
 	{
 	    for (int i = 0; i < _alignment - len; i++)
@@ -73,15 +70,13 @@ public class BinaryNumber
 	    lowBound = 0;
 	    highBound = len;
 	} else
-	if (len > _alignment)
+	if (len >= _alignment)
 	{
 	    lowBound = len - _alignment;
 	    highBound = len;
-	} else
-	{
-	    lowBound = 0;
-	    highBound = len;
 	}
+
+        //creates list
 	for (int i = lowBound; i < highBound; i++)
 	    switch (_sequence.charAt(i))
 	    {
@@ -119,9 +114,9 @@ public class BinaryNumber
     {
 	String sequence = Integer.toBinaryString((int)_number);
 	int len = sequence.length();
-	int lowBound, highBound;
+	int lowBound = 0, highBound = len;
 
-	//creates list
+	//calculates boundaries
 	if (len < _alignment)
 	{
 	    for (int i = 0; i < _alignment - len; i++)
@@ -129,15 +124,13 @@ public class BinaryNumber
 	    lowBound = 0;
 	    highBound = len;
 	} else
-	if (len > _alignment)
+	if (len >= _alignment)
 	{
 	    lowBound = len - _alignment;
 	    highBound = len;
-	} else
-	{
-	    lowBound = 0;
-	    highBound = len;
 	}
+
+        //creates list
 	for (int i = lowBound; i < highBound; i++)
 	    binary.add(sequence.charAt(i) != '0');
     }
@@ -148,7 +141,6 @@ public class BinaryNumber
      */
     public BinaryNumber(boolean[] _sequence)
     {
-	//creates list
 	for (int i = 0; i < _sequence.length; i++)
 	    binary.add(_sequence[i]);
     }
@@ -159,7 +151,6 @@ public class BinaryNumber
      */
     public BinaryNumber(List<Boolean> _sequence)
     {
-	//creates list
 	binary = _sequence;
     }
 
@@ -171,9 +162,9 @@ public class BinaryNumber
     public BinaryNumber(boolean[] _sequence, int _alignment)
     {
 	int len = _sequence.length;
-	int lowBound, highBound;
+	int lowBound = 0, highBound = len;
 
-	//creates list
+	//calculates boundaries
 	if (len < _alignment)
 	{
 	    for (int i = 0; i < _alignment - len; i++)
@@ -181,15 +172,13 @@ public class BinaryNumber
 	    lowBound = 0;
 	    highBound = len;
 	} else
-	if (len > _alignment)
+	if (len >= _alignment)
 	{
 	    lowBound = len - _alignment;
 	    highBound = len;
-	} else
-	{
-	    lowBound = 0;
-	    highBound = len;
 	}
+
+        //creates list
 	for (int i = lowBound; i < highBound; i++)
 	    binary.add(_sequence[i]);
     }
@@ -250,7 +239,7 @@ public class BinaryNumber
      */
     public BinaryNumber truncRight(int _count)
     {
-        if (_count < 1)
+        if (_count < 1 || binary.size() < 2 || _count >= binary.size())
             return new BinaryNumber(binary.subList(0, binary.size()));
         else
             return new BinaryNumber(binary.subList(0, binary.size() - _count));
@@ -263,7 +252,7 @@ public class BinaryNumber
      */
     public BinaryNumber truncLeft(int _count)
     {
-        if (_count < 1)
+        if (_count < 1 || binary.size() < 2 || _count >= binary.size())
             return new BinaryNumber(binary.subList(0, binary.size()));
         else
             return new BinaryNumber(binary.subList(_count, binary.size()));
