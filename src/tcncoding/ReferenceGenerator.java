@@ -48,8 +48,9 @@ public class ReferenceGenerator
 
     /**
      * Runs generating
+     * @return list of reference signals
      */
-    public void generate()
+    public List<List<ModulatorSignal>> getSignals()
     {
 	for (List<ChannelSignal> clcs: receivedSignals)
 	{
@@ -61,14 +62,6 @@ public class ReferenceGenerator
 	    }
 	    output.add(newModulatorSignalList);
 	}
-    }
-
-    /**
-     * Returns list of generated signals
-     * @return list of reference signals
-     */
-    public List<List<ModulatorSignal>> getSignals()
-    {
-	return output;
+        return output;
     }
 }

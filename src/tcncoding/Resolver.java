@@ -62,8 +62,9 @@ public class Resolver
 
     /**
      * Runs resolving
+     * @return received bits
      */
-    public void doResolving()
+    public List<BinaryNumber> getBinaryNumbers()
     {
 	List<BinaryNumber> preOutputNumbers = new ArrayList<BinaryNumber>();
 
@@ -88,29 +89,19 @@ public class Resolver
 	if (modulationType == ModulatorController.ModulationType.RPSK)
 	{
 	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(preOutputNumbers);
-	    recoder.doDecoding();
-	    preOutputNumbers = recoder.getList();
+	    preOutputNumbers = recoder.getDecodedList();
 	}
 
 	//inject errors if enabled
 	if (forceErrors)
 	{
 	    ErrorsInjector injector = new ErrorsInjector(preOutputNumbers, errorsCount, perBlock);
-	    injector.injectErrors();
 	    outputNumbers = injector.getSequence();
 	} else
 	//otherwise copy unaffected sequence
 	    for (BinaryNumber cbn: preOutputNumbers)
 		outputNumbers.add(cbn);
-    }
-
-    /**
-     * Returns binary list
-     * @return list of binary numbers
-     */
-    public List<BinaryNumber> getBinaryNumbers()
-    {
-	return outputNumbers;
+        return outputNumbers;
     }
 
     /**

@@ -44,8 +44,9 @@ public class Multiplier
 
     /**
      * Runs multiplying
+     * @return multiplied sequence
      */
-    public void doMultiply()
+    public List<List<MultiplierSignal>> getSignals()
     {
 	for (int i = 0; i < channelSignals.size(); i++)
 	{
@@ -57,14 +58,6 @@ public class Multiplier
 	    }
 	    output.add(newMultiplierSignals);
 	}
-    }
-
-    /**
-     * Returns list of multiplied signals
-     * @return list of multiplied signals
-     */
-    public List<List<MultiplierSignal>> getSignals()
-    {
-	return output;
+        return output;
     }
 }

@@ -35,13 +35,4 @@ public class SourceDecoder {
      * input encoded sequence
      */
     protected List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
-
-    /**
-     * Returns decoded message
-     * @return string representation of source message
-     */
-    public String getMessage()
-    {
-	return sourceMessage;
-    }
 }

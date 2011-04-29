@@ -19,6 +19,7 @@
 package tcncoding;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Allows using Morse code
@@ -50,8 +51,9 @@ public class SourceCoderMorse extends SourceCoder
 
     /**
      * Encodes source sequence with Morse code
+     * @return encoded sequence
      */
-    public void doEncoding()
+    public List<BinaryNumber> getSequence()
     {
 	sourceSequence.clear();
 
@@ -90,6 +92,7 @@ public class SourceCoderMorse extends SourceCoder
 		    sourceSequence.add(newSymbol);
 	    }
 	}
+        return sourceSequence;
     }
 
     /**

@@ -39,14 +39,15 @@ public class ChannelCoderCyclic extends ChannelCoder
 
     /**
      * Runs encoding
+     * @return encoded sequence
      */
-    public void doEncode()
+    public List<BinaryNumber> getSequence()
     {
 	//makes blocks of equal size
 	Splitter cyclicBlocker = new Splitter(inputSequence, 5);
-	cyclicBlocker.doSplitting();
+        List<BinaryNumber> blockedSequence = cyclicBlocker.getSplittingBlocks();
 	headLength = cyclicBlocker.getLeadingZeroesCount();
-	List<BinaryNumber> blockedSequence = cyclicBlocker.getBlocks();
+	
 	//encodes made blocks
 	for (BinaryNumber bn: blockedSequence)
 	{
@@ -57,6 +58,7 @@ public class ChannelCoderCyclic extends ChannelCoder
 	    outputSequence.add(shifted.sum2(syndrome));
             //System.out.println(shifted.getStringSequence());
 	}
+        return outputSequence;
     }
 
     /**

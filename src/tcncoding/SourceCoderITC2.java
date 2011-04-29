@@ -19,6 +19,7 @@
 package tcncoding;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Allows using ITC-2
@@ -75,8 +76,9 @@ public class SourceCoderITC2 extends SourceCoder
 
     /**
      * Encodes source sequence with ITC-2
+     * @return encoded sequence
      */
-    public void doEncoding()
+    public List<BinaryNumber> getSequence()
     {
 	sourceSequence.clear();
 
@@ -119,5 +121,6 @@ public class SourceCoderITC2 extends SourceCoder
 		sourceSequence.add(bNum);
 	    }
 	}
+        return sourceSequence;
     }
 }

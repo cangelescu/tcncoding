@@ -45,8 +45,9 @@ public class ModulatorPSK extends Modulator
 
     /**
      * Runs modulating
+     * @return modulated sequence
      */
-    public void doModulation()
+    public List<List<ModulatorSignal>> getSignals()
     {
 	modulatedSequence.clear();
 
@@ -55,8 +56,7 @@ public class ModulatorPSK extends Modulator
 	for (BinaryNumber cbn: inputSequence)
 	{
 	    Splitter splitter = new Splitter(cbn);
-	    splitter.doSplitting();
-	    boolean[] bits = splitter.getBlocks().get(0).getBinaryArray();
+	    boolean[] bits = splitter.getSplittingBlocks().get(0).getBinaryArray();
 	    List<ModulatorSignal> currentSymbolSignals = new ArrayList<ModulatorSignal>();
 	    for (boolean cb: bits)
 	    {
@@ -68,14 +68,6 @@ public class ModulatorPSK extends Modulator
 	    }
 	    modulatedSequence.add(currentSymbolSignals);
 	}
-    }
-
-    /**
-     * Returns modulated signals
-     * @return list of modulated signals
-     */
-    public List<List<ModulatorSignal>> getSignals()
-    {
-	return modulatedSequence;
+        return modulatedSequence;
     }
 }

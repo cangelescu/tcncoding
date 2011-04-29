@@ -40,8 +40,9 @@ public class ModulatorRPSKRecoder
 
     /**
      * Runs encoding
+     * @return encoded sequence
      */
-    public void doEncoding()
+    public List<BinaryNumber> getEncodedList()
     {
 	outputArray = new ArrayList<BinaryNumber>();
 	outputArray.add(new BinaryNumber(1));
@@ -60,12 +61,14 @@ public class ModulatorRPSKRecoder
 	    }
 	    outputArray.add(new BinaryNumber(currentNewPiece));
 	}
+        return outputArray;
     }
 
     /**
      * Runs decoding
+     * @return decoded sequence
      */
-    public void doDecoding()
+    public List<BinaryNumber> getDecodedList()
     {
 	outputArray = new ArrayList<BinaryNumber>();
 
@@ -83,14 +86,6 @@ public class ModulatorRPSKRecoder
 	    }
 	    outputArray.add(new BinaryNumber(currentNewPiece));
 	}
-    }
-
-    /**
-     * Returns formed array
-     * @return list of recoded binary sequence
-     */
-    public List<BinaryNumber> getList()
-    {
-	return outputArray;
+        return outputArray;
     }
 }

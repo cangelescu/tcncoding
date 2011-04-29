@@ -47,7 +47,6 @@ public class ErrorsInjectorTest {
 	symbols.add(new BinaryNumber(37));
 
 	ErrorsInjector injector = new ErrorsInjector(symbols, 3, true);
-	injector.injectErrors();
 	List<BinaryNumber> brokenSymbols = new ArrayList<BinaryNumber>();
 	brokenSymbols = injector.getSequence();
 
@@ -75,7 +74,6 @@ public class ErrorsInjectorTest {
 	symbols.add(new BinaryNumber(37));
 
 	ErrorsInjector injector = new ErrorsInjector(symbols, 3, false);
-	injector.injectErrors();
 	List<BinaryNumber> brokenSymbols = new ArrayList<BinaryNumber>();
 	brokenSymbols = injector.getSequence();
 

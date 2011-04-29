@@ -41,7 +41,7 @@ public class SourceCoderControllerTest {
     {
         String message = "привет";
         SourceCoderController coder = new SourceCoderController(SourceCoderController.SourceCoderCode.MTK2, message);
-        coder.doEncode();
+        coder.getSequence();
         String result = coder.getStringSequence();
         boolean ok = result.equals("011010101001100110011000000001");
 	assertEquals(true, ok);
@@ -55,7 +55,7 @@ public class SourceCoderControllerTest {
     {
         String message = "привет";
         SourceCoderController coder = new SourceCoderController(SourceCoderController.SourceCoderCode.MTK5, message);
-        coder.doEncode();
+        coder.getSequence();
         String result = coder.getStringSequence();
         boolean ok = result.equals("101000010100101011001101011110001011010100");
 	assertEquals(true, ok);
@@ -69,7 +69,7 @@ public class SourceCoderControllerTest {
     {
         String message = "привет";
         SourceCoderController coder = new SourceCoderController(SourceCoderController.SourceCoderCode.KOI8U, message);
-        coder.doEncode();
+        coder.getSequence();
         String result = coder.getStringSequence();
         boolean ok = result.equals("110100001101001011011001110101111100010111010100");
 	assertEquals(true, ok);
@@ -83,7 +83,7 @@ public class SourceCoderControllerTest {
     {
         String message = "привет";
         SourceCoderController coder = new SourceCoderController(SourceCoderController.SourceCoderCode.MORSE, message);
-        coder.doEncode();
+        coder.getSequence();
         String result = coder.getStringSequence();
         boolean ok = result.equals("01100100001101");
 	assertEquals(true, ok);
@@ -97,7 +97,7 @@ public class SourceCoderControllerTest {
     {
         String message = "привет";
         SourceCoderController coder = new SourceCoderController(SourceCoderController.SourceCoderCode.SHANNON, message);
-        coder.doEncode();
+        coder.getSequence();
         String result = coder.getStringSequence();
         boolean ok = result.equals("110011100110110101001000111");
 	assertEquals(true, ok);

@@ -44,8 +44,9 @@ public class SourceDecoderKOI8U extends SourceDecoder
 
     /**
      * Decodes source message with KOI8-U
+     * @return decoded sequence
      */
-    public void doDecoding()
+    public String getMessage()
     {
 	sourceMessage = "";
 
@@ -54,5 +55,6 @@ public class SourceDecoderKOI8U extends SourceDecoder
 	    String currentChar = codeMapKOI8U.get(cbn.getStringSequence());
 	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
+        return sourceMessage;
     }
 }

@@ -45,7 +45,6 @@ public class ChannelCoderControllerTest {
         List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
         numbers.add(source);
         ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.PARITY_BIT, true);
-        coder.doEncode();
         String result = coder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("0100111");
 	assertEquals(true, ok);
@@ -61,7 +60,6 @@ public class ChannelCoderControllerTest {
         List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
         numbers.add(source);
         ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.INVERSED, true);
-        coder.doEncode();
         String result = coder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("010011101100");
 	assertEquals(true, ok);
@@ -77,7 +75,6 @@ public class ChannelCoderControllerTest {
         List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
         numbers.add(source);
         ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.MANCHESTER, true);
-        coder.doEncode();
         String result = coder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("011001011010");
 	assertEquals(true, ok);
@@ -93,7 +90,6 @@ public class ChannelCoderControllerTest {
         List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
         numbers.add(source);
         ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.HAMMING, true);
-        coder.doEncode();
         String result = coder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("0100101");
 	assertEquals(true, ok);
@@ -109,7 +105,6 @@ public class ChannelCoderControllerTest {
         List<BinaryNumber> numbers = new ArrayList<BinaryNumber>();
         numbers.add(source);
         ChannelCoderController coder = new ChannelCoderController(numbers, ChannelCoderController.ChannelCoderCode.CYCLIC, true);
-        coder.doEncode();
         String result = coder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("10011100");
 	assertEquals(true, ok);

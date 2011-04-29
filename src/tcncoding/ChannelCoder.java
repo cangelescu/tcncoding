@@ -35,13 +35,4 @@ public class ChannelCoder {
      * encoded binary sequence
      */
     protected List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
-    
-    /**
-     * Returns encoded list of binary numbers
-     * @return list of encoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
-    }
 }

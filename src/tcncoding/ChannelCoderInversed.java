@@ -38,8 +38,9 @@ public class ChannelCoderInversed extends ChannelCoder
 
     /**
      * Runs encoding
+     * @return encoded sequence
      */
-    public void doEncode()
+    public List<BinaryNumber> getSequence()
     {
 	for (BinaryNumber bn: inputSequence)
 	{
@@ -52,6 +53,7 @@ public class ChannelCoderInversed extends ChannelCoder
 		outputSequence.add(shifted.sum2(inversed));
 	    }
 	}
+        return outputSequence;
     }
 
     /**

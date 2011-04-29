@@ -53,8 +53,9 @@ public class SourceDecoderITC2 extends SourceDecoder
 
     /**
      * Decodes source message with ITC-2
+     * @return decoded sequence
      */
-    public void doDecoding()
+    public String getMessage()
     {
 	sourceMessage = "";
 
@@ -94,5 +95,6 @@ public class SourceDecoderITC2 extends SourceDecoder
 		    codeMapPart = SourceCoderITC2.CodeMapPart.NUM;
 	    }
 	}
+        return sourceMessage;
     }
 }

@@ -47,8 +47,9 @@ public class SourceDecoderShannonFano extends SourceDecoder
 
     /**
      * Decodes source message with Shannon-Fano code
+     * @return decoded sequence
      */
-    public void doDecoding()
+    public String getMessage()
     {
 	sourceMessage = "";
 
@@ -63,8 +64,7 @@ public class SourceDecoderShannonFano extends SourceDecoder
 
 	//forms 1 binary number from source sequence
 	Splitter splitter = new Splitter(sourceSequence, unifiedMap);
-	splitter.doRecovering();
-	BinaryNumber sequence = splitter.getBlocks().get(0);
+	BinaryNumber sequence = splitter.getRecoveringBlocks().get(0);
 
 	//goes through sequence bit by bit
 	String buffer = "";
@@ -88,5 +88,6 @@ public class SourceDecoderShannonFano extends SourceDecoder
 	    String currentChar = codeMap.get(buffer);
 	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
+        return sourceMessage;
     }
 }

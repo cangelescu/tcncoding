@@ -50,7 +50,6 @@ public class SourceDecoderControllerTest {
         inputSequence.add(new BinaryNumber("00001"));
 
         SourceDecoderController decoder = new SourceDecoderController(inputSequence, SourceCoderController.SourceCoderCode.MTK2, true);
-        decoder.doDecode();
         String result = decoder.getMessage();
         boolean ok = result.equals("ПРИВЕТ");
 	assertEquals(true, ok);
@@ -71,7 +70,6 @@ public class SourceDecoderControllerTest {
         inputSequence.add(new BinaryNumber("1010100"));
 
         SourceDecoderController decoder = new SourceDecoderController(inputSequence, SourceCoderController.SourceCoderCode.MTK5, true);
-        decoder.doDecode();
         String result = decoder.getMessage();
         boolean ok = result.equals("привет");
 	assertEquals(true, ok);
@@ -92,7 +90,6 @@ public class SourceDecoderControllerTest {
         inputSequence.add(new BinaryNumber("11010100"));
 
         SourceDecoderController decoder = new SourceDecoderController(inputSequence, SourceCoderController.SourceCoderCode.KOI8U, true);
-        decoder.doDecode();
         String result = decoder.getMessage();
         boolean ok = result.equals("привет");
 	assertEquals(true, ok);
@@ -113,7 +110,6 @@ public class SourceDecoderControllerTest {
         inputSequence.add(new BinaryNumber("1"));
 
         SourceDecoderController decoder = new SourceDecoderController(inputSequence, SourceCoderController.SourceCoderCode.MORSE, true);
-        decoder.doDecode();
         String result = decoder.getMessage();
         boolean ok = result.equals("ПРИВЕТ");
 	assertEquals(true, ok);
@@ -134,7 +130,6 @@ public class SourceDecoderControllerTest {
         inputSequence.add(new BinaryNumber("0111"));
 
         SourceDecoderController decoder = new SourceDecoderController(inputSequence, SourceCoderController.SourceCoderCode.SHANNON, true);
-        decoder.doDecode();
         String result = decoder.getMessage();
         boolean ok = result.equals("ПРИВЕТ");
 	assertEquals(true, ok);

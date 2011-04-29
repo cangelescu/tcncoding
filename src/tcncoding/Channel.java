@@ -43,9 +43,10 @@ public class Channel
     }
 
     /**
-     * Runs noising of channel
+     * Returns list of noised signals
+     * @return list of channel signals
      */
-    public void doNoising()
+    public List<List<ChannelSignal>> getSignals()
     {
         for (int k = 0; k < inputModulatorSignals.size(); k++)
         {
@@ -60,14 +61,6 @@ public class Channel
             }
             outputSignals.add(clchs);
         }
-    }
-
-    /**
-     * Returns list of noised signals
-     * @return list of channel signals
-     */
-    public List<List<ChannelSignal>> getSignals()
-    {
 	return outputSignals;
     }
 }

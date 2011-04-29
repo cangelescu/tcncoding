@@ -46,8 +46,9 @@ public class NoiseGenerator
 
     /**
      * Generates noise
+     * @return list of noise signals
      */
-    public void doGenerating()
+    public List<List<NoiseSignal>> getSignals()
     {
 	for (List<ModulatorSignal> clms: modulatedSequence)
         {
@@ -56,14 +57,6 @@ public class NoiseGenerator
                 clns.add(new NoiseSignal(noisePower, cms.getStart(), cms.getEnd()));
             noiseSignal.add(clns);
         }
-    }
-
-    /**
-     * Returns noise signals
-     * @return list of noise signals
-     */
-    public List<List<NoiseSignal>> getSignals()
-    {
-	return noiseSignal;
+        return noiseSignal;
     }
 }

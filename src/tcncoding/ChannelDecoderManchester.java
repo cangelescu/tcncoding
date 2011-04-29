@@ -41,8 +41,9 @@ public class ChannelDecoderManchester extends ChannelDecoder
 
     /**
      * Runs decoding
+     * @return decoded sequence
      */
-    public void doDecode()
+    public List<BinaryNumber> getSequence()
     {
 	for (BinaryNumber bn: inputSequence)
 	{
@@ -71,6 +72,7 @@ public class ChannelDecoderManchester extends ChannelDecoder
 	    outputSequence.add(ready);
 	    checkingSequence.add(checkedNumber);
 	}
+        return outputSequence;
     }
 
     /**

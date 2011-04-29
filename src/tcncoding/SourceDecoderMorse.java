@@ -48,8 +48,9 @@ public class SourceDecoderMorse extends SourceDecoder
 
     /**
      * Decodes source message with Morse code
+     * @return decoded sequence
      */
-    public void doDecoding()
+    public String getMessage()
     {
 	sourceMessage = "";
 
@@ -64,5 +65,6 @@ public class SourceDecoderMorse extends SourceDecoder
 		sourceMessage += (currentChar != null) ? currentChar : "*";
 	    }
 	}
+        return sourceMessage;
     }
 }

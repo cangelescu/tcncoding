@@ -47,48 +47,35 @@ public class SourceDecoderController
 
     /**
      * Runs decoding
+     * @return decoded sequence
      */
-    public void doDecode()
+    public String getMessage()
     {
 	switch (usingCode)
 	{
 	    case MTK2:
 		SourceDecoderITC2 decoderMTK2 = new SourceDecoderITC2(sourceSequence);
-		decoderMTK2.doDecoding();
 		sourceMessage = decoderMTK2.getMessage();
 		break;
 	    case MTK5:
 		SourceDecoderITC5 decoderMTK5 = new SourceDecoderITC5(sourceSequence);
-		decoderMTK5.doDecoding();
 		sourceMessage = decoderMTK5.getMessage();
 		break;
 	    case KOI8U:
 		SourceDecoderKOI8U decoderKOI8U = new SourceDecoderKOI8U(sourceSequence);
-		decoderKOI8U.doDecoding();
 		sourceMessage = decoderKOI8U.getMessage();
 		break;
 	    case MORSE:
 		SourceDecoderMorse decoderMorse = new SourceDecoderMorse(sourceSequence, isCyr);
-		decoderMorse.doDecoding();
 		sourceMessage = decoderMorse.getMessage();
 		break;
 	    case SHANNON:
 		SourceDecoderShannonFano decoderShannon = new SourceDecoderShannonFano(sourceSequence, isCyr);
-		decoderShannon.doDecoding();
 		sourceMessage = decoderShannon.getMessage();
 		break;
 	    default:
 		break;
 	}
+        return sourceMessage;
     }
-
-    /**
-     * Returns decoded messaage
-     * @return string representation of source message
-     */
-    public String getMessage()
-    {
-	return sourceMessage;
-    }
-
 }

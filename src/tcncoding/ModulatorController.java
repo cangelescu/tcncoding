@@ -79,47 +79,35 @@ public class ModulatorController
 
     /**
      * Runs modulating
+     * @return modulated sequence
      */
-    public void doModulation()
+    public List<List<ModulatorSignal>> getSignals()
     {
 	switch (usingMethod)
 	{
 	    case ASK:
 		ModulatorASK modulatorASK = new ModulatorASK(bearerAmplitude, bearerFrequency, inputSequence, impulseLength);
-		modulatorASK.doModulation();
 		modulatedSequence = modulatorASK.getSignals();
 		break;
 	    case FSK:
 		ModulatorFSK modulatorFSK = new ModulatorFSK(bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, inputSequence, impulseLength);
-		modulatorFSK.doModulation();
 		modulatedSequence = modulatorFSK.getSignals();
 		break;
 	    case PSK:
 		ModulatorPSK modulatorPSK = new ModulatorPSK(bearerAmplitude, bearerFrequency, inputSequence, impulseLength);
-		modulatorPSK.doModulation();
 		modulatedSequence = modulatorPSK.getSignals();
 		break;
 	    case RPSK:
 		//recode input sequence first
 		ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(inputSequence);
-		recoder.doEncoding();
-		List<BinaryNumber> recodedsequence = recoder.getList();
+		List<BinaryNumber> recodedsequence = recoder.getEncodedList();
 		//using PSK modulator with recoded sequence as its input
 		ModulatorPSK modulatorRPSK = new ModulatorPSK(bearerAmplitude, bearerFrequency, recodedsequence, impulseLength);
-		modulatorRPSK.doModulation();
 		modulatedSequence = modulatorRPSK.getSignals();
 		break;
 	    default:
 		break;
 	}
-    }
-
-    /**
-     * Returns modulated signals
-     * @return list of modulated signals
-     */
-    public List<List<ModulatorSignal>> getSignals()
-    {
-	return modulatedSequence;
+        return modulatedSequence;
     }
 }

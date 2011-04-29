@@ -39,13 +39,4 @@ public class ChannelDecoder {
      * vectors of errors
      */
     protected List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
-
-    /**
-     * Returns decoded list of binary numbers
-     * @return list of decoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
-    }
 }

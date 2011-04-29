@@ -75,35 +75,31 @@ public class SourceCoderController
 
     /**
      * Runs encoding
+     * @return encoded sequence
      */
-    public void doEncode()
+    public List<BinaryNumber> getSequence()
     {
 	switch (usingCode)
 	{
 	    case MTK2:
 		SourceCoderITC2 coderMTK2 = new SourceCoderITC2(sourceMessage);
-		coderMTK2.doEncoding();
 		sourceSequence = coderMTK2.getSequence();
 		break;
 	    case MTK5:
 		SourceCoderITC5 coderMTK5 = new SourceCoderITC5(sourceMessage);
-		coderMTK5.doEncoding();
 		sourceSequence = coderMTK5.getSequence();
 		break;
 	    case KOI8U:
 		SourceCoderKOI8U coderKOI8U = new SourceCoderKOI8U(sourceMessage);
-		coderKOI8U.doEncoding();
 		sourceSequence = coderKOI8U.getSequence();
 		break;
 	    case MORSE:
 		SourceCoderMorse coderMorse = new SourceCoderMorse(sourceMessage);
-		coderMorse.doEncoding();
 		sourceSequence = coderMorse.getSequence();
 		isCyr = coderMorse.isCyrillic();
 		break;
 	    case SHANNON:
 		SourceCoderShannonFano coderShannon = new SourceCoderShannonFano(sourceMessage);
-		coderShannon.doEncoding();
 		sourceSequence = coderShannon.getSequence();
 		isCyr = coderShannon.isCyrillic();
 		break;
@@ -114,15 +110,8 @@ public class SourceCoderController
 	lengthMap.clear();
 	for (BinaryNumber cbn: sourceSequence)
 	    lengthMap.add(cbn.getLength());
-    }
 
-    /**
-     * Returns encoded sequence
-     * @return list of encoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return sourceSequence;
+        return sourceSequence;
     }
 
     /**

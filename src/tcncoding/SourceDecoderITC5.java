@@ -44,8 +44,9 @@ public class SourceDecoderITC5 extends SourceDecoder
 
     /**
      * Decodes source message with ITC-5
+     * @return decoded sequence
      */
-    public void doDecoding()
+    public String getMessage()
     {
 	sourceMessage = "";
 
@@ -54,5 +55,6 @@ public class SourceDecoderITC5 extends SourceDecoder
 	    String currentChar = codeMapMTK5.get(cbn.getStringSequence());
 	    sourceMessage += (currentChar != null) ? currentChar : "*";
 	}
+        return sourceMessage;
     }
 }

@@ -59,8 +59,9 @@ public class Integrator
 
     /**
      * Runs integrating
+     * @return samples of integration function
      */
-    public void doIntegrating()
+    public List<List<DigitalSignal>> getIntegrals()
     {
 	result.clear();
 
@@ -138,14 +139,6 @@ public class Integrator
             index += ci;
             result.add(newBlock);
         }
-    }
-
-    /**
-     * Returns list of lists of digital signals
-     * @return digital integration result of input signal
-     */
-    public List<List<DigitalSignal>> getIntegrals()
-    {
-	return result;
+        return result;
     }
 }

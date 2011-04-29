@@ -19,6 +19,7 @@
 package tcncoding;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Allows using ITC-5
@@ -43,8 +44,9 @@ public class SourceCoderITC5 extends SourceCoder
 
     /**
      * Encodes source sequence with ITC-5
+     * @return encoded sequence
      */
-    public void doEncoding()
+    public List<BinaryNumber> getSequence()
     {
 	sourceSequence.clear();
 
@@ -56,5 +58,6 @@ public class SourceCoderITC5 extends SourceCoder
 	    if (bMTK5 != null)
 	    	sourceSequence.add(bMTK5);
 	}
+        return sourceSequence;
     }
 }

@@ -93,8 +93,9 @@ public class Splitter
 
     /**
      * Runs splitting
+     * @return splitted sequence
      */
-    public void doSplitting()
+    public List<BinaryNumber> getSplittingBlocks()
     {
 	//gets common sequence length
 	int sequenceLength = 0;
@@ -125,16 +126,17 @@ public class Splitter
 	    outputBlocks.add(new BinaryNumber(piece, blockLength));
 	    k += blockLength;
 	}
+        return outputBlocks;
     }
 
     /**
      * Recovers sequence blocking according to length map
+     * @return recovered sequence
      */
-    public void doRecovering()
+    public List<BinaryNumber> getRecoveringBlocks()
     {
 	Splitter linearSplitter = new Splitter(sequence);
-	linearSplitter.doSplitting();
-	boolean[] linearSequence = linearSplitter.getBlocks().get(0).getBinaryArray();
+	boolean[] linearSequence = linearSplitter.getSplittingBlocks().get(0).getBinaryArray();
 
 	int index = 0;
 	for (Integer ci: lengthMap)
@@ -144,15 +146,7 @@ public class Splitter
 	    outputBlocks.add(new BinaryNumber(newBlock));
 	    index += ci;
 	}
-    }
-
-    /**
-     * Returns list of splitted blocks with fixed width
-     * @return list of recoded blocks
-     */
-    public List<BinaryNumber> getBlocks()
-    {
-	return outputBlocks;
+        return outputBlocks;
     }
 
     /**

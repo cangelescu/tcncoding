@@ -47,8 +47,9 @@ public class ChannelDecoderCyclic extends ChannelDecoder
 
     /**
      * Runs decoding
+     * @return decoded sequence
      */
-    public void doDecode()
+    public List<BinaryNumber> getSequence()
     {
 	List<BinaryNumber> pre1Sequence = new ArrayList<BinaryNumber>();
 	List<BinaryNumber> pre2Sequence = new ArrayList<BinaryNumber>();
@@ -105,8 +106,8 @@ public class ChannelDecoderCyclic extends ChannelDecoder
 
 	//recovers original blocks of sequence
 	Splitter recovery = new Splitter(pre2Sequence, lengthMap);
-	recovery.doRecovering();
-	outputSequence = recovery.getBlocks();
+	outputSequence = recovery.getRecoveringBlocks();
+        return outputSequence;
     }
 
     /**

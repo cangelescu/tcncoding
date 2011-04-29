@@ -50,8 +50,7 @@ public class SplitterTest {
 	testList.add(test2);
 	testList.add(test3);
 	Splitter instance = new Splitter(testList, 4);
-	instance.doSplitting();
-	List<BinaryNumber> blocks = instance.getBlocks();
+	List<BinaryNumber> blocks = instance.getSplittingBlocks();
 	boolean ok = true;
 	for (int i = 0; i < blocks.size(); i++)
 	    if (!blocks.get(i).getStringSequence().equals(expResult[i]))
@@ -82,8 +81,7 @@ public class SplitterTest {
 	map.add(3);
 	map.add(5);
 	Splitter instance = new Splitter(testList, map);
-	instance.doRecovering();
-	List<BinaryNumber> blocks = instance.getBlocks();
+	List<BinaryNumber> blocks = instance.getRecoveringBlocks();
 	boolean ok = true;
 	for (int i = 0; i < blocks.size(); i++)
 	    if (!blocks.get(i).getStringSequence().equals(expResult[i]))
@@ -108,7 +106,7 @@ public class SplitterTest {
 	testList.add(test2);
 	testList.add(test3);
 	Splitter instance = new Splitter(testList, 4);
-	instance.doSplitting();
+	instance.getSplittingBlocks();
 	int expResult = 3;
 	int result = instance.getLeadingZeroesCount();
 	assertEquals(expResult, result);

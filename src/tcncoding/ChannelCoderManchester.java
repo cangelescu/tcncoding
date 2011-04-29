@@ -38,8 +38,9 @@ public class ChannelCoderManchester extends ChannelCoder
 
     /**
      * Runs encoding
+     * @return encoded sequence
      */
-    public void doEncode()
+    public List<BinaryNumber> getSequence()
     {
 	for (BinaryNumber bn: inputSequence)
 	{
@@ -54,6 +55,7 @@ public class ChannelCoderManchester extends ChannelCoder
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
 	    outputSequence.add(ready);
 	}
+        return outputSequence;
     }
 
     /**

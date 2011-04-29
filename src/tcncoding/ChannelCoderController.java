@@ -77,43 +77,39 @@ public class ChannelCoderController
     }
 
     /**
-     * Runs encoding
+     * Returns encoded sequence
+     * @return list of encoded binary numbers
      */
-    public void doEncode()
+    public List<BinaryNumber> getSequence()
     {
-	channelSequence.clear();
+        channelSequence.clear();
 	if (enabled)
 	{
 	    switch (usingCode)
 	    {
 		case PARITY_BIT:
 		    ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(sourceSymbols);
-		    channelCoderParityBit.doEncode();
 		    channelSequence = channelCoderParityBit.getSequence();
 		    report = channelCoderParityBit.getReport();
 		    break;
 		case INVERSED:
 		    ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(sourceSymbols);
-		    channelCoderInversed.doEncode();
 		    channelSequence = channelCoderInversed.getSequence();
 		    report = channelCoderInversed.getReport();
 		    break;
 		case MANCHESTER:
 		    ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(sourceSymbols);
-		    channelCoderManchester.doEncode();
 		    channelSequence = channelCoderManchester.getSequence();
 		    report = channelCoderManchester.getReport();
 		    break;
 		case HAMMING:
 		    ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
-		    channelCoderHamming.doEncode();
 		    channelSequence = channelCoderHamming.getSequence();
 		    headLength = channelCoderHamming.getHeadLength();
 		    report = channelCoderHamming.getReport();
 		    break;
                 case CYCLIC:
 		    ChannelCoderCyclic channelCoderCyclic = new ChannelCoderCyclic(sourceSymbols);
-		    channelCoderCyclic.doEncode();
 		    channelSequence = channelCoderCyclic.getSequence();
 		    headLength = channelCoderCyclic.getHeadLength();
 		    report = channelCoderCyclic.getReport();
@@ -126,14 +122,6 @@ public class ChannelCoderController
 	    channelSequence = sourceSymbols;
             report = "<html>" + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL CODING IS NOT USED") + "</html>";
         }
-    }
-
-    /**
-     * Returns encoded sequence
-     * @return list of encoded binary numbers
-     */
-    public List<BinaryNumber> getSequence()
-    {
 	return channelSequence;
     }
 

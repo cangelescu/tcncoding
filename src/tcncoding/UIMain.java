@@ -320,7 +320,6 @@ public class UIMain extends javax.swing.JFrame
     void doSourceCoding()
     {
 	currentSourceCoder = new SourceCoderController(sourceCode, message);
-	currentSourceCoder.doEncode();
 	sourceSymbols = currentSourceCoder.getSequence();
 	lengthMap = currentSourceCoder.getLengthMap();
 	isCyr = currentSourceCoder.isCyrillic();
@@ -331,7 +330,6 @@ public class UIMain extends javax.swing.JFrame
     void doChannelCoding()
     {
 	currentChannelCoder = new ChannelCoderController(sourceSymbols, channelCode, useChannelCoderTrigger);
-	currentChannelCoder.doEncode();
 	channelSymbols = currentChannelCoder.getSequence();
 	blockChannelCoderOutput.setText(currentChannelCoder.getHTMLReport());
 	headLength = currentChannelCoder.getHeadLength();
@@ -344,7 +342,6 @@ public class UIMain extends javax.swing.JFrame
 	sourceImpulseLength = 1 / (Double)informationalSpeed.getValue();
 
 	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength, 1);
-	currentSourceVideoCreator.doVideoSequence();
 	sourceVideoSequence = currentSourceVideoCreator.getVideoSequence();
 	if (currentSourceVideoSequenceVizualizator != null)
 	{
@@ -376,7 +373,6 @@ public class UIMain extends javax.swing.JFrame
 	channelImpulseLength = sourceImpulseLength * ((double)currentSourceCoder.getSequenceLength() / (double)currentChannelCoder.getSequenceLength());
 
 	currentChannelVideoCreator = new VideoCreator(channelSymbols, channelImpulseLength, 0.75);
-	currentChannelVideoCreator.doVideoSequence();
 	channelVideoSequence = currentChannelVideoCreator.getVideoSequence();
 	if (currentChannelVideoSequenceVizualizator != null)
 	{
@@ -405,7 +401,6 @@ public class UIMain extends javax.swing.JFrame
     {
 	//gets modulator output signals
 	currentModulator = new ModulatorController(modulationType, (Double)bearerAmplitude.getValue(), (Double)bearerFrequency.getValue(), (Double)bearerFrequencyDeviation.getValue(), channelSymbols, channelImpulseLength);
-	currentModulator.doModulation();
 	modulatorData = currentModulator.getSignals();
 
 	//removes old vizualizator if exists
@@ -435,7 +430,6 @@ public class UIMain extends javax.swing.JFrame
     {
         //gets noise generator data
         currentNoiseGenerator = new NoiseGenerator(modulatorData, (Double)noisePower.getValue());
-        currentNoiseGenerator.doGenerating();
         noiseSignals = currentNoiseGenerator.getSignals();
 
         //removes old vizualizator if exists
@@ -466,7 +460,6 @@ public class UIMain extends javax.swing.JFrame
     {
 	//gets channel output signal
 	currentChannel = new Channel(modulatorData, noiseSignals);
-	currentChannel.doNoising();
 	channelOutput = currentChannel.getSignals();
 
 	//removes old vizualizator if exists
@@ -520,8 +513,6 @@ public class UIMain extends javax.swing.JFrame
 	    default:
 		break;
 	}
-	currentReferenceGenerator0.generate();
-	currentReferenceGenerator1.generate();
 	referenceGenerator0Output = currentReferenceGenerator0.getSignals();
 	referenceGenerator1Output = currentReferenceGenerator1.getSignals();
 
@@ -568,8 +559,6 @@ public class UIMain extends javax.swing.JFrame
 	currentMultiplier1 = new Multiplier(channelOutput, referenceGenerator1Output);
 
 	//multiplies
-	currentMultiplier0.doMultiply();
-	currentMultiplier1.doMultiply();
 	multiplier0Output = currentMultiplier0.getSignals();
 	multiplier1Output = currentMultiplier1.getSignals();
 
@@ -614,8 +603,6 @@ public class UIMain extends javax.swing.JFrame
 	//integrates multipliers output
 	currentIntegrator0 = new Integrator(multiplier0Output, maxFrequency, blockIntegratorOutputField0.getWidth());
 	currentIntegrator1 = new Integrator(multiplier1Output, maxFrequency, blockIntegratorOutputField0.getWidth());
-	currentIntegrator0.doIntegrating();
-	currentIntegrator1.doIntegrating();
 	integrator0Output = currentIntegrator0.getIntegrals();
 	integrator1Output = currentIntegrator1.getIntegrals();
 
@@ -657,7 +644,6 @@ public class UIMain extends javax.swing.JFrame
     {
 	//gets sum from two integrators
 	currentSummator = new Summator(integrator0Output, integrator1Output);
-	currentSummator.doSumming();
 	summatorOutput = currentSummator.getSum();
 
 	//shows chart
@@ -703,12 +689,10 @@ public class UIMain extends javax.swing.JFrame
 	int errorsCount = forceErrorsTrigger ? (Integer) forceErrorsCount.getValue() : 0;
 
         currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
-	currentResolver.doResolving();
 	resolverOutput = currentResolver.getBinaryNumbers();
 	blockResolverOutput.setText("<html>" + currentResolver.getStringSequence());
 
 	currentResolverVideoCreator = new VideoCreator(resolverOutput, channelImpulseLength, 1);
-	currentResolverVideoCreator.doVideoSequence();
 	resolverVideoSequence = currentResolverVideoCreator.getVideoSequence();
 	if (currentResolverVideoSequenceVizualizator != null)
 	{
@@ -735,7 +719,6 @@ public class UIMain extends javax.swing.JFrame
     void doChannelDecoding()
     {
 	currentChannelDecoder = new ChannelDecoderController(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
-	currentChannelDecoder.doDecode();
 	channelDecoderOutput = currentChannelDecoder.getSequence();
 	String text = "<html> " + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RECEIVED SEQUENCE:") + " <br/>" + currentResolver.getStringSequence() + "<br/>";
 	text += currentChannelDecoder.getHTMLReport();
@@ -746,7 +729,6 @@ public class UIMain extends javax.swing.JFrame
     void doChannelDecodingVideoSequence()
     {
 	currentChannelDecoderVideoCreator = new VideoCreator(channelDecoderOutput, sourceImpulseLength, 1);
-	currentChannelDecoderVideoCreator.doVideoSequence();
 	channelDecoderVideoSequence = currentChannelDecoderVideoCreator.getVideoSequence();
 	if (currentChannelDecoderVideoSequenceVizualizator != null)
 	{
@@ -772,7 +754,6 @@ public class UIMain extends javax.swing.JFrame
     void doSourceDecoding()
     {
 	currentSourceDecoder = new SourceDecoderController(channelDecoderOutput, sourceCode, isCyr);
-	currentSourceDecoder.doDecode();
 	receivedMessageArea.setText(currentSourceDecoder.getMessage());
     }
 

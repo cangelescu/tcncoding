@@ -41,8 +41,9 @@ public class ChannelDecoderInversed extends ChannelDecoder
 
     /**
      * Runs decoding
+     * @return decoded sequence
      */
-    public void doDecode()
+    public List<BinaryNumber> getSequence()
     {
 	for (BinaryNumber bn: inputSequence)
 	{
@@ -58,6 +59,7 @@ public class ChannelDecoderInversed extends ChannelDecoder
 	    outputSequence.add(truncated);
 	    checkingSequence.add(truncated.shl2(bn.getLength() / 2).sum2(inversed));
 	}
+        return outputSequence;
     }
 
     /**

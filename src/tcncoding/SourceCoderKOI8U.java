@@ -19,6 +19,7 @@
 package tcncoding;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Allows using KOI8-U
@@ -43,8 +44,9 @@ public class SourceCoderKOI8U extends SourceCoder
 
     /**
      * Encodes source sequence with KOI8-U
+     * @return encoded sequence
      */
-    public void doEncoding()
+    public List<BinaryNumber> getSequence()
     {
 	sourceSequence.clear();
 
@@ -56,5 +58,6 @@ public class SourceCoderKOI8U extends SourceCoder
 	    if (bKOI8U != null)
 	    	sourceSequence.add(bKOI8U);
 	}
+        return sourceSequence;
     }
 }

@@ -39,14 +39,15 @@ public class ChannelCoderHamming extends ChannelCoder
 
     /**
      * Runs encoding
+     * @return encoded sequence
      */
-    public void doEncode()
+    public List<BinaryNumber> getSequence()
     {
 	//makes blocks of equal size
 	Splitter hammingBlocker = new Splitter(inputSequence, 4);
-	hammingBlocker.doSplitting();
+	List<BinaryNumber> blockedSequence = hammingBlocker.getSplittingBlocks();
 	headLength = hammingBlocker.getLeadingZeroesCount();
-	List<BinaryNumber> blockedSequence = hammingBlocker.getBlocks();
+
 	//encodes made blocks
 	for (BinaryNumber bn: blockedSequence)
 	{
@@ -60,6 +61,7 @@ public class ChannelCoderHamming extends ChannelCoder
 	    BinaryNumber ready = new BinaryNumber(resultNumber);
 	    outputSequence.add(ready);
 	}
+        return outputSequence;
     }
 
     /**

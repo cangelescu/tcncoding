@@ -47,7 +47,6 @@ public class ChannelDecoderControllerTest {
         List<Integer> lengthMap = new ArrayList<Integer>();
         lengthMap.add(7);
         ChannelDecoderController decoder = new ChannelDecoderController(numbers, ChannelCoderController.ChannelCoderCode.PARITY_BIT, 0, lengthMap, true);
-        decoder.doDecode();
         String result = decoder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("010011");
 	assertEquals(true, ok);
@@ -65,7 +64,6 @@ public class ChannelDecoderControllerTest {
         List<Integer> lengthMap = new ArrayList<Integer>();
         lengthMap.add(7);
         ChannelDecoderController decoder = new ChannelDecoderController(numbers, ChannelCoderController.ChannelCoderCode.INVERSED, 0, lengthMap, true);
-        decoder.doDecode();
         String result = decoder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("010011");
 	assertEquals(true, ok);
@@ -83,7 +81,6 @@ public class ChannelDecoderControllerTest {
         List<Integer> lengthMap = new ArrayList<Integer>();
         lengthMap.add(7);
         ChannelDecoderController decoder = new ChannelDecoderController(numbers, ChannelCoderController.ChannelCoderCode.MANCHESTER, 0, lengthMap, true);
-        decoder.doDecode();
         String result = decoder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("010011");
 	assertEquals(true, ok);
@@ -101,7 +98,6 @@ public class ChannelDecoderControllerTest {
         List<Integer> lengthMap = new ArrayList<Integer>();
         lengthMap.add(4);
         ChannelDecoderController decoder = new ChannelDecoderController(numbers, ChannelCoderController.ChannelCoderCode.HAMMING, 0, lengthMap, true);
-        decoder.doDecode();
         String result = decoder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("0100");
 	assertEquals(true, ok);
@@ -119,7 +115,6 @@ public class ChannelDecoderControllerTest {
         List<Integer> lengthMap = new ArrayList<Integer>();
         lengthMap.add(5);
         ChannelDecoderController decoder = new ChannelDecoderController(numbers, ChannelCoderController.ChannelCoderCode.CYCLIC, 0, lengthMap, true);
-        decoder.doDecode();
         String result = decoder.getSequence().get(0).getStringSequence();
         boolean ok = result.equals("10011");
 	assertEquals(true, ok);

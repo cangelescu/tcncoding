@@ -48,8 +48,9 @@ public class ErrorsInjector {
 
     /**
      * Injects errors in the sequence
+     * @return sequence with injected errors
      */
-    public void injectErrors()
+    public List<BinaryNumber> getSequence()
     {
 	//acts only if count of errors is greater than zero
 	if (errorsCount > 0)
@@ -155,14 +156,6 @@ public class ErrorsInjector {
 	    for (BinaryNumber cbn: inputSequence)
 		outputSequence.add(cbn);
 	}
-    }
-
-    /**
-     * Returns injected sequence
-     * @return list of binary numbers with injected errors
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return outputSequence;
+        return outputSequence;
     }
 }

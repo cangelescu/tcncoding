@@ -47,8 +47,9 @@ public class Summator
 
     /**
      * Runs summing
+     * @return summed sequence
      */
-    public void doSumming()
+    public List<List<DigitalSignal>> getSum()
     {
 	result.clear();
 
@@ -148,14 +149,6 @@ public class Summator
             index += ci;
             result.add(newBlock);
         }
-    }
-
-    /**
-     * Returns digital function
-     * @return digital function
-     */
-    public List<List<DigitalSignal>> getSum()
-    {
-	return result;
+        return result;
     }
 }

@@ -46,8 +46,9 @@ public class VideoCreator
 
     /**
      * Runs videosequence creating
+     * @return videosequence
      */
-    public void doVideoSequence()
+    public List<List<DigitalSignal>> getVideoSequence()
     {
 	outputSequence.clear();
 	double cx = 0;
@@ -69,14 +70,6 @@ public class VideoCreator
 	    }
 	    outputSequence.add(newBlock);
 	}
-    }
-
-    /**
-     * Returns resulted videosequence
-     * @return digital functions
-     */
-    public List<List<DigitalSignal>> getVideoSequence()
-    {
-	return outputSequence;
+        return outputSequence;
     }
 }

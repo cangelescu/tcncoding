@@ -35,13 +35,4 @@ public class SourceCoder {
      * output encoded binary sequence
      */
     protected List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
-
-    /**
-     * Returns encoded sequence
-     * @return list of binary numbers that represents source message
-     */
-    public List<BinaryNumber> getSequence()
-    {
-	return sourceSequence;
-    }
 }
