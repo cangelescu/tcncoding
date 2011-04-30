@@ -50,7 +50,7 @@ public class Integrator
 
 	//uses display width
 	double step1 = end / _maxWidth;
-	//Kotelnokov's teorem works here not in boundary case
+	//Kotelnikov's teorem works here not in boundary case
 	double step2 = 1 / (3 * _maxFrequency);
 
 	//takes less step for more accuracy
