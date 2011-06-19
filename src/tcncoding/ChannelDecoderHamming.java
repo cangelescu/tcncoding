@@ -87,7 +87,7 @@ public class ChannelDecoderHamming extends ChannelDecoder
 
 	//recovers original blocks of sequence
 	Splitter recovery = new Splitter(pre2Sequence, lengthMap);
-	outputSequence = recovery.getRecoveringBlocks();
+	outputSequence = recovery.getMappedBlocks();
         return outputSequence;
     }
 

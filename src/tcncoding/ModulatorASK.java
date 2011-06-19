@@ -55,8 +55,7 @@ public class ModulatorASK extends Modulator
 
 	for (BinaryNumber cbn: inputSequence)
 	{
-	    Splitter splitter = new Splitter(cbn);
-	    boolean[] bits = splitter.getSplittingBlocks().get(0).getBinaryArray();
+	    boolean[] bits = cbn.getBinaryArray();
 	    List<ModulatorSignal> currentSymbolSignals = new ArrayList<ModulatorSignal>();
 	    for (boolean cb: bits)
 	    {

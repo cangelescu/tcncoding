@@ -78,7 +78,7 @@ public class ChannelDecoderCyclic extends ChannelDecoder
             if (syndromeString.equals("100"))
                 errorBit = 6;
             else
-            if (syndromeString.equals("10"))
+            if (syndromeString.equals("010"))
                 errorBit = 7;
             else
                 errorBit = 0;
@@ -106,7 +106,7 @@ public class ChannelDecoderCyclic extends ChannelDecoder
 
 	//recovers original blocks of sequence
 	Splitter recovery = new Splitter(pre2Sequence, lengthMap);
-	outputSequence = recovery.getRecoveringBlocks();
+	outputSequence = recovery.getMappedBlocks();
         return outputSequence;
     }
 

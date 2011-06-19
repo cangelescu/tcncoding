@@ -44,18 +44,6 @@ public class Splitter
     }
 
     /**
-     * Rectifies binary number sequence into one linear number
-     * @param _sequence source list of binary numbers
-     */
-    public Splitter(List<BinaryNumber> _sequence)
-    {
-	sequence = _sequence;
-	blockLength = 0;
-	for (BinaryNumber cb: _sequence)
-	    blockLength += cb.getLength();
-    }
-
-    /**
      * Reorganize binary numbers list according to length map
      * @param _sequence source list of binary numbers
      * @param _lengthMap list of blocks' length
@@ -67,35 +55,10 @@ public class Splitter
     }
 
     /**
-     * Creates splitter of binary number into equal parts
-     * @param _sequence source list of binary numbers
-     * @param _align width of each block to split to
-     */
-    public Splitter(BinaryNumber _sequence, int _align)
-    {
-	List<BinaryNumber> tmpList = new ArrayList<BinaryNumber>();
-	tmpList.add(_sequence);
-	sequence = tmpList;
-	blockLength = _align;
-    }
-
-    /**
-     * Rectifies binary number into one linear number
-     * @param _sequence source list of binary numbers
-     */
-    public Splitter(BinaryNumber _sequence)
-    {
-	List<BinaryNumber> tmpList = new ArrayList<BinaryNumber>();
-	tmpList.add(_sequence);
-	sequence = tmpList;
-	blockLength = _sequence.getLength();
-    }
-
-    /**
      * Runs splitting
      * @return splitted sequence
      */
-    public List<BinaryNumber> getSplittingBlocks()
+    public List<BinaryNumber> getEqualBlocks()
     {
 	//gets common sequence length
 	int sequenceLength = 0;
@@ -111,11 +74,8 @@ public class Splitter
 	//forms linear bit array
 	int index = leadingZeroes;
 	for (BinaryNumber bn: sequence)
-	{
-	    boolean[] currentBits = bn.getBinaryArray();
-	    for (int i = 0; i < currentBits.length; i++)
-		bitFlow[index++] = currentBits[i];
-	}
+            for (int i = 0; i < bn.getLength(); i++)
+                bitFlow[index++] = bn.getDigit(i);
 	//splits formed array into separate blocks
 	int k = 0;
 	while (k < bitFlow.length)
@@ -133,12 +93,12 @@ public class Splitter
      * Recovers sequence blocking according to length map
      * @return recovered sequence
      */
-    public List<BinaryNumber> getRecoveringBlocks()
+    public List<BinaryNumber> getMappedBlocks()
     {
-	Splitter linearSplitter = new Splitter(sequence);
-	boolean[] linearSequence = linearSplitter.getSplittingBlocks().get(0).getBinaryArray();
+        BitsRectifier rectifier = new BitsRectifier(sequence);
+        boolean[] linearSequence = rectifier.getBits();
 
-	int index = 0;
+        int index = 0;
 	for (Integer ci: lengthMap)
 	{
 	    boolean[] newBlock = new boolean[ci];

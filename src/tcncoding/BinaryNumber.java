@@ -18,7 +18,6 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,8 +27,7 @@ import java.util.List;
 public class BinaryNumber
 {
 
-    private long number = 0;
-    private List<Boolean> binary = new ArrayList<Boolean>();
+    private int number = 0, alignment = 0;
 
     /**
      * Creates binary number from string sequence
@@ -37,19 +35,8 @@ public class BinaryNumber
      */
     public BinaryNumber(String _sequence)
     {
-	for (int i = 0; i < _sequence.length(); i++)
-	    switch (_sequence.charAt(i))
-	    {
-		case '0':
-		    binary.add(false);
-		    break;
-		case '1':
-		    binary.add(true);
-		    break;
-		default:
-		    binary.add(true);
-		    break;
-	    }
+        number = Integer.parseInt(_sequence, 2);
+        alignment = _sequence.length();
     }
 
     /**
@@ -59,50 +46,18 @@ public class BinaryNumber
      */
     public BinaryNumber(String _sequence, int _alignment)
     {
-	int len = _sequence.length();
-	int lowBound = 0, highBound = len;
-
-	//calculates boundaries
-	if (len < _alignment)
-	{
-	    for (int i = 0; i < _alignment - len; i++)
-		binary.add(false);
-	    lowBound = 0;
-	    highBound = len;
-	} else
-	if (len >= _alignment)
-	{
-	    lowBound = len - _alignment;
-	    highBound = len;
-	}
-
-        //creates list
-	for (int i = lowBound; i < highBound; i++)
-	    switch (_sequence.charAt(i))
-	    {
-	        case '0':
-		    binary.add(false);
-		    break;
-	        case '1':
-		    binary.add(true);
-		    break;
-		default:
-		    binary.add(true);
-		    break;
-	    }
+        number = Integer.parseInt(_sequence.substring(_sequence.length() - _alignment), 2);
+        alignment = _alignment;
     }
 
     /**
      * Creates binary number from decimal value
      * @param _number integer number, that is converted to binary number
      */
-    public BinaryNumber(long _number)
+    public BinaryNumber(int _number)
     {
-	String bin = Integer.toBinaryString((int) _number);
-
-	//creates list
-	for (int i = 0; i < bin.length(); i++)
-	    binary.add(bin.charAt(i) != '0');
+        number = _number;
+        alignment = Integer.toBinaryString(_number).length();
     }
 
     /**
@@ -110,29 +65,19 @@ public class BinaryNumber
      * @param _number integer number, that will be converted to binary
      * @param _alignment fixed width of resulting binary number in digits
      */
-    public BinaryNumber(long _number, int _alignment)
+    public BinaryNumber(int _number, int _alignment)
     {
-	String sequence = Integer.toBinaryString((int)_number);
-	int len = sequence.length();
-	int lowBound = 0, highBound = len;
-
-	//calculates boundaries
-	if (len < _alignment)
-	{
-	    for (int i = 0; i < _alignment - len; i++)
-		binary.add(false);
-	    lowBound = 0;
-	    highBound = len;
-	} else
-	if (len >= _alignment)
-	{
-	    lowBound = len - _alignment;
-	    highBound = len;
-	}
-
-        //creates list
-	for (int i = lowBound; i < highBound; i++)
-	    binary.add(sequence.charAt(i) != '0');
+	String sequence = Integer.toBinaryString(_number);
+        if (sequence.length() >= _alignment)
+            number = Integer.parseInt(sequence.substring(sequence.length() - _alignment), 2);
+        else
+        {
+            String trailingZeroes = "";
+            for (int i = 0; i < _alignment - sequence.length(); i++)
+                trailingZeroes += "0";
+            number = Integer.parseInt(trailingZeroes + sequence, 2);
+        }   
+        alignment = _alignment;
     }
 
     /**
@@ -141,8 +86,11 @@ public class BinaryNumber
      */
     public BinaryNumber(boolean[] _sequence)
     {
-	for (int i = 0; i < _sequence.length; i++)
-	    binary.add(_sequence[i]);
+        int size = _sequence.length;
+        for (int i = 0; i < size; i++)
+	    if (_sequence[i])
+		number += Math.pow(2, size - 1 - i);
+        alignment = _sequence.length;
     }
 
     /**
@@ -151,7 +99,11 @@ public class BinaryNumber
      */
     public BinaryNumber(List<Boolean> _sequence)
     {
-	binary = _sequence;
+	int size = _sequence.size();
+        for (int i = 0; i < size; i++)
+	    if (_sequence.get(i))
+		number += Math.pow(2, size - 1 - i);
+        alignment = _sequence.size();
     }
 
     /**
@@ -159,28 +111,24 @@ public class BinaryNumber
      * @param _sequence boolean array, that represents binary number
      * @param _alignment count of meaningful digits in source array
      */
-    public BinaryNumber(boolean[] _sequence, int _alignment)
+    public BinaryNumber(boolean[] _sequence, int _alignment) throws ArithmeticException
     {
-	int len = _sequence.length;
-	int lowBound = 0, highBound = len;
-
-	//calculates boundaries
-	if (len < _alignment)
-	{
-	    for (int i = 0; i < _alignment - len; i++)
-		binary.add(false);
-	    lowBound = 0;
-	    highBound = len;
-	} else
-	if (len >= _alignment)
-	{
-	    lowBound = len - _alignment;
-	    highBound = len;
-	}
-
-        //creates list
-	for (int i = lowBound; i < highBound; i++)
-	    binary.add(_sequence[i]);
+        int preNumber = 0;
+        int size = _sequence.length;
+        for (int i = 0; i < size; i++)
+	    if (_sequence[i])
+		preNumber += Math.pow(2, size - 1 - i);
+        String sequence = Integer.toBinaryString((int)preNumber);
+        if (sequence.length() >= _alignment)
+            number = Integer.parseInt(sequence.substring(sequence.length() - _alignment), 2);
+        else
+        {
+            String trailingZeroes = "";
+            for (int i = 0; i < _alignment - sequence.length(); i++)
+                trailingZeroes += "0";
+            number = Integer.parseInt(trailingZeroes + sequence, 2);
+        }   
+        alignment = _alignment;
     }
     
     /**
@@ -189,10 +137,17 @@ public class BinaryNumber
      */
     public String getStringSequence()
     {
-	String out = "";
-	for (Boolean cb: binary)
-	    out += cb ? '1' : '0';
-	return out;
+        String preFormatted = Integer.toBinaryString(number);
+        int spacers = alignment - preFormatted.length();
+        String formatted = "";
+        if (spacers > 0)
+        {
+            for (int i = 0; i < spacers; i++)
+                formatted += "0";
+            formatted += preFormatted;
+        } else
+            formatted = preFormatted;
+        return formatted;
     }
 
     /**
@@ -201,11 +156,7 @@ public class BinaryNumber
      */
     public long toInt()
     {
-        int size = binary.size();
-        for (int i = 0; i < size; i++)
-	    if (binary.get(i))
-		number += Math.pow(2, size - 1 - i);
-	return number;
+        return number;
     }
 
     /**
@@ -214,9 +165,17 @@ public class BinaryNumber
      */
     public boolean[] getBinaryArray()
     {
-	boolean[] out = new boolean[binary.size()];
-	for (int i = 0; i < out.length; i++)
-	    out[i] = binary.get(i);
+        String sequence = Integer.toBinaryString(number);
+        int trailingZeroes = 0;
+        if (alignment > sequence.length())
+            trailingZeroes = alignment - sequence.length();
+        
+	boolean[] out = new boolean[sequence.length() + trailingZeroes];
+        for (int i = 0; i < trailingZeroes; i++)
+            out[i] = false;
+	for (int i = trailingZeroes; i < out.length; i++)
+	    out[i] = sequence.charAt(i - trailingZeroes) == '1' ? true : false;
+        
 	return out;
     }
 
@@ -226,10 +185,10 @@ public class BinaryNumber
      */
     public BinaryNumber truncRight()
     {
-        if (binary.size() < 2)
-            return new BinaryNumber(binary.subList(0, binary.size()));
+        if (alignment < 2)
+            return new BinaryNumber(number, alignment);
         else
-            return new BinaryNumber(binary.subList(0, binary.size() - 1));
+            return new BinaryNumber(number >>> 1, alignment - 1);
     }
 
     /**
@@ -239,10 +198,10 @@ public class BinaryNumber
      */
     public BinaryNumber truncRight(int _count)
     {
-        if (_count < 1 || binary.size() < 2 || _count >= binary.size())
-            return new BinaryNumber(binary.subList(0, binary.size()));
+        if (_count >= alignment || _count < 1 || alignment < 2)
+            return new BinaryNumber(number, alignment);
         else
-            return new BinaryNumber(binary.subList(0, binary.size() - _count));
+           return new BinaryNumber(number >>> _count, alignment - _count);
     }
 
     /**
@@ -252,10 +211,8 @@ public class BinaryNumber
      */
     public BinaryNumber truncLeft(int _count)
     {
-        if (_count < 1 || binary.size() < 2 || _count >= binary.size())
-            return new BinaryNumber(binary.subList(0, binary.size()));
-        else
-            return new BinaryNumber(binary.subList(_count, binary.size()));
+        int shift = (int)log2(Integer.numberOfLeadingZeros(number)) + _count;
+        return new BinaryNumber((number << shift) >>> shift, alignment - _count);
     }
     
     /**
@@ -265,10 +222,13 @@ public class BinaryNumber
      */
     public BinaryNumber leaveRight(int _count)
     {
-        if (_count < 1 || _count > binary.size())
-            return new BinaryNumber(binary.subList(0, binary.size()));
+        if (_count < 1)
+            return new BinaryNumber(number, alignment);
         else
-            return new BinaryNumber(binary.subList(binary.size() - _count, binary.size()));
+        {
+            int shift = 32 - _count;
+            return new BinaryNumber((number << shift) >>> shift, _count);
+        }
     }
     
     /**
@@ -277,10 +237,9 @@ public class BinaryNumber
      */
     public int getLeadingZeroes()
     {
-        for (int i = 0; i < binary.size(); i++)
-            if (binary.get(i))
-                return i;
-        return -1;
+        int highestIndex = (int)log2(Integer.highestOneBit(number)) + 1;
+        int index = alignment - highestIndex;
+        return (index > 0) ? index : 0;
     }
 
     /**
@@ -290,7 +249,7 @@ public class BinaryNumber
      */
     public boolean getDigit(int index)
     {
-	return binary.get(index);
+	return getStringSequence().charAt(index) == '1' ? true : false;
     }
 
     /**
@@ -300,30 +259,7 @@ public class BinaryNumber
      */
     public BinaryNumber sum2(BinaryNumber _number)
     {
-	int len2 = _number.getLength();
-	List<Boolean> out = new ArrayList<Boolean>();
-
-	if (len2 < binary.size())
-	{
-	    int head = binary.size() - len2;
-	    for (int i = 0; i < head; i++)
-		out.add(binary.get(i));
-	    for (int i = head; i < binary.size(); i++)
-		out.add(_number.getDigit(i - head) ^ binary.get(i));
-	} else
-	if (len2 > binary.size())
-	{
-	    int head = len2 - binary.size();
-	    for (int i = 0; i < head; i++)
-		out.add(_number.getDigit(i));
-	    for (int i = head; i < len2; i++)
-		out.add(_number.getDigit(i) ^ binary.get(i - head));
-	} else
-	    for (int i = 0; i < len2; i++)
-		out.add(_number.getDigit(i) ^ binary.get(i));
-
-	BinaryNumber res = new BinaryNumber(out);
-	return res;
+	return new BinaryNumber(number ^ _number.number, Math.max(alignment, _number.alignment));
     }
 
     /**
@@ -332,11 +268,7 @@ public class BinaryNumber
      */
     public BinaryNumber not2()
     {
-	List<Boolean> out = new ArrayList<Boolean>();
-	for (Boolean cb: binary)
-	    out.add(!cb);
-	BinaryNumber res = new BinaryNumber(out);
-	return res;
+	return new BinaryNumber(~number, alignment);
     }
 
     /**
@@ -345,12 +277,7 @@ public class BinaryNumber
      */
     public BinaryNumber shl2()
     {
-	List<Boolean> out = new ArrayList<Boolean>();
-	for (Boolean cb: binary)
-	    out.add(cb);
-	out.add(false);
-	BinaryNumber res = new BinaryNumber(out);
-	return res;
+	return new BinaryNumber(number << 1, alignment + 1);
     }
 
     /**
@@ -360,15 +287,14 @@ public class BinaryNumber
      */
     public BinaryNumber shl2(int _count)
     {
-	List<Boolean> out = new ArrayList<Boolean>();
-	for (Boolean cb: binary)
-	    out.add(cb);
-	for (int i = 0; i < _count; i++)
-	    out.add(false);
-	BinaryNumber res = new BinaryNumber(out);
-	return res;
+	return new BinaryNumber(number << _count, alignment + _count);
     }
 
+    private double log2(double _x)
+    {
+        return Math.log(_x) / Math.log(2);
+    }
+    
     /**
      * Sums two binary numbers from left
      * @param _number number to sum with
@@ -376,27 +302,25 @@ public class BinaryNumber
      */
     public BinaryNumber lsum2(BinaryNumber _number)
     {
-        List<Boolean> out = new ArrayList<Boolean>();
-        //sums numbers from left
-        if (binary.size() >= _number.getLength())
+        int index1 = Integer.highestOneBit(number);
+        int index2 = Integer.highestOneBit(_number.number);
+        int n1, n2, res;
+        if (index1 > index2)
         {
-            for (int i = 0; i < _number.getLength(); i++)
-                out.add(binary.get(i) ^ _number.getDigit(i));
-            for (int i = _number.getLength(); i < binary.size(); i++)
-                out.add(binary.get(i));
+            n1 = number;
+            n2 = _number.number << (int)(log2(index1) - log2(index2));
         } else
-        if (binary.size() < _number.getLength())
+        if (index2 > index1)
         {
-            for (int i = 0; i < binary.size(); i++)
-                out.add(binary.get(i) ^ _number.getDigit(i));
-            for (int i = binary.size(); i < _number.getLength(); i++)
-                out.add(_number.getDigit(i));
+            n1 = number << (int)(log2(index2) - log2(index1));
+            n2 = _number.number;
+        } else
+        {
+            n1 = number;
+            n2 = _number.number;
         }
-        
-        BinaryNumber outBinary = new BinaryNumber(out);
-        BinaryNumber out2Binary = outBinary.truncLeft(outBinary.getLeadingZeroes());
-
-        return out2Binary;
+        res = n1 ^ n2;
+        return new BinaryNumber(res);
     }
     
     /**
@@ -406,7 +330,7 @@ public class BinaryNumber
      */
     public BinaryNumber divmod2(BinaryNumber _denominator)
     {
-        BinaryNumber dividend = new BinaryNumber(binary);
+        BinaryNumber dividend = new BinaryNumber(number);
         do {
             dividend = dividend.lsum2(_denominator);
         }  while (dividend.getLength() >= _denominator.getLength() && dividend.toInt() != 0);
@@ -419,11 +343,7 @@ public class BinaryNumber
      */
     public int getWeight()
     {
-	int out = 0;
-	for (Boolean cb: binary)
-	    if (cb)
-		out++;
-	return out;
+	return Integer.bitCount(number);
     }
 
     /**
@@ -432,6 +352,6 @@ public class BinaryNumber
      */
     public int getLength()
     {
-	return binary.size();
+	return alignment;
     }
 }

@@ -45,7 +45,7 @@ public class ChannelCoderHamming extends ChannelCoder
     {
 	//makes blocks of equal size
 	Splitter hammingBlocker = new Splitter(inputSequence, 4);
-	List<BinaryNumber> blockedSequence = hammingBlocker.getSplittingBlocks();
+	List<BinaryNumber> blockedSequence = hammingBlocker.getEqualBlocks();
 	headLength = hammingBlocker.getLeadingZeroesCount();
 
 	//encodes made blocks

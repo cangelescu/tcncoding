@@ -174,11 +174,24 @@ public class BinaryNumberTest {
      * Test of truncRight method, of class BinaryNumber.
      */
     @Test
-    public void testTruncRight_int_OK()
+    public void testTruncRight_int_OK_1()
     {
 	int _count = 2;
 	BinaryNumber instance = new BinaryNumber("10111011");
 	BinaryNumber expResult = new BinaryNumber("101110");
+	BinaryNumber result = instance.truncRight(_count);
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+    
+    /**
+     * Test of truncRight method, of class BinaryNumber.
+     */
+    @Test
+    public void testTruncRight_int_OK_2()
+    {
+	int _count = 3;
+	BinaryNumber instance = new BinaryNumber("10111011");
+	BinaryNumber expResult = new BinaryNumber("10111");
 	BinaryNumber result = instance.truncRight(_count);
 	assertEquals(expResult.toInt(), result.toInt());
     }
@@ -239,11 +252,89 @@ public class BinaryNumberTest {
      * Test of getDigit method, of class BinaryNumber.
      */
     @Test
-    public void testGetDigit()
+    public void testGetDigit_0()
+    {
+	int index = 0;
+	BinaryNumber instance = new BinaryNumber("10100111");
+	boolean expResult = true;
+	boolean result = instance.getDigit(index);
+	assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getDigit method, of class BinaryNumber.
+     */
+    @Test
+    public void testGetDigit_1()
+    {
+	int index = 1;
+	BinaryNumber instance = new BinaryNumber("10100111");
+	boolean expResult = false;
+	boolean result = instance.getDigit(index);
+	assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getDigit method, of class BinaryNumber.
+     */
+    @Test
+    public void testGetDigit_2()
+    {
+	int index = 2;
+	BinaryNumber instance = new BinaryNumber("10100111");
+	boolean expResult = true;
+	boolean result = instance.getDigit(index);
+	assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getDigit method, of class BinaryNumber.
+     */
+    @Test
+    public void testGetDigit_3()
     {
 	int index = 3;
 	BinaryNumber instance = new BinaryNumber("10100111");
 	boolean expResult = false;
+	boolean result = instance.getDigit(index);
+	assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getDigit method, of class BinaryNumber.
+     */
+    @Test
+    public void testGetDigit_5()
+    {
+	int index = 5;
+	BinaryNumber instance = new BinaryNumber("10100111");
+	boolean expResult = true;
+	boolean result = instance.getDigit(index);
+	assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getDigit method, of class BinaryNumber.
+     */
+    @Test
+    public void testGetDigit_6()
+    {
+	int index = 6;
+	BinaryNumber instance = new BinaryNumber("10100111");
+	boolean expResult = true;
+	boolean result = instance.getDigit(index);
+	assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getDigit method, of class BinaryNumber.
+     */
+    @Test
+    public void testGetDigit_7()
+    {
+	int index = 7;
+	BinaryNumber instance = new BinaryNumber("10100111");
+	boolean expResult = true;
 	boolean result = instance.getDigit(index);
 	assertEquals(expResult, result);
     }
@@ -267,8 +358,8 @@ public class BinaryNumberTest {
     @Test
     public void testNot2()
     {
-	BinaryNumber instance = new BinaryNumber("10110");
-	BinaryNumber expResult = new BinaryNumber("01001");
+	BinaryNumber instance = new BinaryNumber("10010101010001110101010");
+	BinaryNumber expResult = new BinaryNumber("01101010101110001010101");
 	BinaryNumber result = instance.not2();
 	assertEquals(expResult.toInt(), result.toInt());
     }
@@ -302,11 +393,24 @@ public class BinaryNumberTest {
      *
      */
     @Test
-    public void testLsum2()
+    public void testLsum2_1()
     {
 	BinaryNumber n1 = new BinaryNumber("1010110");
 	BinaryNumber n2 = new BinaryNumber("101");
         BinaryNumber expResult = new BinaryNumber("110");
+	BinaryNumber result = n1.lsum2(n2);
+	assertEquals(expResult.toInt(), result.toInt());
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void testLsum2_2()
+    {
+	BinaryNumber n1 = new BinaryNumber("11");
+	BinaryNumber n2 = new BinaryNumber("1001101");
+        BinaryNumber expResult = new BinaryNumber("101101");
 	BinaryNumber result = n1.lsum2(n2);
 	assertEquals(expResult.toInt(), result.toInt());
     }
@@ -341,8 +445,8 @@ public class BinaryNumberTest {
     @Test
     public void testGetWeight()
     {
-	BinaryNumber instance = new BinaryNumber("101101101");
-	int expResult = 6;
+	BinaryNumber instance = new BinaryNumber("10101101");
+	int expResult = 5;
 	int result = instance.getWeight();
 	assertEquals(expResult, result);
     }
@@ -379,7 +483,7 @@ public class BinaryNumberTest {
     {
         BinaryNumber instance = new BinaryNumber("01");
         BinaryNumber result = instance.leaveRight(4);
-        String expResult = "01";
+        String expResult = "0001";
         assertEquals(true, expResult.equals(result.getStringSequence()));
     }
     
@@ -393,5 +497,17 @@ public class BinaryNumberTest {
         BinaryNumber result = instance.leaveRight(0);
         String expResult = "01011101";
         assertEquals(true, expResult.equals(result.getStringSequence()));
+    }
+    
+    /**
+     * 
+     */
+    @Test
+    public void testGetLeadingZeroes()
+    {
+        BinaryNumber instance = new BinaryNumber("0001011101");
+        int result = instance.getLeadingZeroes();
+        int expResult = 3;
+        assertEquals(expResult, result);
     }
 }

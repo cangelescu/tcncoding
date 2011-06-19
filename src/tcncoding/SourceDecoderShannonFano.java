@@ -18,7 +18,6 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,24 +52,14 @@ public class SourceDecoderShannonFano extends SourceDecoder
     {
 	sourceMessage = "";
 
-	//gets bits count
-	int length = 0;
-	for (BinaryNumber cbn: sourceSequence)
-	    length += cbn.getLength();
-
-	//creates map with 1 block
-	List<Integer> unifiedMap = new ArrayList<Integer>();
-	unifiedMap.add(length);
-
-	//forms 1 binary number from source sequence
-	Splitter splitter = new Splitter(sourceSequence, unifiedMap);
-	BinaryNumber sequence = splitter.getRecoveringBlocks().get(0);
+        BitsRectifier rectifier = new BitsRectifier(sourceSequence);
+        boolean[] sequence = rectifier.getBits();
 
 	//goes through sequence bit by bit
 	String buffer = "";
-	for (int i = 0; i < sequence.getLength(); i++)
+	for (int i = 0; i < sequence.length; i++)
 	{
-	    buffer += sequence.getDigit(i) ? "1" : "0";
+	    buffer += sequence[i] ? "1" : "0";
 
 	    String currentChar = codeMap.get(buffer);
 

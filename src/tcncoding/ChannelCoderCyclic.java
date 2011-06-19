@@ -45,7 +45,7 @@ public class ChannelCoderCyclic extends ChannelCoder
     {
 	//makes blocks of equal size
 	Splitter cyclicBlocker = new Splitter(inputSequence, 5);
-        List<BinaryNumber> blockedSequence = cyclicBlocker.getSplittingBlocks();
+        List<BinaryNumber> blockedSequence = cyclicBlocker.getEqualBlocks();
 	headLength = cyclicBlocker.getLeadingZeroesCount();
 	
 	//encodes made blocks
