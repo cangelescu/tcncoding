@@ -68,6 +68,15 @@ public class DigitalSignal {
     {
 	return data.get(_index);
     }
+    
+    /**
+     * Returns all samples
+     * @return samples
+     */
+    public List<Sample> getSamples()
+    {
+	return data;
+    }
 
     /**
      * Returns maximum value of digital signal
