@@ -22,8 +22,15 @@ package tcncoding;
  * Model of channel signal
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelSignal extends AnalogSignal
+public class ChannelSignal implements AnalogSignal
 {
+    double frequency;
+    double amplitude;
+    double phase;
+    double maxValue;
+    double minValue;
+    double xStart, xEnd;
+    
     private NoiseSignal noiseSignal;
 
     /**
@@ -52,5 +59,68 @@ public class ChannelSignal extends AnalogSignal
     public double function(double _x)
     {
 	return amplitude * Math.sin(2 * Math.PI * frequency * _x + phase) + noiseSignal.function(_x);
+    }
+    
+    /**
+     * Returns signal frequency, Hz
+     * @return real value of signal frequency
+     */
+    public double getFrequency()
+    {
+	return frequency;
+    }
+
+    /**
+     * Returns signal amplitude, V
+     * @return real value of signal amplitude
+     */
+    public double getAmplitude()
+    {
+	return amplitude;
+    }
+
+    /**
+     * Returns signal phase, rad
+     * @return real value of signal phase
+     */
+    public double getPhase()
+    {
+	return phase;
+    }
+
+    /**
+     * Returns signal maximum value, V
+     * @return real maximum signal value
+     */
+    public double getMaxValue()
+    {
+	return maxValue;
+    }
+
+    /**
+     * Returns signal minimum value, V
+     * @return real minimum signal value
+     */
+    public double getMinValue()
+    {
+	return minValue;
+    }
+
+    /**
+     * Returns signal start point, s
+     * @return real signal start time
+     */
+    public double getStart()
+    {
+	return xStart;
+    }
+
+    /**
+     * Returns signal end point, s
+     * @return real signal end time
+     */
+    public double getEnd()
+    {
+	return xEnd;
     }
 }

@@ -27,38 +27,29 @@ import java.util.List;
  */
 public class Digitizer {
 
-    private List<List<MultiplierSignal>> inputMultiplierSignals;
-    private Signal.SignalType signalType;
+    private List<List<AnalogSignal>> inputSignals;
     private double step;
     
-    public Digitizer(List<List<MultiplierSignal>> _inputMultiplierSignals, Signal.SignalType _signalType, double _step)
+    public Digitizer(Object _inputSignals, double _step)
     {
-        inputMultiplierSignals = _inputMultiplierSignals;
-        signalType = _signalType;
+        inputSignals = (List<List<AnalogSignal>>)_inputSignals;
         step = _step;
     }
     
     public List<List<DigitalSignal>> getDigitalSignal()
     {
         List<List<DigitalSignal>> outputSignals = new ArrayList<List<DigitalSignal>>();
-        switch (signalType)
+        for (List<AnalogSignal> clas: inputSignals)
         {
-            case MULTIPLIER:
-                for (List<MultiplierSignal> clms: inputMultiplierSignals)
-                {
-                    List<DigitalSignal> clds = new ArrayList<DigitalSignal>();
-                    for (MultiplierSignal cms: clms)
-                    {
-                        List<Sample> newSample = new ArrayList<Sample>();
-                        for (double currentPoint = cms.getStart(); currentPoint <= cms.getEnd(); currentPoint += step)
-                            newSample.add(new Sample(currentPoint, cms.function(currentPoint)));
-                        clds.add(new DigitalSignal(newSample));
-                    }
-                    outputSignals.add(clds);
-                }
-                break;
-            default:
-                break;
+            List<DigitalSignal> clds = new ArrayList<DigitalSignal>();
+            for (AnalogSignal cas: clas)
+            {
+                List<Sample> newSample = new ArrayList<Sample>();
+                for (double currentPoint = cas.getStart(); currentPoint <= cas.getEnd(); currentPoint += step)
+                    newSample.add(new Sample(currentPoint, cas.function(currentPoint)));
+                clds.add(new DigitalSignal(newSample));
+            }
+            outputSignals.add(clds);
         }
         return outputSignals;
     }

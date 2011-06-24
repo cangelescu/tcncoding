@@ -609,8 +609,8 @@ public class UIMain extends javax.swing.JFrame
 	int lastSignal = multiplier0Output.get(lastBlock).size() - 1;
 	double end = multiplier0Output.get(lastBlock).get(lastSignal).getEnd();
         double step = Math.min(end / blockIntegratorOutputField0.getWidth(), 1 / (3 * maxFrequency));
-        currentDigitizer0 = new Digitizer(multiplier0Output, Signal.SignalType.MULTIPLIER, step);
-        currentDigitizer1 = new Digitizer(multiplier1Output, Signal.SignalType.MULTIPLIER, step);
+        currentDigitizer0 = new Digitizer(multiplier0Output, step);
+        currentDigitizer1 = new Digitizer(multiplier1Output, step);
         digitizer0Output = currentDigitizer0.getDigitalSignal();
         digitizer1Output = currentDigitizer1.getDigitalSignal();
     }

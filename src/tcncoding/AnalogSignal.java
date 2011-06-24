@@ -23,85 +23,55 @@ package tcncoding;
  * Base class of analog signal model
  * @author Oleksandr Natalenko aka post-factum
  */
-public class AnalogSignal extends Signal
+public interface AnalogSignal
 {
-    double frequency;
-    double amplitude;
-    double phase;
-    double maxValue;
-    double minValue;
-    double xStart, xEnd;
 
     /**
      * Returns f(x) for current signal
      * @param _x time variable, s
      * @return real value of signal function in x point
      */
-    public double function(double _x)
-    {
-	return 0;
-    }
+    public double function(double _x);
 
     /**
      * Returns signal frequency, Hz
      * @return real value of signal frequency
      */
-    public double getFrequency()
-    {
-	return frequency;
-    }
+    public double getFrequency();
 
     /**
      * Returns signal amplitude, V
      * @return real value of signal amplitude
      */
-    public double getAmplitude()
-    {
-	return amplitude;
-    }
+    public double getAmplitude();
 
     /**
      * Returns signal phase, rad
      * @return real value of signal phase
      */
-    public double getPhase()
-    {
-	return phase;
-    }
+    public double getPhase();
 
     /**
      * Returns signal maximum value, V
      * @return real maximum signal value
      */
-    public double getMaxValue()
-    {
-	return maxValue;
-    }
+    public double getMaxValue();
 
     /**
      * Returns signal minimum value, V
      * @return real minimum signal value
      */
-    public double getMinValue()
-    {
-	return minValue;
-    }
+    public double getMinValue();
 
     /**
      * Returns signal start point, s
      * @return real signal start time
      */
-    public double getStart()
-    {
-	return xStart;
-    }
+    public double getStart();
 
     /**
      * Returns signal end point, s
      * @return real signal end time
      */
-    public double getEnd()
-    {
-	return xEnd;
-    }
+    public double getEnd();
 }
