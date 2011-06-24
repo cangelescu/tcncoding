@@ -28,37 +28,37 @@ import java.util.concurrent.Callable;
  */
 public class IntegratorWorker implements Callable<List<DigitalSignal>>{
 
-    private List<MultiplierSignal> multiplierSignals;
-    private double step;
+    private List<DigitalSignal> digitalSignals;
 
     /**
      * Creates integrator worker
      * @param _multiplierSignals list of input signals
      * @param _step integration step
      */
-    public IntegratorWorker(List<MultiplierSignal> _multiplierSignals, double _step)
+    public IntegratorWorker(List<DigitalSignal> _digitalSignals)
     {
-        multiplierSignals = _multiplierSignals;
-        step = _step;
+        digitalSignals = _digitalSignals;
     }
 
     public List<DigitalSignal> call()
     {
         List<DigitalSignal> result = new ArrayList<DigitalSignal>();
 
-        for (MultiplierSignal cms: multiplierSignals)
+       
+        for (DigitalSignal cds: digitalSignals)
         {
             List<Sample> newSymbol = new ArrayList<Sample>();
 
             //integrating using Simpson's rule
-            double currentPoint = cms.getStart();
-            double endPoint = cms.getEnd();
+            double currentPoint = cds.getStart();
+            double endPoint = cds.getEnd();
+            double step = cds.getDelta();
             double sum = 0;
             while (currentPoint <= endPoint)
             {
                 double leftBorder = currentPoint;
                 double rightBorder = leftBorder + step;
-                double area = ((rightBorder - leftBorder) / 6) * (cms.function(leftBorder) + 4 * cms.function((leftBorder + rightBorder) / 2) + cms.function(rightBorder));
+                double area = ((rightBorder - leftBorder) / 6) * (cds.function(leftBorder) + 4 * cds.function((leftBorder + rightBorder) / 2) + cds.function(rightBorder));
                 newSymbol.add(new Sample(currentPoint, sum));
                 sum += area;
                 currentPoint += step;

@@ -42,6 +42,7 @@ public class UIMain extends javax.swing.JFrame
     Channel currentChannel;
     ReferenceGenerator currentReferenceGenerator0, currentReferenceGenerator1;
     Multiplier currentMultiplier0, currentMultiplier1;
+    Digitizer currentDigitizer0, currentDigitizer1;
     Integrator currentIntegrator0, currentIntegrator1;
     Summator currentSummator;
     Resolver currentResolver;
@@ -122,6 +123,10 @@ public class UIMain extends javax.swing.JFrame
     List<List<MultiplierSignal>> multiplier1Output;
     List<List<DataVizualizatorProvider>> multiplier0OutputProvider;
     List<List<DataVizualizatorProvider>> multiplier1OutputProvider;
+    
+    //digitizers data
+    List<List<DigitalSignal>> digitizer0Output;
+    List<List<DigitalSignal>> digitizer1Output;
 
     //integrators data
     double maxFrequency;
@@ -596,13 +601,26 @@ public class UIMain extends javax.swing.JFrame
 	blockMultiplierOutputField1.add(currentMultiplierVizualizator1);
 	currentMultiplierVizualizator1.repaint();
     }
+    
+    //converts analog signal to digital
+    void doDigitizing()
+    {
+	int lastBlock = multiplier0Output.size() - 1;
+	int lastSignal = multiplier0Output.get(lastBlock).size() - 1;
+	double end = multiplier0Output.get(lastBlock).get(lastSignal).getEnd();
+        double step = Math.min(end / blockIntegratorOutputField0.getWidth(), 1 / (3 * maxFrequency));
+        currentDigitizer0 = new Digitizer(multiplier0Output, DataVizualizatorProvider.SignalType.MULTIPLIER, step);
+        currentDigitizer1 = new Digitizer(multiplier1Output, DataVizualizatorProvider.SignalType.MULTIPLIER, step);
+        digitizer0Output = currentDigitizer0.getDigitalSignal();
+        digitizer1Output = currentDigitizer1.getDigitalSignal();
+    }
 
     //integrates signals from multipliers
     void doIntegrating()
     {
 	//integrates multipliers output
-	currentIntegrator0 = new Integrator(multiplier0Output, maxFrequency, blockIntegratorOutputField0.getWidth());
-	currentIntegrator1 = new Integrator(multiplier1Output, maxFrequency, blockIntegratorOutputField0.getWidth());
+	currentIntegrator0 = new Integrator(digitizer0Output);
+	currentIntegrator1 = new Integrator(digitizer1Output);
 	integrator0Output = currentIntegrator0.getIntegrals();
 	integrator1Output = currentIntegrator1.getIntegrals();
 
@@ -2438,6 +2456,7 @@ public class UIMain extends javax.swing.JFrame
 	    doChannel();
 	    doGenerating();
 	    doMultiplying();
+            doDigitizing();
 	    doIntegrating();
 	    doSumming();
 	    doResolving();
