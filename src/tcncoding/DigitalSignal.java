@@ -24,7 +24,7 @@ import java.util.List;
  * Digital signal model
  * @author Oleksandr Natalenko aka post-factum
  */
-public class DigitalSignal {
+public class DigitalSignal implements AnalogSignal {
 
     private List<Sample> data;
     private double signalEnd = 0;
@@ -153,5 +153,20 @@ public class DigitalSignal {
     public int getSamplesCount()
     {
 	return data.size();
+    }
+    
+    public double getPhase()
+    {
+        return 0;
+    }
+    
+    public double getAmplitude()
+    {
+        return 0;
+    }
+    
+    public double getFrequency()
+    {
+        return 0;
     }
 }
