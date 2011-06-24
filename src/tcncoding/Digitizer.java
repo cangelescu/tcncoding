@@ -50,12 +50,8 @@ public class Digitizer {
                     for (MultiplierSignal cms: clms)
                     {
                         List<Sample> newSample = new ArrayList<Sample>();
-                        double currentPoint = cms.getStart();
-                        while (currentPoint <= cms.getEnd())
-                        {
+                        for (double currentPoint = cms.getStart(); currentPoint <= cms.getEnd(); currentPoint += step)
                             newSample.add(new Sample(currentPoint, cms.function(currentPoint)));
-                            currentPoint += step;
-                        }
                         clds.add(new DigitalSignal(newSample));
                     }
                     outputSignals.add(clds);
