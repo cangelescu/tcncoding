@@ -120,7 +120,7 @@ public class DigitalSignal implements AnalogSignal {
     public double getEnd()
     {
 	if (signalEnd == 0)
-	    return data.get(data.size() - 1).getX();
+	    return data.get(data.size() - 1).getX() + getDelta();
 	else
 	    return signalEnd;
     }

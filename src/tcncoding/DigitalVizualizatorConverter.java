@@ -54,7 +54,7 @@ public class DigitalVizualizatorConverter
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	for (List<DigitalSignal> clds: data)
-	    out.add(new DataVizualizatorProvider(clds, Signal.SignalType.TABULATED, description, chartColor));
+	    out.add(new DataVizualizatorProvider(clds, description, chartColor));
 	return out;
     }
 }

@@ -53,7 +53,7 @@ public class MultiplierVizualizatorConverter
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	for (List<MultiplierSignal> clms: data)
-	    out.add(new DataVizualizatorProvider(clms, Signal.SignalType.MULTIPLIER, description, chartColor));
+	    out.add(new DataVizualizatorProvider(clms, description, chartColor));
 	return out;
     }
 }

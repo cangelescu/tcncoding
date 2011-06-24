@@ -27,13 +27,10 @@ import java.util.List;
  */
 public class DataVizualizatorProvider
 {
-    private Signal.SignalType signalType;
 
     private List<AnalogSignal> inputSignal;
-    private List<DigitalSignal> digitalSignal;
 
-    private double xStart, xEnd, maxValue, minValue, delta = 0;
-    private int digitalBlockSize = 0;
+    private double xStart, xEnd, maxValue, minValue;
     private String description;
     private Color chartColor;
 
@@ -44,48 +41,21 @@ public class DataVizualizatorProvider
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
-    public DataVizualizatorProvider(Object _data, Signal.SignalType _signalType, String _description, Color _chartColor)
+    public DataVizualizatorProvider(Object _data, String _description, Color _chartColor)
     {
-	signalType = _signalType;
-	switch (signalType)
-	{
-	    case TABULATED:
-		digitalSignal = (List<DigitalSignal>)_data;
-
-		for (DigitalSignal cds: digitalSignal)
-		    if (cds.getSamplesCount() > digitalBlockSize)
-			digitalBlockSize = cds.getSamplesCount();
-
-		delta = (digitalBlockSize == 1) ? digitalSignal.get(0).getDelta() : (digitalSignal.get(0).getSample(1).getX() - digitalSignal.get(0).getSample(0).getX());
-		xEnd = digitalSignal.get(digitalSignal.size() - 1).getEnd() + delta;
-
-		xStart = digitalSignal.get(0).getStart();
-		maxValue = digitalSignal.get(0).getMaxValue();
-		minValue = digitalSignal.get(0).getMinValue();
-		for (DigitalSignal cds: digitalSignal)
-		{
-		    if (cds.getMaxValue() > maxValue)
-			maxValue = cds.getMaxValue();
-		    if (cds.getMinValue() > minValue)
-			minValue = cds.getMinValue();
-		}
-		break;
-	    default:
-                inputSignal = (List<AnalogSignal>)_data;
-                xStart = inputSignal.get(0).getStart();
-                xEnd = inputSignal.get(inputSignal.size() - 1).getEnd();
-                maxValue = inputSignal.get(0).getMaxValue();
-                minValue = inputSignal.get(0).getMinValue();
-                for (AnalogSignal cms: inputSignal)
-                {
-                    if (cms.getMaxValue() > maxValue)
-                        maxValue = cms.getMaxValue();
-                    if (cms.getMinValue() < minValue)
-                        minValue = cms.getMinValue();
-                }
-		break;
-	}
-
+        inputSignal = (List<AnalogSignal>)_data;
+        xStart = inputSignal.get(0).getStart();
+        xEnd = inputSignal.get(inputSignal.size() - 1).getEnd();
+        maxValue = inputSignal.get(0).getMaxValue();
+        minValue = inputSignal.get(0).getMinValue();
+        for (AnalogSignal cms: inputSignal)
+        {
+            if (cms.getMaxValue() > maxValue)
+                maxValue = cms.getMaxValue();
+            if (cms.getMinValue() < minValue)
+                minValue = cms.getMinValue();
+        }
+		
 	description = _description;
 	chartColor = _chartColor;
     }
@@ -98,19 +68,9 @@ public class DataVizualizatorProvider
     public double getFunction(double _x)
     {
 	double out = 0;
-	switch (signalType)
-	{
-	    case TABULATED:
-		for (DigitalSignal cds: digitalSignal)
-		    if (_x >= cds.getStart() && _x <= cds.getEnd())
-			out = cds.function(_x);
-		break;
-	    default:
-                for (AnalogSignal cms: inputSignal)
-		    if (_x >= cms.getStart() && _x <= cms.getEnd())
-			out = cms.function(_x);
-		break;
-	}
+        for (AnalogSignal cms: inputSignal)
+            if (_x >= cms.getStart() && _x <= cms.getEnd())
+                out = cms.function(_x);
 	return out;
     }
 
