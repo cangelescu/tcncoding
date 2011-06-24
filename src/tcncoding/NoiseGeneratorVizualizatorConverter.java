@@ -54,7 +54,7 @@ public class NoiseGeneratorVizualizatorConverter
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	for (List<NoiseSignal> clms: data)
-	    out.add(new DataVizualizatorProvider(clms, DataVizualizatorProvider.SignalType.NOISE, description, chartColor));
+	    out.add(new DataVizualizatorProvider(clms, Signal.SignalType.NOISE, description, chartColor));
 	return out;
     }
 }

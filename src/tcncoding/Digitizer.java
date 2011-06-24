@@ -28,10 +28,10 @@ import java.util.List;
 public class Digitizer {
 
     private List<List<MultiplierSignal>> inputMultiplierSignals;
-    private DataVizualizatorProvider.SignalType signalType;
+    private Signal.SignalType signalType;
     private double step;
     
-    public Digitizer(List<List<MultiplierSignal>> _inputMultiplierSignals, DataVizualizatorProvider.SignalType _signalType, double _step)
+    public Digitizer(List<List<MultiplierSignal>> _inputMultiplierSignals, Signal.SignalType _signalType, double _step)
     {
         inputMultiplierSignals = _inputMultiplierSignals;
         signalType = _signalType;

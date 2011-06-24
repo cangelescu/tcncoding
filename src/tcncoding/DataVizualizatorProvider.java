@@ -27,35 +27,7 @@ import java.util.List;
  */
 public class DataVizualizatorProvider
 {
-
-    /**
-     * List of signal types
-     */
-    public enum SignalType
-    {
-
-	/**
-	 * Signal from modulator
-	 */
-	MODULATOR,
-        /**
-         * Signal from noise generator
-         */
-        NOISE,
-	/**
-	 * Signal from channel
-	 */
-	CHANNEL,
-	/**
-	 * Signal from multiplier
-	 */
-	MULTIPLIER,
-	/**
-	 * Tabulated signal
-	 */
-	TABULATED;
-    };
-    private SignalType signalType;
+    private Signal.SignalType signalType;
 
     private List<ModulatorSignal> modulatorSignal;
     private List<NoiseSignal> noiseSignal;
@@ -75,7 +47,7 @@ public class DataVizualizatorProvider
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
-    public DataVizualizatorProvider(List _data, SignalType _signalType, String _description, Color _chartColor)
+    public DataVizualizatorProvider(List _data, Signal.SignalType _signalType, String _description, Color _chartColor)
     {
 	signalType = _signalType;
 	switch (signalType)

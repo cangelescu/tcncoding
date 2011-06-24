@@ -24,7 +24,7 @@ import java.util.List;
  * Digital signal model
  * @author Oleksandr Natalenko aka post-factum
  */
-public class DigitalSignal {
+public class DigitalSignal extends Signal {
 
     private List<Sample> data;
     private double signalEnd = 0;

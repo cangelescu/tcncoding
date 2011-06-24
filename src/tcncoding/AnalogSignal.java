@@ -23,7 +23,7 @@ package tcncoding;
  * Base class of analog signal model
  * @author Oleksandr Natalenko aka post-factum
  */
-public class AnalogSignal
+public class AnalogSignal extends Signal
 {
     double frequency;
     double amplitude;

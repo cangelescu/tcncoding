@@ -54,7 +54,7 @@ public class ModulatorVizualizatorConverter
     {
 	List<DataVizualizatorProvider> out = new ArrayList<DataVizualizatorProvider>();
 	for (List<ModulatorSignal> clms: data)
-	    out.add(new DataVizualizatorProvider(clms, DataVizualizatorProvider.SignalType.MODULATOR, description, chartColor));
+	    out.add(new DataVizualizatorProvider(clms, Signal.SignalType.MODULATOR, description, chartColor));
 	return out;
     }
 }
