@@ -43,25 +43,16 @@ public class IntegratorWorker implements Callable<List<DigitalSignal>>{
     public List<DigitalSignal> call()
     {
         List<DigitalSignal> result = new ArrayList<DigitalSignal>();
-
        
         for (DigitalSignal cds: digitalSignals)
         {
             List<Sample> newSymbol = new ArrayList<Sample>();
 
-            //integrating using Simpson's rule
-            double currentPoint = cds.getStart();
-            double endPoint = cds.getEnd();
-            double step = cds.getDelta();
             double sum = 0;
-            while (currentPoint <= endPoint)
+            for (double x = cds.getStart(); x <= cds.getEnd(); x += cds.getDelta())
             {
-                double leftBorder = currentPoint;
-                double rightBorder = leftBorder + step;
-                double area = ((rightBorder - leftBorder) / 6) * (cds.function(leftBorder) + 4 * cds.function((leftBorder + rightBorder) / 2) + cds.function(rightBorder));
-                newSymbol.add(new Sample(currentPoint, sum));
-                sum += area;
-                currentPoint += step;
+                sum += cds.getDelta() * cds.function(x);
+                newSymbol.add(new Sample(x, sum));
             }
 
             DigitalSignal newDigitalSignal = new DigitalSignal(newSymbol);
