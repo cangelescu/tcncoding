@@ -354,7 +354,7 @@ public class UIMain extends javax.swing.JFrame
 	    currentSourceVideoSequenceVizualizator = null;
 	}
 	sourceVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	sourceVideoSequenceSingleProvider = (new VizualizatorConverter(sourceVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SOURCE VIDEOSEQUENCE"), Color.BLUE)).getProvided();
+	sourceVideoSequenceSingleProvider = (new DataVizualizatorConverter(sourceVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SOURCE VIDEOSEQUENCE"), Color.BLUE)).getProvided();
 	sourceVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
 	int cx = blockSourceVideoSequenceOutputField.getWidth();
 	int cy = blockSourceVideoSequenceOutputField.getHeight();
@@ -386,7 +386,7 @@ public class UIMain extends javax.swing.JFrame
 	}
 	channelVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
 	channelVideoSequenceProvider.add(sourceVideoSequenceSingleProvider);
-	channelVideoSequenceProvider.add((new VizualizatorConverter(channelVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL VIDEOSEQUENCE"), Color.RED)).getProvided());
+	channelVideoSequenceProvider.add((new DataVizualizatorConverter(channelVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL VIDEOSEQUENCE"), Color.RED)).getProvided());
 	int cx = blockChannelVideoSequenceOutputField.getWidth();
 	int cy = blockChannelVideoSequenceOutputField.getHeight();
 
@@ -416,7 +416,7 @@ public class UIMain extends javax.swing.JFrame
 	}
 	//creates new vizualizator data provider
 	modulatorDataProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	modulatorDataProvider.add((new VizualizatorConverter(modulatorData, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MODULATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	modulatorDataProvider.add((new DataVizualizatorConverter(modulatorData, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MODULATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = blockModulatorOutputField.getWidth();
 	int cy = blockModulatorOutputField.getHeight();
@@ -445,7 +445,7 @@ public class UIMain extends javax.swing.JFrame
 	}
 	//creates new vizualizator data provider
 	noiseGeneratorDataProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	noiseGeneratorDataProvider.add((new VizualizatorConverter(noiseSignals, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("NOISE GENERATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	noiseGeneratorDataProvider.add((new DataVizualizatorConverter(noiseSignals, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("NOISE GENERATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = blockNoiseGeneratorOutputField.getWidth();
 	int cy = blockNoiseGeneratorOutputField.getHeight();
@@ -475,7 +475,7 @@ public class UIMain extends javax.swing.JFrame
 	}
 	//creates new vizualizator data provider
 	channelOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	channelOutputProvider.add((new VizualizatorConverter(channelOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	channelOutputProvider.add((new DataVizualizatorConverter(channelOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	//gets chart width and height
 	int cx = blockChannelOutputField.getWidth();
 	int cy = blockChannelOutputField.getHeight();
@@ -532,7 +532,7 @@ public class UIMain extends javax.swing.JFrame
 
 	//vizualizes signal
 	referenceGenerator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	referenceGenerator0OutputProvider.add((new VizualizatorConverter(referenceGenerator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	referenceGenerator0OutputProvider.add((new DataVizualizatorConverter(referenceGenerator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentReferenceGeneratorVizualizator0 = new DataVizualizator(referenceGenerator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG0(T), V"), (Integer)linesWidth.getValue());
 	currentReferenceGeneratorVizualizator0.setVisible(true);
 	blockReferenceGeneratorOutputField0.add(currentReferenceGeneratorVizualizator0);
@@ -549,7 +549,7 @@ public class UIMain extends javax.swing.JFrame
 
 	//shows multipliers charts
 	referenceGenerator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	referenceGenerator1OutputProvider.add((new VizualizatorConverter(referenceGenerator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	referenceGenerator1OutputProvider.add((new DataVizualizatorConverter(referenceGenerator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("REFERENCE GENERATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentReferenceGeneratorVizualizator1 = new DataVizualizator(referenceGenerator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SRG1(T), V"), (Integer)linesWidth.getValue());
 	currentReferenceGeneratorVizualizator1.setVisible(true);
 	blockReferenceGeneratorOutputField1.add(currentReferenceGeneratorVizualizator1);
@@ -578,7 +578,7 @@ public class UIMain extends javax.swing.JFrame
 
 	//vizualizes signal
 	multiplier0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	multiplier0OutputProvider.add((new VizualizatorConverter(multiplier0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	multiplier0OutputProvider.add((new DataVizualizatorConverter(multiplier0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentMultiplierVizualizator0 = new DataVizualizator(multiplier0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM0(T), V"), (Integer)linesWidth.getValue());
 	currentMultiplierVizualizator0.setVisible(true);
 	blockMultiplierOutputField0.add(currentMultiplierVizualizator0);
@@ -595,7 +595,7 @@ public class UIMain extends javax.swing.JFrame
 
 	//shows multipliers charts
 	multiplier1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	multiplier1OutputProvider.add((new VizualizatorConverter(multiplier1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	multiplier1OutputProvider.add((new DataVizualizatorConverter(multiplier1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("MULTIPLIER 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentMultiplierVizualizator1 = new DataVizualizator(multiplier1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SM1(T), V"), (Integer)linesWidth.getValue());
 	currentMultiplierVizualizator1.setVisible(true);
 	blockMultiplierOutputField1.add(currentMultiplierVizualizator1);
@@ -634,7 +634,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy0 = blockIntegratorOutputField0.getHeight();
 
 	integrator0OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator0OutputProvider.add((new VizualizatorConverter(integrator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	integrator0OutputProvider.add((new DataVizualizatorConverter(integrator0Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 0 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentIntegratorVizualizator0 = new DataVizualizator(integrator0OutputProvider, cx0, cy0, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI0(T), V"), (Integer)linesWidth.getValue());
 	currentIntegratorVizualizator0.setVisible(true);
 	blockIntegratorOutputField0.add(currentIntegratorVizualizator0);
@@ -650,7 +650,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy1 = blockIntegratorOutputField1.getHeight();
 
 	integrator1OutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	integrator1OutputProvider.add((new VizualizatorConverter(integrator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	integrator1OutputProvider.add((new DataVizualizatorConverter(integrator1Output, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("INTEGRATOR 1 OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentIntegratorVizualizator1 = new DataVizualizator(integrator1OutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SI1(T), V"), (Integer)linesWidth.getValue());
 	currentIntegratorVizualizator1.setVisible(true);
 	blockIntegratorOutputField1.add(currentIntegratorVizualizator1);
@@ -674,7 +674,7 @@ public class UIMain extends javax.swing.JFrame
 	int cy1 = blockSummatorOutputField.getHeight();
 
 	summatorOutputProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	summatorOutputProvider.add((new VizualizatorConverter(summatorOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SUMMATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
+	summatorOutputProvider.add((new DataVizualizatorConverter(summatorOutput, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SUMMATOR OUTPUT SIGNAL"), Color.BLUE)).getProvided());
 	currentSummatorVizualizator = new DataVizualizator(summatorOutputProvider, cx1, cy1, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("T, S"), java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("SSUM(T), V"), (Integer)linesWidth.getValue());
 	currentSummatorVizualizator.setVisible(true);
 	blockSummatorOutputField.add(currentSummatorVizualizator);
@@ -718,7 +718,7 @@ public class UIMain extends javax.swing.JFrame
 	    currentResolverVideoSequenceVizualizator = null;
 	}
 	resolverVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	resolverVideoSequenceProvider.add((new VizualizatorConverter(resolverVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RESOLVER VIDEOSEQUENCE"), Color.RED)).getProvided());
+	resolverVideoSequenceProvider.add((new DataVizualizatorConverter(resolverVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RESOLVER VIDEOSEQUENCE"), Color.RED)).getProvided());
 	int cx = blockResolverVideoSequenceOutputField.getWidth();
 	int cy = blockResolverVideoSequenceOutputField.getHeight();
 
@@ -754,7 +754,7 @@ public class UIMain extends javax.swing.JFrame
 	    currentChannelDecoderVideoSequenceVizualizator = null;
 	}
 	channelDecoderVideoSequenceProvider = new ArrayList<List<DataVizualizatorProvider>>();
-	channelDecoderVideoSequenceProvider.add((new VizualizatorConverter(channelDecoderVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL DECODER VIDEOSEQUENCE"), Color.RED)).getProvided());
+	channelDecoderVideoSequenceProvider.add((new DataVizualizatorConverter(channelDecoderVideoSequence, java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("CHANNEL DECODER VIDEOSEQUENCE"), Color.RED)).getProvided());
 	int cx = blockChannelDecoderVideoSequenceOutputField.getWidth();
 	int cy = blockChannelDecoderVideoSequenceOutputField.getHeight();
 

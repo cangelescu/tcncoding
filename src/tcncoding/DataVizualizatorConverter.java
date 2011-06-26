@@ -26,7 +26,7 @@ import java.util.List;
  * Converts data into vizualizer-friendly form
  * @author Oleksandr Natalenko aka post-factum
  */
-public class VizualizatorConverter
+public class DataVizualizatorConverter
 {
     private List<List<AnalogSignal>> data;
     private String description;
@@ -38,7 +38,7 @@ public class VizualizatorConverter
      * @param _description description of signal
      * @param _chartColor color of vizualized chart
      */
-    public VizualizatorConverter(Object _data, String _description, Color _chartColor)
+    public DataVizualizatorConverter(Object _data, String _description, Color _chartColor)
     {
 	data = (List<List<AnalogSignal>>)_data;
 	description = _description;
