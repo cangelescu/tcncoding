@@ -154,19 +154,16 @@ public class DigitalSignal implements AnalogSignal {
     {
 	return data.size();
     }
-    
-    public double getPhase()
-    {
-        return 0;
+
+    public double getFrequency() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    public double getAmplitude()
-    {
-        return 0;
+
+    public double getAmplitude() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    public double getFrequency()
-    {
-        return 0;
+
+    public double getPhase() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

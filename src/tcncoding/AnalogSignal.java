@@ -25,7 +25,6 @@ package tcncoding;
  */
 public interface AnalogSignal
 {
-
     /**
      * Returns f(x) for current signal
      * @param _x time variable, s
