@@ -30,12 +30,21 @@ public class Digitizer {
     private List<List<AnalogSignal>> inputSignals;
     private double step;
     
+    /**
+     * Converts analog signal into digital
+     * @param _inputSignals list of input signals
+     * @param _step discretizing step
+     */
     public Digitizer(Object _inputSignals, double _step)
     {
         inputSignals = (List<List<AnalogSignal>>)_inputSignals;
         step = _step;
     }
     
+    /**
+     * Runs signal processing
+     * @return list of digital signals
+     */
     public List<List<DigitalSignal>> getDigitalSignal()
     {
         List<List<DigitalSignal>> outputSignals = new ArrayList<List<DigitalSignal>>();

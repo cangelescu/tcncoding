@@ -35,8 +35,6 @@ public class Integrator
     /**
      * Creates integrator for input signals
      * @param _signals list of input signals
-     * @param _maxFrequency maximum frequency of a signal
-     * @param _maxWidth maximum width of visible area
      */
     public Integrator(List<List<DigitalSignal>> _signals)
     {

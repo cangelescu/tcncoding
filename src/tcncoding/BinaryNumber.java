@@ -110,6 +110,7 @@ public class BinaryNumber
      * Creates binary number from aligned boolean array
      * @param _sequence boolean array, that represents binary number
      * @param _alignment count of meaningful digits in source array
+     * @throws ArithmeticException  
      */
     public BinaryNumber(boolean[] _sequence, int _alignment) throws ArithmeticException
     {

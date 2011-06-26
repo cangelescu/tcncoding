@@ -22,17 +22,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Converts structured digital sequence to flat list of samples
  * @author Oleksandr Natalenko aka post-factum
  */
 public class DigitalSignalRectifier {
     private List<List<DigitalSignal>> inputSignal;
     
+    /**
+     * Creates convertor
+     * @param _inputSignal input list of digital signals
+     */
     public DigitalSignalRectifier(List<List<DigitalSignal>> _inputSignal)
     {
         inputSignal = _inputSignal;
     }
     
+    /**
+     * Runs signals list processing
+     * @return flat list of samples in one class
+     */
     public DigitalSignal getSignal()
     {
         List<Sample> newSignal = new ArrayList<Sample>();

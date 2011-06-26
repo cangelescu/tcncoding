@@ -32,8 +32,7 @@ public class IntegratorWorker implements Callable<List<DigitalSignal>>{
 
     /**
      * Creates integrator worker
-     * @param _multiplierSignals list of input signals
-     * @param _step integration step
+     * @param _digitalSignals list of input digital signals to integrate
      */
     public IntegratorWorker(List<DigitalSignal> _digitalSignals)
     {

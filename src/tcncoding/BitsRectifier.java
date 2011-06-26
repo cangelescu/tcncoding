@@ -27,11 +27,19 @@ import java.util.List;
 public class BitsRectifier {
     private List<BinaryNumber> sequence;
     
+    /**
+     * Rectifies bits sequence into one boolean array
+     * @param _sequence input list of binary numbers
+     */
     public BitsRectifier(List<BinaryNumber> _sequence)
     {
         sequence = _sequence;
     }
     
+    /**
+     * Runs rectifying
+     * @return flat boolean array
+     */
     public boolean[] getBits()
     {
         //gets common sequence length
