@@ -18,7 +18,6 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +46,7 @@ public class ModulatorASK extends Modulator
      * Runs modulating
      * @return modulated sequence
      */
-    public List<List<ModulatorSignal>> getSignals()
+    public List<ModulatorSignal> getSignals()
     {
 	modulatedSequence.clear();
 
@@ -56,16 +55,14 @@ public class ModulatorASK extends Modulator
 	for (BinaryNumber cbn: inputSequence)
 	{
 	    boolean[] bits = cbn.getBinaryArray();
-	    List<ModulatorSignal> currentSymbolSignals = new ArrayList<ModulatorSignal>();
 	    for (boolean cb: bits)
 	    {
 		if (!cb)
-		    currentSymbolSignals.add(new ModulatorSignal(0, 0, 0, currentTime, currentTime + impulseLength));
+		    modulatedSequence.add(new ModulatorSignal(0, 0, 0, currentTime, currentTime + impulseLength));
 		else
-		    currentSymbolSignals.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
+		    modulatedSequence.add(new ModulatorSignal(bearerFrequency, bearerAmplitude, 0, currentTime, currentTime + impulseLength));
 		currentTime += impulseLength;
 	    }
-	    modulatedSequence.add(currentSymbolSignals);
 	}
         return modulatedSequence;
     }

@@ -27,16 +27,15 @@ import java.util.List;
  */
 public class Channel
 {
-    private List<List<ModulatorSignal>> inputModulatorSignals;
-    private List<List<NoiseSignal>> inputNoiseSignals;
-    private List<List<ChannelSignal>> outputSignals = new ArrayList<List<ChannelSignal>>();
+    private List<ModulatorSignal> inputModulatorSignals;
+    private List<NoiseSignal> inputNoiseSignals;
 
     /**
      * Creates channel with given signals on its input
      * @param _inputModulatorSignals list of input signals from modulator
      * @param _inputNoiseSignals list of input signals from noise generator
      */
-    public Channel(List<List<ModulatorSignal>> _inputModulatorSignals, List<List<NoiseSignal>> _inputNoiseSignals)
+    public Channel(List<ModulatorSignal> _inputModulatorSignals, List<NoiseSignal> _inputNoiseSignals)
     {
 	inputModulatorSignals = _inputModulatorSignals;
         inputNoiseSignals = _inputNoiseSignals;
@@ -46,21 +45,11 @@ public class Channel
      * Returns list of noised signals
      * @return list of channel signals
      */
-    public List<List<ChannelSignal>> getSignals()
+    public List<ChannelSignal> getSignals()
     {
+        List<ChannelSignal> outputSignals = new ArrayList<ChannelSignal>();
         for (int k = 0; k < inputModulatorSignals.size(); k++)
-        {
-            List<ModulatorSignal> clms = inputModulatorSignals.get(k);
-            List<NoiseSignal> clns = inputNoiseSignals.get(k);
-            List<ChannelSignal> clchs = new ArrayList<ChannelSignal>();
-            for (int n = 0; n < clms.size(); n++)
-            {
-                ModulatorSignal cms = clms.get(n);
-                NoiseSignal cns = clns.get(n);
-                clchs.add(new ChannelSignal(cms, cns));
-            }
-            outputSignals.add(clchs);
-        }
+            outputSignals.add(new ChannelSignal(inputModulatorSignals.get(k), inputNoiseSignals.get(k)));
 	return outputSignals;
     }
 }

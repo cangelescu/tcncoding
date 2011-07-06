@@ -30,13 +30,13 @@ import java.util.concurrent.Future;
  */
 public class Integrator
 {
-    private List<List<DigitalSignal>> signals;
+    private List<DigitalSignal> signals;
 
     /**
      * Creates integrator for input signals
      * @param _signals list of input signals
      */
-    public Integrator(List<List<DigitalSignal>> _signals)
+    public Integrator(List<DigitalSignal> _signals)
     {
 	signals = _signals;
     }
@@ -45,24 +45,13 @@ public class Integrator
      * Runs integrating
      * @return samples of integration function
      */
-    public List<List<DigitalSignal>> getIntegrals()
+    public List<DigitalSignal> getIntegrals()
     {
-	List<List<DigitalSignal>> result = new ArrayList<List<DigitalSignal>>();
-
-        //creates signals map
-        List<Integer> signalsMap = new ArrayList<Integer>();
-        for (List<DigitalSignal> clms: signals)
-            signalsMap.add(clms.size());
-
-        //creates flat list of signals
-        List<DigitalSignal> flatList = new ArrayList<DigitalSignal>();
-        for (List<DigitalSignal> clds: signals)
-            for (DigitalSignal cds: clds)
-                flatList.add(cds);
+	List<DigitalSignal> result = new ArrayList<DigitalSignal>();
 
         //creates workers map, each worker gets its amount of pieces to process
         int workers = Runtime.getRuntime().availableProcessors();
-        int tickets = flatList.size();
+        int tickets = signals.size();
         int basePiece = tickets / workers;
         if (basePiece < 1)
             basePiece = 1;
@@ -82,7 +71,7 @@ public class Integrator
         {
             List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
             for (int i = index; i < index + ci; i++)
-                newBlock.add(flatList.get(i));
+                newBlock.add(signals.get(i));
             newSignals.add(newBlock);
             index += ci;
         }
@@ -108,21 +97,10 @@ public class Integrator
         es.shutdown();
 
         //creates flat list from raw results
-        List<DigitalSignal> flatRawList = new ArrayList<DigitalSignal>();
         for (List<DigitalSignal> clms: rawResult)
             for (DigitalSignal cms: clms)
-                flatRawList.add(cms);
+                result.add(cms);
 
-        //repacks raw results according to signals map
-        index = 0;
-        for (Integer ci: signalsMap)
-        {
-            List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
-            for (int i = index; i < index + ci; i++)
-                newBlock.add(flatRawList.get(i));
-            index += ci;
-            result.add(newBlock);
-        }
         return result;
     }
 }

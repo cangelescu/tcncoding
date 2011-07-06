@@ -56,7 +56,7 @@ public class ModulatorController
     private List<BinaryNumber> inputSequence;
     private double bearerAmplitude, bearerFrequency, bearerFrequencyDeviation, impulseLength;
 
-    private List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
+    private List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 
     /**
      * Creates modulator with given parameters
@@ -81,7 +81,7 @@ public class ModulatorController
      * Runs modulating
      * @return modulated sequence
      */
-    public List<List<ModulatorSignal>> getSignals()
+    public List<ModulatorSignal> getSignals()
     {
 	switch (usingMethod)
 	{
@@ -99,7 +99,9 @@ public class ModulatorController
 		break;
 	    case RPSK:
 		//recode input sequence first
-		ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(inputSequence);
+                BitsRectifier bitsRectifier = new BitsRectifier(inputSequence);
+                List<Boolean> linearInputSequence = bitsRectifier.getBits();
+		ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(linearInputSequence);
 		List<BinaryNumber> recodedsequence = recoder.getEncodedList();
 		//using PSK modulator with recoded sequence as its input
 		ModulatorPSK modulatorRPSK = new ModulatorPSK(bearerAmplitude, bearerFrequency, recodedsequence, impulseLength);

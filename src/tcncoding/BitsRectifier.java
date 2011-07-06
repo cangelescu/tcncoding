@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,19 +41,13 @@ public class BitsRectifier {
      * Runs rectifying
      * @return flat boolean array
      */
-    public boolean[] getBits()
+    public List<Boolean> getBits()
     {
-        //gets common sequence length
-	int sequenceLength = 0;
-	for (BinaryNumber bn: sequence)
-	    sequenceLength += bn.getLength();
-        
-	boolean[] linearSequence = new boolean[sequenceLength];
+        List<Boolean> linearSequence = new ArrayList<Boolean>();
 	//forms linear bit array
-        int k = 0;
 	for (BinaryNumber bn: sequence)
             for (int i = 0; i < bn.getLength(); i++)
-                linearSequence[k++] = bn.getDigit(i);
+                linearSequence.add(bn.getDigit(i));
         return linearSequence;
     }
 }

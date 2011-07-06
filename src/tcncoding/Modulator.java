@@ -41,5 +41,5 @@ public class Modulator {
      * length of 1 impulse, s
      */
     protected double bearerAmplitude, bearerFrequency, impulseLength;
-    List<List<ModulatorSignal>> modulatedSequence = new ArrayList<List<ModulatorSignal>>();
+    List<ModulatorSignal> modulatedSequence = new ArrayList<ModulatorSignal>();
 }

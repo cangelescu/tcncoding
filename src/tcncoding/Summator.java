@@ -30,16 +30,15 @@ import java.util.concurrent.Future;
  */
 public class Summator
 {
-    private List<List<DigitalSignal>> sequence0;
-    private List<List<DigitalSignal>> sequence1;
-    private List<List<DigitalSignal>> result = new ArrayList<List<DigitalSignal>>();
+    private List<DigitalSignal> sequence0;
+    private List<DigitalSignal> sequence1;
 
     /**
      * Creates summator of two digital functions
      * @param _sequence0 first digital function
      * @param _sequence1 second digital function
      */
-    public Summator(List<List<DigitalSignal>> _sequence0, List<List<DigitalSignal>> _sequence1)
+    public Summator(List<DigitalSignal> _sequence0, List<DigitalSignal> _sequence1)
     {
 	sequence0 = _sequence0;
 	sequence1 = _sequence1;
@@ -49,24 +48,13 @@ public class Summator
      * Runs summing
      * @return summed sequence
      */
-    public List<List<DigitalSignal>> getSum()
+    public List<DigitalSignal> getSum()
     {
-	result.clear();
-
-        //creates signals map (sequence0)
-        List<Integer> signalsMap0 = new ArrayList<Integer>();
-        for (List<DigitalSignal> clms: sequence0)
-            signalsMap0.add(clms.size());
-
-        //creates flat list of signals (sequence0)
-        List<DigitalSignal> flatList0 = new ArrayList<DigitalSignal>();
-        for (List<DigitalSignal> clms: sequence0)
-            for (DigitalSignal cms: clms)
-                flatList0.add(cms);
+	List<DigitalSignal> result = new ArrayList<DigitalSignal>();
 
         //creates workers map, each worker gets its amount of pieces to process
         int workers = Runtime.getRuntime().availableProcessors();
-        int tickets = flatList0.size();
+        int tickets = sequence0.size();
         int basePiece = tickets / workers;
         if (basePiece < 1)
             basePiece = 1;
@@ -86,21 +74,10 @@ public class Summator
         {
             List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
             for (int i = index; i < index + ci; i++)
-                newBlock.add(flatList0.get(i));
+                newBlock.add(sequence0.get(i));
             newSignals0.add(newBlock);
             index += ci;
         }
-
-        //creates signals map (sequence1)
-        List<Integer> signalsMap1 = new ArrayList<Integer>();
-        for (List<DigitalSignal> clms: sequence1)
-            signalsMap1.add(clms.size());
-
-        //creates flat list of signals (sequence1)
-        List<DigitalSignal> flatList1 = new ArrayList<DigitalSignal>();
-        for (List<DigitalSignal> clms: sequence1)
-            for (DigitalSignal cms: clms)
-                flatList1.add(cms);
 
         //create signals map according to workers map (sequence1)
         List<List<DigitalSignal>> newSignals1 = new ArrayList<List<DigitalSignal>>();
@@ -109,7 +86,7 @@ public class Summator
         {
             List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
             for (int i = index; i < index + ci; i++)
-                newBlock.add(flatList1.get(i));
+                newBlock.add(sequence1.get(i));
             newSignals1.add(newBlock);
             index += ci;
         }
@@ -134,21 +111,9 @@ public class Summator
         es.shutdown();
 
         //creates flat list from raw results
-        List<DigitalSignal> flatRawList = new ArrayList<DigitalSignal>();
         for (List<DigitalSignal> clms: rawResult)
             for (DigitalSignal cms: clms)
-                flatRawList.add(cms);
-
-        //repacks raw results according to signals map
-        index = 0;
-        for (Integer ci: signalsMap0)
-        {
-            List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
-            for (int i = index; i < index + ci; i++)
-                newBlock.add(flatRawList.get(i));
-            index += ci;
-            result.add(newBlock);
-        }
+                result.add(cms);
         return result;
     }
 }

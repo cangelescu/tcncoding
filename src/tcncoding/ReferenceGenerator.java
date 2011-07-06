@@ -28,8 +28,7 @@ import java.util.List;
 public class ReferenceGenerator
 {
     private double referenceFrequency, referenceAmplitude, referencePhase;
-    private List<List<ChannelSignal>> receivedSignals;
-    private List<List<ModulatorSignal>> output = new ArrayList<List<ModulatorSignal>>();
+    private List<ChannelSignal> receivedSignals;
 
     /**
      * Creates reference generator
@@ -38,7 +37,7 @@ public class ReferenceGenerator
      * @param _phase reference phase, rad
      * @param _signals list of input signals
      */
-    public ReferenceGenerator(double _frequency, double _amplitude, double _phase, List<List<ChannelSignal>> _signals)
+    public ReferenceGenerator(double _frequency, double _amplitude, double _phase, List<ChannelSignal> _signals)
     {
 	referenceFrequency = _frequency;
 	referenceAmplitude = _amplitude;
@@ -50,18 +49,11 @@ public class ReferenceGenerator
      * Runs generating
      * @return list of reference signals
      */
-    public List<List<ModulatorSignal>> getSignals()
+    public List<ModulatorSignal> getSignals()
     {
-	for (List<ChannelSignal> clcs: receivedSignals)
-	{
-	    List<ModulatorSignal> newModulatorSignalList = new ArrayList<ModulatorSignal>();
-	    for (ChannelSignal crs: clcs)
-	    {
-		ModulatorSignal mbfcrs = new ModulatorSignal(referenceFrequency, referenceAmplitude, referencePhase, crs.getStart(), crs.getEnd());
-		newModulatorSignalList.add(mbfcrs);
-	    }
-	    output.add(newModulatorSignalList);
-	}
+        List<ModulatorSignal> output = new ArrayList<ModulatorSignal>();
+        for (ChannelSignal ccs: receivedSignals)
+            output.add(new ModulatorSignal(referenceFrequency, referenceAmplitude, referencePhase, ccs.getStart(), ccs.getEnd()));
         return output;
     }
 }

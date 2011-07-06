@@ -27,8 +27,7 @@ import java.util.List;
  */
 public class VideoCreator
 {
-    private List<BinaryNumber> inputSequence;
-    private List<List<DigitalSignal>> outputSequence = new ArrayList<List<DigitalSignal>>();
+    private List<Boolean> inputSequence;
     private double impulseLength, impulseLevel;
 
     /**
@@ -37,7 +36,7 @@ public class VideoCreator
      * @param _impulseLength length of each impulse, s
      * @param _impulseLevel level of each impulse, V
      */
-    public VideoCreator(List<BinaryNumber> _channelSymbols, double _impulseLength, double _impulseLevel)
+    public VideoCreator(List<Boolean> _channelSymbols, double _impulseLength, double _impulseLevel)
     {
 	inputSequence = _channelSymbols;
 	impulseLength = _impulseLength;
@@ -48,28 +47,22 @@ public class VideoCreator
      * Runs videosequence creating
      * @return videosequence
      */
-    public List<List<DigitalSignal>> getVideoSequence()
+    public List<DigitalSignal> getVideoSequence()
     {
-	outputSequence.clear();
+	List<DigitalSignal> outputSequence = new ArrayList<DigitalSignal>();
 	double cx = 0;
-	for (BinaryNumber cbn: inputSequence)
+	for (Boolean cb: inputSequence)
 	{
-	    boolean[] matrix = cbn.getBinaryArray();
-	    List<DigitalSignal> newBlock = new ArrayList<DigitalSignal>();
-	    for (boolean cm: matrix)
-	    {
-		List<Sample> newBit = new ArrayList<Sample>();
-		if (cm)
-		    newBit.add(new Sample(cx, impulseLevel));
-		else
-		    newBit.add(new Sample(cx, 0));
-		DigitalSignal newDigitalSignal = new DigitalSignal(newBit);
-		newDigitalSignal.setEnd(cx + impulseLength);
-		newBlock.add(newDigitalSignal);
-		cx += impulseLength;
-	    }
-	    outputSequence.add(newBlock);
-	}
+            List<Sample> newBit = new ArrayList<Sample>();
+            if (cb)
+                newBit.add(new Sample(cx, impulseLevel));
+            else
+                newBit.add(new Sample(cx, 0));
+            DigitalSignal newDigitalSignal = new DigitalSignal(newBit);
+            newDigitalSignal.setEnd(cx + impulseLength);
+            outputSequence.add(newDigitalSignal);
+            cx += impulseLength;
+        }
         return outputSequence;
     }
 }

@@ -53,13 +53,13 @@ public class SourceDecoderShannonFano extends SourceDecoder
 	sourceMessage = "";
 
         BitsRectifier rectifier = new BitsRectifier(sourceSequence);
-        boolean[] sequence = rectifier.getBits();
+        List<Boolean> sequence = rectifier.getBits();
 
 	//goes through sequence bit by bit
 	String buffer = "";
-	for (int i = 0; i < sequence.length; i++)
+	for (Boolean cb: sequence)
 	{
-	    buffer += sequence[i] ? "1" : "0";
+	    buffer += cb ? "1" : "0";
 
 	    String currentChar = codeMap.get(buffer);
 

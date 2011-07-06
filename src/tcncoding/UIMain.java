@@ -90,63 +90,63 @@ public class UIMain extends javax.swing.JFrame
 
     //source videosequence
     double sourceImpulseLength;
-    List<List<DigitalSignal>> sourceVideoSequence;
+    List<DigitalSignal> sourceVideoSequence;
     DataVizualizatorProvider sourceVideoSequenceSingleProvider;
     List<DataVizualizatorProvider> sourceVideoSequenceProvider;
 
     //channel videosequence
     double channelImpulseLength;
-    List<List<DigitalSignal>> channelVideoSequence;
+    List<DigitalSignal> channelVideoSequence;
     List<DataVizualizatorProvider> channelVideoSequenceProvider;
 
     //ModulatorController data
-    List<List<ModulatorSignal>> modulatorData;
+    List<ModulatorSignal> modulatorData;
     List<DataVizualizatorProvider> modulatorDataProvider;
 
     //NoiseGenerator data
-    List<List<NoiseSignal>> noiseSignals;
+    List<NoiseSignal> noiseSignals;
     List<DataVizualizatorProvider> noiseGeneratorDataProvider;
 
     //Channel data
-    List<List<ChannelSignal>> channelOutput;
+    List<ChannelSignal> channelOutput;
     List<DataVizualizatorProvider> channelOutputProvider;
     boolean useNoiseErrorsTrigger = true, forceErrorsTrigger = false, injectErrorsPerBlock = true;
 
     //reference generators data
-    List<List<ModulatorSignal>> referenceGenerator0Output;
-    List<List<ModulatorSignal>> referenceGenerator1Output;
+    List<ModulatorSignal> referenceGenerator0Output;
+    List<ModulatorSignal> referenceGenerator1Output;
     List<DataVizualizatorProvider> referenceGenerator0OutputProvider;
     List<DataVizualizatorProvider> referenceGenerator1OutputProvider;
 
     //multipliers data
-    List<List<MultiplierSignal>> multiplier0Output;
-    List<List<MultiplierSignal>> multiplier1Output;
+    List<MultiplierSignal> multiplier0Output;
+    List<MultiplierSignal> multiplier1Output;
     List<DataVizualizatorProvider> multiplier0OutputProvider;
     List<DataVizualizatorProvider> multiplier1OutputProvider;
     
     //digitizers data
-    List<List<DigitalSignal>> digitizer0Output;
-    List<List<DigitalSignal>> digitizer1Output;
+    List<DigitalSignal> digitizer0Output;
+    List<DigitalSignal> digitizer1Output;
 
     //integrators data
     double maxFrequency;
-    List<List<DigitalSignal>> integrator0Output;
-    List<List<DigitalSignal>> integrator1Output;
+    List<DigitalSignal> integrator0Output;
+    List<DigitalSignal> integrator1Output;
     List<DataVizualizatorProvider> integrator0OutputProvider;
     List<DataVizualizatorProvider> integrator1OutputProvider;
 
     //Summator data
-    List<List<DigitalSignal>> summatorOutput;
+    List<DigitalSignal> summatorOutput;
     List<DataVizualizatorProvider> summatorOutputProvider;
 
     //Resolver data
-    List<BinaryNumber> resolverOutput;
-    List<List<DigitalSignal>> resolverVideoSequence;
+    List<Boolean> resolverOutput;
+    List<DigitalSignal> resolverVideoSequence;
     List<DataVizualizatorProvider> resolverVideoSequenceProvider;
 
     //Channel decoder data
     List<BinaryNumber> channelDecoderOutput;
-    List<List<DigitalSignal>> channelDecoderVideoSequence;
+    List<DigitalSignal> channelDecoderVideoSequence;
     List<DataVizualizatorProvider> channelDecoderVideoSequenceProvider;
 
     //acts on choosing code of source
@@ -346,7 +346,8 @@ public class UIMain extends javax.swing.JFrame
 	//calculates source impulse length according to chosen informational speed
 	sourceImpulseLength = 1 / (Double)informationalSpeed.getValue();
 
-	currentSourceVideoCreator = new VideoCreator(sourceSymbols, sourceImpulseLength, 1);
+        BitsRectifier sourceRectifier = new BitsRectifier(sourceSymbols);
+	currentSourceVideoCreator = new VideoCreator(sourceRectifier.getBits(), sourceImpulseLength, 1);
 	sourceVideoSequence = currentSourceVideoCreator.getVideoSequence();
 	if (currentSourceVideoSequenceVizualizator != null)
 	{
@@ -377,7 +378,8 @@ public class UIMain extends javax.swing.JFrame
 	//calculates channel impulse length according to chosen code
 	channelImpulseLength = sourceImpulseLength * ((double)currentSourceCoder.getSequenceLength() / (double)currentChannelCoder.getSequenceLength());
 
-	currentChannelVideoCreator = new VideoCreator(channelSymbols, channelImpulseLength, 0.75);
+        BitsRectifier channelRectifier = new BitsRectifier(channelSymbols);
+        currentChannelVideoCreator = new VideoCreator(channelRectifier.getBits(), channelImpulseLength, 0.75);
 	channelVideoSequence = currentChannelVideoCreator.getVideoSequence();
 	if (currentChannelVideoSequenceVizualizator != null)
 	{
@@ -605,9 +607,7 @@ public class UIMain extends javax.swing.JFrame
     //converts analog signal to digital
     void doDigitizing()
     {
-	int lastBlock = multiplier0Output.size() - 1;
-	int lastSignal = multiplier0Output.get(lastBlock).size() - 1;
-	double end = multiplier0Output.get(lastBlock).get(lastSignal).getEnd();
+	double end = multiplier0Output.get(multiplier0Output.size() - 1).getEnd();
         double step = Math.min(end / blockIntegratorOutputField0.getWidth(), 1 / (3 * maxFrequency));
         currentDigitizer0 = new Digitizer(multiplier0Output, step);
         currentDigitizer1 = new Digitizer(multiplier1Output, step);
@@ -746,7 +746,8 @@ public class UIMain extends javax.swing.JFrame
     //decodes source code with selected Channel code
     void doChannelDecodingVideoSequence()
     {
-	currentChannelDecoderVideoCreator = new VideoCreator(channelDecoderOutput, sourceImpulseLength, 1);
+        BitsRectifier channelRectifier = new BitsRectifier(channelDecoderOutput);
+	currentChannelDecoderVideoCreator = new VideoCreator(channelRectifier.getBits(), sourceImpulseLength, 1);
 	channelDecoderVideoSequence = currentChannelDecoderVideoCreator.getVideoSequence();
 	if (currentChannelDecoderVideoSequenceVizualizator != null)
 	{

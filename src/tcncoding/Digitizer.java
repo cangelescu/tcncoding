@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class Digitizer {
 
-    private List<List<AnalogSignal>> inputSignals;
+    private List<AnalogSignal> inputSignals;
     private double step;
     
     /**
@@ -37,7 +37,7 @@ public class Digitizer {
      */
     public Digitizer(Object _inputSignals, double _step)
     {
-        inputSignals = (List<List<AnalogSignal>>)_inputSignals;
+        inputSignals = (List<AnalogSignal>)_inputSignals;
         step = _step;
     }
     
@@ -45,20 +45,15 @@ public class Digitizer {
      * Runs signal processing
      * @return list of digital signals
      */
-    public List<List<DigitalSignal>> getDigitalSignal()
+    public List<DigitalSignal> getDigitalSignal()
     {
-        List<List<DigitalSignal>> outputSignals = new ArrayList<List<DigitalSignal>>();
-        for (List<AnalogSignal> clas: inputSignals)
+        List<DigitalSignal> outputSignals = new ArrayList<DigitalSignal>();
+        for (AnalogSignal cas: inputSignals)
         {
-            List<DigitalSignal> clds = new ArrayList<DigitalSignal>();
-            for (AnalogSignal cas: clas)
-            {
-                List<Sample> newSample = new ArrayList<Sample>();
-                for (double currentPoint = cas.getStart(); currentPoint <= cas.getEnd(); currentPoint += step)
-                    newSample.add(new Sample(currentPoint, cas.function(currentPoint)));
-                clds.add(new DigitalSignal(newSample));
-            }
-            outputSignals.add(clds);
+            List<Sample> newSample = new ArrayList<Sample>();
+            for (double currentPoint = cas.getStart(); currentPoint <= cas.getEnd(); currentPoint += step)
+                newSample.add(new Sample(currentPoint, cas.function(currentPoint)));
+            outputSignals.add(new DigitalSignal(newSample));
         }
         return outputSignals;
     }

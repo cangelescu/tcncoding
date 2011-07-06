@@ -27,16 +27,15 @@ import java.util.List;
  */
 public class Multiplier
 {
-    private List<List<ChannelSignal>> channelSignals;
-    private List<List<ModulatorSignal>> referenceSignals;
-    private List<List<MultiplierSignal>> output = new ArrayList<List<MultiplierSignal>>();
+    private List<ChannelSignal> channelSignals;
+    private List<ModulatorSignal> referenceSignals;
 
     /**
      * Creates multiplier
      * @param _channelSignals list of channel signals
      * @param _referenceSignals list of reference signals
      */
-    public Multiplier(List<List<ChannelSignal>> _channelSignals, List<List<ModulatorSignal>> _referenceSignals)
+    public Multiplier(List<ChannelSignal> _channelSignals, List<ModulatorSignal> _referenceSignals)
     {
 	channelSignals = _channelSignals;
 	referenceSignals = _referenceSignals;
@@ -46,18 +45,11 @@ public class Multiplier
      * Runs multiplying
      * @return multiplied sequence
      */
-    public List<List<MultiplierSignal>> getSignals()
+    public List<MultiplierSignal> getSignals()
     {
+        List<MultiplierSignal> output = new ArrayList<MultiplierSignal>();
 	for (int i = 0; i < channelSignals.size(); i++)
-	{
-	    List<MultiplierSignal> newMultiplierSignals = new ArrayList<MultiplierSignal>();
-	    for (int j = 0; j < channelSignals.get(i).size(); j++)
-	    {
-		MultiplierSignal newSignal = new MultiplierSignal(channelSignals.get(i).get(j), referenceSignals.get(i).get(j));
-		newMultiplierSignals.add(newSignal);
-	    }
-	    output.add(newMultiplierSignals);
-	}
+            output.add(new MultiplierSignal(channelSignals.get(i), referenceSignals.get(i)));
         return output;
     }
 }

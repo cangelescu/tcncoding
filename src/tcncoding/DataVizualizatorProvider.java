@@ -28,7 +28,7 @@ import java.util.List;
 public class DataVizualizatorProvider
 {
 
-    private List<List<AnalogSignal>> inputSignal;
+    private List<AnalogSignal> inputSignal;
 
     private double xStart, xEnd, maxValue, minValue;
     private String description;
@@ -42,23 +42,22 @@ public class DataVizualizatorProvider
      */
     public DataVizualizatorProvider(Object _data, String _description, Color _chartColor)
     {
-        inputSignal = (List<List<AnalogSignal>>)_data;
-        xStart = inputSignal.get(0).get(0).getStart();
+        inputSignal = (List<AnalogSignal>)_data;
+        xStart = inputSignal.get(0).getStart();
         xEnd = xStart;
-        maxValue = inputSignal.get(0).get(0).getMaxValue();
-        minValue = inputSignal.get(0).get(0).getMinValue();
-        for (List<AnalogSignal> clas: inputSignal)
-            for (AnalogSignal cas: clas)
-            {
-                if (cas.getMaxValue() > maxValue)
-                    maxValue = cas.getMaxValue();
-                if (cas.getMinValue() < minValue)
-                    minValue = cas.getMinValue();
-                if (cas.getStart() < xStart)
-                    xStart = cas.getStart();
-                if (cas.getEnd() > xEnd)
-                    xEnd = cas.getEnd();
-            }
+        maxValue = inputSignal.get(0).getMaxValue();
+        minValue = inputSignal.get(0).getMinValue();
+        for (AnalogSignal cas: inputSignal)
+        {
+            if (cas.getMaxValue() > maxValue)
+                maxValue = cas.getMaxValue();
+            if (cas.getMinValue() < minValue)
+                minValue = cas.getMinValue();
+            if (cas.getStart() < xStart)
+                xStart = cas.getStart();
+            if (cas.getEnd() > xEnd)
+                xEnd = cas.getEnd();
+        }
 		
 	description = _description;
 	chartColor = _chartColor;
@@ -72,10 +71,9 @@ public class DataVizualizatorProvider
     public double getFunction(double _x)
     {
 	double out = 0;
-        for (List<AnalogSignal> clas: inputSignal)
-            for (AnalogSignal cas: clas)
-                if (_x >= cas.getStart() && _x <= cas.getEnd())
-                    out = cas.function(_x);
+        for (AnalogSignal cas: inputSignal)
+            if (_x >= cas.getStart() && _x <= cas.getEnd())
+                out = cas.function(_x);
 	return out;
     }
 

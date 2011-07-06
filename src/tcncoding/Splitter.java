@@ -96,13 +96,14 @@ public class Splitter
     public List<BinaryNumber> getMappedBlocks()
     {
         BitsRectifier rectifier = new BitsRectifier(sequence);
-        boolean[] linearSequence = rectifier.getBits();
+        List<Boolean> linearSequence = rectifier.getBits();
 
         int index = 0;
 	for (Integer ci: lengthMap)
 	{
 	    boolean[] newBlock = new boolean[ci];
-	    System.arraycopy(linearSequence, index, newBlock, 0, ci);
+            for (int i = 0; i < ci; i++)
+                newBlock[i] = linearSequence.get(index + i);
 	    outputBlocks.add(new BinaryNumber(newBlock));
 	    index += ci;
 	}

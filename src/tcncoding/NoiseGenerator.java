@@ -29,16 +29,14 @@ public class NoiseGenerator
 {
 
     private double noisePower;
-    private List<List<ModulatorSignal>> modulatedSequence;
-
-    private List<List<NoiseSignal>> noiseSignal = new ArrayList<List<NoiseSignal>>();
+    private List<ModulatorSignal> modulatedSequence;
 
     /**
      * Creates noise generator
      * @param _modulatedSequence reference modulator signals to use for timing
      * @param _noisePower power of noise, W
      */
-    public NoiseGenerator(List<List<ModulatorSignal>> _modulatedSequence, double _noisePower)
+    public NoiseGenerator(List<ModulatorSignal> _modulatedSequence, double _noisePower)
     {
 	modulatedSequence = _modulatedSequence;
         noisePower = _noisePower;
@@ -48,15 +46,11 @@ public class NoiseGenerator
      * Generates noise
      * @return list of noise signals
      */
-    public List<List<NoiseSignal>> getSignals()
+    public List<NoiseSignal> getSignals()
     {
-	for (List<ModulatorSignal> clms: modulatedSequence)
-        {
-            List<NoiseSignal> clns = new ArrayList<NoiseSignal>();
-            for (ModulatorSignal cms: clms)
-                clns.add(new NoiseSignal(noisePower, cms.getStart(), cms.getEnd()));
-            noiseSignal.add(clns);
-        }
+        List<NoiseSignal> noiseSignal = new ArrayList<NoiseSignal>();
+	for (ModulatorSignal cms: modulatedSequence)
+            noiseSignal.add(new NoiseSignal(noisePower, cms.getStart(), cms.getEnd()));
         return noiseSignal;
     }
 }
