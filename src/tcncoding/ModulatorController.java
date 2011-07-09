@@ -99,9 +99,7 @@ public class ModulatorController
 		break;
 	    case RPSK:
 		//recode input sequence first
-                BitsRectifier bitsRectifier = new BitsRectifier(inputSequence);
-                List<Boolean> linearInputSequence = bitsRectifier.getBits();
-		ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(linearInputSequence);
+		ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(inputSequence);
 		List<BinaryNumber> recodedsequence = recoder.getEncodedList();
 		//using PSK modulator with recoded sequence as its input
 		ModulatorPSK modulatorRPSK = new ModulatorPSK(bearerAmplitude, bearerFrequency, recodedsequence, impulseLength);

@@ -44,44 +44,13 @@ public class ChannelDecoderController
      * @param _lengthMap map of blocks' length
      * @param _enabled indicates if to use channel coding
      */
-    public ChannelDecoderController(List<Boolean> _symbols, ChannelCoderController.ChannelCoderCode _codeType, int _headLength, List<Integer> _lengthMap, boolean _enabled)
+    public ChannelDecoderController(List<BinaryNumber> _symbols, List<Integer> _lengthMap, ChannelCoderController.ChannelCoderCode _codeType, int _headLength, boolean _enabled)
     {
+        inputSequence = _symbols;
 	usingCode = _codeType;
 	headLength = _headLength;
 	lengthMap = _lengthMap;
 	enabled = _enabled;
-
-        int index = 0;
-        for (Integer ci: lengthMap)
-        {
-            int blockSize;
-            switch (usingCode)
-            {
-                case PARITY_BIT:
-                    blockSize = ci + 1;
-                    break;
-                case INVERSED:
-                    blockSize = ci * 2;
-                    break;
-                case MANCHESTER:
-                    blockSize = 2;
-                    break;
-                case HAMMING:
-                    blockSize = 7;
-                    break;
-                case CYCLIC:
-                    blockSize = 8;
-                    break;
-                default:
-                    blockSize = 0;
-                    break;
-            }
-            List<Boolean> newBlock = new ArrayList<Boolean>();
-            for (int i = index; i < index + blockSize; i++)
-                newBlock.add(_symbols.get(i));
-            inputSequence.add(new BinaryNumber(newBlock));
-            index += blockSize;
-        }
     }
 
     /**

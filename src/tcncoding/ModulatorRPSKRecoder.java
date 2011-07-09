@@ -27,13 +27,13 @@ import java.util.List;
  */
 public class ModulatorRPSKRecoder
 {
-    private List<Boolean> sequence;
+    private List<BinaryNumber> sequence;
 
     /**
      * Rectifies binary numbers' list into array
      * @param _sequence source list of binary numbers
      */
-    public ModulatorRPSKRecoder(List<Boolean> _sequence)
+    public ModulatorRPSKRecoder(List<BinaryNumber> _sequence)
     {
 	sequence = _sequence;
     }
@@ -44,40 +44,47 @@ public class ModulatorRPSKRecoder
      */
     public List<BinaryNumber> getEncodedList()
     {
-        List<Boolean> outputArray = new ArrayList<Boolean>();
-        outputArray.add(true);
+        List<BinaryNumber> outputArray = new ArrayList<BinaryNumber>();
+	outputArray.add(new BinaryNumber(1));
 
-	boolean previous = true;
-	for (int i = 0; i < sequence.size(); i++)
+	int sequenceLength = sequence.size();
+	boolean prev = true;
+	for (int i = 0; i < sequenceLength; i++)
 	{
-            boolean current = sequence.get(i) ^ previous;
-            outputArray.add(current);
-            previous = current;
+	    int pieceLength = sequence.get(i).getLength();
+	    boolean[] currentOldPiece = sequence.get(i).getBinaryArray();
+	    boolean[] currentNewPiece = new boolean[pieceLength];
+	    for (int j = 0; j < pieceLength; j++)
+	    {
+		currentNewPiece[j] = currentOldPiece[j] ^ prev;
+		prev = currentNewPiece[j];
+	    }
+	    outputArray.add(new BinaryNumber(currentNewPiece));
 	}
-
-        List<BinaryNumber> outputList = new ArrayList<BinaryNumber>();
-        for (Boolean cb: outputArray)
-        {
-            List<Boolean> clb = new ArrayList<Boolean>();
-            clb.add(cb);
-            outputList.add(new BinaryNumber(clb));
-        }
-        return outputList;
+        return outputArray;
     }
 
     /**
      * Runs decoding
      * @return decoded sequence
      */
-    public List<Boolean> getDecodedList()
+    public List<BinaryNumber> getDecodedList()
     {
-	List<Boolean> outputArray = new ArrayList<Boolean>();
+	List<BinaryNumber> outputArray = new ArrayList<BinaryNumber>();
 
-	boolean previous = true;
-	for (int i = 1; i < sequence.size(); i++)
+	int sequenceLength = sequence.size();
+	boolean prev = true;
+	for (int i = 1; i < sequenceLength; i++)
 	{
-            outputArray.add(sequence.get(i) ^ previous);
-            previous = sequence.get(i);
+	    int pieceLength = sequence.get(i).getLength();
+	    boolean[] currentOldPiece = sequence.get(i).getBinaryArray();
+	    boolean[] currentNewPiece = new boolean[pieceLength];
+	    for (int j = 0; j < pieceLength; j++)
+	    {
+		currentNewPiece[j] = currentOldPiece[j] ^ prev;
+		prev = currentOldPiece[j];
+	    }
+	    outputArray.add(new BinaryNumber(currentNewPiece));
 	}
         return outputArray;
     }

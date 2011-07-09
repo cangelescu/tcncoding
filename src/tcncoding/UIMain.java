@@ -80,11 +80,12 @@ public class UIMain extends javax.swing.JFrame
 
     //source coder
     List<BinaryNumber> sourceSymbols;
-    List<Integer> lengthMap;
+    List<Integer> sourceSymbolsLengthMap;
     boolean isCyr = true;
 
     //channel coder
     List<BinaryNumber> channelSymbols;
+    List<Integer> channelSymbolsLengthMap;
     int headLength;
     boolean useChannelCoderTrigger = true;
 
@@ -140,7 +141,7 @@ public class UIMain extends javax.swing.JFrame
     List<DataVizualizatorProvider> summatorOutputProvider;
 
     //Resolver data
-    List<Boolean> resolverOutput;
+    List<BinaryNumber> resolverOutput;
     List<DigitalSignal> resolverVideoSequence;
     List<DataVizualizatorProvider> resolverVideoSequenceProvider;
 
@@ -326,7 +327,7 @@ public class UIMain extends javax.swing.JFrame
     {
 	currentSourceCoder = new SourceCoderController(sourceCode, message);
 	sourceSymbols = currentSourceCoder.getSequence();
-	lengthMap = currentSourceCoder.getLengthMap();
+        sourceSymbolsLengthMap = currentSourceCoder.getLengthMap();
 	isCyr = currentSourceCoder.isCyrillic();
 	blockSourceCoderOutput.setText(currentSourceCoder.getHTMLStringSequence());
     }
@@ -336,6 +337,7 @@ public class UIMain extends javax.swing.JFrame
     {
 	currentChannelCoder = new ChannelCoderController(sourceSymbols, channelCode, useChannelCoderTrigger);
 	channelSymbols = currentChannelCoder.getSequence();
+        channelSymbolsLengthMap = currentChannelCoder.getLengthMap();
 	blockChannelCoderOutput.setText(currentChannelCoder.getHTMLReport());
 	headLength = currentChannelCoder.getHeadLength();
     }
@@ -706,11 +708,12 @@ public class UIMain extends javax.swing.JFrame
 
 	int errorsCount = forceErrorsTrigger ? (Integer) forceErrorsCount.getValue() : 0;
 
-        currentResolver = new Resolver(summatorOutput, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
+        currentResolver = new Resolver(summatorOutput, channelSymbolsLengthMap, threshold, modulationType, useNoiseErrorsTrigger, forceErrorsTrigger, errorsCount, injectErrorsPerBlock, channelSymbols);
 	resolverOutput = currentResolver.getBinaryNumbers();
 	blockResolverOutput.setText("<html>" + currentResolver.getStringSequence());
 
-	currentResolverVideoCreator = new VideoCreator(resolverOutput, channelImpulseLength, 1);
+        BitsRectifier resolverRectifier = new BitsRectifier(resolverOutput);
+	currentResolverVideoCreator = new VideoCreator(resolverRectifier.getBits(), channelImpulseLength, 1);
 	resolverVideoSequence = currentResolverVideoCreator.getVideoSequence();
 	if (currentResolverVideoSequenceVizualizator != null)
 	{
@@ -736,7 +739,7 @@ public class UIMain extends javax.swing.JFrame
     //decodes source code with selected Channel code
     void doChannelDecoding()
     {
-	currentChannelDecoder = new ChannelDecoderController(resolverOutput, channelCode, headLength, lengthMap, useChannelCoderTrigger);
+	currentChannelDecoder = new ChannelDecoderController(resolverOutput, sourceSymbolsLengthMap, channelCode, headLength, useChannelCoderTrigger);
 	channelDecoderOutput = currentChannelDecoder.getSequence();
 	String text = "<html> " + java.util.ResourceBundle.getBundle("tcncoding/LanguageUkrainian").getString("RECEIVED SEQUENCE:") + " <br/>" + currentResolver.getStringSequence() + "<br/>";
 	text += currentChannelDecoder.getHTMLReport();

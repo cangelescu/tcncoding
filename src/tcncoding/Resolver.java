@@ -28,6 +28,7 @@ import java.util.List;
 public class Resolver
 {
     private List<DigitalSignal> summatorSignal;
+    private List<Integer> lengthMap;
     private double threshold;
     private ModulatorController.ModulationType modulationType;
     private boolean useNoiseErrors;
@@ -35,8 +36,7 @@ public class Resolver
     private List<BinaryNumber> ethalonBinarySequence;
     private int errorsCount;
     private boolean perBlock;
-    private List<Boolean> outputSequence = new ArrayList<Boolean>();
-    private List<Boolean> ethalonLinearSequence = new ArrayList<Boolean>();
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
 
     /**
      * Creates resolver
@@ -49,16 +49,15 @@ public class Resolver
      * @param _perBlock indicates using per-block injection
      * @param _ethalonBinarySequence ethalon binary sequence to compare with
      */
-    public Resolver(List<DigitalSignal> _summatorSignal, double _threshold, ModulatorController.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
+    public Resolver(List<DigitalSignal> _summatorSignal, List<Integer> _lengthMap, double _threshold, ModulatorController.ModulationType _modulationType, boolean _useNoiseErrors, boolean _forceErrors, int _errorsCount, boolean _perBlock, List<BinaryNumber> _ethalonBinarySequence)
     {
 	summatorSignal = _summatorSignal;
+        lengthMap = _lengthMap;
 	threshold = _threshold;
 	modulationType = _modulationType;
 	useNoiseErrors = _useNoiseErrors;
 	forceErrors = _forceErrors;
 	ethalonBinarySequence = _ethalonBinarySequence;
-        BitsRectifier bitsRectifier = new BitsRectifier(ethalonBinarySequence);
-        ethalonLinearSequence = bitsRectifier.getBits();
 	errorsCount = _errorsCount;
 	perBlock = _perBlock;
     }
@@ -67,36 +66,48 @@ public class Resolver
      * Runs resolving
      * @return received bits
      */
-    public List<Boolean> getBinaryNumbers()
+    public List<BinaryNumber> getBinaryNumbers()
     {
-	List<Boolean> resolvedBits = new ArrayList<Boolean>();
+	List<BinaryNumber> resolvedSequence = new ArrayList<BinaryNumber>();
 
 	//use classic resolving algorithm if enabled
 	if (useNoiseErrors)
 	{
+            //resolves input signal
+            List<Boolean> resolvedLinearSequence = new ArrayList<Boolean>();
             for (DigitalSignal cds: summatorSignal)
             {
                 double value = cds.getSample(cds.getSamplesCount() - 1).getY();
-                resolvedBits.add(value > threshold);
+                resolvedLinearSequence.add(value > threshold);
+            }
+            //recombines linear sequence into blocks
+            int index = 0;
+            for (Integer ci: lengthMap)
+            {
+                boolean[] newBlock = new boolean[ci];
+                for (int i = 0; i < ci; i++)
+                    newBlock[i] = resolvedLinearSequence.get(index + i);
+                resolvedSequence.add(new BinaryNumber(newBlock));
+                index += ci;
             }
 	} else
-            resolvedBits = ethalonLinearSequence;
+            resolvedSequence = ethalonBinarySequence;
 
 	//recode sequence if it's RPSK
 	if (modulationType == ModulatorController.ModulationType.RPSK)
 	{
-	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(resolvedBits);
-	    resolvedBits = recoder.getDecodedList();
+	    ModulatorRPSKRecoder recoder = new ModulatorRPSKRecoder(resolvedSequence);
+	    resolvedSequence = recoder.getDecodedList();
 	}
 
 	//inject errors if enabled
 	if (forceErrors)
 	{
-	    ErrorsInjector injector = new ErrorsInjector(resolvedBits, errorsCount, perBlock);
+	    ErrorsInjector injector = new ErrorsInjector(resolvedSequence, errorsCount, perBlock);
 	    outputSequence = injector.getSequence();
 	} else
 	//otherwise copy unaffected sequence
-            outputSequence = resolvedBits;
+            outputSequence = resolvedSequence;
         return outputSequence;
     }
 
@@ -106,17 +117,34 @@ public class Resolver
      */
     public String getStringSequence()
     {
-        String out = "", color;
-        for (int i = 0; i < outputSequence.size(); i++)
-        {
-            if (outputSequence.get(i) == ethalonLinearSequence.get(i))
-                color = "black";
-            else
-                color = "red";
-            out += "<font color=\"" + color + "\" size=\"5\">";
-            out += outputSequence.get(i) ? "1" : "0";
-            out += "</font>";
-        }
+        String out = "", color, prevColor;
+	boolean trigger = false;
+	int listLength = outputSequence.size();
+	for (int i = 0; i < listLength; i++)
+	{
+	    boolean[] receivedSequence = outputSequence.get(i).getBinaryArray();
+	    boolean[] ethalonSequence = ethalonBinarySequence.get(i).getBinaryArray();
+
+	    if (trigger)
+		color = "blue";
+	    else
+		color = "green";
+
+	    int sequenceLength = receivedSequence.length;
+	    for (int k = 0; k < sequenceLength; k++)
+	    {
+		prevColor = color;
+		if (receivedSequence[k] != ethalonSequence[k])
+		    color = "red";
+		out += "<font color=\"" + color + "\" size=\"5\">";
+		out += receivedSequence[k] ? "1" : "0";
+		out += "</font>";
+		color = prevColor;
+	    }
+
+	    trigger = !trigger;
+	    out += " ";
+	}
 	return out;
     }
 }

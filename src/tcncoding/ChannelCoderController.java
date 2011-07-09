@@ -136,6 +136,14 @@ public class ChannelCoderController
 	    out += cbn.getLength();
 	return out;
     }
+    
+    public List<Integer> getLengthMap()
+    {
+        List<Integer> out = new ArrayList<Integer>();
+        for (BinaryNumber cbn: channelSequence)
+            out.add(cbn.getLength());
+        return out;
+    }
 
     /**
      * Returns HTML-formatted encoded string sequence

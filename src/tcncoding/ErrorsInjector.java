@@ -28,7 +28,7 @@ import java.util.Random;
  */
 public class ErrorsInjector {
 
-    private List<Boolean> inputSequence;
+    private List<BinaryNumber> inputSequence;
     private int errorsCount;
     private boolean perBlock;
 
@@ -38,7 +38,7 @@ public class ErrorsInjector {
      * @param _errorsCount count of errors to inject
      * @param _perBlock indicates whether to inject errors in each block or to the whole sequence
      */
-    public ErrorsInjector(List<Boolean> _inputSequence, int _errorsCount, boolean _perBlock)
+    public ErrorsInjector(List<BinaryNumber> _inputSequence, int _errorsCount, boolean _perBlock)
     {
 	inputSequence = _inputSequence;
 	errorsCount = _errorsCount;
@@ -49,42 +49,64 @@ public class ErrorsInjector {
      * Injects errors in the sequence
      * @return sequence with injected errors
      */
-    public List<Boolean> getSequence()
+    public List<BinaryNumber> getSequence()
     {
+        List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+        //copies input sequence into output
+        for (BinaryNumber cb: inputSequence)
+            outputSequence.add(cb);
         if (errorsCount > 0)
         {
-            List<Boolean> outputSequence = new ArrayList<Boolean>();
             Random randomizer = new Random();
-            //TODO: implement per-block injection
-            //if (!perBlock)
-            //{
-                //injects errors into WHOLE sequence
-                //copies input sequence into output
-                for (Boolean cb: inputSequence)
-                    outputSequence.add(cb);
+            List<ErrorDescriptor> positions = new ArrayList<ErrorDescriptor>();
+            //injects errors into WHOLE sequence
+            if (!perBlock)
+            {   
                 //creates unique error positions list
-                List<Integer> positions = new ArrayList<Integer>();
                 for (int i = 0; i < errorsCount; i++)
                 {
-                    int position;
+                    int blockPosition, bitPosition;
                     boolean found = false;
                     do {
-                        position = (int)(Math.round(randomizer.nextDouble() * (inputSequence.size() - 1)));
-                        for (Integer cp: positions)
-                            if (cp == position)
+                        blockPosition = (int)(Math.round(randomizer.nextDouble() * (inputSequence.size() - 1)));
+                        bitPosition = (int)(Math.round(randomizer.nextDouble() * (inputSequence.get(blockPosition).getBinaryArray().length - 1)));
+                        for (ErrorDescriptor cp: positions)
+                            if (cp.getBlock() == blockPosition && cp.getBit() == bitPosition)
                                 found = true;
                     } while (found);
-                    positions.add(position);
+                    positions.add(new ErrorDescriptor(blockPosition, bitPosition));
                 }
-                //injects errors
-                for (Integer cp: positions)
+            } else
+            //inject errors into each block
+            {
+                //creates unique error positions list
+                for (int k = 0; k < outputSequence.size(); k++)
                 {
-                    boolean currentValue = outputSequence.get(cp);
-                    outputSequence.set(cp, !currentValue);
+                    for (int i = 0; i < errorsCount; i++)
+                    {
+                        int bitPosition;
+                        boolean found = false;
+                        do {
+                            bitPosition = (int)(Math.round(randomizer.nextDouble() * (inputSequence.get(k).getBinaryArray().length - 1)));
+                            for (ErrorDescriptor cp: positions)
+                                if (cp.getBlock() == k && cp.getBit() == bitPosition)
+                                    found = true;
+                        } while (found);
+                        positions.add(new ErrorDescriptor(k, bitPosition));
+                    }
                 }
-                return outputSequence;
-            //}
-        } else
-            return inputSequence;
+            }
+
+            //injects errors
+            for (ErrorDescriptor cbd: positions)
+            {
+                int block = cbd.getBlock();
+                int bit = cbd.getBit();
+                boolean[] bits = outputSequence.get(block).getBinaryArray();
+                bits[bit] = !bits[bit];
+                outputSequence.set(block, new BinaryNumber(bits));
+            }
+        }
+        return outputSequence;
     }
 }
