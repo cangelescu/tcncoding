@@ -62,36 +62,29 @@ public class ChannelDecoderController
         outputSequence.clear();
 	if (enabled)
 	{
+            ChannelDecoder channelDecoder = null;
 	    switch (usingCode)
 	    {
 		case PARITY_BIT:
-		    ChannelDecoderParityBit channelDecoderParityBit = new ChannelDecoderParityBit(inputSequence);
-		    outputSequence = channelDecoderParityBit.getSequence();
-		    report = channelDecoderParityBit.getReport();
+		    channelDecoder = new ChannelDecoderParityBit(inputSequence);
 		    break;
 		case INVERSED:
-		    ChannelDecoderInversed channelDecoderInversed = new ChannelDecoderInversed(inputSequence);
-		    outputSequence = channelDecoderInversed.getSequence();
-		    report = channelDecoderInversed.getReport();
+		    channelDecoder = new ChannelDecoderInversed(inputSequence);
 		    break;
 		case MANCHESTER:
-		    ChannelDecoderManchester channelDecoderManchester = new ChannelDecoderManchester(inputSequence);
-		    outputSequence = channelDecoderManchester.getSequence();
-		    report = channelDecoderManchester.getReport();
+		    channelDecoder = new ChannelDecoderManchester(inputSequence);
 		    break;
 		case HAMMING:
-		    ChannelDecoderHamming channelDecoderHamming = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
-		    outputSequence = channelDecoderHamming.getSequence();
-		    report = channelDecoderHamming.getReport();
+		    channelDecoder = new ChannelDecoderHamming(inputSequence, headLength, lengthMap);
 		    break;
                 case CYCLIC:
-		    ChannelDecoderCyclic channelDecoderCyclic = new ChannelDecoderCyclic(inputSequence, headLength, lengthMap);
-		    outputSequence = channelDecoderCyclic.getSequence();
-		    report = channelDecoderCyclic.getReport();
+		    channelDecoder = new ChannelDecoderCyclic(inputSequence, headLength, lengthMap);
 		    break;
 		default:
 		    break;
 	    }
+            outputSequence = channelDecoder.getSequence();
+            report = channelDecoder.getReport();
 	} else
         {
 	    outputSequence = inputSequence;

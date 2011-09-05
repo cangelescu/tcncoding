@@ -25,9 +25,11 @@ import java.util.List;
  * Allows using inversed code decoder
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelDecoderInversed extends ChannelDecoder
+public class ChannelDecoderInversed implements ChannelDecoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
 
     /**

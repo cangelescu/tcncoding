@@ -25,9 +25,11 @@ import java.util.List;
  * Allows using Manchester code decoder
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelDecoderManchester extends ChannelDecoder
+public class ChannelDecoderManchester implements ChannelDecoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
 
     /**

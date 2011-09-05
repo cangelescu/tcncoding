@@ -25,9 +25,11 @@ import java.util.List;
  * Allows using decoder for code with parity bit checking
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelDecoderParityBit extends ChannelDecoder
+public class ChannelDecoderParityBit implements ChannelDecoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> checkingSequence = new ArrayList<BinaryNumber>();
 
     /**

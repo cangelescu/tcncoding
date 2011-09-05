@@ -25,9 +25,11 @@ import java.util.List;
  * Allows using Hamming code (7,4) decoder
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelDecoderHamming extends ChannelDecoder
+public class ChannelDecoderHamming implements ChannelDecoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> syndromeSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap;
     private int headLength;

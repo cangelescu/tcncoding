@@ -25,9 +25,11 @@ import java.util.List;
  * Allows using cyclic code (8,5) decoder
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelDecoderCyclic extends ChannelDecoder
+public class ChannelDecoderCyclic implements ChannelDecoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+    private List<BinaryNumber> errorVector = new ArrayList<BinaryNumber>();
     private List<BinaryNumber> syndromeSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap;
     private int headLength;
