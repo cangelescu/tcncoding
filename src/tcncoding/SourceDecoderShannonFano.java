@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,9 +26,10 @@ import java.util.List;
  * Allows using Shannon-Fano code
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceDecoderShannonFano extends SourceDecoder
+public class SourceDecoderShannonFano implements SourceDecoder
 {
-
+    private String sourceMessage;
+    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, String> codeMap = new HashMap<String, String>();
 
     /**

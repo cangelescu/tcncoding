@@ -25,14 +25,6 @@ import java.util.List;
  * Base class of source decoders
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceDecoder {
-
-    /**
-     * output decoded sequence
-     */
-    protected String sourceMessage;
-    /**
-     * input encoded sequence
-     */
-    protected List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
+public interface SourceDecoder {
+    public String getMessage();
 }

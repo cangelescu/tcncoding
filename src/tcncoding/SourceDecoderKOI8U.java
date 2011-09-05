@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,9 +26,10 @@ import java.util.List;
  * Allows using KOI8-U
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceDecoderKOI8U extends SourceDecoder
+public class SourceDecoderKOI8U implements SourceDecoder
 {
-
+    private String sourceMessage;
+    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, String> codeMapKOI8U = new HashMap<String, String>();
 
     /**

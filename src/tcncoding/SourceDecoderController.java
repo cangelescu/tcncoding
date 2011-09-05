@@ -51,31 +51,28 @@ public class SourceDecoderController
      */
     public String getMessage()
     {
+        SourceDecoder sourceDecoder = null;
 	switch (usingCode)
 	{
 	    case MTK2:
-		SourceDecoderITC2 decoderMTK2 = new SourceDecoderITC2(sourceSequence);
-		sourceMessage = decoderMTK2.getMessage();
+		sourceDecoder = new SourceDecoderITC2(sourceSequence);
 		break;
 	    case MTK5:
-		SourceDecoderITC5 decoderMTK5 = new SourceDecoderITC5(sourceSequence);
-		sourceMessage = decoderMTK5.getMessage();
+		sourceDecoder = new SourceDecoderITC5(sourceSequence);
 		break;
 	    case KOI8U:
-		SourceDecoderKOI8U decoderKOI8U = new SourceDecoderKOI8U(sourceSequence);
-		sourceMessage = decoderKOI8U.getMessage();
+		sourceDecoder = new SourceDecoderKOI8U(sourceSequence);
 		break;
 	    case MORSE:
-		SourceDecoderMorse decoderMorse = new SourceDecoderMorse(sourceSequence, isCyr);
-		sourceMessage = decoderMorse.getMessage();
+		sourceDecoder = new SourceDecoderMorse(sourceSequence, isCyr);
 		break;
 	    case SHANNON:
-		SourceDecoderShannonFano decoderShannon = new SourceDecoderShannonFano(sourceSequence, isCyr);
-		sourceMessage = decoderShannon.getMessage();
+		sourceDecoder = new SourceDecoderShannonFano(sourceSequence, isCyr);
 		break;
 	    default:
 		break;
 	}
+        sourceMessage = sourceDecoder.getMessage();
         return sourceMessage;
     }
 }
