@@ -129,6 +129,10 @@ public class ChannelCoderController
 	return out;
     }
     
+    /**
+     * 
+     * @return
+     */
     public List<Integer> getLengthMap()
     {
         List<Integer> out = new ArrayList<Integer>();

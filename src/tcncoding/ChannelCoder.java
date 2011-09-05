@@ -25,7 +25,19 @@ import java.util.List;
  * @author Oleksandr Natalenko aka post-factum
  */
 public interface ChannelCoder {
+    /**
+     * 
+     * @return
+     */
     public List<BinaryNumber> getSequence();
+    /**
+     * 
+     * @return
+     */
     public int getHeadLength();
+    /**
+     * 
+     * @return
+     */
     public String getReport();
 }

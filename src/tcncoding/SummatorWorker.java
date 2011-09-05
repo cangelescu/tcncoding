@@ -41,6 +41,10 @@ public class SummatorWorker implements Callable<List<DigitalSignal>>{
         block1 = _block1;
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<DigitalSignal> call()
     {
         List<DigitalSignal> result = new ArrayList<DigitalSignal>();

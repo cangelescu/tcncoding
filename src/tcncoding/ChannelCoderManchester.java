@@ -80,6 +80,10 @@ public class ChannelCoderManchester implements ChannelCoder
 	return out;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getHeadLength()
     {
         return 0;

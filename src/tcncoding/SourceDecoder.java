@@ -26,5 +26,9 @@ import java.util.List;
  * @author Oleksandr Natalenko aka post-factum
  */
 public interface SourceDecoder {
+    /**
+     * 
+     * @return
+     */
     public String getMessage();
 }

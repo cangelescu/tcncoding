@@ -25,6 +25,14 @@ import java.util.List;
  * @author Oleksandr Natalenko aka post-factum
  */
 public interface SourceCoder {
+    /**
+     * 
+     * @return
+     */
     public List<BinaryNumber> getSequence();
+    /**
+     * 
+     * @return
+     */
     public boolean isCyrillic();
 }

@@ -39,6 +39,10 @@ public class IntegratorWorker implements Callable<List<DigitalSignal>>{
         digitalSignals = _digitalSignals;
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<DigitalSignal> call()
     {
         List<DigitalSignal> result = new ArrayList<DigitalSignal>();

@@ -26,6 +26,14 @@ import java.util.List;
  */
 public interface ChannelDecoder {
 
+    /**
+     * 
+     * @return
+     */
     public List<BinaryNumber> getSequence();
+    /**
+     * 
+     * @return
+     */
     public String getReport();
 }

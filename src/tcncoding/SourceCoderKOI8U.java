@@ -32,6 +32,10 @@ public class SourceCoderKOI8U implements SourceCoder
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapKOI8U = new HashMap<String, BinaryNumber>();
 
+    /**
+     * 
+     * @return
+     */
     public boolean isCyrillic()
     {
         return true;

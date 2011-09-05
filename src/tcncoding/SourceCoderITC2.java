@@ -35,6 +35,10 @@ public class SourceCoderITC2 implements SourceCoder
     private HashMap<String, BinaryNumber> codeMapNum = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapCtl = new HashMap<String, BinaryNumber>();
 
+    /**
+     * 
+     * @return
+     */
     public boolean isCyrillic()
     {
         return true;

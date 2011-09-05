@@ -78,6 +78,10 @@ public class ChannelCoderParityBit implements ChannelCoder
 	return out;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getHeadLength()
     {
         return 0;

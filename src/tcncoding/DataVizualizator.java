@@ -93,6 +93,10 @@ public class DataVizualizator extends JPanel
         }
     }
 
+    /**
+     * 
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g)
     {

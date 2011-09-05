@@ -32,6 +32,10 @@ public class SourceCoderITC5 implements SourceCoder
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapMTK5 = new HashMap<String, BinaryNumber>();
 
+    /**
+     * 
+     * @return
+     */
     public boolean isCyrillic()
     {
         return true;

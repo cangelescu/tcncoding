@@ -41,6 +41,7 @@ public class Resolver
     /**
      * Creates resolver
      * @param _summatorSignal signal from summator to operate on
+     * @param _lengthMap 
      * @param _threshold threshold value to decide which symbol should be registered
      * @param _modulationType type of using modulation
      * @param _useNoiseErrors whether to use errors, made by channel noise

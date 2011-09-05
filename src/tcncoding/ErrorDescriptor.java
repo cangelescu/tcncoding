@@ -25,17 +25,30 @@ package tcncoding;
 public class ErrorDescriptor {
     private int block, bit;
     
+    /**
+     * 
+     * @param _block
+     * @param _bit
+     */
     public ErrorDescriptor(int _block, int _bit)
     {
         block = _block;
         bit = _bit;
     }
     
+    /**
+     * 
+     * @return
+     */
     public int getBlock()
     {
         return block;
     }
     
+    /**
+     * 
+     * @return
+     */
     public int getBit()
     {
         return bit;
