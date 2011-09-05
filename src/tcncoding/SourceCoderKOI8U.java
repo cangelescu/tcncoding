@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,10 +26,16 @@ import java.util.List;
  * Allows using KOI8-U
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceCoderKOI8U extends SourceCoder
+public class SourceCoderKOI8U implements SourceCoder
 {
-
+    private String message;
+    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapKOI8U = new HashMap<String, BinaryNumber>();
+
+    public boolean isCyrillic()
+    {
+        return true;
+    }
 
     /**
      * Creates KOI8-U source coder

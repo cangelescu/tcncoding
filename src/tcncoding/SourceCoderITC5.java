@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,10 +26,16 @@ import java.util.List;
  * Allows using ITC-5
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceCoderITC5 extends SourceCoder
+public class SourceCoderITC5 implements SourceCoder
 {
-
+    private String message;
+    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapMTK5 = new HashMap<String, BinaryNumber>();
+
+    public boolean isCyrillic()
+    {
+        return true;
+    }
 
     /**
      * Creates ITC-5 source coder

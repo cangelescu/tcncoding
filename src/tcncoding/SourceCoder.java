@@ -18,21 +18,13 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Base class of source coders
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceCoder {
-
-    /**
-     * input message
-     */
-    protected String message;
-    /**
-     * output encoded binary sequence
-     */
-    protected List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
+public interface SourceCoder {
+    public List<BinaryNumber> getSequence();
+    public boolean isCyrillic();
 }

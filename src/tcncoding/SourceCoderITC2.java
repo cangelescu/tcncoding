@@ -18,6 +18,7 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,13 +26,19 @@ import java.util.List;
  * Allows using ITC-2
  * @author Oleksandr Natalenko aka post-factum
  */
-public class SourceCoderITC2 extends SourceCoder
+public class SourceCoderITC2 implements SourceCoder
 {
-
+    private String message;
+    private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapLat = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapInt = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapNum = new HashMap<String, BinaryNumber>();
     private HashMap<String, BinaryNumber> codeMapCtl = new HashMap<String, BinaryNumber>();
+
+    public boolean isCyrillic()
+    {
+        return true;
+    }
 
     /**
      * Parts of code map

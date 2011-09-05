@@ -60,7 +60,7 @@ public class SourceCoderController
     private String sourceMessage;
     private List<BinaryNumber> sourceSequence = new ArrayList<BinaryNumber>();
     private List<Integer> lengthMap = new ArrayList<Integer>();
-    private boolean isCyr = true;
+    private boolean isCyr;
 
     /**
      * Creates source coder for input message
@@ -79,34 +79,29 @@ public class SourceCoderController
      */
     public List<BinaryNumber> getSequence()
     {
+        SourceCoder sourceCoder = null;
 	switch (usingCode)
 	{
 	    case MTK2:
-		SourceCoderITC2 coderMTK2 = new SourceCoderITC2(sourceMessage);
-		sourceSequence = coderMTK2.getSequence();
+		sourceCoder = new SourceCoderITC2(sourceMessage);
 		break;
 	    case MTK5:
-		SourceCoderITC5 coderMTK5 = new SourceCoderITC5(sourceMessage);
-		sourceSequence = coderMTK5.getSequence();
+		sourceCoder = new SourceCoderITC5(sourceMessage);
 		break;
 	    case KOI8U:
-		SourceCoderKOI8U coderKOI8U = new SourceCoderKOI8U(sourceMessage);
-		sourceSequence = coderKOI8U.getSequence();
+		sourceCoder = new SourceCoderKOI8U(sourceMessage);
 		break;
 	    case MORSE:
-		SourceCoderMorse coderMorse = new SourceCoderMorse(sourceMessage);
-		sourceSequence = coderMorse.getSequence();
-		isCyr = coderMorse.isCyrillic();
+		sourceCoder = new SourceCoderMorse(sourceMessage);
 		break;
 	    case SHANNON:
-		SourceCoderShannonFano coderShannon = new SourceCoderShannonFano(sourceMessage);
-		sourceSequence = coderShannon.getSequence();
-		isCyr = coderShannon.isCyrillic();
+		sourceCoder = new SourceCoderShannonFano(sourceMessage);
 		break;
 	    default:
 		break;
 	}
-
+        sourceSequence = sourceCoder.getSequence();
+        isCyr = sourceCoder.isCyrillic();
 	lengthMap.clear();
 	for (BinaryNumber cbn: sourceSequence)
 	    lengthMap.add(cbn.getLength());
