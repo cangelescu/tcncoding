@@ -18,15 +18,17 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using Manchester code
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelCoderManchester extends ChannelCoder
+public class ChannelCoderManchester implements ChannelCoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     /**
      * Creates Manchester coder for given input sequence of binary numbers
      * @param _inputSequence list of input binary numbers
@@ -76,5 +78,10 @@ public class ChannelCoderManchester extends ChannelCoder
 	}
 	out += "</html>";
 	return out;
+    }
+
+    public int getHeadLength()
+    {
+        return 0;
     }
 }

@@ -18,14 +18,17 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using Hamming code (7,4)
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelCoderHamming extends ChannelCoder
+public class ChannelCoderHamming implements ChannelCoder
 {
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     private int headLength;
 
     /**

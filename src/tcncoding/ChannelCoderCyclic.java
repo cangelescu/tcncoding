@@ -18,14 +18,17 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using cyclic code (8,5)
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelCoderCyclic extends ChannelCoder
+public class ChannelCoderCyclic implements ChannelCoder
 {
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     private int headLength;
 
     /**

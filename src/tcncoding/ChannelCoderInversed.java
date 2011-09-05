@@ -18,15 +18,17 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using code with inversed checking
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelCoderInversed extends ChannelCoder
+public class ChannelCoderInversed implements ChannelCoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     /**
      * Creates coder with inversed code for given input sequence of binary numbers
      * @param _inputSequence list of input binary numbers
@@ -74,5 +76,10 @@ public class ChannelCoderInversed extends ChannelCoder
 	}
 	out += "</html>";
 	return out;
+    }
+
+    public int getHeadLength()
+    {
+        return 0;
     }
 }

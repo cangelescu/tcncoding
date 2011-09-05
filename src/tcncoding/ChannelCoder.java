@@ -18,21 +18,14 @@
 
 package tcncoding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Base class of channel coders
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelCoder {
-
-    /**
-     * input binary sequence
-     */
-    protected List<BinaryNumber> inputSequence;
-    /**
-     * encoded binary sequence
-     */
-    protected List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
+public interface ChannelCoder {
+    public List<BinaryNumber> getSequence();
+    public int getHeadLength();
+    public String getReport();
 }

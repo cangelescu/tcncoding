@@ -18,15 +18,17 @@
 
 package tcncoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Allows using code with parity bit checking
  * @author Oleksandr Natalenko aka post-factum
  */
-public class ChannelCoderParityBit extends ChannelCoder
+public class ChannelCoderParityBit implements ChannelCoder
 {
-
+    private List<BinaryNumber> inputSequence;
+    private List<BinaryNumber> outputSequence = new ArrayList<BinaryNumber>();
     /**
      * Creates coder for given input sequence of binary numbers with parity bit checking
      * @param _inputSequence list of input binary numbers
@@ -74,5 +76,10 @@ public class ChannelCoderParityBit extends ChannelCoder
 	}
 	out += "</html>";
 	return out;
+    }
+
+    public int getHeadLength()
+    {
+        return 0;
     }
 }

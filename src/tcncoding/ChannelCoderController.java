@@ -59,7 +59,7 @@ public class ChannelCoderController
     private List<BinaryNumber> sourceSymbols;
     private ChannelCoderCode usingCode;
     private List<BinaryNumber> channelSequence = new ArrayList<BinaryNumber>();
-    private int headLength = 0;
+    private int headLength;
     private boolean enabled;
     private String report;
 
@@ -85,38 +85,30 @@ public class ChannelCoderController
         channelSequence.clear();
 	if (enabled)
 	{
+            ChannelCoder channelCoder = null;
 	    switch (usingCode)
 	    {
 		case PARITY_BIT:
-		    ChannelCoderParityBit channelCoderParityBit = new ChannelCoderParityBit(sourceSymbols);
-		    channelSequence = channelCoderParityBit.getSequence();
-		    report = channelCoderParityBit.getReport();
+		    channelCoder = new ChannelCoderParityBit(sourceSymbols);
 		    break;
 		case INVERSED:
-		    ChannelCoderInversed channelCoderInversed = new ChannelCoderInversed(sourceSymbols);
-		    channelSequence = channelCoderInversed.getSequence();
-		    report = channelCoderInversed.getReport();
+		    channelCoder = new ChannelCoderInversed(sourceSymbols);
 		    break;
 		case MANCHESTER:
-		    ChannelCoderManchester channelCoderManchester = new ChannelCoderManchester(sourceSymbols);
-		    channelSequence = channelCoderManchester.getSequence();
-		    report = channelCoderManchester.getReport();
+		    channelCoder = new ChannelCoderManchester(sourceSymbols);
 		    break;
 		case HAMMING:
-		    ChannelCoderHamming channelCoderHamming = new ChannelCoderHamming(sourceSymbols);
-		    channelSequence = channelCoderHamming.getSequence();
-		    headLength = channelCoderHamming.getHeadLength();
-		    report = channelCoderHamming.getReport();
+		    channelCoder = new ChannelCoderHamming(sourceSymbols);
 		    break;
                 case CYCLIC:
-		    ChannelCoderCyclic channelCoderCyclic = new ChannelCoderCyclic(sourceSymbols);
-		    channelSequence = channelCoderCyclic.getSequence();
-		    headLength = channelCoderCyclic.getHeadLength();
-		    report = channelCoderCyclic.getReport();
+		    channelCoder = new ChannelCoderCyclic(sourceSymbols);
 		    break;
 		default:
 		    break;
 	    }
+            channelSequence = channelCoder.getSequence();
+            headLength = channelCoder.getHeadLength();
+            report = channelCoder.getReport();
 	} else
         {
 	    channelSequence = sourceSymbols;
