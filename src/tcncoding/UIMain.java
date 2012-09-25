@@ -962,43 +962,14 @@ public class UIMain extends javax.swing.JFrame
         aboutDialog.setTitle(bundle.getString("ABOUT")); // NOI18N
         aboutDialog.setMinimumSize(new java.awt.Dimension(326, 132));
         aboutDialog.setResizable(false);
-        aboutDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         programNameLabel.setText(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM MODEL")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        aboutDialog.getContentPane().add(programNameLabel, gridBagConstraints);
 
         instituteNameLabel.setText(bundle.getString("ITS NTUU «KPI»")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        aboutDialog.getContentPane().add(instituteNameLabel, gridBagConstraints);
 
         copyrightLabel.setText(bundle.getString("© 2009-2010, OLEKSANDR NATALENKO")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        aboutDialog.getContentPane().add(copyrightLabel, gridBagConstraints);
 
         licenseLabel.setText(bundle.getString("DISTRIBUTED UNDER TERMS AND CONDITIONS OF UPLV4.1")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        aboutDialog.getContentPane().add(licenseLabel, gridBagConstraints);
 
         showLicense.setText(bundle.getString("SHOW LICENSE")); // NOI18N
         showLicense.addActionListener(new java.awt.event.ActionListener() {
@@ -1006,12 +977,31 @@ public class UIMain extends javax.swing.JFrame
                 showLicenseActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
-        aboutDialog.getContentPane().add(showLicense, gridBagConstraints);
+
+        javax.swing.GroupLayout aboutDialogLayout = new javax.swing.GroupLayout(aboutDialog.getContentPane());
+        aboutDialog.getContentPane().setLayout(aboutDialogLayout);
+        aboutDialogLayout.setHorizontalGroup(
+            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(programNameLabel)
+            .addComponent(instituteNameLabel)
+            .addComponent(copyrightLabel)
+            .addGroup(aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(showLicense)
+                .addComponent(licenseLabel))
+        );
+        aboutDialogLayout.setVerticalGroup(
+            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutDialogLayout.createSequentialGroup()
+                .addComponent(programNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(instituteNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(copyrightLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(licenseLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(showLicense))
+        );
 
         modellingOptionsDialog.setTitle(bundle.getString("MODELLING OPTIONS")); // NOI18N
         modellingOptionsDialog.setMinimumSize(new java.awt.Dimension(595, 145));
@@ -1335,20 +1325,16 @@ public class UIMain extends javax.swing.JFrame
         appearanceOptionsDialog.setMinimumSize(new java.awt.Dimension(169, 74));
         appearanceOptionsDialog.setResizable(false);
 
-        chartsOptionsTab.setLayout(new java.awt.GridBagLayout());
+        chartsOptionsTab.setLayout(new javax.swing.BoxLayout(chartsOptionsTab, javax.swing.BoxLayout.LINE_AXIS));
 
         linesWidthLabel.setText(bundle.getString("LINES WIDTH:")); // NOI18N
-        chartsOptionsTab.add(linesWidthLabel, new java.awt.GridBagConstraints());
+        chartsOptionsTab.add(linesWidthLabel);
 
         linesWidth.setModel(new javax.swing.SpinnerNumberModel(2, 1, 5, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        chartsOptionsTab.add(linesWidth, gridBagConstraints);
+        chartsOptionsTab.add(linesWidth);
 
         pixelsLabel.setText(bundle.getString("PIX.")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        chartsOptionsTab.add(pixelsLabel, gridBagConstraints);
+        chartsOptionsTab.add(pixelsLabel);
 
         appearanceOptionsTabs.addTab(bundle.getString("CHARTS"), chartsOptionsTab); // NOI18N
 
@@ -1356,7 +1342,7 @@ public class UIMain extends javax.swing.JFrame
         appearanceOptionsDialog.getContentPane().setLayout(appearanceOptionsDialogLayout);
         appearanceOptionsDialogLayout.setHorizontalGroup(
             appearanceOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(appearanceOptionsTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+            .addComponent(appearanceOptionsTabs)
         );
         appearanceOptionsDialogLayout.setVerticalGroup(
             appearanceOptionsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1366,7 +1352,7 @@ public class UIMain extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(bundle.getString("DIGITAL TELECOMMUNICATION SYSTEM")); // NOI18N
 
-        TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16));
+        TCSTabs.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
 
         blockMessageSource.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1377,7 +1363,7 @@ public class UIMain extends javax.swing.JFrame
         blockSourceMessagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MESSAGE"))); // NOI18N
 
         blockMessageArea.setColumns(20);
-        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24));
+        blockMessageArea.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         blockMessageArea.setRows(5);
         blockMessageArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(blockMessageArea);
@@ -1386,11 +1372,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceMessagePanel.setLayout(blockSourceMessagePanelLayout);
         blockSourceMessagePanelLayout.setHorizontalGroup(
             blockSourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockSourceMessagePanelLayout.setVerticalGroup(
             blockSourceMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMessageSourceLayout = new javax.swing.GroupLayout(blockMessageSource);
@@ -1421,11 +1407,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoderOutputPanel.setLayout(blockSourceCoderOutputPanelLayout);
         blockSourceCoderOutputPanelLayout.setHorizontalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockSourceCoderOutputPanelLayout.setVerticalGroup(
             blockSourceCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockSourceCoderBinarySequence);
@@ -1447,11 +1433,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoderVideoSequence.setLayout(blockSourceCoderVideoSequenceLayout);
         blockSourceCoderVideoSequenceLayout.setHorizontalGroup(
             blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockSourceCoderVideoSequenceLayout.setVerticalGroup(
             blockSourceCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(blockSourceVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         blockSourceCoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockSourceCoderVideoSequence); // NOI18N
@@ -1460,11 +1446,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceCoder.setLayout(blockSourceCoderLayout);
         blockSourceCoderLayout.setHorizontalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs)
+            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
         );
         blockSourceCoderLayout.setVerticalGroup(
             blockSourceCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+            .addComponent(blockSourceCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("SOURCE CODER"), blockSourceCoder); // NOI18N
@@ -1484,11 +1470,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelCoderOutputPanel.setLayout(blockChannelCoderOutputPanelLayout);
         blockChannelCoderOutputPanelLayout.setHorizontalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockChannelCoderOutputPanelLayout.setVerticalGroup(
             blockChannelCoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelCoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelCoderBinarySequence);
@@ -1510,11 +1496,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelCoderVideoSequence.setLayout(blockChannelCoderVideoSequenceLayout);
         blockChannelCoderVideoSequenceLayout.setHorizontalGroup(
             blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockChannelCoderVideoSequenceLayout.setVerticalGroup(
             blockChannelCoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(blockChannelVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         blockChannelCoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockChannelCoderVideoSequence); // NOI18N
@@ -1523,11 +1509,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelCoder.setLayout(blockChannelCoderLayout);
         blockChannelCoderLayout.setHorizontalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs)
+            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
         );
         blockChannelCoderLayout.setVerticalGroup(
             blockChannelCoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+            .addComponent(blockChannelCoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("CHANNEL CODER"), blockChannelCoder); // NOI18N
@@ -1546,11 +1532,11 @@ public class UIMain extends javax.swing.JFrame
         blockModulatorOutputPanel.setLayout(blockModulatorOutputPanelLayout);
         blockModulatorOutputPanelLayout.setHorizontalGroup(
             blockModulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockModulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockModulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockModulatorOutputPanelLayout.setVerticalGroup(
             blockModulatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockModulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockModulatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockModulatorLayout = new javax.swing.GroupLayout(blockModulator);
@@ -1580,11 +1566,11 @@ public class UIMain extends javax.swing.JFrame
         blockNoiseGeneratorOutputPanel.setLayout(blockNoiseGeneratorOutputPanelLayout);
         blockNoiseGeneratorOutputPanelLayout.setHorizontalGroup(
             blockNoiseGeneratorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockNoiseGeneratorOutputPanelLayout.setVerticalGroup(
             blockNoiseGeneratorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockNoiseGeneratorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockNoiseGeneratorLayout = new javax.swing.GroupLayout(blockNoiseGenerator);
@@ -1614,11 +1600,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelOutputPanel.setLayout(blockChannelOutputPanelLayout);
         blockChannelOutputPanelLayout.setHorizontalGroup(
             blockChannelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockChannelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockChannelOutputPanelLayout.setVerticalGroup(
             blockChannelOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockChannelOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelLayout = new javax.swing.GroupLayout(blockChannel);
@@ -1648,11 +1634,11 @@ public class UIMain extends javax.swing.JFrame
         blockReferenceGeneratorOutputPanel0.setLayout(blockReferenceGeneratorOutputPanel0Layout);
         blockReferenceGeneratorOutputPanel0Layout.setHorizontalGroup(
             blockReferenceGeneratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockReferenceGeneratorOutputPanel0Layout.setVerticalGroup(
             blockReferenceGeneratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockReferenceGenerator0Layout = new javax.swing.GroupLayout(blockReferenceGenerator0);
@@ -1682,11 +1668,11 @@ public class UIMain extends javax.swing.JFrame
         blockMultiplierOutputPanel0.setLayout(blockMultiplierOutputPanel0Layout);
         blockMultiplierOutputPanel0Layout.setHorizontalGroup(
             blockMultiplierOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockMultiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockMultiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockMultiplierOutputPanel0Layout.setVerticalGroup(
             blockMultiplierOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockMultiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockMultiplierOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier0Layout = new javax.swing.GroupLayout(blockMultiplier0);
@@ -1716,11 +1702,11 @@ public class UIMain extends javax.swing.JFrame
         blockReferenceGeneratorOutputPanel1.setLayout(blockReferenceGeneratorOutputPanel1Layout);
         blockReferenceGeneratorOutputPanel1Layout.setHorizontalGroup(
             blockReferenceGeneratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockReferenceGeneratorOutputPanel1Layout.setVerticalGroup(
             blockReferenceGeneratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockReferenceGeneratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockReferenceGenerator1Layout = new javax.swing.GroupLayout(blockReferenceGenerator1);
@@ -1750,11 +1736,11 @@ public class UIMain extends javax.swing.JFrame
         blockMultiplierOutputPanel1.setLayout(blockMultiplierOutputPanel1Layout);
         blockMultiplierOutputPanel1Layout.setHorizontalGroup(
             blockMultiplierOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockMultiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockMultiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockMultiplierOutputPanel1Layout.setVerticalGroup(
             blockMultiplierOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockMultiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockMultiplierOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockMultiplier1Layout = new javax.swing.GroupLayout(blockMultiplier1);
@@ -1784,11 +1770,11 @@ public class UIMain extends javax.swing.JFrame
         blockIntegratorOutputPanel0.setLayout(blockIntegratorOutputPanel0Layout);
         blockIntegratorOutputPanel0Layout.setHorizontalGroup(
             blockIntegratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockIntegratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockIntegratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockIntegratorOutputPanel0Layout.setVerticalGroup(
             blockIntegratorOutputPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockIntegratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockIntegratorOutputField0, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator0Layout = new javax.swing.GroupLayout(blockIntegrator0);
@@ -1818,11 +1804,11 @@ public class UIMain extends javax.swing.JFrame
         blockIntegratorOutputPanel1.setLayout(blockIntegratorOutputPanel1Layout);
         blockIntegratorOutputPanel1Layout.setHorizontalGroup(
             blockIntegratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockIntegratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockIntegratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockIntegratorOutputPanel1Layout.setVerticalGroup(
             blockIntegratorOutputPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockIntegratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockIntegratorOutputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockIntegrator1Layout = new javax.swing.GroupLayout(blockIntegrator1);
@@ -1852,11 +1838,11 @@ public class UIMain extends javax.swing.JFrame
         blockSummatorOutputPanel.setLayout(blockSummatorOutputPanelLayout);
         blockSummatorOutputPanelLayout.setHorizontalGroup(
             blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockSummatorOutputPanelLayout.setVerticalGroup(
             blockSummatorOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(blockSummatorOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSummatorLayout = new javax.swing.GroupLayout(blockSummator);
@@ -1887,11 +1873,11 @@ public class UIMain extends javax.swing.JFrame
         blockResolverOutputPanel.setLayout(blockResolverOutputPanelLayout);
         blockResolverOutputPanelLayout.setHorizontalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockResolverOutputPanelLayout.setVerticalGroup(
             blockResolverOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockResolverBinarySequenceLayout = new javax.swing.GroupLayout(blockResolverBinarySequence);
@@ -1913,11 +1899,11 @@ public class UIMain extends javax.swing.JFrame
         blockResolverVideoSequence.setLayout(blockResolverVideoSequenceLayout);
         blockResolverVideoSequenceLayout.setHorizontalGroup(
             blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockResolverVideoSequenceLayout.setVerticalGroup(
             blockResolverVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(blockResolverVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         blockResolverTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockResolverVideoSequence); // NOI18N
@@ -1926,11 +1912,11 @@ public class UIMain extends javax.swing.JFrame
         blockResolver.setLayout(blockResolverLayout);
         blockResolverLayout.setHorizontalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs)
+            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
         );
         blockResolverLayout.setVerticalGroup(
             blockResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+            .addComponent(blockResolverTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("RESOLVER"), blockResolver); // NOI18N
@@ -1950,11 +1936,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoderOutputPanel.setLayout(blockChannelDecoderOutputPanelLayout);
         blockChannelDecoderOutputPanelLayout.setHorizontalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockChannelDecoderOutputPanelLayout.setVerticalGroup(
             blockChannelDecoderOutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockChannelDecoderBinarySequenceLayout = new javax.swing.GroupLayout(blockChannelDecoderBinarySequence);
@@ -1976,11 +1962,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoderVideoSequence.setLayout(blockChannelDecoderVideoSequenceLayout);
         blockChannelDecoderVideoSequenceLayout.setHorizontalGroup(
             blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
         blockChannelDecoderVideoSequenceLayout.setVerticalGroup(
             blockChannelDecoderVideoSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderVideoSequenceOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
         );
 
         blockChannelDecoderTabs.addTab(bundle.getString("VIDEOSEQUENCE"), blockChannelDecoderVideoSequence); // NOI18N
@@ -1989,11 +1975,11 @@ public class UIMain extends javax.swing.JFrame
         blockChannelDecoder.setLayout(blockChannelDecoderLayout);
         blockChannelDecoderLayout.setHorizontalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs)
+            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
         );
         blockChannelDecoderLayout.setVerticalGroup(
             blockChannelDecoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+            .addComponent(blockChannelDecoderTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
         );
 
         TCSTabs.addTab(bundle.getString("CHANNEL DECODER"), blockChannelDecoder); // NOI18N
@@ -2016,11 +2002,11 @@ public class UIMain extends javax.swing.JFrame
         blockSourceDecoderPanel.setLayout(blockSourceDecoderPanelLayout);
         blockSourceDecoderPanelLayout.setHorizontalGroup(
             blockSourceDecoderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
         );
         blockSourceDecoderPanelLayout.setVerticalGroup(
             blockSourceDecoderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout blockSourceDecoderLayout = new javax.swing.GroupLayout(blockSourceDecoder);
@@ -2035,6 +2021,8 @@ public class UIMain extends javax.swing.JFrame
         );
 
         TCSTabs.addTab(bundle.getString("SOURCE DECODER"), blockSourceDecoder); // NOI18N
+
+        getContentPane().add(TCSTabs, java.awt.BorderLayout.CENTER);
 
         systemScheme.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("STRUCTURED SCHEME"))); // NOI18N
         systemScheme.setLayout(new java.awt.GridBagLayout());
@@ -2355,6 +2343,8 @@ public class UIMain extends javax.swing.JFrame
         gridBagConstraints.gridy = 5;
         systemScheme.add(noiseButton, gridBagConstraints);
 
+        getContentPane().add(systemScheme, java.awt.BorderLayout.PAGE_START);
+
         fileMenu.setText(bundle.getString("FILE")); // NOI18N
 
         exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
@@ -2416,21 +2406,6 @@ public class UIMain extends javax.swing.JFrame
         mainMenu.add(helpMenu);
 
         setJMenuBar(mainMenu);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(systemScheme, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
-            .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(systemScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TCSTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
